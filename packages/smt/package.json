@@ -37,7 +37,7 @@
         "test": "pnpm c8 mocha",
         "build:test": "pnpm build && pnpm build:tests && pnpm c8 mocha",
         "build:lint:test": "pnpm build && pnpm build:tests && pnpm lint:fix",
-        "prepublish": "pnpm build && pnpm release"
+        "prepublish": "pnpm build"
     },
     "contributors": [
         {

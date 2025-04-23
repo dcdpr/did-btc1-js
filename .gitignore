@@ -165,5 +165,5 @@ temp
 # Hermit build output
 .hermit
 
+# Release build output
 release/
-*.zip
