@@ -3,6 +3,7 @@ import { DidServiceEndpoint } from '@web5/dids';
 import { RawTransactionV2 } from '../types/bitcoin.js';
 import { CIDAggregateSidecar, SidecarData, SignalsMetadata, SingletonSidecar, SMTAggregateSidecar } from '../types/crud.js';
 import { BeaconService, BeaconSignal, IBeacon } from './ibeacon.js';
+import { RawTransactionRest } from '../bitcoin/rest-client.js';
 
 /**
  * Implements {@link https://dcdpr.github.io/did-btc1/#update-beacons | 5. Beacons}.
@@ -52,19 +53,16 @@ export abstract class Beacon implements IBeacon {
 
   /**
    * Generates a Beacon Signal (implemented by subclasses).
-   * Implements {@link IBeacon.generateSignal | IBeacon Method generateSignal}.
    */
   abstract generateSignal(didUpdatePayload: string): BeaconSignal;
 
   /**
    * Processes a Beacon Signal (implemented by subclasses).
-   * Implements {@link IBeacon.processSignal | IBeacon Method processSignal}.
    */
-  abstract processSignal(signal: RawTransactionV2, signalsMetadata: SignalsMetadata): Promise<DidUpdatePayload | undefined>
+  abstract processSignal(signal: RawTransactionRest | RawTransactionV2, signalsMetadata: SignalsMetadata): Promise<DidUpdatePayload | undefined>
 
   /**
    * Broadcasts a Beacon Signal (implemented by subclasses).
-   * Implements {@link IBeacon.broadcastSignal | IBeacon Method broadcastSignal}.
    */
   abstract broadcastSignal(didUpdatePayload: DidUpdatePayload): Promise<SignalsMetadata>;
 }

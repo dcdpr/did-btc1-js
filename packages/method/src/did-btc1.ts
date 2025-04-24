@@ -1,18 +1,15 @@
 import {
-  Btc1CreateIdTypes,
   Btc1Error,
+  Btc1IdentifierTypes,
   INVALID_DID,
   INVALID_DID_DOCUMENT,
-  Logger,
   METHOD_NOT_SUPPORTED,
   PatchOperation,
-  PublicKeyBytes,
   W3C_DID_RESOLUTION_V1
 } from '@did-btc1/common';
 import type {
   DidResolutionResult,
-  DidVerificationMethod,
-  DidCreateOptions as IDidCreateOptions
+  DidVerificationMethod
 } from '@web5/dids';
 import {
   Did,
@@ -23,54 +20,17 @@ import {
 } from '@web5/dids';
 import { initEccLib } from 'bitcoinjs-lib';
 import * as tinysecp from 'tiny-secp256k1';
-import { Btc1Create } from './btc1/crud/create.js';
+import { Btc1Create, Btc1CreateParams, Btc1CreateResponse } from './btc1/crud/create.js';
 import { Btc1Read } from './btc1/crud/read.js';
 import { Btc1Update } from './btc1/crud/update.js';
-import { Btc1KeyManager } from './btc1/key-manager/index.js';
 import { DidResolutionOptions } from './interfaces/crud.js';
 import { Btc1Appendix } from './utils/appendix.js';
-import { Btc1DidDocument, Btc1VerificationMethod, IntermediateDidDocument } from './utils/did-document.js';
+import { Btc1DidDocument, Btc1VerificationMethod } from './utils/did-document.js';
 import { Btc1Identifier } from './utils/identifier.js';
 
 /** Initialize tiny secp256k1 */
 initEccLib(tinysecp);
 
-export interface DidCreateOptions extends IDidCreateOptions<Btc1KeyManager> {
-  /** DID BTC1 Version Number */
-  version?: number;
-  /** Bitcoin Network */
-  network?: string;
-}
-export type Btc1CreateKeyParams = {
-  idType: 'KEY';
-  pubKeyBytes: PublicKeyBytes;
-  options?: DidCreateOptions;
-};
-export type Btc1CreateExternalParams = {
-  idType: 'EXTERNAL';
-  intermediateDocument: IntermediateDidDocument;
-  options?: DidCreateOptions;
-};
-export type Btc1CreateParams = Btc1CreateKeyParams | Btc1CreateExternalParams;
-export interface CreateIdentifierParams {
-  genesisBytes: Uint8Array;
-  newtork?: string;
-  version?: string;
-}
-export type Btc1CreateResponse = {
-  did: string;
-  initialDocument: Btc1DidDocument;
-};
-export interface Btc1UpdateConstructParams {
-    identifier: string;
-    sourceDocument: Btc1DidDocument;
-    sourceVersionId: number;
-    patch: PatchOperation[];
-}
-export interface Btc1UpdateParams extends Btc1UpdateConstructParams {
-    verificationMethodId: string;
-    beaconIds: string[];
-}
 /**
  * Implements {@link https://dcdpr.github.io/did-btc1 | did:btc1 DID Method Specification}.
  * did:btc1 is a censorship resistant DID Method using the Bitcoin blockchain as a Verifiable Data Registry to announce
@@ -108,25 +68,22 @@ export class DidBtc1 implements DidMethod {
     // Deconstruct the idType and options from the params
     const { idType, options = {} } = params;
 
-    // Deconstruct options and set the default values
-    const { version = 1, network = 'bitcoin' } = options;
-
     // If idType is key, call Btc1Create.deterministic
-    if(idType === Btc1CreateIdTypes.KEY) {
+    if(idType === Btc1IdentifierTypes.KEY) {
       // Deconstruct the pubKeyBytes from the params
       const { pubKeyBytes } = params;
 
       // Return call to Btc1Create.key
-      return Btc1Create.key({ version, network, pubKeyBytes, });
+      return Btc1Create.key({ pubKeyBytes, options });
     }
 
     // If idType is external, call Btc1Create.external
-    if(idType === Btc1CreateIdTypes.EXTERNAL) {
+    if(idType === Btc1IdentifierTypes.EXTERNAL) {
       // Deconstruct the intermediateDocument from the params
       const { intermediateDocument } = params;
 
       // Return call to Btc1Create.external
-      return await Btc1Create.external({ network, version, intermediateDocument });
+      return await Btc1Create.external({ intermediateDocument, options });
     }
 
     // Throw error if idType is not key or external
@@ -177,9 +134,9 @@ export class DidBtc1 implements DidMethod {
         didDocument           : targetDocument,
       };
 
-      Logger.warn('// TODO: Are we using the DID Core spec for DidResolutionResult?');
-      Logger.warn('// TODO: Are we using didResolutionMetadata? https://www.w3.org/TR/did-1.0/#did-resolution-metadata');
-      Logger.warn('// TODO: Are we using didDocumentMetadata? https://www.w3.org/TR/did-1.0/#did-document-metadata');
+      // Logger.warn('// TODO: Are we using the DID Core spec for DidResolutionResult?');
+      // Logger.warn('// TODO: Are we using didResolutionMetadata? https://www.w3.org/TR/did-1.0/#did-resolution-metadata');
+      // Logger.warn('// TODO: Are we using didDocumentMetadata? https://www.w3.org/TR/did-1.0/#did-document-metadata');
 
       // Return didResolutionResult;
       return didResolutionResult;

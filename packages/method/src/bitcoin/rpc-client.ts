@@ -325,7 +325,6 @@ export default class BitcoinRpc implements IBitcoinRpc {
 
   /**
    * Returns the block data associated with a `blockhash` of a valid block.
-   * See {@link IBitcoinRpc.getBlock} for details.
    * @param {GetBlockParams} params See {@link GetBlockParams} for details.
    * @param {?string} params.blockhash The blockhash of the block to query.
    * @param {?number} params.height The block height of the block to query.

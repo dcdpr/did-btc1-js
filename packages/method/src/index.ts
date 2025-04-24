@@ -26,6 +26,7 @@ export * from './types/crud.js';
 
 export * from './utils/appendix.js';
 export * from './utils/beacons.js';
+export * from './utils/did-document-builder.js';
 export * from './utils/did-document.js';
 export * from './utils/general.js';
 export * from './utils/identifier.js';

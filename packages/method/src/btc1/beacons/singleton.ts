@@ -1,5 +1,6 @@
 import { DidUpdatePayload, INVALID_SIDECAR_DATA, LATE_PUBLISHING_ERROR, Logger, SingletonBeaconError } from '@did-btc1/common';
 import { base58btc } from 'multiformats/bases/base58';
+import { RawTransactionRest } from '../../bitcoin/rest-client.js';
 import BitcoinRpc from '../../bitcoin/rpc-client.js';
 import { Beacon } from '../../interfaces/beacon.js';
 import { BeaconService, BeaconSignal } from '../../interfaces/ibeacon.js';
@@ -90,22 +91,29 @@ export class SingletonBeacon extends Beacon {
    * @returns {Promise<DidUpdatePayload | undefined>} The DID Update payload announced by the Beacon Signal.
    * @throws {DidError} if the signalTx is invalid or the signalSidecarData is invalid.
    */
-  public async processSignal(signal: RawTransactionV2, signalsMetadata: SignalsMetadata): Promise<DidUpdatePayload | undefined> {
+  public async processSignal(signal: RawTransactionV2 | RawTransactionRest, signalsMetadata: SignalsMetadata): Promise<DidUpdatePayload | undefined> {
     // 1. Initialize a txOut variable to the 0th transaction output of the tx.
-    const txout = signal.vout[0];
+    const txout = new Map(Object.entries(signal.vout[0]));
 
     // 2. Set didUpdatePayload to null.
     let didUpdatePayload: DidUpdatePayload | undefined = undefined;
 
     // 3. Check txout is of the format [OP_RETURN, OP_PUSH32, <32bytes>], if not, then return didUpdatePayload.
     //    The Bitcoin transaction is not a Beacon Signal.
-    const [OP_RETURN, UPDATE_PAYLOAD_HASH] = txout.scriptPubKey.asm.split(' ');
-    if (!OP_RETURN || OP_RETURN !== 'OP_RETURN') {
+    const asm = txout.get('scriptpubkey_asm') ?? txout.get('scriptPubKey').asm;
+    console.log('asm:', asm);
+    const ASM_DATA = new Set(asm.split(' '));
+    console.log('ASM_DATA:', ASM_DATA);
+    if (!ASM_DATA.has('OP_RETURN')) {
       return undefined;
     };
 
+    const UPDATE_PAYLOAD_HASH = Array.from(ASM_DATA).reverse()[0] as string;
+    if(!UPDATE_PAYLOAD_HASH) {
+      return undefined;
+    }
     // 4. Set hashBytes to the 32 bytes in the txout.
-    const hashBytes = base58btc.encode(Buffer.from(UPDATE_PAYLOAD_HASH, 'hex'));
+    const hashBytes = JSON.canonicalization.encode(Buffer.from(UPDATE_PAYLOAD_HASH, 'hex'), 'base58');
 
     // Convert signalsMetadata to a Map for easier access
     const signalsMetadataMap = new Map<string, Metadata>(Object.entries(signalsMetadata));

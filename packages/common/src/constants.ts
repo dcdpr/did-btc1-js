@@ -54,7 +54,9 @@ export const CURVE = {
   Gx,
   Gy
 };
+
 export const W3C_DID_V1 = 'https://www.w3.org/ns/did/v1';
+export const W3C_DID_V1_1 =  'https://www.w3.org/TR/did-1.1';
 export const W3C_DATA_INTEGRITY_V1 = 'https://w3id.org/security/data-integrity/v1';
 export const W3C_DATA_INTEGRITY_V2 = 'https://w3id.org/security/data-integrity/v2';
 export const BTC1_METHOD_CONTEXT = 'https://did-btc1/TBD/context';
@@ -65,12 +67,12 @@ export const W3C_MULTIKEY_V1 = 'https://w3id.org/security/multikey/v1';
 export const W3C_DID_RESOLUTION_V1 = 'https://w3id.org/did-resolution/v1';
 export const CONTEXT_URL_MAP = {
   w3c : {
-    did           : { v1: W3C_DID_V1,},
-    didresolution : { v1: W3C_DID_RESOLUTION_V1,},
+    did           : { v1: W3C_DID_V1, v1_1: W3C_DID_V1_1, },
+    didresolution : { v1: W3C_DID_RESOLUTION_V1, },
     dataintegrity : { v1: W3C_DATA_INTEGRITY_V1, v2: W3C_DATA_INTEGRITY_V2 },
-    zcap          : { v1: W3C_ZCAP_V1,},
-    jsonldpatch   : { v1: W3C_JSONLD_PATCH_V1,},
-    multikey      : { v1: W3C_MULTIKEY_V1,},
+    zcap          : { v1: W3C_ZCAP_V1, },
+    jsonldpatch   : { v1: W3C_JSONLD_PATCH_V1, },
+    multikey      : { v1: W3C_MULTIKEY_V1, },
   },
   btc1 : {
     diddocument : { v1: BTC1_DID_DOCUMENT_V1, },
@@ -80,7 +82,7 @@ export const CONTEXT_URL_MAP = {
 };
 
 export const BTC1_DID_DOCUMENT_CONTEXT = [
-  CONTEXT_URL_MAP.w3c.did.v1,
+  CONTEXT_URL_MAP.w3c.did.v1_1,
   CONTEXT_URL_MAP.btc1.method.v1,
 ];
 export const BTC1_MULTIKEY_CONTEXT = [

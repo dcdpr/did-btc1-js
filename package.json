@@ -32,10 +32,7 @@
     "test": "pnpm --recursive --stream test",
     "lint": "pnpm --recursive --stream lint",
     "lint:fix": "pnpm --recursive --stream lint:fix",
-    "version": "pnpm --recursive --stream version",
-    "version:no-git": "pnpm --recursive --stream version:no-git",
     "release": "pnpm --recursive --stream release",
-    "prepush": "pnpm install -r --no-lockfile && pnpm lint && pnpm build:all && pnpm test",
     "prepublish": "pnpm --recursive --stream prepublish",
     "publish:all": "pnpm --recursive --stream publish",
     "cryptosuite": "pnpm --filter cryptosuite",
@@ -86,8 +83,7 @@
       "@ipshipyard/node-datachannel",
       "classic-level",
       "dtrace-provider",
-      "esbuild",
-      "@sphereon/pex"
+      "esbuild"
     ]
   },
   "dependencies": {

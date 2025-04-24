@@ -83,7 +83,6 @@
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --fix",
     "test": "pnpm c8 mocha",
-    "posttest": "sed -i '' \"s|$(pwd)|.|g\" coverage/cobertura-coverage.xml",
     "build:test": "pnpm build && pnpm build:tests && pnpm c8 mocha",
     "build:lint:test": "pnpm build && pnpm build:tests && pnpm lint:fix",
     "prepublish": "pnpm build && pnpm release",

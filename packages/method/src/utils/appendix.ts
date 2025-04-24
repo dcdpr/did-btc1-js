@@ -16,6 +16,7 @@ import { Btc1VerificationMethod } from './did-document.js';
 
 export interface DidComponents {
     hrp: string;
+    idType: string;
     version: number;
     network: string;
     genesisBytes: Bytes;
@@ -80,7 +81,7 @@ export class Btc1Appendix {
    * @returns {DidVerificationMethod[]} An array of DidVerificationMethod objects
    * @throws {TypeError} if the didDocument is not provided
    */
-  public static getVerificationMethods({ didDocument }: { didDocument: DidDocument; }): Btc1VerificationMethod[] {
+  public static getVerificationMethods(didDocument: DidDocument): Btc1VerificationMethod[] {
     if (!didDocument) throw new TypeError(`Required parameter missing: 'didDocument'`);
     const verificationMethods: DidVerificationMethod[] = [];
     // Check the 'verificationMethod' array.

@@ -1,10 +1,11 @@
-import { Hex, MultikeyError, SignatureBytes, MULTIKEY_VERIFICATION_METHOD_ERROR, Btc1Error } from '@did-btc1/common';
+import { Btc1Error, Hex, MULTIKEY_VERIFICATION_METHOD_ERROR, MultikeyError, SignatureBytes } from '@did-btc1/common';
 import { KeyPair, PrivateKey, PublicKey } from '@did-btc1/key-pair';
 import { schnorr } from '@noble/curves/secp256k1';
 import { DidVerificationMethod } from '@web5/dids';
 import { randomBytes } from 'crypto';
-import { FromPrivateKey, FromPublicKey, IMultikey, MultikeyJSON, MultikeyParams } from './interface.js';
+import { base58btc } from 'multiformats/bases/base58';
 import { Cryptosuite } from '../cryptosuite/index.js';
+import { FromPrivateKey, FromPublicKey, FromPublicKeyMultibaseParams, IMultikey, MultikeyJSON, MultikeyParams } from './interface.js';
 
 /**
  * Implements {@link https://dcdpr.github.io/data-integrity-schnorr-secp256k1/#multikey | 2.1.1 Multikey}
@@ -236,6 +237,41 @@ export class MultikeyUtils {
   public static fromPublicKey({ id, controller, publicKeyBytes }: FromPublicKey): Multikey {
     // Create a new PublicKey from the public key bytes
     const keyPair = new KeyPair({ publicKey: new PublicKey(publicKeyBytes) });
+
+    // Return a new Multikey instance
+    return new Multikey({ id, controller, keyPair });
+  }
+
+  /**
+   * Creates a `Multikey` instance from a public key multibase.
+   *
+   * @param {FromPublicKeyMultibaseParams} params See {@link FromPublicKeyMultibaseParams} for details.
+   * @param {string} params.id The id of the multikey.
+   * @param {string} params.controller The controller of the multikey.
+   * @param {string} params.publicKeyMultibase The public key multibase for the multikey.
+   * @returns {Multikey} The new multikey instance.
+   */
+  public static fromPublicKeyMultibase({
+    id,
+    controller,
+    publicKeyMultibase
+  }: FromPublicKeyMultibaseParams): Multikey {
+    // Decode the public key multibase using base58btc
+    const publicKeyMultibaseBytes = base58btc.decode(publicKeyMultibase);
+
+    // Check if the publicKeyMultibase is not a valid multikey
+    if(publicKeyMultibaseBytes.length !== 35) {
+      throw new MultikeyError(
+        `Invalid publicKeyMultibase length: ${publicKeyMultibaseBytes.length}`,
+        MULTIKEY_VERIFICATION_METHOD_ERROR, { publicKeyMultibase }
+      );
+    }
+
+    // Get the 33 byte public key
+    const publicKey = publicKeyMultibaseBytes.slice(2);
+
+    // Construct a new KeyPair from the public key
+    const keyPair = new KeyPair({ publicKey });
 
     // Return a new Multikey instance
     return new Multikey({ id, controller, keyPair });

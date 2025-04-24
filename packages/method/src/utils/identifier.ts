@@ -1,4 +1,4 @@
-import { BitcoinNetworkNames, Btc1CreateIdTypes, Btc1Error, INVALID_DID, METHOD_NOT_SUPPORTED } from '@did-btc1/common';
+import { BitcoinNetworkNames, Btc1IdentifierTypes, Btc1Error, INVALID_DID, METHOD_NOT_SUPPORTED } from '@did-btc1/common';
 import { PublicKey } from '@did-btc1/key-pair';
 import { bech32m } from '@scure/base';
 import { DidComponents } from './appendix.js';
@@ -15,7 +15,7 @@ export class Btc1Identifier {
    *    - a hash-value representing the hash of an initiating external DID document.
    *
    * @param {CreateIdentifierParams} params See {@link CreateIdentifierParams} for details.
-   * @param {Btc1CreateIdTypes} params.idType Identifier type (key or external).
+   * @param {Btc1IdentifierTypes} params.idType Identifier type (key or external).
    * @param {string} params.network Bitcoin network name.
    * @param {number} params.version Identifier version.
    * @param {PublicKeyBytes | DocumentBytes} params.genesisBytes Public key or an intermediate document bytes.
@@ -28,7 +28,7 @@ export class Btc1Identifier {
     genesisBytes: Uint8Array;
   }): string {
     // 1. If idType is not a valid value per above, raise invalidDid error.
-    if (!(idType in Btc1CreateIdTypes)) {
+    if (!(idType in Btc1IdentifierTypes)) {
       throw new Btc1Error('Expected "idType" to be "KEY" or "EXTERNAL"', INVALID_DID, {idType});
     }
 

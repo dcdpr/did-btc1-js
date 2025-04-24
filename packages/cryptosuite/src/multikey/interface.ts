@@ -25,6 +25,9 @@ export interface FromPublicKey extends DidParams {
 export interface MultikeyParams extends DidParams {
   keyPair?: KeyPair;
 }
+export interface FromPublicKeyMultibaseParams extends DidParams {
+  publicKeyMultibase: string;
+}
 
 /**
  * Interface representing a BIP340 Multikey.

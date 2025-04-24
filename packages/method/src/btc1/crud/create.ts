@@ -1,10 +1,48 @@
-import { Btc1CreateIdTypes, Btc1Error, ID_PLACEHOLDER_VALUE, INVALID_DID_DOCUMENT, PublicKeyBytes } from '@did-btc1/common';
+import { Btc1IdentifierTypes, PatchOperation, PublicKeyBytes } from '@did-btc1/common';
 import { PublicKey } from '@did-btc1/key-pair';
-import { Btc1CreateResponse } from '../../did-btc1.js';
-import { Btc1Appendix } from '../../utils/appendix.js';
+import { DidCreateOptions as IDidCreateOptions } from '@web5/dids';
+import { getNetwork } from '../../bitcoin/network.js';
 import { BeaconUtils } from '../../utils/beacons.js';
-import { Btc1DidDocument, Btc1VerificationMethod, IntermediateDidDocument } from '../../utils/did-document.js';
+import { Btc1DidDocument, IntermediateDidDocument } from '../../utils/did-document.js';
 import { Btc1Identifier } from '../../utils/identifier.js';
+import { Btc1KeyManager } from '../key-manager/index.js';
+
+export type Btc1CreateParams = Btc1CreateKeyParams | Btc1CreateExternalParams;
+export interface CreateIdentifierParams {
+  genesisBytes: Uint8Array;
+  newtork?: string;
+  version?: string;
+}
+export type Btc1CreateResponse = {
+  did: string;
+  initialDocument: Btc1DidDocument;
+};
+export interface Btc1UpdateConstructParams {
+    identifier: string;
+    sourceDocument: Btc1DidDocument;
+    sourceVersionId: number;
+    patch: PatchOperation[];
+}
+export interface Btc1UpdateParams extends Btc1UpdateConstructParams {
+    verificationMethodId: string;
+    beaconIds: string[];
+}
+export interface DidCreateOptions extends IDidCreateOptions<Btc1KeyManager> {
+  /** DID BTC1 Version Number */
+  version?: number;
+  /** Bitcoin Network */
+  network?: string;
+}
+export type Btc1CreateKeyParams = {
+  idType: 'KEY';
+  pubKeyBytes: PublicKeyBytes;
+  options?: DidCreateOptions;
+};
+export type Btc1CreateExternalParams = {
+  idType: 'EXTERNAL';
+  intermediateDocument: IntermediateDidDocument;
+  options?: DidCreateOptions;
+};
 
 /**
  * Implements section {@link https://dcdpr.github.io/did-btc1/#create | 4.1 Create}.
@@ -31,43 +69,45 @@ export class Btc1Create {
    * @returns {Btc1CreateResponse} A response object of type {@link Btc1CreateResponse}.
    * @throws {DidError} if the public key is missing or invalid.
    */
-  public static key({ version, network, pubKeyBytes }: {
-    version: number;
-    network: string;
+  public static key({ pubKeyBytes, options }: {
     pubKeyBytes: PublicKeyBytes;
+    options: DidCreateOptions;
   }): Btc1CreateResponse {
+    // Deconstruct options and set the default values
+    const { version = 1, network = 'bitcoin' } = options;
+
     // Set idType to "KEY"
-    const idType = Btc1CreateIdTypes.KEY;
-
-    // Set publicKey to genesisBytes
-    const genesisBytes = pubKeyBytes;
-
-    // Set beaconType to "SingletonBeacon"
-    const beaconType = 'SingletonBeacon';
+    const idType = Btc1IdentifierTypes.KEY;
 
     // Call the the did:btc1 Identifier Encoding algorithm
-    const did = Btc1Identifier.encode({ version, network, idType, genesisBytes, });
+    const identifier = Btc1Identifier.encode({ version, network, idType, genesisBytes: pubKeyBytes });
 
     // Instantiate PublicKey object and get the multibase formatted publicKey
-    const publicKeyMultibase = new PublicKey(genesisBytes).multibase;
+    const { bytes: publicKey, multibase: publicKeyMultibase } = new PublicKey(pubKeyBytes);
 
-    // Generate SingletonBeacon services
-    const services = BeaconUtils.generateBeaconServices({ publicKey: genesisBytes, network, beaconType, });
+    // Generate the service field for the DID Document
+    const service = BeaconUtils.generateBeaconServices({
+      identifier,
+      publicKey,
+      network : getNetwork(network),
+      type    : 'SingletonBeacon',
+    });
 
     // Create initialDocument ensuring conformant to spec as Btc1DidDocument
     const initialDocument = new Btc1DidDocument({
-      id                 : did,
-      service            : services,
+      id                 : identifier,
+      controller         : [identifier],
       verificationMethod : [{
-        id                 : '#initialKey',
-        type               : 'Multikey',
-        controller         : did,
+        id         : `${identifier}#initialKey`,
+        type       : 'Multikey',
+        controller : identifier,
         publicKeyMultibase,
       }],
+      service,
     });
 
     // Return did & initialDocument
-    return { did, initialDocument };
+    return { did: identifier, initialDocument };
   }
 
   /**
@@ -88,61 +128,31 @@ export class Btc1Create {
    * @returns {Btc1CreateResponse} A Promise resolving to {@link Btc1CreateResponses}.
    * @throws {DidError} if the verificationMethod or service objects are missing required properties
    */
-  public static async external({ network, version, intermediateDocument }: {
-    version: number;
-    network: string;
+  public static async external({ intermediateDocument, options }: {
     intermediateDocument: IntermediateDidDocument;
+    options: DidCreateOptions;
   }): Promise<Btc1CreateResponse> {
-    // Deconstruct vm and service from intermediateDocument
-    const { verificationMethod, service } = intermediateDocument ?? {};
+    // 1. Set idType to "EXTERNAL"
+    const idType = Btc1IdentifierTypes.EXTERNAL;
 
-    // Validate verificationMethod not null and contains at least one object
-    if (!verificationMethod || !verificationMethod.length) {
-      throw new Btc1Error('At least one verificationMethod object required', INVALID_DID_DOCUMENT, verificationMethod);
-    }
+    // 2. Set version to 1
+    // 3. Set network to the desired network.
+    const { version = 1, network = 'bitcoin' } = options;
 
-    // Validate the properties for each verificationMethod object in the document
-    if (!verificationMethod.every(Btc1Appendix.isDidVerificationMethod)) {
-      throw new Btc1Error('Invalid verificationMethod object(s)', INVALID_DID_DOCUMENT, verificationMethod);
-    }
-
-    // Validate service not null and contains at least one object
-    if (!service || !service.length) {
-      throw new Btc1Error('At least one service object required', INVALID_DID_DOCUMENT, service);
-    }
-
-    // Validate service not null and contains at least one object
-    if (!service.every(BeaconUtils.isBeaconService)) {
-      throw new Btc1Error('Invalid service object(s)', INVALID_DID_DOCUMENT, service);
-    }
-
-    /** Set the document.id to {@link ID_PLACEHOLDER_VALUE} */
-    if (intermediateDocument.id !== ID_PLACEHOLDER_VALUE) {
-      intermediateDocument.id = ID_PLACEHOLDER_VALUE;
-    }
-
-    /** Set the document.verificationMethod[i].controller to {@link ID_PLACEHOLDER_VALUE} */
-    intermediateDocument.verificationMethod = verificationMethod.map(
-      (vm: Btc1VerificationMethod) => ({ ...vm, controller: intermediateDocument.id })
-    );
+    // Validate intermediateDocument
+    intermediateDocument.validateIntermediate();
 
     // 4. Set genesisBytes to the result of passing intermediateDocument into the JSON Canonicalization and Hash
     //    algorithm.
     const genesisBytes = await JSON.canonicalization.canonicalhash(intermediateDocument);
 
-    // Set did to result of createIdentifier
-    const did = Btc1Identifier.encode({ idType: Btc1CreateIdTypes.EXTERNAL, genesisBytes, version, network });
+    // 5. Pass idType, version, network, and genesisBytes to the did:btc1 Identifier Encoding algorithm, retrieving id.
+    // 6. Set did to id
+    const did = Btc1Identifier.encode({ idType, genesisBytes, version, network });
 
-    // Set initialDocument id to did.
-    intermediateDocument.id = did;
-
-    // Set verificationMethod.controller to did.
-    intermediateDocument.verificationMethod = verificationMethod.map(
-      (vm: Btc1VerificationMethod) => ({ ...vm, controller: intermediateDocument.id })
-    );
-
-    // Convert intermediateDocument to Btc1DidDocument
-    const initialDocument = new Btc1DidDocument(intermediateDocument);
+    // 7. Set initialDocument to a copy of the intermediateDocument.
+    // 8. Replace all did:btc1:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx values in the initialDocument with the did.
+    const initialDocument = intermediateDocument.toBtc1DidDocument(did);
 
     // Return DID & DID Document.
     return { did, initialDocument };

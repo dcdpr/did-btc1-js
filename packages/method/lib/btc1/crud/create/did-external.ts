@@ -1,38 +1,36 @@
-import { PublicKey } from '@did-btc1/key-pair';
-import { BeaconUtils, Btc1Identifier, DidBtc1, IntermediateDidDocument } from '../../../../src/index.js';
+import { ID_PLACEHOLDER_VALUE } from '@did-btc1/common';
+import { KeyPair, PrivateKeyUtils } from '@did-btc1/key-pair';
+import { payments } from 'bitcoinjs-lib';
+import { DidBtc1, getNetwork, IntermediateDidDocument } from '../../../../src/index.js';
 
-const pubKeyBytes = new Uint8Array([
-  3, 147,  88, 104, 169, 222, 126,
-  240, 163,  35, 114, 143, 194, 209,  28,
-  255,  72, 250, 175, 176, 247, 124, 245,
-  215,  91, 220, 129, 191,  13,  20,  58,
-  47,  32
-]);
-const publicKey = new PublicKey(pubKeyBytes);
-const publicKeyMultibase = publicKey.multibase;
-const service = BeaconUtils.generateBeaconServices({
-  network    : 'bitcoin',
-  beaconType : 'SingletonBeacon',
-  publicKey  : publicKey.bytes
-});
-const did = 'did:btc1:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
-const verificationMethod = [
-  {
-    id                 : '#initialKey',
-    type               : 'Multikey',
-    controller         : did,
-    publicKeyMultibase
-  }
-];
-const intermediateDocument = new IntermediateDidDocument({ id: did, verificationMethod, service });
-const response = await DidBtc1.create({
-  idType  : 'EXTERNAL',
-  intermediateDocument,
-  options : { version: 1, network: 'bitcoin' },
-});
+const networks = ['bitcoin', 'signet', 'regtest', 'testnet3', 'testnet4'];
+const keys = new KeyPair({
+  publicKey: new Uint8Array([
+  2, 206, 152,  64, 106, 58, 228,  11,
+  55, 209,  52,  38,  90, 75, 107, 155,
+ 163, 176, 226, 175,   3, 40, 184, 133,
+  28,   0,  90,  52,  10, 21, 186, 144,
+  12
+])});
 
-console.log('Created BTC1 Identifier and Initial Document:', JSON.stringify(response, null, 4));
-const {hrp, version, network, genesisBytes} = Btc1Identifier.decode(response.did);
-console.log('decoded', {hrp, version, network, genesisBytes});
-const encoded = Btc1Identifier.encode({idType: 'EXTERNAL', version, network, genesisBytes});
-console.log('encoded', encoded);
+for(const network of networks) {
+  const options = { version: 1, network };
+  const verificationMethod = [
+    {
+      id                 : `${ID_PLACEHOLDER_VALUE}#key-0`,
+      type               : 'Multikey',
+      controller         : ID_PLACEHOLDER_VALUE,
+      publicKeyMultibase : keys.publicKey.multibase
+    }
+  ];
+  const p2tr = payments.p2tr({ network: getNetwork('bitcoin'), internalPubkey: keys.publicKey.x }).address;
+  const service = [{
+    id              : `${ID_PLACEHOLDER_VALUE}#key-0`,
+    type            : 'SingletonBeacon',
+    serviceEndpoint : `bitcoin:${p2tr}`,
+  }];
+  const intermediateDocument = new IntermediateDidDocument({ id: ID_PLACEHOLDER_VALUE, verificationMethod, service });
+  const response = await DidBtc1.create({ idType: 'EXTERNAL', intermediateDocument, options });
+  console.log('network:', network);
+  console.log('response.did:', response.did);
+}

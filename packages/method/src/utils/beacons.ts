@@ -4,7 +4,6 @@ import { networks, payments } from 'bitcoinjs-lib';
 import { BeaconFactory } from '../btc1/beacons/factory.js';
 import { BeaconService, BeaconServiceAddress } from '../interfaces/ibeacon.js';
 import { Btc1Appendix } from './appendix.js';
-import { getNetwork } from '../bitcoin/network.js';
 
 /**
  * Required parameters for generating Beacon Services.
@@ -89,7 +88,8 @@ export class BeaconUtils {
    * @returns {Array<Array<string>>} 2D Array of bitcoin addresses (p2pkh, p2wpkh, p2tr).
    * @throws {DidBtc1Error} if the bitcoin address is invalid.
    */
-  public static generateBitcoinAddrs({ publicKey, network }: {
+  public static generateBitcoinAddrs({ identifier, publicKey, network }: {
+    identifier: string;
     publicKey: PublicKeyBytes;
     network: networks.Network;
   }): Array<Array<string>> {
@@ -101,9 +101,9 @@ export class BeaconUtils {
         throw new DidBtc1Error('Failed to generate bitcoin addresses');
       }
       return [
-        ['#initialP2PKH', p2pkh],
-        ['#initialP2WPKH', p2wpkh],
-        ['#initialP2TR', p2tr]
+        [`${identifier}#initialP2PKH`, p2pkh],
+        [`${identifier}#initialP2WPKH`, p2wpkh],
+        [`${identifier}#initialP2TR`, p2tr]
       ];
     } catch (error) {
       console.error(error);
@@ -119,19 +119,24 @@ export class BeaconUtils {
    * @param {string} params.beaconType Optional beacon type to use (default: SingletonBeacon).
    * @returns {DidService[]} Array of DidService objects.
    */
-  public static generateBeaconServices({ network, beaconType, publicKey }: {
+  public static generateBeaconServices({ identifier, network, type, publicKey }: {
+    identifier: string;
     publicKey: PublicKeyBytes;
-    network: string;
-    beaconType: string;
+    network: networks.Network;
+    type: string;
   }): Array<BeaconService> {
-    return this.generateBitcoinAddrs({ network: getNetwork(network), publicKey })
-      .map(([id, address]) =>
-        this.generateBeaconService({
-          id              : id,
-          type            : beaconType,
-          serviceEndpoint : `bitcoin:${address}`,
-        })
-      );
+    // Generate the bitcoin addresses
+    const bitcoinAddrs = this.generateBitcoinAddrs({ identifier, publicKey, network, });
+
+    // Map the bitcoin addresses to the beacon service
+    return bitcoinAddrs.map(([id, address]) => {
+      // Convert the address to a BIP-21 URI
+      const serviceEndpoint = `bitcoin:${address}`;
+      // Create the beacon object
+      const beacon = BeaconFactory.establish({ id, type, serviceEndpoint });
+      // Return the beacon service
+      return beacon.service;
+    });
   }
 
   /**

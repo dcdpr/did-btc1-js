@@ -1,4 +1,4 @@
-import { Hex, UnixTimestamp } from '@did-btc1/common';
+import { BitcoinNetworkNames, Hex, UnixTimestamp } from '@did-btc1/common';
 import BitcoinRpc from '../bitcoin/rpc-client.js';
 
 export interface ReturnFormatOptions {
@@ -22,6 +22,7 @@ export interface IClientConfig {
 }
 
 export class RpcClientConfig implements IClientConfig {
+  network?: BitcoinNetworkNames;
   headers?: Record<string, string>;
   host?: string;
   logger?: any;
@@ -31,6 +32,7 @@ export class RpcClientConfig implements IClientConfig {
   version?: string;
   wallet?: string;
   allowDefaultWallet?: boolean;
+
   constructor(options: IClientConfig = {
     headers            : {},
     host               : 'localhost',
@@ -426,19 +428,20 @@ export type TxIn = {
     txinwitness?: string[];
     sequence: number;
 };
+export type TxInPrevout = {
+    generated: boolean;
+    height: number;
+    value: number;
+    scriptPubKey?: {
+        asm: string;
+        desc: string;
+        hex: string;
+        address?: string;
+        type: string;
+    };
+}
 export interface TxInExt extends TxIn {
-    prevout: {
-        generated: boolean;
-        height: number;
-        value: number;
-        scriptPubKey?: {
-            asm: string;
-            desc: string;
-            hex: string;
-            address?: string;
-            type: string;
-        }
-    }
+    prevout: TxInPrevout;
 }
 export type TxOut = {
     value: number;
