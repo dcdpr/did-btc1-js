@@ -22,7 +22,7 @@ export interface IClientConfig {
 }
 
 export class RpcClientConfig implements IClientConfig {
-  network?: BitcoinNetworkNames;
+  network?: string;
   headers?: Record<string, string>;
   host?: string;
   logger?: any;

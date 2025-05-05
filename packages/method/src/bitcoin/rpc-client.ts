@@ -148,9 +148,9 @@ export default class BitcoinRpc implements IBitcoinRpc {
    * const alice = new BitcoinRpc(aliceClient);
    * ```
    */
-  public static initialize(options?: IClientConfig): RpcClient {
-    const config = RpcClientConfig.initialize(options);
-    return new RpcClient(config);
+  public static initialize(config?: IClientConfig): RpcClient {
+    const rpcConfig = RpcClientConfig.initialize(config);
+    return new RpcClient(rpcConfig);
   }
 
   /**
