@@ -11,7 +11,7 @@ import { Btc1DidDocument, getNetwork, IntermediateDidDocument } from '../src/ind
  * idType=external, intermediateDocument, version
  * idType=external, intermediateDocument, network
  */
-describe('DidBtc1 Create External', () => {
+describe('4.1 Create => 4.1.2 External Initial Document Creation', () => {
   const expectedDidMap = new Map<string, string>([
     ['bitcoin', 'did:btc1:x1qqqdpgqepe54a2nr44kh8jnpuvs0h7k4vjt7pqr9q3e6qjt9mrmsu4nfdnq'],
     ['regtest', 'did:btc1:x1qgqdpgqepe54a2nr44kh8jnpuvs0h7k4vjt7pqr9q3e6qjt9mrmsugy2648'],
