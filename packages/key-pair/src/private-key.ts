@@ -1,18 +1,20 @@
-import { getRandomValues } from 'crypto';
-import * as tinysecp from 'tiny-secp256k1';
-import { IPrivateKey } from './interface.js';
-import { PublicKey } from './public-key.js';
 import {
-  PrivateKeyBytes,
-  PrivateKeySecret,
-  PrivateKeySeed,
-  PrivateKeyError,
+  BIP340_MULTIKEY_PREFIX,
   CURVE,
   Hex,
+  PrivateKeyBytes,
+  PrivateKeyError,
   PrivateKeyJSON,
+  PrivateKeySecret,
+  PrivateKeySeed,
   PublicKeyBytes
 } from '@did-btc1/common';
+import { getRandomValues } from 'crypto';
+import { base58btc } from 'multiformats/bases/base58';
+import * as tinysecp from 'tiny-secp256k1';
+import { IPrivateKey } from './interface.js';
 import { KeyPair } from './key-pair.js';
+import { PublicKey } from './public-key.js';
 
 /**
  * Encapsulates a secp256k1 private key
@@ -32,9 +34,11 @@ export class PrivateKey implements IPrivateKey {
   /** @type {PublicKey} Memoized version of the PublicKey object */
   private _computedPublicKey?: PublicKey;
 
+  /** @type {string} The private key in privateKeyMultibase format */
+  private _multibase: string;
+
   /**
    * Instantiates an instance of PrivateKey.
-   *
    * @param {PrivateKeySeed} seed bytes (Uint8Array) or secret (bigint)
    * @throws {PrivateKeyError} If seed is not provided, not a valid 32-byte private key or not a valid bigint secret
    */
@@ -72,11 +76,13 @@ export class PrivateKey implements IPrivateKey {
     // Set the private key _bytes and _secret
     this._bytes = isSecret ? PrivateKeyUtils.toBytes(seedSecret) : seedBytes;
     this._secret = isBytes ? PrivateKeyUtils.toSecret(seedBytes) : seedSecret;
+
+    // Set the private key multibase
+    this._multibase = this.encode();
   }
 
   /**
    * Return the private key bytes.
-   * @see IPrivateKey.bytes
    */
   get bytes(): Uint8Array {
     // Return a copy of the private key bytes
@@ -86,7 +92,6 @@ export class PrivateKey implements IPrivateKey {
 
   /**
    * Return the private key secret.
-   * @see IPrivateKey.secret
    */
   get secret(): bigint {
     // Memoize the secret and return
@@ -96,7 +101,6 @@ export class PrivateKey implements IPrivateKey {
 
   /**
    * Return the private key point.
-   * @see IPrivateKey.point
    * @returns {bigint} The private key point.
    * @throws {PrivateKeyError} If the public key is undefined or not compressed
    */
@@ -126,13 +130,34 @@ export class PrivateKey implements IPrivateKey {
 
   /**
    * Returns the raw private key as a hex string.
-   *
-   * @see IPrivateKey.hex
    * @returns {Hex} The private key as a hex string
    */
   get hex(): Hex {
     // Convert the raw private key bytes to a hex string
     return Buffer.from(this.bytes).toString('hex');
+  }
+
+
+  /**
+   * Encode the private key bytes as a privateKeyMultibase string.
+   * @returns {string} The private key in base58btc multibase format
+   */
+  get multibase(): string {
+    const multibase = this._multibase;
+    return multibase;
+  }
+
+  public encode(): string {
+    // Convert Uint8Array to Array
+    const bytes = this.bytes.toArray();
+    // Push the key bytes at the end of the prefix
+    bytes.unshift(...BIP340_MULTIKEY_PREFIX);
+    // Return the encoded keys
+    return base58btc.encode(bytes.toUint8Array());
+  }
+
+  public static decode(privateKeyMultibase: string): PrivateKeyBytes {
+    return base58btc.decode(privateKeyMultibase).slice(2);
   }
 
   /**
@@ -149,8 +174,6 @@ export class PrivateKey implements IPrivateKey {
 
   /**
    * Computes the public key from the private key bytes.
-   * @see IPrivateKey.computePublicKey
-   *
    * @returns {PublicKey} The computed public key
    */
   public computePublicKey(): PublicKey {
@@ -164,8 +187,6 @@ export class PrivateKey implements IPrivateKey {
 
   /**
    * Checks if the private key is valid.
-   * @see IPrivateKey.computePublicKey
-   *
    * @returns {boolean} True if the private key is valid, false otherwise
    */
   public isValid(): boolean {
@@ -174,15 +195,18 @@ export class PrivateKey implements IPrivateKey {
 
   /**
    * Returns the private key as a JSON object.
-   * @see IPrivateKey.json
    */
   public json(): PrivateKeyJSON {
     return {
-      bytes  : this.bytes,
-      secret : this.secret as bigint,
-      point  : this.point,
+      bytes  : this.bytes.toArray(),
+      secret : this.secret.toString(),
+      point  : this.point.toString(),
       hex    : this.hex,
     };
+  }
+
+  public static from(json: PrivateKeyJSON): PrivateKey {
+    return new PrivateKey(new Uint8Array(json.bytes));
   }
 }
 

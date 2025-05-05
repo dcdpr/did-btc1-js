@@ -12,10 +12,10 @@ import {
   ProofOptions
 } from '@did-btc1/common';
 import { Multikey } from '@did-btc1/cryptosuite';
+import { KeyPair, PrivateKey } from '@did-btc1/key-pair';
 import type { DidService } from '@web5/dids';
 import { BeaconService } from '../../interfaces/ibeacon.js';
-import { TxId } from '../../types/bitcoin.js';
-import { Metadata, SignalsMetadata } from '../../types/crud.js';
+import { SignalsMetadata } from '../../types/crud.js';
 import { Btc1Appendix } from '../../utils/appendix.js';
 import { Btc1DidDocument, Btc1VerificationMethod } from '../../utils/did-document.js';
 import { BeaconFactory } from '../beacons/factory.js';
@@ -86,7 +86,7 @@ export class Btc1Update {
       targetVersionId : 0,
       sourceHash      : '',
     };
-    Logger.warn('// TODO: Need to add btc1 context. ["https://w3id.org/zcap/v1", "https://w3id.org/security/data-integrity/v2", "https://w3id.org/json-ld-patch/v1"]');
+    // TODO: Need to add btc1 context. ["https://w3id.org/zcap/v1", "https://w3id.org/security/data-integrity/v2", "https://w3id.org/json-ld-patch/v1"]
 
     // 5. Set targetDocument to the result of applying the documentPatch to the sourceDocument, following the JSON Patch
     //    specification.
@@ -97,12 +97,12 @@ export class Btc1Update {
 
     // 7. Set sourceHashBytes to the result of passing sourceDocument into the JSON Canonicalization and Hash algorithm.
     // 8. Set didUpdatePayload.sourceHash to the base58-btc Multibase encoding of sourceHashBytes.
-    didUpdatePayload.sourceHash = await JSON.canonicalization.process(sourceDocument, 'base58');
-    Logger.warn('// TODO: Question - is base58btc the correct encoding scheme?');
+    didUpdatePayload.sourceHash = (await JSON.canonicalization.process(sourceDocument, 'base58')).slice(1);
+    // TODO: Question - is base58btc the correct encoding scheme?
 
     // 9. Set targetHashBytes to the result of passing targetDocument into the JSON Canonicalization and Hash algorithm.
     // 10. Set didUpdatePayload.targetHash to the base58-btc Multibase encoding of targetHashBytes.
-    didUpdatePayload.targetHash = await JSON.canonicalization.process(targetDocument, 'base58');
+    didUpdatePayload.targetHash = (await JSON.canonicalization.process(targetDocument, 'base58')).slice(1);
 
     // 11. Set didUpdatePayload.targetVersionId to sourceVersionId + 1.
     didUpdatePayload.targetVersionId = sourceVersionId + 1;
@@ -129,7 +129,7 @@ export class Btc1Update {
   public static async invoke({
     identifier,
     didUpdatePayload,
-    verificationMethod,
+    verificationMethod
   }: {
     identifier: string;
     didUpdatePayload: DidUpdatePayload;
@@ -147,17 +147,16 @@ export class Btc1Update {
     //    value. How this is achieved is left to the implementation.
 
     // 1.1 Compute the keyUri and check if the key is in the keystore
-    const keyPair = await Btc1KeyManager.getKeyPair(
-      Btc1KeyManager.computeKeyUri(publicKeyMultibase)
-    );
-
     // 1.2 If not, use the privateKeyMultibase from the verificationMethod
-    const { privateKey } = keyPair ?? { privateKey: privateKeyMultibase };
+    const keyPair = privateKeyMultibase
+      ? new KeyPair({ privateKey: PrivateKey.decode(privateKeyMultibase) })
+      : await Btc1KeyManager.getKeyPair(Btc1KeyManager.computeKeyUri(publicKeyMultibase));
 
     // 1.3 If the privateKey is not found, throw an error
-    if (!privateKey) {
+    if (!keyPair) {
       throw new Btc1Error('No privateKey: not found in kms or vm', NOT_FOUND, verificationMethod);
     }
+
 
     // 2. Set rootCapability to the result of passing btc1Identifier into the Derive Root Capability from did:btc1
     //    Identifier algorithm.
@@ -182,9 +181,11 @@ export class Btc1Update {
 
     // 10. Set cryptosuite to the result of executing the Cryptosuite Instantiation algorithm from the BIP340 Data
     //     Integrity specification passing in proofOptions.
-    const diproof = Multikey.initialize({ id, controller, keyPair }).toCryptosuite(cryptosuite).toDataIntegrityProof();
+    const diproof = Multikey.initialize({ id, controller, keyPair })
+      .toCryptosuite(cryptosuite)
+      .toDataIntegrityProof();
 
-    Logger.warn('11. // TODO: need to set up the proof instantiation such that it can resolve / dereference the root capability. This is deterministic from the DID.');
+    // TODO: 11. need to set up the proof instantiation such that it can resolve / dereference the root capability. This is deterministic from the DID.
 
     // 12. Set didUpdateInvocation to the result of executing the Add Proof algorithm from VC Data Integrity passing
     //     didUpdatePayload as the input document, cryptosuite, and the set of proofOptions.
@@ -219,7 +220,7 @@ export class Btc1Update {
     const beaconServices: BeaconService[] = [];
 
     // 2. signalMetadata to an empty array.
-    const signalsMetadata = new Map<TxId, Metadata>();
+    let signalsMetadata;
 
     // 3. For beaconId in beaconIds:
     for (const beaconId of beaconIds) {
@@ -250,13 +251,13 @@ export class Btc1Update {
       // 4.5 Else:
       //    4.5.1 MUST throw invalidBeacon error.
       const beacon = BeaconFactory.establish(beaconService);
-      const signalMetadata = await beacon.broadcastSignal(didUpdateInvocation);
-      Object.entries(signalMetadata).map(
-        ([signalId, metadata]) => signalsMetadata.set(signalId, metadata)
-      );
+      signalsMetadata = await beacon.broadcastSignal(didUpdateInvocation);
     }
-
+    if(!signalsMetadata) {
+      throw new Btc1Error('Invalid beacon: no signalsMetadata found', INVALID_DID_DOCUMENT, { beaconServices });
+    }
+    Logger.debug('signalsMetadata', signalsMetadata);
     // Return the signalsMetadata
-    return Object.fromEntries(Object.entries(signalsMetadata));
+    return signalsMetadata;
   }
 }

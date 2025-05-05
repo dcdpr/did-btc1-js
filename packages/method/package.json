@@ -1,6 +1,6 @@
 {
     "name": "@did-btc1/method",
-    "version": "0.9.0",
+    "version": "0.10.0",
     "type": "module",
     "description": "@did-btc1/method is the typescript/javascript reference implementation of the did:btc1 spec. did:btc1 is a censorship resistant DID Method using the Bitcoin blockchain as a Verifiable Data Registry to announce changes to the DID document. It improves on prior work by allowing: zero-cost off-chain DID creation; aggregated updates for scalable on-chain update costs; long-term identifiers that can support frequent updates; private communication of the DID document; private DID resolution; and non-repudiation appropriate for serious contracts.",
     "main": "./dist/cjs/index.js",
@@ -38,7 +38,9 @@
         "build:lint:test": "pnpm build && pnpm build:tests && pnpm lint:fix",
         "prepublish": "pnpm build",
         "do": "pnpm tsx",
-        "do:lib": "lib/index.sh"
+        "do:lib": "${PWD}/lib/run-lib.sh",
+        "do:lib:bitcoin": "${PWD}/lib/do-lib.sh bitcoin",
+        "do:lib:btc1": "${PWD}/lib/do-lib.sh btc1"
     },
     "contributors": [
         {
@@ -96,6 +98,7 @@
         "bitcoinjs-lib": "7.0.0-rc.0",
         "canonicalize": "^2.1.0",
         "commander": "^13.1.0",
+        "dotenv": "^16.5.0",
         "helia": "^5.2.1",
         "multiformats": "^13.3.1",
         "tiny-secp256k1": "^2.2.3"

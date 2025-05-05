@@ -1,6 +1,5 @@
 import {
   Btc1Error,
-  CanonicalizableObject,
   CanonicalizedProofConfig,
   CryptosuiteError,
   DidUpdateInvocation,
@@ -86,6 +85,7 @@ export class Cryptosuite implements ICryptosuite {
     this.cryptosuite = cryptosuite;
     this.multikey = multikey;
     this.algorithm = cryptosuite.includes('rdfc') ? 'rdfc' : 'jcs';
+    JSON.canonicalization.algorithm = this.algorithm;
   }
 
 
@@ -103,18 +103,11 @@ export class Cryptosuite implements ICryptosuite {
   }
 
   /**
-   * Implements {@link ICryptosuite.canonicalize}.
-   */
-  public async canonicalize(object: CanonicalizableObject): Promise<string> {
-    // Set the canonicalization algorithm
-    JSON.canonicalization.algorithm = this.algorithm;
-
-    // Call the canonicalization function with the object and return the result
-    return await JSON.canonicalization.canonicalize(object);
-  }
-
-  /**
-   * Implements {@link ICryptosuite.createProof}.
+   * Create a proof for an insecure document.
+   * @param {CreateProofParams} params See {@link CreateProofParams} for details.
+   * @param {DidUpdatePayload} params.document The document to create a proof for.
+   * @param {ProofOptions} params.options The options to use when creating the proof.
+   * @returns {Proof} The proof for the document.
    */
   public async createProof({ document, options }: CreateProofParams): Promise<Proof> {
     // Get the context from the document
@@ -162,24 +155,36 @@ export class Cryptosuite implements ICryptosuite {
   public async verifyProof(document: DidUpdateInvocation): Promise<VerificationResult> {
     // Create an insecure document from the secure document by removing the proof
     const payload = { ...document, proof: undefined };
+
     // Create a copy of the proof options removing the proof value
     const options = { ...document.proof, proofValue: undefined };
+
     // Transform the newly insecured document to canonical form
     const canonicalDocument = await this.transformDocument({ document: payload, options });
+
     // Canonicalize the proof options to create a proof configuration
     const canonicalConfig = await this.proofConfiguration(options);
+
     // Generate a hash of the canonical insecured document and the canonical proof configuration`
     const hash = this.generateHash({ canonicalConfig, canonicalDocument });
+
     // Decode the secure document proofValue from base58btc to bytes
     const signature = base58btc.decode(document.proof.proofValue);
+
     // Verify the hashed data against the proof bytes
     const verified = this.proofVerification({ hash, signature, options });
+
     // Return the verification resul
     return { verified, verifiedDocument: verified ? document : undefined };
   }
 
   /**
-   * Implements {@link ICryptosuite.transformDocument}.
+   * Transform a document (secure didUpdateInvocation or insecure didUpdatePayload) into canonical form.
+   * @param {TransformDocumentParams} params See {@link TransformDocumentParams} for details.
+   * @param {DocumentParams} params.document The document to transform: secure or insecure.
+   * @param {ProofOptions} params.options The options to use when transforming the proof.
+   * @returns {string} The canonicalized document.
+   * @throws {Btc1Error} if the document cannot be transformed.
    */
   public async transformDocument({ document, options }: TransformDocumentParams): Promise<string> {
     // Get the type from the options and check:
@@ -205,11 +210,15 @@ export class Cryptosuite implements ICryptosuite {
     }
 
     // Return the canonicalized document
-    return await this.canonicalize(document);
+    return await JSON.canonicalization.canonicalize(document);
   }
 
   /**
-   * Implements {@link ICryptosuite.generateHash}.
+   * Generate a hash of the canonical proof configuration and document.
+   * @param {GenerateHashParams} params See {@link GenerateHashParams} for details.
+   * @param {string} params.canonicalConfig The canonicalized proof configuration.
+   * @param {string} params.canonicalDocument The canonicalized document.
+   * @returns {HashHex} The hash string of the proof configuration and document.
    */
   public generateHash({ canonicalConfig, canonicalDocument }: GenerateHashParams): HashBytes {
     // Convert the canonical proof config to buffer and sha256 hash it
@@ -226,7 +235,10 @@ export class Cryptosuite implements ICryptosuite {
   }
 
   /**
-   * Implements {@link ICryptosuite.proofConfiguration}.
+   * Configure the proof by canonicalzing it.
+   * @param {ProofOptions} options The options to use when transforming the proof.
+   * @returns {string} The canonicalized proof configuration.
+   * @throws {Btc1Error} if the proof configuration cannot be canonicalized.
    */
   public async proofConfiguration(options: ProofOptions): Promise<CanonicalizedProofConfig> {
     // Get the type from the options
@@ -248,12 +260,16 @@ export class Cryptosuite implements ICryptosuite {
       console.info('TODO: check valid XMLSchema DateTime');
     }
 
-    // Return the RDFC canonicalized proof configuration
-    return await this.canonicalize(options);
+    return await JSON.canonicalization.canonicalize(options);
   }
 
   /**
-   * Implements {@link ICryptosuite.proofSerialization}.
+   * Serialize the proof into a byte array.
+   * @param {ProofSerializationParams} params See {@link ProofSerializationParams} for details.
+   * @param {HashBytes} params.hash The canonicalized proof configuration.
+   * @param {ProofOptions} params.options The options to use when serializing the proof.
+   * @returns {SignatureBytes} The serialized proof.
+   * @throws {Btc1Error} if the multikey does not match the verification method.
    */
   public proofSerialization({ hash, options }: ProofSerializationParams): SignatureBytes {
     // Get the verification method from the options
@@ -269,7 +285,13 @@ export class Cryptosuite implements ICryptosuite {
   }
 
   /**
-   * Implements {@link ICryptosuite.proofVerification}.
+   * Verify the proof by comparing the hash of the proof configuration and document to the proof bytes.
+   * @param {ProofVerificationParams} params See {@link ProofVerificationParams} for details.
+   * @param {HashBytes} params.hash The canonicalized proof configuration.
+   * @param {SignatureBytes} params.signature The serialized proof.
+   * @param {ProofOptions} params.options The options to use when verifying the proof.
+   * @returns {boolean} True if the proof is verified, false otherwise.
+   * @throws {Btc1Error} if the multikey does not match the verification method.
    */
   public proofVerification({ hash, signature, options }: ProofVerificationParams): boolean {
     // Get the verification method from the options

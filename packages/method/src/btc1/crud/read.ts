@@ -15,14 +15,15 @@ import {
 import { Cryptosuite, DataIntegrityProof, MultikeyUtils } from '@did-btc1/cryptosuite';
 import { PublicKey } from '@did-btc1/key-pair';
 import { bytesToHex } from '@noble/hashes/utils';
-import { DEFAULT_BLOCK_CONFIRMATIONS, DEFAULT_RPC_CLIENT_CONFIG, GENESIS_TX_ID, TXIN_WITNESS_COINBASE } from '../../bitcoin/constants.js';
+import { GENESIS_TX_ID, TXIN_WITNESS_COINBASE } from '../../bitcoin/constants.js';
+import { Bitcoin } from '../../bitcoin/index.js';
 import { getNetwork } from '../../bitcoin/network.js';
 import BitcoinRest, { RawTransactionRest } from '../../bitcoin/rest-client.js';
 import BitcoinRpc from '../../bitcoin/rpc-client.js';
 import { DidBtc1 } from '../../did-btc1.js';
 import { DidResolutionOptions } from '../../interfaces/crud.js';
 import { BeaconService, BeaconServiceAddress, BeaconSignal } from '../../interfaces/ibeacon.js';
-import { BlockHeight, BlockV3, RawTransactionV2 } from '../../types/bitcoin.js';
+import { BlockV3, RawTransactionV2 } from '../../types/bitcoin.js';
 import {
   CIDAggregateSidecar,
   SidecarData,
@@ -42,7 +43,7 @@ export type FindNextSignalsRestParams = {
   beacons: Array<BeaconServiceAddress>;
 }
 export type BeaconSignals = Array<BeaconSignal>;
-export type BitcoinConnection = BitcoinRpc | BitcoinRest;
+export type BitcoinClient = BitcoinRpc | BitcoinRest;
 
 export type NetworkVersion = {
   version?: string;
@@ -369,79 +370,6 @@ export class Btc1Read {
   }
 
   /**
-   * Implements {@link https://dcdpr.github.io/did-btc1/#determine-target-blockheight | 4.2.3.1 Determine Target Blockheight}.
-   *
-   * The Determine Target Blockheight algorithm determines the targetted Bitcoin blockheight that the resolution
-   * algorithm should traverse the blockchain history up to looking for for Beacon Signals. It takes in network and
-   * targetTime. It returns a Bitcoin blockheight.
-   *
-   * @protected
-   * @param {TargetBlockheightParams} params The parameters for the determineTargetBlockHeight operation.
-   * @param {BitcoinNetworkNames} params.network The bitcoin network to connect to (mainnet, signet, testnet, regtest).
-   * @param {?UnixTimestamp} params.targetTime Unix timestamp used to find highest block height < targetTime.
-   * If not provided, finds the highest bitcoin block height where confirmations > {@link DEFAULT_BLOCK_CONFIRMATIONS}.
-   * @returns {BlockHeight} The target blockheight.
-   */
-  protected static async determineTargetBlockHeight({ network, targetTime }: {
-    network: BitcoinNetworkNames;
-    targetTime?: UnixTimestamp;
-  }): Promise<BlockHeight> {
-    Logger.warn('// TODO: determineTargetBlockHeight - Use network to connect to the correct bitcoin node', network);
-
-    // If bitcoinClient is not defined, connect to default bitcoin node
-    const rpc = BitcoinRpc.connect();
-
-    // Get the current block chain tip
-    let tip = await rpc.getBlockCount();
-
-    // Set the genesis index (left side of the search space) to 0
-    let genesis = 0;
-
-    // Set the target to 0
-    let target = 0;
-
-    // 1. If targetTime, find the Bitcoin block height where timestamp < targetTime.
-    if (targetTime) {
-      // Use a binary search algorithm to find the block height
-      // Loop until the genesis index is less than or equal to the tip
-      while (genesis <= tip) {
-        // Set the mid index
-        const mid = Math.floor((genesis + tip) / 2);
-
-        // Get the block data at "mid" height
-        const block = await rpc.getBlock({ height: mid }) as BlockV3;
-
-        // Check if block.time < targetTime
-        if (block.time < targetTime) {
-          // Reset target to the mid index going higher
-          target = mid;
-          // Reset genesis to mid + 1
-          genesis = mid + 1;
-        } else {
-          // Reset tip to mid - 1 going lower
-          tip = mid - 1;
-        }
-      }
-
-      // 4. Return the blockheight
-      return target;
-    }
-
-    // 2. Else find the Bitcoin block with the greatest blockheight that has at least X DEFAULT_BLOCK_CONFIRMATIONS.
-    Logger.warn('// TODO: determineTargetBlockHeight - TODO: what is X. Is it variable?');
-
-    let block = await rpc.getBlock({ height: tip }) as BlockV3;
-    while (block.confirmations <= DEFAULT_BLOCK_CONFIRMATIONS) {
-      // block.hash = await rpc.getBlockHash();
-      block = await rpc.getBlock({ height: --block.height }) as BlockV3;
-    }
-
-    // 4. Return the block height
-    return block.height;
-
-  }
-
-  /**
    * TODO: Need to finish implementing the traverseBlockchainHistory method
    *
    * Implements {@link https://dcdpr.github.io/did-btc1/#traverse-blockchain-history | 4.2.3.2 Traverse Blockchain History}.
@@ -495,7 +423,7 @@ export class Btc1Read {
     // 3. For each beacon in beacons convert the beacon.serviceEndpoint to a Bitcoin address following BIP21.
     //    Set beacon.address to the Bitcoin address.
     const beacons = BeaconUtils.toBeaconServiceAddress(
-      BeaconUtils.getBeaconServices({ didDocument: contemporaryDidDocument })
+      BeaconUtils.getBeaconServices(contemporaryDidDocument)
     );
 
     // 4. Set nextSignals to the result of calling algorithm Find Next Signals passing in contemporaryBlockheight and
@@ -612,63 +540,26 @@ export class Btc1Read {
    * @param {Array<BeaconService>} params.beacons The beacons to look for in the block.
    * @returns {Promise<Array<BeaconSignal>>} An array of BeaconSignal objects with blockHeight and signals.
    */
-  public static async findNextSignals({ contemporaryBlockHeight: height, targetTime, beacons, network }: {
+  public static async findNextSignals({ contemporaryBlockHeight, targetTime, beacons }: {
     contemporaryBlockHeight: number;
     targetTime: UnixTimestamp;
     beacons: Array<BeaconServiceAddress>;
     network: BitcoinNetworkNames;
   }): Promise<Array<BeaconSignal>> {
-    // Determine bitcoin node connection type from the environment variable
-    const connectionType = process.env.BITCOIN_CONNECTION?.toLowerCase() ?? 'rpc';
-    Logger.debug(`Connection type: ${connectionType}`);
-    if (!connectionType || !['rpc', 'rest'].includes(connectionType)) {
-      throw new Btc1Error(
-        'Connection type invalid: must be "rpc" or "rest"',
-        'INVALID_BITCOIN_CREDENTIALS',
-        { connectionType }
-      );
-    }
-
-    // Grab the connection configuration from the environment variable or default to the rpc config
-    // TODO: Make the default config a 3rd party Esplora node (e.g. https://blockstream.info or btc01.gl1.dcdpr.com)
-    const connectionConfig = process.env.BITCOIN_CONNECTION_CONFIG ?? JSON.stringify(DEFAULT_RPC_CLIENT_CONFIG);
-    Logger.debug(`Connection type:`, connectionConfig);
-    if (!connectionConfig) {
-      throw new Btc1Error(
-        'Credentials not found: must provide a way to connect to a bitcoin node',
-        'INVALID_BITCOIN_CREDENTIALS',
-        { connectionConfig }
-      );
-    }
-
-    // Ensure the connection config is a stringified object
-    if (!JSON.parsable(connectionConfig)) {
-      throw new Btc1Error(
-        'Credentials malformed: must be a parsable stringified JSON object',
-        'INVALID_BITCOIN_CREDENTIALS',
-        { connectionConfig }
-      );
-    }
-
-    // Parse the connection config and set the network
-    const config = JSON.parse(connectionConfig);
-    config.network = network;
+    let height = contemporaryBlockHeight;
 
     // Toggle RPC or REST connection based on the connection type
-    let connection: BitcoinConnection = connectionType === 'rpc'
-      ? BitcoinRpc.connect(config)
-      : BitcoinRest.connect(config);
+    const bitcoin = new Bitcoin();
 
     // Create an default beaconSignal and beaconSignals array
     let beaconSignals: BeaconSignals = [];
 
-    if (connectionType === 'rest') {
-      connection = connection as BitcoinRest;
-      return await this.findSignalsRest({ connection, beacons });
+    if (bitcoin.active.rest) {
+      return await this.findSignalsRest({ beacons });
     }
 
     // Use connection to get the block data at the blockhash
-    let block = await connection.getBlock({ height }) as BlockV3;
+    let block = await bitcoin.active.rpc.getBlock({ height }) as BlockV3;
 
     Logger.info(`Searching for signals, please wait ...`);
     while (block.time <= targetTime) {
@@ -703,7 +594,7 @@ export class Btc1Read {
           }
 
           // Get the previous output transaction data
-          const prevout = await connection.getRawTransaction(vin.txid, 2) as RawTransactionV2;
+          const prevout = await bitcoin.active.rpc.getRawTransaction(vin.txid, 2) as RawTransactionV2;
 
           // If the previous output vout at the vin.vout index is undefined, continue ...
           if (!prevout.vout[vin.vout]) {
@@ -742,14 +633,14 @@ export class Btc1Read {
       }
 
       height += 1;
-      const tip = await connection.getBlockCount();
+      const tip = await bitcoin.active.rpc.getBlockCount();
       if(height > tip) {
         Logger.info(`Chain tip reached ${height}, breaking ...`);
         break;
       }
 
       // Reset the block to the next block
-      block = await connection.getBlock({ height }) as BlockV3;
+      block = await bitcoin.active.rpc.getBlock({ height }) as BlockV3;
     }
 
     return beaconSignals;
@@ -759,23 +650,22 @@ export class Btc1Read {
    * Helper method for the {@link findNextSignals | Find Next Signals} algorithm.
    *
    * @param params See {@link FindNextSignalsRestParams} for details.
-   * @param {BitcoinConnection} params.connection The bitcoin connection to use.
+   * @param {BitcoinClient} params.connection The bitcoin connection to use.
    * @param {Array<BeaconSignal>} params.beaconSignals The beacon signals to process.
    * @param {BlockV3} params.block The block to process.
    * @param {Array<BeaconService>} params.beacons The beacons to process.
    * @returns {Promise<Array<BeaconSignal>>} The beacon signals found in the block.
    */
-  public static async findSignalsRest({ connection, beacons }: {
-    connection: BitcoinRest;
-    beacons: Array<BeaconService>;
-  }): Promise<Array<BeaconSignal>> {
+  public static async findSignalsRest({ beacons }: { beacons: Array<BeaconService>; }): Promise<Array<BeaconSignal>> {
+    const bitcoin = new Bitcoin();
+
     // Empty array of beaconSignals
     const beaconSignals = new Array<BeaconSignal>();
 
     // Iterate over each beacon
     for (const beacon of BeaconUtils.toBeaconServiceAddress(beacons)) {
       // Get the transactions for the beacon address via REST
-      const transactions = await connection.getAddressTransactions(beacon.address);
+      const transactions = await bitcoin.active.rest.getAddressTxs(beacon.address);
 
       // If no transactions are found, continue
       if (!transactions || transactions.length === 0) {
@@ -786,7 +676,6 @@ export class Btc1Read {
       for (const tx of transactions) {
         for(const vout of tx.vout) {
           if(vout.scriptpubkey_asm.includes('OP_RETURN')) {
-            console.log(`vout`, vout);
             beaconSignals.push({
               beaconId      : beacon.id,
               beaconType    : beacon.type,

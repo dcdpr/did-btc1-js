@@ -1,5 +1,4 @@
 import {
-  CanonicalizableObject,
   CanonicalizedProofConfig,
   DidUpdateInvocation,
   DidUpdatePayload,
@@ -63,14 +62,6 @@ export interface ICryptosuite {
 
   /** @type {Multikey} The Multikey used by the cryptosuite */
   multikey: Multikey;
-
-  /**
-   * Canonicalize a document. Toggles between JCS and RDFC based on the value set in the cryptosuite.
-   * @param {CanonicalizableObject} object The document to canonicalize.
-   * @returns {string} The canonicalized document.
-   * @throws {Btc1Error} if the document cannot be canonicalized.
-   */
-  canonicalize(object: CanonicalizableObject): string | Promise<string>;
 
   /**
    * Create a proof for an insecure document.

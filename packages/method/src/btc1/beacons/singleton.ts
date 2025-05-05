@@ -1,12 +1,15 @@
 import { DidUpdatePayload, INVALID_SIDECAR_DATA, LATE_PUBLISHING_ERROR, Logger, SingletonBeaconError } from '@did-btc1/common';
+import { Multikey } from '@did-btc1/cryptosuite';
+import { opcodes, Psbt, script } from 'bitcoinjs-lib';
 import { base58btc } from 'multiformats/bases/base58';
-import { RawTransactionRest } from '../../bitcoin/rest-client.js';
-import BitcoinRpc from '../../bitcoin/rpc-client.js';
+import { Bitcoin } from '../../bitcoin/index.js';
+import { AddressUtxo, RawTransactionRest } from '../../bitcoin/rest-client.js';
 import { Beacon } from '../../interfaces/beacon.js';
 import { BeaconService, BeaconSignal } from '../../interfaces/ibeacon.js';
 import { RawTransactionV2 } from '../../types/bitcoin.js';
 import { Metadata, SidecarData, SignalsMetadata, SingletonSidecar } from '../../types/crud.js';
 import { Btc1Appendix } from '../../utils/appendix.js';
+import { Btc1KeyManager } from '../key-manager/index.js';
 
 /**
  * Implements {@link https://dcdpr.github.io/did-btc1/#singleton-beacon | 5.1 Singleton Beacon}.
@@ -177,47 +180,143 @@ export class SingletonBeacon extends Beacon {
    * @throws {SingletonBeaconError} if the bitcoin address is invalid or unfunded.
    */
   public async broadcastSignal(didUpdatePayload: DidUpdatePayload): Promise<SignalsMetadata> {
-    // Connect to the default bitcoind node
-    const rpc = BitcoinRpc.connect();
+    // Grab the connection configuration from the environment variable or default to the rpc config
+    // TODO: Make the default config a 3rd party (rest or rpc) (e.g. https://blockstream.info or btc01.gl1.dcdpr.com)
+    const bitcoin = new Bitcoin();
 
     // 1. Initialize an addressURI variable to beacon.serviceEndpoint.
-    const addressUri = this.service.serviceEndpoint as string;
-
     // 2. Set bitcoinAddress to the decoding of addressURI following BIP21.
-    const bitcoinAddress = addressUri.replace('bitcoin:', '');
+    const bitcoinAddress = this.service.serviceEndpoint.replace('bitcoin:', '');
 
     // 3. Ensure bitcoinAddress is funded, if not, fund this address.
-    Logger.warn('// TODO: 3. Ensure bitcoinAddress is funded, if not, fund this address.');
+    // let inputs: Array<CreateRawTxInputs> = [];
+    Logger.debug('bitcoinAddress', bitcoinAddress);
+    Logger.debug('bitcoin.active.rest', bitcoin.active.rest);
 
-    // 4. Set hashBytes to the result of passing didUpdatePayload to the JSON Canonicalization and Hash algorithm.
-    const hashBytes = await JSON.canonicalization.process(didUpdatePayload);
+    const utxos = await bitcoin.active.rest.getAddressUtxos(bitcoinAddress);
+    Logger.debug('utxos', utxos);
+    if(!utxos.length) {
+      // TODO: Discuss what to do here because sending to a beacon address does not allow you to spend from it immediately.
+      throw new SingletonBeaconError('No UTXOs found, please fund address!', 'UNFUNDED_BEACON_ADDRESS', { bitcoinAddress });
+    }
+
+    /*
+    if(!utxos.length) {
+      // TODO: Discuss what to do here because sending to a beacon address does not allow you to spend from it immediately.
+      Logger.debug('No UTXOs found, funding address...');
+      // Send BTC to the beacon address
+      const funded = await bitcoin.active.rpc.sendToAddress(bitcoinAddress, 0.1);
+
+      Logger.debug('Funded tx ...', funded);
+      // Push the funded transaction to the inputs array
+      inputs.push({ txid: funded.txid, vout: funded.vout.last()?.n } as CreateRawTxInputs);
+      // TODO: Wait for the transaction to be confirmed before proceeding ??
+    } else {
+      // Sort the UTXOs by block height and filter for confirmed UTXOs
+      const utxo = utxos
+        .sort((a, b) => a.status.block_height - b.status.block_height)
+        .filter(utxo => utxo.status.confirmed).last();
+
+      // If no confirmed UTXOs, throw an error
+      if(!utxo) {
+        throw new SingletonBeaconError(
+          'Beacon bitcoin address unfunded or utxos unconfirmed.',
+          'UNFUNDED_BEACON_ADDRESS', { bitcoinAddress });
+      }
+
+      // Push the UTXO to the inputs array
+      inputs.push({ txid: utxo.txid, vout: utxo.vin[0]?.vout } as CreateRawTxInputs);
+    }
+
+    // Check if inputs is empty
+    if(!inputs || !inputs.length) {
+      throw new SingletonBeaconError(
+        'Beacon bitcoin address unfunded or utxos unconfirmed.',
+        'UNFUNDED_BEACON_ADDRESS', { bitcoinAddress });
+    }
+    // Find the last UTXO that is confirmed
+    const utxo = utxos.filter(utxo => utxo.status.confirmed).last();
+    */
+    const utxo: AddressUtxo = utxos.sort((a, b) => b.status.block_height - a.status.block_height)[0];
+    Logger.debug('utxo', utxo);
+    if(!utxo) {
+      throw new SingletonBeaconError(
+        'Beacon bitcoin address unfunded or utxos unconfirmed.',
+        'UNFUNDED_BEACON_ADDRESS', { bitcoinAddress });
+    }
+
+    // 6. Retrieve the cryptographic material, e.g private key or signing capability, associated with the bitcoinAddress
+    //    or service. How this is done is left to the implementer.
+    // TODO: Determine how we want to handle this. Currently, this code uses the RPC to handle signing.
+    const keyPair = await Btc1KeyManager.getKeyPair();
+    Logger.debug('keyPair:', keyPair);
+    if (!keyPair) {
+      throw new Error('Key pair not found.');
+    }
+    const [controller, id] = didUpdatePayload.patch[0].value.id.split('#');
+    const multikey = new Multikey({ id: `#${id}`, controller,  keyPair });
+
+    const signer = {
+      publicKey   : keyPair.publicKey.bytes,
+      network     : 'regtest',
+      sign        : (hash: Uint8Array) => multikey.signEcdsa(hash),
+      signSchnorr : (hash: Uint8Array) => multikey.sign(hash),
+    };
 
     // 5. Initialize spendTx to a Bitcoin transaction that spends a transaction controlled by the bitcoinAddress and
     //    contains at least one transaction output. This output MUST have the following format
     //    [OP_RETURN, OP_PUSH32, hashBytes]
-    const spendTx = await rpc.createRawTransaction({
-      inputs     : [{ txid: '', vout: 0 }],
-      outputs    : { address: bitcoinAddress, data: `OP_RETURN OP_PUSH32 ${hashBytes}` },
-      locktime   : 0,
-      replacable : false
-    });
 
-    // 6. Retrieve the cryptographic material, e.g private key or signing capability, associated with the bitcoinAddress
-    //    or service. How this is done is left to the implementer.
+    // TODO: RPC flow
+    // const data = Buffer.from(`${opcodes.OP_RETURN} ${hashBytes}`).toString('hex');
+    // const outputs = [{ data }] as CreateRawTxOutputs[];
+    // const spendTx = await bitcoin.active.rpc.createRawTransaction([utxo], outputs);
+
+    // 4. Set hashBytes to the result of passing didUpdatePayload to the JSON Canonicalization and Hash algorithm.
+    const hashBytes = Buffer.from(await JSON.canonicalization.process(didUpdatePayload), 'hex');
+    if (hashBytes.length !== 32) throw new SingletonBeaconError('Hash must be 32 bytes');
 
     // 7. Sign the spendTx.
-    const signedRawTx = await rpc.signRawTransaction({ hexstring: spendTx });
+    const {txid, vout} = utxo;
+    const prevTx = await bitcoin.active.rest.getTransactionVerbosity(txid, 'hex') as string;
+    const input = {
+      hash           : txid,
+      index          : vout,
+      nonWitnessUtxo : Buffer.from(prevTx, 'hex')
+    };
+    const fee = 20000n;
+    const valueToSend = BigInt(utxo.value) - BigInt(fee);
+    const changeValue = BigInt(utxo.value) - valueToSend;
+    const signedSpendTx  = new Psbt({ network: bitcoin.active.network })
+      .addInput(input)
+      .addOutput({ script: script.compile([opcodes.OP_RETURN, hashBytes]), value: 0n })
+      .addOutput({ address: bitcoinAddress, value: changeValue })
+      .signInput(input.index, signer)
+      .finalizeInput(input.index)
+      .extractTransaction()
+      .toHex();
+    if(!signedSpendTx) {
+      throw new SingletonBeaconError('Failed to sign raw transaction.', 'RAW_TX_SIGN_FAILED', { signedSpendTx });
+    }
+
+    // TODO: RPC flow
+    // const signedSpendTx = await bitcoin.active.rpc.signRawTransaction(spendTx);
+    // Logger.debug('signedSpendTx', signedSpendTx);
+    // if(!signedSpendTx || signedSpendTx.errors?.length) {
+    //   throw new SingletonBeaconError(signedSpendTx?.errors?.[0].error ?? 'Failed to sign raw transaction.', 'SIGN_AND_SEND_FAILED', { spendTx });
+    // }
 
     // 8. Broadcast spendTx to the Bitcoin network.
-    await rpc.sendRawTransaction(signedRawTx.hex, true);
+    const spentTx = await bitcoin.active.rest.sendTransaction(signedSpendTx);
+    if(!spentTx) {
+      throw new SingletonBeaconError('Failed to send raw transaction.', 'SEND_FAILED', { spentTx });
+    }
 
     // 9. Set signalId to the Bitcoin transaction identifier of spendTx.
-    const signalId = 'signedRawTx.txid';
-
     // 10. Initialize signalMetadata to an empty object.
     // 11. Set signalMetadata.updatePayload to didUpdatePayload.
-    // 12. Return the object {<signalId>: signalMetadata}.
+    // 12. Return the object {<signalId>: { updatePayload: DidUpdatePayload; proofs?: any; }}.
     // Note: Consolidated 10-11 into a single object and returning as JSON instead of Map for easier impl.
-    return { [signalId]: { updatePayload: didUpdatePayload, proofs: [] } };
+    return { [spentTx]: { updatePayload: didUpdatePayload } };
   }
 }
