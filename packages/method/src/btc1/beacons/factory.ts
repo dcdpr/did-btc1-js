@@ -1,4 +1,4 @@
-import { DidBtc1Error } from '@did-btc1/common';
+import { Btc1Error } from '@did-btc1/common';
 import { Beacon } from '../../interfaces/beacon.js';
 import { BeaconService } from '../../interfaces/ibeacon.js';
 import { SidecarData } from '../../types/crud.js';
@@ -21,7 +21,7 @@ export class BeaconFactory {
       case 'SMTAggregateBeacon':
         return new SMTAggregateBeacon(service, sidecar);
       default:
-        throw new DidBtc1Error('Invalid Beacon Type', { type: 'BEACON_ERROR' });
+        throw new Btc1Error('Invalid Beacon Type', 'INVALID_BEACON_ERROR', { service, sidecar });
     }
   }
 }

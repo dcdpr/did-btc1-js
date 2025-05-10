@@ -91,7 +91,12 @@ export class Multikey implements IMultikey {
     return new Cryptosuite({ cryptosuite, multikey: this });
   }
 
-  /** @see IMultikey.sign */
+  /**
+   * Produce signed data with a private key.
+   * @param {MessageBytes} data Data to be signed.
+   * @returns {SignatureBytes} Signature byte array.
+   * @throws {MultikeyError} if no private key is provided.
+   */
   public sign(data: Hex): SignatureBytes {
     // If there is no private key, throw an error
     if (!this.isSigner) {
