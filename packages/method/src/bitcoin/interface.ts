@@ -6,6 +6,8 @@ import {
   BumpFeeResult,
   ChainInfo,
   CreateMultiSigResult,
+  CreateRawTxInputs,
+  CreateRawTxOutputs,
   CreateRawTxParams,
   CreateWalletParams,
   CreateWalletResult,
@@ -56,12 +58,7 @@ export interface IBitcoinRpc {
     createMultiSig(nrequired: number, keys: string[]): Promise<CreateMultiSigResult>;
 
     /** Creates a raw transaction spending specified inputs to specified outputs. */
-    createRawTransaction({
-      inputs,
-      outputs,
-      locktime,
-      replacable
-    }: CreateRawTxParams): Promise<string>;
+    createRawTransaction(inputs: CreateRawTxInputs[], outputs: CreateRawTxOutputs[], locktime?: number, replacable?: boolean): Promise<string>;
 
     /** Creates a new wallet with various optional parameters. */
     createWallet({

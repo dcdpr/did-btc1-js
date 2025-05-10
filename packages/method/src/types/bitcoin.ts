@@ -467,7 +467,7 @@ export interface RawTransactionV2 extends Transaction {
 };
 export type RawTransactionResponse = RawTransactionV0 | RawTransactionV1 | RawTransactionV2;
 
-export type TxInForCreateRaw = {
+export type CreateRawTxInputs = {
     txid: string;
     vout: number;
     sequence?: number;
@@ -827,10 +827,9 @@ export type ListTransactionsResult = {
 
 export type AddressGrouping = [string, number] | [string, number, string];
 
-export type BitcoinOutputs = {
-    address: string;
-    data: string;
-}
+export type RawOutputAddr = { [address: string]: number; };
+export type RawOutputData = { data: string; };
+export type CreateRawTxOutputs = RawOutputAddr | RawOutputData;
 
 export type GetUTXOsResult = {
     chainHeight: number;
@@ -872,8 +871,8 @@ export type BitcoinSignature = { signature: string }
 export type CreateMultiSigResult = { address: string; redeemScript: string }
 
 export type CreateRawTxParams = {
-    inputs: TxInForCreateRaw[];
-    outputs: BitcoinOutputs;
+    inputs: CreateRawTxInputs[];
+    outputs: CreateRawTxOutputs[];
     locktime?: number;
     replacable?: boolean
 }
@@ -976,7 +975,7 @@ export type SendAllResult = {
 }
 export type SendToAddressResult = {
     txid: string;
-    fee_reason: string;
+    fee_reason?: string;
   }
 export type CreateMultisigParams = {
     nrequired: number;

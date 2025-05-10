@@ -260,8 +260,8 @@ export class Btc1Update {
     }
     console.log('signalsMetadata', signalsMetadata);
     // Return the signalsMetadata
-    const d = Object.fromEntries(Object.entries(signalsMetadata));
-    console.log('d', d);
-    return d;
+    const data = Object.fromEntries(Object.entries(signalsMetadata));
+    console.log('data', data);
+    return data;
   }
 }

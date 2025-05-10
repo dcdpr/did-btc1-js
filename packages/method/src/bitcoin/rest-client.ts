@@ -1,4 +1,4 @@
-import { BitcoinRpcError, Btc1Error, UnixTimestamp } from '@did-btc1/common';
+import { Btc1Error, UnixTimestamp } from '@did-btc1/common';
 import {
   BlockResponse,
   BlockV3,
@@ -7,6 +7,7 @@ import {
   VerbosityLevel
 } from '../types/bitcoin.js';
 import { DEFAULT_REST_CLIENT_CONFIG } from './constants.js';
+import { BitcoinRpcError } from './errors.js';
 
 export type TransactionStatus = {
   confirmed: boolean;

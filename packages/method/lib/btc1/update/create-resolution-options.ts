@@ -15,7 +15,7 @@ const verificationMethod = DidBtc1.getSigningMethod({ didDocument: sourceDocumen
 sourceDocument.verificationMethod[0].privateKeyMultibase = new PrivateKey(Buffer.from(keyPair0.privateKey.hex, 'hex')).multibase;
 
 await Btc1KeyManager.initialize(KeyPair.from(keyPair0));
-console.log(Btc1KeyManager.instance);
+console.log('Btc1KeyManager.instance', Btc1KeyManager.instance);
 
 const didUpdateInvocation = await Btc1Update.invoke({ identifier, verificationMethod, didUpdatePayload, });
 
