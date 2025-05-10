@@ -1,17 +1,18 @@
 import { ID_PLACEHOLDER_VALUE } from '@did-btc1/common';
-import { KeyPair, PrivateKeyUtils } from '@did-btc1/key-pair';
+import { KeyPair } from '@did-btc1/key-pair';
 import { payments } from 'bitcoinjs-lib';
-import { DidBtc1, getNetwork, IntermediateDidDocument } from '../../../../src/index.js';
+import { DidBtc1, getNetwork, IntermediateDidDocument } from '../../src/index.js';
 
 const networks = ['bitcoin', 'signet', 'regtest', 'testnet3', 'testnet4'];
 const keys = new KeyPair({
-  publicKey: new Uint8Array([
-  2, 206, 152,  64, 106, 58, 228,  11,
-  55, 209,  52,  38,  90, 75, 107, 155,
- 163, 176, 226, 175,   3, 40, 184, 133,
-  28,   0,  90,  52,  10, 21, 186, 144,
-  12
-])});
+  publicKey : new Uint8Array([
+    2, 206, 152,  64, 106, 58, 228,  11,
+    55, 209,  52,  38,  90, 75, 107, 155,
+    163, 176, 226, 175,   3, 40, 184, 133,
+    28,   0,  90,  52,  10, 21, 186, 144,
+    12
+  ])
+});
 
 for(const network of networks) {
   const options = { version: 1, network };

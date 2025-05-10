@@ -156,6 +156,10 @@ export class PrivateKey implements IPrivateKey {
     return base58btc.encode(bytes.toUint8Array());
   }
 
+  public static decode(privateKeyMultibase: string): PrivateKeyBytes {
+    return base58btc.decode(privateKeyMultibase).slice(2);
+  }
+
   /**
    * Checks if this private key is equal to another.
    * @see IPrivateKey.equals
@@ -194,11 +198,15 @@ export class PrivateKey implements IPrivateKey {
    */
   public json(): PrivateKeyJSON {
     return {
-      bytes  : this.bytes,
-      secret : this.secret as bigint,
-      point  : this.point,
+      bytes  : this.bytes.toArray(),
+      secret : this.secret.toString(),
+      point  : this.point.toString(),
       hex    : this.hex,
     };
+  }
+
+  public static from(json: PrivateKeyJSON): PrivateKey {
+    return new PrivateKey(new Uint8Array(json.bytes));
   }
 }
 

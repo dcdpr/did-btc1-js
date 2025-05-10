@@ -1,6 +1,7 @@
 import {
   AddMultiSigAddressParams,
   BatchOption,
+  BlockResponse,
   BumpFeeOption,
   BumpFeeResult,
   ChainInfo,
@@ -11,13 +12,13 @@ import {
   DecodedRawTransaction,
   FeeEstimateMode,
   FundRawTxOptions,
-  BlockResponse,
+  GetBlockParams,
   MempoolInfo,
   MiningInfo,
   PeerInfo,
+  RawTransactionResponse,
   ScriptDecoded,
-  ValidateAddressResult,
-  GetBlockParams
+  ValidateAddressResult
 } from '../types/bitcoin.js';
 
 /**
@@ -134,7 +135,7 @@ export interface IBitcoinRpc {
     getPeerInfo(): Promise<PeerInfo[]>;
 
     /** Sends raw transaction hex to the Bitcoin network. */
-    sendRawTransaction(hexstring: string, allowhighfees?: boolean): Promise<void>;
+    sendRawTransaction(hexstring: string, allowhighfees?: boolean): Promise<string>;
 
     /** Sends bitcoins to a specified address. */
     sendToAddress(
@@ -146,7 +147,7 @@ export interface IBitcoinRpc {
         replaceable?: boolean,
         conf_target?: number,
         estimate_mode?: FeeEstimateMode,
-    ): Promise<string>;
+    ): Promise<RawTransactionResponse>;
 
     /** Validates a Bitcoin address. */
     validateAddress(address: string): Promise<ValidateAddressResult>;

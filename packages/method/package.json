@@ -38,7 +38,7 @@
         "build:lint:test": "pnpm build && pnpm build:tests && pnpm lint:fix",
         "prepublish": "pnpm build",
         "do": "pnpm tsx",
-        "do:lib": "lib/index.sh"
+        "do:lib": "${PWD}/lib/index.sh"
     },
     "contributors": [
         {

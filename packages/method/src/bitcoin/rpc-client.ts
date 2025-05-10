@@ -53,6 +53,7 @@ import {
   SendAllParams,
   SendAllResult,
   SendManyParams,
+  SendToAddressResult,
   SignedRawTx,
   SignRawTxParams,
   UnspentTxInfo,
@@ -88,16 +89,16 @@ export default class BitcoinRpc implements IBitcoinRpc {
 
   /**
    * Constructs a new {@link BitcoinRpc} instance from a new {@link RpcClient | RpcClient}.
-   * @param {RpcClient} client The bitcoin-core client instance.
+   * @param {RpcClientConfig} config The bitcoin-core client instance.
    * @example
    * ```
    *  import BitcoinRpc from '@did-btc1/method';
    *  const bob = BitcoinRpc.connect(); // To use default polar config, pass no args. Polar must run locally.
    * ```
    */
-  constructor(client: RpcClient) {
-    this._client = client;
-    this._config = new RpcClientConfig(this._client);
+  constructor(config: RpcClientConfig) {
+    this._config = new RpcClientConfig(config);
+    this._client = new RpcClient(this._config);
   }
 
   /**
@@ -199,6 +200,11 @@ export default class BitcoinRpc implements IBitcoinRpc {
     );
     // Normalize the response (prototyping)
     const response = JSON.unprototyped(result) ? JSON.normalize(result) : result;
+    if(response?.[0].toString().includes('RpcError')) {
+      const error = response[0].toString();
+      console.error(error);
+      throw new BitcoinRpcError(error, 'RPC_ERROR');
+    }
     // Check if the response is valid JSON
     if (!JSON.is(response)) {
       const invalidJson = 'Invalid post-normalized JSON response';
@@ -419,17 +425,47 @@ export default class BitcoinRpc implements IBitcoinRpc {
   }
 
   /**
-   * TODO: Comments
+   * Sign inputs for raw transaction (serialized, hex-encoded).
+   * The second optional argument (may be null) is an array of previous transaction outputs that
+   * this transaction depends on but may not yet be in the block chain.
+   * Requires wallet passphrase to be set with walletpassphrase call if wallet is encrypted.
+   * @param {SignRawTxParams} params See {@link SignRawTxParams} the signAndSendRawTransaction command.
+   * @param {string} params.hexstring The hex-encoded transaction to send.
+   * @param {PrevOut[]} [params.prevtxs] An array of previous transaction outputs that this transaction depends on.
+   * @param {string[]} [params.privkeys] An array of private keys to use for signing.
+   * @param {SigHashType} [params.sighashtype] The signature hash type to use for signing.
    */
   public async signRawTransaction(params: SignRawTxParams): Promise<SignedRawTx> {
-    return await this.command([{ method: 'signrawtransaction', parameters: [params] }]);
+    return await this.command([{ method: 'signrawtransactionwithwallet', parameters: [params] }]);
   }
 
   /**
-   * TODO: Comments
+   * Submit a raw transaction (serialized, hex-encoded) to local node and network.
+   *
+   * The transaction will be sent unconditionally to all peers, so using sendrawtransaction
+   * for manual rebroadcast may degrade privacy by leaking the transaction's origin, as
+   * nodes will normally not rebroadcast non-wallet transactions already in their mempool.
+   *
+   * @param {string} hexstring The hex-encoded transaction to send.
+   * @param {boolean} [allowhighfees] If true, allows high fees.
+   * @returns {Promise<string>} A promise resolving to the transaction hash in hex.
    */
-  public async sendRawTransaction(hexstring: string, allowhighfees?: boolean): Promise<void> {
+  public async sendRawTransaction(hexstring: string, allowhighfees?: boolean): Promise<string> {
     return await this.command([{ method: 'sendrawtransaction', parameters: [hexstring, allowhighfees] }]);
+  }
+
+  /**
+   * Combines calls to `signRawTransaction` and `sendRawTransaction`.
+   * @param {SignRawTxParams} params See {@link SignRawTxParams} the signAndSendRawTransaction command.
+   * @param {string} params.hexstring The hex-encoded transaction to send.
+   * @param {PrevOut[]} [params.prevtxs] An array of previous transaction outputs that this transaction depends on.
+   * @param {string[]} [params.privkeys] An array of private keys to use for signing.
+   * @param {SigHashType} [params.sighashtype] The signature hash type to use for signing.
+   * @returns {Promise<string>} A promise resolving to the transaction hash in hex.
+   */
+  public async signAndSendRawTransaction(params: SignRawTxParams): Promise<string> {
+    const signedRawTx = await this.signRawTransaction(params);
+    return await this.sendRawTransaction(signedRawTx.hex, true);
   }
 
   /**
@@ -454,7 +490,17 @@ export default class BitcoinRpc implements IBitcoinRpc {
   }
 
   /**
-   * TODO: Comments
+   * Create a transaction spending the given inputs and creating new outputs.
+   * Outputs can be addresses or data.
+   * Returns hex-encoded raw transaction.
+   * Note that the transaction's inputs are not signed, and
+   * it is not stored in the wallet or transmitted to the network.
+   * @param {CreateRawTxParams} params The parameters for the createRawTransaction command.
+   * @param {TxInForCreateRaw[]} params.inputs The inputs to the transaction (required).
+   * @param {BitcoinOutputs} params.outputs The outputs of the transaction (required).
+   * @param {number} [params.locktime] The locktime of the transaction (optional).
+   * @param {boolean} [params.replacable] Whether the transaction is replaceable (optional).
+   * @returns {string} The hex-encoded raw transaction.
    */
   public async createRawTransaction(params: CreateRawTxParams): Promise<string> {
     return await this.command([{ method: 'createrawtransaction', parameters: [params] }]);
@@ -622,10 +668,16 @@ export default class BitcoinRpc implements IBitcoinRpc {
   }
 
   /**
-   * TODO: Comments
+   * Send an amount to a given address.
+   * @async
+   * @param {string} address The address to send to.
+   * @param {number} amount The amount to send in BTC.
+   * @returns {Promise<SendToAddressResult>} A promise resolving to the transaction id.
    */
-  public async sendToAddress(): Promise<any> {
-    return await this.command([{ method: 'sendtoaddress' }]);
+  public async sendToAddress(address: string, amount: number): Promise<RawTransactionV2> {
+    const { txid } = await this.command([{ method: 'sendtoaddress', parameters: [address, amount] }]);
+    const sendTx = await this.getRawTransaction(txid);
+    return sendTx as RawTransactionV2;
   }
 
   /**

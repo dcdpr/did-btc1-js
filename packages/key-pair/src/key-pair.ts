@@ -114,6 +114,12 @@ export class KeyPair implements IKeyPair {
       publicKey  : this.publicKey.json()
     };
   }
+
+  public static from(json: KeyPairJSON): KeyPair {
+    const privateKey = PrivateKey.from(json.privateKey);
+    const publicKey = PublicKey.from(json.publicKey);
+    return new KeyPair({ privateKey, publicKey });
+  }
 }
 
 /**

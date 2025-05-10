@@ -1,4 +1,4 @@
-import { BitcoinNetworkNames, Hex, UnixTimestamp } from '@did-btc1/common';
+import { Hex, UnixTimestamp } from '@did-btc1/common';
 import BitcoinRpc from '../bitcoin/rpc-client.js';
 
 export interface ReturnFormatOptions {
@@ -874,8 +874,8 @@ export type CreateMultiSigResult = { address: string; redeemScript: string }
 export type CreateRawTxParams = {
     inputs: TxInForCreateRaw[];
     outputs: BitcoinOutputs;
-    locktime: number;
-    replacable: boolean
+    locktime?: number;
+    replacable?: boolean
 }
 
 export type CreateWalletParams = {
@@ -974,6 +974,10 @@ export type SendAllResult = {
     psbt: string;
     complete: boolean;
 }
+export type SendToAddressResult = {
+    txid: string;
+    fee_reason: string;
+  }
 export type CreateMultisigParams = {
     nrequired: number;
     keys: string[];

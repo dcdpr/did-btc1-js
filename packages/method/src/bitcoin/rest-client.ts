@@ -1,9 +1,6 @@
 import { BitcoinRpcError, Btc1Error, UnixTimestamp } from '@did-btc1/common';
 import {
   BlockResponse,
-  BlockV0,
-  BlockV1,
-  BlockV2,
   BlockV3,
   GetBlockParams,
   TxInPrevout,
@@ -48,17 +45,14 @@ export interface RawTransactionRest {
 }
 
 export interface RestClientConfigParams {
-  network: string;
   host: string;
   headers?: { [key: string]: string };
 }
 
 export class RestClientConfig {
-  network: string;
   host: string;
   headers?: { [key: string]: string };
-  constructor({ network, host, headers }: RestClientConfigParams) {
-    this.network = network;
+  constructor({ host, headers }: RestClientConfigParams) {
     this.host = host;
     this.headers = headers;
   }
@@ -76,22 +70,22 @@ export interface RestResponse extends Response {
 }
 
 /**
- * Implements a strongly-typed BitcoinRestClient to connect to remote bitcoin node via REST API.
+ * Implements a strongly-typed BitcoinRest to connect to remote bitcoin node via REST API.
  * @class BitcoinRest
  * @type {BitcoinRest}
  */
-export default class BitcoinRestClient {
+export default class BitcoinRest {
   /**
    * The encapsulated {@link RestClientConfig} object.
    * @private
    */
   private _config: RestClientConfig;
 
-  public api: { call: ({ path, url, method, body }: ApiCallParams) => Promise<any> };
+  public api = this.call;
 
   constructor(config: RestClientConfig){
     this._config = new RestClientConfig(config);
-    this.api = { call: this.call.bind(this) };
+    this.api = this.call.bind(this);
   }
 
   /**
@@ -104,8 +98,8 @@ export default class BitcoinRestClient {
    * const alice = BitcoinRpc.connect();
    * ```
    */
-  public static connect(config?: RestClientConfig): BitcoinRestClient {
-    return new BitcoinRestClient(config ?? DEFAULT_REST_CLIENT_CONFIG);
+  public static connect(config?: RestClientConfig): BitcoinRest {
+    return new BitcoinRest(config ?? DEFAULT_REST_CLIENT_CONFIG);
   }
 
   private async call({ path, url, method, body }: ApiCallParams): Promise<any> {
@@ -127,6 +121,7 @@ export default class BitcoinRestClient {
     // If the method is POST or PUT, add the body to the request
     if(body) {
       requestInit.body = JSON.stringify(body);
+      requestInit.method = 'POST';
     }
 
     // Make the request
@@ -135,13 +130,19 @@ export default class BitcoinRestClient {
     // Check if the response is ok (status in the range 200-299)
     if (!response.ok) {
       throw new Btc1Error(
-        `Request failed: ${response.status} - ${response.statusText}`,
+        `Request to ${url} failed: ${response.status} - ${response.statusText}`,
         'FAILED_HTTP_REQUEST',
         response
       );
     }
 
-    // Parse the response as JSON and return it
+    // Check if the response is a text/plain response
+    if((response.headers.get('Content-Type') ?? 'json') === 'text/plain') {
+      // If the response is text/plain, return the text
+      return await response.text();
+    }
+
+    // If the response is not text/plain, parse it as JSON
     return await response.json();
   }
 
@@ -159,7 +160,7 @@ export default class BitcoinRestClient {
    * @returns {Blockheight} The number of the blockheight with the most-work of the fully-validated chain.
    */
   public async getBlockCount(): Promise<number> {
-    return await this.api.call({ path: '/blocks/tip/height' });
+    return await this.api({ path: '/blocks/tip/height' });
   }
 
 
@@ -168,11 +169,10 @@ export default class BitcoinRestClient {
    * @param {GetBlockParams} params See {@link GetBlockParams} for details.
    * @param {?string} params.blockhash The blockhash of the block to query.
    * @param {?number} params.height The block height of the block to query.
-   * @param {?VerbosityLevel} params.verbosity The verbosity level. See {@link VerbosityLevel}.
    * @returns {BlockResponse} A promise resolving to a {@link BlockResponse} formatted depending on `verbosity` level.
    * @throws {BitcoinRpcError} If neither `blockhash` nor `height` is provided.
    */
-  public async getBlock({ blockhash, height, verbosity }: GetBlockParams): Promise<BlockResponse | undefined> {
+  public async getBlock({ blockhash, height }: GetBlockParams): Promise<BlockResponse | undefined> {
     // Check if blockhash or height is provided, if neither throw an error
     if(!blockhash && height === undefined) {
       throw new BitcoinRpcError('blockhash or height required', 'INVALID_PARAMS_GET_BLOCK', { blockhash, height });
@@ -183,22 +183,9 @@ export default class BitcoinRestClient {
     if(!blockhash || typeof blockhash !== 'string') {
       return undefined;
     }
-    // Get the block data
-    const block = await this.api.call({ path: 'getblock', body: {blockhash, verbosity: verbosity ?? 3} });
 
-    // Return the block data depending on verbosity level
-    switch(verbosity) {
-      case 0:
-        return block as BlockV0;
-      case 1:
-        return block as BlockV1;
-      case 2:
-        return block as BlockV2;
-      case 3:
-        return block as BlockV3;
-      default:
-        return block as BlockV3;
-    }
+    // Get the block data
+    return await this.api({ path: `/block/${blockhash}` }) as BlockV3;
   }
 
   /**
@@ -208,7 +195,7 @@ export default class BitcoinRestClient {
    * @returns {Promise<string>} The hash of the block currently at height..
    */
   public async getBlockHash(height: number): Promise<string> {
-    return await this.api.call({ path: `/block-height/${height}` });
+    return await this.api({ path: `/block-height/${height}` });
   }
 
   /**
@@ -221,7 +208,7 @@ export default class BitcoinRestClient {
    * @returns {GetRawTransaction} A promise resolving to data about a transaction in the form specified by verbosity.
    */
   public async getRawTransaction(txid: string, verbosity?: VerbosityLevel): Promise<RawTransactionRest> {
-    return await this.api.call({ path : `/tx/${txid}/${
+    return await this.api({ path : `/tx/${txid}/${
       verbosity === VerbosityLevel.hex
         ? 'hex'
         : 'raw'
@@ -232,8 +219,28 @@ export default class BitcoinRestClient {
    * Get transaction history for the specified address/scripthash, sorted with newest first.
    * Returns up to 50 mempool transactions plus the first 25 confirmed transactions.
    * See {@link https://github.com/blockstream/esplora/blob/master/API.md#get-addressaddresstxs | Esplora GET /address/:address/txs } for details.
+   * @param {string} address The address to check (optional).
+   * @param {string} scripthash The scripthash to check (optional).
+   * @param {boolean} isConfirmed If true, only confirmed transactions are returned (default: true).
+   * @returns {Promise<Array<RawTransactionRest>>} A promise resolving to an array of {@link RawTransactionRest} objects.
    */
-  public async getAddressTransactions(address?: string, scripthash?: string): Promise<Array<RawTransactionRest>> {
-    return await this.api.call({ path: `/address/${address ?? scripthash}/txs` });
+  public async getAddressTransactions(address?: string, scripthash?: string, isConfirmed: boolean = true): Promise<Array<RawTransactionRest>> {
+    const funds = await this.api({ path: `/address/${address ?? scripthash}/txs` });
+    return isConfirmed
+      ? funds.filter((tx: RawTransactionRest) => tx.status.confirmed)
+      : funds;
+  }
+
+  /**
+   * Calls getAddressTransactions and checks if any funds come back.
+   * Toggle if those funds are confirmed.
+   * @param {string} address The address to check (optional).
+   * @param {string} scripthash The scripthash to check (optional).
+   * @param {boolean} isConfirmed If true, only confirmed transactions are checked (default: true).
+   * @returns {Promise<boolean>} True if the address has any funds, false otherwise.
+   */
+  public async isFundedAddress(address?: string, scripthash?: string, isConfirmed: boolean = true): Promise<boolean> {
+    const funds = await this.getAddressTransactions(address, scripthash, isConfirmed);
+    return !!(funds && funds.length);
   }
 }

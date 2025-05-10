@@ -65,14 +65,6 @@ export interface ICryptosuite {
   multikey: Multikey;
 
   /**
-   * Canonicalize a document. Toggles between JCS and RDFC based on the value set in the cryptosuite.
-   * @param {CanonicalizableObject} object The document to canonicalize.
-   * @returns {string} The canonicalized document.
-   * @throws {Btc1Error} if the document cannot be canonicalized.
-   */
-  canonicalize(object: CanonicalizableObject): string | Promise<string>;
-
-  /**
    * Create a proof for an insecure document.
    * @param {CreateProofParams} params See {@link CreateProofParams} for details.
    * @param {DidUpdatePayload} params.document The document to create a proof for.

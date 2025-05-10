@@ -1,6 +1,6 @@
 import { Canonicalization } from './canonicalization.js';
 import { Patch } from './patch.js';
-import { JSONObject, Maybe, Prototyped, Unprototyped } from './types/general.js';
+import { JSONObject, Maybe, Prototyped, Unprototyped } from './types.js';
 
 /** Extend the global namespace */
 declare global {

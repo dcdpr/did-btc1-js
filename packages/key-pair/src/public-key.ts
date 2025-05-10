@@ -196,19 +196,23 @@ export class PublicKey implements IPublicKey {
   }
 
   /**
-   * Public key JSON representation.
-   * See {@link IPublicKey.json} for more details.
-   * @returns {PublicKeyJSON} The public key as a JSON object.
+   * JSON representation of a PublicKey object.
+   * @returns {PublicKeyJSON} The PublicKey as a JSON object.
    */
   public json(): PublicKeyJSON {
     return {
       parity    : this.parity,
-      x         : this.x,
-      y         : this.y,
+      x         : this.x.toArray(),
+      y         : this.y.toArray(),
       hex       : this.hex,
       multibase : this.multibase,
-      prefix    : this.prefix,
+      prefix    : this.prefix.toArray(),
     };
+  }
+
+  public static from(json: PublicKeyJSON): PublicKey {
+    json.x.unshift(json.parity);
+    return new PublicKey(json.x.toUint8Array());
   }
 }
 
