@@ -1,4 +1,4 @@
-import { BitcoinNetworkNames, Hex, UnixTimestamp } from '@did-btc1/common';
+import { Hex, UnixTimestamp } from '@did-btc1/common';
 import BitcoinRpc from '../bitcoin/rpc-client.js';
 
 export interface ReturnFormatOptions {
@@ -22,7 +22,7 @@ export interface IClientConfig {
 }
 
 export class RpcClientConfig implements IClientConfig {
-  network?: BitcoinNetworkNames;
+  network?: string;
   headers?: Record<string, string>;
   host?: string;
   logger?: any;
@@ -467,7 +467,7 @@ export interface RawTransactionV2 extends Transaction {
 };
 export type RawTransactionResponse = RawTransactionV0 | RawTransactionV1 | RawTransactionV2;
 
-export type TxInForCreateRaw = {
+export type CreateRawTxInputs = {
     txid: string;
     vout: number;
     sequence?: number;
@@ -827,10 +827,9 @@ export type ListTransactionsResult = {
 
 export type AddressGrouping = [string, number] | [string, number, string];
 
-export type BitcoinOutputs = {
-    address: string;
-    data: string;
-}
+export type RawOutputAddr = { [address: string]: number; };
+export type RawOutputData = { data: string; };
+export type CreateRawTxOutputs = RawOutputAddr | RawOutputData;
 
 export type GetUTXOsResult = {
     chainHeight: number;
@@ -872,10 +871,10 @@ export type BitcoinSignature = { signature: string }
 export type CreateMultiSigResult = { address: string; redeemScript: string }
 
 export type CreateRawTxParams = {
-    inputs: TxInForCreateRaw[];
-    outputs: BitcoinOutputs;
-    locktime: number;
-    replacable: boolean
+    inputs: CreateRawTxInputs[];
+    outputs: CreateRawTxOutputs[];
+    locktime?: number;
+    replacable?: boolean
 }
 
 export type CreateWalletParams = {
@@ -974,6 +973,10 @@ export type SendAllResult = {
     psbt: string;
     complete: boolean;
 }
+export type SendToAddressResult = {
+    txid: string;
+    fee_reason?: string;
+  }
 export type CreateMultisigParams = {
     nrequired: number;
     keys: string[];

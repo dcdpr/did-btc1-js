@@ -1,7 +1,7 @@
 import { ID_PLACEHOLDER_VALUE } from '@did-btc1/common';
 import { KeyPair } from '@did-btc1/key-pair';
-import { IntermediateDidDocument } from '../../../src/index.js';
-import initialExternalDocument from '../../in/resolve/external/initialDidDoc.json' with { type: 'json' };
+import { IntermediateDidDocument } from '../../src/index.js';
+import initialExternalDocument from '../in/resolve/external/initialDidDoc.json' with { type: 'json' };
 
 const privateKeyBytes = new Uint8Array([
   121, 128,  10, 172,  99,   5, 171,  98,

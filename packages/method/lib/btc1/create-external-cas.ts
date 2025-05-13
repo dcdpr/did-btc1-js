@@ -3,7 +3,7 @@ import { sha256 } from '@noble/hashes/sha256';
 import { bech32 } from '@scure/base';
 import { canonicalize } from '@web5/crypto';
 import { createHelia } from 'helia';
-import { Btc1Identifier } from '../../../../src/index.js';
+import { Btc1Identifier } from '../../src/index.js';
 
 const did = 'did:btc1:x1rfkaxzfh23nrh33llxysztuhssguysnkywexde4wghszrvqc570q7gtfea';
 const didDocument = {

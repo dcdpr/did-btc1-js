@@ -23,7 +23,13 @@ export class DataIntegrityProof implements IDataIntegrityProof {
     this.cryptosuite = cryptosuite;
   }
 
-  /** @see IDataIntegrityProof.addProof */
+  /**
+   * Add a proof to a document.
+   * @param {AddProofParams} params Parameters for adding a proof to a document.
+   * @param {InsecureDocument} params.document The document to add a proof to.
+   * @param {ProofOptions} params.options Options for adding a proof to a document.
+   * @returns {SecureDocument} A document with a proof added.
+   */
   public async addProof({ document, options }: AddProofParams): Promise<DidUpdateInvocation> {
     // Generate the proof
     const proof = await this.cryptosuite.createProof({ document, options });
@@ -55,7 +61,16 @@ export class DataIntegrityProof implements IDataIntegrityProof {
     return { ...document, proof } as DidUpdateInvocation;
   }
 
-  /** @see IDataIntegrityProof.verifyProof */
+  /**
+   * Verify a proof.
+   * @param {VerifyProofParams} params Parameters for verifying a proof.
+   * @param {string} params.mediaType The media type of the document.
+   * @param {string} params.document The document to verify.
+   * @param {string} params.expectedPurpose The expected purpose of the proof.
+   * @param {string[]} params.expectedDomain The expected domain of the proof.
+   * @param {string} params.expectedChallenge The expected challenge of the proof.
+   * @returns {VerificationResult} The result of verifying the proof.
+   */
   public async verifyProof({
     mediaType,
     document,

@@ -1,6 +1,6 @@
 import { KeyPair } from '@did-btc1/key-pair';
-import { Btc1DidDocument } from '../../../src/index.js';
-import initialKeyDocument from '../../in/resolve/key/initialDidDocument.json' with { type: 'json' };
+import { Btc1DidDocument } from '../../src/index.js';
+import initialKeyDocument from '../in/resolve/key/initialDidDocument.json' with { type: 'json' };
 
 const privateKeyBytes = new Uint8Array([
   121, 128,  10, 172,  99,   5, 171,  98,

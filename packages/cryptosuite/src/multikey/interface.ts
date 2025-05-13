@@ -23,7 +23,7 @@ export interface FromPublicKey extends DidParams {
   publicKeyBytes: PublicKeyBytes;
 }
 export interface MultikeyParams extends DidParams {
-  keyPair?: KeyPair;
+  keyPair: KeyPair;
 }
 export interface FromPublicKeyMultibaseParams extends DidParams {
   publicKeyMultibase: string;

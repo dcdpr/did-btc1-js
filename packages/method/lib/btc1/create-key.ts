@@ -1,5 +1,5 @@
 import { KeyPair } from '@did-btc1/key-pair';
-import { DidBtc1 } from '../../../../src/did-btc1.js';
+import { DidBtc1 } from '../../src/did-btc1.js';
 
 const privateKey = new Uint8Array([
   219, 162, 77, 8, 189, 162, 226, 24,

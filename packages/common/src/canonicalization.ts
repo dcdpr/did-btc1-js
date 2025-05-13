@@ -3,9 +3,7 @@ import { bytesToHex } from '@noble/hashes/utils';
 import { canonicalize as jcsa } from 'json-canonicalize';
 import { base58btc } from 'multiformats/bases/base58';
 import rdf from 'rdf-canonize';
-import { JSONObject } from './types/general.js';
-import { HashBytes } from './types/crypto.js';
-import { CanonicalizationAlgorithm } from './types/general.js';
+import { CanonicalizationAlgorithm, HashBytes, JSONObject } from './types.js';
 import { CanonicalizationError } from './errors.js';
 
 /**
