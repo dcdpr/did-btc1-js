@@ -208,7 +208,7 @@ export default class BitcoinRest {
    * @param {?VerbosityLevel} verbosity Response format: hex or raw binary. Default is hex.
    * @returns {GetRawTransaction} A promise resolving to data about a transaction in the form specified by verbosity.
    */
-  public async getRawTransaction(txid: string, verbosity?: VerbosityLevel): Promise<RawTransactionRest> {
+  public async getRawTransaction(txid: string, verbosity?: VerbosityLevel): Promise<RawTransactionRest | string> {
     return await this.api({ path : `/tx/${txid}/${
       verbosity === VerbosityLevel.hex
         ? 'hex'

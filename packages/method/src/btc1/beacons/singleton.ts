@@ -5,7 +5,7 @@ import { Bitcoin } from '../../bitcoin/index.js';
 import { RawTransactionRest } from '../../bitcoin/rest-client.js';
 import { Beacon } from '../../interfaces/beacon.js';
 import { BeaconService, BeaconSignal } from '../../interfaces/ibeacon.js';
-import { CreateRawTxInputs, CreateRawTxOutputs, RawTransactionV2 } from '../../types/bitcoin.js';
+import { CreateRawTxInputs, CreateRawTxOutputs, RawTransactionV2, VerbosityLevel } from '../../types/bitcoin.js';
 import { Metadata, SidecarData, SignalsMetadata, SingletonSidecar } from '../../types/crud.js';
 import { Btc1Appendix } from '../../utils/appendix.js';
 import { Btc1KeyManager } from '../key-manager/index.js';
@@ -211,7 +211,7 @@ export class SingletonBeacon extends Beacon {
         'Beacon bitcoin address unfunded or utxos unconfirmed.',
         'UNFUNDED_BEACON_ADDRESS', { bitcoinAddress });
     }
-
+    console.log('utxo:', utxo);
     // console.log('inputs:', inputs);
     // if(!inputs || !inputs.length) {
     //   throw new SingletonBeaconError(
@@ -231,27 +231,37 @@ export class SingletonBeacon extends Beacon {
     }
     const [controller, id] = didUpdatePayload.patch[0].value.id.split('#');
     const multikey = new Multikey({ id: `#${id}`, controller,  keyPair });
+    const signer = {
+      publicKey : keyPair.publicKey.bytes,
+      network   : 'regtest',
+      sign      : (hash: Uint8Array) => {
+        const signature = multikey.sign(hash);
+        return signature;
+      }
+    };
     // TODO: Explore use REST and the below code to POST to /api/tx
-    const psbt = new Psbt({ network: bitcoin.network })
-      .addInput({
-        hash        : utxo.txid,
-        index       : utxo.vin[0].vout,
-        witnessUtxo : {
-          script : address.toOutputScript(bitcoinAddress, bitcoin.network),
-          value  : BigInt(utxo.vout[0].value),
-        } })
-      .addOutput({ script: script.compile([opcodes.OP_RETURN, hashBytes]), value: 1n })
-      .signAllInputs({
-        publicKey : keyPair.publicKey.bytes,
-        network   : 'regtest',
-        sign      : (hash: Uint8Array) => {
-          const signature = multikey.sign(hash);
-          return signature;
-        }}
-      )
-      .finalizeAllInputs();
+    const hash = utxo.vin[0].txid;
+    const index = utxo.vin[0].vout;
+    const rawPrevOutTx = await bitcoin.rest.getRawTransaction(hash, VerbosityLevel.hex);
+    console.log('rawPrevOutTx:', rawPrevOutTx);
+    const psbt = new Psbt({ network: bitcoin.network });
+    psbt.addInput({
+      hash,
+      index,
+      nonWitnessUtxo : Buffer.from(rawPrevOutTx as unknown as string, 'hex'),
+    });
+    psbt.addOutput({ script: script.compile([opcodes.OP_RETURN, hashBytes]), value: 1n });
+    psbt.addOutput({
+      address : bitcoinAddress,
+      value   : BigInt(utxo.vout[utxo.vin[0].vout].value - 1000),
+    });
+
+    psbt.signAllInputs(signer);
+    psbt.finalizeAllInputs();
+    console.log('psbt:', psbt);
 
     const spendTx = psbt.extractTransaction().toHex();
+    console.log('spendTx:', spendTx);
 
     // 5. Initialize spendTx to a Bitcoin transaction that spends a transaction controlled by the bitcoinAddress and
     //    contains at least one transaction output. This output MUST have the following format
