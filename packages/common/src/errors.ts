@@ -156,12 +156,6 @@ export class Btc1KeyManagerError extends DidBtc1Error {
   }
 }
 
-export class BitcoinRpcError extends DidBtc1Error {
-  constructor(message: string, type: string = 'BitcoinRpcError', data?: Record<string, any>) {
-    super(message, { type, name: type, data });
-  }
-}
-
 export class DidDocumentError extends DidBtc1Error {
   constructor(message: string, type: string = 'DidDocumentError', data?: Record<string, any>) {
     super(message, { type, name: type, data });

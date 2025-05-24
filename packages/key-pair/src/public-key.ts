@@ -27,6 +27,9 @@ export class PublicKey implements IPublicKey {
   /** @type {PublicKeyBytes} The Uint8Array public key */
   private readonly _bytes: PublicKeyBytes;
 
+  /** @type {string} The private key in privateKeyMultibase format */
+  private _multibase: string;
+
   /**
    * Creates an instance of PublicKey.
    *
@@ -43,6 +46,9 @@ export class PublicKey implements IPublicKey {
     }
     // Set the bytes
     this._bytes = bytes;
+
+    // Set multibase
+    this._multibase = this.encode();
   }
 
   /**
@@ -101,8 +107,8 @@ export class PublicKey implements IPublicKey {
    * @returns {string} The public key in base58btc x-only multibase format.
    */
   get multibase(): string {
-    const mbase = this.encode();
-    return mbase;
+    const multibase = this._multibase;
+    return multibase;
   }
 
   /**
@@ -155,7 +161,6 @@ export class PublicKey implements IPublicKey {
 
   /**
    * Encodes compressed secp256k1 public key from bytes to BIP340 base58btc multibase format
-   * See {@link IPublicKey.encode | IPublicKey Method } for more details.
    * @returns {string} The public key encoded in base-58-btc multibase format
    */
   public encode(): string {
@@ -191,19 +196,23 @@ export class PublicKey implements IPublicKey {
   }
 
   /**
-   * Public key JSON representation.
-   * See {@link IPublicKey.json} for more details.
-   * @returns {PublicKeyJSON} The public key as a JSON object.
+   * JSON representation of a PublicKey object.
+   * @returns {PublicKeyJSON} The PublicKey as a JSON object.
    */
   public json(): PublicKeyJSON {
     return {
       parity    : this.parity,
-      x         : this.x,
-      y         : this.y,
+      x         : this.x.toArray(),
+      y         : this.y.toArray(),
       hex       : this.hex,
       multibase : this.multibase,
-      prefix    : this.prefix,
+      prefix    : this.prefix.toArray(),
     };
+  }
+
+  public static from(json: PublicKeyJSON): PublicKey {
+    json.x.unshift(json.parity);
+    return new PublicKey(json.x.toUint8Array());
   }
 }
 
