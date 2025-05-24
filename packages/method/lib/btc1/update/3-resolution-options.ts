@@ -19,9 +19,9 @@ console.log('Btc1KeyManager.instance', Btc1KeyManager.instance);
 
 const didUpdateInvocation = await Btc1Update.invoke({ identifier, verificationMethod, didUpdatePayload, });
 
-const beaconIds = ['did:btc1:k1qgpmju274275fl54n02lkz6f9c4jn488czfpqearnhkmff9a66zvt5c5srmux#initialP2PKH'];
+const beaconIds = [initialDidDocument.service[0].id];
 const signalsMetadata = await Btc1Update.announce({ sourceDocument, beaconIds, didUpdateInvocation });
-
+console.log('signalsMetadata', signalsMetadata);
 const did = identifier;
 const targetTime = Date.now();
 const resolutionOptions = { targetTime, sidecarData: { did, signalsMetadata }};

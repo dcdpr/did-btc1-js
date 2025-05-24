@@ -1,0 +1,40 @@
+curl --user "jintek:$RPC_PASS" \
+     --data-binary '{"jsonrpc": "1.0", "id": "curltest", "method": "sendtoaddress", "params": ["tb1qyxqkaeg3r6lf988szmwgu6850vxv5cfwhkepe2", 0.005]}' \
+     -H 'content-type: text/plain;' https://mbjcimllwl.b.voltageapp.io:38332
+
+curl --user "jintek:$RPC_PASS" \
+     --data-binary '{"jsonrpc": "1.0", "id": "curltest", "method": "loadwallet", "params": ["btc1"]}' \
+     -H 'content-type: text/plain;' https://mbjcimllwl.b.voltageapp.io:38332
+
+curl --user "jintek:$RPC_PASS" \
+     --data-binary '{"jsonrpc": "1.0", "id": "curltest", "method": "createwallet", "params": ["btc1"]}' \
+     -H 'content-type: text/plain;' https://mbjcimllwl.b.voltageapp.io:38332
+
+curl --user "jintek:$RPC_PASS" \
+     --data-binary '{"jsonrpc": "1.0", "id": "curltest", "method": "getnewaddress", "params": ["jintek0"]}' \
+     -H 'content-type: text/plain;' https://mbjcimllwl.b.voltageapp.io:38332
+
+curl --user "jintek:$RPC_PASS" \
+     --data-binary '{"jsonrpc": "1.0", "id": "curltest", "method": "generatetoaddress", "params": [1, "tb1q9wraz8pwu0zk55nh0ultq72fd9q96h63pgxrll \
+     ]}' -H 'content-type: text/plain;' https://mbjcimllwl.b.voltageapp.io:38332
+
+curl --user "jintek:$RPC_PASS" \
+     --data-binary '{"jsonrpc": "1.0", "id": "curltest", "method": "getreceivedbyaddress", "params": ["tb1q3tl9nudmds6qtkduy2l29hnhwh8mwpsvw2jxuy"]}' \
+     -H 'content-type: text/plain;' https://mbjcimllwl.b.voltageapp.io:38332
+
+curl --user "jintek:$RPC_PASS" \
+     --data-binary '{"jsonrpc": "1.0", "id": "curltest", "method": "", "params": [""]}' -H 'content-type \
+      text/plain;' https://mbjcimllwl.b.voltageapp.io:38332
+
+curl --user "jintek:$RPC_PASS" \
+     --data-binary '{"jsonrpc": "1.0", "id": "curltest", "method": "getbalance", "params": []}' -H 'content-type: text/plain;' https://mbjcimllwl.b.voltageapp.io:38332
+
+curl --user "jintek:$RPC_PASS" --data-binary '{"jsonrpc": "1.0", "id": "curltest", "method": "getblockchaininfo", "params": [true]}' -H 'content type: text/plain;' localhost:38332
+
+     /usr/local/bin/bitcoind -conf=/etc/bitcoin/bitcoin.conf -datadir=/var/lib/bitcoin -pid=/run/bitcoind/bitcoind.pid -debuglogfile=/var/log/bitcoin/debug.log
+
+           # 3.22.223.90
+
+--------------------
+
+curl --user "jintek:$RPC_PASS" --data-binary '{"jsonrpc": "1.0", "id": "curltest", "method": "getblockchaininfo", "params": []}' -H 'content-type: text/plain;' http://signet.btc1.tools:38332 | jq '.result'

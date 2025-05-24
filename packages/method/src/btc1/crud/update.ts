@@ -88,7 +88,7 @@ export class Btc1Update {
       targetVersionId : 0,
       sourceHash      : '',
     };
-    // Logger.warn('// TODO: Need to add btc1 context. ["https://w3id.org/zcap/v1", "https://w3id.org/security/data-integrity/v2", "https://w3id.org/json-ld-patch/v1"]');
+    // TODO: Need to add btc1 context. ["https://w3id.org/zcap/v1", "https://w3id.org/security/data-integrity/v2", "https://w3id.org/json-ld-patch/v1"]
 
     // 5. Set targetDocument to the result of applying the documentPatch to the sourceDocument, following the JSON Patch
     //    specification.
@@ -100,7 +100,7 @@ export class Btc1Update {
     // 7. Set sourceHashBytes to the result of passing sourceDocument into the JSON Canonicalization and Hash algorithm.
     // 8. Set didUpdatePayload.sourceHash to the base58-btc Multibase encoding of sourceHashBytes.
     didUpdatePayload.sourceHash = (await JSON.canonicalization.process(sourceDocument, 'base58')).slice(1);
-    // Logger.warn('// TODO: Question - is base58btc the correct encoding scheme?');
+    // TODO: Question - is base58btc the correct encoding scheme?
 
     // 9. Set targetHashBytes to the result of passing targetDocument into the JSON Canonicalization and Hash algorithm.
     // 10. Set didUpdatePayload.targetHash to the base58-btc Multibase encoding of targetHashBytes.
@@ -187,7 +187,7 @@ export class Btc1Update {
       .toCryptosuite(cryptosuite)
       .toDataIntegrityProof();
 
-    Logger.warn('11. // TODO: need to set up the proof instantiation such that it can resolve / dereference the root capability. This is deterministic from the DID.');
+    // TODO: 11. need to set up the proof instantiation such that it can resolve / dereference the root capability. This is deterministic from the DID.
 
     // 12. Set didUpdateInvocation to the result of executing the Add Proof algorithm from VC Data Integrity passing
     //     didUpdatePayload as the input document, cryptosuite, and the set of proofOptions.
@@ -222,7 +222,7 @@ export class Btc1Update {
     const beaconServices: BeaconService[] = [];
 
     // 2. signalMetadata to an empty array.
-    const signalsMetadata = new Map<TxId, Metadata>();
+    let signalsMetadata;
 
     // 3. For beaconId in beaconIds:
     for (const beaconId of beaconIds) {
@@ -253,15 +253,13 @@ export class Btc1Update {
       // 4.5 Else:
       //    4.5.1 MUST throw invalidBeacon error.
       const beacon = BeaconFactory.establish(beaconService);
-      const signalMetadata = await beacon.broadcastSignal(didUpdateInvocation);
-      Object.entries(signalMetadata).map(
-        ([signalId, metadata]) => signalsMetadata.set(signalId, metadata)
-      );
+      signalsMetadata = await beacon.broadcastSignal(didUpdateInvocation);
     }
-    console.log('signalsMetadata', signalsMetadata);
+    if(!signalsMetadata) {
+      throw new Btc1Error('Invalid beacon: no signalsMetadata found', INVALID_DID_DOCUMENT, { beaconServices });
+    }
+    Logger.debug('signalsMetadata', signalsMetadata);
     // Return the signalsMetadata
-    const data = Object.fromEntries(Object.entries(signalsMetadata));
-    console.log('data', data);
-    return data;
+    return signalsMetadata;
   }
 }

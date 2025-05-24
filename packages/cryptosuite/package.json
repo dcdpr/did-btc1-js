@@ -1,6 +1,6 @@
 {
   "name": "@did-btc1/cryptosuite",
-  "version": "2.6.2",
+  "version": "2.6.3",
   "type": "module",
   "description": "TypeScript/JavaScript reference implementation of the Data Integrity BIP340 Cryptosuite v0.1 specification",
   "main": "./dist/cjs/index.js",

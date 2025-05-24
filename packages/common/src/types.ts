@@ -116,18 +116,3 @@ export type DateTimestamp = `${UtcTimestamp}Z` | `${UtcTimestamp}-${TzOffset}`;
 export type CanonicalizableObject = Record<string, any>;
 export type CanonicalizationAlgorithm = 'jcs' | 'rdfc';
 export type UnixTimestamp = number;
-export type BitcoinClientConfig = {
-  network: string;
-  rpc: {
-    username: string;
-    password: string;
-    host: string;
-    version: string;
-    allowDefaultWallet: boolean;
-  },
-  rest: {
-    host: string;
-    username?: string;
-    password?: string;
-  }
-}

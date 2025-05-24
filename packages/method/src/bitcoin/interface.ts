@@ -132,7 +132,11 @@ export interface IBitcoinRpc {
     getPeerInfo(): Promise<PeerInfo[]>;
 
     /** Sends raw transaction hex to the Bitcoin network. */
-    sendRawTransaction(hexstring: string, allowhighfees?: boolean): Promise<string>;
+    sendRawTransaction(
+      hexstring: string,
+      maxfeerate?: number | string,
+      maxBurnAmount?: number | string
+    ): Promise<string>;
 
     /** Sends bitcoins to a specified address. */
     sendToAddress(

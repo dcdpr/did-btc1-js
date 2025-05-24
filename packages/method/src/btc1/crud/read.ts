@@ -554,12 +554,12 @@ export class Btc1Read {
     // Create an default beaconSignal and beaconSignals array
     let beaconSignals: BeaconSignals = [];
 
-    if (bitcoin.rest) {
+    if (bitcoin.active.rest) {
       return await this.findSignalsRest({ beacons });
     }
 
     // Use connection to get the block data at the blockhash
-    let block = await bitcoin.rpc.getBlock({ height }) as BlockV3;
+    let block = await bitcoin.active.rpc.getBlock({ height }) as BlockV3;
 
     Logger.info(`Searching for signals, please wait ...`);
     while (block.time <= targetTime) {
@@ -594,7 +594,7 @@ export class Btc1Read {
           }
 
           // Get the previous output transaction data
-          const prevout = await bitcoin.rpc.getRawTransaction(vin.txid, 2) as RawTransactionV2;
+          const prevout = await bitcoin.active.rpc.getRawTransaction(vin.txid, 2) as RawTransactionV2;
 
           // If the previous output vout at the vin.vout index is undefined, continue ...
           if (!prevout.vout[vin.vout]) {
@@ -633,14 +633,14 @@ export class Btc1Read {
       }
 
       height += 1;
-      const tip = await bitcoin.rpc.getBlockCount();
+      const tip = await bitcoin.active.rpc.getBlockCount();
       if(height > tip) {
         Logger.info(`Chain tip reached ${height}, breaking ...`);
         break;
       }
 
       // Reset the block to the next block
-      block = await bitcoin.rpc.getBlock({ height }) as BlockV3;
+      block = await bitcoin.active.rpc.getBlock({ height }) as BlockV3;
     }
 
     return beaconSignals;
@@ -665,7 +665,7 @@ export class Btc1Read {
     // Iterate over each beacon
     for (const beacon of BeaconUtils.toBeaconServiceAddress(beacons)) {
       // Get the transactions for the beacon address via REST
-      const transactions = await bitcoin.rest.getAddressTransactions(beacon.address);
+      const transactions = await bitcoin.active.rest.getAddressTxs(beacon.address);
 
       // If no transactions are found, continue
       if (!transactions || transactions.length === 0) {

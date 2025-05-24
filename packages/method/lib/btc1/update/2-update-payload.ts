@@ -14,7 +14,7 @@ const patch = JSON.patch.create([
       id          : identifier,
       publicKey   : Buffer.from(keyPair1.publicKey.hex, 'hex'),
       network     : getNetwork('regtest'),
-      addressType : 'p2wpkh',
+      addressType : 'p2pkh',
       beaconType  : 'SingletonBeacon',
     })
   }

@@ -43,7 +43,6 @@ import {
   MiningInfo,
   Outpoint,
   PeerInfo,
-  PrevOut,
   RawTransactionResponse,
   RawTransactionV0,
   RawTransactionV1,
@@ -55,8 +54,6 @@ import {
   SendAllParams,
   SendAllResult,
   SendManyParams,
-  SendToAddressResult,
-  SigHashType,
   SignedRawTx,
   UnspentTxInfo,
   ValidateAddressResult,
@@ -469,34 +466,26 @@ export default class BitcoinRpc implements IBitcoinRpc {
    * nodes will normally not rebroadcast non-wallet transactions already in their mempool.
    *
    * @param {string} hexstring The hex-encoded transaction to send.
-   * @param {boolean} [allowhighfees] If true, allows high fees.
+   * @param {numbner} [maxfeerate] If not passed, default is 0.10.
    * @returns {Promise<string>} A promise resolving to the transaction hash in hex.
    */
-  public async sendRawTransaction(hexstring: string, allowhighfees?: boolean): Promise<string> {
-    return await this.executeRpc<string>('sendrawtransaction', [hexstring, allowhighfees]);
+  public async sendRawTransaction(
+    hexstring: string,
+    maxfeerate?: number | string,
+    maxBurnAmount?: number | string
+  ): Promise<string> {
+    console.log('sendRawTransaction', { hexstring, maxfeerate, maxBurnAmount });
+    return await this.executeRpc<string>('sendrawtransaction', [hexstring, maxfeerate ?? 0.10, maxBurnAmount ?? 0.00]);
   }
 
   /**
    * Combines calls to `signRawTransaction` and `sendRawTransaction`.
    * @param {string} params.hexstring The hex-encoded transaction to send.
-   * @param {PrevOut[]} [params.prevtxs] An array of previous transaction outputs that this transaction depends on.
-   * @param {string[]} [params.privkeys] An array of private keys to use for signing.
-   * @param {SigHashType} [params.sighashtype] The signature hash type to use for signing.
    * @returns {Promise<string>} A promise resolving to the transaction hash in hex.
    */
-  public async signAndSendRawTransaction(
-    hexstring: string,
-    prevtxs?: PrevOut[],
-    privkeys?: string[],
-    sighashtype?: SigHashType
-  ): Promise<string> {
-    const signedRawTx = await this.signRawTransaction(
-      hexstring,
-      prevtxs,
-      privkeys,
-      sighashtype,
-    );
-    return await this.sendRawTransaction(signedRawTx.hex, true);
+  public async signAndSendRawTransaction(hexstring: string): Promise<string> {
+    const signedRawTx = await this.signRawTransaction(hexstring,);
+    return await this.sendRawTransaction(signedRawTx.hex);
   }
 
   /**
@@ -508,7 +497,7 @@ export default class BitcoinRpc implements IBitcoinRpc {
   public async createSignSendRawTransaction(inputs: CreateRawTxInputs[], outputs: CreateRawTxOutputs[]): Promise<string> {
     const rawTx = await this.createRawTransaction(inputs, outputs);
     const signedRawTx = await this.signRawTransaction(rawTx);
-    const sentRawTx = await this.sendRawTransaction(signedRawTx.hex, true);
+    const sentRawTx = await this.sendRawTransaction(signedRawTx.hex);
     return sentRawTx;
   }
 
@@ -718,7 +707,7 @@ export default class BitcoinRpc implements IBitcoinRpc {
    * @returns {Promise<SendToAddressResult>} A promise resolving to the transaction id.
    */
   public async sendToAddress(address: string, amount: number): Promise<RawTransactionV2> {
-    const { txid }: SendToAddressResult = await this.executeRpc<RawTransactionV2>('sendtoaddress', [address, amount]);
+    const txid = await this.executeRpc<string>('sendtoaddress', [address, amount]);
     return await this.getRawTransaction(txid) as RawTransactionV2;
   }
 

@@ -23,7 +23,8 @@ export const POLAR_ALICE_CLIENT_CONFIG = {
   allowDefaultWallet : true,
   version            : '28.1.0'
 };
-export const DEFAULT_CLIENT_CONFIG = POLAR_BOB_CLIENT_CONFIG;
+export const DEFAULT_REST_CONFIG = { host: 'http://localhost:3000' };
+export const DEFAULT_RPC_CONFIG = POLAR_BOB_CLIENT_CONFIG;
 export const DEFAULT_BLOCK_CONFIRMATIONS = 7;
 
 // Fixed header bytes per the spec for a BIP-340 Multikey
