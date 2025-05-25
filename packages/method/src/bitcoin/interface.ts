@@ -1,23 +1,25 @@
 import {
   AddMultiSigAddressParams,
   BatchOption,
+  BlockResponse,
   BumpFeeOption,
   BumpFeeResult,
   ChainInfo,
   CreateMultiSigResult,
-  CreateRawTxParams,
+  CreateRawTxInputs,
+  CreateRawTxOutputs,
   CreateWalletParams,
   CreateWalletResult,
   DecodedRawTransaction,
   FeeEstimateMode,
   FundRawTxOptions,
-  BlockResponse,
+  GetBlockParams,
   MempoolInfo,
   MiningInfo,
   PeerInfo,
+  RawTransactionResponse,
   ScriptDecoded,
-  ValidateAddressResult,
-  GetBlockParams
+  ValidateAddressResult
 } from '../types/bitcoin.js';
 
 /**
@@ -55,12 +57,7 @@ export interface IBitcoinRpc {
     createMultiSig(nrequired: number, keys: string[]): Promise<CreateMultiSigResult>;
 
     /** Creates a raw transaction spending specified inputs to specified outputs. */
-    createRawTransaction({
-      inputs,
-      outputs,
-      locktime,
-      replacable
-    }: CreateRawTxParams): Promise<string>;
+    createRawTransaction(inputs: CreateRawTxInputs[], outputs: CreateRawTxOutputs[], locktime?: number, replacable?: boolean): Promise<string>;
 
     /** Creates a new wallet with various optional parameters. */
     createWallet({
@@ -134,7 +131,11 @@ export interface IBitcoinRpc {
     getPeerInfo(): Promise<PeerInfo[]>;
 
     /** Sends raw transaction hex to the Bitcoin network. */
-    sendRawTransaction(hexstring: string, allowhighfees?: boolean): Promise<void>;
+    sendRawTransaction(
+      hexstring: string,
+      maxfeerate?: number | string,
+      maxBurnAmount?: number | string
+    ): Promise<string>;
 
     /** Sends bitcoins to a specified address. */
     sendToAddress(
@@ -146,7 +147,7 @@ export interface IBitcoinRpc {
         replaceable?: boolean,
         conf_target?: number,
         estimate_mode?: FeeEstimateMode,
-    ): Promise<string>;
+    ): Promise<RawTransactionResponse>;
 
     /** Validates a Bitcoin address. */
     validateAddress(address: string): Promise<ValidateAddressResult>;

@@ -19,10 +19,10 @@ export const BTC1_DID_REGEX = /did:btc1:(x1[qpzry9x8gf2tvdw0s3jn54khce6mua7l]*)/
 export type ExternalData = {
   id: string,
   verificationMethod: Array<Btc1VerificationMethod>,
-  authentication?: Array<string | DidVerificationMethod>,
-  assertionMethod?: Array<string | DidVerificationMethod>,
-  capabilityInvocation?: Array<string | DidVerificationMethod>,
-  capabilityDelegation?: Array<string | DidVerificationMethod>,
+  authentication?: Array<string | Btc1VerificationMethod>,
+  assertionMethod?: Array<string | Btc1VerificationMethod>,
+  capabilityInvocation?: Array<string | Btc1VerificationMethod>,
+  capabilityDelegation?: Array<string | Btc1VerificationMethod>,
   service: Array<BeaconService>
 }
 export type VerificationRelationship = Array<string | Btc1VerificationMethod>
@@ -70,21 +70,21 @@ export class Btc1VerificationMethod implements IBtc1VerificationMethod {
  * @property {Array<string>} [controller] - The controller of the DID Document.
  * @property {Array<string | JSONObject>} ['@context'] - The context of the DID Document.
  * @property {Array<DidVerificationMethod>} verificationMethod - The verification methods of the DID Document.
- * @property {Array<string | DidVerificationMethod>} [authentication] - The authentication methods of the DID Document.
- * @property {Array<string | DidVerificationMethod>} [assertionMethod] - The assertion methods of the DID Document.
- * @property {Array<string | DidVerificationMethod>} [capabilityInvocation] - The capability invocation methods of the DID Document.
- * @property {Array<string | DidVerificationMethod>} [capabilityDelegation] - The capability delegation methods of the DID Document.
+ * @property {Array<string | Btc1VerificationMethod>} [authentication] - The authentication methods of the DID Document.
+ * @property {Array<string | Btc1VerificationMethod>} [assertionMethod] - The assertion methods of the DID Document.
+ * @property {Array<string | Btc1VerificationMethod>} [capabilityInvocation] - The capability invocation methods of the DID Document.
+ * @property {Array<string | Btc1VerificationMethod>} [capabilityDelegation] - The capability delegation methods of the DID Document.
  * @property {Array<BeaconService>} service - The services of the DID Document.
  */
 export interface IBtc1DidDocument extends IDidDocument {
   id: string;
   controller?: Array<string>;
   '@context'?: Array<string | JSONObject>;
-  verificationMethod: Array<DidVerificationMethod>;
-  authentication?: Array<string | DidVerificationMethod>;
-  assertionMethod?: Array<string | DidVerificationMethod>;
-  capabilityInvocation?: Array<string | DidVerificationMethod>;
-  capabilityDelegation?: Array<string | DidVerificationMethod>;
+  verificationMethod: Array<Btc1VerificationMethod>;
+  authentication?: Array<string | Btc1VerificationMethod>;
+  assertionMethod?: Array<string | Btc1VerificationMethod>;
+  capabilityInvocation?: Array<string | Btc1VerificationMethod>;
+  capabilityDelegation?: Array<string | Btc1VerificationMethod>;
   service: Array<BeaconService>;
 }
 
@@ -97,21 +97,21 @@ export interface IBtc1DidDocument extends IDidDocument {
  * @property {Array<string>} [controller] - The controller of the DID Document.
  * @property {Array<string | JSONObject>} ['@context'] - The context of the DID Document.
  * @property {Array<DidVerificationMethod>} verificationMethod - The verification methods of the DID Document.
- * @property {Array<string | DidVerificationMethod>} [authentication] - The authentication methods of the DID Document.
- * @property {Array<string | DidVerificationMethod>} [assertionMethod] - The assertion methods of the DID Document.
- * @property {Array<string | DidVerificationMethod>} [capabilityInvocation] - The capability invocation methods of the DID Document.
- * @property {Array<string | DidVerificationMethod>} [capabilityDelegation] - The capability delegation methods of the DID Document.
+ * @property {Array<string | Btc1VerificationMethod>} [authentication] - The authentication methods of the DID Document.
+ * @property {Array<string | Btc1VerificationMethod>} [assertionMethod] - The assertion methods of the DID Document.
+ * @property {Array<string | Btc1VerificationMethod>} [capabilityInvocation] - The capability invocation methods of the DID Document.
+ * @property {Array<string | Btc1VerificationMethod>} [capabilityDelegation] - The capability delegation methods of the DID Document.
  * @property {Array<BeaconService>} service - The services of the DID Document.
  */
 export class Btc1DidDocument implements IBtc1DidDocument {
   id: string;
   controller?: Array<string>;
   '@context'?: Array<string | JSONObject> = BTC1_DID_DOCUMENT_CONTEXT;
-  verificationMethod: Array<DidVerificationMethod>;
-  authentication?: Array<string | DidVerificationMethod>;
-  assertionMethod?: Array<string | DidVerificationMethod>;
-  capabilityInvocation?: Array<string | DidVerificationMethod>;
-  capabilityDelegation?: Array<string | DidVerificationMethod>;
+  verificationMethod: Array<Btc1VerificationMethod>;
+  authentication?: Array<string | Btc1VerificationMethod>;
+  assertionMethod?: Array<string | Btc1VerificationMethod>;
+  capabilityInvocation?: Array<string | Btc1VerificationMethod>;
+  capabilityDelegation?: Array<string | Btc1VerificationMethod>;
   service: Array<BeaconService>;
 
   constructor(document: IBtc1DidDocument) {

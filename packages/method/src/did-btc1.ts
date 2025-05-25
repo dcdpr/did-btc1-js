@@ -242,6 +242,7 @@ export class DidBtc1 implements DidMethod {
 
     // 6. Return signalsMetadata. It is up to implementations to ensure that the signalsMetadata is persisted.
     return signalsMetadata;
+    // TODO: Should we be applying the patch, producing a target did document and returning it?
   }
 
   /**

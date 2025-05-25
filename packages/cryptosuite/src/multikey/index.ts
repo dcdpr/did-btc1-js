@@ -1,6 +1,6 @@
 import { Btc1Error, Hex, MULTIKEY_VERIFICATION_METHOD_ERROR, MultikeyError, SignatureBytes } from '@did-btc1/common';
 import { KeyPair, PrivateKey, PublicKey } from '@did-btc1/key-pair';
-import { schnorr } from '@noble/curves/secp256k1';
+import { secp256k1, schnorr } from '@noble/curves/secp256k1';
 import { DidVerificationMethod } from '@web5/dids';
 import { randomBytes } from 'crypto';
 import { base58btc } from 'multiformats/bases/base58';
@@ -91,7 +91,12 @@ export class Multikey implements IMultikey {
     return new Cryptosuite({ cryptosuite, multikey: this });
   }
 
-  /** @see IMultikey.sign */
+  /**
+   * Produce signed data with a private key.
+   * @param {MessageBytes} data Data to be signed.
+   * @returns {SignatureBytes} Signature byte array.
+   * @throws {MultikeyError} if no private key is provided.
+   */
   public sign(data: Hex): SignatureBytes {
     // If there is no private key, throw an error
     if (!this.isSigner) {
@@ -99,6 +104,15 @@ export class Multikey implements IMultikey {
     }
     // Sign the hashb and return it
     return schnorr.sign(data, this.privateKey.bytes, randomBytes(32));
+  }
+
+  public signEcdsa(data: Hex): SignatureBytes {
+    // If there is no private key, throw an error
+    if (!this.isSigner) {
+      throw new MultikeyError('Cannot sign: no privateKey', 'MULTIKEY_SIGN_ERROR');
+    }
+    // Sign the hashb and return it
+    return secp256k1.sign(data, this.privateKey.bytes, { lowS: true }).toCompactRawBytes();
   }
 
   /** @see IMultikey.verify */

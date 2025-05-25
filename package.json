@@ -1,6 +1,6 @@
 {
   "name": "did-btc1-js",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Monorepo for did:btc1 js/ts implementation and supporting packages.",
   "type": "module",
   "workspaces": [
@@ -12,7 +12,7 @@
     "packages/smt"
   ],
   "scripts": {
-    "cleanup": "pnpm npkill -d $(pwd)/packages -t dist && pnpm npkill -d $(pwd) -t node_modules",
+    "purge": "pnpm npkill -d $(pwd)/packages -t dist && pnpm npkill -d $(pwd) -t node_modules",
     "reinstall": "pnpm --recursive --stream reinstall",
     "wipe": "pnpm --recursive --stream wipe",
     "wipe:install": "pnpm --recursive --stream wipe:install",

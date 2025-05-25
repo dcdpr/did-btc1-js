@@ -1,73 +1,85 @@
 import { Canonicalization } from './canonicalization.js';
 import { Patch } from './patch.js';
-import { JSONObject, Maybe, Prototyped, Unprototyped } from './types/general.js';
+import { JSONObject, Maybe, Prototyped, Unprototyped } from './types.js';
 
 /** Extend the global namespace */
 declare global {
-    /** Extend the Array Object class interface */
-    interface Array<T> {
-        /** Get the last element of the array */
-        last(): T | undefined;
-        /** Get the last element of the array */
-        [-1](): T | undefined;
-    }
+  /** Extend the global Uint8Array interface */
+  interface Uint8Array {
+    toArray(): number[];
+  }
 
-    /** Extend the Set class interface */
-    interface Set<T> {
-      /** Get the difference between two sets */
-      difference(other: Set<T>): Set<T>;
-    }
+  /** Extend the Array Object class interface */
+  interface Array<T> {
+      /** Get the last element of the array */
+      last(): T | undefined;
+      /** Get the last element of the array */
+      [-1](): T | undefined;
+      /** Convert Array to Uint8Array */
+      toUint8Array(): Uint8Array;
+  }
 
-    /** Extend the JSON class interface */
-    interface JSON {
-        /** Check if an object is a JSON object */
-        is(unknown: Maybe<JSONObject>): boolean;
-        /** Check if JSON string can be parsed to JSON object */
-        parsable(unknown: Maybe<string>): boolean;
-        /** Check if JSON object can be converted to JSON string */
-        stringifiable(unknown: Maybe<JSONObject>): boolean;
-        /** Check if JSON object is unprototyped [Object: null prototype] {} */
-        unprototyped(unknown: Maybe<Prototyped>): boolean;
-        /** Normalize unprototyped JSON object to prototyped JSON object */
-        normalize(unknown: Maybe<Unprototyped>): Prototyped;
-        /** Shallow copy of JSON object */
-        copy(o: JSONObject): JSONObject;
-        /** Clone (deep copy) of JSON object */
-        clone(o: JSONObject): JSONObject;
-        /** Deep copy of JSON object with replacement */
-        cloneReplace(o: JSONObject, e: RegExp, r: string): JSONObject;
-        /** Check if two objects are strictly equal */
-        equal(a: any, b: any): boolean;
-        /** Check if two objects are deeply equal */
-        deepEqual(a: any, b: any): boolean;
-        /** Delete key/value pair(s) from a JSON object */
-        delete(o: JSONObject, keys: Array<string | number | symbol>): JSONObject;
-        /** Sanitize a JSON object by removing any keys whose value is undefined */
-        sanitize(o: JSONObject): JSONObject;
-        /** Canonicalization object */
-        canonicalization: Canonicalization;
-        /** JSON Patch (IETF RFC 6902) */
-        patch: Patch;
-    }
+  /** Extend the Set class interface */
+  interface Set<T> {
+    /** Get the difference between two sets */
+    difference(other: Set<T>): Set<T>;
+  }
 
-    interface Date {
-      /** Get the UTC date and time in ISO 8601 format */
-      getUTCDateTime(): string;
-      /** Convert date to Unix timestamp */
-      toUnix(): number;
-    }
+  /** Extend the JSON class interface */
+  interface JSON {
+      /** Check if an object is a JSON object */
+      is(unknown: Maybe<JSONObject>): boolean;
+      /** Check if JSON string can be parsed to JSON object */
+      parsable(unknown: Maybe<string>): boolean;
+      /** Check if JSON object can be converted to JSON string */
+      stringifiable(unknown: Maybe<JSONObject>): boolean;
+      /** Check if JSON object is unprototyped [Object: null prototype] {} */
+      unprototyped(unknown: Maybe<Prototyped>): boolean;
+      /** Normalize unprototyped JSON object to prototyped JSON object */
+      normalize(unknown: Maybe<Unprototyped>): Prototyped;
+      /** Shallow copy of JSON object */
+      copy(o: JSONObject): JSONObject;
+      /** Clone (deep copy) of JSON object */
+      clone(o: JSONObject): JSONObject;
+      /** Deep copy of JSON object with replacement */
+      cloneReplace(o: JSONObject, e: RegExp, r: string): JSONObject;
+      /** Check if two objects are strictly equal */
+      equal(a: any, b: any): boolean;
+      /** Check if two objects are deeply equal */
+      deepEqual(a: any, b: any): boolean;
+      /** Delete key/value pair(s) from a JSON object */
+      delete(o: JSONObject, keys: Array<string | number | symbol>): JSONObject;
+      /** Sanitize a JSON object by removing any keys whose value is undefined */
+      sanitize(o: JSONObject): JSONObject;
+      /** Canonicalization object */
+      canonicalization: Canonicalization;
+      /** JSON Patch (IETF RFC 6902) */
+      patch: Patch;
+  }
 
-    interface String {
-      /** Convert to SCREAMING_SNAKE_CASE */
-      toSnakeScream(): string;
-      /** Convert to snake_case */
-      toSnake(): string;
-      /** Remove the last character from a string */
-      chop(): string;
-      /** Replace the end of a string */
-      replaceEnd(e: string | RegExp, r?: string): string;
-    }
+  interface Date {
+    /** Get the UTC date and time in ISO 8601 format */
+    getUTCDateTime(): string;
+    /** Convert date to Unix timestamp */
+    toUnix(): number;
+  }
+
+  interface String {
+    /** Convert to SCREAMING_SNAKE_CASE */
+    toSnakeScream(): string;
+    /** Convert to snake_case */
+    toSnake(): string;
+    /** Remove the last character from a string */
+    chop(): string;
+    /** Replace the end of a string */
+    replaceEnd(e: string | RegExp, r?: string): string;
+  }
 }
+
+/** Uint8Array Interface Extensions */
+Uint8Array.prototype.toArray = function (): number[] {
+  return Array.from(this);
+};
 
 /** Array Interface Extensions */
 Array.prototype.last = function <T>(): T | undefined {
@@ -76,6 +88,10 @@ Array.prototype.last = function <T>(): T | undefined {
 
 Array.prototype[-1] = function <T>(): T | undefined {
   return this.last();
+};
+
+Array.prototype.toUint8Array = function (): Uint8Array {
+  return new Uint8Array(this);
 };
 
 /** Set Interface Extensions */

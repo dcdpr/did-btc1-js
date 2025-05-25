@@ -16,6 +16,10 @@ interface KeyPairParams {
   publicKey?: PublicKey | PublicKeyBytes;
 }
 
+interface KeyPairMultibase {
+  publicKeyMultibase: string;
+  privateKeyMultibase: string
+}
 /**
  * Encapsulates a PublicKey and a PrivateKey object as a single KeyPair object.
  * @class KeyPair
@@ -27,6 +31,12 @@ export class KeyPair implements IKeyPair {
 
   /** @type {PublicKey} The public key object */;
   private _publicKey: PublicKey;
+
+  /** @type {string} The public key in multibase format */
+  private _publicKeyMultibase: string;
+
+  /** @type {string} The private key in multibase format */
+  private _privateKeyMultibase: string;
 
   /**
    * Creates an instance of KeyPair. Must provide a at least a private key.
@@ -48,11 +58,13 @@ export class KeyPair implements IKeyPair {
       : isPubKeyBytes
         ? new PublicKey(publicKey)
         : publicKey;
+
+    this._publicKeyMultibase = this._publicKey.multibase;
+    this._privateKeyMultibase = this._privateKey ? this._privateKey.multibase : '';
   }
 
   /**
    * Set the PublicKey.
-   * @see IKeyPair.publicKey
    * @param {PublicKey} publicKey The PublicKey object
    */
   set publicKey(publicKey: PublicKey) {
@@ -61,7 +73,6 @@ export class KeyPair implements IKeyPair {
 
   /**
    * Get the PublicKey.
-   * @see IKeyPair.publicKey
    * @returns {PublicKey} The PublicKey object
    */
   get publicKey(): PublicKey {
@@ -71,7 +82,6 @@ export class KeyPair implements IKeyPair {
 
   /**
    * Set the PrivateKey.
-   * @see IKeyPair.privateKey
    * @returns {PrivateKey} The PrivateKey object
    * @throws {KeyPairError} If the private key is not available
    */
@@ -83,10 +93,19 @@ export class KeyPair implements IKeyPair {
     return privateKey;
   }
 
+  /**
+   * Get the KeyPair in multibase format.
+   * @returns {KeyPairMultibase} The PrivateKey in multibase format
+   */
+  get multibase(): KeyPairMultibase {
+    return {
+      publicKeyMultibase  : this._publicKeyMultibase,
+      privateKeyMultibase : this._privateKeyMultibase,
+    };
+  }
 
   /**
    * JSON representation of a KeyPair.
-   * @see IKeyPair.json
    * @returns {KeyPairJSON} The KeyPair as a JSON object
    */
   public json(): KeyPairJSON {
@@ -94,6 +113,12 @@ export class KeyPair implements IKeyPair {
       privateKey : this.privateKey.json(),
       publicKey  : this.publicKey.json()
     };
+  }
+
+  public static from(json: KeyPairJSON): KeyPair {
+    const privateKey = PrivateKey.from(json.privateKey);
+    const publicKey = PublicKey.from(json.publicKey);
+    return new KeyPair({ privateKey, publicKey });
   }
 }
 

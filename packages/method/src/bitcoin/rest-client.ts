@@ -1,15 +1,11 @@
-import { BitcoinRpcError, Btc1Error, UnixTimestamp } from '@did-btc1/common';
+import { Btc1Error, Bytes, DEFAULT_REST_CONFIG, UnixTimestamp } from '@did-btc1/common';
 import {
   BlockResponse,
-  BlockV0,
-  BlockV1,
-  BlockV2,
   BlockV3,
   GetBlockParams,
   TxInPrevout,
-  VerbosityLevel
 } from '../types/bitcoin.js';
-import { DEFAULT_REST_CLIENT_CONFIG } from './constants.js';
+import { BitcoinRpcError } from './errors.js';
 
 export type TransactionStatus = {
   confirmed: boolean;
@@ -24,6 +20,7 @@ export interface Vin {
   prevout?: TxInPrevout;
   scriptsig: string;
   scriptsig_asm: string;
+  witness: string[];
   is_coinbase: boolean;
   sequence: number;
 };
@@ -34,6 +31,26 @@ export interface Vout {
   scriptpubkey_type: string;
   scriptpubkey_address?: string;
   value: number;
+}
+export interface ChainStats {
+  funded_txo_count: number;
+  funded_txo_sum: number;
+  spent_txo_count: number;
+  spent_txo_sum: number;
+  tx_count: number;
+}
+
+export interface MempoolStats {
+  funded_txo_count: number;
+  funded_txo_sum: number;
+  spent_txo_count: number;
+  spent_txo_sum: number;
+  tx_count: number;
+}
+export interface AddressInfo {
+  address: string;
+  chain_stats: ChainStats;
+  mempool_stats: MempoolStats;
 }
 export interface RawTransactionRest {
   txid: string;
@@ -47,18 +64,21 @@ export interface RawTransactionRest {
   status: TransactionStatus;
 }
 
+export interface AddressUtxo {
+  txid: string;
+  vout: number;
+  status: TransactionStatus;
+  value: number;
+}
 export interface RestClientConfigParams {
-  network: string;
   host: string;
   headers?: { [key: string]: string };
 }
 
 export class RestClientConfig {
-  network: string;
   host: string;
   headers?: { [key: string]: string };
-  constructor({ network, host, headers }: RestClientConfigParams) {
-    this.network = network;
+  constructor({ host, headers }: RestClientConfigParams) {
     this.host = host;
     this.headers = headers;
   }
@@ -68,7 +88,8 @@ export interface ApiCallParams {
   path: string;
   url?: string;
   method?: string;
-  body?: any
+  body?: any;
+  headers?: any;
 };
 
 export interface RestResponse extends Response {
@@ -76,22 +97,22 @@ export interface RestResponse extends Response {
 }
 
 /**
- * Implements a strongly-typed BitcoinRestClient to connect to remote bitcoin node via REST API.
+ * Implements a strongly-typed BitcoinRest to connect to remote bitcoin node via REST API.
  * @class BitcoinRest
  * @type {BitcoinRest}
  */
-export default class BitcoinRestClient {
+export default class BitcoinRest {
   /**
    * The encapsulated {@link RestClientConfig} object.
    * @private
    */
   private _config: RestClientConfig;
 
-  public api: { call: ({ path, url, method, body }: ApiCallParams) => Promise<any> };
+  public api = this.call;
 
   constructor(config: RestClientConfig){
     this._config = new RestClientConfig(config);
-    this.api = { call: this.call.bind(this) };
+    this.api = this.call.bind(this);
   }
 
   /**
@@ -104,11 +125,11 @@ export default class BitcoinRestClient {
    * const alice = BitcoinRpc.connect();
    * ```
    */
-  public static connect(config?: RestClientConfig): BitcoinRestClient {
-    return new BitcoinRestClient(config ?? DEFAULT_REST_CLIENT_CONFIG);
+  public static connect(config?: RestClientConfig): BitcoinRest {
+    return new BitcoinRest(config ?? DEFAULT_REST_CONFIG);
   }
 
-  private async call({ path, url, method, body }: ApiCallParams): Promise<any> {
+  private async call({ path, url, method, body, headers }: ApiCallParams): Promise<any> {
     // Construct the URL if not provided
     url ??= `${this.config.host.replaceEnd('/')}${path}`;
 
@@ -118,7 +139,7 @@ export default class BitcoinRestClient {
     // Construct the request options
     const requestInit = {
       method,
-      headers : {
+      headers : headers ?? {
         'Content-Type' : 'application/json',
         ...this.config.headers,
       }
@@ -126,23 +147,28 @@ export default class BitcoinRestClient {
 
     // If the method is POST or PUT, add the body to the request
     if(body) {
-      requestInit.body = JSON.stringify(body);
+      requestInit.body = JSON.is(body) ? JSON.stringify(body) : body;
+      requestInit.method = 'POST';
     }
 
     // Make the request
     const response = await fetch(url, requestInit) as RestResponse;
 
+    // Check if the response is a text/plain response
+    const data = (response.headers.get('Content-Type') ?? 'json') === 'text/plain'
+      ? await response.text()
+      : await response.json();
+
     // Check if the response is ok (status in the range 200-299)
     if (!response.ok) {
       throw new Btc1Error(
-        `Request failed: ${response.status} - ${response.statusText}`,
+        `Request to ${url} failed: ${response.status} - ${response.statusText}`,
         'FAILED_HTTP_REQUEST',
-        response
+        { data, response }
       );
     }
 
-    // Parse the response as JSON and return it
-    return await response.json();
+    return data;
   }
 
   /**
@@ -159,7 +185,7 @@ export default class BitcoinRestClient {
    * @returns {Blockheight} The number of the blockheight with the most-work of the fully-validated chain.
    */
   public async getBlockCount(): Promise<number> {
-    return await this.api.call({ path: '/blocks/tip/height' });
+    return await this.api({ path: '/blocks/tip/height' });
   }
 
 
@@ -168,11 +194,10 @@ export default class BitcoinRestClient {
    * @param {GetBlockParams} params See {@link GetBlockParams} for details.
    * @param {?string} params.blockhash The blockhash of the block to query.
    * @param {?number} params.height The block height of the block to query.
-   * @param {?VerbosityLevel} params.verbosity The verbosity level. See {@link VerbosityLevel}.
    * @returns {BlockResponse} A promise resolving to a {@link BlockResponse} formatted depending on `verbosity` level.
    * @throws {BitcoinRpcError} If neither `blockhash` nor `height` is provided.
    */
-  public async getBlock({ blockhash, height, verbosity }: GetBlockParams): Promise<BlockResponse | undefined> {
+  public async getBlock({ blockhash, height }: GetBlockParams): Promise<BlockResponse | undefined> {
     // Check if blockhash or height is provided, if neither throw an error
     if(!blockhash && height === undefined) {
       throw new BitcoinRpcError('blockhash or height required', 'INVALID_PARAMS_GET_BLOCK', { blockhash, height });
@@ -183,22 +208,9 @@ export default class BitcoinRestClient {
     if(!blockhash || typeof blockhash !== 'string') {
       return undefined;
     }
-    // Get the block data
-    const block = await this.api.call({ path: 'getblock', body: {blockhash, verbosity: verbosity ?? 3} });
 
-    // Return the block data depending on verbosity level
-    switch(verbosity) {
-      case 0:
-        return block as BlockV0;
-      case 1:
-        return block as BlockV1;
-      case 2:
-        return block as BlockV2;
-      case 3:
-        return block as BlockV3;
-      default:
-        return block as BlockV3;
-    }
+    // Get the block data
+    return await this.api({ path: `/block/${blockhash}` }) as BlockV3;
   }
 
   /**
@@ -208,32 +220,109 @@ export default class BitcoinRestClient {
    * @returns {Promise<string>} The hash of the block currently at height..
    */
   public async getBlockHash(height: number): Promise<string> {
-    return await this.api.call({ path: `/block-height/${height}` });
+    return await this.api({ path: `/block-height/${height}` });
+  }
+
+  /**
+   * Returns the transaction in JSON format.
+   * See {@link https://github.com/blockstream/esplora/blob/master/API.md#get-txtxid | Esplora GET /tx/:txid } for details.
+   * @param {string} txid The transaction id (required).
+   * @returns {GetRawTransaction} A promise resolving to data about a transaction in the form specified by verbosity.
+   */
+  public async getTransaction(txid: string): Promise<RawTransactionRest | string> {
+    return await this.api({ path: `/tx/${txid}` });
   }
 
   /**
    * Returns the raw transaction in hex or as binary data.
-   * See {@link https://github.com/blockstream/esplora/blob/master/API.md#get-txtxidhex | Esplora GET /tx/:txid/raw } for details.
-   *
-   * @async
+   * See {@link https://github.com/blockstream/esplora/blob/master/API.md#get-txtxidhex | Esplora GET /tx/:txid/hex } and
+   * {@link https://github.com/blockstream/esplora/blob/master/API.md#get-txtxidraw | Esplora GET /tx/:txid/raw } for details.
    * @param {string} txid The transaction id (required).
-   * @param {?VerbosityLevel} verbosity Response format: hex or raw binary. Default is hex.
-   * @returns {GetRawTransaction} A promise resolving to data about a transaction in the form specified by verbosity.
+   * @param {VerbosityLevel} verbosity Response format: hex or raw binary. Default is hex.
+   * @returns {Promise<RawTransactionRest | string>} A promise resolving to the raw transaction in the specified format.
    */
-  public async getRawTransaction(txid: string, verbosity?: VerbosityLevel): Promise<RawTransactionRest> {
-    return await this.api.call({ path : `/tx/${txid}/${
-      verbosity === VerbosityLevel.hex
-        ? 'hex'
-        : 'raw'
-    }` });
+  public async getTransactionVerbosity(txid: string, verbosity: string = 'hex'): Promise<string | Bytes> {
+    return await this.api({ path: `/tx/${txid}/${verbosity}` });
   }
 
   /**
    * Get transaction history for the specified address/scripthash, sorted with newest first.
    * Returns up to 50 mempool transactions plus the first 25 confirmed transactions.
    * See {@link https://github.com/blockstream/esplora/blob/master/API.md#get-addressaddresstxs | Esplora GET /address/:address/txs } for details.
+   * @param {string} addressOrScripthash The address or scripthash to check.
+   * @returns {Promise<Array<RawTransactionRest>>} A promise resolving to an array of {@link RawTransactionRest} objects.
    */
-  public async getAddressTransactions(address?: string, scripthash?: string): Promise<Array<RawTransactionRest>> {
-    return await this.api.call({ path: `/address/${address ?? scripthash}/txs` });
+  public async getAddressTxs(addressOrScripthash: string): Promise<Array<RawTransactionRest>> {
+    return await this.api({ path: `/address/${addressOrScripthash}/txs` });
+  }
+
+  /**
+   * Calls getAddressTxs and checks if any funds come back.
+   * Toggle if those funds are confirmed.
+   * @param {string} addressOrScripthash The address or scripthash to check.
+   * @returns {Promise<boolean>} True if the address has any funds, false otherwise.
+   */
+  public async isFundedAddress(addressOrScripthash: string): Promise<boolean> {
+    const txs = await this.getAddressTxsConfirmed(addressOrScripthash);
+    const confirmed = txs.filter((tx: RawTransactionRest) => tx.status.confirmed);
+    return !!(confirmed && confirmed.length);
+  }
+
+  /**
+   * Get unconfirmed transaction history for the specified address/scripthash.
+   * Returns up to 50 transactions (no paging).
+   * @param {string} addressOrScripthash The address or scripthash to check.
+   * @returns {Promise<Array<RawTransactionRest>>} A promise resolving to an array of {@link RawTransactionRest} objects.
+   */
+  public async getAddressTxsMempool(addressOrScripthash: string): Promise<Array<RawTransactionRest>> {
+    return await this.api({ path: `/address/${addressOrScripthash}/txs/mempool` });
+  }
+
+  /**
+   * Get information about an address/scripthash.
+   * Available fields: address/scripthash, chain_stats and mempool_stats.
+   * {chain,mempool}_stats each contain an object with tx_count, funded_txo_count, funded_txo_sum, spent_txo_count and spent_txo_sum.
+   * Elements-based chains don't have the {funded,spent}_txo_sum fields.
+   * @param {string} addressOrScripthash The address or scripthash to check.
+   * @returns {Promise<AddressInfo>} A promise resolving to an {@link AddressInfo} object.
+   */
+  public async getAddressInfo(addressOrScripthash: string): Promise<AddressInfo> {
+    return await this.api({ path: `/address/${addressOrScripthash}` });
+  }
+
+  /**
+   * Get confirmed transaction history for the specified address/scripthash, sorted with newest first.
+   * Returns 25 transactions per page. More can be requested by specifying the last txid seen by the previous query.
+   * @param {string} addressOrScripthash The address or scripthash to check.
+   * @param lastSeenTxId The last transaction id seen by the previous query (optional).
+   * @returns {Promise<Array<RawTransactionRest>>} A promise resolving to an array of {@link RawTransactionRest} objects.
+   */
+  public async getAddressTxsConfirmed(addressOrScripthash: string, lastSeenTxId?: string): Promise<Array<RawTransactionRest>> {
+    return await this.api({ path :
+      lastSeenTxId
+        ? `/address/${addressOrScripthash}/txs/chain/${lastSeenTxId}`
+        : `/address/${addressOrScripthash}/txs/chain`
+    });
+  }
+
+  /**
+   * Get the list of unspent transaction outputs associated with the address/scripthash.
+   * See {@link https://github.com/Blockstream/esplora/blob/master/API.md#get-addressaddressutxo | Esplora GET /address/:address/utxo } for details.
+   * @param {string} addressOrScripthash The address or scripthash to check.
+   * @returns {Promise<Array<RawTransactionRest>>} A promise resolving to an array of {@link RawTransactionRest} objects.
+   */
+  public async getAddressUtxos(addressOrScripthash: string): Promise<Array<AddressUtxo>> {
+    return await this.api({ path: `/address/${addressOrScripthash}/utxo` });
+  }
+
+  /**
+   * Broadcast a raw transaction to the network. The transaction should be provided as hex in the request body. The txid
+   * will be returned on success.
+   * See {@link https://github.com/blockstream/esplora/blob/master/API.md#post-tx | Esplora POST /tx } for details.
+   * @param {string} tx The raw transaction in hex format (required).
+   * @returns {Promise<string>} The transaction id of the broadcasted transaction.
+   */
+  public async sendTransaction(tx: string): Promise<string> {
+    return await this.api({ path: '/tx', method: 'POST', body: tx, headers: { 'Content-Type': 'text/plain' } });
   }
 }

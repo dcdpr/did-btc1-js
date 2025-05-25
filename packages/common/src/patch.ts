@@ -1,5 +1,5 @@
-import { PatchOperation } from './interfaces/btc1.js';
-import { JSONObject } from './types/general.js';
+import { PatchOperation } from './interfaces.js';
+import { JSONObject } from './types.js';
 import { Btc1Error } from './errors.js';
 
 /**
@@ -71,6 +71,65 @@ export class Patch {
     return patchedDocument;
   }
 
+  /**
+ * Constructs a JSON Patch with a single operation (e.g. add service).
+ * @param {PatchOperation} patches - The patch operation to create.
+ * @param {string} patch.op - The patch operation type (e.g. 'add').
+ * @param {string} patch.path - The JSON Pointer path to apply the operation.
+ * @param {*} patch.value - The value to apply (if applicable).
+ * @returns {PatchOperation[]} A single-entry JSON Patch array.
+ */
+  public create(patches: PatchOperation[]): PatchOperation[] {
+    return patches.map(({ op, path, value, from }) => {
+      const operation: PatchOperation = { op, path };
+
+      if (value !== undefined) {
+        operation.value = value;
+      }
+
+      if (from !== undefined) {
+        operation.from = from;
+      }
+
+      return operation;
+    });
+  }
+
+  /**
+   * Find the diff between a source and target document constructing the patch operations from source => target.
+   * @param {JSONObject} sourceDocument The original JSON object.
+   * @param {JSONObject} targetDocument The target JSON object to transform into.
+   * @returns {PatchOperation[]} An array of JSON Patch operations.
+   */
+  public diff(sourceDocument: JSONObject, targetDocument: JSONObject, path: string): PatchOperation[] {
+    const operations: Array<PatchOperation> = [];
+    const sourceKeys = new Set(Object.keys(sourceDocument || {}));
+    const targetKeys = new Set(Object.keys(targetDocument || {}));
+
+    // Handle removed keys
+    for (const key of sourceKeys) {
+      if (!targetKeys.has(key)) {
+        operations.push({ op: 'remove', path: `${path}/${key}` });
+      }
+    }
+
+    // Handle added or updated keys
+    for (const key of targetKeys) {
+      const sourceVal = sourceDocument?.[key];
+      const targetVal = targetDocument?.[key];
+      const currentPath = `${path}/${key}`;
+
+      if (!(key in (sourceDocument || {}))) {
+        operations.push({ op: 'add', path: currentPath, value: targetVal });
+      } else if (typeof sourceVal === 'object' && sourceVal !== null && typeof targetVal === 'object' && targetVal !== null) {
+        this.diff(sourceVal, targetVal, currentPath);
+      } else if (JSON.stringify(sourceVal) !== JSON.stringify(targetVal)) {
+        operations.push({ op: 'replace', path: currentPath, value: targetVal });
+      }
+    }
+
+    return operations;
+  }
 
   /**
    * Gets the value at a given path in an object.

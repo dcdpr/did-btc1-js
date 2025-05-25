@@ -1,4 +1,3 @@
-import { BitcoinRpcError } from '@did-btc1/common';
 import { default as RpcClient } from 'bitcoin-core';
 import {
   AddMultiSigAddressParams,
@@ -16,7 +15,8 @@ import {
   ChainInfo,
   CreateMultisigParams,
   CreateMultiSigResult,
-  CreateRawTxParams,
+  CreateRawTxInputs,
+  CreateRawTxOutputs,
   CreateWalletDescriptorOptions,
   CreateWalletDescriptorsResult,
   CreateWalletParams,
@@ -39,6 +39,7 @@ import {
   MemoryStats,
   MempoolContent,
   MempoolInfo,
+  MethodNameInLowerCase,
   MiningInfo,
   Outpoint,
   PeerInfo,
@@ -54,13 +55,13 @@ import {
   SendAllResult,
   SendManyParams,
   SignedRawTx,
-  SignRawTxParams,
   UnspentTxInfo,
   ValidateAddressResult,
   VerbosityLevel,
   WalletTransaction
 } from '../types/bitcoin.js';
 import { DEFAULT_RPC_CLIENT_CONFIG } from './constants.js';
+import { BitcoinRpcError } from './errors.js';
 import { IBitcoinRpc } from './interface.js';
 
 /**
@@ -88,16 +89,16 @@ export default class BitcoinRpc implements IBitcoinRpc {
 
   /**
    * Constructs a new {@link BitcoinRpc} instance from a new {@link RpcClient | RpcClient}.
-   * @param {RpcClient} client The bitcoin-core client instance.
+   * @param {RpcClientConfig} config The bitcoin-core client instance.
    * @example
    * ```
    *  import BitcoinRpc from '@did-btc1/method';
    *  const bob = BitcoinRpc.connect(); // To use default polar config, pass no args. Polar must run locally.
    * ```
    */
-  constructor(client: RpcClient) {
-    this._client = client;
-    this._config = new RpcClientConfig(this._client);
+  constructor(config: RpcClientConfig) {
+    this._config = new RpcClientConfig(config);
+    this._client = new RpcClient(this._config);
   }
 
   /**
@@ -134,7 +135,7 @@ export default class BitcoinRpc implements IBitcoinRpc {
    * The RpcClient returned by this method does not have any named methods.
    * Use this method to create and pass a new RpcClient instance to a BitcoinRpc constructor.
    *
-   * @param {IClientConfig} options The configuration object for the client (optional).
+   * @param {IClientConfig} config The configuration object for the client (optional).
    * @returns {RpcClient} A new RpcClient instance.
    * @example
    * ```
@@ -148,9 +149,9 @@ export default class BitcoinRpc implements IBitcoinRpc {
    * const alice = new BitcoinRpc(aliceClient);
    * ```
    */
-  public static initialize(options?: IClientConfig): RpcClient {
-    const config = RpcClientConfig.initialize(options);
-    return new RpcClient(config);
+  public static initialize(config?: IClientConfig): RpcClient {
+    const rpcConfig = RpcClientConfig.initialize(config);
+    return new RpcClient(rpcConfig);
   }
 
   /**
@@ -171,45 +172,73 @@ export default class BitcoinRpc implements IBitcoinRpc {
   }
 
   /**
+   * Check if the given error is a JSON-RPC error.
+   * @param {unknown} e The error to check.
+   * @returns {boolean} True if the error is a JSON-RPC error, false otherwise.
+   */
+  public isJsonRpcError(e: unknown): e is Error & { name: 'RpcError'; code?: number } {
+    return (
+      e instanceof Error &&
+      e.name === 'RpcError' &&
+      typeof (e as any).code === 'number'
+    );
+  }
+
+  /**
+   * Executes a JSON-RPC command on the bitcoind node.
+   * @param {MethodNameInLowerCase} method The name of the method to call.
+   * @param {Array<any>} parameters The parameters to pass to the method.
+   * @returns {Promise<T>} A promise resolving to the result of the command.
+   */
+  private async executeRpc<T>(method: MethodNameInLowerCase, parameters: Array<any> = []): Promise<T> {
+    try {
+      // raw call
+      const raw = await this.client.command(
+        [{ method, parameters }] as BatchOption[]
+      );
+      // normalization/unwrapping, if needed
+      const normalized = JSON.unprototyped(raw) ? JSON.normalize(raw) : raw;
+      const result = Array.isArray(normalized)
+        ? normalized[normalized.length - 1]
+        : normalized;
+      return result as T;
+    } catch (err: unknown) {
+      this.handleError(err, method, parameters);
+    }
+  }
+
+  /**
    * Handle errors that occur while executing commands.
    * @param methods An array of {@link BatchOption} objects.
    * @param error The error that was thrown.
    * @throws Throws a {@link BitcoinRpcError} with the error message.
    */
-  private handleError(methods: BatchOption[], error: Error) {
-    // Construct the error message
-    const baseError = 'Error while executing command(s): ';
-    // Get the command names
-    const commands = methods.map((method) => method.method);
-    // Throw the error
-    error.message = `${baseError}${commands.join(', ')}`;
-    throw new BitcoinRpcError('Error executing command', 'HANDLE_ERROR', error);
-  }
-
-  /**
-   * Send one or more gRPC commands bitcoind node.
-   * @param {Array<BatchOption>} methods An array of {@link BatchOption} objects.
-   * @returns {Promise<T>} A promise resolving to the Bitcoind RPC response data as a prototyped JSON object.
-   * @throws {BitcoinRpcError} If the response is not valid JSON after normalization (adding prototypes).
-   */
-  public async command<T = any>(methods: Array<BatchOption>): Promise<T> {
-    // Execute the command(s) and catch any errors
-    const result = await this.client.command(methods).catch(
-      (error: Error) => this.handleError(methods, error)
-    );
-    // Normalize the response (prototyping)
-    const response = JSON.unprototyped(result) ? JSON.normalize(result) : result;
-    // Check if the response is valid JSON
-    if (!JSON.is(response)) {
-      const invalidJson = 'Invalid post-normalized JSON response';
-      console.error(invalidJson);
-      throw new BitcoinRpcError(invalidJson, response);
+  private handleError(err: unknown, method: string, params: any[]): never {
+    if (this.isJsonRpcError(err)) {
+      // a bitcoind JSON‑RPC error
+      throw new BitcoinRpcError(
+        err.code!,
+        `RPC ${method} failed: ${err.message}`,
+        { method, params }
+      );
     }
-    // Return the response
-    return Array.isArray(response)
-      ? response.pop()
-      : response;
-  };
+
+    if (err instanceof Error) {
+      // network, HTTP, or unexpected client error
+      throw new BitcoinRpcError(
+        'NETWORK_ERROR',
+        `Network error in ${method}: ${err.message}`,
+        { method, params, original: err }
+      );
+    }
+
+    // absolutely unknown
+    throw new BitcoinRpcError(
+      'UNKNOWN_ERROR',
+      `Unknown failure in ${method}`,
+      { method, params, err }
+    );
+  }
 
   /**
    * TODO: Comments
@@ -257,70 +286,70 @@ export default class BitcoinRpc implements IBitcoinRpc {
    * TODO: Comments
    */
   public async abandonTransaction(txid: string): Promise<void> {
-    return await this.command([{ method: 'abandontransaction', parameters: [txid] }]);
+    return await this.executeRpc('abandontransaction', [txid]);
   }
 
   /**
    * TODO: Comments
    */
   public async abortRescan(): Promise<void> {
-    return await this.command([{ method: 'abortrescan' }]);
+    return await this.executeRpc('abortrescan');
   }
 
   /**
    * TODO: Comments
    */
   public async addMultiSigAddress(params: AddMultiSigAddressParams): Promise<string> {
-    return await this.command([{ method: 'addmultisigaddress', parameters: [params] }]);
+    return await this.executeRpc('addmultisigaddress', [params]);
   }
 
   /**
    * TODO: Comments
    */
   public async addWitnessAddress(address: string): Promise<void> {
-    return await this.command([{ method: 'addwitnessaddress', parameters: [address] }]);
+    return await this.executeRpc('addwitnessaddress', [address]);
   }
 
   /**
    * TODO: Comments
    */
   public async backupWallet(destination: string): Promise<void> {
-    return await this.command([{ method: 'backupwallet', parameters: [destination] }]);
+    return await this.executeRpc('backupwallet', [destination]);
   }
 
   /**
    * TODO: Comments
    */
   public async bumpFee(txid: string, options?: BumpFeeOptions): Promise<BumpFeeResult> {
-    return await this.command([{ method: 'bumpfee', parameters: [txid, options] }]);
+    return await this.executeRpc('bumpfee', [txid, options]);
   }
 
   /**
    * TODO: Comments
    */
   public async createMultiSig(nrequired: number, keys: string[]): Promise<CreateMultiSigResult> {
-    return await this.command([{ method: 'createmultisig', parameters: [nrequired, keys] }]);
+    return await this.executeRpc('createmultisig', [nrequired, keys]);
   }
 
   /**
    * TODO: Comments
    */
   public async createWallet(params: CreateWalletParams): Promise<CreateWalletResult> {
-    return await this.command([{ method: 'createwallet', parameters: [params] }]);
+    return await this.executeRpc('createwallet', [params]);
   }
 
   /**
    * TODO: Comments
    */
   public async decodeScript(hexstring: string): Promise<ScriptDecoded> {
-    return await this.command([{ method: 'decodescript', parameters: [hexstring] }]);
+    return await this.executeRpc('decodescript', [hexstring]);
   }
 
   /**
    * TODO: Comments
    */
   public async getBestBlockHash(): Promise<string> {
-    return await this.command([{ method: 'getbestblockhash', parameters: [] }]);
+    return await this.executeRpc('getbestblockhash', []);
   }
 
   /**
@@ -344,7 +373,7 @@ export default class BitcoinRpc implements IBitcoinRpc {
       return undefined;
     }
     // Get the block data
-    const block = await this.command([{ method: 'getblock', parameters: [blockhash, verbosity ?? 3] }]);
+    const block = await this.executeRpc('getblock', [blockhash, verbosity ?? 3]);
 
     // Return the block data depending on verbosity level
     switch(verbosity) {
@@ -366,21 +395,21 @@ export default class BitcoinRpc implements IBitcoinRpc {
    * @returns {Blockheight} The number of the blockheight with the most-work of the fully-validated chain.
    */
   public async getBlockCount(): Promise<number> {
-    return await this.command([{ method: 'getblockcount' }]);
+    return await this.executeRpc('getblockcount');
   }
 
   /**
    * Returns the blockhash of the block at the given height in the active chain.
    */
   public async getBlockHash(height: number): Promise<string> {
-    return await this.command([{ method: 'getblockhash', parameters: [height] }]);
+    return await this.executeRpc('getblockhash', [height]);
   }
 
   /**
    * TODO: Comments
    */
   public async getBlockHeader(hash: string, verbose?: boolean): Promise<string | BlockHeader> {
-    return await this.command([{ method: 'getblockheader', parameters: [hash, verbose] }]);
+    return await this.executeRpc('getblockheader', [hash, verbose]);
   }
 
   /**
@@ -394,70 +423,119 @@ export default class BitcoinRpc implements IBitcoinRpc {
    * TODO: Comments
    */
   public async getInfo(...args: any[]): Promise<void> {
-    return await this.command([{ method: 'getinfo', parameters: [...args] }]);
+    return await this.executeRpc('getinfo', [...args]);
   }
 
   /**
    * TODO: Comments
    */
   public async getMemoryInfo(mode?: 'stats' | 'mallocinfo'): Promise<MemoryStats | string> {
-    return await this.command([{ method: 'getmemoryinfo', parameters: [mode] }]);
+    return await this.executeRpc('getmemoryinfo', [mode]);
   }
 
   /**
    * TODO: Comments
    */
   public async scanBlocks(params: ScanBlocksParams): Promise<any> {
-    return await this.command([{ method: 'scanblocks', parameters: [params] }]);
+    return await this.executeRpc('scanblocks', [params]);
   }
 
   /**
    * TODO: Comments
    */
   public async fundRawTransaction(hexstring: string, options: FundRawTxOptions): Promise<FundRawTxResult> {
-    return await this.command([{ method: 'fundrawtransaction', parameters: [hexstring, options] }]);
+    return await this.executeRpc('fundrawtransaction', [hexstring, options]);
   }
 
   /**
-   * TODO: Comments
+   * Sign inputs for raw transaction (serialized, hex-encoded).
+   * The second optional argument (may be null) is an array of previous transaction outputs that
+   * this transaction depends on but may not yet be in the block chain.
+   * Requires wallet passphrase to be set with walletpassphrase call if wallet is encrypted.
+   * @param {string} hexstring The hex-encoded transaction to send.
    */
-  public async signRawTransaction(params: SignRawTxParams): Promise<SignedRawTx> {
-    return await this.command([{ method: 'signrawtransaction', parameters: [params] }]);
+  public async signRawTransaction(hexstring: string): Promise<SignedRawTx> {
+    return await this.executeRpc<SignedRawTx>('signrawtransactionwithwallet', [hexstring]);
   }
 
   /**
-   * TODO: Comments
+   * Submit a raw transaction (serialized, hex-encoded) to local node and network.
+   *
+   * The transaction will be sent unconditionally to all peers, so using sendrawtransaction
+   * for manual rebroadcast may degrade privacy by leaking the transaction's origin, as
+   * nodes will normally not rebroadcast non-wallet transactions already in their mempool.
+   *
+   * @param {string} hexstring The hex-encoded transaction to send.
+   * @param {numbner} [maxfeerate] If not passed, default is 0.10.
+   * @returns {Promise<string>} A promise resolving to the transaction hash in hex.
    */
-  public async sendRawTransaction(hexstring: string, allowhighfees?: boolean): Promise<void> {
-    return await this.command([{ method: 'sendrawtransaction', parameters: [hexstring, allowhighfees] }]);
+  public async sendRawTransaction(
+    hexstring: string,
+    maxfeerate?: number | string,
+    maxBurnAmount?: number | string
+  ): Promise<string> {
+    console.log('sendRawTransaction', { hexstring, maxfeerate, maxBurnAmount });
+    return await this.executeRpc<string>('sendrawtransaction', [hexstring, maxfeerate ?? 0.10, maxBurnAmount ?? 0.00]);
+  }
+
+  /**
+   * Combines calls to `signRawTransaction` and `sendRawTransaction`.
+   * @param {string} params.hexstring The hex-encoded transaction to send.
+   * @returns {Promise<string>} A promise resolving to the transaction hash in hex.
+   */
+  public async signAndSendRawTransaction(hexstring: string): Promise<string> {
+    const signedRawTx = await this.signRawTransaction(hexstring,);
+    return await this.sendRawTransaction(signedRawTx.hex);
+  }
+
+  /**
+   * Combines calls to `createRawTransaction`, `signRawTransaction` and `sendRawTransaction`.
+   * @param {CreateRawTxInputs[]} inputs The inputs to the transaction (required).
+   * @param {CreateRawTxOutputs[]} outputs The outputs of the transaction (required).
+   * @returns {Promise<string>} A promise resolving to the transaction hash in hex.
+   */
+  public async createSignSendRawTransaction(inputs: CreateRawTxInputs[], outputs: CreateRawTxOutputs[]): Promise<string> {
+    const rawTx = await this.createRawTransaction(inputs, outputs);
+    const signedRawTx = await this.signRawTransaction(rawTx);
+    const sentRawTx = await this.sendRawTransaction(signedRawTx.hex);
+    return sentRawTx;
   }
 
   /**
    * TODO: Comments
    */
   public async listTransactions(params: ListTransactionsParams): Promise<ListTransactionsResult> {
-    return await this.command([{ method: 'listtransactions', parameters: [params] }]);
+    return await this.executeRpc('listtransactions', [params]);
   }
 
   /**
    * TODO: Comments
    */
   public async decodeRawTransaction(hexstring: string): Promise<DecodedRawTransaction> {
-    return await this.command([{ method: 'decoderawtransaction', parameters: [hexstring] }]);
+    return await this.executeRpc('decoderawtransaction', [hexstring]);
   }
 
   /**
    * TODO: Comments
    */
   public async combineRawTransaction(txs: string[]): Promise<string> {
-    return await this.command([{ method: 'combinerawtransaction', parameters: [txs] }]);
+    return await this.executeRpc<string>('combinerawtransaction', [txs]);
   }
 
   /**
-   * TODO: Comments
+   * Create a transaction spending the given inputs and creating new outputs.
+   * Outputs can be addresses or data.
+   * Returns hex-encoded raw transaction.
+   * Note that the transaction's inputs are not signed, and
+   * it is not stored in the wallet or transmitted to the network.
+   * @param {TxInForCreateRaw[]} inputs The inputs to the transaction (required).
+   * @param {CreateRawTxOutputs[]} outputs The outputs of the transaction (required).
+   * @param {number} [locktime] The locktime of the transaction (optional).
+   * @param {boolean} [replacable] Whether the transaction is replaceable (optional).
+   * @returns {string} The hex-encoded raw transaction.
    */
-  public async createRawTransaction(params: CreateRawTxParams): Promise<string> {
-    return await this.command([{ method: 'createrawtransaction', parameters: [params] }]);
+  public async createRawTransaction(inputs: CreateRawTxInputs[], outputs: CreateRawTxOutputs[], locktime?: number, replacable?: boolean): Promise<string> {
+    return await this.executeRpc<string>('createrawtransaction', [inputs, outputs, locktime, replacable]);
   }
 
   /**
@@ -480,35 +558,35 @@ export default class BitcoinRpc implements IBitcoinRpc {
    * ```
    */
   public async createMultisig({ nrequired, keys, address_type }: CreateMultisigParams): Promise<CreateMultiSigResult> {
-    return await this.command([{ method: 'createmultisig', parameters: [nrequired, keys, address_type] }]);
+    return await this.executeRpc('createmultisig', [nrequired, keys, address_type]);
   }
 
   /**
    * TODO: Comments
    */
   public async getDescriptorInfo(descriptor: string): Promise<any> {
-    return await this.command([{ method: 'getdescriptorinfo', parameters: [descriptor] }]);
+    return await this.executeRpc('getdescriptorinfo', [descriptor]);
   }
 
   /**
    * TODO: Comments
    */
   public async signMessageWithPrivkey(privkey: string, message: string): Promise<BitcoinSignature> {
-    return await this.command([{ method: 'signmessagewithprivkey', parameters: [privkey, message] }]);
+    return await this.executeRpc('signmessagewithprivkey', [privkey, message]);
   }
 
   /**
    * TODO: Comments
    */
   public async validateAddress(address: string): Promise<ValidateAddressResult> {
-    return await this.command([{ method: 'validateaddress', parameters: [address] }]);
+    return await this.executeRpc('validateaddress', [address]);
   }
 
   /**
    * TODO: Comments
    */
   public async verifyMessage(address: string, signature: string, message: string): Promise<boolean> {
-    return await this.command([{ method: 'verifymessage', parameters: [address, signature, message] }]);
+    return await this.executeRpc('verifymessage', [address, signature, message]);
   }
 
   /**
@@ -536,14 +614,14 @@ export default class BitcoinRpc implements IBitcoinRpc {
    * ```
    */
   public async deriveAddresses(descriptor: string, range?: Array<number>): Promise<Array<DerivedAddresses>> {
-    return await this.command([{ method: 'deriveaddresses', parameters: [descriptor, range] }]);
+    return await this.executeRpc('deriveaddresses', [descriptor, range]);
   }
 
   /**
    * TODO: Comments
    */
   public async addMultisigAddress(): Promise<any> {
-    return await this.command([{ method: 'addmultisigaddress' }]);
+    return await this.executeRpc('addmultisigaddress');
   }
 
   /**
@@ -559,28 +637,28 @@ export default class BitcoinRpc implements IBitcoinRpc {
    * @returns A {@link CreateWalletDescriptorsResult} response object
    */
   public async createWalletDescriptor(type: string, options: CreateWalletDescriptorOptions): Promise<CreateWalletDescriptorsResult> {
-    return await this.command([{ method: 'createwalletdescriptor', parameters: [type, options] }]);
+    return await this.executeRpc('createwalletdescriptor', [type, options]);
   }
 
   /**
    * TODO: Comments
    */
   public async getBalance(): Promise<any> {
-    return await this.command([{ method: 'getbalance' }]);
+    return await this.executeRpc('getbalance');
   }
 
   /**
    * TODO: Comments
    */
   public async getNewAddress(account?: string): Promise<string> {
-    return await this.command([{ method: 'getnewaddress', parameters: [account] }]);
+    return await this.executeRpc('getnewaddress', [account]);
   }
 
   /**
    * TODO: Comments
    */
   public async importAddress(script: string, label?: string, rescan?: boolean, p2sh?: boolean): Promise<void> {
-    return await this.command([{ method: 'importaddress', parameters: [script, label, rescan, p2sh] }]);
+    return await this.executeRpc('importaddress', [script, label, rescan, p2sh]);
   }
 
   /**
@@ -597,56 +675,61 @@ export default class BitcoinRpc implements IBitcoinRpc {
    * @returns
    */
   public async importDescriptors(requests: Array<ImportDescriptorRequest>): Promise<any> {
-    return await this.command([{ method: 'importdescriptors', parameters: [requests] }]);
+    return await this.executeRpc('importdescriptors', [requests]);
   }
 
   /**
    * TODO: Comments
    */
   public async importMulti(requests: ImportMultiRequest[], options?: ImportMultiOptions): Promise<Array<ImportMultiResult>> {
-    return await this.command([{ method: 'importmulti', parameters: [requests, options] }]);
+    return await this.executeRpc('importmulti', [requests, options]);
   }
 
   /**
    * TODO: Comments
    */
   public async listUnspent(params: ListUnspentParams): Promise<UnspentTxInfo[]> {
-    return await this.command([{ method: 'listunspent', parameters: [params] }]);
+    return await this.executeRpc('listunspent', [params]);
   }
 
   /**
    * TODO: Comments
    */
   public async rescanBlockchain(): Promise<any> {
-    return await this.command([{ method: 'addmultisigaddress' }]);
+    return await this.executeRpc('addmultisigaddress');
   }
 
   /**
-   * TODO: Comments
+   * Send an amount to a given address.
+   * @async
+   * @param {string} address The address to send to.
+   * @param {number} amount The amount to send in BTC.
+   * @returns {Promise<SendToAddressResult>} A promise resolving to the transaction id.
    */
-  public async sendToAddress(): Promise<any> {
-    return await this.command([{ method: 'sendtoaddress' }]);
+  public async sendToAddress(address: string, amount: number): Promise<RawTransactionV2> {
+    const txid = await this.executeRpc<string>('sendtoaddress', [address, amount]);
+    return await this.getRawTransaction(txid) as RawTransactionV2;
   }
 
   /**
    * TODO: Comments
    */
   public async signMessage(): Promise<any> {
-    return await this.command([{ method: 'signmessage' }]);
+    return await this.executeRpc('signmessage');
   }
 
   /**
    * TODO: Comments
    */
   public async signRawTransactionWithWallet(): Promise<any> {
-    return await this.command([{ method: 'signrawtransactionwithwallet' }]);
+    return await this.executeRpc('signrawtransactionwithwallet');
   }
 
   /**
    * TODO: Comments
    */
   public async send(): Promise<any> {
-    return await this.command([{ method: 'send' }]);
+    return await this.executeRpc('send');
   }
 
   /**
@@ -690,14 +773,14 @@ export default class BitcoinRpc implements IBitcoinRpc {
    * });
    */
   public async sendAll(params: SendAllParams): Promise<SendAllResult> {
-    return await this.command([{ method: 'sendall', parameters: [params] }]);
+    return await this.executeRpc('sendall', [params]);
   }
 
   /**
    * TODO: Comments
    */
   public async sendMany(params: SendManyParams): Promise<string> {
-    return await this.command([{ method: 'sendmany', parameters: [params] }]);
+    return await this.executeRpc('sendmany', [params]);
   }
 
   /**
@@ -707,7 +790,7 @@ export default class BitcoinRpc implements IBitcoinRpc {
    * @returns {WalletTransaction} A promise resolving to a {@link WalletTransaction} object.
    */
   public async getTransaction(txid: string, include_watchonly?: boolean): Promise<WalletTransaction> {
-    return await this.command([{ method: 'gettransaction', parameters: [txid, include_watchonly] }]);
+    return await this.executeRpc('gettransaction', [txid, include_watchonly]);
   }
 
   /**
@@ -725,7 +808,7 @@ export default class BitcoinRpc implements IBitcoinRpc {
    */
   public async getRawTransaction(txid: string, verbosity?: VerbosityLevel, blockhash?: string): Promise<RawTransactionResponse> {
     // Get the raw transaction
-    const rawTransaction = await this.command([{ method: 'getrawtransaction', parameters: [txid, verbosity ?? 2, blockhash] }]);
+    const rawTransaction = await this.executeRpc('getrawtransaction', [txid, verbosity ?? 2, blockhash]);
     // Return the raw transaction based on verbosity
     switch(verbosity) {
       case 0:
