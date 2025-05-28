@@ -37,9 +37,9 @@ export abstract class Beacon implements IBeacon {
   public id: string;
   public type: string;
   public serviceEndpoint: DidServiceEndpoint;
-  public sidecar?: SingletonSidecar | CIDAggregateSidecar | SMTAggregateSidecar;
+  public sidecar?: SidecarData<SingletonSidecar | CIDAggregateSidecar | SMTAggregateSidecar>;
 
-  constructor({ id, type, serviceEndpoint }: BeaconService, sidecar?: SidecarData) {
+  constructor({ id, type, serviceEndpoint }: BeaconService, sidecar?: SidecarData<SingletonSidecar | CIDAggregateSidecar | SMTAggregateSidecar>) {
     this.id = id;
     this.type = type;
     this.serviceEndpoint = serviceEndpoint;

@@ -28,8 +28,8 @@ export class SMTAggregateBeacon extends Beacon {
    * @param {BeaconService} service The Beacon service.
    * @param {?SidecarData} [sidecar] Optional sidecar data.
    */
-  constructor(service: BeaconService, sidecar?: SidecarData) {
-    super({ ...service, type: 'SMTAggregateBeacon' }, sidecar as SMTAggregateSidecar);
+  constructor(service: BeaconService, sidecar?: SidecarData<SMTAggregateSidecar>) {
+    super({ ...service, type: 'SMTAggregateBeacon' }, sidecar);
   }
 
   /**

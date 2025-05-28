@@ -1,4 +1,4 @@
-import { DidBtc1Error, Maybe, PublicKeyBytes } from '@did-btc1/common';
+import { Btc1Error, DidBtc1Error, Maybe, PublicKeyBytes } from '@did-btc1/common';
 import { DidDocument, DidService } from '@web5/dids';
 import { networks, payments } from 'bitcoinjs-lib';
 import { BeaconFactory } from '../btc1/beacons/factory.js';
@@ -127,19 +127,51 @@ export class BeaconUtils {
    * @returns {BeaconService} A BeaconService object.
    * @throws {DidBtc1Error} if the bitcoin address is invalid.
    */
-  public static generateBeaconService({ id, publicKey, network, addressType, beaconType }: {
+  public static generateBeaconService({ id, publicKey: pubkey, network, addressType, type }: {
     id: string;
     publicKey: PublicKeyBytes;
     network: networks.Network;
     addressType: 'p2pkh' | 'p2wpkh' | 'p2tr';
-    beaconType: string;
+    type: string;
   }): BeaconService {
     try {
-      return {
-        id              : `${id}#initial${addressType.toUpperCase()}`,
-        type            : beaconType,
-        serviceEndpoint : `bitcoin:${payments[addressType]({ pubkey: publicKey, network }).address}`,
-      };
+      if(!id.includes('#')) {
+        throw new Btc1Error(
+          'Invalid id format. It should include a fragment identifier (e.g., #initialP2PKH).',
+          'BEACON_ERROR',
+          { id }
+        );
+      }
+      const serviceEndpoint = `bitcoin:${payments[addressType]({ pubkey, network }).address}`;
+      return { id, type, serviceEndpoint, };
+    } catch (error) {
+      console.error(error);
+      process.exit(1);
+    }
+  }
+
+  /**
+   * Generate a custom Beacon Service.
+   * @param {GenerateBeaconServicesParams} params Required parameters for generating Beacon Services.
+   * @returns
+   */
+  public static generateBeaconServiceCustom({ id, publicKey: pubkey, network, addressType, type }: {
+    id: string;
+    publicKey: PublicKeyBytes;
+    network: networks.Network;
+    addressType: 'p2pkh' | 'p2wpkh' | 'p2tr';
+    type: string;
+  }): BeaconService {
+    try {
+      if(!id.includes('#')) {
+        throw new Btc1Error(
+          'Invalid id format. It should include a fragment identifier (e.g., #initialP2PKH).',
+          'BEACON_ERROR',
+          { id }
+        );
+      }
+      const serviceEndpoint = `bitcoin:${payments[addressType]({ pubkey, network }).address}`;
+      return { id, type, serviceEndpoint, };
     } catch (error) {
       console.error(error);
       process.exit(1);

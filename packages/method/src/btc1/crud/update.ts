@@ -135,8 +135,9 @@ export class Btc1Update {
     didUpdatePayload: DidUpdatePayload;
     verificationMethod: Btc1VerificationMethod;
   }): Promise<DidUpdateInvocation> {
+    console.log('Invoke DID Update Payload', { didUpdatePayload, verificationMethod });
     // Deconstruct the verificationMethod
-    const { id, controller, publicKeyMultibase, privateKeyMultibase } = verificationMethod;
+    const { id: fullId, controller, publicKeyMultibase, privateKeyMultibase } = verificationMethod;
 
     // Validate the verificationMethod
     if(!publicKeyMultibase) {
@@ -145,18 +146,17 @@ export class Btc1Update {
 
     // 1. Set privateKeyBytes to the result of retrieving the private key bytes associated with the verificationMethod
     //    value. How this is achieved is left to the implementation.
-
     // 1.1 Compute the keyUri and check if the key is in the keystore
     // 1.2 If not, use the privateKeyMultibase from the verificationMethod
-    const keyPair = privateKeyMultibase
-      ? new KeyPair({ privateKey: PrivateKey.decode(privateKeyMultibase) })
-      : await Btc1KeyManager.getKeyPair(Btc1KeyManager.computeKeyUri(publicKeyMultibase));
+    const id = fullId.slice(fullId.indexOf('#'));
+    const multikey = !privateKeyMultibase
+      ? await Btc1KeyManager.getKeyPair(fullId)
+      : Multikey.initialize({ id, controller, keyPair: new KeyPair({ privateKey: PrivateKey.decode(privateKeyMultibase) }) });
 
     // 1.3 If the privateKey is not found, throw an error
-    if (!keyPair) {
+    if (!multikey) {
       throw new Btc1Error('No privateKey: not found in kms or vm', NOT_FOUND, verificationMethod);
     }
-
 
     // 2. Set rootCapability to the result of passing btc1Identifier into the Derive Root Capability from did:btc1
     //    Identifier algorithm.
@@ -169,11 +169,11 @@ export class Btc1Update {
     // 7. Set proofOptions.proofPurpose to capabilityInvocation.
     // 8. Set proofOptions.capability to rootCapability.id.
     // 9. Set proofOptions.capabilityAction to Write.
-    Logger.warn('// TODO: Wonder if we actually need this. Arent we always writing?');
+    // TODO: Wonder if we actually need this. Arent we always writing?
     const options: ProofOptions = {
       cryptosuite,
       type               : 'DataIntegrityProof',
-      verificationMethod : id,
+      verificationMethod : fullId,
       proofPurpose       : 'capabilityInvocation',
       capability         : rootCapability.id,
       capabilityAction   : 'Write',
@@ -181,9 +181,7 @@ export class Btc1Update {
 
     // 10. Set cryptosuite to the result of executing the Cryptosuite Instantiation algorithm from the BIP340 Data
     //     Integrity specification passing in proofOptions.
-    const diproof = Multikey.initialize({ id, controller, keyPair })
-      .toCryptosuite(cryptosuite)
-      .toDataIntegrityProof();
+    const diproof = multikey.toCryptosuite(cryptosuite).toDataIntegrityProof();
 
     // TODO: 11. need to set up the proof instantiation such that it can resolve / dereference the root capability. This is deterministic from the DID.
 

@@ -134,10 +134,6 @@ export class DidBtc1 implements DidMethod {
         didDocument           : targetDocument,
       };
 
-      // Logger.warn('// TODO: Are we using the DID Core spec for DidResolutionResult?');
-      // Logger.warn('// TODO: Are we using didResolutionMetadata? https://www.w3.org/TR/did-1.0/#did-resolution-metadata');
-      // Logger.warn('// TODO: Are we using didDocumentMetadata? https://www.w3.org/TR/did-1.0/#did-document-metadata');
-
       // Return didResolutionResult;
       return didResolutionResult;
     } catch (error: any) {
@@ -181,7 +177,7 @@ export class DidBtc1 implements DidMethod {
    * @param {string} params.verificationMethodId The verificationMethod ID to sign the update
    * @param {string[]} params.beaconIds The beacon IDs to announce the update
    * @returns {Promise<void>} Promise resolving to void
-   * @throws {Btc1Error} if the verificationMethod type is not `Multikey` or the publicKeyMultibase header is not `z66P`
+   * @throws {Btc1Error} if the verificationMethod type is not `Multikey` or the publicKeyMultibase header is not `zQ3s`
    */
   public static async update(params: {
     identifier: string;

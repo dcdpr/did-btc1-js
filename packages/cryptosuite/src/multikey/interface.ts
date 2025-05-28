@@ -61,7 +61,7 @@ export interface IMultikey {
   sign(data: MessageBytes): SignatureBytes;
 
   /**
-   * Verify a signature.
+   * Verify a schnorr signature.
    * @param {SignatureBytes} signature Signature for verification.
    * @param {string} message Data for verification.
    * @returns {boolean} If the signature is valid against the public key.

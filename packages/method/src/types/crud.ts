@@ -27,7 +27,11 @@ export interface SMTAggregateSidecar extends Btc1SidecarData {
   // SMTAggregate
   smtProof: ProofBytes;
 }
-export type SidecarData = SingletonSidecar | CIDAggregateSidecar | SMTAggregateSidecar;
+export type SidecarData<T> =
+  T extends 'SingletonBeacon' ? SingletonSidecar :
+  T extends 'CIDAggregateBeacon' ? CIDAggregateSidecar :
+  T extends 'SMTAggregateBeacon' ? SMTAggregateSidecar :
+  never;
 export type GetSigningMethodParams = {
   didDocument: Btc1DidDocument;
   methodId?: string;

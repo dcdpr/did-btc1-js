@@ -75,10 +75,12 @@ Once installed, import the method to your project and use it to perform CRUD ope
 
 ```ts
 // ESM
-import { DidBtc1 } from "@did-btc1/method";
+import { DidBtc1, BeaconUtils, getNetwork } from "@did-btc1/method";
+import { KeyPairUtils } from "@did-btc1/key-pair";
 
 const idType = 'key';
-const pubKeyBytes = new Uint8Array(32);
+const { publicKey } = KeyPairUtils.generate();
+const pubKeyBytes = publicKey.bytes;
 
 // Create
 const { did, initialDocument } = await DidBtc1.create({ idType, pubKeyBytes })
@@ -88,22 +90,37 @@ console.log('{ did, initialDocument }', { did, initialDocument });
 const resolution = await DidBtc1.resolve(did);
 console.log('resolution', resolution);
 
+const patch = JSON.patch.create([
+  {
+    op    : 'replace',
+    path  : '/service/0',
+    value : BeaconUtils.generateBeaconService({
+      id          : identifier,
+      publicKey   : Buffer.from(keyPair1.publicKey.hex, 'hex'),
+      network     : getNetwork('regtest'),
+      addressType : 'p2pkh',
+      beaconType  : 'SingletonBeacon',
+    })
+  }
+]);
 // Update
 const update = await DidBtc1.update({
   identifier           : did,
   sourceDocument       : initialDocument,
   sourceVersionId      : 1,
-  patch                : [[
+  patch                : JSON.patch.create([
     {
-      "op": "add",
-      "path": "/service/1",
-      "value": {
-        "id": "#initialP2PKH",
-        "type": "SingletonBeacon",
-        "serviceEndpoint": "z66p..."
-      }
+      op    : 'replace',
+      path  : '/service/0',
+      value : BeaconUtils.generateBeaconService({
+        id          : identifier,
+        publicKey   : Buffer.from(keyPair1.publicKey.hex, 'hex'),
+        network     : getNetwork('regtest'),
+        addressType : 'p2pkh',
+        beaconType  : 'SingletonBeacon',
+      })
     }
-  ],],
+  ]),
   verificationMethodId : `#initialP2PKH`,
   beaconIds            : [`${did}#initialP2PKH`],
 });

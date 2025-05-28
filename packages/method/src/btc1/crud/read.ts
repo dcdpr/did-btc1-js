@@ -16,7 +16,7 @@ import { Cryptosuite, DataIntegrityProof, MultikeyUtils } from '@did-btc1/crypto
 import { PublicKey } from '@did-btc1/key-pair';
 import { bytesToHex } from '@noble/hashes/utils';
 import { GENESIS_TX_ID, TXIN_WITNESS_COINBASE } from '../../bitcoin/constants.js';
-import { Bitcoin } from '../../bitcoin/index.js';
+import bitcoinNetwork, { Bitcoin } from '../../bitcoin/index.js';
 import { getNetwork } from '../../bitcoin/network.js';
 import BitcoinRest, { RawTransactionRest } from '../../bitcoin/rest-client.js';
 import BitcoinRpc from '../../bitcoin/rpc-client.js';
@@ -549,17 +549,17 @@ export class Btc1Read {
     let height = contemporaryBlockHeight;
 
     // Toggle RPC or REST connection based on the connection type
-    const bitcoin = new Bitcoin();
+    const bitcoin = bitcoinNetwork ?? new Bitcoin();
 
     // Create an default beaconSignal and beaconSignals array
     let beaconSignals: BeaconSignals = [];
 
-    if (bitcoin.active.rest) {
+    if (bitcoin.network.rest) {
       return await this.findSignalsRest({ beacons });
     }
 
     // Use connection to get the block data at the blockhash
-    let block = await bitcoin.active.rpc.getBlock({ height }) as BlockV3;
+    let block = await bitcoin.network.rpc.getBlock({ height }) as BlockV3;
 
     Logger.info(`Searching for signals, please wait ...`);
     while (block.time <= targetTime) {
@@ -594,7 +594,7 @@ export class Btc1Read {
           }
 
           // Get the previous output transaction data
-          const prevout = await bitcoin.active.rpc.getRawTransaction(vin.txid, 2) as RawTransactionV2;
+          const prevout = await bitcoin.network.rpc.getRawTransaction(vin.txid, 2) as RawTransactionV2;
 
           // If the previous output vout at the vin.vout index is undefined, continue ...
           if (!prevout.vout[vin.vout]) {
@@ -633,14 +633,14 @@ export class Btc1Read {
       }
 
       height += 1;
-      const tip = await bitcoin.active.rpc.getBlockCount();
+      const tip = await bitcoin.network.rpc.getBlockCount();
       if(height > tip) {
         Logger.info(`Chain tip reached ${height}, breaking ...`);
         break;
       }
 
       // Reset the block to the next block
-      block = await bitcoin.active.rpc.getBlock({ height }) as BlockV3;
+      block = await bitcoin.network.rpc.getBlock({ height }) as BlockV3;
     }
 
     return beaconSignals;
@@ -657,7 +657,7 @@ export class Btc1Read {
    * @returns {Promise<Array<BeaconSignal>>} The beacon signals found in the block.
    */
   public static async findSignalsRest({ beacons }: { beacons: Array<BeaconService>; }): Promise<Array<BeaconSignal>> {
-    const bitcoin = new Bitcoin();
+    const bitcoin = bitcoinNetwork ?? new Bitcoin();
 
     // Empty array of beaconSignals
     const beaconSignals = new Array<BeaconSignal>();
@@ -665,7 +665,7 @@ export class Btc1Read {
     // Iterate over each beacon
     for (const beacon of BeaconUtils.toBeaconServiceAddress(beacons)) {
       // Get the transactions for the beacon address via REST
-      const transactions = await bitcoin.active.rest.getAddressTxs(beacon.address);
+      const transactions = await bitcoin.rest.address.getTxs(beacon.address);
 
       // If no transactions are found, continue
       if (!transactions || transactions.length === 0) {
@@ -733,11 +733,9 @@ export class Btc1Read {
     } = signal;
     const signalTx = tx as RawTransactionRest | RawTransactionV2;
 
-    Logger.debug('processBeaconSignal signalsMetadata', signalsMetadata);
-
     // 2.4 Set signalSidecarData to signalsMetadata[signalId]. TODO: formalize structure of sidecarData
-    const signalSidecarData = new Map(Object.entries(signalsMetadata)).get(id)!;
-    Logger.warn('// TODO: processBeaconSignal - formalize structure of sidecarData', signalSidecarData);
+    // const signalSidecarData = new Map(Object.entries(signalsMetadata)).get(id)!;
+    // TODO: processBeaconSignal - formalize structure of sidecarData, signalSidecarData
 
     // 2.6 If type == SingletonBeacon:
     //     2.6.1 Set didUpdatePayload to the result of passing signalTx and signalSidecarData to Process Singleton Beacon Signal algorithm.
@@ -746,25 +744,25 @@ export class Btc1Read {
     // 2.8 If type == SMTAggregateBeacon:
     //     2.8.1 Set didUpdatePayload to the result of passing signalTx and signalSidecarData to the Process SMTAggregate Beacon Signal algorithm.
 
-    // Logger.warn('// TODO: processBeaconSignal - where/how to convert signalsMetadata to diff sidecars');
-    let sidecar: SidecarData;
-    switch (type) {
-      case 'SingletonBeacon': {
-        sidecar = { signalsMetadata } as SingletonSidecar;
-        break;
-      }
-      case 'CIDAggregateBeacon': {
-        sidecar = {} as CIDAggregateSidecar;
-        break;
-      }
-      case 'SMTAggregateBeacon': {
-        sidecar = {} as SMTAggregateSidecar;
-        break;
-      }
-      default: {
-        throw new Btc1Error('Invalid beacon type', 'INVALID_BEACON_TYPE', { type });
-      }
-    }
+    // TODO: processBeaconSignal - where/how to convert signalsMetadata to diff sidecars
+    const sidecar = { signalsMetadata } as SidecarData<SingletonSidecar | CIDAggregateSidecar | SMTAggregateSidecar>;
+    // switch (type) {
+    //   case 'SingletonBeacon': {
+    //     sidecar = { signalsMetadata } as SingletonSidecar;
+    //     break;
+    //   }
+    //   case 'CIDAggregateBeacon': {
+    //     sidecar = {} as CIDAggregateSidecar;
+    //     break;
+    //   }
+    //   case 'SMTAggregateBeacon': {
+    //     sidecar = {} as SMTAggregateSidecar;
+    //     break;
+    //   }
+    //   default: {
+    //     throw new Btc1Error('Invalid beacon type', 'INVALID_BEACON_TYPE', { type });
+    //   }
+    // }
 
     // Construct a service object from the beaconId and type
     // and set the serviceEndpoint to the BIP21 URI for the Bitcoin address.

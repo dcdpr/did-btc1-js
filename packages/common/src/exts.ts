@@ -4,12 +4,7 @@ import { JSONObject, Maybe, Prototyped, Unprototyped } from './types.js';
 
 /** Extend the global namespace */
 declare global {
-  /** Extend the global Uint8Array interface */
-  interface Uint8Array {
-    toArray(): number[];
-  }
-
-  /** Extend the Array Object class interface */
+  /** Extend the global Array interface */
   interface Array<T> {
       /** Get the last element of the array */
       last(): T | undefined;
@@ -19,13 +14,20 @@ declare global {
       toUint8Array(): Uint8Array;
   }
 
-  /** Extend the Set class interface */
-  interface Set<T> {
-    /** Get the difference between two sets */
-    difference(other: Set<T>): Set<T>;
+  /** Extend the global Buffer interface */
+   interface BufferConstructor {
+    fromHex(hex: string): Buffer<ArrayBuffer>;
   }
 
-  /** Extend the JSON class interface */
+  /** Extend the global Date interface */
+  interface Date {
+    /** Get the UTC date and time in ISO 8601 format */
+    getUTCDateTime(): string;
+    /** Convert date to Unix timestamp */
+    toUnix(): number;
+  }
+
+  /** Extend global JSON interface */
   interface JSON {
       /** Check if an object is a JSON object */
       is(unknown: Maybe<JSONObject>): boolean;
@@ -57,11 +59,11 @@ declare global {
       patch: Patch;
   }
 
-  interface Date {
-    /** Get the UTC date and time in ISO 8601 format */
-    getUTCDateTime(): string;
-    /** Convert date to Unix timestamp */
-    toUnix(): number;
+
+  /** Extend global Set interface */
+  interface Set<T> {
+    /** Get the difference between two sets */
+    difference(other: Set<T>): Set<T>;
   }
 
   interface String {
@@ -74,12 +76,12 @@ declare global {
     /** Replace the end of a string */
     replaceEnd(e: string | RegExp, r?: string): string;
   }
-}
 
-/** Uint8Array Interface Extensions */
-Uint8Array.prototype.toArray = function (): number[] {
-  return Array.from(this);
-};
+  /** Extend the global Uint8Array interface */
+  interface Uint8Array {
+    toArray(): number[];
+  }
+}
 
 /** Array Interface Extensions */
 Array.prototype.last = function <T>(): T | undefined {
@@ -94,15 +96,22 @@ Array.prototype.toUint8Array = function (): Uint8Array {
   return new Uint8Array(this);
 };
 
-/** Set Interface Extensions */
-Set.prototype.difference = function <T>(other: Set<T>): Set<T> {
-  const result = new Set<T>(this);
-  for (const item of other) {
-    if (result.has(item)) {
-      result.delete(item);
-    }
+/** BufferConstructor/Buffer Interface Extensions */
+Buffer.fromHex = function (hex: string): Buffer<ArrayBuffer> {
+  return Buffer.from(hex, 'hex');
+};
+
+/** Date Interface Extensions */
+Date.prototype.getUTCDateTime = function (): string {
+  return `${this.toISOString().slice(0, -5)}Z`;
+};
+
+Date.prototype.toUnix = function (): number {
+  const time = this.getTime();
+  if (isNaN(time)) {
+    throw new Error(`Invalid date string: "${this}"`);
   }
-  return result;
+  return time;
 };
 
 /** JSON Interface Extensions */
@@ -229,17 +238,15 @@ JSON.sanitize = function (o: JSONObject): JSONObject {
 JSON.canonicalization = new Canonicalization();
 JSON.patch = new Patch();
 
-/** Date Interface Extensions */
-Date.prototype.getUTCDateTime = function (): string {
-  return `${this.toISOString().slice(0, -5)}Z`;
-};
-
-Date.prototype.toUnix = function (): number {
-  const time = this.getTime();
-  if (isNaN(time)) {
-    throw new Error(`Invalid date string: "${this}"`);
+/** Set Interface Extensions */
+Set.prototype.difference = function <T>(other: Set<T>): Set<T> {
+  const result = new Set<T>(this);
+  for (const item of other) {
+    if (result.has(item)) {
+      result.delete(item);
+    }
   }
-  return time;
+  return result;
 };
 
 /** String Interface Extensions */
@@ -263,6 +270,11 @@ String.prototype.replaceEnd = function (e: string | RegExp, r?: string): string 
     : new RegExp(`${e.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')}$`);
 
   return this.replace(pattern, r ?? '');
+};
+
+/** Uint8Array Interface Extensions */
+Uint8Array.prototype.toArray = function (): number[] {
+  return Array.from(this);
 };
 
 export default global;

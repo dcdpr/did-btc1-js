@@ -29,8 +29,8 @@ export class CIDAggregateBeacon extends Beacon {
    * @param {BeaconService} service The service of the Beacon.
    * @param {?SidecarData} [sidecar] The sidecar data of the Beacon.
    */
-  constructor(service: BeaconService, sidecar?: SidecarData) {
-    super({ ...service, type: 'CIDAggregateBeacon' }, sidecar as CIDAggregateSidecar);
+  constructor(service: BeaconService, sidecar?: SidecarData<CIDAggregateSidecar>) {
+    super({ ...service, type: 'CIDAggregateBeacon' }, sidecar);
   }
   get service(): BeaconService {
     return {

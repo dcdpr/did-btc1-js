@@ -1,6 +1,6 @@
-import { Btc1Error, Hex, MULTIKEY_VERIFICATION_METHOD_ERROR, MultikeyError, SignatureBytes } from '@did-btc1/common';
+import { Hex, MULTIKEY_VERIFICATION_METHOD_ERROR, MultikeyError, SignatureBytes } from '@did-btc1/common';
 import { KeyPair, PrivateKey, PublicKey } from '@did-btc1/key-pair';
-import { secp256k1, schnorr } from '@noble/curves/secp256k1';
+import { schnorr, secp256k1 } from '@noble/curves/secp256k1';
 import { DidVerificationMethod } from '@web5/dids';
 import { randomBytes } from 'crypto';
 import { base58btc } from 'multiformats/bases/base58';
@@ -56,21 +56,21 @@ export class Multikey implements IMultikey {
     this._keyPair = keyPair;
   }
 
-  /** @see IMultikey.keyPair */
+  /** @type {KeyPair} @readonly Get the Multikey KeyPair. */
   get keyPair(): KeyPair {
     // Return a copy of the keypair
     const keyPair = this._keyPair;
     return keyPair;
   }
 
-  /** @see IMultikey.publicKey */
+  /** @type {PublicKey} @readonly Get the Multikey PublicKey. */
   get publicKey(): PublicKey {
     // Create and return a copy of the keyPair.publicKey
     const publicKey = this.keyPair.publicKey;
     return publicKey;
   }
 
-  /** @see IMultikey.privateKey */
+  /** @type {PrivateKey} @readonly Get the Multikey PrivateKey. */
   get privateKey(): PrivateKey {
     // Create and return a copy of the keyPair.privateKey
     const privateKey = this.keyPair.privateKey;
@@ -92,7 +92,7 @@ export class Multikey implements IMultikey {
   }
 
   /**
-   * Produce signed data with a private key.
+   * Produce a schnorr signature over arbitrary data.
    * @param {MessageBytes} data Data to be signed.
    * @returns {SignatureBytes} Signature byte array.
    * @throws {MultikeyError} if no private key is provided.
@@ -106,6 +106,12 @@ export class Multikey implements IMultikey {
     return schnorr.sign(data, this.privateKey.bytes, randomBytes(32));
   }
 
+  /**
+   * Produce an ecdsa signature over arbitrary data.
+   * @param {MessageBytes} data Data to be signed.
+   * @returns {SignatureBytes} Signature byte array.
+   * @throws {MultikeyError} if no private key is provided.
+   */
   public signEcdsa(data: Hex): SignatureBytes {
     // If there is no private key, throw an error
     if (!this.isSigner) {
@@ -115,19 +121,41 @@ export class Multikey implements IMultikey {
     return secp256k1.sign(data, this.privateKey.bytes, { lowS: true }).toCompactRawBytes();
   }
 
-  /** @see IMultikey.verify */
+  /**
+   * Verify a schnorr signature.
+   * @param {SignatureBytes} signature Signature for verification.
+   * @param {string} data Data for verification.
+   * @returns {boolean} If the signature is valid against the public key.
+   */
   public verify(signature: SignatureBytes, data: Hex): boolean {
     // Verify the signature and return the result
     return schnorr.verify(signature, data, this.publicKey.x);
   }
 
-  /** @see IMultikey.fullId */
-  public fullId(): string {
-    // If the id starts with "#", return concat(controller, id); else return id
-    return this.id.startsWith('#') ? `${this.controller}${this.id}` : this.id;
+  /**
+   * Verify an ecdsa signature.
+   * @param {SignatureBytes} signature Signature for verification.
+   * @param {string} data Data for verification.
+   * @returns {boolean} If the signature is valid against the public key.
+   */
+  public verifyEcdsa(signature: SignatureBytes, data: Hex): boolean {
+    // Verify the signature and return the result
+    return secp256k1.verify(signature, data, this.publicKey.x);
   }
 
-  /** @see IMultikey.toVerificationMethod */
+  /**
+   * Get the full id of the multikey
+   * @returns {string} The full id of the multikey
+   */
+  public fullId(): string {
+    // If the id starts with "#", return concat(controller, id); else return id
+    return `${this.controller}${this.id}`;
+  }
+
+  /**
+   * Convert the multikey to a verification method.
+   * @returns {DidVerificationMethod} The verification method.
+   */
   public toVerificationMethod(): DidVerificationMethod {
     // Construct and return the verification method
     return {
@@ -138,36 +166,56 @@ export class Multikey implements IMultikey {
     };
   }
 
-  /** @see IMultikey.fromVerificationMethod */
-  public fromVerificationMethod(vm: DidVerificationMethod): Multikey {
+  /**
+   * Convert a verification method to a multikey.
+   * @param {DidVerificationMethod} verificationMethod The verification method to convert.
+   * @returns {Multikey} Multikey instance.
+   * @throws {MultikeyError}
+   * if the verification method is missing required fields.
+   * if the verification method has an invalid type.
+   * if the publicKeyMultibase has an invalid prefix.
+   */
+  public fromVerificationMethod(verificationMethod: DidVerificationMethod): Multikey {
     // Destructure the verification method
-    const { id, controller, publicKeyMultibase, type } = vm;
+    const { id, controller, publicKeyMultibase, type } = verificationMethod;
 
     // Check if the required field id is missing
     if (!id) {
-      throw new Btc1Error(`Missing "id" in verificationMethod`, MULTIKEY_VERIFICATION_METHOD_ERROR, { vm });
+      throw new MultikeyError(
+        'Missing "id" in verificationMethod',
+        MULTIKEY_VERIFICATION_METHOD_ERROR, { verificationMethod }
+      );
     }
 
     // Check if the required field controller is missing
     if (!controller) {
-      throw new Btc1Error(`Missing "controller" in verificationMethod`, MULTIKEY_VERIFICATION_METHOD_ERROR, { vm });
+      throw new MultikeyError(
+        'Missing "controller" in verificationMethod',
+        MULTIKEY_VERIFICATION_METHOD_ERROR, { verificationMethod }
+      );
     }
 
     // Check if the required field publicKeyMultibase is missing
     if (!publicKeyMultibase) {
-      throw new Btc1Error(`Missing "publicKeyMultibase" in verificationMethod`, MULTIKEY_VERIFICATION_METHOD_ERROR, { vm });
+      throw new MultikeyError(
+        'Missing "publicKeyMultibase" in verificationMethod',
+        MULTIKEY_VERIFICATION_METHOD_ERROR, { verificationMethod }
+      );
     }
 
     // Check if the type is not Multikey
     if (type !== 'Multikey') {
-      throw new Btc1Error(`Invalid value: verificationMethod type is invalid`, MULTIKEY_VERIFICATION_METHOD_ERROR, { vm });
+      throw new MultikeyError(
+        'Invalid value: verificationMethod type is invalid',
+        MULTIKEY_VERIFICATION_METHOD_ERROR, { verificationMethod }
+      );
     }
 
     // Decode the public key multibase
-    const multibase = this.publicKey.decode();
+    const decoded = this.publicKey.decode();
 
     // Get the 32 byte public key from the multibase
-    const publicKey = multibase.slice(2, multibase.length);
+    const publicKey = decoded.slice(2, decoded.length);
 
     // Construct a new PublicKey from the publicKey and a new KeyPair from the PublicKey
     const keyPair = new KeyPair({ publicKey: new PublicKey(publicKey) });
@@ -176,13 +224,15 @@ export class Multikey implements IMultikey {
     return new Multikey({ id, controller, keyPair });
   }
 
-
-  /** @see IMultikey.isSigner */
+  /** @type {boolean} @readonly Get signing ability of the Multikey (i.e. is there a valid privateKey). */
   get isSigner(): boolean {
     return !!this.keyPair.privateKey;
   }
 
-  /** @see IMultikey.json */
+  /**
+   * Convert the multikey to a JSON object.
+   * @returns {MultikeyJSON} The multikey as a JSON object.
+   */
   public json(): MultikeyJSON {
     return {
       id                 : this.id,

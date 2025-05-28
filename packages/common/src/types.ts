@@ -87,7 +87,8 @@ export enum BitcoinNetworkNames {
     signet = 1,
     regtest = 2,
     testnet3 = 3,
-    testnet4 = 4
+    testnet4 = 4,
+    mutinynet = 8
 }
 export type KeyIdentifier = string;
 export type BeaconUri = string;

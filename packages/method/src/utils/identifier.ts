@@ -1,4 +1,4 @@
-import { BitcoinNetworkNames, Btc1IdentifierTypes, Btc1Error, INVALID_DID, METHOD_NOT_SUPPORTED } from '@did-btc1/common';
+import { BitcoinNetworkNames, Btc1Error, Btc1IdentifierTypes, INVALID_DID, METHOD_NOT_SUPPORTED } from '@did-btc1/common';
 import { PublicKey } from '@did-btc1/key-pair';
 import { bech32m } from '@scure/base';
 import { DidComponents } from './appendix.js';
@@ -47,8 +47,17 @@ export class Btc1Identifier {
       throw new Btc1Error('Invalid "network" number', INVALID_DID, {network});
     }
 
-
     // 5. If idType is “key” and genesisBytes is not a valid compressed secp256k1 public key, raise invalidDid error.
+    if (idType === 'KEY') {
+      try {
+        new PublicKey(genesisBytes);
+      } catch {
+        throw new Btc1Error(
+          'Expected "genesisBytes" to be a valid compressed secp256k1 public key',
+          INVALID_DID, { genesisBytes }
+        );
+      }
+    }
 
     // 6. Map idType to hrp from the following:
     //   6.1 “key” - “k”
@@ -92,8 +101,7 @@ export class Btc1Identifier {
 
     if (fCount !== 0){
       for(let index in Array.from({ length: (nibbles.length / 2) - 1 })) {
-        console.log(index);
-        throw new Error('Not implemented');
+        throw new Btc1Error('Not implemented', 'NOT_IMPLEMENTED', { index });
       }
     }
     const dataBytes = new Uint8Array([(nibbles[2 * 0] << 4) | nibbles[2 * 0 + 1], ...genesisBytes]);

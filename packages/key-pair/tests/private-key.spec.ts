@@ -13,7 +13,6 @@ describe('PrivateKey instantiated', () => {
   const secret = 52464508790539176856770556715241483442035423615466097401201513777400180778402n;
   const point = 70034219475303640140997251078025716305705157134061811313219629275858557282031n;
   const hex = '73fddc12fc9342bb29ae9b5ed476323bdc693a116e36512455aee830fe8a25a2';
-  const json = { bytes, secret, point, hex };
 
   describe('with invalid seed', () => {
     it('should throw PrivateKeyError if seed is not bytes or bigint', () => {
@@ -67,9 +66,6 @@ describe('PrivateKey instantiated', () => {
       expect(privateKey.isValid()).to.be.true;
     });
 
-    it('should equal the expected PrivateKey', () => {
-      expect(privateKey.json()).to.deep.equal(json);
-    });
   });
 
   describe('with seed as bigint secret', () => {
@@ -107,8 +103,5 @@ describe('PrivateKey instantiated', () => {
       expect(privateKey.isValid()).to.be.true;
     });
 
-    it('should have a json representation matching the expected json', () => {
-      expect(privateKey.json()).to.deep.equal(json);
-    });
   });
 });

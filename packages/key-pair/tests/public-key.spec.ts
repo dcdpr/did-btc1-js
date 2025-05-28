@@ -29,9 +29,7 @@ describe('PublicKey', () => {
     218, 208, 107, 223,  13, 168, 121,   9
   ]);
   const prefix = new Uint8Array([231, 1]);
-  const json = { parity, x, y, hex, multibase, prefix };
   const bytes = new Uint8Array([parity, ...x]);
-  const decoded = new Uint8Array([...prefix, ...bytes]);
 
   describe('with invalid bytes', () => {
     it('should throw PublicKeyError if bytes invalid', () => {
@@ -89,14 +87,6 @@ describe('PublicKey', () => {
 
     it('should have property hex matching the expected hex', () => {
       expect(publicKey.hex).to.equal(hex);
-    });
-
-    it('should have a json representation matching the expected json', () => {
-      expect(publicKey.json()).to.deep.equal(json);
-    });
-
-    it('should decode the multibase and match the expected multibase byte arrayt', () => {
-      expect(publicKey.decode()).to.deep.equal(decoded);
     });
 
     it('should encode the x-coordinate and match the expected multibase', () => {

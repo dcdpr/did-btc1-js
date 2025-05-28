@@ -1,4 +1,4 @@
-import { PublicKeyBytes, BIP340_MULTIKEY_PREFIX, HdWallet } from '@did-btc1/common';
+import { PublicKeyBytes, BIP340_PUBLIC_KEY_MULTIBASE_PREFIX, HdWallet } from '@did-btc1/common';
 import { sha256 } from '@noble/hashes/sha256';
 import { CURVE, getPublicKey, utils } from '@noble/secp256k1';
 import { HDKey } from '@scure/bip32';
@@ -21,7 +21,7 @@ export class GeneralUtils {
     if (xOnlyPublicKeyBytes.length !== 32) {
       throw new Error('x-only public key must be 32 bytes');
     }
-    const prefix = Array.from(BIP340_MULTIKEY_PREFIX);
+    const prefix = Array.from(BIP340_PUBLIC_KEY_MULTIBASE_PREFIX);
     const x = Array.from(xOnlyPublicKeyBytes);
     // Set the prefix and the public key bytes
     const multikeyBytes = new Uint8Array([...prefix, ...x]);
@@ -36,7 +36,7 @@ export class GeneralUtils {
    */
   static bigintToBuffer(value: bigint): Buffer {
     const hex = value.toString(16).padStart(64, '0');
-    return Buffer.from(hex, 'hex');
+    return Buffer.fromHex(hex);
   }
 
   /**

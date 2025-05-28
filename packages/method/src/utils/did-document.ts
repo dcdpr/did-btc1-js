@@ -25,7 +25,12 @@ export type ExternalData = {
   capabilityDelegation?: Array<string | Btc1VerificationMethod>,
   service: Array<BeaconService>
 }
-export type VerificationRelationship = Array<string | Btc1VerificationMethod>
+export type VerificationRelationships = {
+  authentication?: Array<string | Btc1VerificationMethod>;
+  assertionMethod?: Array<string | Btc1VerificationMethod>;
+  capabilityInvocation?: Array<string | Btc1VerificationMethod>;
+  capabilityDelegation?: Array<string | Btc1VerificationMethod>;
+}
 
 export interface IBtc1VerificationMethod extends DidVerificationMethod {
   id: string;
@@ -433,26 +438,18 @@ export class IntermediateDidDocument extends Btc1DidDocument {
 
   /**
    * Create a minimal IntermediateDidDocument with a placeholder ID.
-   * @param {string} publicKeyMultibase The public key in multibase format.
+   * @param {Array<Btc1VerificationMethod>} verificationMethod The public key in multibase format.
+   * @param {VerificationRelationships} relationships The public key in multibase format.
    * @param {Array<BeaconService>} service The service to be included in the document.
    * @returns {IntermediateDidDocument} A new IntermediateDidDocument with the placeholder ID.
    */
   public static create(
-    publicKeyMultibase: string,
+    verificationMethod: Array<Btc1VerificationMethod>,
+    relationships: VerificationRelationships,
     service: Array<BeaconService>
   ): IntermediateDidDocument {
-    return new IntermediateDidDocument({
-      id                 : ID_PLACEHOLDER_VALUE,
-      verificationMethod : [
-        new Btc1VerificationMethod({
-          id         : ID_PLACEHOLDER_VALUE,
-          type       : 'Multikey',
-          controller : ID_PLACEHOLDER_VALUE,
-          publicKeyMultibase
-        })
-      ],
-      service,
-    });
+    const id = ID_PLACEHOLDER_VALUE;
+    return new IntermediateDidDocument({ id, ...relationships, verificationMethod, service, });
   }
 
   /**

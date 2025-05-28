@@ -1,5 +1,7 @@
 import {
-  BIP340_MULTIKEY_PREFIX,
+  BIP340_SECRET_KEY_MULTIBASE_PREFIX,
+  BIP340_SECRET_KEY_MULTIBASE_PREFIX_HASH,
+  Bytes,
   CURVE,
   Hex,
   PrivateKeyBytes,
@@ -15,6 +17,7 @@ import * as tinysecp from 'tiny-secp256k1';
 import { IPrivateKey } from './interface.js';
 import { KeyPair } from './key-pair.js';
 import { PublicKey } from './public-key.js';
+import { sha256 } from '@noble/hashes/sha256';
 
 /**
  * Encapsulates a secp256k1 private key
@@ -147,17 +150,62 @@ export class PrivateKey implements IPrivateKey {
     return multibase;
   }
 
+  /**
+   * Encodes the private key bytes to BIP340 multibase format.
+   * @returns {string} The private key in BIP340 multibase format.
+   */
   public encode(): string {
-    // Convert Uint8Array to Array
-    const bytes = this.bytes.toArray();
-    // Push the key bytes at the end of the prefix
-    bytes.unshift(...BIP340_MULTIKEY_PREFIX);
-    // Return the encoded keys
-    return base58btc.encode(bytes.toUint8Array());
+    // Convert Uint8Array bytes to an Array
+    const privateKeyBytes = this.bytes.toArray();
+
+    if(privateKeyBytes.length !== 32) {
+      throw new PrivateKeyError(
+        'Invalid private key: must be a valid 32-byte private key',
+        'ENCODE_MULTIBASE_ERROR'
+      );
+    }
+    // Convert prefix to an array
+    const mbaseBytes = BIP340_SECRET_KEY_MULTIBASE_PREFIX.toArray();
+
+    // Push the private key bytes at the end of the prefix
+    mbaseBytes.push(...privateKeyBytes);
+
+    // Encode the bytes in base58btc format and return
+    return base58btc.encode(mbaseBytes.toUint8Array());
   }
 
-  public static decode(privateKeyMultibase: string): PrivateKeyBytes {
-    return base58btc.decode(privateKeyMultibase).slice(2);
+  /**
+   * Decodes the multibase string to the 34-byte secret key (2 byte prefix + 32 byte key).
+   * @returns {Bytes} The decoded secret key.
+   */
+  public static decode(multibase: string): Bytes {
+    // Decode the public key multibase string
+    const decoded = base58btc.decode(multibase);
+
+    // If the public key bytes are not 35 bytes, throw an error
+    if(decoded.length !== 34) {
+      throw new PrivateKeyError(
+        'Invalid argument: must be 34 byte secretKeyMultibase',
+        'DECODE_MULTIBASE_ERROR'
+      );
+    }
+
+    // Grab the prefix bytes
+    const prefix = decoded.slice(0, 2);
+
+    // Compute the prefix hash
+    const prefixHash = Buffer.from(sha256(prefix)).toString('hex');
+
+    // If the prefix hash does not equal the BIP340 prefix hash, throw an error
+    if (prefixHash !== BIP340_SECRET_KEY_MULTIBASE_PREFIX_HASH) {
+      throw new PrivateKeyError(
+        `Invalid prefix: malformed multibase prefix ${prefix}`,
+        'DECODE_MULTIBASE_ERROR'
+      );
+    }
+
+    // Return the decoded key bytes
+    return decoded;
   }
 
   /**

@@ -1,7 +1,7 @@
 import { Btc1Error } from '@did-btc1/common';
 import { Beacon } from '../../interfaces/beacon.js';
 import { BeaconService } from '../../interfaces/ibeacon.js';
-import { SidecarData } from '../../types/crud.js';
+import { CIDAggregateSidecar, SidecarData, SingletonSidecar, SMTAggregateSidecar } from '../../types/crud.js';
 import { CIDAggregateBeacon } from './cid-aggregate.js';
 import { SingletonBeacon } from './singleton.js';
 import { SMTAggregateBeacon } from './smt-aggregate.js';
@@ -12,7 +12,7 @@ import { SMTAggregateBeacon } from './smt-aggregate.js';
  * @type {BeaconFactory}
  */
 export class BeaconFactory {
-  static establish(service: BeaconService, sidecar?: SidecarData): Beacon {
+  static establish(service: BeaconService, sidecar?: SidecarData<SingletonSidecar | CIDAggregateSidecar | SMTAggregateSidecar>): Beacon {
     switch (service.type) {
       case 'SingletonBeacon':
         return new SingletonBeacon(service, sidecar);

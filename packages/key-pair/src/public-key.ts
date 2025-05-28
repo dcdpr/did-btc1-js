@@ -1,6 +1,6 @@
 import {
-  BIP340_MULTIKEY_PREFIX,
-  BIP340_MULTIKEY_PREFIX_HASH,
+  BIP340_PUBLIC_KEY_MULTIBASE_PREFIX,
+  BIP340_PUBLIC_KEY_MULTIBASE_PREFIX_HASH,
   CURVE,
   Hex,
   PrefixBytes,
@@ -132,57 +132,63 @@ export class PublicKey implements IPublicKey {
   }
 
   /**
-   * Decodes the multibase string to the 34-byte corresponding public key (2 byte prefix + 32 byte public key).
-   * See {@link IPublicKey.decode | IPublicKey Method } for more details.
+   * Decodes the multibase string to the 35-byte corresponding public key (2 byte prefix + 32 byte public key).
    * @returns {PublicKeyMultibaseBytes} The decoded public key: prefix and public key bytes
    */
   public decode(): PublicKeyMultibaseBytes {
     // Decode the public key multibase string
-    const multibase = base58btc.decode(this.multibase);
+    const decoded = base58btc.decode(this.multibase);
 
     // If the public key bytes are not 35 bytes, throw an error
-    if(multibase.length !== 35) {
-      throw new PublicKeyError('Invalid argument: must be 35 byte publicKeyMultibase', 'DECODE_PUBLIC_KEY_ERROR');
+    if(decoded.length !== 35) {
+      throw new PublicKeyError(
+        'Invalid argument: must be 35 byte publicKeyMultibase',
+        'DECODE_MULTIBASE_ERROR'
+      );
     }
 
     // Grab the prefix bytes
-    const prefix = multibase.subarray(0, 2);
+    const prefix = decoded.slice(0, 2);
+
     // Compute the prefix hash
     const prefixHash = Buffer.from(sha256(prefix)).toString('hex');
 
     // If the prefix hash does not equal the BIP340 prefix hash, throw an error
-    if (prefixHash !== BIP340_MULTIKEY_PREFIX_HASH) {
-      throw new PublicKeyError(`Invalid prefix: malformed multibase prefix ${prefix}`, 'DECODE_PUBLIC_KEY_ERROR');
+    if (prefixHash !== BIP340_PUBLIC_KEY_MULTIBASE_PREFIX_HASH) {
+      throw new PublicKeyError(
+        `Invalid prefix: malformed multibase prefix ${prefix}`,
+        'DECODE_MULTIBASE_ERROR'
+      );
     }
 
     // Return the decoded public key bytes
-    return multibase;
+    return decoded;
   }
 
   /**
-   * Encodes compressed secp256k1 public key from bytes to BIP340 base58btc multibase format
-   * @returns {string} The public key encoded in base-58-btc multibase format
+   * Encodes compressed secp256k1 public key from bytes to BIP340 multibase format.
+   * @returns {string} The public key encoded in base-58-btc multibase format.
    */
   public encode(): string {
     // Convert public key bytes to an array
-    const publicKeyBytes = Array.from(this.bytes);
+    const publicKeyBytes = this.bytes.toArray();
 
     // Ensure the public key is 33-byte secp256k1 compressed public key
     if (publicKeyBytes.length !== 33) {
-      throw new PublicKeyError('Invalid argument: must be 33-byte (compressed) public key', 'ENCODE_PUBLIC_KEY_ERROR');
+      throw new PublicKeyError(
+        'Invalid argument: must be 33-byte (compressed) public key',
+        'ENCODE_MULTIBASE_ERROR'
+      );
     }
 
     // Convert prefix to an array
-    const multikeyByteArray = Array.from(BIP340_MULTIKEY_PREFIX);
+    const multibaseBytes = BIP340_PUBLIC_KEY_MULTIBASE_PREFIX.toArray();
 
     // Push the public key bytes at the end of the prefix
-    multikeyByteArray.push(...publicKeyBytes);
+    multibaseBytes.push(...publicKeyBytes);
 
-    // Convert the prefix + public key bytes to Uint8Array
-    const multikeyBytes = new Uint8Array(multikeyByteArray);
-
-    // Encode as a multibase base58btc string
-    return base58btc.encode(multikeyBytes);
+    // Encode the bytes in base58btc format and return
+    return base58btc.encode(multibaseBytes.toUint8Array());
   }
 
   /**
@@ -299,7 +305,7 @@ export class PublicKeyUtils {
     const y = this.sqrtMod(ySquared, CURVE.p);
 
     // Convert x and y to Uint8Array
-    const yBytes = Buffer.from(y.toString(16).padStart(64, '0'), 'hex');
+    const yBytes = Buffer.fromHex(y.toString(16).padStart(64, '0'));
 
     // Return 65-byte uncompressed public key: `0x04 || x || y`
     return new Uint8Array(Buffer.concat([Buffer.from([0x04]), Buffer.from(xBytes), yBytes]));

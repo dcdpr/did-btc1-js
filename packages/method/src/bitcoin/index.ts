@@ -1,10 +1,9 @@
-import { Btc1Error, DEFAULT_REST_CONFIG, Logger } from '@did-btc1/common';
+import { Btc1Error, DEFAULT_REST_CONFIG } from '@did-btc1/common';
 import { networks } from 'bitcoinjs-lib';
+import { DEFAULT_REST_CLIENT_CONFIG, DEFAULT_RPC_CLIENT_CONFIG } from './constants.js';
 import { getNetwork } from './network.js';
 import BitcoinRest from './rest-client.js';
 import BitcoinRpc from './rpc-client.js';
-import dotenv from 'dotenv';
-import { DEFAULT_RPC_CLIENT_CONFIG } from './constants.js';
 
 type BitcoinClientConfig = {
   rpc: {
@@ -22,17 +21,18 @@ type BitcoinClientConfig = {
 };
 
 type BitcoinNetworkConfig = {
+  name: keyof AvailableNetworks;
   rpc: BitcoinRpc;
   rest: BitcoinRest;
   config: BitcoinClientConfig;
-  network: networks.Network;
+  data: networks.Network;
 };
 
 type BitcoinNetworkConfigMap = {
   [key in keyof AvailableNetworks]?: BitcoinNetworkConfig;
 };
 
-type AvailableNetworks = {
+export type AvailableNetworks = {
   mainnet: true;
   testnet: true;
   signet: true;
@@ -45,7 +45,7 @@ type AvailableNetworks = {
  * @type {Bitcoin}
  */
 export class Bitcoin {
-  public active: BitcoinNetworkConfig;
+  public network: BitcoinNetworkConfig;
   public mainnet?: BitcoinNetworkConfig;
   public testnet?: BitcoinNetworkConfig;
   public signet?: BitcoinNetworkConfig;
@@ -59,17 +59,21 @@ export class Bitcoin {
    */
   constructor(configs?: BitcoinNetworkConfigMap) {
     // Load the .env file
-    dotenv.config({ path: '.env' });
+    // dotenv.config({ path: '.env' });
 
-    const BITCOIN_NETWORK_CONFIG = configs ? JSON.stringify(configs) : process.env.BITCOIN_NETWORK_CONFIG;
-    if(!BITCOIN_NETWORK_CONFIG) {
+    const BITCOIN_NETWORK_CONFIG = process.env.BITCOIN_NETWORK_CONFIG ?? JSON.stringify(configs ?? {
+      regtest : {
+        rpc  : DEFAULT_RPC_CLIENT_CONFIG,
+        rest : DEFAULT_REST_CLIENT_CONFIG
+      }
+    });    if(!BITCOIN_NETWORK_CONFIG) {
       throw new Btc1Error(
         'No BITCOIN_NETWORK_CONFIG available: must pass `configs` to constructor or set `BITCOIN_NETWORK_CONFIG` in env',
         'MISSING_BITCOIN_NETWORK_CONFIG',
         { BITCOIN_NETWORK_CONFIG }
       );
     }
-    Logger.debug('BITCOIN_NETWORK_CONFIG', BITCOIN_NETWORK_CONFIG);
+
     // Check if BITCOIN_NETWORK_CONFIG is parsable JSON string
     if (!JSON.parsable(BITCOIN_NETWORK_CONFIG)) {
       throw new Btc1Error(
@@ -81,7 +85,7 @@ export class Bitcoin {
 
     // Parse the BITCOIN_NETWORK_CONFIG
     const networkConfigs: Record<string, BitcoinClientConfig> = JSON.parse(BITCOIN_NETWORK_CONFIG);
-    Logger.debug('networkConfigs', networkConfigs);
+
     // Set a list of available networks
     const networks: (keyof AvailableNetworks)[] = ['mainnet', 'testnet', 'signet', 'regtest'];
 
@@ -90,20 +94,21 @@ export class Bitcoin {
       const networkConfig: BitcoinClientConfig = (configs?.[network] ?? networkConfigs[network]) as BitcoinClientConfig;
       if (networkConfig) {
         this[network] = {
-          config  : networkConfig,
-          rpc     : new BitcoinRpc(networkConfig.rpc ?? DEFAULT_RPC_CLIENT_CONFIG),
-          rest    : new BitcoinRest(networkConfig.rest ?? DEFAULT_REST_CONFIG) ,
-          network : getNetwork(network),
+          name   : network,
+          config : networkConfig,
+          rpc    : new BitcoinRpc(networkConfig.rpc ?? DEFAULT_RPC_CLIENT_CONFIG),
+          rest   : new BitcoinRest(networkConfig.rest ?? DEFAULT_REST_CONFIG) ,
+          data   : getNetwork(network),
         };
       }
     }
 
     // Load and check the ACTIVE_NETWORK variable
-    const ACTIVE_NETWORK = (process.env.ACTIVE_NETWORK?.toLowerCase() ?? '') as keyof AvailableNetworks;
+    const ACTIVE_NETWORK = (process.env.ACTIVE_NETWORK?.toLowerCase() ?? 'regtest') as keyof AvailableNetworks;
     if (!ACTIVE_NETWORK) {
       throw new Btc1Error('Missing ACTIVE_NETWORK environment variable', 'MISSING_ACTIVE_NETWORK', { ACTIVE_NETWORK });
     }
-    Logger.debug('ACTIVE_NETWORK', ACTIVE_NETWORK);
+
 
     if (!this[ACTIVE_NETWORK]) {
       throw new Btc1Error(
@@ -112,8 +117,7 @@ export class Bitcoin {
       );
     }
 
-    this.active = this[ACTIVE_NETWORK];
-    Logger.debug('this.active', this.active);
+    this.network = this[ACTIVE_NETWORK];
   }
 
   /**
@@ -134,3 +138,16 @@ export class Bitcoin {
     return sats / 1e8;
   };
 }
+
+const connection = new Bitcoin();
+const network = connection.network;
+const bitcoin = {
+  network,
+  rest    :  {
+    transaction : network.rest.transaction,
+    block       : network.rest.block,
+    address     : network.rest.address,
+  }
+};
+
+export default bitcoin;
