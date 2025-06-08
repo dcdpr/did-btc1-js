@@ -1,7 +1,8 @@
+import { bytesToHex } from '@noble/hashes/utils';
 import { expect } from 'chai';
 import { Btc1Identifier } from '../src/index.js';
 
-describe('Btc1Identifier Encode', () => {
+describe('3 Syntax => 3.2 did:btc1 Identifier Encoding', () => {
   const vectors = [
     {
       did                  : 'did:btc1:k1qqptaz4ydc2q8qjgch9kl46y48ccdhjyqdzxxjmmaupwsv9sut5ssfsm0s3dn',
@@ -69,9 +70,15 @@ describe('Btc1Identifier Encode', () => {
   ];
 
   it('should properly encode each vector and match the corresponding did', () => {
-    vectors.map(({ did, components }) => {
-      expect(Btc1Identifier.encode(components)).to.equal(did);
+    vectors.map(({ did, components: { version, network, genesisBytes } }) => {
+      const decoded = Btc1Identifier.decode(did);
+      expect(decoded.version).to.equal(version);
+      if(typeof decoded.network === 'number') {
+        expect(decoded.network).to.equal(network);
+      } else {
+        expect(decoded.network).to.equal(network);
+      }
+      expect(bytesToHex(decoded.genesisBytes)).to.equal(bytesToHex(genesisBytes));
     });
-  }
-  );
+  });
 });

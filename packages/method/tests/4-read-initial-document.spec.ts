@@ -4,13 +4,13 @@ import { DidBtc1 } from '../src/did-btc1.js';
 import { BeaconUtils, Btc1DidDocument, getNetwork } from '../src/index.js';
 
 /**
- * DidBtc1 Create Key Test Cases
+ * DidBtc1 Read Initial Document Test Cases
  * pubKeyBytes
  * idType=key, pubKeyBytes
  * idType=key, pubKeyBytes, version
  * idType=key, pubKeyBytes, network
  */
-describe('DidBtc1 Create Deterministic', () => {
+describe('4.2 Read => 4.2.1 Resolve Initial Document', () => {
   const version = 1;
   const expectedDidMap = new Map<string, string>([
     ['bitcoin', 'did:btc1:k1qqpexkrg4808au9rydeglsk3rnl53740krmheawht0wgr0cdzsaz7gq3dnzlj'],
