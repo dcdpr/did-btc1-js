@@ -1,8 +1,8 @@
 {
   "name": "@did-btc1/cryptosuite",
-  "version": "2.6.4",
+  "version": "3.0.0",
   "type": "module",
-  "description": "TypeScript/JavaScript reference implementation of the Data Integrity BIP340 Cryptosuite v0.1 specification",
+  "description": "JavaScript/TypeScript implementation of the Data Integrity BIP340 Cryptosuite v0.1 specification. Used by various parts of the did-btc1-js monorepo.",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
@@ -16,6 +16,49 @@
   "files": [
     "dist",
     "src"
+  ],
+  "license": "MPL-2.0",
+  "contributors": [
+    {
+      "name": "dcdpr",
+      "url": "https://github.com/dcdpr"
+    },
+    {
+      "name": "jintekc",
+      "url": "https://github.com/jintekc",
+      "email": "github@jintek.consulting"
+    }
+  ],
+  "homepage": "https://github.com/dcdpr/did-btc1-js/tree/main/packages/cryptosuite",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:dcdpr/did-btc1-js.git",
+    "directory": "packages/cryptosuite"
+  },
+  "bugs": "https://github.com/dcdpr/did-btc1-js/issues",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "keywords": [
+    "did",
+    "dids",
+    "decentralized identity",
+    "decentralized identifiers",
+    "did method",
+    "did:btc1",
+    "bitcoin",
+    "data integrity",
+    "schnorr",
+    "schnorr signatures",
+    "secp256k1",
+    "secp256k1 keys",
+    "cryptosuite",
+    "bip340",
+    "data integrity bip340",
+    "data integrity bip340 cryptosuite"
   ],
   "scripts": {
     "clean": "rimraf dist coverage tests/compiled",
@@ -44,49 +87,6 @@
     "build:lint:test": "pnpm build && pnpm build:tests && pnpm lint:fix",
     "prepublish": "pnpm build"
   },
-  "license": "MPL-2.0",
-  "contributors": [
-    {
-      "name": "dcdpr",
-      "url": "https://github.com/dcdpr"
-    },
-    {
-      "name": "jintekc",
-      "url": "https://github.com/jintekc",
-      "email": "github@jintek.consulting"
-    }
-  ],
-  "homepage": "https://github.com/jintekc/did-btc1-js/tree/main/packages/cryptosuite",
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com:jintekc/did-btc1-js.git",
-    "directory": "packages/cryptosuite"
-  },
-  "bugs": "https://github.com/jintekc/did-btc1-js/issues",
-  "publishConfig": {
-    "access": "public"
-  },
-  "engines": {
-    "node": ">=22.0.0"
-  },
-  "keywords": [
-    "did",
-    "dids",
-    "decentralized identity",
-    "decentralized identifiers",
-    "did method",
-    "did:btc1",
-    "bitcoin",
-    "data integrity",
-    "schnorr",
-    "schnorr signatures",
-    "secp256k1",
-    "secp256k1 keys",
-    "cryptosuite",
-    "bip340",
-    "data integrity bip340",
-    "data integrity bip340 cryptosuite"
-  ],
   "dependencies": {
     "@did-btc1/common": "workspace:*",
     "@did-btc1/key-pair": "workspace:*",

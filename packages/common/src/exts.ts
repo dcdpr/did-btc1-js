@@ -16,7 +16,12 @@ declare global {
 
   /** Extend the global Buffer interface */
    interface BufferConstructor {
+    /** Convert a hex string to a Buffer */
     fromHex(hex: string): Buffer<ArrayBuffer>;
+    /** Convert a Uint8Array to a hex string */
+    toHex(ui8: Uint8Array): string;
+    /** Convert Buffer to Uint8Array */
+    toUint8Array(buf: Buffer<ArrayBuffer>): Uint8Array;
   }
 
   /** Extend the global Date interface */
@@ -99,6 +104,14 @@ Array.prototype.toUint8Array = function (): Uint8Array {
 /** BufferConstructor/Buffer Interface Extensions */
 Buffer.fromHex = function (hex: string): Buffer<ArrayBuffer> {
   return Buffer.from(hex, 'hex');
+};
+
+Buffer.toHex = function (ui8: Uint8Array): string {
+  return Buffer.from(ui8).toString('hex');
+};
+
+Buffer.toUint8Array = function (buf: Buffer<ArrayBuffer>): Uint8Array {
+  return new Uint8Array(buf);
 };
 
 /** Date Interface Extensions */

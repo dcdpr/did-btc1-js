@@ -1,5 +1,5 @@
-import { PublicKeyBytes, BIP340_PUBLIC_KEY_MULTIBASE_PREFIX, HdWallet } from '@did-btc1/common';
-import { sha256 } from '@noble/hashes/sha256';
+import { KeyBytes, BIP340_PUBLIC_KEY_MULTIBASE_PREFIX, HdWallet } from '@did-btc1/common';
+import { sha256 } from '@noble/hashes/sha2';
 import { CURVE, getPublicKey, utils } from '@noble/secp256k1';
 import { HDKey } from '@scure/bip32';
 import { generateMnemonic, mnemonicToSeed } from '@scure/bip39';
@@ -14,15 +14,15 @@ import { base58btc } from 'multiformats/bases/base58';
 export class GeneralUtils {
   /**
    * Helper function to encode a secp256k1 key in SchnorrSecp256k1 Multikey Format
-   * @param {PublicKeyBytes} xOnlyPublicKeyBytes
+   * @param {KeyBytes} xOnlyKeyBytes
    * @returns {PublicKeyMultibase}
    */
-  public static encode(xOnlyPublicKeyBytes: PublicKeyBytes): string {
-    if (xOnlyPublicKeyBytes.length !== 32) {
+  public static encode(xOnlyKeyBytes: KeyBytes): string {
+    if (xOnlyKeyBytes.length !== 32) {
       throw new Error('x-only public key must be 32 bytes');
     }
     const prefix = Array.from(BIP340_PUBLIC_KEY_MULTIBASE_PREFIX);
-    const x = Array.from(xOnlyPublicKeyBytes);
+    const x = Array.from(xOnlyKeyBytes);
     // Set the prefix and the public key bytes
     const multikeyBytes = new Uint8Array([...prefix, ...x]);
     // Encode the public key as a multibase base58btc string

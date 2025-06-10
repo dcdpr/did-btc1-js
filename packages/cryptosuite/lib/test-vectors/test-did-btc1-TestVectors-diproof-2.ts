@@ -1,7 +1,7 @@
-import { KeyPair } from '@did-btc1/key-pair';
+import { SchnorrKeyPair } from '@did-btc1/key-pair';
 import { hexToBytes } from '@noble/hashes/utils';
-import { Btc1Appendix } from '../../../method/src/index.js';
-import { Multikey } from '../../src/index.js';
+import { Btc1Appendix, Btc1Identifier } from '../../../method/src/index.js';
+import { SchnorrMultikey } from '../../src/index.js';
 
 const securedDocument = {
   '@context' : [
@@ -41,14 +41,14 @@ const securedDocument = {
 
 const id = '#initialKey';
 const controller = 'did:btc1:k1qgp8lpuyxprky2kh24hdxlycrcyk56lkqmnuelpw70d3ay2gej6vhwgfqurtz';
-const components = Btc1Appendix.parse(controller);
+const components = Btc1Identifier.decode(controller);
 console.log('components:', components);
-const publicKey = hexToBytes(components.genesisBytes).slice(1);
+const publicKey = components.genesisBytes;
 console.log('publicKey:', publicKey);
-const keyPair = new KeyPair({ publicKey });
-const publicKeyJson = keyPair.publicKey.json();
+const keys = new SchnorrKeyPair({ publicKey });
+const publicKeyJson = keys.publicKey.json();
 console.log('publicKeyJson', publicKeyJson);
-const diProof = Multikey.initialize({ id, controller, keyPair })
+const diProof = SchnorrMultikey.initialize({ id, controller, keys })
   .toCryptosuite('bip340-jcs-2025')
   .toDataIntegrityProof();
 const document = await JSON.canonicalization.canonicalize(securedDocument);

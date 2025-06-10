@@ -1,8 +1,8 @@
 {
   "name": "@did-btc1/key-pair",
-  "version": "0.4.7",
+  "version": "0.5.0",
   "type": "module",
-  "description": "JavaScript/TypeScript implementation of a secp256k1 public/private key pairs with BIP340 schnorr signatures. Implementated for use within the @did-btc1/bip340-2025-cryptosuite.",
+  "description": "JavaScript/TypeScript implementation of secp256k1 public/private key pairs with BIP340 schnorr signatures. Used by various parts of the did-btc1-js monorepo.",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
@@ -29,13 +29,13 @@
       "email": "github@jintek.consulting"
     }
   ],
-  "homepage": "https://github.com/jintekc/did-btc1-js/tree/main/packages/key-pair",
+  "homepage": "https://github.com/dcdpr/did-btc1-js/tree/main/packages/key-pair",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:jintekc/did-btc1-js.git",
+    "url": "git+ssh://git@github.com:dcdpr/did-btc1-js.git",
     "directory": "packages/key-pair"
   },
-  "bugs": "https://github.com/jintekc/did-btc1-js/issues",
+  "bugs": "https://github.com/dcdpr/did-btc1-js/issues",
   "publishConfig": {
     "access": "public"
   },

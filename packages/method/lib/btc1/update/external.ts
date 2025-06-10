@@ -1,4 +1,4 @@
-import { KeyPair } from '@did-btc1/key-pair';
+import { SchnorrKeyPair } from '@did-btc1/key-pair';
 import { mkdir, readFile, writeFile } from 'fs/promises';
 import bitcoin from '../../../src/bitcoin/index.js';
 import { RawTransactionRest } from '../../../src/bitcoin/rest-client.js';
@@ -19,19 +19,19 @@ const keyPairMap = new Map(Object.entries(JSON.parse(await readFile(`${latestdir
 
 const keyId = `${identifier}#key-0`;
 const key = keyPairMap.get(keyId) as { sk: string, pk: string };
-const keyPair = new KeyPair({ privateKey: Buffer.fromHex(key.sk) });
+const keys = new SchnorrKeyPair({ privateKey: Buffer.fromHex(key.sk) });
 
 const kms = await Btc1KeyManager.initialize(keyPair, keyId);
 
 const serviceId = `${initialDocument.id}#service-0`;
 const serviceKey = keyPairMap.get(serviceId) as { sk: string, pk: string };
-const serviceKeyPair = new KeyPair({ privateKey: Buffer.fromHex(serviceKey.sk) });
+const serviceKeyPair = new SchnorrKeyPair({ privateKey: Buffer.fromHex(serviceKey.sk) });
 
 await kms.importKey(serviceKeyPair, serviceId);
 
 const serviceId1 = `${initialDocument.id}#service-1`;
 const serviceKey1 = keyPairMap.get(serviceId1) as { sk: string, pk: string };
-const serviceKeyPair1 = new KeyPair({ privateKey: Buffer.fromHex(serviceKey1.sk) });
+const serviceKeyPair1 = new SchnorrKeyPair({ privateKey: Buffer.fromHex(serviceKey1.sk) });
 
 await kms.importKey(serviceKeyPair1, serviceId1);
 

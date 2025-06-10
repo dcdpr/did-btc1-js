@@ -1,10 +1,10 @@
-import { KeyPair } from '@did-btc1/key-pair';
-import { Multikey } from '../../src/index.js';
+import { SchnorrKeyPair } from '@did-btc1/key-pair';
+import { SchnorrMultikey } from '../../src/index.js';
 import data from '../data/test-data.js';
 
 const { did, document, keyPair: keys } = data;
 
-const keyPair = new KeyPair(keys);
+const keys = new SchnorrKeyPair(keys);
 console.log('keyPair', keyPair);
 
 const { verificationMethod } = document;

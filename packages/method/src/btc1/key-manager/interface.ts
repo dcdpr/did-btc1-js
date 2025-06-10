@@ -1,6 +1,6 @@
 import { HashBytes, Hex, SignatureBytes } from '@did-btc1/common';
-import { Multikey, MultikeyJSON } from '@did-btc1/cryptosuite';
-import { KeyPair, PublicKey } from '@did-btc1/key-pair';
+import { Multikey, SchnorrMultikey } from '@did-btc1/cryptosuite';
+import { SchnorrKeyPair, PublicKey } from '@did-btc1/key-pair';
 import { KeyValueStore } from '@web5/common';
 
 export type Btc1KeyManagerOptions = {
@@ -20,7 +20,7 @@ export type KeyManagerParams = {
    * stored, and managed during cryptographic operations.
    * @type {KeyValueStore<KeyIdentifier, KeyPair>}
    */
-  store?: KeyValueStore<KeyIdentifier, Multikey>;
+  store?: KeyValueStore<KeyIdentifier, SchnorrMultikey>;
 
   /**
    * An optional property to specify a key URI for the key manager. If not provided, the key manager
@@ -43,12 +43,11 @@ export type KeyManagerParams = {
 
   /**
    * An optional property to pass in an initial key pair
-   * @type {KeyPair}
+   * @type {SchnorrKeyPair}
    */
-  keys?: KeyPair;
+  keys?: SchnorrKeyPair;
 };
 
-export type MultikeyPair = MultikeyJSON;
 export type GenerateKeyParams = {
   id: string;
   controller: string;
@@ -84,13 +83,13 @@ export interface KeyManager {
 
     /**
      * Imports a key pair into the key store.
-     * @param {KeyPair} keyPair The key pair to import.
+     * @param {SchnorrKeyPair} keyPair The key pair to import.
      * @param {string} keyUri The full DID controller + fragment identifier (e.g. 'did:btc1:xyz#key-1').
      * @param {Btc1KeyManagerOptions} options The options for importing the key pair.
      * @param {boolean} options.active Whether to set the imported key as active.
      * @returns {Promise<KeyIdentifier>} A promise that resolves to the key identifier of the imported key.
      */
-    importKey(keyPair: KeyPair, keyUri: string, options: Btc1KeyManagerOptions): Promise<KeyIdentifier>;
+    importKey(keyPair: SchnorrKeyPair, keyUri: string, options: Btc1KeyManagerOptions): Promise<KeyIdentifier>;
 }
 
 export interface CryptoSigner {

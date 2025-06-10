@@ -56,7 +56,7 @@ export class DidBtc1 implements DidMethod {
    * Bitcoin network to create their DID.
    * @param {Btc1CreateParams} params See {@link Btc1CreateParams} for details.
    * @param {IdType} params.idType Type of identifier to create (key or external).
-   * @param {PublicKeyBytes} params.pubKeyBytes Public key byte array used to create a btc1 "key" identifier.
+   * @param {KeyBytes} params.pubKeyBytes Public key byte array used to create a btc1 "key" identifier.
    * @param {IntermediateDocument} params.intermediateDocument DID Document used to create a btc1 "external" identifier.
    * @param {DidCreateOptions} params.options See {@link DidCreateOptions} for create options.
    * @param {number} params.options.version Version number of the btc1 method.
@@ -167,7 +167,7 @@ export class DidBtc1 implements DidMethod {
    * The result of these transformations MUST produce a DID document conformant to the DID Core specification. The
    * verificationMethodId is an identifier for a verificationMethod within the sourceDocument. The verificationMethod
    * identified MUST be a BIP340 Multikey. The beaconIds MUST identify service endpoints with one of the three Beacon
-   * Types SingletonBeacon, aCIDAggregateBeacon, and SMTAggregateBeacon.
+   * Types SingletonBeacon, CIDAggregateBeacon, and SMTAggregateBeacon.
    *
    * @param {Btc1UpdateParams} params Required parameters for the update operation.
    * @param {string} params.identifier The btc1 identifier to be updated.

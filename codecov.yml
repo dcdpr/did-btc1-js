@@ -15,9 +15,9 @@ component_management:
       name: cryptosuite
       paths: ["packages/cryptosuite/**"]
 
-    - component_id: package-key-pair
-      name: key-pair
-      paths: ["packages/key-pair/**"]
+    - component_id: package-keypair
+      name: keypair
+      paths: ["packages/keypair/**"]
 
     - component_id: package-method
       name: method

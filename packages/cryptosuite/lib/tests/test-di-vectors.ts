@@ -1,4 +1,4 @@
-import { KeyPair } from '@did-btc1/key-pair';
+import { SchnorrKeyPair } from '@did-btc1/key-pair';
 import { base58btc } from 'multiformats/bases/base58';
 import { Cryptosuite, DataIntegrityProof, Multikey } from '../../src/index.js';
 
@@ -42,7 +42,7 @@ const controller = 'did:btc1:regtest:k1qdh2ef3aqne63sdhq8tr7c8zv9lyl5xy4llj8uw3e
 const publicKeyMultibase = 'zQ3shn68faoXE2EqCTtefQXNLgaTa7ZohG2ftZjgXphStJsGc';
 const publicKey = base58btc.decode(publicKeyMultibase).slice(2);
 console.log('publicKey', publicKey);
-const keyPair = new KeyPair({ publicKey });
+const keys = new SchnorrKeyPair({ publicKey });
 const multikey = new Multikey({ id, controller, keyPair });
 const cryptosuite = new Cryptosuite({ cryptosuite: 'bip340-jcs-2025', multikey });
 const diProof = new DataIntegrityProof(cryptosuite);

@@ -41,7 +41,8 @@ export enum Btc1ErrorCode {
   /** Verification of a signature failed during a DID operation. */
   INVALID_SIGNATURE = 'INVALID_SIGNATURE',
 
-  /** The DID resolver was unable to find the DID document resulting from the resolution request. */
+  /** General: The resource requested was not found. */
+  /** DID Resolution: The DID resolver was unable to find the DID document resulting from the resolution request.  */
   NOT_FOUND = 'NOT_FOUND',
 
   /**
@@ -65,8 +66,8 @@ export enum Btc1ErrorCode {
   /** The proof could not be parsed properly. */
   PROOF_PARSING_ERROR = 'PROOF_PARSING_ERROR',
 
-  /** The Multikey verification method was formed improperly. */
-  MULTIKEY_VERIFICATION_METHOD_ERROR = 'MULTIKEY_VERIFICATION_METHOD_ERROR',
+  /** The verification method was formed improperly. */
+  VERIFICATION_METHOD_ERROR = 'VERIFICATION_METHOD_ERROR',
 
  /** Something about the DID Update Payload indicates the potential for late publishing. */
   LATE_PUBLISHING_ERROR = 'LATE_PUBLISHING_ERROR',
@@ -102,7 +103,7 @@ export const {
   PROOF_GENERATION_ERROR,
   PROOF_SERIALIZATION_ERROR,
   PROOF_PARSING_ERROR,
-  MULTIKEY_VERIFICATION_METHOD_ERROR,
+  VERIFICATION_METHOD_ERROR,
   LATE_PUBLISHING_ERROR,
   INVALID_SIDECAR_DATA,
   INVALID_CHALLENGE_ERROR,
@@ -174,8 +175,8 @@ export class KeyPairError extends DidBtc1Error {
   }
 }
 
-export class PrivateKeyError extends DidBtc1Error {
-  constructor(message: string, type: string = 'PrivateKeyError', data?: Record<string, any>) {
+export class SecretKeyError extends DidBtc1Error {
+  constructor(message: string, type: string = 'SecretKeyError', data?: Record<string, any>) {
     super(message, { type, name: type, data });
   }
 }

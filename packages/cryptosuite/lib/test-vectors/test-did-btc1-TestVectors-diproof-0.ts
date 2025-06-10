@@ -1,6 +1,6 @@
 import { ProofOptions } from '@did-btc1/common';
-import { KeyPair, PrivateKeyUtils } from '@did-btc1/key-pair';
-import { Multikey } from '../../src/index.js';
+import { SchnorrKeyPair, SecretKey } from '@did-btc1/key-pair';
+import { SchnorrMultikey } from '../../src/index.js';
 
 const unsecuredDocument = {
   '@context' : [
@@ -29,9 +29,9 @@ const options: ProofOptions = {
   proofPurpose       : 'attestationMethod'
 };
 
-const privateKey = PrivateKeyUtils.fromSecret(SECRET);
-const keyPair = new KeyPair({ privateKey });
-const diProof = Multikey.initialize({ id, controller, keyPair })
+const secretKey = SecretKey.fromSecret(SECRET);
+const keys = new SchnorrKeyPair({ secretKey });
+const diProof = SchnorrMultikey.initialize({ id, controller, keys })
   .toCryptosuite('bip340-jcs-2025')
   .toDataIntegrityProof();
 const securedDocument = await diProof.addProof({ document: unsecuredDocument, options });

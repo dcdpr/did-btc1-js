@@ -1,7 +1,16 @@
-import { Btc1KeyManagerError, HashBytes, Hex, KeyPairJSON, Logger, MULTIBASE_URI_PREFIX, PublicKeyBytes, SignatureBytes } from '@did-btc1/common';
-import { Multikey } from '@did-btc1/cryptosuite';
-import { KeyPair, KeyPairUtils, PublicKey } from '@did-btc1/key-pair';
-import { sha256 } from '@noble/hashes/sha256';
+import {
+  Btc1KeyManagerError,
+  HashBytes,
+  Hex,
+  SchnorrKeyPairObject,
+  Logger,
+  MULTIBASE_URI_PREFIX,
+  KeyBytes,
+  SignatureBytes
+} from '@did-btc1/common';
+import { SchnorrMultikey } from '@did-btc1/cryptosuite';
+import { SchnorrKeyPair, PublicKey } from '@did-btc1/key-pair';
+import { sha256 } from '@noble/hashes/sha2';
 import { KeyValueStore, MemoryStore } from '@web5/common';
 import { KeyIdentifier } from '@web5/crypto';
 import { Did } from '@web5/dids';
@@ -10,7 +19,7 @@ import { AvailableNetworks } from '../../bitcoin/index.js';
 import { BitcoinSigner, Btc1KeyManagerOptions, CryptoSigner, KeyManager, KeyManagerParams } from './interface.js';
 
 export interface Btc1Signer {
-  multikey: Multikey;
+  multikey: SchnorrMultikey;
   network: keyof AvailableNetworks;
 };
 
@@ -46,14 +55,14 @@ export class Btc1KeyManager implements KeyManager, CryptoSigner, BitcoinSigner  
    * requirements.
    * @private
    * @readonly
-   * @type {KeyValueStore<KeyIdentifier, KeyPair>} The key store for managing cryptographic keys.
+   * @type {KeyValueStore<KeyIdentifier, SchnorrKeyPair>} The key store for managing cryptographic keys.
    */
-  private readonly _store: KeyValueStore<KeyIdentifier, Multikey>;
+  private readonly _store: KeyValueStore<KeyIdentifier, SchnorrMultikey>;
 
   /**
    * Creates an instance of Btc1KeyManager.
    * @param {?KeyManagerParams} params The parameters to initialize the key manager.
-   * @param {KeyValueStore<KeyIdentifier, Multikey>} params.store An optional property to specify a custom
+   * @param {KeyValueStore<KeyIdentifier, SchnorrMultikey>} params.store An optional property to specify a custom
    * `KeyValueStore` instance for key management. If not provided, {@link Btc1KeyManager} uses a default `MemoryStore`
    * instance. This store is responsible for managing cryptographic keys, allowing them to be retrieved, stored, and
    * managed during cryptographic operations.
@@ -61,7 +70,7 @@ export class Btc1KeyManager implements KeyManager, CryptoSigner, BitcoinSigner  
    */
   constructor({ store, keyUri, keys }: KeyManagerParams = {}) {
     // Set the default key store to a MemoryStore instance
-    this._store = store ?? new MemoryStore<KeyIdentifier, Multikey>();
+    this._store = store ?? new MemoryStore<KeyIdentifier, SchnorrMultikey>();
 
     // Import the keys into the key store
     if (keyUri && keys) {
@@ -130,7 +139,7 @@ export class Btc1KeyManager implements KeyManager, CryptoSigner, BitcoinSigner  
     }
 
     // Check if the key can sign
-    if(!key.isSigner) {
+    if(!key.signer) {
       throw new Btc1KeyManagerError(`Key URI ${keyUri} is not a signer`, 'KEY_NOT_SIGNER');
     }
 
@@ -161,10 +170,10 @@ export class Btc1KeyManager implements KeyManager, CryptoSigner, BitcoinSigner  
   /**
    * Gets the key pair from the key store.
    * @param {KeyIdentifier} keyUri The URI of the key to get.
-   * @returns {Promise<KeyPair>} The key pair associated with the key URI.
+   * @returns {Promise<SchnorrKeyPair>} The key pair associated with the key URI.
    * @throws {Btc1KeyManagerError} If the key is not found in the key store.
    */
-  private async getKey(keyUri?: KeyIdentifier): Promise<Multikey | undefined> {
+  private async getKey(keyUri?: KeyIdentifier): Promise<SchnorrMultikey | undefined> {
     // Use the active key URI if not provided
     const uri = keyUri ?? this.activeKeyUri;
 
@@ -179,21 +188,23 @@ export class Btc1KeyManager implements KeyManager, CryptoSigner, BitcoinSigner  
 
   /**
    * Exports the full multikeypair from the key store.
-   * @returns {Promise<KeyPair>} The key pair associated with the key URI.
+   * @returns {Promise<SchnorrKeyPair>} The key pair associated with the key URI.
    * @throws {Btc1KeyManagerError} If the key is not found in the key store.
    */
-  public async exportKey(keyUri?: KeyIdentifier): Promise<Multikey | undefined> {
+  public async exportKey(keyUri?: KeyIdentifier): Promise<SchnorrMultikey | undefined> {
     // Get the key from the key store and return it
     return await this.getKey(keyUri);
   }
 
   /**
    * Imports a keypair to the store.
+   * @param {SchnorrKeyPair} keys The keypair to import.
+   * @param {KeyIdentifier} keyUri The URI of the key to import.
    * @param {Btc1KeyManagerOptions} options Relevant import options.
    * @param {boolean} options.active A flag to set the key as active (optional, default: false).
    * @returns {Promise<KeyIdentifier>} A promise that resolves to the key identifier of the imported key.
    */
-  public async importKey(keyPair: KeyPair, keyUri: string, options: Btc1KeyManagerOptions = {}): Promise<KeyIdentifier> {
+  public async importKey(keys: SchnorrKeyPair, keyUri: string, options: Btc1KeyManagerOptions = {}): Promise<KeyIdentifier> {
     const parts = Did.parse(keyUri);
     if(!parts) {
       throw new Btc1KeyManagerError(
@@ -218,8 +229,8 @@ export class Btc1KeyManager implements KeyManager, CryptoSigner, BitcoinSigner  
         { keyUri, parts }
       );
     }
-    // Instantiate a new Multikey with the provided keys
-    const multikey = new Multikey({ controller: parts.uri, id: `#${parts.fragment}`, keyPair });
+    // Instantiate a new SchnorrMultikey with the provided keys
+    const multikey = new SchnorrMultikey({ controller: parts.uri, id: `#${parts.fragment}`, keys });
 
     // Store the keypair in the key store
     await this._store.set(keyUri, multikey);
@@ -255,11 +266,11 @@ export class Btc1KeyManager implements KeyManager, CryptoSigner, BitcoinSigner  
 
   /**
    * Computes a multibase-compliant URI from a key.
-   * @param key A KeyPair, PublicKey, or multibase string
+   * @param key A SchnorrKeyPair, PublicKey, or multibase string
    * @returns {string} A multibase URI (e.g. 'urn:mb:zQ3s...')
    */
-  public static toMultibaseUri(data: KeyPair | PublicKey | Multibase<'zQ3s'>): string {
-    const multibase = data instanceof KeyPair
+  public static toMultibaseUri(data: SchnorrKeyPair | PublicKey | Multibase<'zQ3s'>): string {
+    const multibase = data instanceof SchnorrKeyPair
       ? data.publicKey.multibase
       : data instanceof PublicKey
         ? data.multibase
@@ -270,11 +281,13 @@ export class Btc1KeyManager implements KeyManager, CryptoSigner, BitcoinSigner  
 
   /**
    * Initializes a singleton Btc1KeyManager instance.
-   * @param {KeyPair} keys The keypair used to initialize the key manager (optional).
+   * @param {SchnorrKeyPair} keys The keypair used to initialize the key manager.
    * @returns {void}
    */
-  public static async initialize(keys: KeyPair | KeyPairJSON, keyUri: string): Promise<Btc1KeyManager> {
-    keys = keys instanceof KeyPair ? keys : KeyPair.from(keys);
+  public static async initialize(keys: SchnorrKeyPair | SchnorrKeyPairObject, keyUri: string): Promise<Btc1KeyManager> {
+    if(!(keys instanceof SchnorrKeyPair)) {
+      keys = SchnorrKeyPair.fromJSON(keys);
+    }
 
     // Check if the Btc1KeyManager instance is already initialized
     if (Btc1KeyManager.#instance) {
@@ -285,11 +298,11 @@ export class Btc1KeyManager implements KeyManager, CryptoSigner, BitcoinSigner  
     // Check if the keypair is provided
     if(!keys) {
       // Log a warning message if not provided
-      Logger.warn('KeyPair not provided, generating ...');
+      Logger.warn('keys not provided, generating ...');
     }
 
     // Generate a new keypair if not provided
-    keys ??= KeyPairUtils.generate();
+    keys ??= SchnorrKeyPair.generate();
 
     // Initialize the singleton key manager with the keypair
     Btc1KeyManager.#instance = new Btc1KeyManager({ keys });
@@ -311,9 +324,9 @@ export class Btc1KeyManager implements KeyManager, CryptoSigner, BitcoinSigner  
    * Retrieves a keypair from the key store using the provided key URI.
    * @public
    * @param {KeyIdentifier} keyUri The URI of the keypair to retrieve.
-   * @returns {Promise<KeyPair | undefined>} The retrieved keypair, or undefined if not found.
+   * @returns {Promise<SchnorrKeyPair | undefined>} The retrieved keypair, or undefined if not found.
    */
-  public static async getKeyPair(keyUri?: KeyIdentifier): Promise<Multikey | undefined> {
+  public static async getKeyPair(keyUri?: KeyIdentifier): Promise<SchnorrMultikey | undefined> {
     // Use the active key URI if not provided
     keyUri ??= Btc1KeyManager.#instance?.activeKeyUri;
     // Instantiate a new Btc1KeyManager with the default key store
@@ -330,7 +343,7 @@ export class Btc1KeyManager implements KeyManager, CryptoSigner, BitcoinSigner  
 }
 
 export class Signer {
-  public multikey: Multikey;
+  public multikey: SchnorrMultikey;
   public network: keyof AvailableNetworks;
 
   constructor(params: Btc1Signer) {
@@ -338,13 +351,13 @@ export class Signer {
     this.network = params.network;
   }
 
-  get publicKey(): PublicKeyBytes {
+  get publicKey(): KeyBytes {
     // Return the public key from the multikey
-    return this.multikey.publicKey.bytes;
+    return this.multikey.publicKey.compressed;
   }
 
   public sign(hash: Hex): SignatureBytes {
-    return this.multikey.signEcdsa(hash);
+    return this.multikey.sign(hash, { scheme: 'ecdsa' });
   };
 
   public signSchnorr(hash: Hex): SignatureBytes {

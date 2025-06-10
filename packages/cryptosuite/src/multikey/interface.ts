@@ -1,14 +1,13 @@
-import { KeyPairJSON, MessageBytes, PrivateKeyBytes, PublicKeyBytes, SignatureBytes } from '@did-btc1/common';
-import { KeyPair, PrivateKey, PublicKey } from '@did-btc1/key-pair';
+import { KeyBytes, SchnorrKeyPairObject, MessageBytes, SignatureBytes } from '@did-btc1/common';
+import { SchnorrKeyPair, PublicKey, SecretKey } from '@did-btc1/key-pair';
 import { DidVerificationMethod } from '@web5/dids';
-import { Multikey } from './index.js';
 
-export type MultikeyJSON = {
+export type MultikeyObject = {
   id: string;
   controller: string;
   fullId: string;
-  isSigner: boolean;
-  keyPair: KeyPairJSON;
+  signer: boolean;
+  keys: SchnorrKeyPairObject;
   verificationMethod: DidVerificationMethod;
 }
 export interface DidParams {
@@ -16,49 +15,49 @@ export interface DidParams {
   controller: string;
 }
 
-export interface FromPrivateKey extends DidParams {
-  privateKeyBytes: PrivateKeyBytes;
+export interface FromSecretKey extends DidParams {
+  entropy: KeyBytes;
 }
 export interface FromPublicKey extends DidParams {
-  publicKeyBytes: PublicKeyBytes;
+  publicKeyBytes: KeyBytes;
 }
 export interface MultikeyParams extends DidParams {
-  keyPair?: KeyPair;
+  keys?: SchnorrKeyPair;
 }
 export interface FromPublicKeyMultibaseParams extends DidParams {
   publicKeyMultibase: string;
 }
 
 /**
- * Interface representing a BIP340 Multikey.
- * @interface IMultikey
+ * Interface for a {@link https://dcdpr.github.io/data-integrity-schnorr-secp256k1/#multikey | 2.1.1 Multikey}.
+ * @interface Multikey
  */
-export interface IMultikey {
-  /** @type {string} @readonly Get the Multikey id. */
+export interface Multikey {
+  /** @type {string} @readonly Get the id. */
   readonly id: string;
 
-  /** @type {string} @readonly Get the Multikey controller. */
+  /** @type {string} @readonly Get the controller. */
   readonly controller: string;
 
-  /** @type {KeyPair} @readonly Get the Multikey KeyPair. */
-  readonly keyPair: KeyPair;
+  /** @type {Keys} @readonly Get the keys. */
+  readonly keys: SchnorrKeyPair;
 
-  /** @type {PublicKey} @readonly Get the Multikey PublicKey. */
+  /** @type {PublicKey} @readonly Get the PublicKey. */
   readonly publicKey: PublicKey;
 
-  /** @type {PrivateKey} @readonly Get the Multikey PrivateKey. */
-  readonly privateKey?: PrivateKey;
+  /** @type {SecretKey} @readonly Get the SecretKey. */
+  readonly secretKey?: SecretKey;
 
-  /** @type {boolean} @readonly Get signing ability of the Multikey (i.e. is there a valid privateKey). */
-  readonly isSigner: boolean;
+  /** @type {boolean} @readonly Get signing ability of the (i.e. is there a valid secretKey). */
+  readonly signer: boolean;
 
   /**
-   * Produce signed data with a private key.
+   * Produce signed data with a secret key.
    * @param {MessageBytes} data Data to be signed.
    * @returns {SignatureBytes} Signature byte array.
-   * @throws {MultikeyError} if no private key is provided.
+   * @throws {MultikeyError} if no secret key is provided.
    */
-  sign(data: MessageBytes): SignatureBytes;
+  sign(data: MessageBytes, opts: { scheme: 'ecdsa' | 'schnorr' }): SignatureBytes;
 
   /**
    * Verify a schnorr signature.
@@ -66,7 +65,7 @@ export interface IMultikey {
    * @param {string} message Data for verification.
    * @returns {boolean} If the signature is valid against the public key.
    */
-  verify(signature: SignatureBytes, message: string): boolean;
+  verify(signature: SignatureBytes, message: string, opts: { scheme: 'ecdsa' | 'schnorr' }): boolean;
 
   /**
    * Get the full id of the multikey
@@ -93,7 +92,7 @@ export interface IMultikey {
 
   /**
    * Convert the multikey to a JSON object.
-   * @returns {MultikeyJSON} The multikey as a JSON object.
+   * @returns {MultikeyObject} The multikey as a JSON object.
    */
-  json(): MultikeyJSON;
+  json(): MultikeyObject;
 }

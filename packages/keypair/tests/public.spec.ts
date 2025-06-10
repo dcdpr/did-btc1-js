@@ -1,10 +1,9 @@
 import { expect } from 'chai';
-import { PublicKey } from '../src/public-key.js';
-import { PublicKeyError } from '@did-btc1/common';
+import { PublicKey } from '../src/public.js';
+import { BIP340_PUBLIC_KEY_MULTIBASE_PREFIX, PublicKeyError } from '@did-btc1/common';
 
 describe('PublicKey', () => {
   const hex = '027f87843047622ad7556ed37c981e096a6bf606e7ccfc2ef3db1e9148ccb4cbb9';
-  const multibase = 'zQ3shVzcPKb9Jw46yNjW2AMXe9AhniqSqtPueJNygcLguNZTn';
   const parity = 2;
   const x = new Uint8Array([
     127, 135, 132,  48,  71,  98,  42, 215,
@@ -29,7 +28,12 @@ describe('PublicKey', () => {
     218, 208, 107, 223,  13, 168, 121,   9
   ]);
   const prefix = new Uint8Array([231, 1]);
-  const bytes = new Uint8Array([parity, ...x]);
+  const compressed = new Uint8Array([parity, ...x]);
+  const multibase = {
+    prefix  : BIP340_PUBLIC_KEY_MULTIBASE_PREFIX,
+    key     : [...prefix, ...compressed],
+    address : 'zQ3shVzcPKb9Jw46yNjW2AMXe9AhniqSqtPueJNygcLguNZTn'
+  };
 
   describe('with invalid bytes', () => {
     it('should throw PublicKeyError if bytes invalid', () => {
@@ -39,14 +43,14 @@ describe('PublicKey', () => {
   });
 
   describe('with valid bytes', () => {
-    const publicKey = new PublicKey(bytes);
+    const publicKey = new PublicKey(compressed);
 
     it('should be an instance of PublicKey', () => {
       expect(publicKey).to.be.instanceOf(PublicKey);
     });
 
-    it('should have property bytes matching the seed bytes', () => {
-      expect(publicKey.bytes).to.deep.equal(bytes);
+    it('should have property compressed matching compressed bytes', () => {
+      expect(publicKey.compressed).to.deep.equal(compressed);
     });
 
     it('should have property hex matching the expected hex', () => {
@@ -54,7 +58,19 @@ describe('PublicKey', () => {
     });
 
     it('should have property multibase matching the expected multibase', () => {
-      expect(publicKey.multibase).to.equal(multibase);
+      expect(publicKey.multibase).to.deep.equal(multibase);
+    });
+
+    it('should have property multibase.address matching the expected multibase.address', () => {
+      expect(publicKey.multibase.address).to.equal(multibase.address);
+    });
+
+    it('should have property multibase.prefix matching the expected multibase.prefix', () => {
+      expect(publicKey.multibase.prefix).to.deep.equal(multibase.prefix);
+    });
+
+    it('should have property multibase.prefix matching the expected multibase.prefix', () => {
+      expect(publicKey.multibase.key).to.deep.equal(multibase.key);
     });
 
     it('should have property parity matching the expected parity', () => {
@@ -73,16 +89,12 @@ describe('PublicKey', () => {
       expect(publicKey.uncompressed).to.deep.equal(uncompressed);
     });
 
-    it('should have property prefix matching the expected prefix', () => {
-      expect(publicKey.prefix).to.deep.equal(prefix);
-    });
-
     it('should have property x matching the expected x', () => {
       expect(publicKey.x).to.deep.equal(x);
     });
 
     it('should equal the expected PublicKey', () => {
-      expect(publicKey.equals(new PublicKey(bytes))).to.be.true;
+      expect(publicKey.equals(new PublicKey(compressed))).to.be.true;
     });
 
     it('should have property hex matching the expected hex', () => {
@@ -90,7 +102,7 @@ describe('PublicKey', () => {
     });
 
     it('should encode the x-coordinate and match the expected multibase', () => {
-      expect(publicKey.encode()).to.equal(multibase);
+      expect(publicKey.encode()).to.equal(multibase.address);
     });
   });
 });

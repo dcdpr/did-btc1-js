@@ -1,8 +1,8 @@
 {
     "name": "@did-btc1/method",
-    "version": "0.10.1",
+    "version": "0.11.0",
     "type": "module",
-    "description": "@did-btc1/method is the typescript/javascript reference implementation of the did:btc1 spec. did:btc1 is a censorship resistant DID Method using the Bitcoin blockchain as a Verifiable Data Registry to announce changes to the DID document. It improves on prior work by allowing: zero-cost off-chain DID creation; aggregated updates for scalable on-chain update costs; long-term identifiers that can support frequent updates; private communication of the DID document; private DID resolution; and non-repudiation appropriate for serious contracts.",
+    "description": "Javascript/TypeScript reference implementation of the did:btc1 spec, a censorship resistant DID Method using the Bitcoin blockchain as a Verifiable Data Registry to announce changes to the DID document. Core package of the did-btc1-js monorepo.",
     "main": "./dist/cjs/index.js",
     "module": "./dist/esm/index.js",
     "types": "./dist/types/index.d.ts",
@@ -13,6 +13,44 @@
             "require": "./dist/cjs/index.js"
         }
     },
+    "files": [
+        "dist",
+        "src"
+    ],
+    "license": "MPL-2.0",
+    "contributors": [
+        {
+            "name": "dcdpr",
+            "url": "https://github.com/dcdpr"
+        },
+        {
+            "name": "jintekc",
+            "url": "https://github.com/jintekc",
+            "email": "github@jintek.consulting"
+        }
+    ],
+    "homepage": "https://github.com/dcdpr/did-btc1-js/tree/main/packages/method",
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com:dcdpr/did-btc1-js.git",
+        "directory": "packages/method"
+    },
+    "bugs": "https://github.com/dcdpr/did-btc1-js/issues",
+    "publishConfig": {
+        "access": "public"
+    },
+    "engines": {
+        "node": ">=22.0.0"
+    },
+    "keywords": [
+        "did",
+        "dids",
+        "decentralized identity",
+        "decentralized identifiers",
+        "did method",
+        "did:btc1",
+        "bitcoin"
+    ],
     "scripts": {
         "clean": "rimraf dist coverage tests/compiled",
         "clean:build": "rimraf dist",
@@ -39,45 +77,8 @@
         "prepublish": "pnpm build",
         "do": "pnpm tsx",
         "do:lib": "${PWD}/lib/run-lib.sh",
-        "do:lib:bitcoin": "${PWD}/lib/do-lib.sh bitcoin",
+        "do:lib:btc": "${PWD}/lib/do-lib.sh bitcoin",
         "do:lib:btc1": "${PWD}/lib/do-lib.sh btc1"
-    },
-    "contributors": [
-        {
-            "name": "dcdpr",
-            "url": "https://github.com/dcdpr"
-        },
-        {
-            "name": "jintekc",
-            "url": "https://github.com/jintekc",
-            "email": "github@jintek.consulting"
-        }
-    ],
-    "homepage": "https://github.com/jintekc/did-btc1-js/tree/main/packages/method",
-    "repository": {
-        "type": "git",
-        "url": "git+ssh://git@github.com:jintekc/did-btc1-js.git",
-        "directory": "packages/method"
-    },
-    "bugs": "https://github.com/jintekc/did-btc1-js/issues",
-    "files": [
-        "dist",
-        "src"
-    ],
-    "keywords": [
-        "did",
-        "dids",
-        "decentralized identity",
-        "decentralized identifiers",
-        "did method",
-        "did:btc1",
-        "bitcoin"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
-    "engines": {
-        "node": ">=22.0.0"
     },
     "dependencies": {
         "@did-btc1/common": "workspace:*",
@@ -90,6 +91,7 @@
         "@scure/base": "^1.1.9",
         "@scure/bip32": "^1.5.0",
         "@scure/bip39": "^1.4.0",
+        "@scure/btc-signer": "^1.8.1",
         "@web5/common": "^1.1.0",
         "@web5/crypto": "^1.0.6",
         "@web5/dids": "^1.2.0",
@@ -99,6 +101,7 @@
         "dotenv": "^16.5.0",
         "helia": "^5.2.1",
         "multiformats": "^13.3.1",
+        "nostr-tools": "^2.15.0",
         "tiny-secp256k1": "^2.2.3"
     },
     "devDependencies": {

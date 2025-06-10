@@ -1,4 +1,4 @@
-import { KeyPair } from '@did-btc1/key-pair';
+import { SchnorrKeyPair } from '@did-btc1/key-pair';
 import { mkdir, readFile, writeFile } from 'fs/promises';
 import path from 'path';
 import bitcoin from '../../../../src/bitcoin/index.js';
@@ -20,8 +20,9 @@ const verificationMethod = DidBtc1.getSigningMethod({ didDocument: sourceDocumen
 
 const identifier = verificationMethodId;
 const [id, controller] = identifier.split('#');
-const privateKey = Buffer.from(keys.genesisKey.sk, 'hex');
-await Btc1KeyManager.initialize(new KeyPair({ privateKey }), id, controller);
+const secretKey = Buffer.from(keys.genesisKey.sk, 'hex');
+const keyUri = Btc1KeyManager.computeKeyUri(id, controller);
+await Btc1KeyManager.initialize(new SchnorrKeyPair({ secretKey }), keyUri);
 
 const didUpdateInvocation = await Btc1Update.invoke({ identifier, verificationMethod, didUpdatePayload, });
 

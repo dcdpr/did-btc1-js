@@ -2,55 +2,49 @@ import { HDKey } from '@scure/bip32';
 
 /* Crypto Types */
 export type Hex = Uint8Array | string;
-export type PrivateKeyHex = Hex;
-export type PublicKeyHex = Hex;
 export type SignatureHex = Hex;
 export type HashHex = Hex;
-export type DocumentBytes = Bytes;
+
 export type Bytes = Uint8Array;
-export type PrivateKeyBytes = Bytes;
-export type PublicKeyBytes = Bytes;
-export type PrivateKeySeed = PrivateKeyBytes | PrivateKeySecret;
-export type PrefixBytes = Bytes;
-export type PublicKeyMultibaseBytes = Bytes;
+export type DocumentBytes = Bytes;
 export type SignatureBytes = Bytes;
 export type ProofBytes = Bytes;
 export type HashBytes = Bytes;
 export type MessageBytes = Bytes;
-export type KeyBytes = Bytes;
-export type PrivateKeySecret = bigint;
-export type PrivateKeyPoint = bigint;
+export type Entropy = Bytes | bigint;
+
 export type CompressedPublicKeyParityByte = 0x02 | 0x03;
 export type Bip340Encoding = string;
 export type Base58BtcPrefix = 'z';
-export type PublicKeyMultibaseHeader = `${Base58BtcPrefix}66P`;
-export type PublicKeyMultibase = `${PublicKeyMultibaseHeader}${string}`;
-export type SchnorrKeyPair = {
-  privateKey: PrivateKeyBytes;
-  publicKey: PublicKeyBytes;
-};
-export type DecodedPublicKeyMultibase = {
-  prefix: PrefixBytes;
-  publicKey: PublicKeyBytes;
-  multibase: PublicKeyMultibaseBytes;
-};
-export type PublicKeyJSON = {
-  parity: number;
+
+export type KeyBytes = Bytes;
+export type Point = {
   x: Array<number>;
   y: Array<number>;
+  parity: number;
+}
+export type PublicKeyObject = {
+  point: Point;
   hex: Hex;
-  multibase: string;
-  prefix: Array<number>;
+  multibase: MultibaseObject;
 };
-export type PrivateKeyJSON = {
+export type SecretKeyObject = {
   bytes: Array<number>;
-  secret: string;
-  point: string
-  hex: Hex;
+  seed?: string;
+  hex?: Hex;
 };
-export type KeyPairJSON = {
-  privateKey: PrivateKeyJSON;
-  publicKey: PublicKeyJSON;
+export type SchnorrKeyPair = {
+  secretKey: KeyBytes;
+  publicKey: KeyBytes;
+};
+export type SchnorrKeyPairObject = {
+  secretKey: SecretKeyObject;
+  publicKey: PublicKeyObject;
+};
+export type MultibaseObject = {
+  address: string;
+  prefix: Bytes;
+  key: Array<number>;
 };
 export type HdWallet = {
     mnemonic: string;

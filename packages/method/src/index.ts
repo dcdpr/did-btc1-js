@@ -4,10 +4,10 @@ export * from './bitcoin/interface.js';
 export * from './bitcoin/network.js';
 export * from './bitcoin/rpc-client.js';
 
-export * from './btc1/beacons/cid-aggregate.js';
-export * from './btc1/beacons/factory.js';
-export * from './btc1/beacons/singleton.js';
-export * from './btc1/beacons/smt-aggregate.js';
+export * from './btc1/beacon/cid-aggregate.js';
+export * from './btc1/beacon/factory.js';
+export * from './btc1/beacon/singleton.js';
+export * from './btc1/beacon/smt-aggregate.js';
 
 export * from './btc1/crud/create.js';
 export * from './btc1/crud/deactivate.js';

@@ -1,4 +1,4 @@
-import { Btc1IdentifierTypes, PatchOperation, PublicKeyBytes } from '@did-btc1/common';
+import { Btc1IdentifierTypes, KeyBytes, PatchOperation } from '@did-btc1/common';
 import { PublicKey } from '@did-btc1/key-pair';
 import { DidCreateOptions as IDidCreateOptions } from '@web5/dids';
 import { getNetwork } from '../../bitcoin/network.js';
@@ -35,7 +35,7 @@ export interface DidCreateOptions extends IDidCreateOptions<Btc1KeyManager> {
 }
 export type Btc1CreateKeyParams = {
   idType: 'KEY';
-  pubKeyBytes: PublicKeyBytes;
+  pubKeyBytes: KeyBytes;
   options?: DidCreateOptions;
 };
 export type Btc1CreateExternalParams = {
@@ -65,12 +65,12 @@ export class Btc1Create {
    * @param {Btc1CreateKeyParams} params See {@link Btc1CreateKeyParams} for details.
    * @param {number} params.version did-btc1 identifier version.
    * @param {string} params.network did-btc1 bitcoin network.
-   * @param {PublicKeyBytes} params.pubKeyBytes public key bytes for id creation.
+   * @param {KeyBytes} params.pubKeyBytes public key bytes for id creation.
    * @returns {Btc1CreateResponse} A response object of type {@link Btc1CreateResponse}.
    * @throws {DidError} if the public key is missing or invalid.
    */
   public static key({ pubKeyBytes, options }: {
-    pubKeyBytes: PublicKeyBytes;
+    pubKeyBytes: KeyBytes;
     options: DidCreateOptions;
   }): Btc1CreateResponse {
     // Deconstruct options and set the default values
@@ -83,7 +83,7 @@ export class Btc1Create {
     const identifier = Btc1Identifier.encode({ version, network, idType, genesisBytes: pubKeyBytes });
 
     // Instantiate PublicKey object and get the multibase formatted publicKey
-    const { bytes: publicKey, multibase: publicKeyMultibase } = new PublicKey(pubKeyBytes);
+    const { compressed: publicKey, multibase: publicKeyMultibase } = new PublicKey(pubKeyBytes);
 
     // Generate the service field for the DID Document
     const service = BeaconUtils.generateBeaconServices({
@@ -98,10 +98,10 @@ export class Btc1Create {
       id                 : identifier,
       controller         : [identifier],
       verificationMethod : [{
-        id         : `${identifier}#initialKey`,
-        type       : 'Multikey',
-        controller : identifier,
-        publicKeyMultibase,
+        id                 : `${identifier}#initialKey`,
+        type               : 'Multikey',
+        controller         : identifier,
+        publicKeyMultibase : publicKeyMultibase.address,
       }],
       service,
     });

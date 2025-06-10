@@ -1,4 +1,4 @@
-import { KeyPair } from '@did-btc1/key-pair';
+import { SchnorrKeyPair } from '@did-btc1/key-pair';
 import { mkdir, readFile, writeFile } from 'fs/promises';
 import { BeaconUtils, Btc1DidDocument, Btc1KeyManager, DidBtc1, getNetwork } from '../../../src/index.js';
 import { Did } from '@web5/dids';
@@ -14,7 +14,7 @@ const latestdir = `${cwd}/data/${network}/${idType}/latest`;
 const initialDocument = JSON.parse(await readFile(`${latestdir}/initialDocument.json`, { encoding: 'utf-8' }));
 const keys = JSON.parse(await readFile(`${latestdir}/keys.json`, { encoding: 'utf-8' }));
 const genesisKey = keys.genesisKey;
-const genesisKeyPair = new KeyPair({
+const genesisKeyPair = new SchnorrKeyPair({
   privateKey : Buffer.from(genesisKey.sk, 'hex'),
   publicKey  : Buffer.from(genesisKey.pk, 'hex')
 });
@@ -24,7 +24,7 @@ if (!parts) {
   throw new Error('Failed to parse DID');
 }
 const replacementKey = keys[parts.id];
-const replacementKeyPair = new KeyPair({
+const replacementKeyPair = new SchnorrKeyPair({
   privateKey : Buffer.from(replacementKey.sk, 'hex'),
   publicKey  : Buffer.from(replacementKey.pk, 'hex')
 });

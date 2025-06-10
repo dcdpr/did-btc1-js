@@ -1,13 +1,13 @@
-import { Btc1Error, DidBtc1Error, Maybe, PublicKeyBytes } from '@did-btc1/common';
+import { Btc1Error, DidBtc1Error, Maybe, KeyBytes } from '@did-btc1/common';
 import { DidDocument, DidService } from '@web5/dids';
 import { networks, payments } from 'bitcoinjs-lib';
-import { BeaconFactory } from '../btc1/beacons/factory.js';
+import { BeaconFactory } from '../btc1/beacon/factory.js';
 import { BeaconService, BeaconServiceAddress } from '../interfaces/ibeacon.js';
 import { Btc1Appendix } from './appendix.js';
 import { Btc1DidDocument } from './did-document.js';
 export interface GenerateBeaconParams {
   identifier: string;
-  publicKey: PublicKeyBytes;
+  publicKey: KeyBytes;
   network: networks.Network;
   type: string;
 }
@@ -17,7 +17,7 @@ export interface GenerateBeaconParams {
  * @type {GenerateBitcoinAddrsParams}
  */
 export interface GenerateBitcoinAddrsParams {
-  publicKey: PublicKeyBytes;
+  publicKey: KeyBytes;
   network: networks.Network;
 }
 
@@ -27,7 +27,7 @@ export interface GenerateBitcoinAddrsParams {
  * @type {GenerateBeaconServicesParams}
  */
 export interface GenerateBeaconServicesParams {
-  publicKey: PublicKeyBytes;
+  publicKey: KeyBytes;
   network: networks.Network
   beaconType: string;
 }
@@ -89,14 +89,14 @@ export class BeaconUtils {
   /**
    * Generate all 3 Beacon Service Endpoints for a given public key.
    * @param {GenerateBitcoinAddrsParams} params Required parameters for generating Beacon Services.
-   * @param {PublicKeyBytes} params.publicKey Public key bytes used to generate the beacon object serviceEndpoint.
+   * @param {KeyBytes} params.publicKey Public key bytes used to generate the beacon object serviceEndpoint.
    * @param {Network} params.network Bitcoin network interface from bitcoinlib-js.
    * @returns {Array<Array<string>>} 2D Array of bitcoin addresses (p2pkh, p2wpkh, p2tr).
    * @throws {DidBtc1Error} if the bitcoin address is invalid.
    */
   public static generateBeaconAddresses({ identifier, publicKey, network }: {
     identifier: string;
-    publicKey: PublicKeyBytes;
+    publicKey: KeyBytes;
     network: networks.Network;
   }): Array<Array<string>> {
     try {
@@ -120,7 +120,7 @@ export class BeaconUtils {
   /**
    * Generate a set of Beacon Services for a given public key.
    * @param {GenerateBeaconServicesParams} params Required parameters for generating Beacon Services.
-   * @param {PublicKeyBytes} params.publicKey Public key bytes used to generate the beacon object serviceEndpoint.
+   * @param {KeyBytes} params.publicKey Public key bytes used to generate the beacon object serviceEndpoint.
    * @param {Network} params.network Bitcoin network interface from bitcoinlib-js.
    * @param {string} params.beaconType The type of beacon service to create.
    * @param {string} params.addressType The type of address to create (p2pkh, p2wpkh, p2tr).
@@ -129,7 +129,7 @@ export class BeaconUtils {
    */
   public static generateBeaconService({ id, publicKey: pubkey, network, addressType, type }: {
     id: string;
-    publicKey: PublicKeyBytes;
+    publicKey: KeyBytes;
     network: networks.Network;
     addressType: 'p2pkh' | 'p2wpkh' | 'p2tr';
     type: string;
@@ -157,7 +157,7 @@ export class BeaconUtils {
    */
   public static generateBeaconServiceCustom({ id, publicKey: pubkey, network, addressType, type }: {
     id: string;
-    publicKey: PublicKeyBytes;
+    publicKey: KeyBytes;
     network: networks.Network;
     addressType: 'p2pkh' | 'p2wpkh' | 'p2tr';
     type: string;
@@ -188,7 +188,7 @@ export class BeaconUtils {
    */
   public static generateBeaconServices({ identifier, network, type, publicKey }: {
     identifier: string;
-    publicKey: PublicKeyBytes;
+    publicKey: KeyBytes;
     network: networks.Network;
     type: string;
   }): Array<BeaconService> {
@@ -218,7 +218,7 @@ export class BeaconUtils {
    */
   public static generateBeacon({ identifier, network, type, publicKey }: {
     identifier: string;
-    publicKey: PublicKeyBytes;
+    publicKey: KeyBytes;
     network: networks.Network;
     type: string;
   }): BeaconService {

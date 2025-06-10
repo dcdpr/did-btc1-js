@@ -1,8 +1,8 @@
 {
     "name": "@did-btc1/smt",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "type": "module",
-    "description": "@did-btc1/smt is a typescript implementation of the Sparse Merkle Tree (SMT) data structure with support for Merkle Sum (MS) non-inclusion. Designed for use within the @did-btc1/method.",
+    "description": "JavaScript/TypeScript implementation of a Sparse Merkle Tree (SMT) data structure with support for Merkle Sum (MS) non-inclusion. Used by various parts of the did-btc1-js monorepo.",
     "main": "./dist/cjs/index.js",
     "module": "./dist/esm/index.js",
     "types": "./dist/types/index.d.ts",
@@ -13,6 +13,46 @@
             "require": "./dist/cjs/index.js"
         }
     },
+    "license": "MPL-2.0",
+    "contributors": [
+        {
+            "name": "dcdpr",
+            "url": "https://github.com/dcdpr"
+        },
+        {
+            "name": "jintekc",
+            "url": "https://github.com/jintekc",
+            "email": "github@jintek.consulting"
+        }
+    ],
+    "homepage": "https://github.com/jintekc/did-btc1-js/tree/main/packages/smt",
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com:jintekc/did-btc1-js.git",
+        "directory": "packages/smt"
+    },
+    "bugs": "https://github.com/jintekc/did-btc1-js/issues",
+    "files": [
+        "dist",
+        "src"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "engines": {
+        "node": ">=22.0.0"
+    },
+    "keywords": [
+        "did",
+        "dids",
+        "decentralized identity",
+        "decentralized identifiers",
+        "did method",
+        "did:btc1",
+        "bitcoin",
+        "sparse merkle tree",
+        "smt"
+    ],
     "scripts": {
         "clean": "rimraf dist coverage tests/compiled",
         "clean:build": "rimraf dist",
@@ -38,35 +78,6 @@
         "build:test": "pnpm build && pnpm build:tests && pnpm c8 mocha",
         "build:lint:test": "pnpm build && pnpm build:tests && pnpm lint:fix",
         "prepublish": "pnpm build"
-    },
-    "contributors": [
-        {
-            "name": "dcdpr",
-            "url": "https://github.com/dcdpr"
-        },
-        {
-            "name": "jintekc",
-            "url": "https://github.com/jintekc",
-            "email": "github@jintek.consulting"
-        }
-    ],
-    "homepage": "https://github.com/jintekc/did-btc1-js/tree/main/packages/smt",
-    "repository": {
-        "type": "git",
-        "url": "git+ssh://git@github.com:jintekc/did-btc1-js.git",
-        "directory": "packages/smt"
-    },
-    "bugs": "https://github.com/jintekc/did-btc1-js/issues",
-    "files": [
-        "dist",
-        "src"
-    ],
-    "keywords": [],
-    "publishConfig": {
-        "access": "public"
-    },
-    "engines": {
-        "node": ">=22.0.0"
     },
     "dependencies": {},
     "devDependencies": {

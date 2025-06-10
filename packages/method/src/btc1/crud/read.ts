@@ -12,7 +12,7 @@ import {
   Logger,
   UnixTimestamp
 } from '@did-btc1/common';
-import { Cryptosuite, DataIntegrityProof, MultikeyUtils } from '@did-btc1/cryptosuite';
+import { Cryptosuite, DataIntegrityProof, SchnorrMultikey } from '@did-btc1/cryptosuite';
 import { PublicKey } from '@did-btc1/key-pair';
 import { bytesToHex } from '@noble/hashes/utils';
 import { GENESIS_TX_ID, TXIN_WITNESS_COINBASE } from '../../bitcoin/constants.js';
@@ -34,7 +34,7 @@ import {
 import { Btc1Appendix, DidComponents } from '../../utils/appendix.js';
 import { BeaconUtils } from '../../utils/beacons.js';
 import { Btc1DidDocument } from '../../utils/did-document.js';
-import { BeaconFactory } from '../beacons/factory.js';
+import { BeaconFactory } from '../beacon/factory.js';
 
 export type FindNextSignalsRestParams = {
   connection: BitcoinRest;
@@ -132,7 +132,7 @@ export class Btc1Read {
     const { network, genesisBytes } = components;
 
     // Construct a new PublicKey and deconstruct the publicKey and publicKeyMultibase
-    const { bytes: publicKey, multibase: publicKeyMultibase } = new PublicKey(genesisBytes);
+    const { compressed: publicKey, multibase: publicKeyMultibase } = new PublicKey(genesisBytes);
 
     // Generate the service field for the DID Document
     const service = BeaconUtils.generateBeaconServices({
@@ -146,10 +146,10 @@ export class Btc1Read {
       id                 : identifier,
       controller         : [identifier],
       verificationMethod : [{
-        id         : `${identifier}#initialKey`,
-        type       : 'Multikey',
-        controller : identifier,
-        publicKeyMultibase
+        id                 : `${identifier}#initialKey`,
+        type               : 'Multikey',
+        controller         : identifier,
+        publicKeyMultibase : publicKeyMultibase.address
       }],
       service
     });
@@ -869,7 +869,7 @@ export class Btc1Read {
     const [controller, id] = vmId.split('#');
 
     // Construct a new Multikey.
-    const multikey = MultikeyUtils.fromPublicKeyMultibase({ id: `#${id}`, controller, publicKeyMultibase });
+    const multikey = SchnorrMultikey.fromPublicKeyMultibase({ id: `#${id}`, controller, publicKeyMultibase });
     // Logger.warn('// TODO: applyDidUpdate - Refactor Multikey to accept pub/priv bytes => Pub/PrivKey => KeyPair.');
 
     const cryptosuite = new Cryptosuite({ cryptosuite: 'bip340-jcs-2025', multikey });

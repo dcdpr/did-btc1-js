@@ -1,9 +1,8 @@
 // NOTE: Does not verify due to bad input data!
 
-import { KeyPair } from '@did-btc1/key-pair';
-import { hexToBytes } from '@noble/hashes/utils';
-import { Btc1Appendix } from '../../../method/src/index.js';
-import { Multikey } from '../../src/index.js';
+import { SchnorrKeyPair } from '@did-btc1/key-pair';
+import { Btc1Identifier } from '../../../method/src/index.js';
+import { SchnorrMultikey } from '../../src/index.js';
 
 const initialDocument = {
   '@context' : [
@@ -88,14 +87,14 @@ const securedDocument = {
 const vm = initialDocument.verificationMethod[0];
 const id = vm.id;
 const controller = vm.controller;
-const components = Btc1Appendix.parse(controller);
+const components = Btc1Identifier.decode(controller);
 console.log('components:', components);
-const publicKey = hexToBytes(components.genesisBytes);
+const publicKey = components.genesisBytes;
 console.log('publicKey:', publicKey);
-const keyPair = new KeyPair({ publicKey });
-const publicKeyMultibase = keyPair.publicKey.multibase;
+const keys = new SchnorrKeyPair({ publicKey });
+const publicKeyMultibase = keys.publicKey.multibase;
 console.log('publicKeyMultibase', publicKeyMultibase);
-const diProof = Multikey.initialize({ id, controller, keyPair })
+const diProof = SchnorrMultikey.initialize({ id, controller, keys })
   .toCryptosuite('bip340-jcs-2025')
   .toDataIntegrityProof();
 const document = await JSON.canonicalization.canonicalize(securedDocument);

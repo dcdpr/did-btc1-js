@@ -1,8 +1,8 @@
 {
   "name": "@did-btc1/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
-  "description": "Command Line Interface (CLI) for interacting with did:btc1 method.",
+  "description": "CLI for interacting with did-btc1-js, the JavaScript/TypeScript reference implementation of the did:btc1 method. Uses various parts of the did-btc1-js monorepo.",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
@@ -45,7 +45,16 @@
   "engines": {
     "node": ">=22.0.0"
   },
-  "keywords": [],
+  "keywords": [
+    "did",
+    "dids",
+    "decentralized identity",
+    "decentralized identifiers",
+    "did method",
+    "did:btc1",
+    "bitcoin",
+    "cli"
+  ],
   "scripts": {
     "clean": "rimraf dist coverage tests/compiled",
     "wipe": "rimraf node_modules pnpm-lock.json",

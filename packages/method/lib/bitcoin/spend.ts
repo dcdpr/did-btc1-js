@@ -2,17 +2,17 @@ import { Psbt } from 'bitcoinjs-lib';
 import bitcoin from '../../src/bitcoin/index.js';
 import { AddressUtxo } from '../../src/bitcoin/rest-client.js';
 import { Btc1KeyManager } from '../../src/index.js';
-import { KeyPair } from '@did-btc1/key-pair';
+import { SchnorrKeyPair } from '@did-btc1/key-pair';
 
 const [id = '#initialP2PKH', controller = 'did:btc1:k1qyp3al8fedye95ueca9ezrmcm49vhur3zhze49wlgyfzdl5qk4dgltccfavpw'] = process.argv.slice(2);
 
 if(!controller) {
   throw new Error('Controller is required as the second argument.');
 }
-
-const keyPair = new KeyPair({ privateKey: Buffer.fromHex('4359bb2996ca9edb3566765cd8c5d56ee402399ec541f489273eb320f29f4ae8')});
-
-await Btc1KeyManager.initialize(keyPair, id, controller);
+const secretKey = Buffer.fromHex('4359bb2996ca9edb3566765cd8c5d56ee402399ec541f489273eb320f29f4ae8');
+const keys = new SchnorrKeyPair({ secretKey });
+const keyUri = Btc1KeyManager.computeKeyUri(id, controller);
+await Btc1KeyManager.initialize(keys, keyUri);
 const multikey = await Btc1KeyManager.getKeyPair();
 if (!multikey) {
   throw new Error('Multikey not found.');
@@ -24,9 +24,9 @@ console.log('utxos:', utxos);
 const utxo: AddressUtxo = utxos.sort((a, b) => b.status.block_height - a.status.block_height)[0];
 console.log('utxo:', utxo);
 const signer = {
-  publicKey   : multikey.publicKey.bytes,
+  publicKey   : multikey.publicKey.compressed,
   network     : bitcoin.network.data,
-  sign        : (hash: Uint8Array) => multikey.signEcdsa(hash),
+  sign        : (hash: Uint8Array) => multikey.sign(hash, { scheme: 'schnorr' }),
   signSchnorr : (hash: Uint8Array) => multikey.sign(hash),
 };
 const {txid, vout} = utxo;

@@ -1,14 +1,15 @@
-import { KeyPair } from '../src/key-pair.js';
+import { BitcoinNetworkNames } from '@did-btc1/common';
+import { SchnorrKeyPair } from '../src/pair.js';
 
-const privateKey = new Uint8Array([
+const secretKey = new Uint8Array([
   189,  38, 143, 201, 181, 132,  46, 71,
   232,  89, 206, 136, 196, 208, 94, 153,
   101, 219, 165,  94, 235, 242, 29, 164,
   176, 161, 99, 193, 209,  97,  23, 158
 ]);
-const keys = new KeyPair({ privateKey });
+const keys = new SchnorrKeyPair({ secretKey });
 const publicKey = keys.publicKey!;
-const network = BtcNetworks.get('mainnet');
+const network = BitcoinNetworkNames.bitcoin;
 const document = {
   publicKey,
   intermediateDocument : {
@@ -32,17 +33,17 @@ const document = {
       {
         id              : '#initialP2PKH',
         type            : 'SingletonBeacon',
-        serviceEndpoint : `bitcoin:${payments.p2pkh({ pubkey: publicKey, network }).address}`
+        serviceEndpoint : `${network}:`
       },
       {
         id              : '#initialP2WPKH',
         type            : 'SingletonBeacon',
-        serviceEndpoint : `bitcoin:${payments.p2wpkh({ pubkey: publicKey, network }).address}`
+        serviceEndpoint : `${network}:`
       },
       {
         id              : '#initialP2TR',
         type            : 'SingletonBeacon',
-        serviceEndpoint : `bitcoin:${payments.p2tr({ internalPubkey: publicKey.slice(1, 33), network }).address}`
+        serviceEndpoint : `${network}:`
       }
     ]
   }

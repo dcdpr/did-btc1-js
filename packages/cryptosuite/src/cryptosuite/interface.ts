@@ -8,12 +8,12 @@ import {
   ProofOptions,
   SignatureBytes
 } from '@did-btc1/common';
-import { Multikey } from '../multikey/index.js';
+import { SchnorrMultikey } from '../multikey/index.js';
 
 export interface CryptosuiteParams {
   type?: 'DataIntegrityProof';
   cryptosuite: 'bip340-jcs-2025' | 'bip340-rdfc-2025';
-  multikey: Multikey;
+  multikey: SchnorrMultikey;
 }
 
 export interface CreateProofParams {
@@ -60,8 +60,8 @@ export interface ICryptosuite {
   /** @type {string} The name of the cryptosuite */
   cryptosuite: string;
 
-  /** @type {Multikey} The Multikey used by the cryptosuite */
-  multikey: Multikey;
+  /** @type {SchnorrMultikey} The SchnorrMultikey used by the cryptosuite */
+  multikey: SchnorrMultikey;
 
   /**
    * Create a proof for an insecure document.

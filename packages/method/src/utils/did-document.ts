@@ -37,7 +37,7 @@ export interface IBtc1VerificationMethod extends DidVerificationMethod {
   type: string;
   controller: string;
   publicKeyMultibase: string;
-  privateKeyMultibase?: string | undefined;
+  secretKeyMultibase?: string | undefined;
 }
 
 /**
@@ -51,16 +51,16 @@ export class Btc1VerificationMethod implements IBtc1VerificationMethod {
   type: string;
   controller: string;
   publicKeyMultibase: string;
-  privateKeyMultibase?: string | undefined;
+  secretKeyMultibase?: string | undefined;
 
-  constructor({ id, type, controller, publicKeyMultibase, privateKeyMultibase }: IBtc1VerificationMethod) {
+  constructor({ id, type, controller, publicKeyMultibase, secretKeyMultibase }: IBtc1VerificationMethod) {
     this.id = id;
     this.type = type;
     this.controller = controller;
     this.publicKeyMultibase = publicKeyMultibase;
-    this.privateKeyMultibase = privateKeyMultibase;
-    if(!privateKeyMultibase){
-      delete this.privateKeyMultibase;
+    this.secretKeyMultibase = secretKeyMultibase;
+    if(!secretKeyMultibase){
+      delete this.secretKeyMultibase;
     }
   }
   // TODO: Add helper methods and properties

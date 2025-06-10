@@ -30,7 +30,7 @@ describe('DidBtc1 Create External', () => {
       id                 : `${ID_PLACEHOLDER_VALUE}#key-0`,
       type               : 'Multikey',
       controller         : ID_PLACEHOLDER_VALUE,
-      publicKeyMultibase : publicKey.multibase
+      publicKeyMultibase : publicKey.multibase.address
     }
   ];
   const p2tr = payments.p2tr({ network: getNetwork('bitcoin'), internalPubkey: publicKey.x }).address;

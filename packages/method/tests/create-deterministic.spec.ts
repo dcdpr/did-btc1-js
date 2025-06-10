@@ -39,14 +39,14 @@ describe('DidBtc1 Create Deterministic', () => {
           id                 : `${did}#initialKey`,
           type               : 'Multikey',
           controller         : did,
-          publicKeyMultibase
+          publicKeyMultibase : publicKeyMultibase.address
         }
       ];
       const service = BeaconUtils.generateBeaconServices({
         identifier : did,
         network    : getNetwork('bitcoin'),
         type       : 'SingletonBeacon',
-        publicKey  : publicKey.bytes
+        publicKey  : publicKey.compressed
       });
       const didDocument = new Btc1DidDocument({ id: did, verificationMethod, service });
       expect(did).to.equal(expectedDidMap.get('bitcoin'));
@@ -68,14 +68,14 @@ describe('DidBtc1 Create Deterministic', () => {
           id                 : `${did}#initialKey`,
           type               : 'Multikey',
           controller         : did,
-          publicKeyMultibase
+          publicKeyMultibase : publicKeyMultibase.address
         }
       ];
       const service = BeaconUtils.generateBeaconServices({
         identifier : did,
         network    : getNetwork('bitcoin'),
         type       : 'SingletonBeacon',
-        publicKey  : publicKey.bytes
+        publicKey  : publicKey.compressed
       });
       const didDocument = new Btc1DidDocument({ id: did, verificationMethod, service });
       expect(did).to.equal(did);
@@ -99,14 +99,14 @@ describe('DidBtc1 Create Deterministic', () => {
                 id                 : `${did}#initialKey`,
                 type               : 'Multikey',
                 controller         : did,
-                publicKeyMultibase
+                publicKeyMultibase : publicKeyMultibase.address
               }
             ];
             const service = BeaconUtils.generateBeaconServices({
               identifier : did,
               network    : getNetwork('bitcoin'),
               type       : 'SingletonBeacon',
-              publicKey  : publicKey.bytes
+              publicKey  : publicKey.compressed
             });
             const didDocument = new Btc1DidDocument({ id: did, verificationMethod, service });
             const result = await DidBtc1.create({ idType, pubKeyBytes, options: { network } });

@@ -11,10 +11,10 @@ import {
   ProofOptions,
   SignatureBytes
 } from '@did-btc1/common';
-import { sha256 } from '@noble/hashes/sha256';
+import { sha256 } from '@noble/hashes/sha2';
 import { base58btc } from 'multiformats/bases/base58';
 import { DataIntegrityProof } from '../data-integrity-proof/index.js';
-import { Multikey } from '../multikey/index.js';
+import { SchnorrMultikey } from '../multikey/index.js';
 import {
   CreateProofParams,
   CryptosuiteParams,
@@ -64,9 +64,9 @@ export class Cryptosuite implements ICryptosuite {
   /**
    * The multikey used to sign and verify proofs
    * @public
-   * @type {Multikey} The multikey used to sign and verify proofs
+   * @type {SchnorrMultikey} The multikey used to sign and verify proofs
    */
-  public multikey: Multikey;
+  public multikey: SchnorrMultikey;
 
   /**
    * The algorithm used for canonicalization
@@ -79,7 +79,7 @@ export class Cryptosuite implements ICryptosuite {
    * Constructs an instance of Cryptosuite.
    * @param {CryptosuiteParams} params See {@link CryptosuiteParams} for required parameters to create a cryptosuite.
    * @param {string} params.cryptosuite The name of the cryptosuite.
-   * @param {Multikey} params.multikey The parameters to create the multikey.
+   * @param {SchnorrMultikey} params.multikey The parameters to create the multikey.
    */
   constructor({ cryptosuite, multikey }: CryptosuiteParams) {
     this.cryptosuite = cryptosuite;

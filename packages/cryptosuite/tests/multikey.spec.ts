@@ -1,24 +1,24 @@
 import { KeyPairError, MultikeyError } from '@did-btc1/common';
-import { KeyPair, PrivateKey, PrivateKeyUtils, PublicKey } from '@did-btc1/key-pair';
+import { SchnorrKeyPair, SecretKey, PublicKey } from '@did-btc1/key-pair';
 import { expect } from 'chai';
-import { Multikey } from '../src/index.js';
+import { SchnorrMultikey } from '../src/index.js';
 
 /**
- * Multikey Test Cases
+ * SchnorrMultikey Test Cases
  * 1. id, controller only → should throw
  * 2. id, controller, privateKey → should succeed
  * 3. id, controller, publicKey → should succeed
  * 4. id, controller, privateKey, publicKey → should succeed
  */
-describe('Multikey instantiated', () => {
-  const privateKeyBytes = new Uint8Array([
+describe('SchnorrMultikey', () => {
+  const skBytes = new Uint8Array([
     69, 112, 198, 176,  14, 103, 100,  73,
     35, 179, 169,  83,  80, 213, 189, 190,
     118, 200,   5,  43,  20,  46, 148,  60,
     109,  37, 134, 164, 162, 174, 185, 201
   ]);
-  const keys = new KeyPair({ privateKey: privateKeyBytes });
-  const publicKey = keys.publicKey;
+  const schnorrKeyPair = new SchnorrKeyPair({ secretKey: skBytes });
+  const publicKey = schnorrKeyPair.publicKey;
   // Multikey Constants
   const id = '#initialKey';
   const controller = 'did:btc1:regtest:k1qtwrw6r00e3rh6hv02ak42mweykcg0u7n478vl5ks4ugfppl9dfs7m3gyfg';
@@ -46,30 +46,30 @@ describe('Multikey instantiated', () => {
   /**
    * Incomplete parameters
    */
-  describe('No KeyPair', () => {
+  describe('No SchnorrKeyPair', () => {
     it('should throw MultikeyError', () => {
-      expect(() => new Multikey({ id, controller }))
-        .to.throw(MultikeyError, 'Argument missing: "keyPair" required');
+      expect(() => new SchnorrMultikey({ id, controller }))
+        .to.throw(MultikeyError, 'Argument missing: "keys" required');
     });
   });
 
   /**
    * All parameters
    */
-  describe('KeyPair', () => {
-    const multikey = new Multikey({ id, controller, keyPair: keys });
+  describe('SchnorrKeyPair', () => {
+    const multikey = new SchnorrMultikey({ id, controller, keys: schnorrKeyPair });
 
-    it('should successfully construct a new Multikey', () => {
-      expect(multikey).to.exist.and.to.be.instanceOf(Multikey);
+    it('should successfully construct a new SchnorrMultikey', () => {
+      expect(multikey).to.exist.and.to.be.instanceOf(SchnorrMultikey);
     });
 
     it('should have proper variables: id, controller, privateKey, publicKey', () => {
       expect(multikey.id).to.equal(id);
       expect(multikey.controller).to.equal(controller);
-      expect(multikey.privateKey).to.exist.and.to.be.instanceOf(PrivateKey);
+      expect(multikey.secretKey).to.exist.and.to.be.instanceOf(SecretKey);
       expect(multikey.publicKey).to.exist.and.to.be.instanceOf(PublicKey);
-      expect(multikey.privateKey.equals(keys.privateKey)).to.be.true;
-      expect(multikey.publicKey.equals(keys.publicKey)).to.be.true;
+      expect(multikey.secretKey.equals(schnorrKeyPair.secretKey)).to.be.true;
+      expect(multikey.publicKey.equals(schnorrKeyPair.publicKey)).to.be.true;
     });
 
     it('should create a valid schnorr signature', () => {
@@ -89,7 +89,7 @@ describe('Multikey instantiated', () => {
     it('should contain a PublicKey in x-only base58btc format', () => {
       const publicKey = multikey.publicKey;
       expect(publicKey).to.exist.and.to.be.instanceOf(PublicKey);
-      expect(publicKey.multibase).to.equal(publicKeyMultibase);
+      expect(publicKey.multibase.address).to.equal(publicKeyMultibase);
     });
 
     it('should decode publicKeyMultibase from Multikey Format to bytes', () => {
@@ -106,37 +106,37 @@ describe('Multikey instantiated', () => {
 
     it('should construct a valid Multikey with matching data given a valid verification method', () => {
       const multikeyFromVm = multikey.fromVerificationMethod(verificationMethod);
-      expect(multikeyFromVm).to.exist.and.to.be.instanceOf(Multikey);
+      expect(multikeyFromVm).to.exist.and.to.be.instanceOf(SchnorrMultikey);
       expect(multikeyFromVm.id).to.equal(id);
       expect(multikeyFromVm.controller).to.equal(controller);
       expect(multikeyFromVm.publicKey).to.exist.and.to.be.instanceOf(PublicKey);
-      expect(multikeyFromVm.publicKey.equals(keys.publicKey)).to.be.true;
+      expect(multikeyFromVm.publicKey.equals(schnorrKeyPair.publicKey)).to.be.true;
     });
   });
 
   /**
    * Key Pair with Public Key passed only
    */
-  describe('Verification KeyPair (PublicKey-Only)', () => {
-    const keyPair = new KeyPair({ publicKey });
-    const multikey = new Multikey({ id, controller, keyPair });
+  describe('Verification SchnorrKeyPair (PublicKey-Only)', () => {
+    const keys = new SchnorrKeyPair({ publicKey });
+    const multikey = new SchnorrMultikey({ id, controller, keys });
 
-    it('should successfully construct a new Multikey with publicKey only', () => {
-      expect(multikey).to.exist.and.to.be.instanceOf(Multikey);
+    it('should successfully construct a new SchnorrMultikey with publicKey only', () => {
+      expect(multikey).to.exist.and.to.be.instanceOf(SchnorrMultikey);
       expect(multikey.publicKey).to.exist.and.to.be.instanceOf(PublicKey);
     });
 
     it('should have proper variables: id, controller, publicKey', () => {
       expect(multikey.id).to.equal(id);
       expect(multikey.controller).to.equal(controller);
-      expect(() => multikey.privateKey).to.throw(KeyPairError, 'Private key not available');
+      expect(() => multikey.secretKey).to.throw(KeyPairError, 'Secret key not available');
       expect(multikey.publicKey).to.exist.and.to.be.instanceOf(PublicKey);
       expect(multikey.publicKey.equals(publicKey)).to.be.true;
     });
 
     it('should throw KeyPairError', () => {
       expect(() => multikey.sign(message))
-        .to.throw(KeyPairError, 'Private key not available');
+        .to.throw(KeyPairError, 'Secret key not available');
     });
 
     it('should verify that a valid schnorr signature was produced by the Multikey', () => {
@@ -165,7 +165,7 @@ describe('Multikey instantiated', () => {
 
     it('should construct a valid Multikey with matching data given a valid verification method', () => {
       const multikeyFromVm = multikey.fromVerificationMethod(verificationMethod);
-      expect(multikeyFromVm).to.exist.and.to.be.instanceOf(Multikey);
+      expect(multikeyFromVm).to.exist.and.to.be.instanceOf(SchnorrMultikey);
       expect(multikeyFromVm.id).to.equal(id);
       expect(multikeyFromVm.controller).to.equal(controller);
       expect(multikeyFromVm.publicKey).to.exist.and.to.be.instanceOf(PublicKey);
@@ -176,21 +176,21 @@ describe('Multikey instantiated', () => {
   /**
    * Key Pair with PrivateKey passed only
    */
-  describe('Sign/Verify KeyPair (PrivateKey-PublicKey)', () => {
-    const keyPair = new KeyPair({ privateKey: keys.privateKey });
-    const multikey = new Multikey({ id, controller, keyPair });
+  describe('Sign/Verify SchnorrKeyPair (PrivateKey-PublicKey)', () => {
+    const keys = new SchnorrKeyPair({ secretKey: schnorrKeyPair.secretKey });
+    const multikey = new SchnorrMultikey({ id, controller, keys });
 
-    it('should successfully construct a new Multikey with a keyPair', () => {
-      expect(multikey).to.exist.and.to.be.instanceOf(Multikey);
+    it('should successfully construct a new SchnorrMultikey with a keyPair', () => {
+      expect(multikey).to.exist.and.to.be.instanceOf(SchnorrMultikey);
     });
 
     it('should have proper variables: id, controller, keyPair', () => {
       expect(multikey.id).to.equal(id);
       expect(multikey.controller).to.equal(controller);
       expect(multikey.publicKey).to.exist.and.to.be.instanceOf(PublicKey);
-      expect(multikey.privateKey).to.exist.and.to.be.instanceOf(PrivateKey);
-      expect(multikey.privateKey.equals(keyPair.privateKey)).to.be.true;
-      expect(multikey.publicKey.equals(keyPair.publicKey)).to.be.true;
+      expect(multikey.secretKey).to.exist.and.to.be.instanceOf(SecretKey);
+      expect(multikey.secretKey.equals(keys.secretKey)).to.be.true;
+      expect(multikey.publicKey.equals(keys.publicKey)).to.be.true;
     });
 
     it('should create a valid schnorr signature', () => {
@@ -225,7 +225,7 @@ describe('Multikey instantiated', () => {
 
     it('should construct a valid Multikey with matching data given a valid verification method', () => {
       const multikeyFromVm = multikey.fromVerificationMethod(verificationMethod);
-      expect(multikeyFromVm).to.exist.and.to.be.instanceOf(Multikey);
+      expect(multikeyFromVm).to.exist.and.to.be.instanceOf(SchnorrMultikey);
       expect(multikeyFromVm.id).to.equal(id);
       expect(multikeyFromVm.controller).to.equal(controller);
       expect(multikeyFromVm.publicKey).to.exist.and.to.be.instanceOf(PublicKey);
@@ -236,24 +236,24 @@ describe('Multikey instantiated', () => {
   /**
    * Key Pair from Secret
    */
-  describe('Sign/Verify KeyPair (PrivateKey.fromSecret)', () => {
+  describe('Sign/Verify SchnorrKeyPair (PrivateKey.fromSecret)', () => {
     const SECRET = 31408844715744742771434292216794392628447163656691664006588916258271600228809n;
-    const privateKey = PrivateKeyUtils.fromSecret(SECRET);
-    const keyPair = new KeyPair({ privateKey });
-    const multikey = new Multikey({ id, controller, keyPair });
+    const secretKey = SecretKey.fromSecret(SECRET);
+    const keys = new SchnorrKeyPair({ secretKey });
+    const multikey = new SchnorrMultikey({ id, controller, keys });
 
-    it('should successfully construct a new Multikey with a keyPair', () => {
-      expect(multikey).to.exist.and.to.be.instanceOf(Multikey);
+    it('should successfully construct a new SchnorrMultikey with a keyPair', () => {
+      expect(multikey).to.exist.and.to.be.instanceOf(SchnorrMultikey);
     });
 
     it('should have proper variables: id, controller, keyPair', () => {
       expect(multikey.id).to.equal(id);
       expect(multikey.controller).to.equal(controller);
       expect(multikey.publicKey).to.exist.and.to.be.instanceOf(PublicKey);
-      expect(multikey.privateKey).to.exist.and.to.be.instanceOf(PrivateKey);
-      expect(multikey.privateKey.equals(privateKey)).to.be.true;
+      expect(multikey.secretKey).to.exist.and.to.be.instanceOf(SecretKey);
+      expect(multikey.secretKey.equals(secretKey)).to.be.true;
       expect(multikey.publicKey.equals(publicKey)).to.be.true;
-      expect(multikey.privateKey.secret).to.equal(SECRET);
+      expect(multikey.secretKey.seed).to.equal(SECRET);
     });
 
     it('should create a valid schnorr signature', () => {
@@ -288,12 +288,12 @@ describe('Multikey instantiated', () => {
 
     it('should construct a valid Multikey with matching data given a valid verification method', () => {
       const multikeyFromVm = multikey.fromVerificationMethod(verificationMethod);
-      expect(multikeyFromVm).to.exist.and.to.be.instanceOf(Multikey);
+      expect(multikeyFromVm).to.exist.and.to.be.instanceOf(SchnorrMultikey);
       expect(multikeyFromVm.id).to.equal(id);
       expect(multikeyFromVm.controller).to.equal(controller);
       expect(multikeyFromVm.publicKey).to.exist.and.to.be.instanceOf(PublicKey);
       expect(multikeyFromVm.publicKey.equals(publicKey)).to.be.true;
-      expect(() => multikeyFromVm.privateKey.secret).to.throw(KeyPairError, 'Private key not available');
+      expect(() => multikeyFromVm.secretKey?.seed).to.throw(KeyPairError, 'Secret key not available');
     });
   });
 });

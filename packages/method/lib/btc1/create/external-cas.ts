@@ -1,5 +1,5 @@
 import { strings } from '@helia/strings';
-import { sha256 } from '@noble/hashes/sha256';
+import { sha256 } from '@noble/hashes/sha2';
 import { bech32 } from '@scure/base';
 import { canonicalize } from '@web5/crypto';
 import { createHelia } from 'helia';

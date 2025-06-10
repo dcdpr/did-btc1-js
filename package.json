@@ -5,7 +5,7 @@
   "type": "module",
   "workspaces": [
     "packages/common",
-    "packages/key-pair",
+    "packages/keypair",
     "packages/cryptosuite",
     "packages/method",
     "packages/cli",

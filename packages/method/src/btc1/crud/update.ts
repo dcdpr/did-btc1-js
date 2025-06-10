@@ -11,14 +11,14 @@ import {
   PatchOperation,
   ProofOptions
 } from '@did-btc1/common';
-import { Multikey } from '@did-btc1/cryptosuite';
-import { KeyPair, PrivateKey } from '@did-btc1/key-pair';
+import { SchnorrMultikey } from '@did-btc1/cryptosuite';
+import { SchnorrKeyPair, SecretKey } from '@did-btc1/key-pair';
 import type { DidService } from '@web5/dids';
 import { BeaconService } from '../../interfaces/ibeacon.js';
 import { SignalsMetadata } from '../../types/crud.js';
 import { Btc1Appendix } from '../../utils/appendix.js';
 import { Btc1DidDocument, Btc1VerificationMethod } from '../../utils/did-document.js';
-import { BeaconFactory } from '../beacons/factory.js';
+import { BeaconFactory } from '../beacon/factory.js';
 import { Btc1KeyManager } from '../key-manager/index.js';
 
 export type InvokePayloadParams = {
@@ -137,7 +137,7 @@ export class Btc1Update {
   }): Promise<DidUpdateInvocation> {
     console.log('Invoke DID Update Payload', { didUpdatePayload, verificationMethod });
     // Deconstruct the verificationMethod
-    const { id: fullId, controller, publicKeyMultibase, privateKeyMultibase } = verificationMethod;
+    const { id: fullId, controller, publicKeyMultibase, secretKeyMultibase } = verificationMethod;
 
     // Validate the verificationMethod
     if(!publicKeyMultibase) {
@@ -147,15 +147,15 @@ export class Btc1Update {
     // 1. Set privateKeyBytes to the result of retrieving the private key bytes associated with the verificationMethod
     //    value. How this is achieved is left to the implementation.
     // 1.1 Compute the keyUri and check if the key is in the keystore
-    // 1.2 If not, use the privateKeyMultibase from the verificationMethod
+    // 1.2 If not, use the secretKeyMultibase from the verificationMethod
     const id = fullId.slice(fullId.indexOf('#'));
-    const multikey = !privateKeyMultibase
+    const multikey = !secretKeyMultibase
       ? await Btc1KeyManager.getKeyPair(fullId)
-      : Multikey.initialize({ id, controller, keyPair: new KeyPair({ privateKey: PrivateKey.decode(privateKeyMultibase) }) });
+      : SchnorrMultikey.initialize({ id, controller, keys: new SchnorrKeyPair({ secretKey: SecretKey.decode(secretKeyMultibase) }) });
 
     // 1.3 If the privateKey is not found, throw an error
     if (!multikey) {
-      throw new Btc1Error('No privateKey: not found in kms or vm', NOT_FOUND, verificationMethod);
+      throw new Btc1Error('No privateKey found in kms or vm', NOT_FOUND, verificationMethod);
     }
 
     // 2. Set rootCapability to the result of passing btc1Identifier into the Derive Root Capability from did:btc1
