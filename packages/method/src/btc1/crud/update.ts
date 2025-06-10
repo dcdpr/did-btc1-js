@@ -18,7 +18,7 @@ import { BeaconService } from '../../interfaces/ibeacon.js';
 import { SignalsMetadata } from '../../types/crud.js';
 import { Btc1Appendix } from '../../utils/appendix.js';
 import { Btc1DidDocument, Btc1VerificationMethod } from '../../utils/did-document.js';
-import { BeaconFactory } from '../beacons/factory.js';
+import { BeaconFactory } from '../beacon/factory.js';
 import { Btc1KeyManager } from '../key-manager/index.js';
 
 export type InvokePayloadParams = {

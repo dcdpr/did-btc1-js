@@ -34,7 +34,7 @@ import {
 import { Btc1Appendix, DidComponents } from '../../utils/appendix.js';
 import { BeaconUtils } from '../../utils/beacons.js';
 import { Btc1DidDocument } from '../../utils/did-document.js';
-import { BeaconFactory } from '../beacons/factory.js';
+import { BeaconFactory } from '../beacon/factory.js';
 
 export type FindNextSignalsRestParams = {
   connection: BitcoinRest;
