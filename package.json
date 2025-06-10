@@ -39,7 +39,7 @@
     "common": "pnpm --filter common",
     "cli": "pnpm --filter cli",
     "smt": "pnpm --filter smt",
-    "key-pair": "pnpm --filter key-pair",
+    "keypair": "pnpm --filter keypair",
     "method": "pnpm --filter method"
   },
   "keywords": [
