@@ -1,22 +1,38 @@
+import { CommunicationService } from './communication.js';
+
 export class BeaconCoordinator {
-  private static instance: BeaconCoordinator;
+  private comms: CommunicationService;
+  private id: string = '';
+  private subscribers: string[] = [];
 
-  private constructor() {}
+  constructor(commService: CommunicationService) {
+    this.comms = commService;
+  }
 
-  public static getInstance(): BeaconCoordinator {
-    if (!BeaconCoordinator.instance) {
-      BeaconCoordinator.instance = new BeaconCoordinator();
+  async initialize(): Promise<void> {
+    this.id = await this.comms.generateIdentity();
+
+    this.comms.registerHandler('SUBSCRIBE', this.handleSubscribe.bind(this));
+    // Add other handlers here
+
+    await this.comms.start();
+  }
+
+  private async handleSubscribe(message: any): Promise<void> {
+    const sender = message.from;
+    if (!this.subscribers.includes(sender)) {
+      this.subscribers.push(sender);
+      await this.acceptSubscription(sender);
     }
-    return BeaconCoordinator.instance;
   }
 
-  public start() {
-    // Logic to start the beacon coordinator
-    console.log('Beacon Coordinator started');
-  }
-
-  public stop() {
-    // Logic to stop the beacon coordinator
-    console.log('Beacon Coordinator stopped');
+  private async acceptSubscription(sender: string): Promise<void> {
+    console.log(`Accepting subscription from ${sender}`);
+    const response = {
+      type : 'SUBSCRIBE_ACCEPT',
+      to   : sender,
+      from : this.id
+    };
+    await this.comms.sendMessage(response, sender, this.id);
   }
 }
