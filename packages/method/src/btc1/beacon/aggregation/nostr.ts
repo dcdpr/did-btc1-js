@@ -1,3 +1,4 @@
+import { Btc1Identifier } from '../../../utils/identifier.js';
 import { CommunicationService } from './communication.js';
 
 export class NostrAdapter implements CommunicationService {
@@ -21,6 +22,8 @@ export class NostrAdapter implements CommunicationService {
   }
 
   async generateIdentity(): Promise<string> {
-    return 'npub1...'; // Placeholder for Nostr pubkey
+    const identity = Btc1Identifier.generate();
+    console.log(`Generated Nostr identity: ${identity.did}`);
+    return identity.did;
   }
 }

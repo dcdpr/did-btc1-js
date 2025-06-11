@@ -1,5 +1,10 @@
 import { CommunicationService } from './communication.js';
 
+export interface BeaconAdvert {
+  id: string;
+  type: string;
+}
+
 export class BeaconCoordinator {
   private comms: CommunicationService;
   private id: string = '';
@@ -13,7 +18,10 @@ export class BeaconCoordinator {
     this.id = await this.comms.generateIdentity();
 
     this.comms.registerHandler('SUBSCRIBE', this.handleSubscribe.bind(this));
-    // Add other handlers here
+    this.comms.registerHandler('OPT_IN', this.handleSubscribe.bind(this));
+    this.comms.registerHandler('REQUEST_SIGNATURE', this.handleSubscribe.bind(this));
+    this.comms.registerHandler('NONCE_CONTRIBUTION', this.handleSubscribe.bind(this));
+    this.comms.registerHandler('SIGNATURE_AUTHORIZATION', this.handleSubscribe.bind(this));
 
     await this.comms.start();
   }

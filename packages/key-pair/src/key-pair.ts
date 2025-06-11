@@ -120,14 +120,7 @@ export class KeyPair implements IKeyPair {
     const publicKey = PublicKey.from(json.publicKey);
     return new KeyPair({ privateKey, publicKey });
   }
-}
 
-/**
- * Utility class for creating and working with KeyPair objects.
- * @class KeyPairUtils
- * @type {KeyPairUtils}
- */
-export class KeyPairUtils {
   /**
    * Static method creates a new KeyPair from a PrivateKey object or private key bytes.
    *

@@ -1,5 +1,5 @@
 import { BitcoinNetworkNames, Btc1Error, Btc1IdentifierTypes, INVALID_DID, METHOD_NOT_SUPPORTED } from '@did-btc1/common';
-import { PublicKey } from '@did-btc1/key-pair';
+import { KeyPair, PublicKey } from '@did-btc1/key-pair';
 import { bech32m } from '@scure/base';
 import { DidComponents } from './appendix.js';
 
@@ -244,5 +244,21 @@ export class Btc1Identifier {
 
     // 20. Return idType, version, network, and genesisBytes.
     return {idType, hrp, version, network, genesisBytes} as DidComponents;
+  }
+
+  /**
+   * Generates a new did:btc1 identifier based on a newly generated key pair.
+   * @returns {string} The new did:btc1 identifier.
+   */
+  public static generate(): { keys: KeyPair; did: string } {
+    const keys = KeyPair.generate();
+    const did = this.encode({
+      idType       : Btc1IdentifierTypes.KEY,
+      version      : 1,
+      network      : BitcoinNetworkNames.bitcoin,
+      genesisBytes : keys.publicKey.bytes
+    });
+
+    return { keys, did };
   }
 }
