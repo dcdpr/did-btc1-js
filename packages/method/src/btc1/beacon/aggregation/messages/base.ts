@@ -1,15 +1,30 @@
+import { Maybe } from '@did-btc1/common';
+
+export type BaseBody = {
+  cohortId: string;
+  cohortSize?: number;
+  network?: string;
+  participantPk?: string;
+  beaconAddress?: string;
+  cohortKeys?: Array<string>;
+};
+
+export type Base = {
+  type: string;
+  to: string;
+  from: string;
+  threadId?: string;
+  body: BaseBody;
+};
+
 export class BaseMessage {
   public type: string;
   public to: string;
   public from: string;
   public threadId?: string;
-  public body?: {
-    cohortId?: string;
-    cohortSize?: number;
-    network?: string;
-  };
+  public body: BaseBody;
 
-  constructor(type: string, to: string, from: string, threadId?: string, body?: object) {
+  constructor({ type, to, from, threadId, body }: Base) {
     this.type = type;
     this.to = to;
     this.from = from;
@@ -17,11 +32,26 @@ export class BaseMessage {
     this.body = body;
   }
 
-  public serialize(): object {
+  /**
+   * Creates a BaseMessage from a JSON object.
+   * @param {Maybe<Base>} data - The JSON object to initialize the BaseMessage.
+   * @returns {BaseMessage} The initialized BaseMessage.
+   */
+  public static initialize(data: Maybe<Base>): BaseMessage {
+    return new BaseMessage(data);
+  }
+
+  /**
+   * Converts a BaseMessage to a JSON object.
+   * @returns {Base} The JSON representation of the BaseMessage.
+   */
+  public json(): Base {
     return {
-      type : this.type,
-      to   : this.to,
-      from : this.from
+      type     : this.type,
+      to       : this.to,
+      from     : this.from,
+      threadId : this.threadId,
+      body     : this.body ?? {}
     };
   }
 }

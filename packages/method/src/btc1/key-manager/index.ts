@@ -1,6 +1,6 @@
 import { Btc1KeyManagerError, HashBytes, Hex, KeyPairJSON, Logger, MULTIBASE_URI_PREFIX, PublicKeyBytes, SignatureBytes } from '@did-btc1/common';
 import { Multikey } from '@did-btc1/cryptosuite';
-import { KeyPair, KeyPairUtils, PublicKey } from '@did-btc1/key-pair';
+import { KeyPair, PublicKey } from '@did-btc1/key-pair';
 import { sha256 } from '@noble/hashes/sha256';
 import { KeyValueStore, MemoryStore } from '@web5/common';
 import { KeyIdentifier } from '@web5/crypto';
@@ -289,7 +289,7 @@ export class Btc1KeyManager implements KeyManager, CryptoSigner, BitcoinSigner  
     }
 
     // Generate a new keypair if not provided
-    keys ??= KeyPairUtils.generate();
+    keys ??= KeyPair.generate();
 
     // Initialize the singleton key manager with the keypair
     Btc1KeyManager.#instance = new Btc1KeyManager({ keys });

@@ -1,32 +1,28 @@
-import { CommunicationService } from './communication.js';
-
-export interface BeaconAdvert {
-  id: string;
-  type: string;
-}
+import { ProtocolService } from './protocol/service.js';
 
 export class BeaconCoordinator {
-  private comms: CommunicationService;
+  public name: string = 'BeaconCoordinator';
+  private protocol: ProtocolService;
   private id: string = '';
   private subscribers: string[] = [];
 
-  constructor(commService: CommunicationService) {
-    this.comms = commService;
+  constructor(protocol: ProtocolService) {
+    this.protocol = protocol;
   }
 
   async initialize(): Promise<void> {
-    this.id = await this.comms.generateIdentity();
+    this.id = await this.protocol.generateIdentity();
 
-    this.comms.registerHandler('SUBSCRIBE', this.handleSubscribe.bind(this));
-    this.comms.registerHandler('OPT_IN', this.handleSubscribe.bind(this));
-    this.comms.registerHandler('REQUEST_SIGNATURE', this.handleSubscribe.bind(this));
-    this.comms.registerHandler('NONCE_CONTRIBUTION', this.handleSubscribe.bind(this));
-    this.comms.registerHandler('SIGNATURE_AUTHORIZATION', this.handleSubscribe.bind(this));
+    this.protocol.registerHandler('SUBSCRIBE', this._handleSubscribe.bind(this));
+    this.protocol.registerHandler('OPT_IN', this._handleSubscribe.bind(this));
+    this.protocol.registerHandler('REQUEST_SIGNATURE', this._handleSubscribe.bind(this));
+    this.protocol.registerHandler('NONCE_CONTRIBUTION', this._handleSubscribe.bind(this));
+    this.protocol.registerHandler('SIGNATURE_AUTHORIZATION', this._handleSubscribe.bind(this));
 
-    await this.comms.start();
+    await this.protocol.start();
   }
 
-  private async handleSubscribe(message: any): Promise<void> {
+  private async _handleSubscribe(message: any): Promise<void> {
     const sender = message.from;
     if (!this.subscribers.includes(sender)) {
       this.subscribers.push(sender);
@@ -34,13 +30,23 @@ export class BeaconCoordinator {
     }
   }
 
-  private async acceptSubscription(sender: string): Promise<void> {
+  private async _handleJoinCohort(message: any, contactContext: InMemoryContextStorage, threadContext: InMemoryContextStorage): Promise<void> {
+    const sender = message.from;
+    if (!this.subscribers.includes(sender)) {
+      this.subscribers.push(sender);
+      await this.acceptSubscription(sender);
+    }
+  }
+
+  public async acceptSubscription(sender: string): Promise<void> {
     console.log(`Accepting subscription from ${sender}`);
     const response = {
       type : 'SUBSCRIBE_ACCEPT',
       to   : sender,
       from : this.id
     };
-    await this.comms.sendMessage(response, sender, this.id);
+    await this.protocol.sendMessage(response, sender, this.id);
   }
+
+
 }
