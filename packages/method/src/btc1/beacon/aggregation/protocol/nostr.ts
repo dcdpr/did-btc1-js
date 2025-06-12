@@ -1,6 +1,8 @@
+import { PrivateKey } from '@did-btc1/key-pair';
 import { Btc1Identifier } from '../../../../utils/identifier.js';
 import { ProtocolService } from './service.js';
-import { Relay, generateSecretKey, getPublicKey } from 'nostr-tools';
+import { Relay, generateSecretKey, getPublicKey, Filter } from 'nostr-tools';
+import { SimplePool, } from 'nostr-tools/pool';
 
 export interface NostrAdapterConfig {
   keys: {
@@ -35,9 +37,11 @@ export class NostrAdapter implements ProtocolService {
   }
 
   async start(): Promise<void> {
-    this.config.relays
-      .map(Relay.connect)
-      .map((connection: any) =>  console.log('Connected to relay:', connection));
+    const pool = new SimplePool();
+    pool.subscribe(this.config.relays, [{ kinds: [17]}] as unknown as Filter, { onclose: (reasons: string[]) => console.log('Subscription closed for reasons:', reasons), });
+    // this.config.relays
+    //   .map(Relay.connect)
+    //   .map((connection: any) =>  console.log('Connected to relay:', connection));
   }
 
   registerHandler(messageType: string, handler: (msg: any) => Promise<void>): void {
@@ -57,13 +61,20 @@ export class NostrAdapter implements ProtocolService {
   }
 
   /**
-   * Generates a Nostr identity using the Btc1Identifier utility.
-   * This identity will be used as the DID for the protocol.
-   * @returns A Nostr identity (DID) for the protocol
+   * Generates a Nostr identity using the PrivateKey and Btc1Identifier classes.
+   * @returns {string} A Btc1 DID used for communication over the nostr protocol
    */
   async generateIdentity(): Promise<string> {
-    const identity = Btc1Identifier.generate();
-    console.log(`Generated Nostr identity: ${identity.did}`);
-    return identity.did;
+    this.config.keys.secret = PrivateKey.generate();
+    this.config.keys.public = PrivateKey.getPublicKey(this.config.keys.secret);
+    this.config.did = Btc1Identifier.encode(
+      {
+        idType       : this.config.components.idType  || 'KEY',
+        version      : this.config.components.version || 1,
+        network      : this.config.components.network || 'signet',
+        genesisBytes : this.config.keys.public
+      }
+    );
+    return this.config.did;
   }
 }

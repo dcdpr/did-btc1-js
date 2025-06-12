@@ -52,12 +52,9 @@ export interface IPrivateKey {
 
   /**
    * Uses the private key to compute the corresponding public key.
-   * @see PrivateKeyUtils.computePublicKey
-   *
-   * @returns {PublicKey} A new PublicKey object.
+   * @returns {PublicKeyBytes} A new PublicKey object.
    */
-  computePublicKey(): PublicKey;
-
+  computePublicKey(): PublicKeyBytes;
 
   /**
    * Checks if the private key is valid.

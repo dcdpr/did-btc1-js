@@ -67,7 +67,7 @@ export class PublicKey implements IPublicKey {
    * @returns {Uint8Array} The 65-byte uncompressed public key (0x04, x, y).
    */
   get uncompressed(): PublicKeyBytes {
-    const uncompressed = PublicKeyUtils.liftX(this.x);
+    const uncompressed = PublicKey.liftX(this.x);
     return uncompressed;
   }
 
@@ -220,14 +220,7 @@ export class PublicKey implements IPublicKey {
     json.x.unshift(json.parity);
     return new PublicKey(json.x.toUint8Array());
   }
-}
 
-/**
- * Utility class for Multikey operations/
- * @class PublicKeyUtils
- * @type {PublicKeyUtils}
- */
-export class PublicKeyUtils {
   /**
    * Computes the deterministic public key for a given private key.
    *
@@ -247,7 +240,7 @@ export class PublicKeyUtils {
     const privateKey = pk instanceof PrivateKey ? pk : new PrivateKey(pk);
 
     // Return a new PublicKey object
-    return privateKey.computePublicKey();
+    return new PublicKey(privateKey.computePublicKey());
   }
 
   /**

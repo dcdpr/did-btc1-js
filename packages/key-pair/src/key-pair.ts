@@ -7,7 +7,7 @@ import {
   PublicKeyBytes
 } from '@did-btc1/common';
 import { IKeyPair } from './interface.js';
-import { PrivateKey, PrivateKeyUtils } from './private-key.js';
+import { PrivateKey } from './private-key.js';
 import { PublicKey } from './public-key.js';
 
 /** Params for the {@link KeyPair} constructor */
@@ -54,7 +54,7 @@ export class KeyPair implements IKeyPair {
     // Set the private and public keys
     this._privateKey = isPrivKeyBytes ? new PrivateKey(privateKey) : privateKey;
     this._publicKey = !publicKey
-      ? this.privateKey.computePublicKey()
+      ? new PublicKey(this._privateKey!.computePublicKey())
       : isPubKeyBytes
         ? new PublicKey(publicKey)
         : publicKey;
@@ -154,7 +154,7 @@ export class KeyPair implements IKeyPair {
    * @returns {KeyPair} A new KeyPair object
    */
   public static fromSecret(secret: bigint): KeyPair {
-    const privateKey = PrivateKeyUtils.fromSecret(secret);
+    const privateKey = PrivateKey.fromSecret(secret);
     const publicKey = privateKey.computePublicKey();
     return new KeyPair({ privateKey, publicKey });
   }
@@ -203,7 +203,7 @@ export class KeyPair implements IKeyPair {
    */
   public static generate(): KeyPair {
     // Generate random private key bytes
-    const privateKeyBytes = PrivateKeyUtils.randomBytes();
+    const privateKeyBytes = PrivateKey.generate();
 
     // Construct a new PrivateKey object
     const privateKey = new PrivateKey(privateKeyBytes);

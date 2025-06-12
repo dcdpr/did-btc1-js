@@ -44,9 +44,9 @@ export type PublicKeyJSON = {
 };
 export type PrivateKeyJSON = {
   bytes: Array<number>;
-  secret: string;
-  point: string
-  hex: Hex;
+  secret?: string;
+  point?: string
+  hex?: Hex;
 };
 export type KeyPairJSON = {
   privateKey: PrivateKeyJSON;

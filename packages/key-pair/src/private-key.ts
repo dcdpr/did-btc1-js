@@ -11,13 +11,12 @@ import {
   PrivateKeySeed,
   PublicKeyBytes
 } from '@did-btc1/common';
+import { sha256 } from '@noble/hashes/sha256';
 import { getRandomValues } from 'crypto';
 import { base58btc } from 'multiformats/bases/base58';
 import * as tinysecp from 'tiny-secp256k1';
 import { IPrivateKey } from './interface.js';
 import { KeyPair } from './key-pair.js';
-import { PublicKey } from './public-key.js';
-import { sha256 } from '@noble/hashes/sha256';
 
 /**
  * Encapsulates a secp256k1 private key
@@ -33,9 +32,6 @@ export class PrivateKey implements IPrivateKey {
 
   /** @type {PrivateKeySecret} The bigint private key secret */
   private _secret?: PrivateKeySecret;
-
-  /** @type {PublicKey} Memoized version of the PublicKey object */
-  private _computedPublicKey?: PublicKey;
 
   /** @type {string} The private key in privateKeyMultibase format */
   private _multibase: string;
@@ -77,8 +73,8 @@ export class PrivateKey implements IPrivateKey {
     const seedSecret = seed as PrivateKeySecret;
 
     // Set the private key _bytes and _secret
-    this._bytes = isSecret ? PrivateKeyUtils.toBytes(seedSecret) : seedBytes;
-    this._secret = isBytes ? PrivateKeyUtils.toSecret(seedBytes) : seedSecret;
+    this._bytes = isSecret ? PrivateKey.toBytes(seedSecret) : seedBytes;
+    this._secret = isBytes ? PrivateKey.toSecret(seedBytes) : seedSecret;
 
     // Set the private key multibase
     this._multibase = this.encode();
@@ -175,7 +171,67 @@ export class PrivateKey implements IPrivateKey {
   }
 
   /**
+   * Checks if this private key is equal to another.
+   * @param {PrivateKey} other The other private key
+   * @returns {boolean} True if the private keys are equal, false otherwise
+   */
+  public equals(other: PrivateKey): boolean {
+    // Compare the hex strings of the private keys
+    return this.hex === other.hex;
+  }
+
+  /**
+   * Computes the public key from the private key bytes.
+   * @returns {PublicKeyBytes} The computed public key
+   */
+  public computePublicKey(): PublicKeyBytes {
+    // Derive the public key from the private key
+    const publicKeyBytes = tinysecp.pointFromScalar(this.bytes, true);
+
+    // If no public key, throw error
+    if (!publicKeyBytes) {
+      throw new PrivateKeyError(
+        'Invalid compute: failed to derive public key',
+        'COMPUTE_PUBLIC_KEY_ERROR'
+      );
+    }
+
+    // If public key is not compressed, throw error
+    if(publicKeyBytes.length !== 33) {
+      throw new PrivateKeyError(
+        'Invalid compute: public key not compressed format',
+        'COMPUTE_PUBLIC_KEY_ERROR'
+      );
+    }
+
+    return publicKeyBytes;
+  }
+
+  /**
+   * Converts the private key to a JSON object.
+   * @returns {PrivateKeyJSON} The private key as a JSON object
+   */
+  public json(): PrivateKeyJSON {
+    return {
+      bytes  : this.bytes.toArray(),
+      secret : this.secret.toString(),
+      point  : this.point.toString(),
+      hex    : this.hex,
+    };
+  }
+
+  /**
+   * Checks if the private key is valid.
+   * @returns {boolean} True if the private key is valid, false otherwise
+   */
+  public isValid(): boolean {
+    return tinysecp.isPrivate(this.bytes);
+  }
+
+  /**
    * Decodes the multibase string to the 34-byte secret key (2 byte prefix + 32 byte key).
+   * @static
+   * @param {string} multibase The multibase string to decode
    * @returns {Bytes} The decoded secret key.
    */
   public static decode(multibase: string): Bytes {
@@ -209,63 +265,18 @@ export class PrivateKey implements IPrivateKey {
   }
 
   /**
-   * Checks if this private key is equal to another.
-   * @see IPrivateKey.equals
-   *
-   * @param {PrivateKey} other The other private key
-   * @returns {boolean} True if the private keys are equal, false otherwise
+   * Creates a PrivateKey object from a JSON object.
+   * @static
+   * @param {PrivateKeyJSON} json The JSON object containing the private key bytes
+   * @returns {PrivateKey} A new PrivateKey object
    */
-  public equals(other: PrivateKey): boolean {
-    // Compare the hex strings of the private keys
-    return this.hex === other.hex;
-  }
-
-  /**
-   * Computes the public key from the private key bytes.
-   * @returns {PublicKey} The computed public key
-   */
-  public computePublicKey(): PublicKey {
-    if (!this._computedPublicKey) {
-      const publicKeyBytes = PrivateKeyUtils.computePublicKey(this.bytes);
-      this._computedPublicKey = new PublicKey(publicKeyBytes);
-    }
-    return this._computedPublicKey;
-  }
-
-
-  /**
-   * Checks if the private key is valid.
-   * @returns {boolean} True if the private key is valid, false otherwise
-   */
-  public isValid(): boolean {
-    return PrivateKeyUtils.isValid(this.bytes);
-  }
-
-  /**
-   * Returns the private key as a JSON object.
-   */
-  public json(): PrivateKeyJSON {
-    return {
-      bytes  : this.bytes.toArray(),
-      secret : this.secret.toString(),
-      point  : this.point.toString(),
-      hex    : this.hex,
-    };
-  }
-
   public static from(json: PrivateKeyJSON): PrivateKey {
     return new PrivateKey(new Uint8Array(json.bytes));
   }
-}
 
-/**
- * Utility class for creating and working with PrivateKey objects.
- * @class PrivateKeyUtils
- * @type {PrivateKeyUtils}
- */
-export class PrivateKeyUtils {
   /**
-   * Convert a PrivateKey or PrivateKeyBytes to a KeyPair.
+   * Converts a PrivateKey or PrivateKeyBytes to a KeyPair.
+   * @static
    * @param {PrivateKeyBytes} bytes
    * @returns {KeyPair} The KeyPair object containing the public and private keys
    * @throws {PrivateKeyError} If the private key is not valid
@@ -283,7 +294,7 @@ export class PrivateKeyUtils {
 
   /**
    * Convert a bigint secret to private key bytes.
-   *
+   * @static
    * @param {PrivateKeyBytes} bytes The private key bytes
    * @returns {bigint} The private key bytes as a bigint secret
    */
@@ -293,7 +304,7 @@ export class PrivateKeyUtils {
 
   /**
    * Convert a private key bytes to a bigint secret.
-   *
+   * @static
    * @param {bigint} secret The private key secret.
    * @returns {PrivateKeyBytes} The private key secret as private key bytes.
    */
@@ -315,18 +326,8 @@ export class PrivateKeyUtils {
   }
 
   /**
-   * Checks if the private key is valid.
-   *
-   * @param {PrivateKeyBytes} bytes The private key bytes
-   * @returns {boolean} True if the private key is valid, false otherwise
-   */
-  public static isValid(bytes: PrivateKeyBytes): boolean {
-    return tinysecp.isPrivate(bytes);
-  }
-
-  /**
-   * Create a new PrivateKey object from a bigint secret.
-   *
+   * Creates a new PrivateKey object from a bigint secret.
+   * @static
    * @param {bigint} secret The secret bigint
    * @returns {PrivateKey} A new PrivateKey object
    */
@@ -340,45 +341,29 @@ export class PrivateKeyUtils {
   }
 
   /**
-   * Computes the public key bytes from a private key bytes.
-   *
-   * @param {PrivateKeyBytes} privateKeyBytes The private key bytes
-   * @returns {PublicKeyBytes} The public key bytes
-   * @throws {PrivateKeyError} If the public key is not compressed or not derived
-   */
-  public static computePublicKey(privateKeyBytes: PrivateKeyBytes): PublicKeyBytes {
-    // Derive the public key from the private key
-    const publicKeyBytes = tinysecp.pointFromScalar(privateKeyBytes, true);
-
-    // If no public key, throw error
-    if (!publicKeyBytes) {
-      throw new PrivateKeyError(
-        'Invalid compute: failed to derive public key',
-        'COMPUTE_PUBLIC_KEY_ERROR'
-      );
-    }
-
-    // If public key is not compressed, throw error
-    if(publicKeyBytes.length !== 33) {
-      throw new PrivateKeyError(
-        'Invalid compute: public key not compressed format',
-        'COMPUTE_PUBLIC_KEY_ERROR'
-      );
-    }
-
-    return publicKeyBytes;
-  }
-
-  /**
-   * Static method to generate random private key bytes.
-   *
+   * Generates random private key bytes.
+   * @static
    * @returns {PrivateKeyBytes} Uint8Array of 32 random bytes.
    */
-  public static randomBytes(): PrivateKeyBytes {
+  public static generate(): PrivateKeyBytes {
     // Generate empty 32-byte array
     const byteArray = new Uint8Array(32);
 
     // Use the getRandomValues function to fill the byteArray with random values
     return getRandomValues(byteArray);
+  }
+
+  /**
+   * Generates a public key from the given private key bytes.
+   * @static
+   * @param {PrivateKeyBytes} bytes The private key bytes
+   * @returns {PublicKeyBytes} The computed public key bytes
+   */
+  public static getPublicKey(bytes: PrivateKeyBytes): PublicKeyBytes {
+    // Create a new PrivateKey from the bytes
+    const privateKey = new PrivateKey(bytes);
+
+    // Compute the public key from the private key
+    return privateKey.computePublicKey();
   }
 }
