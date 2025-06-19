@@ -1,18 +1,18 @@
 import { Base } from './messages/base.js';
 import { OptInMessage } from './messages/opt-in.js';
+import { Musig2Cohort } from './models/cohort.js';
 import { ProtocolService } from './protocol/service.js';
 
 export class BeaconCoordinator {
-  private protocol: ProtocolService;
+  public protocol: ProtocolService;
   public name: string = 'BeaconCoordinator';
   private subscribers: string[] = [];
-  public did?: string;
+  public cohorts: Array<Musig2Cohort> = [];
+  public did: string = '';
 
   constructor(protocol: ProtocolService) {
     this.protocol = protocol;
-    void this.protocol.generateIdentity().then((identity) => {
-      this.did = identity;
-    });
+    void this.initialize().catch(e => console.error(`Error initializing BeaconCoordinator: ${e}`));
   }
 
   async initialize(): Promise<void> {
@@ -37,9 +37,9 @@ export class BeaconCoordinator {
 
   private async _handleJoinCohort(message: any): Promise<void> {
     const optIn = OptInMessage.initialize(message);
-    const cohortId = optIn.cohortId;
+    // const cohortId = optIn.cohortId;
     const participant = optIn.from;
-    const participantPk = optIn.participantPk;
+    // const participantPk = optIn.participantPk;
     if (!this.subscribers.includes(participant)) {
       this.subscribers.push(participant);
       await this.acceptSubscription(participant);

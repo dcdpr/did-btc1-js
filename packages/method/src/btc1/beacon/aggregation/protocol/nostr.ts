@@ -1,8 +1,8 @@
-import { PrivateKey } from '@did-btc1/key-pair';
+import { KeyPair, PrivateKey } from '@did-btc1/key-pair';
+import { Filter, generateSecretKey, getPublicKey } from 'nostr-tools';
+import { SimplePool, } from 'nostr-tools/pool';
 import { Btc1Identifier } from '../../../../utils/identifier.js';
 import { ProtocolService } from './service.js';
-import { Relay, generateSecretKey, getPublicKey, Filter } from 'nostr-tools';
-import { SimplePool, } from 'nostr-tools/pool';
 
 export interface NostrAdapterConfig {
   keys: {
@@ -20,28 +20,34 @@ export interface NostrAdapterConfig {
 }
 
 export class NostrAdapter implements ProtocolService {
-  public name: string = 'Nostr';
+  public name: string = 'nostr';
   private config: NostrAdapterConfig;
   private handlers: Map<string, (msg: any) => Promise<void>> = new Map();
 
   constructor(config: NostrAdapterConfig = { keys: {}, components: {}, relays: ['wss://relay.damus.io'] }) {
     this.config = config;
-    this.config.keys.secret = config.keys.secret || generateSecretKey();
-    this.config.keys.public = config.keys.public || Buffer.fromHex(getPublicKey(this.config.keys.secret));
+    const keys = KeyPair.generate();
+    this.config.keys = {
+      secret : keys.privateKey.bytes,
+      public : keys.publicKey.bytes
+    };
+    console.log('NostrAdapter', this.config);
     this.config.did = config.did || Btc1Identifier.encode({
       idType       : config.components.idType || 'KEY',
       version      : config.components.version || 1,
       network      : config.components.network || 'signet',
-      genesisBytes : this.config.keys.public
+      genesisBytes : this.config.keys.public!
     });
   }
 
   async start(): Promise<void> {
     const pool = new SimplePool();
-    pool.subscribe(this.config.relays, [{ kinds: [17]}] as unknown as Filter, { onclose: (reasons: string[]) => console.log('Subscription closed for reasons:', reasons), });
-    // this.config.relays
-    //   .map(Relay.connect)
-    //   .map((connection: any) =>  console.log('Connected to relay:', connection));
+    pool.subscribe(this.config.relays, { kinds: [17]} as Filter, {
+      onclose : (reasons: string[]) => console.log('Subscription closed for reasons:', reasons),
+      onevent : async (event: any) => {
+        console.log('Received event:', event);
+      }
+    });
   }
 
   registerHandler(messageType: string, handler: (msg: any) => Promise<void>): void {
