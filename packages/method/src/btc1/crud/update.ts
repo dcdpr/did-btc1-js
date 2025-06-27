@@ -12,7 +12,7 @@ import {
   ProofOptions
 } from '@did-btc1/common';
 import { SchnorrMultikey } from '@did-btc1/cryptosuite';
-import { SchnorrKeyPair, SecretKey } from '@did-btc1/key-pair';
+import { SchnorrKeyPair, SecretKey } from '@did-btc1/keypair';
 import type { DidService } from '@web5/dids';
 import { BeaconService } from '../../interfaces/ibeacon.js';
 import { SignalsMetadata } from '../../types/crud.js';

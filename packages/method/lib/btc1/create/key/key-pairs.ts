@@ -1,4 +1,4 @@
-import { KeyPairUtils } from '@did-btc1/key-pair';
+import { KeyPairUtils } from '@did-btc1/keypair';
 import { writeFile } from 'fs/promises';
 import path from 'path';
 

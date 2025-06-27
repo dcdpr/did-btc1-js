@@ -218,7 +218,7 @@ importers:
       '@did-btc1/common':
         specifier: workspace:*
         version: link:../common
-      '@did-btc1/key-pair':
+      '@did-btc1/keypair':
         specifier: workspace:*
         version: link:../keypair
       '@noble/curves':
@@ -397,7 +397,7 @@ importers:
       '@did-btc1/cryptosuite':
         specifier: workspace:*
         version: link:../cryptosuite
-      '@did-btc1/key-pair':
+      '@did-btc1/keypair':
         specifier: workspace:*
         version: link:../keypair
       '@helia/strings':

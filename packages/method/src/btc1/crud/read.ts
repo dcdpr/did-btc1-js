@@ -13,7 +13,7 @@ import {
   UnixTimestamp
 } from '@did-btc1/common';
 import { Cryptosuite, DataIntegrityProof, SchnorrMultikey } from '@did-btc1/cryptosuite';
-import { PublicKey } from '@did-btc1/key-pair';
+import { PublicKey } from '@did-btc1/keypair';
 import { bytesToHex } from '@noble/hashes/utils';
 import { GENESIS_TX_ID, TXIN_WITNESS_COINBASE } from '../../bitcoin/constants.js';
 import bitcoinNetwork, { Bitcoin } from '../../bitcoin/index.js';

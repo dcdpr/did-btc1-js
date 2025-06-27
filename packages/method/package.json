@@ -83,7 +83,7 @@
     "dependencies": {
         "@did-btc1/common": "workspace:*",
         "@did-btc1/cryptosuite": "workspace:*",
-        "@did-btc1/key-pair": "workspace:*",
+        "@did-btc1/keypair": "workspace:*",
         "@helia/strings": "^4.0.2",
         "@noble/curves": "^1.8.1",
         "@noble/hashes": "^1.5.0",

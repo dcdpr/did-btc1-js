@@ -1,6 +1,6 @@
 import { readFile, writeFile } from 'fs/promises';
 import { DidBtc1 } from '../../../../src/did-btc1.js';
-import { SchnorrKeyPair } from '@did-btc1/key-pair';
+import { SchnorrKeyPair } from '@did-btc1/keypair';
 
 const cwd = process.cwd();
 const network = process.argv.slice(2)[0] || 'regtest';

@@ -9,7 +9,7 @@ import {
   SignatureBytes
 } from '@did-btc1/common';
 import { SchnorrMultikey } from '@did-btc1/cryptosuite';
-import { SchnorrKeyPair, PublicKey } from '@did-btc1/key-pair';
+import { SchnorrKeyPair, PublicKey } from '@did-btc1/keypair';
 import { sha256 } from '@noble/hashes/sha2';
 import { KeyValueStore, MemoryStore } from '@web5/common';
 import { KeyIdentifier } from '@web5/crypto';
