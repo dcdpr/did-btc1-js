@@ -1,5 +1,5 @@
 import { KeyPairError, MultikeyError } from '@did-btc1/common';
-import { SchnorrKeyPair, SecretKey, PublicKey } from '@did-btc1/key-pair';
+import { SchnorrKeyPair, SecretKey, PublicKey } from '@did-btc1/keypair';
 import { expect } from 'chai';
 import { SchnorrMultikey } from '../src/index.js';
 

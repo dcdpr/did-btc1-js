@@ -1,6 +1,6 @@
 // NOTE: Does not verify due to bad input data!
 
-import { SchnorrKeyPair } from '@did-btc1/key-pair';
+import { SchnorrKeyPair } from '@did-btc1/keypair';
 import { Btc1Identifier } from '../../../method/src/index.js';
 import { SchnorrMultikey } from '../../src/index.js';
 

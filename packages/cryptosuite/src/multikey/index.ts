@@ -1,5 +1,5 @@
 import { Hex, MultikeyError, SignatureBytes, VERIFICATION_METHOD_ERROR } from '@did-btc1/common';
-import { SchnorrKeyPair, PublicKey, SecretKey } from '@did-btc1/key-pair';
+import { SchnorrKeyPair, PublicKey, SecretKey } from '@did-btc1/keypair';
 import { schnorr, secp256k1 } from '@noble/curves/secp256k1';
 import { DidVerificationMethod } from '@web5/dids';
 import { randomBytes } from 'crypto';

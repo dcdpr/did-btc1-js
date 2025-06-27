@@ -1,5 +1,5 @@
 import { ID_PLACEHOLDER_VALUE } from '@did-btc1/common';
-import { SchnorrKeyPair } from '@did-btc1/key-pair';
+import { SchnorrKeyPair } from '@did-btc1/keypair';
 import { IntermediateDidDocument } from '../../src/index.js';
 import initialExternalDocument from '../in/resolve/external/initialDidDoc.json' with { type: 'json' };
 

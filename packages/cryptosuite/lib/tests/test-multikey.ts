@@ -1,4 +1,4 @@
-import { SchnorrKeyPair } from '@did-btc1/key-pair';
+import { SchnorrKeyPair } from '@did-btc1/keypair';
 import { SchnorrMultikey } from '../../src/index.js';
 import data from '../data/test-data.js';
 

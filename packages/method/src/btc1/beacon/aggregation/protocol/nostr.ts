@@ -1,4 +1,4 @@
-import { SchnorrKeyPair, SecretKey } from '@did-btc1/key-pair';
+import { SchnorrKeyPair, SecretKey } from '@did-btc1/keypair';
 import { Filter } from 'nostr-tools';
 import { SimplePool, } from 'nostr-tools/pool';
 import { Btc1Identifier } from '../../../../utils/identifier.js';

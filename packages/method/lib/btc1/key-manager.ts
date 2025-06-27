@@ -1,4 +1,4 @@
-// import { SchnorrKeyPair, SecretKey } from '@did-btc1/key-pair';
+// import { SchnorrKeyPair, SecretKey } from '@did-btc1/keypair';
 import { Btc1Identifier, Btc1KeyManager } from '../../src/index.js';
 
 // const bytes = new Uint8Array(Buffer.from('b193d273a8ed8167f2de94e70c6d340dfdb13f2ec8f8d0b5d435c5b1b247635d', 'hex'));

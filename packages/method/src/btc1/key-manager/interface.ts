@@ -1,6 +1,6 @@
 import { HashBytes, Hex, SignatureBytes } from '@did-btc1/common';
 import { Multikey, SchnorrMultikey } from '@did-btc1/cryptosuite';
-import { SchnorrKeyPair, PublicKey } from '@did-btc1/key-pair';
+import { SchnorrKeyPair, PublicKey } from '@did-btc1/keypair';
 import { KeyValueStore } from '@web5/common';
 
 export type Btc1KeyManagerOptions = {

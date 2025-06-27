@@ -89,7 +89,7 @@
   },
   "dependencies": {
     "@did-btc1/common": "workspace:*",
-    "@did-btc1/key-pair": "workspace:*",
+    "@did-btc1/keypair": "workspace:*",
     "@noble/curves": "^1.8.1",
     "@noble/hashes": "^1.7.1",
     "@web5/dids": "^1.2.0",

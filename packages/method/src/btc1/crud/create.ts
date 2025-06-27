@@ -1,5 +1,5 @@
 import { Btc1IdentifierTypes, KeyBytes, PatchOperation } from '@did-btc1/common';
-import { PublicKey } from '@did-btc1/key-pair';
+import { PublicKey } from '@did-btc1/keypair';
 import { DidCreateOptions as IDidCreateOptions } from '@web5/dids';
 import { getNetwork } from '../../bitcoin/network.js';
 import { BeaconUtils } from '../../utils/beacons.js';
