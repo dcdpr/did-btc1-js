@@ -1,8 +1,8 @@
 import { SchnorrKeyPair, SecretKey } from '@did-btc1/keypair';
 import { Filter } from 'nostr-tools';
 import { SimplePool, } from 'nostr-tools/pool';
-import { Btc1Identifier } from '../../../../utils/identifier.js';
 import { ProtocolService } from './service.js';
+import { Btc1Identifier } from '../../../../utils/identifier.js';
 
 export interface NostrAdapterConfig {
   keys: {

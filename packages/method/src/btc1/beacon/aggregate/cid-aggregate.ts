@@ -1,9 +1,9 @@
 import { Btc1Error, DidUpdateInvocation, DidUpdatePayload } from '@did-btc1/common';
 import { DidServiceEndpoint } from '@web5/dids';
-import { Beacon } from '../../interfaces/beacon.js';
-import { BeaconService, BeaconSignal } from '../../interfaces/ibeacon.js';
-import { RawTransactionV2 } from '../../types/bitcoin.js';
-import { CIDAggregateSidecar, SidecarData, SignalsMetadata } from '../../types/crud.js';
+import { RawTransactionV2 } from '../../../bitcoin/rpc/types.js';
+import { BeaconService, BeaconSignal, CIDAggregateSidecar } from '../interfaces.js';
+import { SidecarData, SignalsMetadata } from '../types.js';
+import { UpdateBeacon } from '../beacon.js';
 
 /**
  * Implements {@link https://dcdpr.github.io/did-btc1/#cidaggregate-beacon | 5.2 CIDAggregate Beacon}.
@@ -21,7 +21,7 @@ import { CIDAggregateSidecar, SidecarData, SignalsMetadata } from '../../types/c
  * @type {CIDAggregateBeacon}
  * @extends {Beacon}
  */
-export class CIDAggregateBeacon extends Beacon {
+export class CIDAggregateBeacon extends UpdateBeacon {
   /**
    * Creates an instance of CIDAggregateBeacon.
    *

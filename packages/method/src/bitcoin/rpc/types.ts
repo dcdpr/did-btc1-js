@@ -1,78 +1,7 @@
 import { Hex, UnixTimestamp } from '@did-btc1/common';
-import BitcoinRpc from '../bitcoin/rpc-client.js';
+import BitcoinRpc from './index.js';
 
-export interface ReturnFormatOptions {
-    extension?: 'json' | 'bin' | 'hex';
-}
 export type TxId = string;
-export interface BlockHashOptions extends ReturnFormatOptions {
-    summary?: boolean;
-}
-
-export interface IClientConfig {
-    headers?: Record<string, string>;
-    host?: string;
-    logger?: any;
-    password?: string;
-    timeout?: number;
-    username?: string;
-    version?: string;
-    wallet?: string;
-    allowDefaultWallet?: boolean;
-}
-
-export class RpcClientConfig implements IClientConfig {
-  network?: string;
-  headers?: Record<string, string>;
-  host?: string;
-  logger?: any;
-  password?: string;
-  timeout?: number;
-  username?: string;
-  version?: string;
-  wallet?: string;
-  allowDefaultWallet?: boolean;
-
-  constructor(options: IClientConfig = {
-    headers            : {},
-    host               : 'localhost',
-    logger             : console,
-    password           : '',
-    timeout            : 30000,
-    username           : '',
-    version            : '0.21.1',
-    wallet             : '',
-    allowDefaultWallet : false,
-  }) {
-    this.headers = options.headers;
-    this.host = options.host;
-    this.logger = options.logger;
-    this.password = options.password;
-    this.timeout = options.timeout;
-    this.username = options.username;
-    this.version = options.version;
-    this.wallet = options.wallet;
-    this.allowDefaultWallet = options.allowDefaultWallet;
-  }
-
-  public static initialize(options?: IClientConfig): RpcClientConfig {
-    return new RpcClientConfig(options);
-  }
-}
-
-export interface ClientConstructorOption {
-    agentOptions?: any;
-    headers?: boolean;
-    host?: string;
-    logger?: Function;
-    network?: 'mainnet' | 'regtest' | 'testnet';
-    password?: string;
-    port?: string | number;
-    ssl?: any;
-    timeout?: number;
-    username?: string;
-    version?: string;
-}
 
 export type ScriptDecoded = {
     asm: string;
@@ -909,8 +838,7 @@ export type ListTransactionsParams = {
 
 export type FundRawTxResult = { hex: string; fee: number; changepos: number; }
 
-export type BitcoinAddress = string;
-export type DerivedAddresses = Array<BitcoinAddress>;
+export type DerivedAddresses = Array<string>;
 
 export type CreateWalletDescriptorOptions = { internal: boolean; hdkey: string }
 export type WalletDescriptor = string;
