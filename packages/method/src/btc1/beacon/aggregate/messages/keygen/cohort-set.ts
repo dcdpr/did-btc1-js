@@ -1,5 +1,5 @@
-import { BaseMessage } from './base.js';
-import { COHORT_SET } from './keygen.js';
+import { BaseMessage } from '../base.js';
+import { COHORT_SET } from '../constants.js';
 
 export type CohortSet = {
   type?: typeof COHORT_SET;
@@ -16,7 +16,7 @@ export class CohortSetMessage extends BaseMessage {
   public beaconAddress: string;
   public cohortKeys: Array<Uint8Array>;
 
-  constructor({ type = COHORT_SET, to, from, threadId, cohortId, beaconAddress, cohortKeys }: CohortSet) {
+  constructor({ type = COHORT_SET, to, from, cohortId, beaconAddress, cohortKeys, threadId }: CohortSet) {
     super({ type, to, from, threadId, body: { cohortId, beaconAddress, cohortKeys }});
     this.cohortId = cohortId;
     this.beaconAddress = beaconAddress;
