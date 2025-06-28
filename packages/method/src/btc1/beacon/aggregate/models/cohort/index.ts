@@ -1,4 +1,5 @@
 import { TapRootMultiSig } from '../../../../../bitcoin/taproot.js';
+import { CohortSetMessage } from '../../messages/keygen/cohort-set.js';
 import { COHORT_STATUS, COHORT_STATUS_TYPE } from './status.js';
 
 export type Musig2CohortParams = {
@@ -108,5 +109,24 @@ export class Musig2Cohort {
       throw new Error('Failed to calculate Taproot address');
     }
     return branch.address;
+  }
+
+  /**
+   * Generates a CohortSetMessage to be sent to participants when the cohort is set.
+   * @param {string} to The DID of the participant to whom the message is sent.
+   * @param {string} from The DID of the coordinator sending the message.
+   * @returns {CohortSetMessage} The CohortSetMessage containing the cohort details.
+   */
+  public getCohortSetMessage(to: string, from: string): CohortSetMessage {
+    if(this.status !== COHORT_STATUS.COHORT_SET_STATUS) {
+      throw new Error('Cohort status not "COHORT_SET".');
+    }
+    return new CohortSetMessage({
+      to,
+      from,
+      cohortId      : this.id,
+      beaconAddress : this.beaconAddress!,
+      cohortKeys    : this.cohortKeys,
+    });
   }
 }

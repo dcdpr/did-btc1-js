@@ -1,6 +1,6 @@
 import { Maybe } from '@did-btc1/common';
-import { BaseMessage } from './base.js';
-import { OPT_IN } from './keygen.js';
+import { BaseMessage } from '../base.js';
+import { OPT_IN } from '../constants.js';
 
 export type OptIn = {
   type: typeof OPT_IN;
@@ -23,11 +23,11 @@ export class OptInMessage extends BaseMessage {
 
   /**
    * Initializes an OptInMessage from a given OptIn object.
-   * @param {OptIn} data - The OptIn object to initialize the OptInMessage.
-   * @returns {object} The serialized OptInMessage.
+   * @param {OptIn} data The OptIn object to initialize the OptInMessage.
+   * @returns {OptInMessage} The serialized OptInMessage.
    */
   public static fromJSON(data: Maybe<OptIn>): OptInMessage {
-    if (data.type != 'OPT_IN') {
+    if (data.type != OPT_IN) {
       throw new Error(`Invalid type: ${data.type}`);
     }
     return new OptInMessage(data);

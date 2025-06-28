@@ -1,7 +1,7 @@
 import { SchnorrKeyPair, SecretKey } from '@did-btc1/keypair';
 import { Filter } from 'nostr-tools';
 import { SimplePool, } from 'nostr-tools/pool';
-import { ProtocolService } from './service.js';
+import { CommunicationService } from './service.js';
 import { Btc1Identifier } from '../../../../utils/identifier.js';
 
 export interface NostrAdapterConfig {
@@ -19,7 +19,7 @@ export interface NostrAdapterConfig {
   [key: string]: any;
 }
 
-export class NostrAdapter implements ProtocolService {
+export class NostrAdapter implements CommunicationService {
   public name: string = 'nostr';
   private config: NostrAdapterConfig;
   private handlers: Map<string, (msg: any) => Promise<void>> = new Map();
