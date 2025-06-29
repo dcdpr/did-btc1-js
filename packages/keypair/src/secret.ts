@@ -237,11 +237,7 @@ export class SecretKey implements ISecretKey {
    * @returns {SecretKeyObject} The secret key as a JSON object
    */
   public json(): SecretKeyObject {
-    return {
-      bytes : this.bytes.toArray(),
-      seed  : this.seed.toString(),
-      hex   : this.hex,
-    };
+    return Object.json(this) as SecretKeyObject;
   }
 
   /**
@@ -324,11 +320,8 @@ export class SecretKey implements ISecretKey {
     // Create a new SecretKey from the bytes
     const secretKey = new SecretKey(bytes);
 
-    // Compute the public key from the secret key
-    const publicKey = secretKey.computePublicKey();
-
     // Create a new Pair from the public key and secret key
-    return new SchnorrKeyPair({ publicKey, secretKey });
+    return new SchnorrKeyPair(secretKey);
   }
 
   /**

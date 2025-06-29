@@ -223,7 +223,7 @@ export class SchnorrMultikey implements Multikey {
     const publicKey = decoded.slice(2, decoded.length);
 
     // Construct a new PublicKey from the publicKey and a new Keys from the PublicKey
-    const keys = new SchnorrKeyPair({ publicKey: new PublicKey(publicKey) });
+    const keys = new SchnorrKeyPair(undefined, publicKey);
 
     // Return a new Multikey instance
     return new SchnorrMultikey({ id, controller, keys });
@@ -276,11 +276,8 @@ export class SchnorrMultikey implements Multikey {
     // Create a new PrivateKey from the private key bytes
     const secretKey = new SecretKey(entropy);
 
-    // Compute the public key from the private key
-    const publicKey = secretKey.computePublicKey();
-
     // Create a new Keys from the private key
-    const keys = new SchnorrKeyPair({ publicKey, secretKey });
+    const keys = new SchnorrKeyPair(secretKey);
 
     // Return a new Multikey instance
     return new SchnorrMultikey({ id, controller, keys });
@@ -296,7 +293,10 @@ export class SchnorrMultikey implements Multikey {
    */
   public static fromPublicKey({ id, controller, publicKeyBytes }: FromPublicKey): Multikey {
     // Create a new PublicKey from the public key bytes
-    const keys = new SchnorrKeyPair({ publicKey: new PublicKey(publicKeyBytes) });
+    const pk = new PublicKey(publicKeyBytes);
+
+    // Create new key pair from the public key
+    const keys = new SchnorrKeyPair(undefined, pk);
 
     // Return a new Multikey instance
     return new SchnorrMultikey({ id, controller, keys });
@@ -330,7 +330,7 @@ export class SchnorrMultikey implements Multikey {
     const publicKey = publicKeyMultibaseBytes.slice(2);
 
     // Construct a new Keys from the public key
-    const keys = new SchnorrKeyPair({ publicKey });
+    const keys = new SchnorrKeyPair(undefined, publicKey);
 
     // Return a new Multikey instance
     return new SchnorrMultikey({ id, controller, keys });

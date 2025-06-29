@@ -14,11 +14,11 @@ import {
 import { SchnorrMultikey } from '@did-btc1/cryptosuite';
 import { SchnorrKeyPair, SecretKey } from '@did-btc1/keypair';
 import type { DidService } from '@web5/dids';
-import { BeaconService } from '../../interfaces/ibeacon.js';
-import { SignalsMetadata } from '../../types/crud.js';
 import { Btc1Appendix } from '../../utils/appendix.js';
-import { Btc1DidDocument, Btc1VerificationMethod } from '../../utils/did-document.js';
+import { Btc1DidDocument, Btc1VerificationMethod } from '../did-document/index.js';
 import { BeaconFactory } from '../beacon/factory.js';
+import { BeaconService } from '../beacon/interfaces.js';
+import { SignalsMetadata } from '../beacon/types.js';
 import { Btc1KeyManager } from '../key-manager/index.js';
 
 export type InvokePayloadParams = {
@@ -151,7 +151,7 @@ export class Btc1Update {
     const id = fullId.slice(fullId.indexOf('#'));
     const multikey = !secretKeyMultibase
       ? await Btc1KeyManager.getKeyPair(fullId)
-      : SchnorrMultikey.initialize({ id, controller, keys: new SchnorrKeyPair({ secretKey: SecretKey.decode(secretKeyMultibase) }) });
+      : SchnorrMultikey.initialize({ id, controller, keys: new SchnorrKeyPair(SecretKey.decode(secretKeyMultibase)) });
 
     // 1.3 If the privateKey is not found, throw an error
     if (!multikey) {
