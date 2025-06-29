@@ -305,15 +305,7 @@ export class PublicKey implements PublicKey {
    * @returns {PublicKeyObject} The PublicKey as a JSON object.
    */
   public json(): PublicKeyObject {
-    return {
-      hex       : this.hex,
-      multibase : this.multibase,
-      point     : {
-        x      : this.x.toArray(),
-        y      : this.y.toArray(),
-        parity : this.parity,
-      },
-    };
+    return Object.json(this) as PublicKeyObject;
   }
 
   /**

@@ -1,4 +1,4 @@
-import { DidUpdatePayload, INVALID_SIDECAR_DATA, LATE_PUBLISHING_ERROR, SingletonBeaconError } from '@did-btc1/common';
+import { DidUpdatePayload, INVALID_SIDECAR_DATA, LATE_PUBLISHING_ERROR } from '@did-btc1/common';
 import { opcodes, Psbt, script } from 'bitcoinjs-lib';
 import { base58btc } from 'multiformats/bases/base58';
 import bitcoinNetwork, { Bitcoin } from '../../bitcoin/index.js';
@@ -9,6 +9,7 @@ import { Btc1KeyManager, Signer } from '../key-manager/index.js';
 import { BeaconService, BeaconSignal, SingletonSidecar } from './interfaces.js';
 import { Metadata, SidecarData, SignalsMetadata } from './types.js';
 import { UpdateBeacon } from './beacon.js';
+import { SingletonBeaconError } from './error.js';
 
 /**
  * Implements {@link https://dcdpr.github.io/did-btc1/#singleton-beacon | 5.1 Singleton Beacon}.

@@ -36,12 +36,6 @@ type RawKeyPair = {
   secret?: KeyBytes
 }
 
-/** Params for the {@link SchnorrKeyPair} constructor */
-interface KeyParams {
-  secretKey?: SecretKey | KeyBytes;
-  publicKey?: PublicKey | KeyBytes;
-}
-
 interface MultibaseKeys {
   publicKeyMultibase: string;
   secretKeyMultibase: string
@@ -69,7 +63,7 @@ export class SchnorrKeyPair implements KeyPair {
    * Can optionally provide both a private and public key, but must be a valid pair.
    * @param {SecretKey} secretKey The secret key object
    */
-  constructor({ secretKey, publicKey }: KeyParams = {}) {
+  constructor(secretKey?: SecretKey | KeyBytes, publicKey?: PublicKey | KeyBytes) {
     // If no secret key or public key, throw an error
     if (!publicKey && !secretKey) {
       throw new KeyPairError('Argument missing: must at least provide a publicKey', 'CONSTRUCTOR_ERROR');
@@ -165,10 +159,7 @@ export class SchnorrKeyPair implements KeyPair {
    * @returns {SchnorrKeyPairObject} The Keys as a JSON object
    */
   public json(): SchnorrKeyPairObject {
-    return {
-      secretKey : this.secretKey.json(),
-      publicKey : this.publicKey.json()
-    };
+    return Object.json(this) as SchnorrKeyPairObject;
   }
 
   /**
@@ -177,9 +168,21 @@ export class SchnorrKeyPair implements KeyPair {
    * @returns {SchnorrKeyPair} The initialized Keys object.
    */
   public static fromJSON(keys: SchnorrKeyPairObject): SchnorrKeyPair {
+    // Construct the secret key and public key from the JSON object
     const secretKey = SecretKey.fromJSON(keys.secretKey);
     const publicKey = PublicKey.fromJSON(keys.publicKey);
-    return new SchnorrKeyPair({ secretKey, publicKey });
+    if(!secretKey.isValid()) {
+      throw new KeyPairError('Invalid secret key from JSON', 'FROM_JSON_ERROR', keys);
+    }
+    // Check that the keys are a valid pair
+    if(!secretKey.isValidPair(publicKey)) {
+      throw new KeyPairError(
+        'Invalid key pair: secret key does not match public key',
+        'FROM_JSON_ERROR', keys
+      );
+    }
+    // Return a new SchnorrKeyPair object
+    return new SchnorrKeyPair(secretKey, publicKey);
   }
 
   /**
@@ -200,11 +203,8 @@ export class SchnorrKeyPair implements KeyPair {
     // If pk Uint8Array, construct SecretKey object else use the object
     const secretKey = data instanceof Uint8Array ? new SecretKey(data) : data;
 
-    // Compute the public key from the secret key
-    const publicKey = secretKey.computePublicKey();
-
     // Return a new Keys object
-    return new SchnorrKeyPair({ secretKey, publicKey });
+    return new SchnorrKeyPair(secretKey);
   }
 
   /**
@@ -214,8 +214,7 @@ export class SchnorrKeyPair implements KeyPair {
    */
   public static fromSecret(secret: bigint): SchnorrKeyPair {
     const secretKey = SecretKey.fromSecret(secret);
-    const publicKey = secretKey.computePublicKey();
-    return new SchnorrKeyPair({ secretKey, publicKey });
+    return new SchnorrKeyPair(secretKey);
   }
 
   /**
@@ -265,10 +264,7 @@ export class SchnorrKeyPair implements KeyPair {
     // Construct a new SecretKey object
     const secretKey = new SecretKey(skBytes);
 
-    // Compute the public key from the secret key
-    const publicKey = secretKey.computePublicKey();
-
     // Return a new Keys object
-    return new SchnorrKeyPair({ secretKey, publicKey });
+    return new SchnorrKeyPair(secretKey);
   }
 }
