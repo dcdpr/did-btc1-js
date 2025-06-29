@@ -151,7 +151,7 @@ export class Btc1Update {
     const id = fullId.slice(fullId.indexOf('#'));
     const multikey = !secretKeyMultibase
       ? await Btc1KeyManager.getKeyPair(fullId)
-      : SchnorrMultikey.initialize({ id, controller, keys: new SchnorrKeyPair({ secretKey: SecretKey.decode(secretKeyMultibase) }) });
+      : SchnorrMultikey.initialize({ id, controller, keys: new SchnorrKeyPair(SecretKey.decode(secretKeyMultibase)) });
 
     // 1.3 If the privateKey is not found, throw an error
     if (!multikey) {
