@@ -1,5 +1,5 @@
 import { Logger } from '@did-btc1/common';
-import { TapRootMultiSig } from '../../../../../bitcoin/taproot.js';
+import { TapRootMultiSig } from '../../../../../bitcoin/taproot/multisig.js';
 import { CohortSetMessage } from '../../messages/keygen/cohort-set.js';
 import { RequestSignatureMessage } from '../../messages/sign/request-signature.js';
 import { COHORT_STATUS, COHORT_STATUS_TYPE } from './status.js';

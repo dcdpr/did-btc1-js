@@ -122,7 +122,7 @@ export class TapRootMultiSig {
   /**
    * Single multisig leaf as the only script path
    */
-  singleLeaf(locktime?: number, sequence?: number) {
+  public singleLeaf(locktime?: number, sequence?: number) {
     const leaf = buildTapLeafScript(this.points, this.k, locktime, sequence);
     return payments.p2tr({
       internalPubkey : this.defaultInternalPubkey,
@@ -133,7 +133,7 @@ export class TapRootMultiSig {
   /**
    * All k-of-n multisig combinations as separate leaf scripts, combined into one tree
    */
-  multiLeafTree(locktime?: number, sequence?: number) {
+  public multiLeafTree(locktime?: number, sequence?: number) {
     const leaves: Uint8Array[] = [];
     for (const combo of combinations(this.points, this.k)) {
       leaves.push(buildTapLeafScript(combo, this.k, locktime, sequence));
@@ -148,7 +148,7 @@ export class TapRootMultiSig {
   /**
    * MuSig key-path scripts for each k-of-n combination in the script tree
    */
-  musigTree() {
+  public musigTree() {
     const leaves: Uint8Array[] = [];
     for (const combo of combinations(this.points, this.k)) {
       leaves.push(buildMusigLeafScript(combo));
@@ -163,7 +163,7 @@ export class TapRootMultiSig {
   /**
    * A two-branch tree: one branch is the singleLeaf script, the other is the muSig tree
    */
-  musigAndSingleLeafTree(locktime?: number, sequence?: number) {
+  public musigAndSingleLeafTree(locktime?: number, sequence?: number) {
     const single = buildTapLeafScript(this.points, this.k, locktime, sequence);
     const musigLeaves: Uint8Array[] = [];
     for (const combo of combinations(this.points, this.k)) {
@@ -182,7 +182,7 @@ export class TapRootMultiSig {
   /**
    * Nested tree of singleLeaf, multiLeafTree, and musigTree
    */
-  everythingTree(locktime?: number, sequence?: number) {
+  public everythingTree(locktime?: number, sequence?: number) {
     const single = buildTapLeafScript(this.points, this.k, locktime, sequence);
 
     const multiLeaves: Uint8Array[] = [];
@@ -210,7 +210,7 @@ export class TapRootMultiSig {
   /**
    * Degrading multisig: k-of-n initially, then (k-1)-of-n after delay, ... until 1-of-n
    */
-  degradingMultisigTree(
+  public degradingMultisigTree(
     sequenceBlockInterval?: number,
     sequenceTimeInterval?: number
   ) {
