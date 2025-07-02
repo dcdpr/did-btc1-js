@@ -1,8 +1,5 @@
 import {
-  BIP340_SECRET_KEY_MULTIBASE_PREFIX,
-  BIP340_SECRET_KEY_MULTIBASE_PREFIX_HASH,
   Bytes,
-  CURVE,
   Entropy,
   Hex,
   KeyBytes,
@@ -15,6 +12,7 @@ import { base58btc } from 'multiformats/bases/base58';
 import * as tinysecp from 'tiny-secp256k1';
 import { SchnorrKeyPair } from './pair.js';
 import { PublicKey } from './public.js';
+import { BIP340_SECRET_KEY_MULTIBASE_PREFIX, BIP340_SECRET_KEY_MULTIBASE_PREFIX_HASH, SECP256K1_CURVE } from './constants.js';
 
 /**
  * Interface for the SecretKey class.
@@ -109,7 +107,7 @@ export class SecretKey implements ISecretKey {
     }
 
     // If secret and secret is not a valid bigint, throw error
-    if (isSecret && !(entropy < 1n || entropy >= CURVE.n)) {
+    if (isSecret && !(entropy < 1n || entropy >= SECP256K1_CURVE.N)) {
       this._bytes = SecretKey.toBytes(entropy);
       this._seed = entropy;
     }
@@ -121,7 +119,7 @@ export class SecretKey implements ISecretKey {
       );
     }
 
-    if(!this._seed || (this._seed < 1n || this._seed >= CURVE.n)) {
+    if(!this._seed || (this._seed < 1n || this._seed >= SECP256K1_CURVE.N)) {
       throw new SecretKeyError(
         'Invalid seed: must must be valid bigint',
         'CONSTRUCTOR_ERROR'
@@ -285,7 +283,7 @@ export class SecretKey implements ISecretKey {
     const prefix = decoded.slice(0, 2);
 
     // Compute the prefix hash
-    const prefixHash = Buffer.from(sha256(prefix)).toString('hex');
+    const prefixHash = sha256(prefix).toHex();
 
     // If the prefix hash does not equal the BIP340 prefix hash, throw an error
     if (prefixHash !== BIP340_SECRET_KEY_MULTIBASE_PREFIX_HASH) {

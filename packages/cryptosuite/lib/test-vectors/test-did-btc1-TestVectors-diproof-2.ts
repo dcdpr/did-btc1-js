@@ -1,4 +1,4 @@
-import { SchnorrKeyPair } from '@did-btc1/keypair';
+import { SchnorrKeyPair } from '../../../keypair/dist/types/secret/index.js';
 import { hexToBytes } from '@noble/hashes/utils';
 import { Btc1Appendix, Btc1Identifier } from '../../../method/src/index.js';
 import { SchnorrMultikey } from '../../src/index.js';

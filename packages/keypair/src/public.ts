@@ -1,7 +1,4 @@
 import {
-  BIP340_PUBLIC_KEY_MULTIBASE_PREFIX,
-  BIP340_PUBLIC_KEY_MULTIBASE_PREFIX_HASH,
-  CURVE,
   Hex,
   KeyBytes,
   Maybe,
@@ -11,7 +8,13 @@ import {
 } from '@did-btc1/common';
 import { sha256 } from '@noble/hashes/sha2';
 import { base58btc } from 'multiformats/bases/base58';
+import {
+  BIP340_PUBLIC_KEY_MULTIBASE_PREFIX,
+  BIP340_PUBLIC_KEY_MULTIBASE_PREFIX_HASH,
+  SECP256K1_CURVE
+} from './constants.js';
 import { SecretKey } from './secret.js';
+import { KeyPairUtils } from './utils.js';
 
 export interface Point {
   x: KeyBytes;
@@ -115,7 +118,12 @@ export class PublicKey implements PublicKey {
    * @param {KeyBytes} bytes The public key byte array.
    * @throws {PublicKeyError} if the byte length is not 32 (x-only) or 33 (compressed)
    */
-  constructor(bytes: KeyBytes) {
+  constructor(bytes: KeyBytes | bigint) {
+    // If the bytes are a bigint, convert to Uint8Array
+    if(typeof bytes === 'bigint'){
+      bytes = KeyPairUtils.intToBigEndian(bytes, 33);
+    }
+
     // If the byte length is not 33, throw an error
     if(bytes.length !== 33) {
       throw new PublicKeyError(
@@ -380,16 +388,16 @@ export class PublicKey implements PublicKey {
     }
 
     // Convert x from Uint8Array → BigInt
-    const x = BigInt('0x' + Buffer.from(this.x).toString('hex'));
-    if (x <= 0n || x >= CURVE.p) {
+    const x = BigInt(`0x${this.x.toHex()}`);
+    if (x <= 0n || x >= SECP256K1_CURVE.P) {
       throw new PublicKeyError('Invalid conversion: x out of range as BigInt', 'LIFT_X_ERROR');
     }
 
     // Compute y² = x³ + 7 mod p
-    const ySquared = BigInt((x ** 3n + CURVE.b) % CURVE.p);
+    const ySquared = BigInt((x ** 3n + SECP256K1_CURVE.b) % SECP256K1_CURVE.P);
 
     // Compute y (do not enforce parity)
-    const y = this.sqrtMod(ySquared, CURVE.p);
+    const y = this.sqrtMod(ySquared, SECP256K1_CURVE.P);
 
     // Convert x and y to Uint8Array
     const yBytes = Buffer.fromHex(y.toString(16).padStart(64, '0'));
@@ -400,17 +408,17 @@ export class PublicKey implements PublicKey {
 
   /**
    * Static version of liftX method.
-   * @param {KeyBytes} x The 32-byte x-coordinate to lift.
-   * @returns {Uint8Array} The 65-byte uncompressed public key (0x04, x, y).
+   * @param {KeyBytes} pk Any 33-byte compressed public key (0x02 or 0x03, x).
+   * @returns {Uint8Array} The x-only coordinate.
    */
-  public static xOnly(x: KeyBytes): Uint8Array {
+  public static xOnly(pk: KeyBytes): Uint8Array {
     // Ensure x-coordinate is 32 bytes
-    if (x.length !== 32) {
+    if (pk.length !== 33) {
       throw new PublicKeyError('Invalid argument: x-coordinate length must be 32 bytes', 'LIFT_X_ERROR');
     }
 
     // Create a PublicKey instance and lift the x-coordinate
-    const publicKey = new PublicKey(x);
+    const publicKey = new PublicKey(pk);
     return publicKey.x;
   }
 }

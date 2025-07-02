@@ -1,4 +1,4 @@
-import { SchnorrKeyPair } from '@did-btc1/keypair';
+import { SchnorrKeyPair } from '../../../keypair/dist/types/secret/index.js';
 import { Btc1DidDocument } from '../../src/index.js';
 import initialKeyDocument from '../in/resolve/key/initialDidDocument.json' with { type: 'json' };
 

@@ -1,5 +1,5 @@
 import { ProofOptions } from '@did-btc1/common';
-import { SchnorrKeyPair, SecretKey } from '@did-btc1/keypair';
+import { SchnorrKeyPair, SecretKey } from '../../keypair/dist/types/secret/index.js';
 import { expect } from 'chai';
 import { Cryptosuite, DataIntegrityProof, SchnorrMultikey } from '../src/index.js';
 

@@ -1,4 +1,4 @@
-import { PublicKey } from '@did-btc1/keypair';
+import { PublicKey } from '../../keypair/dist/types/secret/index.js';
 import { expect } from 'chai';
 import { DidBtc1 } from '../src/did-btc1.js';
 import { BeaconUtils, Btc1DidDocument, getNetwork } from '../src/index.js';
