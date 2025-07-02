@@ -1,12 +1,13 @@
 import { Logger } from '@did-btc1/common';
-import { TapRootMultiSig } from '../../../../../bitcoin/taproot/multisig.js';
+import { BeaconCoordinatorError } from '../../../error.js';
 import { CohortSetMessage } from '../../messages/keygen/cohort-set.js';
 import { RequestSignatureMessage } from '../../messages/sign/request-signature.js';
 import { COHORT_STATUS, COHORT_STATUS_TYPE } from './status.js';
-import { BeaconCoordinatorError } from '../../../error.js';
+import { keyAggExport, keyAggregate } from '@scure/btc-signer/musig2';
+import { TapRootMultiSig } from '../../../../../bitcoin/taproot/multisig.js';
 
 export type Musig2CohortObject = {
-    id: string;
+    id?: string;
     coordinatorDid: string;
     minParticipants: number;
     status: COHORT_STATUS_TYPE;
