@@ -1,5 +1,5 @@
 import { ID_PLACEHOLDER_VALUE } from '@did-btc1/common';
-import { PublicKey } from '@did-btc1/keypair';
+import { PublicKey } from '../../keypair/dist/types/secret/index.js';
 import { payments } from 'bitcoinjs-lib';
 import { expect } from 'chai';
 import { DidBtc1 } from '../src/did-btc1.js';

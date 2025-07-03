@@ -1,6 +1,4 @@
-import { BeaconCoordinator } from '../../../src/btc1/beacon/aggregation/coordinator.js';
-import { NostrAdapter } from '../../../src/btc1/beacon/aggregation/protocol/nostr.js';
+import { BeaconCoordinator, NostrAdapter } from '../../../src/index.js';
 
 const nostr = new NostrAdapter();
-const coordinator = new BeaconCoordinator(nostr);
-await coordinator.protocol.start();
+const coordinator = new BeaconCoordinator(nostr).start();

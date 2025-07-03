@@ -1,4 +1,4 @@
-import { SchnorrKeyPair } from '@did-btc1/keypair';
+import { SchnorrKeyPair } from '../../../../keypair/dist/types/secret/index.js';
 import { mkdir, readFile, writeFile } from 'fs/promises';
 import { BeaconUtils, Btc1DidDocument, Btc1KeyManager, DidBtc1, getNetwork } from '../../../src/index.js';
 import { Did } from '@web5/dids';

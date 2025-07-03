@@ -139,6 +139,12 @@ export class DidBtc1Error extends Error {
   }
 }
 
+export class NotImplementedError extends DidBtc1Error {
+  constructor(message: string, type: string = 'NotImplementedError', data?: Record<string, any>) {
+    super(message, { type, name: type, data });
+  }
+}
+
 export class Btc1Error extends DidBtc1Error {
   constructor(message: string, type: string, data?: Record<string, any>) {
     super(message, { type, name: type, data });
@@ -195,24 +201,6 @@ export class MultikeyError extends DidBtc1Error {
 
 export class ProofError extends DidBtc1Error {
   constructor(message: string, type: string = 'ProofError', data?: Record<string, any>) {
-    super(message, { type, name: type, data });
-  }
-}
-
-export class SingletonBeaconError extends DidBtc1Error {
-  constructor(message: string, type: string = 'SingletonBeaconError', data?: Record<string, any>) {
-    super(message, { type, name: type, data });
-  }
-}
-
-export class CIDAggregateBeaconError extends DidBtc1Error {
-  constructor(message: string, type: string = 'CIDAggregateBeaconError', data?: Record<string, any>) {
-    super(message, { type, name: type, data });
-  }
-}
-
-export class SMTAggregateBeaconError extends DidBtc1Error {
-  constructor(message: string, type: string = 'SMTAggregateBeaconError', data?: Record<string, any>) {
     super(message, { type, name: type, data });
   }
 }
