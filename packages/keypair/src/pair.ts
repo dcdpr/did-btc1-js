@@ -31,12 +31,12 @@ export interface KeyPair {
   json(): SchnorrKeyPairObject;
 }
 
-type RawKeyPair = {
+export type RawKeyPair = {
   public: KeyBytes;
   secret?: KeyBytes
 }
 
-interface MultibaseKeys {
+export interface MultibaseKeys {
   publicKeyMultibase: string;
   secretKeyMultibase: string
 }
@@ -138,7 +138,7 @@ export class SchnorrKeyPair implements KeyPair {
    */
   get raw(): RawKeyPair {
     return {
-      public : this.publicKey.x,
+      public : this.publicKey.compressed,
       secret : this.secretKey ? this.secretKey.bytes : undefined
     };
   }

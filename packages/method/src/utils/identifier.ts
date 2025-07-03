@@ -1,7 +1,14 @@
 import { BitcoinNetworkNames, Btc1Error, Btc1IdentifierTypes, Bytes, INVALID_DID, METHOD_NOT_SUPPORTED } from '@did-btc1/common';
 import { PublicKey, SchnorrKeyPair } from '@did-btc1/keypair';
 import { bech32m } from '@scure/base';
-import { DidComponents } from './appendix.js';
+
+export interface DidComponents {
+    hrp: string;
+    idType: string;
+    version: number;
+    network: string;
+    genesisBytes: Bytes;
+};
 
 export class Btc1Identifier {
   /**
