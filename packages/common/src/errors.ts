@@ -139,6 +139,12 @@ export class DidBtc1Error extends Error {
   }
 }
 
+export class NotImplementedError extends DidBtc1Error {
+  constructor(message: string, type: string = 'NotImplementedError', data?: Record<string, any>) {
+    super(message, { type, name: type, data });
+  }
+}
+
 export class Btc1Error extends DidBtc1Error {
   constructor(message: string, type: string, data?: Record<string, any>) {
     super(message, { type, name: type, data });

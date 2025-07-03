@@ -156,7 +156,7 @@ export class SecretKey implements ISecretKey {
    */
   get hex(): Hex {
     // Convert the raw secret key bytes to a hex string
-    return Buffer.from(this.bytes).toString('hex');
+    return this.bytes.toHex();
   }
 
 
