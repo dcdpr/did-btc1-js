@@ -3,7 +3,6 @@ import { BaseMessage } from '../base.js';
 import { OPT_IN } from '../constants.js';
 
 export type OptIn = {
-  type: typeof OPT_IN;
   to: string;
   from: string;
   cohortId: string;
@@ -15,8 +14,14 @@ export class OptInMessage extends BaseMessage {
   public cohortId: string;
   public participantPk: Uint8Array;
 
-  constructor({ type = OPT_IN, to, from, threadId, cohortId, participantPk }: OptIn) {
-    super({ type, to, from, threadId, body: { cohortId, participantPk }});
+  constructor({ to, from, threadId, cohortId, participantPk }: OptIn) {
+    super({
+      to,
+      from,
+      type     : OPT_IN,
+      threadId : threadId ?? crypto.randomUUID(),
+      body     : { cohortId, participantPk }
+    });
     this.cohortId = cohortId;
     this.participantPk = participantPk;
   }
