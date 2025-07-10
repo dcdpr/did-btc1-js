@@ -21,7 +21,7 @@ import { getNetwork } from '../../bitcoin/network.js';
 import BitcoinRest, { RawTransactionRest } from '../../bitcoin/rest/index.js';
 import BitcoinRpc from '../../bitcoin/rpc/index.js';
 import { DidBtc1 } from '../../did-btc1.js';
-import { Btc1Appendix, DidComponents } from '../../utils/appendix.js';
+import { Btc1Appendix } from '../../utils/appendix.js';
 import { BeaconUtils } from '../../utils/beacon.js';
 import { Btc1DidDocument } from '../did-document/index.js';
 import { BeaconFactory } from '../beacon/factory.js';
@@ -29,6 +29,7 @@ import { BeaconService, BeaconServiceAddress, BeaconSignal, CIDAggregateSidecar,
 import { SidecarData, SignalsMetadata } from '../beacon/types.js';
 import { BlockV3, RawTransactionV2 } from '../../bitcoin/rpc/types.js';
 import { DidResolutionOptions } from './interfaces.js';
+import { DidComponents } from '../../utils/identifier.js';
 
 export type FindNextSignalsRestParams = {
   connection: BitcoinRest;
