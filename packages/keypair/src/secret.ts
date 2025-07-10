@@ -1,8 +1,5 @@
 import {
-  BIP340_SECRET_KEY_MULTIBASE_PREFIX,
-  BIP340_SECRET_KEY_MULTIBASE_PREFIX_HASH,
   Bytes,
-  CURVE,
   Entropy,
   Hex,
   KeyBytes,
@@ -13,6 +10,11 @@ import { sha256 } from '@noble/hashes/sha2';
 import { getRandomValues } from 'crypto';
 import { base58btc } from 'multiformats/bases/base58';
 import * as tinysecp from 'tiny-secp256k1';
+import {
+  BIP340_SECRET_KEY_MULTIBASE_PREFIX,
+  BIP340_SECRET_KEY_MULTIBASE_PREFIX_HASH,
+  CURVE
+} from './constants.js';
 import { SchnorrKeyPair } from './pair.js';
 import { PublicKey } from './public.js';
 

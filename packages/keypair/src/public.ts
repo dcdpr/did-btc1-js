@@ -1,7 +1,4 @@
 import {
-  BIP340_PUBLIC_KEY_MULTIBASE_PREFIX,
-  BIP340_PUBLIC_KEY_MULTIBASE_PREFIX_HASH,
-  CURVE,
   Hex,
   KeyBytes,
   Maybe,
@@ -11,6 +8,11 @@ import {
 } from '@did-btc1/common';
 import { sha256 } from '@noble/hashes/sha2';
 import { base58btc } from 'multiformats/bases/base58';
+import {
+  BIP340_PUBLIC_KEY_MULTIBASE_PREFIX,
+  BIP340_PUBLIC_KEY_MULTIBASE_PREFIX_HASH,
+  CURVE
+} from './constants.js';
 import { SecretKey } from './secret.js';
 
 export interface Point {
