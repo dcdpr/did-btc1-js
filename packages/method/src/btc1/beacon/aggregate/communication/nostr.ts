@@ -90,6 +90,7 @@ export class NostrAdapter implements CommunicationService {
 
   /**
    * Starts the Nostr communication service by subscribing to relays.
+   * @returns {ServiceAdapter<NostrAdapter>} Returns the NostrAdapter instance for method chaining.
    */
   start(): ServiceAdapter<NostrAdapter> {
     this.pool = new SimplePool();

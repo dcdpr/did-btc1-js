@@ -8,7 +8,7 @@ export * from './bitcoin/constants.js';
 export * from './bitcoin/errors.js';
 export * from './bitcoin/index.js';
 export * from './bitcoin/network.js';
-export * from './bitcoin/taproot/multisig.js';
+export * from './bitcoin/taproot.js';
 
 // Beacon Exports
 export * from './btc1/beacon/aggregate/communication/nostr.js';
