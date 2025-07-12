@@ -1,5 +1,5 @@
 import { ProofOptions } from '@did-btc1/common';
-import { SchnorrKeyPair, SecretKey } from '../../keypair/dist/types/secret/index.js';
+import { SchnorrKeyPair, SecretKey } from '@did-btc1/keypair';
 import { expect } from 'chai';
 import { Cryptosuite, DataIntegrityProof, SchnorrMultikey } from '../src/index.js';
 
@@ -22,7 +22,7 @@ const unsecuredDocument = {
 } as any;
 const id = '#initialKey';
 const controller = 'did:btc1:k1q2ddta4gt5n7u6d3xwhdyua57t6awrk55ut82qvurfm0qnrxx5nw7vnsy65';
-const SECRET = 52464508790539176856770556715241483442035423615466097401201513777400180778402n;
+const SEED = 52464508790539176856770556715241483442035423615466097401201513777400180778402n;
 const options: ProofOptions = {
   type               : 'DataIntegrityProof',
   cryptosuite        : 'bip340-jcs-2025',
@@ -31,8 +31,8 @@ const options: ProofOptions = {
 };
 
 describe('Data Integrity Proof', () => {
-  const secretKey = SecretKey.fromSecret(SECRET);
-  const keys = new SchnorrKeyPair({ secretKey });
+  const secretKey = SecretKey.fromSeed(SEED);
+  const keys = new SchnorrKeyPair(secretKey);
   const multikey = new SchnorrMultikey({ id, controller, keys });
   const cryptosuite = new Cryptosuite({ cryptosuite: 'bip340-jcs-2025', multikey });
   const diProof = new DataIntegrityProof(cryptosuite);
