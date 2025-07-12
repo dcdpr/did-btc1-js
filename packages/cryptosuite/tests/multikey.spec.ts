@@ -1,7 +1,7 @@
 import { KeyPairError, MultikeyError } from '@did-btc1/common';
-import { SchnorrKeyPair, SecretKey, PublicKey } from '../../keypair/dist/types/secret/index.js';
 import { expect } from 'chai';
 import { SchnorrMultikey } from '../src/index.js';
+import { PublicKey, SchnorrKeyPair, SecretKey } from '@did-btc1/keypair';
 
 /**
  * SchnorrMultikey Test Cases
@@ -11,13 +11,13 @@ import { SchnorrMultikey } from '../src/index.js';
  * 4. id, controller, privateKey, publicKey → should succeed
  */
 describe('SchnorrMultikey', () => {
-  const skBytes = new Uint8Array([
+  const sk = new Uint8Array([
     69, 112, 198, 176,  14, 103, 100,  73,
     35, 179, 169,  83,  80, 213, 189, 190,
     118, 200,   5,  43,  20,  46, 148,  60,
     109,  37, 134, 164, 162, 174, 185, 201
   ]);
-  const schnorrKeyPair = new SchnorrKeyPair({ secretKey: skBytes });
+  const schnorrKeyPair = new SchnorrKeyPair(sk);
   const publicKey = schnorrKeyPair.publicKey;
   // Multikey Constants
   const id = '#initialKey';
@@ -118,7 +118,7 @@ describe('SchnorrMultikey', () => {
    * Key Pair with Public Key passed only
    */
   describe('Verification SchnorrKeyPair (PublicKey-Only)', () => {
-    const keys = new SchnorrKeyPair({ publicKey });
+    const keys = new SchnorrKeyPair(undefined, publicKey);
     const multikey = new SchnorrMultikey({ id, controller, keys });
 
     it('should successfully construct a new SchnorrMultikey with publicKey only', () => {
@@ -177,7 +177,7 @@ describe('SchnorrMultikey', () => {
    * Key Pair with PrivateKey passed only
    */
   describe('Sign/Verify SchnorrKeyPair (PrivateKey-PublicKey)', () => {
-    const keys = new SchnorrKeyPair({ secretKey: schnorrKeyPair.secretKey });
+    const keys = new SchnorrKeyPair(schnorrKeyPair.secretKey);
     const multikey = new SchnorrMultikey({ id, controller, keys });
 
     it('should successfully construct a new SchnorrMultikey with a keyPair', () => {
@@ -237,9 +237,9 @@ describe('SchnorrMultikey', () => {
    * Key Pair from Secret
    */
   describe('Sign/Verify SchnorrKeyPair (PrivateKey.fromSecret)', () => {
-    const SECRET = 31408844715744742771434292216794392628447163656691664006588916258271600228809n;
-    const secretKey = SecretKey.fromSecret(SECRET);
-    const keys = new SchnorrKeyPair({ secretKey });
+    const SEED = 31408844715744742771434292216794392628447163656691664006588916258271600228809n;
+    const secretKey = SecretKey.fromSeed(SEED);
+    const keys = new SchnorrKeyPair(secretKey);
     const multikey = new SchnorrMultikey({ id, controller, keys });
 
     it('should successfully construct a new SchnorrMultikey with a keyPair', () => {
@@ -253,7 +253,7 @@ describe('SchnorrMultikey', () => {
       expect(multikey.secretKey).to.exist.and.to.be.instanceOf(SecretKey);
       expect(multikey.secretKey.equals(secretKey)).to.be.true;
       expect(multikey.publicKey.equals(publicKey)).to.be.true;
-      expect(multikey.secretKey.seed).to.equal(SECRET);
+      expect(multikey.secretKey.seed).to.equal(SEED);
     });
 
     it('should create a valid schnorr signature', () => {
