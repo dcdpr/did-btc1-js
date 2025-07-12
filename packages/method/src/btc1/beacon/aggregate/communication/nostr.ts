@@ -1,11 +1,11 @@
 import { KeyBytes, Maybe } from '@did-btc1/common';
 import { SchnorrKeyPair } from '@did-btc1/keypair';
-import { Event, Filter, nip44 } from 'nostr-tools';
+import { Event, Filter } from 'nostr-tools';
 import { SimplePool, } from 'nostr-tools/pool';
 import { Btc1Identifier } from '../../../../utils/identifier.js';
-import { CommunicationService, MessageHandler, ServiceAdapter, ServiceAdapterConfig } from './service.js';
-import { SUBSCRIBE, SUBSCRIBE_ACCEPT } from '../messages/constants.js';
 import { AggregateBeaconMessageType } from '../../types.js';
+import { SUBSCRIBE_ACCEPT } from '../messages/constants.js';
+import { CommunicationService, MessageHandler, ServiceAdapter, ServiceAdapterConfig } from './service.js';
 
 export type NostrKeys = {
   public: KeyBytes;
