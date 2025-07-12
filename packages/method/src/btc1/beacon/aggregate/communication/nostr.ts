@@ -1,15 +1,17 @@
-import { KeyBytes } from '@did-btc1/common';
+import { KeyBytes, Maybe } from '@did-btc1/common';
 import { SchnorrKeyPair } from '@did-btc1/keypair';
-import { Event, Filter } from 'nostr-tools';
+import { Event, Filter, nip44 } from 'nostr-tools';
 import { SimplePool, } from 'nostr-tools/pool';
 import { Btc1Identifier } from '../../../../utils/identifier.js';
 import { CommunicationService, MessageHandler, ServiceAdapter, ServiceAdapterConfig } from './service.js';
+import { SUBSCRIBE, SUBSCRIBE_ACCEPT } from '../messages/constants.js';
+import { AggregateBeaconMessageType } from '../../types.js';
 
 export type NostrKeys = {
   public: KeyBytes;
   secret: KeyBytes;
 }
-export interface NostrConfig {
+export interface NostrConfig extends Record<string, any> {
   relays: string[];
   keys: NostrKeys;
   components: {
@@ -18,7 +20,6 @@ export interface NostrConfig {
     network: string;
   };
   did: string;
-  [key: string]: any;
 }
 
 export class NostrAdapterConfig implements NostrConfig {
@@ -30,6 +31,7 @@ export class NostrAdapterConfig implements NostrConfig {
     network: string;
   };
   did: string;
+  coordinatorDids: string[];
 
   constructor(config?: Partial<NostrConfig>) {
     this.relays = config?.relays || ['wss://relay.damus.io'];
@@ -45,6 +47,7 @@ export class NostrAdapterConfig implements NostrConfig {
         genesisBytes : this.keys.public
       }
     );
+    this.coordinatorDids = config?.coordinatorDids || [];
   }
 }
 
@@ -92,18 +95,23 @@ export class NostrAdapter implements CommunicationService {
    * Starts the Nostr communication service by subscribing to relays.
    * @returns {ServiceAdapter<NostrAdapter>} Returns the NostrAdapter instance for method chaining.
    */
-  start(): ServiceAdapter<NostrAdapter> {
+  public start(): ServiceAdapter<NostrAdapter> {
     this.pool = new SimplePool();
-    this.pool.subscribe(this.config.relays, { kinds: [1059] } as Filter, {
+    this.pool.subscribe(this.config.relays, { kinds: [1, 1059] } as Filter, {
       onclose : (reasons: string[]) => console.log('Subscription closed for reasons:', reasons),
       onevent : async (event: Event) => {
-        /*const content = nip44.decrypt(event.content, this.config.keys.secret);
-        if(content.includes(SUBSCRIBE)) {
-          console.log(`Received SUBSCRIBE message from ${event.pubkey}`);
-        } else {
-          console.log(`Received message of unknown type from ${event.pubkey}:`, event.content);
-        }*/
-        console.log(`Received event from ${event.pubkey}:`, event);
+        // const content = nip44.decrypt(event.content, this.config.keys.secret);
+        // if(content.includes(SUBSCRIBE)) {
+        //   this.handlers.get(SUBSCRIBE)?.(content);
+        // } else {
+        //   console.log(`Received message of unknown type from ${event.pubkey}:`, event.content);
+        // }
+        // if(event.tags.some(tag => tag[0] === 'p' && this.config.did.includes(tag[1]))) {
+        //   console.log(`Received event from ${event.pubkey}:`, event);
+        // }
+        if(event.tags.length > 1) {
+          console.log(`Received kind 1 event with ${event.tags.length} tags:`, event);
+        }
       }
     });
     return this;
@@ -121,17 +129,22 @@ export class NostrAdapter implements CommunicationService {
   /**
    * Sends a message to a recipient using the Nostr protocol.
    * This method is a placeholder and should be implemented with actual Nostr message sending logic.
-   * @param message
-   * @param recipient
-   * @param sender
+   * @param {Maybe<AggregateBeaconMessageType>} message The message to send, typically containing the content and metadata.
+   * @param {string} recipient The public key or identifier of the recipient.
+   * @param {string} sender The public key or identifier of the sender.
+   * @returns {Promise<void>} A promise that resolves when the message is sent.
    */
-  async sendMessage(message: object, recipient: string, sender: string): Promise<void> {
+  public async sendMessage(message: Maybe<AggregateBeaconMessageType>, recipient: string, sender: string): Promise<void> {
     // TODO: Implement message sending logic via Nostr
     console.log(`Sending message to ${recipient} from ${sender}:`, message);
+    if(message.type === SUBSCRIBE_ACCEPT) {
+      this.config.coordinatorDids.push(recipient);
+    }
   }
 
   /**
    * Generates a Nostr identity using the SecretKey and Btc1Identifier classes.
+   * @param {NostrKeys} [keys] Optional Nostr keys to use for identity generation.
    * @returns {string} A Btc1 DID used for communication over the nostr protocol
    */
   public generateIdentity(keys?: NostrKeys): ServiceAdapterConfig<NostrAdapterConfig> {
