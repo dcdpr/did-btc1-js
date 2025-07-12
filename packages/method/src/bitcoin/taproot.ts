@@ -1,10 +1,6 @@
-import { PublicKey, SecretKey } from '@did-btc1/keypair';
+import { PublicKey } from '@did-btc1/keypair';
 import { keyAggExport, keyAggregate } from '@scure/btc-signer/musig2';
 import { opcodes, payments, script } from 'bitcoinjs-lib';
-import { CURVE, ProjectivePoint, etc } from '@noble/secp256k1';
-import { sha256 } from '@noble/hashes/sha256';
-
-type Scalar = bigint;
 
 /**
  * Build a P2TR script leaf for a k-of-n multisig with optional locktime/sequence
