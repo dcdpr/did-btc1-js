@@ -1,18 +1,6 @@
-import * as tinysecp from 'tiny-secp256k1';
-import { payments, script, opcodes } from 'bitcoinjs-lib';
 import { PublicKey } from '@did-btc1/keypair';
-
-/**
- * Aggregate an array of public keys by point addition
- */
-function aggregatePubkeys(pubkeys: Uint8Array[]): Uint8Array {
-  if (pubkeys.length === 1) return pubkeys[0];
-  return pubkeys.reduce((sum: Uint8Array, pk: Uint8Array) => {
-    const added = tinysecp.pointAdd(sum, pk);
-    if (!added) throw new Error('Point addition failed');
-    return added;
-  }, pubkeys[0]);
-}
+import { keyAggExport, keyAggregate } from '@scure/btc-signer/musig2';
+import { opcodes, payments, script } from 'bitcoinjs-lib';
 
 /**
  * Build a P2TR script leaf for a k-of-n multisig with optional locktime/sequence
@@ -40,7 +28,7 @@ function buildTapLeafScript(
 
   // push each key as x-only pubkey
   for (const pk of pubkeys) {
-    const [xOnly] = PublicKey.xOnly(pk);
+    const xOnly = PublicKey.xOnly(pk);
     ops.push(xOnly);
   }
   // push threshold k and total keys n
@@ -55,10 +43,9 @@ function buildTapLeafScript(
  * Build a P2TR script leaf for a aggregated MuSig key (key-path only)
  */
 function buildMusigLeafScript(pubkeys: Uint8Array[]): Uint8Array {
-  const agg = aggregatePubkeys(pubkeys);
-  const [xOnly] = PublicKey.xOnly(agg);
+  const agg = keyAggExport(keyAggregate(pubkeys));
   // In a taproot script path, OP_CHECKSIG runs schnorr
-  return script.compile([xOnly, opcodes.OP_CHECKSIG]);
+  return script.compile([agg, opcodes.OP_CHECKSIG]);
 }
 
 /**
@@ -116,13 +103,13 @@ export class TapRootMultiSig {
     this.points = points;
     this.k = k;
     // MuSig aggregation for default internal key
-    this.defaultInternalPubkey = aggregatePubkeys(points);
+    this.defaultInternalPubkey = keyAggExport(keyAggregate(points));
   }
 
   /**
    * Single multisig leaf as the only script path
    */
-  singleLeaf(locktime?: number, sequence?: number) {
+  public singleLeaf(locktime?: number, sequence?: number) {
     const leaf = buildTapLeafScript(this.points, this.k, locktime, sequence);
     return payments.p2tr({
       internalPubkey : this.defaultInternalPubkey,
@@ -133,7 +120,7 @@ export class TapRootMultiSig {
   /**
    * All k-of-n multisig combinations as separate leaf scripts, combined into one tree
    */
-  multiLeafTree(locktime?: number, sequence?: number) {
+  public multiLeafTree(locktime?: number, sequence?: number) {
     const leaves: Uint8Array[] = [];
     for (const combo of combinations(this.points, this.k)) {
       leaves.push(buildTapLeafScript(combo, this.k, locktime, sequence));
@@ -148,7 +135,7 @@ export class TapRootMultiSig {
   /**
    * MuSig key-path scripts for each k-of-n combination in the script tree
    */
-  musigTree() {
+  public musigTree() {
     const leaves: Uint8Array[] = [];
     for (const combo of combinations(this.points, this.k)) {
       leaves.push(buildMusigLeafScript(combo));
@@ -161,9 +148,17 @@ export class TapRootMultiSig {
   }
 
   /**
+   * Default address for this multisig, using the aggregated MuSig key.
+   * @type {string} Taproot address
+   */
+  public get defaultAddress(): string | undefined {
+    return payments.p2tr({ internalPubkey: this.defaultInternalPubkey }).address;
+  }
+
+  /**
    * A two-branch tree: one branch is the singleLeaf script, the other is the muSig tree
    */
-  musigAndSingleLeafTree(locktime?: number, sequence?: number) {
+  public musigAndSingleLeafTree(locktime?: number, sequence?: number) {
     const single = buildTapLeafScript(this.points, this.k, locktime, sequence);
     const musigLeaves: Uint8Array[] = [];
     for (const combo of combinations(this.points, this.k)) {
@@ -182,7 +177,7 @@ export class TapRootMultiSig {
   /**
    * Nested tree of singleLeaf, multiLeafTree, and musigTree
    */
-  everythingTree(locktime?: number, sequence?: number) {
+  public everythingTree(locktime?: number, sequence?: number) {
     const single = buildTapLeafScript(this.points, this.k, locktime, sequence);
 
     const multiLeaves: Uint8Array[] = [];
@@ -210,7 +205,7 @@ export class TapRootMultiSig {
   /**
    * Degrading multisig: k-of-n initially, then (k-1)-of-n after delay, ... until 1-of-n
    */
-  degradingMultisigTree(
+  public degradingMultisigTree(
     sequenceBlockInterval?: number,
     sequenceTimeInterval?: number
   ) {

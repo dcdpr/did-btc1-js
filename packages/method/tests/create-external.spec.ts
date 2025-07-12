@@ -1,9 +1,9 @@
 import { ID_PLACEHOLDER_VALUE } from '@did-btc1/common';
-import { PublicKey } from '@did-btc1/keypair';
 import { payments } from 'bitcoinjs-lib';
 import { expect } from 'chai';
 import { DidBtc1 } from '../src/did-btc1.js';
 import { Btc1DidDocument, getNetwork, IntermediateDidDocument } from '../src/index.js';
+import { PublicKey } from '@did-btc1/keypair';
 
 /**
  * DidBtc1 Create External Test Cases
