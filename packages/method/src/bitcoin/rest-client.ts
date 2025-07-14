@@ -1,4 +1,4 @@
-import { Btc1Error, Bytes, DEFAULT_REST_CONFIG, UnixTimestamp } from '@did-btc1/common';
+import { Btc1Error, Bytes, UnixTimestamp } from '@did-btc1/common';
 import {
   BlockResponse,
   BlockV3,
@@ -6,6 +6,7 @@ import {
   TxInPrevout,
 } from '../types/bitcoin.js';
 import { BitcoinRpcError } from './errors.js';
+import { DEFAULT_REST_CLIENT_CONFIG } from './constants.js';
 
 export type TransactionStatus = {
   confirmed: boolean;
@@ -161,7 +162,7 @@ export default class BitcoinRest {
    * ```
    */
   public static connect(config?: RestClientConfig): BitcoinRest {
-    return new BitcoinRest(config ?? DEFAULT_REST_CONFIG);
+    return new BitcoinRest(config ?? DEFAULT_REST_CLIENT_CONFIG);
   }
 
   /**

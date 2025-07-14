@@ -5,20 +5,20 @@ const mutinynet = {
   idType       : 'KEY',
   version      : 1,
   network      : 'mutinynet',
-  genesisBytes : Buffer.from('02be8aa46e14038248c5cb6fd744a9f186de440344634b7bef02e830b0e2e90826', 'hex')
+  genesisBytes : Buffer.fromHex('02be8aa46e14038248c5cb6fd744a9f186de440344634b7bef02e830b0e2e90826')
 };
 
-Logger.log('Encoding', mutinynet);
+Logger.log('Encoding mutinynet => ', mutinynet);
 const mnet = Btc1Identifier.encode(mutinynet);
-Logger.log(`Encoded ${mnet}`);
+Logger.log(`Encoded mutinynet => ${mnet}`);
 
-const zeroxD = {
+const network5 = {
   idType       : 'KEY',
   version      : 1,
-  network      : 8,
-  genesisBytes : Buffer.from('02be8aa46e14038248c5cb6fd744a9f186de440344634b7bef02e830b0e2e90826', 'hex')
+  network      : 5,
+  genesisBytes : Buffer.fromHex('02be8aa46e14038248c5cb6fd744a9f186de440344634b7bef02e830b0e2e90826')
 };
 
-Logger.log('Encoding', zeroxD);
-const zxd = Btc1Identifier.encode(zeroxD);
-Logger.log(`Encoded ${zxd}`);
+Logger.log('Encoding', network5);
+const net5 = Btc1Identifier.encode(network5);
+Logger.log(`Encoded ${net5}`);

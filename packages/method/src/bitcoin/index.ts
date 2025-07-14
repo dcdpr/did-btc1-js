@@ -1,4 +1,4 @@
-import { Btc1Error, DEFAULT_REST_CONFIG } from '@did-btc1/common';
+import { Btc1Error } from '@did-btc1/common';
 import { networks } from 'bitcoinjs-lib';
 import { DEFAULT_REST_CLIENT_CONFIG, DEFAULT_RPC_CLIENT_CONFIG } from './constants.js';
 import { getNetwork } from './network.js';
@@ -97,7 +97,7 @@ export class Bitcoin {
           name   : network,
           config : networkConfig,
           rpc    : new BitcoinRpc(networkConfig.rpc ?? DEFAULT_RPC_CLIENT_CONFIG),
-          rest   : new BitcoinRest(networkConfig.rest ?? DEFAULT_REST_CONFIG) ,
+          rest   : new BitcoinRest(networkConfig.rest ?? DEFAULT_REST_CLIENT_CONFIG) ,
           data   : getNetwork(network),
         };
       }
