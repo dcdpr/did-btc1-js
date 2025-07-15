@@ -2,13 +2,13 @@ import { DidUpdatePayload, INVALID_SIDECAR_DATA, LATE_PUBLISHING_ERROR, Singleto
 import { opcodes, Psbt, script } from 'bitcoinjs-lib';
 import { base58btc } from 'multiformats/bases/base58';
 import bitcoinNetwork, { Bitcoin } from '../../bitcoin/index.js';
-import { AddressUtxo, RawTransactionRest, Vout } from '../../bitcoin/rest-client.js';
-import { Beacon } from '../../interfaces/beacon.js';
-import { BeaconService, BeaconSignal } from '../../interfaces/ibeacon.js';
-import { RawTransactionV2, TxOut } from '../../types/bitcoin.js';
-import { Metadata, SidecarData, SignalsMetadata, SingletonSidecar } from '../../types/crud.js';
+import { AddressUtxo, RawTransactionRest, Vout } from '../../bitcoin/rest/index.js';
 import { Btc1Appendix } from '../../utils/appendix.js';
+import { RawTransactionV2, TxOut } from '../../bitcoin/rpc/types.js';
 import { Btc1KeyManager, Signer } from '../key-manager/index.js';
+import { BeaconService, BeaconSignal, SingletonSidecar } from './interfaces.js';
+import { Metadata, SidecarData, SignalsMetadata } from './types.js';
+import { UpdateBeacon } from './beacon.js';
 
 /**
  * Implements {@link https://dcdpr.github.io/did-btc1/#singleton-beacon | 5.1 Singleton Beacon}.
@@ -23,7 +23,7 @@ import { Btc1KeyManager, Signer } from '../key-manager/index.js';
  * @type {SingletonBeacon}
  * @extends {Beacon}
  */
-export class SingletonBeacon extends Beacon {
+export class SingletonBeacon extends UpdateBeacon {
 
   /**
    * Creates an instance of SingletonBeacon.

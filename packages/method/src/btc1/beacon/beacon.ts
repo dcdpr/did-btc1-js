@@ -1,12 +1,12 @@
 import { DidUpdatePayload } from '@did-btc1/common';
 import { DidServiceEndpoint } from '@web5/dids';
-import { RawTransactionV2 } from '../types/bitcoin.js';
-import { CIDAggregateSidecar, SidecarData, SignalsMetadata, SingletonSidecar, SMTAggregateSidecar } from '../types/crud.js';
-import { BeaconService, BeaconSignal, IBeacon } from './ibeacon.js';
-import { RawTransactionRest } from '../bitcoin/rest-client.js';
+import { RawTransactionRest } from '../../bitcoin/rest/index.js';
+import { RawTransactionV2 } from '../../bitcoin/rpc/types.js';
+import { Beacon, BeaconService, CIDAggregateSidecar, SingletonSidecar, SMTAggregateSidecar, BeaconSignal } from './interfaces.js';
+import { SidecarData, SignalsMetadata } from './types.js';
 
 /**
- * Implements {@link https://dcdpr.github.io/did-btc1/#update-beacons | 5. Beacons}.
+ * Implements {@link https://dcdpr.github.io/did-btc1/#update-beacons | 5. Update Beacons}.
  * Beacons are the mechanism by which a DID controller announces an update to their DID document by broadcasting an
  * attestation to this update onto the public Bitcoin network. Beacons are identified by a Bitcoin address and emit
  * Beacon Signals by broadcasting a valid Bitcoin transaction that spends from this Beacon address. These transactions
@@ -30,10 +30,10 @@ import { RawTransactionRest } from '../bitcoin/rest-client.js';
  * All resolvers of did:btc1 DIDs MUST support the core Beacon Types defined in this specification.
  *
  * @abstract
- * @class Beacon
- * @type {Beacon}
+ * @class UpdateBeacon
+ * @type {UpdateBeacon}
  */
-export abstract class Beacon implements IBeacon {
+export abstract class UpdateBeacon implements Beacon {
   public id: string;
   public type: string;
   public serviceEndpoint: DidServiceEndpoint;

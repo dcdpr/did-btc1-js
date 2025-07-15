@@ -11,17 +11,29 @@ component_management:
         target: 90        
 
   individual_components:
-    - component_id: package-cryptosuite
-      name: cryptosuite
-      paths: ["packages/cryptosuite/**"]
-
+    - component_id: package-common
+      name: common
+      paths: ["packages/common/**"]
+      
     - component_id: package-keypair
       name: keypair
       paths: ["packages/keypair/**"]
 
+    - component_id: package-cryptosuite
+      name: cryptosuite
+      paths: ["packages/cryptosuite/**"]
+
     - component_id: package-method
       name: method
       paths: ["packages/method/**"]
+
+    - component_id: package-cli
+      name: cli
+      paths: ["packages/cli/**"]
+
+    - component_id: package-smt
+      name: smt
+      paths: ["packages/smt/**"]
 
 coverage:
   status:
