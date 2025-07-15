@@ -1,11 +1,12 @@
-import { KeyBytes, Maybe } from '@did-btc1/common';
+import { KeyBytes, Logger, Maybe } from '@did-btc1/common';
 import { SchnorrKeyPair } from '@did-btc1/keypair';
-import { Event, Filter } from 'nostr-tools';
+import { Event, Filter, nip44 } from 'nostr-tools';
 import { SimplePool, } from 'nostr-tools/pool';
 import { Btc1Identifier } from '../../../../utils/identifier.js';
-import { AggregateBeaconMessageType } from '../../types.js';
 import { SUBSCRIBE_ACCEPT } from '../messages/constants.js';
 import { CommunicationService, MessageHandler, ServiceAdapter, ServiceAdapterConfig } from './service.js';
+import { AggregateBeaconMessage, AggregateBeaconMessageType, KeyGenMessageType } from '../messages/index.js';
+import { nonceGen } from '@scure/btc-signer/musig2';
 
 export type NostrKeys = {
   public: KeyBytes;
@@ -97,24 +98,43 @@ export class NostrAdapter implements CommunicationService {
    */
   public start(): ServiceAdapter<NostrAdapter> {
     this.pool = new SimplePool();
-    this.pool.subscribe(this.config.relays, { kinds: [1, 1059] } as Filter, {
-      onclose : (reasons: string[]) => console.log('Subscription closed for reasons:', reasons),
-      onevent : async (event: Event) => {
-        // const content = nip44.decrypt(event.content, this.config.keys.secret);
-        // if(content.includes(SUBSCRIBE)) {
-        //   this.handlers.get(SUBSCRIBE)?.(content);
-        // } else {
-        //   console.log(`Received message of unknown type from ${event.pubkey}:`, event.content);
-        // }
-        // if(event.tags.some(tag => tag[0] === 'p' && this.config.did.includes(tag[1]))) {
-        //   console.log(`Received event from ${event.pubkey}:`, event);
-        // }
-        if(event.tags.length > 1) {
-          console.log(`Received kind 1 event with ${event.tags.length} tags:`, event);
-        }
-      }
+    this.pool.subscribe(this.config.relays, { kinds: [1] } as Filter, {
+      onclose : (reasons: string[]) => console.log('Subscription to kind 1 closed for reasons:', reasons),
+      onevent : this.onEvent.bind(this),
+      oneose  : () => { Logger.info('EOSE kinds 1');}
+    });
+    this.pool.subscribe(this.config.relays, { kinds: [1059] } as Filter, {
+      onclose : (reasons: string[]) => console.log('Subscription to kind 1059 closed for reasons:', reasons),
+      onevent : this.onEvent.bind(this),
+      oneose  : () => { Logger.info('EOSE kinds 1059');}
     });
     return this;
+  }
+
+  /**
+   * Handles incoming Nostr events and dispatches them to the appropriate message handler.
+   * @param {Event} event The Nostr event received from the relay.
+   */
+  private async onEvent(event: Event): Promise<void> {
+    // Dispatch the event to the registered handler
+    const titleTag = event.tags.find(([tag, _]) => tag === 'title');
+    if(!titleTag) {
+      Logger.warn(`Event ${event.id} does not have a title tag, skipping handler dispatch.`);
+      return;
+    }
+
+    if(!AggregateBeaconMessage.isValidType(titleTag[1])) {
+      Logger.warn(`Event ${event.id} has an invalid title tag: ${titleTag[1]}, skipping handler dispatch.`);
+      return;
+    }
+
+    const handler = this.handlers.get(titleTag[1]);
+    if (!handler) {
+      Logger.warn(`No handler found for message type: ${titleTag[1]}`);
+      return;
+    }
+
+    await handler(event);
   }
 
   /**
@@ -134,11 +154,42 @@ export class NostrAdapter implements CommunicationService {
    * @param {string} sender The public key or identifier of the sender.
    * @returns {Promise<void>} A promise that resolves when the message is sent.
    */
-  public async sendMessage(message: Maybe<AggregateBeaconMessageType>, recipient: string, sender: string): Promise<void> {
-    // TODO: Implement message sending logic via Nostr
-    console.log(`Sending message to ${recipient} from ${sender}:`, message);
+  public async sendMessage(
+    message: Maybe<AggregateBeaconMessageType>,
+    recipient: string,
+    sender: string
+  ): Promise<void | Promise<string>[]> {
+    Logger.info(`Sending message to ${recipient} from ${sender}:`, message);
+
     if(message.type === SUBSCRIBE_ACCEPT) {
       this.config.coordinatorDids.push(recipient);
+    }
+
+    if(AggregateBeaconMessage.isKeyGenMessageType(message.type)) {
+      return this.pool?.publish(this.config.relays, {
+        kind : 1,
+        tags : [
+          ['p', recipient],
+          ['p', sender],
+          ['title', message.type]
+        ],
+        content : JSON.stringify(message)
+      } as Event);
+    }
+
+    if(AggregateBeaconMessage.isSignMessageType(message.type)) {
+      const { publicKey, secretKey } = SchnorrKeyPair.generate();
+      const content = nip44.encrypt(JSON.stringify(message), secretKey.bytes, nonceGen(publicKey.x).public);
+      const event = {
+        content,
+        kind : 1059,
+        tags : [
+          ['p', recipient],
+          ['p', sender],
+          ['title', message.type]
+        ],
+      } as Event;
+      return this.pool?.publish(this.config.relays, event);
     }
   }
 
