@@ -119,12 +119,17 @@ export class NostrAdapter implements CommunicationService {
    * @param {Event} event The Nostr event received from the relay.
    */
   private async onEvent(event: Event): Promise<void> {
+    Logger.debug('nostr.onEvent: event.tags', event.tags);
     // Dispatch the event to the registered handler
     const [type, value] = event.tags.find(([name, _]) => AggregateBeaconMessage.isValidType(name)) ?? [];
+    Logger.debug('nostr.onEvent: event.tags.find => type, value', type, value);
     if(!type && !value) {
-      Logger.warn(`Event ${event.id} does not have a beacon tag, skipping handler dispatch.`);
+      Logger.warn(`Event ${event.id} does not have a valid tag, skipping handler dispatch.`);
       return;
     }
+
+    // Logger.debug('nostr.onEvent: event', event);
+    Logger.debug('nostr.onEvent: event.tags', event.tags);
 
     if(event.kind === 1 && !AggregateBeaconMessage.isKeyGenMessageValue(value)) {
       Logger.warn(`Event ${event.id} is not a key generation message type: ${value}, skipping handler dispatch.`);
@@ -197,6 +202,7 @@ export class NostrAdapter implements CommunicationService {
           break;
       }
       const event = { kind: 1, tags, content: JSON.stringify(message)} as Event;
+      Logger.info(`Sending message kind 1 event ...`, event);
       return this.pool?.publish(this.config.relays, event);
     }
 
