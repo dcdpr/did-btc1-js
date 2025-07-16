@@ -1,12 +1,12 @@
 import { KeyBytes, Logger, Maybe } from '@did-btc1/common';
 import { SchnorrKeyPair } from '@did-btc1/keypair';
+import { nonceGen } from '@scure/btc-signer/musig2';
 import { Event, Filter, nip44 } from 'nostr-tools';
 import { SimplePool, } from 'nostr-tools/pool';
 import { Btc1Identifier } from '../../../../utils/identifier.js';
-import { SUBSCRIBE_ACCEPT } from '../messages/constants.js';
+import { AGGREGATED_NONCE, AUTHORIZATION_REQUEST, COHORT_ADVERT, COHORT_INVITE, COHORT_SET, NONCE_CONTRIBUTION, OPT_IN, REQUEST_SIGNATURE, SIGNATURE_AUTHORIZATION, SUBSCRIBE, SUBSCRIBE_ACCEPT } from '../messages/constants.js';
+import { AggregateBeaconMessage, AggregateBeaconMessageType } from '../messages/index.js';
 import { CommunicationService, MessageHandler, ServiceAdapter, ServiceAdapterConfig } from './service.js';
-import { AggregateBeaconMessage, AggregateBeaconMessageType, KeyGenMessageType } from '../messages/index.js';
-import { nonceGen } from '@scure/btc-signer/musig2';
 
 export type NostrKeys = {
   public: KeyBytes;
@@ -98,16 +98,19 @@ export class NostrAdapter implements CommunicationService {
    */
   public start(): ServiceAdapter<NostrAdapter> {
     this.pool = new SimplePool();
+
     this.pool.subscribe(this.config.relays, { kinds: [1] } as Filter, {
       onclose : (reasons: string[]) => console.log('Subscription to kind 1 closed for reasons:', reasons),
       onevent : this.onEvent.bind(this),
-      oneose  : () => { Logger.info('EOSE kinds 1');}
+      oneose  : () => { Logger.info('EOSE kinds 1'); }
     });
-    this.pool.subscribe(this.config.relays, { kinds: [1059] } as Filter, {
-      onclose : (reasons: string[]) => console.log('Subscription to kind 1059 closed for reasons:', reasons),
-      onevent : this.onEvent.bind(this),
-      oneose  : () => { Logger.info('EOSE kinds 1059');}
-    });
+
+    // this.pool.subscribe(this.config.relays, { kinds: [1059] } as Filter, {
+    //   onclose : (reasons: string[]) => console.log('Subscription to kind 1059 closed for reasons:', reasons),
+    //   onevent : this.onEvent.bind(this),
+    //   oneose  : () => { Logger.info('EOSE kinds 1059'); }
+    // });
+
     return this;
   }
 
@@ -117,20 +120,25 @@ export class NostrAdapter implements CommunicationService {
    */
   private async onEvent(event: Event): Promise<void> {
     // Dispatch the event to the registered handler
-    const titleTag = event.tags.find(([tag, _]) => tag === 'title');
-    if(!titleTag) {
-      Logger.warn(`Event ${event.id} does not have a title tag, skipping handler dispatch.`);
+    const [type, value] = event.tags.find(([name, _]) => AggregateBeaconMessage.isValidType(name)) ?? [];
+    if(!type && !value) {
+      Logger.warn(`Event ${event.id} does not have a beacon tag, skipping handler dispatch.`);
       return;
     }
 
-    if(!AggregateBeaconMessage.isValidType(titleTag[1])) {
-      Logger.warn(`Event ${event.id} has an invalid title tag: ${titleTag[1]}, skipping handler dispatch.`);
+    if(event.kind === 1 && !AggregateBeaconMessage.isKeyGenMessageValue(value)) {
+      Logger.warn(`Event ${event.id} is not a key generation message type: ${value}, skipping handler dispatch.`);
       return;
     }
 
-    const handler = this.handlers.get(titleTag[1]);
+    if(event.kind === 1059 && !AggregateBeaconMessage.isSignMessageValue(value)) {
+      Logger.warn(`Event ${event.id} has an invalid title tag: ${value}, skipping handler dispatch.`);
+      return;
+    }
+
+    const handler = this.handlers.get(value);
     if (!handler) {
-      Logger.warn(`No handler found for message type: ${titleTag[1]}`);
+      Logger.warn(`No handler found for message with tag value: ${value}`);
       return;
     }
 
@@ -165,32 +173,58 @@ export class NostrAdapter implements CommunicationService {
       this.config.coordinatorDids.push(recipient);
     }
 
-    if(AggregateBeaconMessage.isKeyGenMessageType(message.type)) {
-      return this.pool?.publish(this.config.relays, {
-        kind : 1,
-        tags : [
-          ['p', recipient],
-          ['p', sender],
-          ['title', message.type]
-        ],
-        content : JSON.stringify(message)
-      } as Event);
-    }
+    const tags = [['p', recipient], ['p', sender]];
 
-    if(AggregateBeaconMessage.isSignMessageType(message.type)) {
-      const { publicKey, secretKey } = SchnorrKeyPair.generate();
-      const content = nip44.encrypt(JSON.stringify(message), secretKey.bytes, nonceGen(publicKey.x).public);
-      const event = {
-        content,
-        kind : 1059,
-        tags : [
-          ['p', recipient],
-          ['p', sender],
-          ['title', message.type]
-        ],
-      } as Event;
+    if(AggregateBeaconMessage.isKeyGenMessageValue(message.type)) {
+      switch(message.type) {
+        case COHORT_ADVERT:
+          tags.push(['COHORT_ADVERT', message.type]);
+          break;
+        case COHORT_INVITE:
+          tags.push(['COHORT_INVITE', message.type]);
+          break;
+        case OPT_IN:
+          tags.push(['OPT_IN', message.type]);
+          break;
+        case COHORT_SET:
+          tags.push(['COHORT_SET', message.type]);
+          break;
+        case SUBSCRIBE:
+          tags.push(['SUBSCRIBE', message.type]);
+          break;
+        case SUBSCRIBE_ACCEPT:
+          tags.push(['SUBSCRIBE_ACCEPT', message.type]);
+          break;
+      }
+      const event = { kind: 1, tags, content: JSON.stringify(message)} as Event;
       return this.pool?.publish(this.config.relays, event);
     }
+
+    // if(AggregateBeaconMessage.isSignMessageValue(message.type)) {
+    //   switch(message.type) {
+    //     case REQUEST_SIGNATURE:
+    //       tags.push(['REQUEST_SIGNATURE', message.type]);
+    //       break;
+    //     case AUTHORIZATION_REQUEST:
+    //       tags.push(['AUTHORIZATION_REQUEST', message.type]);
+    //       break;
+    //     case NONCE_CONTRIBUTION:
+    //       tags.push(['NONCE_CONTRIBUTION', message.type]);
+    //       break;
+    //     case AGGREGATED_NONCE:
+    //       tags.push(['AGGREGATED_NONCE', message.type]);
+    //       break;
+    //     case SIGNATURE_AUTHORIZATION:
+    //       tags.push(['SIGNATURE_AUTHORIZATION', message.type]);
+    //       break;
+    //   }
+    //   const { publicKey, secretKey } = SchnorrKeyPair.generate();
+    //   const content = nip44.encrypt(JSON.stringify(message), secretKey.bytes, nonceGen(publicKey.x).public);
+    //   const event = { content, tags, kind: 1059 } as Event;
+    //   return this.pool?.publish(this.config.relays, event);
+    // }
+
+    Logger.warn(`Unsupported message type: ${message.type}`);
   }
 
   /**
