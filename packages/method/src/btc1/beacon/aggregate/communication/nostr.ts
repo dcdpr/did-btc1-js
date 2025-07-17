@@ -1,17 +1,44 @@
 import { KeyBytes, Logger, Maybe } from '@did-btc1/common';
 import { SchnorrKeyPair } from '@did-btc1/keypair';
-import { nonceGen } from '@scure/btc-signer/musig2';
-import { Event, Filter, nip44 } from 'nostr-tools';
+// import { nonceGen } from '@scure/btc-signer/musig2';
+import { Event, Filter, /*nip44*/ } from 'nostr-tools';
 import { SimplePool, } from 'nostr-tools/pool';
 import { Btc1Identifier } from '../../../../utils/identifier.js';
-import { AGGREGATED_NONCE, AUTHORIZATION_REQUEST, COHORT_ADVERT, COHORT_INVITE, COHORT_SET, NONCE_CONTRIBUTION, OPT_IN, REQUEST_SIGNATURE, SIGNATURE_AUTHORIZATION, SUBSCRIBE, SUBSCRIBE_ACCEPT } from '../messages/constants.js';
+import {
+  /*
+  AGGREGATED_NONCE,
+  AUTHORIZATION_REQUEST,
+  REQUEST_SIGNATURE,
+  SIGNATURE_AUTHORIZATION,
+  NONCE_CONTRIBUTION,
+  */
+  COHORT_ADVERT,
+  COHORT_INVITE,
+  COHORT_SET,
+  OPT_IN,
+  SUBSCRIBE,
+  SUBSCRIBE_ACCEPT
+} from '../messages/constants.js';
 import { AggregateBeaconMessage, AggregateBeaconMessageType } from '../messages/index.js';
 import { CommunicationService, MessageHandler, ServiceAdapter, ServiceAdapterConfig } from './service.js';
 
+/**
+ * NostrKeys defines the structure for Nostr public and secret keys.
+ * It is used to store the key pair for communication over the Nostr protocol.
+ * @type {NostrKeys}
+ */
 export type NostrKeys = {
   public: KeyBytes;
   secret: KeyBytes;
 }
+
+/**
+ * NostrConfig defines the configuration structure for the Nostr communication service.
+ * It includes relay URLs, key pairs, and components for identity generation.
+ * @interface NostrConfig
+ * @extends {Record<string, any>}
+ * @type {NostrConfig}
+ */
 export interface NostrConfig extends Record<string, any> {
   relays: string[];
   keys: NostrKeys;
@@ -23,6 +50,13 @@ export interface NostrConfig extends Record<string, any> {
   did: string;
 }
 
+/**
+ * NostrAdapterConfig is a configuration class for the NostrAdapter.
+ * It holds the necessary parameters to connect to Nostr relays and manage keys.
+ * @class NostrAdapterConfig
+ * @implements {NostrConfig}
+ * @type {NostrAdapterConfig}
+ */
 export class NostrAdapterConfig implements NostrConfig {
   relays: string[];
   keys: NostrKeys;
