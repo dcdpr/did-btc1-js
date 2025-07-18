@@ -18,7 +18,7 @@ export type BaseBody = {
 
 export type Base = {
   type: string;
-  to: string;
+  to?: string;
   from: string;
   threadId?: string;
   body?: BaseBody;
@@ -26,7 +26,7 @@ export type Base = {
 
 export class BaseMessage {
   public type: string;
-  public to: string;
+  public to?: string;
   public from: string;
   public threadId?: string;
   public body?: BaseBody;
@@ -53,12 +53,6 @@ export class BaseMessage {
    * @returns {Base} The JSON representation of the BaseMessage.
    */
   public json(): Base {
-    return {
-      type     : this.type,
-      to       : this.to,
-      from     : this.from,
-      threadId : this.threadId,
-      body     : this.body
-    };
+    return Object.json(this) as Base;
   }
 }

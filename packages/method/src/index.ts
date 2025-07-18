@@ -35,7 +35,7 @@ export * from './btc1/beacon/aggregate/cohort/messages/index.js';
 export * from './btc1/beacon/aggregate/cohort/messages/keygen/cohort-advert.js';
 export * from './btc1/beacon/aggregate/cohort/messages/keygen/cohort-ready.js';
 export * from './btc1/beacon/aggregate/cohort/messages/keygen/opt-in.js';
-export * from './btc1/beacon/aggregate/cohort/messages/keygen/subscribe-accept.js';
+export * from './btc1/beacon/aggregate/cohort/messages/keygen/opt-in-accept.js';
 export * from './btc1/beacon/aggregate/cohort/messages/keygen/subscribe.js';
 // Beacon Aggregate Cohort Messages Sign
 export * from './btc1/beacon/aggregate/cohort/messages/sign/aggregated-nonce.js';

@@ -13,7 +13,6 @@ import {
   BEACON_COHORT_NONCE_CONTRIBUTION,
   */
   BEACON_COHORT_ADVERT,
-  BEACON_COHORT_INVITE,
   BEACON_COHORT_OPT_IN,
   BEACON_COHORT_READY,
   BEACON_COHORT_SUBSCRIBE,
@@ -206,9 +205,6 @@ export class NostrAdapter implements CommunicationService {
       switch(message.type) {
         case BEACON_COHORT_ADVERT:
           tags.push(['BEACON_COHORT_ADVERT', message.type]);
-          break;
-        case BEACON_COHORT_INVITE:
-          tags.push(['BEACON_COHORT_INVITE', message.type]);
           break;
         case BEACON_COHORT_OPT_IN:
           tags.push(['BEACON_COHORT_OPT_IN', message.type]);
