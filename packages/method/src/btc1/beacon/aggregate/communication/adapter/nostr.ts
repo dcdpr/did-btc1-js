@@ -1,26 +1,26 @@
 import { KeyBytes, Logger, Maybe } from '@did-btc1/common';
-import { SchnorrKeyPair } from '@did-btc1/keypair';
+import { RawKeyPair, SchnorrKeyPair } from '@did-btc1/keypair';
 // import { nonceGen } from '@scure/btc-signer/musig2';
 import { Event, Filter, /*nip44*/ } from 'nostr-tools';
 import { SimplePool, } from 'nostr-tools/pool';
-import { Btc1Identifier } from '../../../../utils/identifier.js';
+import { Btc1Identifier } from '../../../../../utils/identifier.js';
 import {
   /*
-  AGGREGATED_NONCE,
-  AUTHORIZATION_REQUEST,
-  REQUEST_SIGNATURE,
-  SIGNATURE_AUTHORIZATION,
-  NONCE_CONTRIBUTION,
+  BEACON_COHORT_AGGREGATED_NONCE,
+  BEACON_COHORT_AUTHORIZATION_REQUEST,
+  BEACON_COHORT_REQUEST_SIGNATURE,
+  BEACON_COHORT_SIGNATURE_AUTHORIZATION,
+  BEACON_COHORT_NONCE_CONTRIBUTION,
   */
-  COHORT_ADVERT,
-  COHORT_INVITE,
-  COHORT_SET,
-  OPT_IN,
-  SUBSCRIBE,
-  SUBSCRIBE_ACCEPT
-} from '../messages/constants.js';
-import { AggregateBeaconMessage, AggregateBeaconMessageType } from '../messages/index.js';
-import { CommunicationService, MessageHandler, ServiceAdapter, ServiceAdapterConfig } from './service.js';
+  BEACON_COHORT_ADVERT,
+  BEACON_COHORT_INVITE,
+  BEACON_COHORT_OPT_IN,
+  BEACON_COHORT_READY,
+  BEACON_COHORT_SUBSCRIBE,
+  BEACON_COHORT_SUBSCRIBE_ACCEPT
+} from '../../cohort/messages/constants.js';
+import { AggregateBeaconMessage, AggregateBeaconMessageType } from '../../cohort/messages/index.js';
+import { CommunicationService, MessageHandler, ServiceAdapter, ServiceAdapterConfig, ServiceAdapterConfigType } from '../service.js';
 
 /**
  * NostrKeys defines the structure for Nostr public and secret keys.
@@ -33,48 +33,36 @@ export type NostrKeys = {
 }
 
 /**
- * NostrConfig defines the configuration structure for the Nostr communication service.
- * It includes relay URLs, key pairs, and components for identity generation.
- * @interface NostrConfig
- * @extends {Record<string, any>}
- * @type {NostrConfig}
- */
-export interface NostrConfig extends Record<string, any> {
-  relays: string[];
-  keys: NostrKeys;
-  components: {
-    idType: string;
-    version: number;
-    network: string;
-  };
-  did: string;
-}
-
-/**
  * NostrAdapterConfig is a configuration class for the NostrAdapter.
  * It holds the necessary parameters to connect to Nostr relays and manage keys.
  * @class NostrAdapterConfig
- * @implements {NostrConfig}
+ * @implements {ServiceAdapterConfig}
  * @type {NostrAdapterConfig}
  */
-export class NostrAdapterConfig implements NostrConfig {
-  relays: string[];
-  keys: NostrKeys;
-  components: {
+export class NostrAdapterConfig implements ServiceAdapterConfig {
+  public relays: string[];
+  public keys: RawKeyPair;
+  public components: {
     idType: string;
     version: number;
     network: string;
   };
-  did: string;
-  coordinatorDids: string[];
+  public did: string;
+  public coordinatorDids: string[];
 
-  constructor(config?: Partial<NostrConfig>) {
+  /**
+   * Constructs a new NostrAdapterConfig instance.
+   * @param {Partial<ServiceAdapterConfig>} [config] Optional configuration parameters to initialize the adapter.
+   * @constructor
+   * @type {NostrAdapterConfig}
+   */
+  constructor(config?: Partial<ServiceAdapterConfig>) {
     this.relays = config?.relays || ['wss://relay.damus.io'];
-    this.keys = config?.keys || SchnorrKeyPair.generate().raw as NostrKeys,
+    this.keys = config?.keys || SchnorrKeyPair.generate().raw,
     this.components = config?.components || {
       version : 1,
       idType  : 'KEY',
-      network : 'signet'
+      network : 'mutinynet'
     };
     this.did = config?.did || Btc1Identifier.encode(
       {
@@ -104,7 +92,7 @@ export class NostrAdapter implements CommunicationService {
    * The configuration for the Nostr adapter.
    * @type {NostrAdapterConfig}
    */
-  private config: NostrAdapterConfig;
+  public config: NostrAdapterConfig;
 
   /**
    * A map of message handlers for different message types.
@@ -134,7 +122,7 @@ export class NostrAdapter implements CommunicationService {
     this.pool = new SimplePool();
 
     this.pool.subscribe(this.config.relays, { kinds: [1] } as Filter, {
-      onclose : (reasons: string[]) => console.log('Subscription to kind 1 closed for reasons:', reasons),
+      onclose : (reasons: string[]) => console.log('Subscription to kind 1 closed', reasons),
       onevent : this.onEvent.bind(this),
       oneose  : () => { Logger.info('EOSE kinds 1'); }
     });
@@ -208,7 +196,7 @@ export class NostrAdapter implements CommunicationService {
   ): Promise<void | Promise<string>[]> {
     Logger.info(`Sending message to ${recipient} from ${sender}:`, message);
 
-    if(message.type === SUBSCRIBE_ACCEPT) {
+    if(message.type === BEACON_COHORT_SUBSCRIBE_ACCEPT) {
       this.config.coordinatorDids.push(recipient);
     }
 
@@ -216,23 +204,23 @@ export class NostrAdapter implements CommunicationService {
 
     if(AggregateBeaconMessage.isKeyGenMessageValue(message.type)) {
       switch(message.type) {
-        case COHORT_ADVERT:
-          tags.push(['COHORT_ADVERT', message.type]);
+        case BEACON_COHORT_ADVERT:
+          tags.push(['BEACON_COHORT_ADVERT', message.type]);
           break;
-        case COHORT_INVITE:
-          tags.push(['COHORT_INVITE', message.type]);
+        case BEACON_COHORT_INVITE:
+          tags.push(['BEACON_COHORT_INVITE', message.type]);
           break;
-        case OPT_IN:
-          tags.push(['OPT_IN', message.type]);
+        case BEACON_COHORT_OPT_IN:
+          tags.push(['BEACON_COHORT_OPT_IN', message.type]);
           break;
-        case COHORT_SET:
-          tags.push(['COHORT_SET', message.type]);
+        case BEACON_COHORT_READY:
+          tags.push(['BEACON_COHORT_READY', message.type]);
           break;
-        case SUBSCRIBE:
-          tags.push(['SUBSCRIBE', message.type]);
+        case BEACON_COHORT_SUBSCRIBE:
+          tags.push(['BEACON_COHORT_SUBSCRIBE', message.type]);
           break;
-        case SUBSCRIBE_ACCEPT:
-          tags.push(['SUBSCRIBE_ACCEPT', message.type]);
+        case BEACON_COHORT_SUBSCRIBE_ACCEPT:
+          tags.push(['BEACON_COHORT_SUBSCRIBE_ACCEPT', message.type]);
           break;
       }
       const event = { kind: 1, tags, content: JSON.stringify(message)} as Event;
@@ -242,20 +230,20 @@ export class NostrAdapter implements CommunicationService {
 
     // if(AggregateBeaconMessage.isSignMessageValue(message.type)) {
     //   switch(message.type) {
-    //     case REQUEST_SIGNATURE:
-    //       tags.push(['REQUEST_SIGNATURE', message.type]);
+    //     case BEACON_COHORT_REQUEST_SIGNATURE:
+    //       tags.push(['BEACON_COHORT_REQUEST_SIGNATURE', message.type]);
     //       break;
-    //     case AUTHORIZATION_REQUEST:
-    //       tags.push(['AUTHORIZATION_REQUEST', message.type]);
+    //     case BEACON_COHORT_AUTHORIZATION_REQUEST:
+    //       tags.push(['BEACON_COHORT_AUTHORIZATION_REQUEST', message.type]);
     //       break;
-    //     case NONCE_CONTRIBUTION:
-    //       tags.push(['NONCE_CONTRIBUTION', message.type]);
+    //     case BEACON_COHORT_NONCE_CONTRIBUTION:
+    //       tags.push(['BEACON_COHORT_NONCE_CONTRIBUTION', message.type]);
     //       break;
-    //     case AGGREGATED_NONCE:
-    //       tags.push(['AGGREGATED_NONCE', message.type]);
+    //     case BEACON_COHORT_AGGREGATED_NONCE:
+    //       tags.push(['BEACON_COHORT_AGGREGATED_NONCE', message.type]);
     //       break;
-    //     case SIGNATURE_AUTHORIZATION:
-    //       tags.push(['SIGNATURE_AUTHORIZATION', message.type]);
+    //     case BEACON_COHORT_SIGNATURE_AUTHORIZATION:
+    //       tags.push(['BEACON_COHORT_SIGNATURE_AUTHORIZATION', message.type]);
     //       break;
     //   }
     //   const { publicKey, secretKey } = SchnorrKeyPair.generate();
@@ -264,7 +252,7 @@ export class NostrAdapter implements CommunicationService {
     //   return this.pool?.publish(this.config.relays, event);
     // }
 
-    Logger.warn(`Unsupported message type: ${message.type}`);
+    Logger.error(`Unsupported message type: ${message.type}`);
   }
 
   /**
@@ -272,7 +260,7 @@ export class NostrAdapter implements CommunicationService {
    * @param {NostrKeys} [keys] Optional Nostr keys to use for identity generation.
    * @returns {string} A Btc1 DID used for communication over the nostr protocol
    */
-  public generateIdentity(keys?: NostrKeys): ServiceAdapterConfig<NostrAdapterConfig> {
+  public generateIdentity(keys?: NostrKeys): ServiceAdapterConfigType<NostrAdapterConfig> {
     this.config.keys = keys || SchnorrKeyPair.generate().raw as NostrKeys;
     this.config.did = Btc1Identifier.encode(
       {

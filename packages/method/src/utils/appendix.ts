@@ -12,7 +12,7 @@ import { createHelia } from 'helia';
 import { CID } from 'multiformats';
 import { create as createDigest } from 'multiformats/hashes/digest';
 import { Btc1RootCapability } from '../btc1/crud/interfaces.js';
-import { Btc1VerificationMethod } from '../btc1/did-document/index.js';
+import { Btc1VerificationMethod } from './did-document.js';
 
 /**
  * Implements {@link https://dcdpr.github.io/did-btc1/#appendix | 9. Appendix} methods.

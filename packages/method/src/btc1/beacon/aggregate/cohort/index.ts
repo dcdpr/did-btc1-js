@@ -1,10 +1,10 @@
 import { Logger } from '@did-btc1/common';
 import { keyAggExport, keyAggregate, sortKeys } from '@scure/btc-signer/musig2';
-import { payments } from 'bitcoinjs-lib';
-import { BeaconCoordinatorError } from '../../../error.js';
-import { CohortSetMessage } from '../../messages/keygen/cohort-set.js';
-import { RequestSignatureMessage } from '../../messages/sign/request-signature.js';
-import { SignatureAuthorizationSession } from '../session/index.js';
+import { payments, Transaction } from 'bitcoinjs-lib';
+import { BeaconCoordinatorError } from '../../error.js';
+import { BeaconCohortSigningSession } from '../session/index.js';
+import { BeaconCohortReadyMessage } from './messages/keygen/cohort-ready.js';
+import { BeaconCohortRequestSignatureMessage } from './messages/sign/request-signature.js';
 import { COHORT_STATUS, COHORT_STATUS_TYPE } from './status.js';
 
 export type Musig2CohortObject = {
@@ -29,7 +29,7 @@ export interface BeaconCohort {
   beaconAddress?: string;
 }
 
-export class Musig2Cohort implements BeaconCohort {
+export class AggregateBeaconCohort implements BeaconCohort {
   /**
    * Unique identifier for the cohort.
    * @type {string}
@@ -88,7 +88,7 @@ export class Musig2Cohort implements BeaconCohort {
    * Beacon address for the cohort, calculated from the Taproot multisig.
    * @type {string}
    */
-  public beaconAddress?: string;
+  public beaconAddress: string = '';
 
   /**
    * Type of beacon used in the cohort (default is 'SMTAggregateBeacon').
@@ -210,30 +210,32 @@ export class Musig2Cohort implements BeaconCohort {
   }
 
   /**
-   * Generates a CohortSetMessage to be sent to participants when the cohort is set.
+   * Generates a CohortReadyMessage to be sent to participants when the cohort is set.
    * @param {string} to The DID of the participant to whom the message is sent.
    * @param {string} from The DID of the coordinator sending the message.
-   * @returns {CohortSetMessage} The CohortSetMessage containing the cohort details.
+   * @returns {BeaconCohortReadyMessage} The CohortReadyMessage containing the cohort details.
    */
-  public getCohortSetMessage(to: string, from: string): CohortSetMessage {
+  public getCohortReadyMessage(to: string, from: string): BeaconCohortReadyMessage {
     if(this.status !== COHORT_STATUS.COHORT_SET_STATUS) {
       throw new BeaconCoordinatorError('Cohort status not "COHORT_SET".');
     }
-    return new CohortSetMessage({
+    return new BeaconCohortReadyMessage({
       to,
       from,
-      cohortId      : this.id,
-      beaconAddress : this.beaconAddress!,
-      cohortKeys    : this.cohortKeys,
+      body : {
+        cohortId      : this.id,
+        beaconAddress : this.beaconAddress,
+        cohortKeys    : this.cohortKeys,
+      }
     });
   }
 
   /**
    * Adds a signature request to the pending requests for the cohort.
-   * @param {RequestSignatureMessage} message The signature request message to add.
+   * @param {BeaconCohortRequestSignatureMessage} message The signature request message to add.
    * @throws {Error} If a signature request from the same participant already exists.
    */
-  public addSignatureRequest(message: RequestSignatureMessage): void {
+  public addSignatureRequest(message: BeaconCohortRequestSignatureMessage): void {
     if(!this.validateSignatureRequest(message)) {
       throw new BeaconCoordinatorError(`No signature request from ${message.from} in cohort ${this.id}.`);
     }
@@ -242,12 +244,13 @@ export class Musig2Cohort implements BeaconCohort {
 
   /**
    * Validates a signature request message to ensure it is from a participant in the cohort.
-   * @param {RequestSignatureMessage} message The signature request message to validate.
+   * @param {BeaconCohortRequestSignatureMessage} message The signature request message to validate.
    * @returns {boolean} True if the message is valid, false otherwise.
    */
-  public validateSignatureRequest(message: RequestSignatureMessage): boolean {
-    if(message.cohortId !== this.id) {
-      Logger.info(`Signature request for wrong cohort: ${message.cohortId}.`);
+  public validateSignatureRequest(message: BeaconCohortRequestSignatureMessage): boolean {
+    const cohortId = message.cohortId;
+    if(cohortId !== this.id) {
+      Logger.info(`Signature request for wrong cohort: ${cohortId}.`);
       return false;
     }
 
@@ -261,16 +264,20 @@ export class Musig2Cohort implements BeaconCohort {
 
   /**
    * Starts a signing session for the cohort.
-   * @returns {SignatureAuthorizationSession} The request signature message for the signing session.
+   * @returns {BeaconCohortSigningSession} The request signature message for the signing session.
    */
-  public startSigningSession(): SignatureAuthorizationSession {
+  public startSigningSession(): BeaconCohortSigningSession {
     Logger.debug(`Starting signing session for cohort ${this.id} with status ${this.status}`);
     if(this.status !== COHORT_STATUS.COHORT_SET_STATUS) {
       throw new BeaconCoordinatorError(`Cohort ${this.id} is not set.`);
     }
     // const smtRootBytes = new Uint8Array(32).map(() => Math.floor(Math.random() * 256));
-    const cohort = new Musig2Cohort(this);
-    return new SignatureAuthorizationSession({ cohort });
+    const cohort = new AggregateBeaconCohort(this);
+    return new BeaconCohortSigningSession({
+      cohort,
+      pendingTx         : new Transaction(),
+      processedRequests : this.pendingSignatureRequests,
+    });
   }
 
   /**

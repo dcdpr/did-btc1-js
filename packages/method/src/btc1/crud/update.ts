@@ -15,11 +15,11 @@ import { SchnorrMultikey } from '@did-btc1/cryptosuite';
 import { SchnorrKeyPair, SecretKey } from '@did-btc1/keypair';
 import type { DidService } from '@web5/dids';
 import { Btc1Appendix } from '../../utils/appendix.js';
-import { Btc1DidDocument, Btc1VerificationMethod } from '../did-document/index.js';
+import { Btc1DidDocument, Btc1VerificationMethod } from '../../utils/did-document.js';
 import { BeaconFactory } from '../beacon/factory.js';
 import { BeaconService } from '../beacon/interfaces.js';
 import { SignalsMetadata } from '../beacon/types.js';
-import { Btc1KeyManager } from '../key-manager/index.js';
+import { Btc1KeyManager } from '../../utils/key-manager.js';
 
 export type InvokePayloadParams = {
   identifier: string;

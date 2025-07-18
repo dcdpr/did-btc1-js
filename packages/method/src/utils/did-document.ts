@@ -8,10 +8,10 @@ import {
   Logger
 } from '@did-btc1/common';
 import { DidService, DidVerificationMethod, DidDocument as IDidDocument } from '@web5/dids';
-import { Btc1Appendix } from '../../utils/appendix.js';
-import { BeaconUtils } from '../../utils/beacon.js';
-import { Btc1Identifier } from '../../utils/identifier.js';
-import { BeaconService } from '../beacon/interfaces.js';
+import { BeaconService } from '../btc1/beacon/interfaces.js';
+import { Btc1Appendix } from './appendix.js';
+import { BeaconUtils } from './beacon.js';
+import { Btc1Identifier } from './identifier.js';
 
 export const BECH32M_CHARS = '';
 export const BTC1_DID_REGEX = /did:btc1:(x1[qpzry9x8gf2tvdw0s3jn54khce6mua7l]*)/g;

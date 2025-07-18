@@ -1,6 +1,6 @@
 import { DidDocumentError, INVALID_DID_DOCUMENT } from '@did-btc1/common';
-import { Btc1DidDocument, Btc1VerificationMethod } from './index.js';
-import { BeaconService } from '../beacon/interfaces.js';
+import { BeaconService } from '../btc1/beacon/interfaces.js';
+import { Btc1DidDocument, Btc1VerificationMethod } from './did-document.js';
 
 export class Btc1DidDocumentBuilder {
   private document: Partial<Btc1DidDocument> = {};

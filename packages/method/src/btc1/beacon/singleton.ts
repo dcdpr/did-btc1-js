@@ -5,7 +5,7 @@ import bitcoinNetwork, { Bitcoin } from '../../bitcoin/index.js';
 import { AddressUtxo, RawTransactionRest, Vout } from '../../bitcoin/rest/index.js';
 import { Btc1Appendix } from '../../utils/appendix.js';
 import { RawTransactionV2, TxOut } from '../../bitcoin/rpc/types.js';
-import { Btc1KeyManager, Signer } from '../key-manager/index.js';
+import { Btc1KeyManager, Signer } from '../../utils/key-manager.js';
 import { BeaconService, BeaconSignal, SingletonSidecar } from './interfaces.js';
 import { Metadata, SidecarData, SignalsMetadata } from './types.js';
 import { UpdateBeacon } from './beacon.js';

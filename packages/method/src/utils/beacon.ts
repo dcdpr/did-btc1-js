@@ -1,10 +1,11 @@
-import { Btc1Error, DidBtc1Error, Maybe, KeyBytes } from '@did-btc1/common';
+import { Btc1Error, DidBtc1Error, KeyBytes, Maybe } from '@did-btc1/common';
 import { DidDocument, DidService } from '@web5/dids';
 import { networks, payments } from 'bitcoinjs-lib';
 import { BeaconFactory } from '../btc1/beacon/factory.js';
-import { Btc1Appendix } from './appendix.js';
-import { Btc1DidDocument } from '../btc1/did-document/index.js';
 import { BeaconService, BeaconServiceAddress } from '../btc1/beacon/interfaces.js';
+import { Btc1Appendix } from './appendix.js';
+import { Btc1DidDocument } from './did-document.js';
+
 export interface GenerateBeaconParams {
   identifier: string;
   publicKey: KeyBytes;
