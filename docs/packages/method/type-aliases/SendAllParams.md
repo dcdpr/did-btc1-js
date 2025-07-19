@@ -6,7 +6,7 @@
 
 # Type Alias: SendAllParams
 
-> **SendAllParams** = `object`
+&gt; **SendAllParams** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:966](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L966)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:966](https://github.com/dcdpr/
 
 ### options?
 
-> `optional` **options**: [`SendAllOptions`](SendAllOptions.md)
+&gt; `optional` **options**: [`SendAllOptions`](SendAllOptions.md)
 
 Defined in: [packages/method/src/types/bitcoin.ts:968](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L968)
 
@@ -22,6 +22,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:968](https://github.com/dcdpr/
 
 ### recipients
 
-> **recipients**: [`Recipients`](Recipients.md)
+&gt; **recipients**: [`Recipients`](Recipients.md)
 
 Defined in: [packages/method/src/types/bitcoin.ts:967](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L967)

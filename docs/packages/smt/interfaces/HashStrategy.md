@@ -12,7 +12,7 @@ Defined in: [hashing.ts:6](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d9
 
 ### digest()
 
-> **digest**(...`inputs`): `Uint8Array`
+&gt; **digest**(...`inputs`): `Uint8Array`
 
 Defined in: [hashing.ts:7](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/smt/src/hashing.ts#L7)
 
@@ -20,7 +20,7 @@ Defined in: [hashing.ts:7](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d9
 
 ##### inputs
 
-...`Uint8Array`\<`ArrayBufferLike`\>[]
+...`Uint8Array`\<`ArrayBufferLike`\&gt;[]
 
 #### Returns
 

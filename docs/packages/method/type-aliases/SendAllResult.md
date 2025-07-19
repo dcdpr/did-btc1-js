@@ -6,7 +6,7 @@
 
 # Type Alias: SendAllResult
 
-> **SendAllResult** = `object`
+&gt; **SendAllResult** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:970](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L970)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:970](https://github.com/dcdpr/
 
 ### complete
 
-> **complete**: `boolean`
+&gt; **complete**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:974](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L974)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:974](https://github.com/dcdpr/
 
 ### hex
 
-> **hex**: `Hex`
+&gt; **hex**: `Hex`
 
 Defined in: [packages/method/src/types/bitcoin.ts:972](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L972)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:972](https://github.com/dcdpr/
 
 ### psbt
 
-> **psbt**: `string`
+&gt; **psbt**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:973](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L973)
 
@@ -38,6 +38,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:973](https://github.com/dcdpr/
 
 ### txid
 
-> **txid**: `Hex`
+&gt; **txid**: `Hex`
 
 Defined in: [packages/method/src/types/bitcoin.ts:971](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L971)

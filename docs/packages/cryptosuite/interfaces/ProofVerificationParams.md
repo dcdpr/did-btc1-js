@@ -12,7 +12,7 @@ Defined in: [cryptosuite/interface.ts:39](https://github.com/dcdpr/did-btc1-js/b
 
 ### hash
 
-> **hash**: `Bytes`
+&gt; **hash**: `Bytes`
 
 Defined in: [cryptosuite/interface.ts:40](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/interface.ts#L40)
 
@@ -20,7 +20,7 @@ Defined in: [cryptosuite/interface.ts:40](https://github.com/dcdpr/did-btc1-js/b
 
 ### options
 
-> **options**: `ProofOptions`
+&gt; **options**: `ProofOptions`
 
 Defined in: [cryptosuite/interface.ts:42](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/interface.ts#L42)
 
@@ -28,6 +28,6 @@ Defined in: [cryptosuite/interface.ts:42](https://github.com/dcdpr/did-btc1-js/b
 
 ### signature
 
-> **signature**: `Bytes`
+&gt; **signature**: `Bytes`
 
 Defined in: [cryptosuite/interface.ts:41](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/interface.ts#L41)

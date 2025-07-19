@@ -16,7 +16,7 @@ Defined in: [packages/method/src/utils/did-document.ts:35](https://github.com/dc
 
 ### controller
 
-> **controller**: `string`
+&gt; **controller**: `string`
 
 Defined in: [packages/method/src/utils/did-document.ts:38](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L38)
 
@@ -30,7 +30,7 @@ The DID of the entity that controls this verification method.
 
 ### id
 
-> **id**: `string`
+&gt; **id**: `string`
 
 Defined in: [packages/method/src/utils/did-document.ts:36](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L36)
 
@@ -44,7 +44,7 @@ The identifier of the verification method, which must be a URI.
 
 ### publicKeyMultibase
 
-> **publicKeyMultibase**: `string`
+&gt; **publicKeyMultibase**: `string`
 
 Defined in: [packages/method/src/utils/did-document.ts:39](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L39)
 
@@ -61,7 +61,7 @@ A multibase key that conforms to the draft
 
 ### secretKeyMultibase?
 
-> `optional` **secretKeyMultibase**: `string`
+&gt; `optional` **secretKeyMultibase**: `string`
 
 Defined in: [packages/method/src/utils/did-document.ts:40](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L40)
 
@@ -69,7 +69,7 @@ Defined in: [packages/method/src/utils/did-document.ts:40](https://github.com/dc
 
 ### type
 
-> **type**: `string`
+&gt; **type**: `string`
 
 Defined in: [packages/method/src/utils/did-document.ts:37](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L37)
 

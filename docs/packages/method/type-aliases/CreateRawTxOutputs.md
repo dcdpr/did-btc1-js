@@ -6,6 +6,6 @@
 
 # Type Alias: CreateRawTxOutputs
 
-> **CreateRawTxOutputs** = [`RawOutputAddr`](RawOutputAddr.md) \| [`RawOutputData`](RawOutputData.md)
+&gt; **CreateRawTxOutputs** = [`RawOutputAddr`](RawOutputAddr.md) \| [`RawOutputData`](RawOutputData.md)
 
 Defined in: [packages/method/src/types/bitcoin.ts:832](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L832)

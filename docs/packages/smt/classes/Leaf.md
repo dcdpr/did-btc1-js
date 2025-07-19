@@ -16,7 +16,7 @@ Defined in: [leaf.ts:9](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95be
 
 ### Constructor
 
-> **new Leaf**(`value`, `sumValue`, `hasher`): `Leaf`
+&gt; **new Leaf**(`value`, `sumValue`, `hasher`): `Leaf`
 
 Defined in: [leaf.ts:12](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/smt/src/leaf.ts#L12)
 
@@ -42,7 +42,7 @@ Defined in: [leaf.ts:12](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95b
 
 ### copy()
 
-> **copy**(): [`Node`](../interfaces/Node.md)
+&gt; **copy**(): [`Node`](../interfaces/Node.md)
 
 Defined in: [leaf.ts:33](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/smt/src/leaf.ts#L33)
 
@@ -61,7 +61,7 @@ In real usage, you might store partial subtrees or do a shallow copy.
 
 ### getHash()
 
-> **getHash**(): `Uint8Array`
+&gt; **getHash**(): `Uint8Array`
 
 Defined in: [leaf.ts:18](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/smt/src/leaf.ts#L18)
 
@@ -79,7 +79,7 @@ getHash returns the Merkle hash of this node.
 
 ### getSum()
 
-> **getSum**(): `bigint`
+&gt; **getSum**(): `bigint`
 
 Defined in: [leaf.ts:29](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/smt/src/leaf.ts#L29)
 
@@ -97,7 +97,7 @@ getSum returns the 64-bit sum that this node contributes upward.
 
 ### isEmpty()
 
-> **isEmpty**(): `boolean`
+&gt; **isEmpty**(): `boolean`
 
 Defined in: [leaf.ts:43](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/smt/src/leaf.ts#L43)
 

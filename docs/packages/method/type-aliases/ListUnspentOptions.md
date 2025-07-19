@@ -6,7 +6,7 @@
 
 # Type Alias: ListUnspentOptions
 
-> **ListUnspentOptions** = `object`
+&gt; **ListUnspentOptions** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:645](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L645)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:645](https://github.com/dcdpr/
 
 ### maximumAmount
 
-> **maximumAmount**: `number` \| `string`
+&gt; **maximumAmount**: `number` \| `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:647](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L647)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:647](https://github.com/dcdpr/
 
 ### maximumCount
 
-> **maximumCount**: `number` \| `string`
+&gt; **maximumCount**: `number` \| `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:648](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L648)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:648](https://github.com/dcdpr/
 
 ### minimumAmount
 
-> **minimumAmount**: `number` \| `string`
+&gt; **minimumAmount**: `number` \| `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:646](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L646)
 
@@ -38,6 +38,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:646](https://github.com/dcdpr/
 
 ### minimumSumAmount
 
-> **minimumSumAmount**: `number` \| `string`
+&gt; **minimumSumAmount**: `number` \| `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:649](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L649)

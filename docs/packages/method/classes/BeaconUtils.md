@@ -15,7 +15,7 @@ Static class of utility functions for the Beacon Service
 
 ### Constructor
 
-> **new BeaconUtils**(): `BeaconUtils`
+&gt; **new BeaconUtils**(): `BeaconUtils`
 
 #### Returns
 
@@ -25,7 +25,7 @@ Static class of utility functions for the Beacon Service
 
 ### generateBeacon()
 
-> `static` **generateBeacon**(`params`): [`BeaconService`](../interfaces/BeaconService.md)
+&gt; `static` **generateBeacon**(`params`): [`BeaconService`](../interfaces/BeaconService.md)
 
 Defined in: [packages/method/src/utils/beacons.ts:219](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/beacons.ts#L219)
 
@@ -75,7 +75,7 @@ if the bitcoin address is invalid.
 
 ### generateBeaconAddresses()
 
-> `static` **generateBeaconAddresses**(`params`): `string`[][]
+&gt; `static` **generateBeaconAddresses**(`params`): `string`[][]
 
 Defined in: [packages/method/src/utils/beacons.ts:97](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/beacons.ts#L97)
 
@@ -117,7 +117,7 @@ if the bitcoin address is invalid.
 
 ### generateBeaconService()
 
-> `static` **generateBeaconService**(`params`): [`BeaconService`](../interfaces/BeaconService.md)
+&gt; `static` **generateBeaconService**(`params`): [`BeaconService`](../interfaces/BeaconService.md)
 
 Defined in: [packages/method/src/utils/beacons.ts:130](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/beacons.ts#L130)
 
@@ -169,7 +169,7 @@ if the bitcoin address is invalid.
 
 ### generateBeaconServiceCustom()
 
-> `static` **generateBeaconServiceCustom**(`params`): [`BeaconService`](../interfaces/BeaconService.md)
+&gt; `static` **generateBeaconServiceCustom**(`params`): [`BeaconService`](../interfaces/BeaconService.md)
 
 Defined in: [packages/method/src/utils/beacons.ts:158](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/beacons.ts#L158)
 
@@ -209,7 +209,7 @@ Required parameters for generating Beacon Services.
 
 ### generateBeaconServices()
 
-> `static` **generateBeaconServices**(`params`): [`BeaconService`](../interfaces/BeaconService.md)[]
+&gt; `static` **generateBeaconServices**(`params`): [`BeaconService`](../interfaces/BeaconService.md)[]
 
 Defined in: [packages/method/src/utils/beacons.ts:189](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/beacons.ts#L189)
 
@@ -251,11 +251,11 @@ Array of DidService objects.
 
 ### getBeaconServiceAddressMap()
 
-> `static` **getBeaconServiceAddressMap**(`beacons`): `Map`\<`string`, [`BeaconServiceAddress`](../interfaces/BeaconServiceAddress.md)\>
+&gt; `static` **getBeaconServiceAddressMap**(`beacons`): `Map`\<`string`, [`BeaconServiceAddress`](../interfaces/BeaconServiceAddress.md)\&gt;
 
 Defined in: [packages/method/src/utils/beacons.ts:267](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/beacons.ts#L267)
 
-Create a map of address => beaconService with address field.
+Create a map of address =&gt; beaconService with address field.
 
 #### Parameters
 
@@ -267,15 +267,15 @@ The list of beacon services.
 
 #### Returns
 
-`Map`\<`string`, [`BeaconServiceAddress`](../interfaces/BeaconServiceAddress.md)\>
+`Map`\<`string`, [`BeaconServiceAddress`](../interfaces/BeaconServiceAddress.md)\&gt;
 
-A map of address => beaconService.
+A map of address =&gt; beaconService.
 
 ***
 
 ### getBeaconServiceIds()
 
-> `static` **getBeaconServiceIds**(`didDocument`): `string`[]
+&gt; `static` **getBeaconServiceIds**(`didDocument`): `string`[]
 
 Defined in: [packages/method/src/utils/beacons.ts:277](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/beacons.ts#L277)
 
@@ -299,7 +299,7 @@ An array of beacon service ids.
 
 ### getBeaconServices()
 
-> `static` **getBeaconServices**(`didDocument`): [`BeaconService`](../interfaces/BeaconService.md)[]
+&gt; `static` **getBeaconServices**(`didDocument`): [`BeaconService`](../interfaces/BeaconService.md)[]
 
 Defined in: [packages/method/src/utils/beacons.ts:82](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/beacons.ts#L82)
 
@@ -327,7 +327,7 @@ if the didDocument is not provided
 
 ### isBeaconService()
 
-> `static` **isBeaconService**(`obj`): `boolean`
+&gt; `static` **isBeaconService**(`obj`): `boolean`
 
 Defined in: [packages/method/src/utils/beacons.ts:59](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/beacons.ts#L59)
 
@@ -351,7 +351,7 @@ A boolean indicating whether the object is a Beacon Service
 
 ### manufactureBeacon()
 
-> `static` **manufactureBeacon**(`params`): [`BeaconService`](../interfaces/BeaconService.md)
+&gt; `static` **manufactureBeacon**(`params`): [`BeaconService`](../interfaces/BeaconService.md)
 
 Defined in: [packages/method/src/utils/beacons.ts:249](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/beacons.ts#L249)
 
@@ -375,7 +375,7 @@ One BeaconService object.
 
 ### parseBitcoinAddress()
 
-> `static` **parseBitcoinAddress**(`uri`): `string`
+&gt; `static` **parseBitcoinAddress**(`uri`): `string`
 
 Defined in: [packages/method/src/utils/beacons.ts:47](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/beacons.ts#L47)
 
@@ -403,7 +403,7 @@ if the URI is not a valid Bitcoin URI
 
 ### toBeaconServiceAddress()
 
-> `static` **toBeaconServiceAddress**(`beacons`): [`BeaconServiceAddress`](../interfaces/BeaconServiceAddress.md)[]
+&gt; `static` **toBeaconServiceAddress**(`beacons`): [`BeaconServiceAddress`](../interfaces/BeaconServiceAddress.md)[]
 
 Defined in: [packages/method/src/utils/beacons.ts:258](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/beacons.ts#L258)
 

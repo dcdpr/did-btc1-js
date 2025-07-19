@@ -6,7 +6,7 @@
 
 # Type Alias: GetUTXOsResult
 
-> **GetUTXOsResult** = `object`
+&gt; **GetUTXOsResult** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:834](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L834)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:834](https://github.com/dcdpr/
 
 ### bipmap
 
-> **bipmap**: `string`
+&gt; **bipmap**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:837](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L837)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:837](https://github.com/dcdpr/
 
 ### chainHeight
 
-> **chainHeight**: `number`
+&gt; **chainHeight**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:835](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L835)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:835](https://github.com/dcdpr/
 
 ### chaintipHash
 
-> **chaintipHash**: `string`
+&gt; **chaintipHash**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:836](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L836)
 
@@ -38,6 +38,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:836](https://github.com/dcdpr/
 
 ### utxos
 
-> **utxos**: [`UTXO`](UTXO.md)[]
+&gt; **utxos**: [`UTXO`](UTXO.md)[]
 
 Defined in: [packages/method/src/types/bitcoin.ts:838](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L838)

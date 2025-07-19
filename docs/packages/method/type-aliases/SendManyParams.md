@@ -6,7 +6,7 @@
 
 # Type Alias: SendManyParams
 
-> **SendManyParams** = `object`
+&gt; **SendManyParams** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:919](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L919)
 
@@ -14,19 +14,19 @@ Defined in: [packages/method/src/types/bitcoin.ts:919](https://github.com/dcdpr/
 
 ### amounts
 
-> **amounts**: `object`
+&gt; **amounts**: `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:921](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L921)
 
 #### address
 
-> **address**: `string`
+&gt; **address**: `string`
 
 ***
 
 ### comment?
 
-> `optional` **comment**: `string`
+&gt; `optional` **comment**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:923](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L923)
 
@@ -34,7 +34,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:923](https://github.com/dcdpr/
 
 ### conf\_target?
 
-> `optional` **conf\_target**: `number`
+&gt; `optional` **conf\_target**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:926](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L926)
 
@@ -42,7 +42,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:926](https://github.com/dcdpr/
 
 ### estimate\_mode?
 
-> `optional` **estimate\_mode**: [`FeeEstimateMode`](FeeEstimateMode.md)
+&gt; `optional` **estimate\_mode**: [`FeeEstimateMode`](FeeEstimateMode.md)
 
 Defined in: [packages/method/src/types/bitcoin.ts:927](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L927)
 
@@ -50,7 +50,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:927](https://github.com/dcdpr/
 
 ### fromaccount
 
-> **fromaccount**: `string`
+&gt; **fromaccount**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:920](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L920)
 
@@ -58,7 +58,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:920](https://github.com/dcdpr/
 
 ### minconf?
 
-> `optional` **minconf**: `number`
+&gt; `optional` **minconf**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:922](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L922)
 
@@ -66,7 +66,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:922](https://github.com/dcdpr/
 
 ### replaeable?
 
-> `optional` **replaeable**: `boolean`
+&gt; `optional` **replaeable**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:925](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L925)
 
@@ -74,6 +74,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:925](https://github.com/dcdpr/
 
 ### subtractfeefrom?
 
-> `optional` **subtractfeefrom**: `string`[]
+&gt; `optional` **subtractfeefrom**: `string`[]
 
 Defined in: [packages/method/src/types/bitcoin.ts:924](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L924)

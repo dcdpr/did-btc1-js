@@ -6,7 +6,7 @@
 
 # Type Alias: Metadata
 
-> **Metadata** = `object`
+&gt; **Metadata** = `object`
 
 Defined in: [packages/method/src/types/crud.ts:10](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/crud.ts#L10)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/crud.ts:10](https://github.com/dcdpr/did-
 
 ### proofs?
 
-> `optional` **proofs**: `any`
+&gt; `optional` **proofs**: `any`
 
 Defined in: [packages/method/src/types/crud.ts:12](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/crud.ts#L12)
 
@@ -22,6 +22,6 @@ Defined in: [packages/method/src/types/crud.ts:12](https://github.com/dcdpr/did-
 
 ### updatePayload
 
-> **updatePayload**: `DidUpdatePayload`
+&gt; **updatePayload**: `DidUpdatePayload`
 
 Defined in: [packages/method/src/types/crud.ts:11](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/crud.ts#L11)

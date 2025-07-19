@@ -6,7 +6,7 @@
 
 # Type Alias: CreateWalletParams
 
-> **CreateWalletParams** = `object`
+&gt; **CreateWalletParams** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:880](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L880)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:880](https://github.com/dcdpr/
 
 ### avoid\_reuse?
 
-> `optional` **avoid\_reuse**: `boolean`
+&gt; `optional` **avoid\_reuse**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:885](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L885)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:885](https://github.com/dcdpr/
 
 ### blank?
 
-> `optional` **blank**: `boolean`
+&gt; `optional` **blank**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:883](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L883)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:883](https://github.com/dcdpr/
 
 ### descriptors?
 
-> `optional` **descriptors**: `boolean`
+&gt; `optional` **descriptors**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:886](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L886)
 
@@ -38,7 +38,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:886](https://github.com/dcdpr/
 
 ### disable\_private\_keys?
 
-> `optional` **disable\_private\_keys**: `boolean`
+&gt; `optional` **disable\_private\_keys**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:882](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L882)
 
@@ -46,7 +46,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:882](https://github.com/dcdpr/
 
 ### load\_on\_startup?
 
-> `optional` **load\_on\_startup**: `boolean`
+&gt; `optional` **load\_on\_startup**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:887](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L887)
 
@@ -54,7 +54,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:887](https://github.com/dcdpr/
 
 ### passphrase?
 
-> `optional` **passphrase**: `string`
+&gt; `optional` **passphrase**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:884](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L884)
 
@@ -62,6 +62,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:884](https://github.com/dcdpr/
 
 ### wallet\_name
 
-> **wallet\_name**: `string`
+&gt; **wallet\_name**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:881](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L881)

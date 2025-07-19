@@ -22,7 +22,7 @@ bip340-jcs-2025 cryptosuite with a proofPurpose of capabilityInvocation.
 
 ### Constructor
 
-> **new Btc1Update**(): `Btc1Update`
+&gt; **new Btc1Update**(): `Btc1Update`
 
 #### Returns
 
@@ -32,7 +32,7 @@ bip340-jcs-2025 cryptosuite with a proofPurpose of capabilityInvocation.
 
 ### announce()
 
-> `static` **announce**(`params`): `Promise`\<[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)\>
+&gt; `static` **announce**(`params`): `Promise`\<[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)\&gt;
 
 Defined in: [packages/method/src/btc1/crud/update.ts:208](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/update.ts#L208)
 
@@ -67,7 +67,7 @@ The did-btc1 did document to derive the root capability from
 
 #### Returns
 
-`Promise`\<[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)\>
+`Promise`\<[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)\&gt;
 
 The signalsMetadata object containing data to validate the Beacon Signal
 
@@ -79,7 +79,7 @@ if the beaconService type is invalid
 
 ### construct()
 
-> `static` **construct**(`params`): `Promise`\<`DidUpdatePayload`\>
+&gt; `static` **construct**(`params`): `Promise`\<`DidUpdatePayload`\&gt;
 
 Defined in: [packages/method/src/btc1/crud/update.ts:58](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/update.ts#L58)
 
@@ -121,7 +121,7 @@ The versionId of the source document.
 
 #### Returns
 
-`Promise`\<`DidUpdatePayload`\>
+`Promise`\<`DidUpdatePayload`\&gt;
 
 The constructed DidUpdatePayload object.
 
@@ -133,7 +133,7 @@ InvalidDid if sourceDocument.id does not match identifier.
 
 ### invoke()
 
-> `static` **invoke**(`params`): `Promise`\<`DidUpdateInvocation`\>
+&gt; `static` **invoke**(`params`): `Promise`\<`DidUpdateInvocation`\&gt;
 
 Defined in: [packages/method/src/btc1/crud/update.ts:129](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/update.ts#L129)
 
@@ -170,9 +170,9 @@ The verificationMethod object to be used for signing
 
 #### Returns
 
-`Promise`\<`DidUpdateInvocation`\>
+`Promise`\<`DidUpdateInvocation`\&gt;
 
-Did update payload secured with a proof => DidUpdateInvocation
+Did update payload secured with a proof =&gt; DidUpdateInvocation
 
 #### Throws
 

@@ -6,7 +6,7 @@
 
 # Variable: MAX\_TREE\_LEVELS
 
-> `const` **MAX\_TREE\_LEVELS**: `256` = `256`
+&gt; `const` **MAX\_TREE\_LEVELS**: `256` = `256`
 
 Defined in: [constants.ts:12](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/smt/src/constants.ts#L12)
 

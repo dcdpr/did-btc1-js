@@ -6,7 +6,7 @@
 
 # Type Alias: BumpFeeResult
 
-> **BumpFeeResult** = `object`
+&gt; **BumpFeeResult** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:850](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L850)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:850](https://github.com/dcdpr/
 
 ### error?
 
-> `optional` **error**: `string`[]
+&gt; `optional` **error**: `string`[]
 
 Defined in: [packages/method/src/types/bitcoin.ts:854](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L854)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:854](https://github.com/dcdpr/
 
 ### fee
 
-> **fee**: `number`
+&gt; **fee**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:853](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L853)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:853](https://github.com/dcdpr/
 
 ### origfee
 
-> **origfee**: `number`
+&gt; **origfee**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:852](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L852)
 
@@ -38,6 +38,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:852](https://github.com/dcdpr/
 
 ### txid
 
-> **txid**: `string`
+&gt; **txid**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:851](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L851)

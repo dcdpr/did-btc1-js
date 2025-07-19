@@ -6,7 +6,7 @@
 
 # Type Alias: TxInPrevout
 
-> **TxInPrevout** = `object`
+&gt; **TxInPrevout** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:431](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L431)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:431](https://github.com/dcdpr/
 
 ### generated
 
-> **generated**: `boolean`
+&gt; **generated**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:432](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L432)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:432](https://github.com/dcdpr/
 
 ### height
 
-> **height**: `number`
+&gt; **height**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:433](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L433)
 
@@ -30,34 +30,34 @@ Defined in: [packages/method/src/types/bitcoin.ts:433](https://github.com/dcdpr/
 
 ### scriptPubKey?
 
-> `optional` **scriptPubKey**: `object`
+&gt; `optional` **scriptPubKey**: `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:435](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L435)
 
 #### address?
 
-> `optional` **address**: `string`
+&gt; `optional` **address**: `string`
 
 #### asm
 
-> **asm**: `string`
+&gt; **asm**: `string`
 
 #### desc
 
-> **desc**: `string`
+&gt; **desc**: `string`
 
 #### hex
 
-> **hex**: `string`
+&gt; **hex**: `string`
 
 #### type
 
-> **type**: `string`
+&gt; **type**: `string`
 
 ***
 
 ### value
 
-> **value**: `number`
+&gt; **value**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:434](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L434)

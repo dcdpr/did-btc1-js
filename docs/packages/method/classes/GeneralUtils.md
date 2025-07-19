@@ -15,7 +15,7 @@ Static class of general utility functions for the did-btc1 spec implementation
 
 ### Constructor
 
-> **new GeneralUtils**(): `GeneralUtils`
+&gt; **new GeneralUtils**(): `GeneralUtils`
 
 #### Returns
 
@@ -25,7 +25,7 @@ Static class of general utility functions for the did-btc1 spec implementation
 
 ### bigintToBuffer()
 
-> `static` **bigintToBuffer**(`value`): `Buffer`
+&gt; `static` **bigintToBuffer**(`value`): `Buffer`
 
 Defined in: [packages/method/src/utils/general.ts:37](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/general.ts#L37)
 
@@ -49,7 +49,7 @@ The buffer representation of the bigint
 
 ### deriveChildKey()
 
-> `static` **deriveChildKey**(`hdkey`, `path`): `HDKey`
+&gt; `static` **deriveChildKey**(`hdkey`, `path`): `HDKey`
 
 Defined in: [packages/method/src/utils/general.ts:194](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/general.ts#L194)
 
@@ -83,7 +83,7 @@ Error if the child key cannot be derived
 
 ### encode()
 
-> `static` **encode**(`xOnlyKeyBytes`): `string`
+&gt; `static` **encode**(`xOnlyKeyBytes`): `string`
 
 Defined in: [packages/method/src/utils/general.ts:20](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/general.ts#L20)
 
@@ -103,7 +103,7 @@ Helper function to encode a secp256k1 key in SchnorrSecp256k1 Multikey Format
 
 ### generateCompressedSecp256k1KeyPair()
 
-> `static` **generateCompressedSecp256k1KeyPair**(): `object`
+&gt; `static` **generateCompressedSecp256k1KeyPair**(): `object`
 
 Defined in: [packages/method/src/utils/general.ts:61](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/general.ts#L61)
 
@@ -113,17 +113,17 @@ Defined in: [packages/method/src/utils/general.ts:61](https://github.com/dcdpr/d
 
 ##### privateKey
 
-> **privateKey**: `Bytes`
+&gt; **privateKey**: `Bytes`
 
 ##### publicKey
 
-> **publicKey**: `Bytes`
+&gt; **publicKey**: `Bytes`
 
 ***
 
 ### generateHdWallet()
 
-> `static` **generateHdWallet**(): `Promise`\<`HdWallet`\>
+&gt; `static` **generateHdWallet**(): `Promise`\<`HdWallet`\&gt;
 
 Defined in: [packages/method/src/utils/general.ts:47](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/general.ts#L47)
 
@@ -131,7 +131,7 @@ Generates a new mnemonic phrase and HD wallet
 
 #### Returns
 
-`Promise`\<`HdWallet`\>
+`Promise`\<`HdWallet`\&gt;
 
 Promise resolving to a new hdwallet object w/ mnemonic and hdkey
 
@@ -143,7 +143,7 @@ if the public key bytes cannot be derived
 
 ### recoverHdChildFromMnemonic()
 
-> `static` **recoverHdChildFromMnemonic**(`mnemonic`, `path`): `Promise`\<`Uint8Array`\<`ArrayBufferLike`\>\>
+&gt; `static` **recoverHdChildFromMnemonic**(`mnemonic`, `path`): `Promise`\<`Uint8Array`\<`ArrayBufferLike`\&gt;\&gt;
 
 Defined in: [packages/method/src/utils/general.ts:172](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/general.ts#L172)
 
@@ -165,7 +165,7 @@ The path to derive the child key from
 
 #### Returns
 
-`Promise`\<`Uint8Array`\<`ArrayBufferLike`\>\>
+`Promise`\<`Uint8Array`\<`ArrayBufferLike`\&gt;\&gt;
 
 Promise resolving to the recovered private key bytes
 
@@ -177,7 +177,7 @@ if the HDKey cannot be recovered
 
 ### recoverHdWallet()
 
-> `static` **recoverHdWallet**(`mnemonic`, `seed?`): `Promise`\<`HDKey`\>
+&gt; `static` **recoverHdWallet**(`mnemonic`, `seed?`): `Promise`\<`HDKey`\&gt;
 
 Defined in: [packages/method/src/utils/general.ts:76](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/general.ts#L76)
 
@@ -193,13 +193,13 @@ The mnemonic phrase to recover the HDKey from
 
 ##### seed?
 
-`Uint8Array`\<`ArrayBufferLike`\>
+`Uint8Array`\<`ArrayBufferLike`\&gt;
 
 Optional seed to recover the HDKey from
 
 #### Returns
 
-`Promise`\<`HDKey`\>
+`Promise`\<`HDKey`\&gt;
 
 Promise resolving to the recovered HDKey
 
@@ -211,7 +211,7 @@ Error if the HDKey cannot be recovered
 
 ### recoverRawPrivateKey()
 
-> `static` **recoverRawPrivateKey**(`entropy`): `Uint8Array`
+&gt; `static` **recoverRawPrivateKey**(`entropy`): `Uint8Array`
 
 Defined in: [packages/method/src/utils/general.ts:119](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/general.ts#L119)
 
@@ -239,7 +239,7 @@ if the privateKey cannot be recovered
 
 ### recoverTweakedRawPrivateKey()
 
-> `static` **recoverTweakedRawPrivateKey**(`xorEntropy`, `salt`): `Uint8Array`
+&gt; `static` **recoverTweakedRawPrivateKey**(`xorEntropy`, `salt`): `Uint8Array`
 
 Defined in: [packages/method/src/utils/general.ts:95](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/general.ts#L95)
 
@@ -273,7 +273,7 @@ if the privateKey cannot be recovered
 
 ### XNOR()
 
-> `static` **XNOR**(`tweakedEntropy`, `salt`): `Uint8Array`
+&gt; `static` **XNOR**(`tweakedEntropy`, `salt`): `Uint8Array`
 
 Defined in: [packages/method/src/utils/general.ts:157](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/general.ts#L157)
 
@@ -303,7 +303,7 @@ The original entropy
 
 ### XOR()
 
-> `static` **XOR**(`entropy`, `salt`): `Uint8Array`
+&gt; `static` **XOR**(`entropy`, `salt`): `Uint8Array`
 
 Defined in: [packages/method/src/utils/general.ts:142](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/general.ts#L142)
 

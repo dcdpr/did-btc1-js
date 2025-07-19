@@ -6,7 +6,7 @@
 
 # Type Alias: ScriptDecoded
 
-> **ScriptDecoded** = `object`
+&gt; **ScriptDecoded** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:77](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L77)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:77](https://github.com/dcdpr/d
 
 ### addresses
 
-> **addresses**: `string`[]
+&gt; **addresses**: `string`[]
 
 Defined in: [packages/method/src/types/bitcoin.ts:82](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L82)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:82](https://github.com/dcdpr/d
 
 ### asm
 
-> **asm**: `string`
+&gt; **asm**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:78](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L78)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:78](https://github.com/dcdpr/d
 
 ### hex
 
-> **hex**: `string`
+&gt; **hex**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:79](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L79)
 
@@ -38,7 +38,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:79](https://github.com/dcdpr/d
 
 ### ps2h?
 
-> `optional` **ps2h**: `string`
+&gt; `optional` **ps2h**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:83](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L83)
 
@@ -46,7 +46,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:83](https://github.com/dcdpr/d
 
 ### reqSigs
 
-> **reqSigs**: `number`
+&gt; **reqSigs**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:81](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L81)
 
@@ -54,6 +54,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:81](https://github.com/dcdpr/d
 
 ### type
 
-> **type**: `string`
+&gt; **type**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:80](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L80)

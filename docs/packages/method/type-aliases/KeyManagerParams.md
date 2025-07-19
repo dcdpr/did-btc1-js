@@ -6,7 +6,7 @@
 
 # Type Alias: KeyManagerParams
 
-> **KeyManagerParams** = `object`
+&gt; **KeyManagerParams** = `object`
 
 Defined in: [packages/method/src/btc1/key-manager/interface.ts:15](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/interface.ts#L15)
 
@@ -16,7 +16,7 @@ Params for initializing a Btc1KeyManager class instance.
 
 ### controller?
 
-> `optional` **controller**: `string`
+&gt; `optional` **controller**: `string`
 
 Defined in: [packages/method/src/btc1/key-manager/interface.ts:42](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/interface.ts#L42)
 
@@ -26,7 +26,7 @@ An optional property to specify the DID controller.\
 
 ### id?
 
-> `optional` **id**: `string`
+&gt; `optional` **id**: `string`
 
 Defined in: [packages/method/src/btc1/key-manager/interface.ts:36](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/interface.ts#L36)
 
@@ -36,7 +36,7 @@ An optional property to specify the DID contoller id.
 
 ### keys?
 
-> `optional` **keys**: `SchnorrKeyPair`
+&gt; `optional` **keys**: `SchnorrKeyPair`
 
 Defined in: [packages/method/src/btc1/key-manager/interface.ts:48](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/interface.ts#L48)
 
@@ -46,7 +46,7 @@ An optional property to pass in an initial key pair
 
 ### keyUri?
 
-> `optional` **keyUri**: [`KeyIdentifier`](KeyIdentifier.md)
+&gt; `optional` **keyUri**: [`KeyIdentifier`](KeyIdentifier.md)
 
 Defined in: [packages/method/src/btc1/key-manager/interface.ts:30](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/interface.ts#L30)
 
@@ -57,7 +57,7 @@ will generate a key URI based on the public key of the key pair.
 
 ### store?
 
-> `optional` **store**: `KeyValueStore`\<[`KeyIdentifier`](KeyIdentifier.md), `SchnorrMultikey`\>
+&gt; `optional` **store**: `KeyValueStore`\<[`KeyIdentifier`](KeyIdentifier.md), `SchnorrMultikey`\&gt;
 
 Defined in: [packages/method/src/btc1/key-manager/interface.ts:23](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/interface.ts#L23)
 

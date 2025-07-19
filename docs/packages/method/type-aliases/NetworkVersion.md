@@ -6,7 +6,7 @@
 
 # Type Alias: NetworkVersion
 
-> **NetworkVersion** = `object`
+&gt; **NetworkVersion** = `object`
 
 Defined in: [packages/method/src/btc1/crud/read.ts:48](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/read.ts#L48)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/btc1/crud/read.ts:48](https://github.com/dcdpr/
 
 ### network?
 
-> `optional` **network**: `string`
+&gt; `optional` **network**: `string`
 
 Defined in: [packages/method/src/btc1/crud/read.ts:50](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/read.ts#L50)
 
@@ -22,6 +22,6 @@ Defined in: [packages/method/src/btc1/crud/read.ts:50](https://github.com/dcdpr/
 
 ### version?
 
-> `optional` **version**: `string`
+&gt; `optional` **version**: `string`
 
 Defined in: [packages/method/src/btc1/crud/read.ts:49](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/read.ts#L49)

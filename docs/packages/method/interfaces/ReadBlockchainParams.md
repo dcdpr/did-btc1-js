@@ -12,7 +12,7 @@ Defined in: [packages/method/src/interfaces/crud.ts:26](https://github.com/dcdpr
 
 ### contemporaryBlockHeight
 
-> **contemporaryBlockHeight**: `number`
+&gt; **contemporaryBlockHeight**: `number`
 
 Defined in: [packages/method/src/interfaces/crud.ts:28](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/crud.ts#L28)
 
@@ -20,7 +20,7 @@ Defined in: [packages/method/src/interfaces/crud.ts:28](https://github.com/dcdpr
 
 ### contemporaryDidDocument
 
-> **contemporaryDidDocument**: [`Btc1DidDocument`](../classes/Btc1DidDocument.md)
+&gt; **contemporaryDidDocument**: [`Btc1DidDocument`](../classes/Btc1DidDocument.md)
 
 Defined in: [packages/method/src/interfaces/crud.ts:27](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/crud.ts#L27)
 
@@ -28,7 +28,7 @@ Defined in: [packages/method/src/interfaces/crud.ts:27](https://github.com/dcdpr
 
 ### currentVersionId
 
-> **currentVersionId**: `number`
+&gt; **currentVersionId**: `number`
 
 Defined in: [packages/method/src/interfaces/crud.ts:29](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/crud.ts#L29)
 
@@ -36,7 +36,7 @@ Defined in: [packages/method/src/interfaces/crud.ts:29](https://github.com/dcdpr
 
 ### options?
 
-> `optional` **options**: [`DidResolutionOptions`](DidResolutionOptions.md)
+&gt; `optional` **options**: [`DidResolutionOptions`](DidResolutionOptions.md)
 
 Defined in: [packages/method/src/interfaces/crud.ts:34](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/crud.ts#L34)
 
@@ -44,7 +44,7 @@ Defined in: [packages/method/src/interfaces/crud.ts:34](https://github.com/dcdpr
 
 ### sidecarData?
 
-> `optional` **sidecarData**: `SidecarData`
+&gt; `optional` **sidecarData**: `SidecarData`
 
 Defined in: [packages/method/src/interfaces/crud.ts:33](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/crud.ts#L33)
 
@@ -52,7 +52,7 @@ Defined in: [packages/method/src/interfaces/crud.ts:33](https://github.com/dcdpr
 
 ### targetBlockHeight
 
-> **targetBlockHeight**: `number`
+&gt; **targetBlockHeight**: `number`
 
 Defined in: [packages/method/src/interfaces/crud.ts:31](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/crud.ts#L31)
 
@@ -60,7 +60,7 @@ Defined in: [packages/method/src/interfaces/crud.ts:31](https://github.com/dcdpr
 
 ### targetVersionId?
 
-> `optional` **targetVersionId**: `number`
+&gt; `optional` **targetVersionId**: `number`
 
 Defined in: [packages/method/src/interfaces/crud.ts:30](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/crud.ts#L30)
 
@@ -68,6 +68,6 @@ Defined in: [packages/method/src/interfaces/crud.ts:30](https://github.com/dcdpr
 
 ### updateHashHistory
 
-> **updateHashHistory**: `string`[]
+&gt; **updateHashHistory**: `string`[]
 
 Defined in: [packages/method/src/interfaces/crud.ts:32](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/crud.ts#L32)

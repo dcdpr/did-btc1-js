@@ -6,7 +6,7 @@
 
 # Type Alias: TxOutInBlock
 
-> **TxOutInBlock** = `object`
+&gt; **TxOutInBlock** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:481](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L481)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:481](https://github.com/dcdpr/
 
 ### bestblock
 
-> **bestblock**: `string`
+&gt; **bestblock**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:482](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L482)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:482](https://github.com/dcdpr/
 
 ### coinbase
 
-> **coinbase**: `boolean`
+&gt; **coinbase**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:492](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L492)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:492](https://github.com/dcdpr/
 
 ### confirmations
 
-> **confirmations**: `number`
+&gt; **confirmations**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:483](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L483)
 
@@ -38,34 +38,34 @@ Defined in: [packages/method/src/types/bitcoin.ts:483](https://github.com/dcdpr/
 
 ### scriptPubKey
 
-> **scriptPubKey**: `object`
+&gt; **scriptPubKey**: `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:485](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L485)
 
 #### addresses
 
-> **addresses**: `string`[]
+&gt; **addresses**: `string`[]
 
 #### asm
 
-> **asm**: `string`
+&gt; **asm**: `string`
 
 #### hex
 
-> **hex**: `string`
+&gt; **hex**: `string`
 
 #### reqSigs
 
-> **reqSigs**: `number`
+&gt; **reqSigs**: `number`
 
 #### type
 
-> **type**: [`scriptPubkeyType`](scriptPubkeyType.md)
+&gt; **type**: [`scriptPubkeyType`](scriptPubkeyType.md)
 
 ***
 
 ### value
 
-> **value**: `number`
+&gt; **value**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:484](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L484)

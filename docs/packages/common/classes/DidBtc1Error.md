@@ -33,7 +33,7 @@ Defined in: [errors.ts:119](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d
 
 ### Constructor
 
-> **new DidBtc1Error**(`message`, `options`): `DidBtc1Error`
+&gt; **new DidBtc1Error**(`message`, `options`): `DidBtc1Error`
 
 Defined in: [errors.ts:124](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/errors.ts#L124)
 
@@ -59,7 +59,7 @@ Defined in: [errors.ts:124](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d
 
 ### data?
 
-> `optional` **data**: `Record`\<`string`, `any`\>
+&gt; `optional` **data**: `Record`\<`string`, `any`\&gt;
 
 Defined in: [errors.ts:122](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/errors.ts#L122)
 
@@ -67,7 +67,7 @@ Defined in: [errors.ts:122](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d
 
 ### name
 
-> **name**: `string` = `'DidBtc1Error'`
+&gt; **name**: `string` = `'DidBtc1Error'`
 
 Defined in: [errors.ts:120](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/errors.ts#L120)
 
@@ -79,6 +79,6 @@ Defined in: [errors.ts:120](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d
 
 ### type
 
-> **type**: `string` = `'DidBtc1Error'`
+&gt; **type**: `string` = `'DidBtc1Error'`
 
 Defined in: [errors.ts:121](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/errors.ts#L121)

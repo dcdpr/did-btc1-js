@@ -6,7 +6,7 @@
 
 # Type Alias: TxStats
 
-> **TxStats** = `object`
+&gt; **TxStats** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:114](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L114)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:114](https://github.com/dcdpr/
 
 ### time
 
-> **time**: `number`
+&gt; **time**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:115](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L115)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:115](https://github.com/dcdpr/
 
 ### txcount
 
-> **txcount**: `number`
+&gt; **txcount**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:116](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L116)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:116](https://github.com/dcdpr/
 
 ### txrate
 
-> **txrate**: `number`
+&gt; **txrate**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:121](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L121)
 
@@ -38,7 +38,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:121](https://github.com/dcdpr/
 
 ### window\_block\_count?
 
-> `optional` **window\_block\_count**: `number`
+&gt; `optional` **window\_block\_count**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:118](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L118)
 
@@ -46,7 +46,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:118](https://github.com/dcdpr/
 
 ### window\_final\_block\_hash?
 
-> `optional` **window\_final\_block\_hash**: `string`
+&gt; `optional` **window\_final\_block\_hash**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:117](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L117)
 
@@ -54,7 +54,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:117](https://github.com/dcdpr/
 
 ### window\_interval?
 
-> `optional` **window\_interval**: `number`
+&gt; `optional` **window\_interval**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:120](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L120)
 
@@ -62,6 +62,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:120](https://github.com/dcdpr/
 
 ### window\_tx\_count?
 
-> `optional` **window\_tx\_count**: `number`
+&gt; `optional` **window\_tx\_count**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:119](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L119)

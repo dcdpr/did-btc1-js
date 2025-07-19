@@ -20,7 +20,7 @@ and
 
 ### beaconId
 
-> **beaconId**: `string`
+&gt; **beaconId**: `string`
 
 Defined in: [interfaces.ts:276](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L276)
 
@@ -30,7 +30,7 @@ The DID Document's `service` ID of the Beacon that produced this signal, e.g. "#
 
 ### beaconType
 
-> **beaconType**: [`BeaconType`](../type-aliases/BeaconType.md)
+&gt; **beaconType**: [`BeaconType`](../type-aliases/BeaconType.md)
 
 Defined in: [interfaces.ts:281](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L281)
 
@@ -40,7 +40,7 @@ The type of Beacon, e.g. "SingletonBeacon".
 
 ### tx
 
-> **tx**: `any`
+&gt; **tx**: `any`
 
 Defined in: [interfaces.ts:287](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L287)
 

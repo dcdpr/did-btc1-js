@@ -6,7 +6,7 @@
 
 # Type Alias: SchnorrKeyPair
 
-> **SchnorrKeyPair** = `object`
+&gt; **SchnorrKeyPair** = `object`
 
 Defined in: [types.ts:36](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/types.ts#L36)
 
@@ -14,7 +14,7 @@ Defined in: [types.ts:36](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95
 
 ### publicKey
 
-> **publicKey**: [`KeyBytes`](KeyBytes.md)
+&gt; **publicKey**: [`KeyBytes`](KeyBytes.md)
 
 Defined in: [types.ts:38](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/types.ts#L38)
 
@@ -22,6 +22,6 @@ Defined in: [types.ts:38](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95
 
 ### secretKey
 
-> **secretKey**: [`KeyBytes`](KeyBytes.md)
+&gt; **secretKey**: [`KeyBytes`](KeyBytes.md)
 
 Defined in: [types.ts:37](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/types.ts#L37)

@@ -6,6 +6,6 @@
 
 # Type Alias: scriptPubkeyType
 
-> **scriptPubkeyType** = `string`
+&gt; **scriptPubkeyType** = `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:541](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L541)

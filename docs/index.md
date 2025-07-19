@@ -4,7 +4,7 @@ layout: home
 hero:
   name: DID BTC1 JS
   text: Monorepo for did:btc1 js/ts implementation and supporting packages
-  tagline: >
+  tagline: &gt;
     An implementation of did:btc1, a censorship-resistant DID Method using the Bitcoin blockchain as a Verifiable Data Registry to announce changes to the DID document.
 
   actions:

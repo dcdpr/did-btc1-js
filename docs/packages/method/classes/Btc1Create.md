@@ -21,7 +21,7 @@ to create their DID.
 
 ### Constructor
 
-> **new Btc1Create**(): `Btc1Create`
+&gt; **new Btc1Create**(): `Btc1Create`
 
 #### Returns
 
@@ -31,7 +31,7 @@ to create their DID.
 
 ### external()
 
-> `static` **external**(`params`): `Promise`\<[`Btc1CreateResponse`](../type-aliases/Btc1CreateResponse.md)\>
+&gt; `static` **external**(`params`): `Promise`\<[`Btc1CreateResponse`](../type-aliases/Btc1CreateResponse.md)\&gt;
 
 Defined in: [packages/method/src/btc1/crud/create.ts:131](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L131)
 
@@ -61,7 +61,7 @@ See [Btc1CreateExternalParams](../type-aliases/Btc1CreateExternalParams.md) for 
 
 #### Returns
 
-`Promise`\<[`Btc1CreateResponse`](../type-aliases/Btc1CreateResponse.md)\>
+`Promise`\<[`Btc1CreateResponse`](../type-aliases/Btc1CreateResponse.md)\&gt;
 
 A Promise resolving to Btc1CreateResponses.
 
@@ -73,7 +73,7 @@ if the verificationMethod or service objects are missing required properties
 
 ### key()
 
-> `static` **key**(`params`): [`Btc1CreateResponse`](../type-aliases/Btc1CreateResponse.md)
+&gt; `static` **key**(`params`): [`Btc1CreateResponse`](../type-aliases/Btc1CreateResponse.md)
 
 Defined in: [packages/method/src/btc1/crud/create.ts:72](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L72)
 

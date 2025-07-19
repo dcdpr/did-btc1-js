@@ -16,7 +16,7 @@ A class-based CLI using Commander.
 
 ### Constructor
 
-> **new DidBtc1CLI**(): `DidBtc1CLI`
+&gt; **new DidBtc1CLI**(): `DidBtc1CLI`
 
 Defined in: [cli.ts:17](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cli/src/cli.ts#L17)
 
@@ -28,7 +28,7 @@ Defined in: [cli.ts:17](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95be
 
 ### run()
 
-> **run**(`argv?`): `void`
+&gt; **run**(`argv?`): `void`
 
 Defined in: [cli.ts:120](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cli/src/cli.ts#L120)
 

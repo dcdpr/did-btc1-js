@@ -6,7 +6,7 @@
 
 # Type Alias: ListSinceBlockResult
 
-> **ListSinceBlockResult** = `object`
+&gt; **ListSinceBlockResult** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:816](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L816)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:816](https://github.com/dcdpr/
 
 ### lastblock
 
-> **lastblock**: `string`
+&gt; **lastblock**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:819](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L819)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:819](https://github.com/dcdpr/
 
 ### removed?
 
-> `optional` **removed**: [`TransactionInListSinceBlock`](TransactionInListSinceBlock.md)[]
+&gt; `optional` **removed**: [`TransactionInListSinceBlock`](TransactionInListSinceBlock.md)[]
 
 Defined in: [packages/method/src/types/bitcoin.ts:818](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L818)
 
@@ -30,6 +30,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:818](https://github.com/dcdpr/
 
 ### transactions
 
-> **transactions**: [`TransactionInListSinceBlock`](TransactionInListSinceBlock.md)[]
+&gt; **transactions**: [`TransactionInListSinceBlock`](TransactionInListSinceBlock.md)[]
 
 Defined in: [packages/method/src/types/bitcoin.ts:817](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L817)

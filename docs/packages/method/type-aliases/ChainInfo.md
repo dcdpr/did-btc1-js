@@ -6,7 +6,7 @@
 
 # Type Alias: ChainInfo
 
-> **ChainInfo** = `object`
+&gt; **ChainInfo** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:217](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L217)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:217](https://github.com/dcdpr/
 
 ### automatic\_pruning
 
-> **automatic\_pruning**: `boolean`
+&gt; **automatic\_pruning**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:230](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L230)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:230](https://github.com/dcdpr/
 
 ### bestblockhash
 
-> **bestblockhash**: `string`
+&gt; **bestblockhash**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:221](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L221)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:221](https://github.com/dcdpr/
 
 ### bip9\_softforks
 
-> **bip9\_softforks**: `object`[]
+&gt; **bip9\_softforks**: `object`[]
 
 Defined in: [packages/method/src/types/bitcoin.ts:239](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L239)
 
@@ -42,7 +42,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:239](https://github.com/dcdpr/
 
 ### blocks
 
-> **blocks**: `number`
+&gt; **blocks**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:219](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L219)
 
@@ -50,7 +50,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:219](https://github.com/dcdpr/
 
 ### chain
 
-> **chain**: `string`
+&gt; **chain**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:218](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L218)
 
@@ -58,7 +58,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:218](https://github.com/dcdpr/
 
 ### chainwork
 
-> **chainwork**: `string`
+&gt; **chainwork**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:226](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L226)
 
@@ -66,7 +66,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:226](https://github.com/dcdpr/
 
 ### difficulty
 
-> **difficulty**: `number`
+&gt; **difficulty**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:222](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L222)
 
@@ -74,7 +74,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:222](https://github.com/dcdpr/
 
 ### headers
 
-> **headers**: `number`
+&gt; **headers**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:220](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L220)
 
@@ -82,7 +82,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:220](https://github.com/dcdpr/
 
 ### initialblockdownload
 
-> **initialblockdownload**: `boolean`
+&gt; **initialblockdownload**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:225](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L225)
 
@@ -90,7 +90,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:225](https://github.com/dcdpr/
 
 ### mediantime
 
-> **mediantime**: `number`
+&gt; **mediantime**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:223](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L223)
 
@@ -98,7 +98,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:223](https://github.com/dcdpr/
 
 ### prune\_target\_size
 
-> **prune\_target\_size**: `number`
+&gt; **prune\_target\_size**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:231](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L231)
 
@@ -106,7 +106,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:231](https://github.com/dcdpr/
 
 ### pruned
 
-> **pruned**: `boolean`
+&gt; **pruned**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:228](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L228)
 
@@ -114,7 +114,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:228](https://github.com/dcdpr/
 
 ### pruneheight
 
-> **pruneheight**: `number`
+&gt; **pruneheight**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:229](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L229)
 
@@ -122,7 +122,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:229](https://github.com/dcdpr/
 
 ### size\_on\_disk
 
-> **size\_on\_disk**: `number`
+&gt; **size\_on\_disk**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:227](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L227)
 
@@ -130,31 +130,31 @@ Defined in: [packages/method/src/types/bitcoin.ts:227](https://github.com/dcdpr/
 
 ### softforks
 
-> **softforks**: `object`[]
+&gt; **softforks**: `object`[]
 
 Defined in: [packages/method/src/types/bitcoin.ts:232](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L232)
 
 #### id
 
-> **id**: `string`
+&gt; **id**: `string`
 
 #### reject
 
-> **reject**: `object`
+&gt; **reject**: `object`
 
 ##### reject.status
 
-> **status**: `boolean`
+&gt; **status**: `boolean`
 
 #### version
 
-> **version**: `number`
+&gt; **version**: `number`
 
 ***
 
 ### verificationprogress
 
-> **verificationprogress**: `number`
+&gt; **verificationprogress**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:224](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L224)
 
@@ -162,6 +162,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:224](https://github.com/dcdpr/
 
 ### warnings?
 
-> `optional` **warnings**: `string`
+&gt; `optional` **warnings**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:244](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L244)

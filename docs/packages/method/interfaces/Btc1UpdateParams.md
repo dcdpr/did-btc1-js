@@ -16,7 +16,7 @@ Defined in: [packages/method/src/btc1/crud/create.ts:26](https://github.com/dcdp
 
 ### beaconIds
 
-> **beaconIds**: `string`[]
+&gt; **beaconIds**: `string`[]
 
 Defined in: [packages/method/src/btc1/crud/create.ts:28](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L28)
 
@@ -24,7 +24,7 @@ Defined in: [packages/method/src/btc1/crud/create.ts:28](https://github.com/dcdp
 
 ### identifier
 
-> **identifier**: `string`
+&gt; **identifier**: `string`
 
 Defined in: [packages/method/src/btc1/crud/create.ts:21](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L21)
 
@@ -36,7 +36,7 @@ Defined in: [packages/method/src/btc1/crud/create.ts:21](https://github.com/dcdp
 
 ### patch
 
-> **patch**: `PatchOperation`[]
+&gt; **patch**: `PatchOperation`[]
 
 Defined in: [packages/method/src/btc1/crud/create.ts:24](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L24)
 
@@ -48,7 +48,7 @@ Defined in: [packages/method/src/btc1/crud/create.ts:24](https://github.com/dcdp
 
 ### sourceDocument
 
-> **sourceDocument**: [`Btc1DidDocument`](../classes/Btc1DidDocument.md)
+&gt; **sourceDocument**: [`Btc1DidDocument`](../classes/Btc1DidDocument.md)
 
 Defined in: [packages/method/src/btc1/crud/create.ts:22](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L22)
 
@@ -60,7 +60,7 @@ Defined in: [packages/method/src/btc1/crud/create.ts:22](https://github.com/dcdp
 
 ### sourceVersionId
 
-> **sourceVersionId**: `number`
+&gt; **sourceVersionId**: `number`
 
 Defined in: [packages/method/src/btc1/crud/create.ts:23](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L23)
 
@@ -72,6 +72,6 @@ Defined in: [packages/method/src/btc1/crud/create.ts:23](https://github.com/dcdp
 
 ### verificationMethodId
 
-> **verificationMethodId**: `string`
+&gt; **verificationMethodId**: `string`
 
 Defined in: [packages/method/src/btc1/crud/create.ts:27](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L27)

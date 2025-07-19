@@ -6,7 +6,7 @@
 
 # Type Alias: SendAllOptions
 
-> **SendAllOptions** = `object`
+&gt; **SendAllOptions** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:950](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L950)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:950](https://github.com/dcdpr/
 
 ### add\_to\_wallet?
 
-> `optional` **add\_to\_wallet**: `boolean`
+&gt; `optional` **add\_to\_wallet**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:951](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L951)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:951](https://github.com/dcdpr/
 
 ### conf\_target?
 
-> `optional` **conf\_target**: `number`
+&gt; `optional` **conf\_target**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:961](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L961)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:961](https://github.com/dcdpr/
 
 ### estimate\_mode?
 
-> `optional` **estimate\_mode**: [`FeeEstimateMode`](FeeEstimateMode.md)
+&gt; `optional` **estimate\_mode**: [`FeeEstimateMode`](FeeEstimateMode.md)
 
 Defined in: [packages/method/src/types/bitcoin.ts:962](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L962)
 
@@ -38,7 +38,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:962](https://github.com/dcdpr/
 
 ### fee\_rate?
 
-> `optional` **fee\_rate**: `number` \| `string`
+&gt; `optional` **fee\_rate**: `number` \| `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:952](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L952)
 
@@ -46,7 +46,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:952](https://github.com/dcdpr/
 
 ### include\_watching?
 
-> `optional` **include\_watching**: `boolean`
+&gt; `optional` **include\_watching**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:953](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L953)
 
@@ -54,7 +54,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:953](https://github.com/dcdpr/
 
 ### inputs?
 
-> `optional` **inputs**: [`Input`](Input.md)[]
+&gt; `optional` **inputs**: [`Input`](Input.md)[]
 
 Defined in: [packages/method/src/types/bitcoin.ts:954](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L954)
 
@@ -62,7 +62,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:954](https://github.com/dcdpr/
 
 ### lock\_unspents?
 
-> `optional` **lock\_unspents**: `boolean`
+&gt; `optional` **lock\_unspents**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:956](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L956)
 
@@ -70,7 +70,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:956](https://github.com/dcdpr/
 
 ### locktime?
 
-> `optional` **locktime**: `number`
+&gt; `optional` **locktime**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:955](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L955)
 
@@ -78,7 +78,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:955](https://github.com/dcdpr/
 
 ### maxconf?
 
-> `optional` **maxconf**: `number`
+&gt; `optional` **maxconf**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:960](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L960)
 
@@ -86,7 +86,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:960](https://github.com/dcdpr/
 
 ### minconf?
 
-> `optional` **minconf**: `number`
+&gt; `optional` **minconf**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:959](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L959)
 
@@ -94,7 +94,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:959](https://github.com/dcdpr/
 
 ### psbt?
 
-> `optional` **psbt**: `boolean`
+&gt; `optional` **psbt**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:957](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L957)
 
@@ -102,7 +102,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:957](https://github.com/dcdpr/
 
 ### replaceable?
 
-> `optional` **replaceable**: `boolean`
+&gt; `optional` **replaceable**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:963](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L963)
 
@@ -110,7 +110,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:963](https://github.com/dcdpr/
 
 ### send\_max?
 
-> `optional` **send\_max**: `boolean`
+&gt; `optional` **send\_max**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:958](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L958)
 
@@ -118,6 +118,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:958](https://github.com/dcdpr/
 
 ### solving\_data?
 
-> `optional` **solving\_data**: [`SolvingData`](SolvingData.md)
+&gt; `optional` **solving\_data**: [`SolvingData`](SolvingData.md)
 
 Defined in: [packages/method/src/types/bitcoin.ts:964](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L964)

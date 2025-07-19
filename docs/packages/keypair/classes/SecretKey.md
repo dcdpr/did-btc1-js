@@ -21,7 +21,7 @@ Provides helpers methods for comparison, serialization and publicKey generation.
 
 ### Constructor
 
-> **new SecretKey**(`entropy`): `SecretKey`
+&gt; **new SecretKey**(`entropy`): `SecretKey`
 
 Defined in: [secret.ts:94](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L94)
 
@@ -49,7 +49,7 @@ If entropy is not provided, not a valid 32-byte secret key or not a valid bigint
 
 #### Get Signature
 
-> **get** **bytes**(): `Uint8Array`
+&gt; **get** **bytes**(): `Uint8Array`
 
 Defined in: [secret.ts:139](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L139)
 
@@ -73,7 +73,7 @@ Get the secret key bytes.
 
 #### Get Signature
 
-> **get** **hex**(): `Hex`
+&gt; **get** **hex**(): `Hex`
 
 Defined in: [secret.ts:159](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L159)
 
@@ -97,7 +97,7 @@ Get the secret key as a hex string.
 
 #### Get Signature
 
-> **get** **multibase**(): `string`
+&gt; **get** **multibase**(): `string`
 
 Defined in: [secret.ts:169](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L169)
 
@@ -115,7 +115,7 @@ The secret key in base58btc multibase format
 
 #### Get Signature
 
-> **get** **seed**(): `bigint`
+&gt; **get** **seed**(): `bigint`
 
 Defined in: [secret.ts:149](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L149)
 
@@ -138,7 +138,7 @@ Setter allows alternative method of using a bigint seed for the entropy.
 
 ### computePublicKey()
 
-> **computePublicKey**(): `Bytes`
+&gt; **computePublicKey**(): `Bytes`
 
 Defined in: [secret.ts:212](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L212)
 
@@ -158,7 +158,7 @@ The computed public key
 
 ### encode()
 
-> **encode**(): `string`
+&gt; **encode**(): `string`
 
 Defined in: [secret.ts:178](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L178)
 
@@ -174,7 +174,7 @@ The secret key in BIP340 multibase format.
 
 ### equals()
 
-> **equals**(`other`): `boolean`
+&gt; **equals**(`other`): `boolean`
 
 Defined in: [secret.ts:203](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L203)
 
@@ -202,7 +202,7 @@ True if the private keys are equal, false otherwise
 
 ### isValid()
 
-> **isValid**(): `boolean`
+&gt; **isValid**(): `boolean`
 
 Defined in: [secret.ts:251](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L251)
 
@@ -222,7 +222,7 @@ True if the secret key is valid, false otherwise
 
 ### isValidPair()
 
-> **isValidPair**(`pk`): `boolean`
+&gt; **isValidPair**(`pk`): `boolean`
 
 Defined in: [secret.ts:260](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L260)
 
@@ -246,7 +246,7 @@ True if the public key is valid, false otherwise
 
 ### json()
 
-> **json**(): `SecretKeyObject`
+&gt; **json**(): `SecretKeyObject`
 
 Defined in: [secret.ts:239](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L239)
 
@@ -266,7 +266,7 @@ The secret key as a JSON object
 
 ### decode()
 
-> `static` **decode**(`multibase`): `Bytes`
+&gt; `static` **decode**(`multibase`): `Bytes`
 
 Defined in: [secret.ts:275](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L275)
 
@@ -290,7 +290,7 @@ The decoded secret key.
 
 ### fromJSON()
 
-> `static` **fromJSON**(`json`): `SecretKey`
+&gt; `static` **fromJSON**(`json`): `SecretKey`
 
 Defined in: [secret.ts:310](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L310)
 
@@ -314,7 +314,7 @@ A new SecretKey object
 
 ### fromSecret()
 
-> `static` **fromSecret**(`secret`): `SecretKey`
+&gt; `static` **fromSecret**(`secret`): `SecretKey`
 
 Defined in: [secret.ts:367](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L367)
 
@@ -338,7 +338,7 @@ A new SecretKey object
 
 ### generate()
 
-> `static` **generate**(): `SecretKey`
+&gt; `static` **generate**(): `SecretKey`
 
 Defined in: [secret.ts:393](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L393)
 
@@ -354,7 +354,7 @@ A new SecretKey object
 
 ### getPublicKey()
 
-> `static` **getPublicKey**(`bytes`): `Bytes`
+&gt; `static` **getPublicKey**(`bytes`): `Bytes`
 
 Defined in: [secret.ts:406](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L406)
 
@@ -378,7 +378,7 @@ The computed public key bytes
 
 ### random()
 
-> `static` **random**(): `Bytes`
+&gt; `static` **random**(): `Bytes`
 
 Defined in: [secret.ts:380](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L380)
 
@@ -394,7 +394,7 @@ Uint8Array of 32 random bytes.
 
 ### toBytes()
 
-> `static` **toBytes**(`secret`): `Bytes`
+&gt; `static` **toBytes**(`secret`): `Bytes`
 
 Defined in: [secret.ts:345](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L345)
 
@@ -418,7 +418,7 @@ The secret key secret as secret key bytes.
 
 ### toKeyPair()
 
-> `static` **toKeyPair**(`bytes`): [`SchnorrKeyPair`](SchnorrKeyPair.md)
+&gt; `static` **toKeyPair**(`bytes`): [`SchnorrKeyPair`](SchnorrKeyPair.md)
 
 Defined in: [secret.ts:320](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L320)
 
@@ -444,7 +444,7 @@ If the secret key is not valid
 
 ### toSecret()
 
-> `static` **toSecret**(`bytes`): `bigint`
+&gt; `static` **toSecret**(`bytes`): `bigint`
 
 Defined in: [secret.ts:336](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L336)
 

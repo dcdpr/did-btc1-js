@@ -6,7 +6,7 @@
 
 # Type Alias: FundRawTxResult
 
-> **FundRawTxResult** = `object`
+&gt; **FundRawTxResult** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:910](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L910)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:910](https://github.com/dcdpr/
 
 ### changepos
 
-> **changepos**: `number`
+&gt; **changepos**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:910](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L910)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:910](https://github.com/dcdpr/
 
 ### fee
 
-> **fee**: `number`
+&gt; **fee**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:910](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L910)
 
@@ -30,6 +30,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:910](https://github.com/dcdpr/
 
 ### hex
 
-> **hex**: `string`
+&gt; **hex**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:910](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L910)

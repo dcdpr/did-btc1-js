@@ -6,7 +6,7 @@
 
 # Type Alias: JsonRPCError
 
-> **JsonRPCError** = `object`
+&gt; **JsonRPCError** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:626](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L626)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:626](https://github.com/dcdpr/
 
 ### code
 
-> **code**: `number`
+&gt; **code**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:627](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L627)
 
@@ -22,6 +22,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:627](https://github.com/dcdpr/
 
 ### message
 
-> **message**: `string`
+&gt; **message**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:628](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L628)

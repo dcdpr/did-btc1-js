@@ -6,7 +6,7 @@
 
 # Type Alias: AddedNodeInfo
 
-> **AddedNodeInfo** = `object`
+&gt; **AddedNodeInfo** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:124](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L124)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:124](https://github.com/dcdpr/
 
 ### addednode
 
-> **addednode**: `string`
+&gt; **addednode**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:125](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L125)
 
@@ -22,22 +22,22 @@ Defined in: [packages/method/src/types/bitcoin.ts:125](https://github.com/dcdpr/
 
 ### addresses
 
-> **addresses**: `object`[]
+&gt; **addresses**: `object`[]
 
 Defined in: [packages/method/src/types/bitcoin.ts:127](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L127)
 
 #### address
 
-> **address**: `string`
+&gt; **address**: `string`
 
 #### connected
 
-> **connected**: `"inbound"` \| `"outbound"`
+&gt; **connected**: `"inbound"` \| `"outbound"`
 
 ***
 
 ### connected
 
-> **connected**: `boolean`
+&gt; **connected**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:126](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L126)

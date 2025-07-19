@@ -16,7 +16,7 @@ Defined in: [branch.ts:7](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95
 
 ### Constructor
 
-> **new Branch**(`leftChild`, `rightChild`, `hasher`): `Branch`
+&gt; **new Branch**(`leftChild`, `rightChild`, `hasher`): `Branch`
 
 Defined in: [branch.ts:11](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/smt/src/branch.ts#L11)
 
@@ -42,7 +42,7 @@ Defined in: [branch.ts:11](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d9
 
 ### copy()
 
-> **copy**(): [`Node`](../interfaces/Node.md)
+&gt; **copy**(): [`Node`](../interfaces/Node.md)
 
 Defined in: [branch.ts:41](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/smt/src/branch.ts#L41)
 
@@ -61,7 +61,7 @@ In real usage, you might store partial subtrees or do a shallow copy.
 
 ### getHash()
 
-> **getHash**(): `Uint8Array`
+&gt; **getHash**(): `Uint8Array`
 
 Defined in: [branch.ts:17](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/smt/src/branch.ts#L17)
 
@@ -79,7 +79,7 @@ getHash returns the Merkle hash of this node.
 
 ### getLeftChild()
 
-> **getLeftChild**(): [`Node`](../interfaces/Node.md)
+&gt; **getLeftChild**(): [`Node`](../interfaces/Node.md)
 
 Defined in: [branch.ts:57](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/smt/src/branch.ts#L57)
 
@@ -91,7 +91,7 @@ Defined in: [branch.ts:57](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d9
 
 ### getRightChild()
 
-> **getRightChild**(): [`Node`](../interfaces/Node.md)
+&gt; **getRightChild**(): [`Node`](../interfaces/Node.md)
 
 Defined in: [branch.ts:61](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/smt/src/branch.ts#L61)
 
@@ -103,7 +103,7 @@ Defined in: [branch.ts:61](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d9
 
 ### getSum()
 
-> **getSum**(): `bigint`
+&gt; **getSum**(): `bigint`
 
 Defined in: [branch.ts:32](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/smt/src/branch.ts#L32)
 

@@ -16,7 +16,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:330](https://github.com/dcdpr/
 
 ### blockhash
 
-> **blockhash**: `string`
+&gt; **blockhash**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:332](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L332)
 
@@ -24,7 +24,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:332](https://github.com/dcdpr/
 
 ### blocktime
 
-> **blocktime**: `number`
+&gt; **blocktime**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:335](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L335)
 
@@ -32,7 +32,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:335](https://github.com/dcdpr/
 
 ### confirmations
 
-> **confirmations**: `number`
+&gt; **confirmations**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:333](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L333)
 
@@ -40,7 +40,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:333](https://github.com/dcdpr/
 
 ### hash
 
-> **hash**: `string`
+&gt; **hash**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:321](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L321)
 
@@ -52,7 +52,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:321](https://github.com/dcdpr/
 
 ### hex
 
-> **hex**: `string`
+&gt; **hex**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:331](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L331)
 
@@ -60,7 +60,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:331](https://github.com/dcdpr/
 
 ### locktime
 
-> **locktime**: `number`
+&gt; **locktime**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:325](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L325)
 
@@ -72,7 +72,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:325](https://github.com/dcdpr/
 
 ### size
 
-> **size**: `number`
+&gt; **size**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:322](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L322)
 
@@ -84,7 +84,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:322](https://github.com/dcdpr/
 
 ### time
 
-> **time**: `number`
+&gt; **time**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:334](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L334)
 
@@ -92,7 +92,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:334](https://github.com/dcdpr/
 
 ### txid
 
-> **txid**: `string`
+&gt; **txid**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:320](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L320)
 
@@ -104,7 +104,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:320](https://github.com/dcdpr/
 
 ### version
 
-> **version**: `number`
+&gt; **version**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:324](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L324)
 
@@ -116,7 +116,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:324](https://github.com/dcdpr/
 
 ### vin
 
-> **vin**: [`TxIn`](../type-aliases/TxIn.md)[]
+&gt; **vin**: [`TxIn`](../type-aliases/TxIn.md)[]
 
 Defined in: [packages/method/src/types/bitcoin.ts:326](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L326)
 
@@ -128,7 +128,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:326](https://github.com/dcdpr/
 
 ### vout
 
-> **vout**: [`TxOut`](../type-aliases/TxOut.md)[]
+&gt; **vout**: [`TxOut`](../type-aliases/TxOut.md)[]
 
 Defined in: [packages/method/src/types/bitcoin.ts:327](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L327)
 
@@ -140,7 +140,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:327](https://github.com/dcdpr/
 
 ### vsize
 
-> **vsize**: `number`
+&gt; **vsize**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:323](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L323)
 
