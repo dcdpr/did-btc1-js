@@ -1,0 +1,39 @@
+[**@did-btc1/method**](../README.md)
+
+***
+
+[@did-btc1/method](../globals.md) / BitcoinSigner
+
+# Interface: BitcoinSigner
+
+Defined in: [packages/method/src/btc1/key-manager/interface.ts:121](https://github.com/dcdpr/did-btc1-js/blob/751aedd75738c26882a2149e644ae32b9e424707/packages/method/src/btc1/key-manager/interface.ts#L121)
+
+## Methods
+
+### signTransaction()
+
+> **signTransaction**(`txHex`, `keyUri?`): `Promise`\<`Hex`\>
+
+Defined in: [packages/method/src/btc1/key-manager/interface.ts:128](https://github.com/dcdpr/did-btc1-js/blob/751aedd75738c26882a2149e644ae32b9e424707/packages/method/src/btc1/key-manager/interface.ts#L128)
+
+Signs a Bitcoin transaction with a key pair.
+
+#### Parameters
+
+##### txHex
+
+`Hex`
+
+The hex-encoded transaction to sign.
+
+##### keyUri?
+
+`string`
+
+The URI of the key to sign the transaction with.
+
+#### Returns
+
+`Promise`\<`Hex`\>
+
+A promise that resolves to the hex-encoded signed transaction.

@@ -1,13 +1,21 @@
 {
-    "entryPoints": [
-        "./src/index.ts",
-    ],
     "tsconfig": "./tsconfig.json",
-    "out": "../../docs/method",
+    "entryPoints": [
+        "./src/index.ts"
+    ],
+    "plugin": [
+        "typedoc-plugin-markdown"
+    ],
+    "theme": "markdown",
+    "out": "../../docs/packages/method",
     "exclude": [
         "**/lib/**",
         "**/dist/**",
         "**/tests/**",
         "**/node_modules/**"
-    ]
+    ],
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "excludeExternals": true,
+    "hideGenerator": true
 }
