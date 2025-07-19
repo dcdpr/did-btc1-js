@@ -1,6 +1,6 @@
 {
   "name": "did-btc1-js",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Monorepo for did:btc1 js/ts implementation and supporting packages.",
   "type": "module",
   "workspaces": [
@@ -13,6 +13,7 @@
   ],
   "scripts": {
     "purge": "pnpm npkill -d $(pwd)/packages -t dist && pnpm npkill -d $(pwd) -t node_modules",
+    "documentation": "vitepress dev docs",
     "reinstall": "pnpm --recursive --stream reinstall",
     "wipe": "pnpm --recursive --stream wipe",
     "wipe:install": "pnpm --recursive --stream wipe:install",
@@ -76,7 +77,7 @@
     "globals": "^15.15.0",
     "npkill": "^0.12.2",
     "typedoc": "^0.28.1",
-    "typedoc-plugin-markdown": "^4.6.0"
+    "vitepress": "^1.6.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

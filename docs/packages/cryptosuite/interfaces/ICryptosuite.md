@@ -1,0 +1,220 @@
+[**@did-btc1/cryptosuite**](../README.md)
+
+***
+
+[@did-btc1/cryptosuite](../globals.md) / ICryptosuite
+
+# Interface: ICryptosuite
+
+Defined in: [cryptosuite/interface.ts:50](https://github.com/dcdpr/did-btc1-js/blob/751aedd75738c26882a2149e644ae32b9e424707/packages/cryptosuite/src/cryptosuite/interface.ts#L50)
+
+Interface representing a BIP-340 Cryptosuite.
+ ICryptosuite
+
+## Properties
+
+### cryptosuite
+
+> **cryptosuite**: `string`
+
+Defined in: [cryptosuite/interface.ts:55](https://github.com/dcdpr/did-btc1-js/blob/751aedd75738c26882a2149e644ae32b9e424707/packages/cryptosuite/src/cryptosuite/interface.ts#L55)
+
+***
+
+### multikey
+
+> **multikey**: [`SchnorrMultikey`](../classes/SchnorrMultikey.md)
+
+Defined in: [cryptosuite/interface.ts:58](https://github.com/dcdpr/did-btc1-js/blob/751aedd75738c26882a2149e644ae32b9e424707/packages/cryptosuite/src/cryptosuite/interface.ts#L58)
+
+***
+
+### type
+
+> **type**: `"DataIntegrityProof"`
+
+Defined in: [cryptosuite/interface.ts:52](https://github.com/dcdpr/did-btc1-js/blob/751aedd75738c26882a2149e644ae32b9e424707/packages/cryptosuite/src/cryptosuite/interface.ts#L52)
+
+## Methods
+
+### createProof()
+
+> **createProof**(`params`): `Promise`\<`Proof`\>
+
+Defined in: [cryptosuite/interface.ts:67](https://github.com/dcdpr/did-btc1-js/blob/751aedd75738c26882a2149e644ae32b9e424707/packages/cryptosuite/src/cryptosuite/interface.ts#L67)
+
+Create a proof for an insecure document.
+
+#### Parameters
+
+##### params
+
+[`CreateProofParams`](CreateProofParams.md)
+
+See [CreateProofParams](CreateProofParams.md) for details.
+
+#### Returns
+
+`Promise`\<`Proof`\>
+
+The proof for the document.
+
+***
+
+### generateHash()
+
+> **generateHash**(`params`): `Hex`
+
+Defined in: [cryptosuite/interface.ts:93](https://github.com/dcdpr/did-btc1-js/blob/751aedd75738c26882a2149e644ae32b9e424707/packages/cryptosuite/src/cryptosuite/interface.ts#L93)
+
+Generate a hash of the canonical proof configuration and document.
+
+#### Parameters
+
+##### params
+
+[`GenerateHashParams`](GenerateHashParams.md)
+
+See [GenerateHashParams](GenerateHashParams.md) for details.
+
+#### Returns
+
+`Hex`
+
+The hash string of the proof configuration and document.
+
+***
+
+### proofConfiguration()
+
+> **proofConfiguration**(`options`): `Promise`\<`string`\>
+
+Defined in: [cryptosuite/interface.ts:101](https://github.com/dcdpr/did-btc1-js/blob/751aedd75738c26882a2149e644ae32b9e424707/packages/cryptosuite/src/cryptosuite/interface.ts#L101)
+
+Configure the proof by canonicalzing it.
+
+#### Parameters
+
+##### options
+
+`ProofOptions`
+
+The options to use when transforming the proof.
+
+#### Returns
+
+`Promise`\<`string`\>
+
+The canonicalized proof configuration.
+
+#### Throws
+
+if the proof configuration cannot be canonicalized.
+
+***
+
+### proofSerialization()
+
+> **proofSerialization**(`params`): `Bytes`
+
+Defined in: [cryptosuite/interface.ts:111](https://github.com/dcdpr/did-btc1-js/blob/751aedd75738c26882a2149e644ae32b9e424707/packages/cryptosuite/src/cryptosuite/interface.ts#L111)
+
+Serialize the proof into a byte array.
+
+#### Parameters
+
+##### params
+
+[`ProofSerializationParams`](ProofSerializationParams.md)
+
+See [ProofSerializationParams](ProofSerializationParams.md) for details.
+
+#### Returns
+
+`Bytes`
+
+The serialized proof.
+
+#### Throws
+
+if the multikey does not match the verification method.
+
+***
+
+### proofVerification()
+
+> **proofVerification**(`params`): `boolean`
+
+Defined in: [cryptosuite/interface.ts:122](https://github.com/dcdpr/did-btc1-js/blob/751aedd75738c26882a2149e644ae32b9e424707/packages/cryptosuite/src/cryptosuite/interface.ts#L122)
+
+Verify the proof by comparing the hash of the proof configuration and document to the proof bytes.
+
+#### Parameters
+
+##### params
+
+[`ProofVerificationParams`](ProofVerificationParams.md)
+
+See [ProofVerificationParams](ProofVerificationParams.md) for details.
+
+#### Returns
+
+`boolean`
+
+True if the proof is verified, false otherwise.
+
+#### Throws
+
+if the multikey does not match the verification method.
+
+***
+
+### transformDocument()
+
+> **transformDocument**(`params`): `Promise`\<`string`\>
+
+Defined in: [cryptosuite/interface.ts:84](https://github.com/dcdpr/did-btc1-js/blob/751aedd75738c26882a2149e644ae32b9e424707/packages/cryptosuite/src/cryptosuite/interface.ts#L84)
+
+Transform a document (secure didUpdateInvocation or insecure didUpdatePayload) into canonical form.
+
+#### Parameters
+
+##### params
+
+[`TransformDocumentParams`](TransformDocumentParams.md)
+
+See [TransformDocumentParams](TransformDocumentParams.md) for details.
+
+#### Returns
+
+`Promise`\<`string`\>
+
+The canonicalized document.
+
+#### Throws
+
+if the document cannot be transformed.
+
+***
+
+### verifyProof()
+
+> **verifyProof**(`document`): `Promise`\<[`VerificationResult`](VerificationResult.md)\>
+
+Defined in: [cryptosuite/interface.ts:74](https://github.com/dcdpr/did-btc1-js/blob/751aedd75738c26882a2149e644ae32b9e424707/packages/cryptosuite/src/cryptosuite/interface.ts#L74)
+
+Verify a proof for a secure document.
+
+#### Parameters
+
+##### document
+
+`DidUpdateInvocation`
+
+The secure document to verify.
+
+#### Returns
+
+`Promise`\<[`VerificationResult`](VerificationResult.md)\>
+
+The result of the verification.
