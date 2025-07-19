@@ -1,5 +1,5 @@
 import { KeyBytes, Logger, Maybe } from '@did-btc1/common';
-import { SchnorrKeyPair } from '@did-btc1/keypair';
+import { PublicKey, SchnorrKeyPair } from '@did-btc1/keypair';
 import { nonceGen } from '@scure/btc-signer/musig2';
 import { Event, Filter, finalizeEvent, nip44 } from 'nostr-tools';
 import { SimplePool, } from 'nostr-tools/pool';
@@ -123,7 +123,7 @@ export class NostrAdapter implements CommunicationService {
     // Logger.debug('nostr.onEvent: event.tags.find => ptags', ptags);
 
     for(const [p, pk] of ptags ){
-      if(pk === '02b71d3052dcdc8ba4564388948b655b58aaa7f37497ef1fc98829f9191adc8f85') {
+      if(pk === 'b71d3052dcdc8ba4564388948b655b58aaa7f37497ef1fc98829f9191adc8f85') {
         Logger.debug('nostr.onEvent: event.tags.find => p, pk', p, pk);
       }
     }
@@ -186,17 +186,17 @@ export class NostrAdapter implements CommunicationService {
       );
     }
     // Decode the sender and recipient DIDs to get their genesis bytes in hex
-    const sender = Btc1Identifier.decode(from).genesisBytes.toHex();
+    const sender = new PublicKey(Btc1Identifier.decode(from).genesisBytes);
     Logger.info(`Sending message from ${sender}:`, message);
 
     // if(message.type === BEACON_COHORT_SUBSCRIBE_ACCEPT) {
     //   this.config.coordinatorDids.push(recipient);
     // }
 
-    const tags = [['p', sender]];
+    const tags = [['p', sender.x.toHex()]];
     if(to) {
-      const recipient = Btc1Identifier.decode(to).genesisBytes.toHex();
-      tags.push(['p', recipient]);
+      const recipient = new PublicKey(Btc1Identifier.decode(to).genesisBytes);
+      tags.push(['p', recipient.x.toHex()]);
     }
 
     if(AggregateBeaconMessage.isKeyGenMessageValue(message.type)) {
