@@ -21,7 +21,7 @@ of the [Data Integrity BIP-340 Cryptosuite](https://dcdpr.github.io/data-integri
 
 ### Constructor
 
-> **new DataIntegrityProof**(`cryptosuite`): `DataIntegrityProof`
+&gt; **new DataIntegrityProof**(`cryptosuite`): `DataIntegrityProof`
 
 Defined in: [data-integrity-proof/index.ts:22](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/data-integrity-proof/index.ts#L22)
 
@@ -43,7 +43,7 @@ The cryptosuite to use for proof generation and verification.
 
 ### cryptosuite
 
-> **cryptosuite**: [`Cryptosuite`](Cryptosuite.md)
+&gt; **cryptosuite**: [`Cryptosuite`](Cryptosuite.md)
 
 Defined in: [data-integrity-proof/index.ts:15](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/data-integrity-proof/index.ts#L15)
 
@@ -55,7 +55,7 @@ Defined in: [data-integrity-proof/index.ts:15](https://github.com/dcdpr/did-btc1
 
 ### addProof()
 
-> **addProof**(`params`): `Promise`\<`DidUpdateInvocation`\>
+&gt; **addProof**(`params`): `Promise`\<`DidUpdateInvocation`\&gt;
 
 Defined in: [data-integrity-proof/index.ts:33](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/data-integrity-proof/index.ts#L33)
 
@@ -71,7 +71,7 @@ Parameters for adding a proof to a document.
 
 #### Returns
 
-`Promise`\<`DidUpdateInvocation`\>
+`Promise`\<`DidUpdateInvocation`\&gt;
 
 A document with a proof added.
 
@@ -83,7 +83,7 @@ A document with a proof added.
 
 ### verifyProof()
 
-> **verifyProof**(`params`): `Promise`\<[`VerificationResult`](../interfaces/VerificationResult.md)\>
+&gt; **verifyProof**(`params`): `Promise`\<[`VerificationResult`](../interfaces/VerificationResult.md)\&gt;
 
 Defined in: [data-integrity-proof/index.ts:74](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/data-integrity-proof/index.ts#L74)
 
@@ -127,7 +127,7 @@ The media type of the document.
 
 #### Returns
 
-`Promise`\<[`VerificationResult`](../interfaces/VerificationResult.md)\>
+`Promise`\<[`VerificationResult`](../interfaces/VerificationResult.md)\&gt;
 
 The result of verifying the proof.
 

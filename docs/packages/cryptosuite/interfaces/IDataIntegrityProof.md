@@ -15,7 +15,7 @@ Interface representing a BIP-340 DataIntegrityProof.
 
 ### cryptosuite
 
-> **cryptosuite**: [`Cryptosuite`](../classes/Cryptosuite.md)
+&gt; **cryptosuite**: [`Cryptosuite`](../classes/Cryptosuite.md)
 
 Defined in: [data-integrity-proof/interface.ts:25](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/data-integrity-proof/interface.ts#L25)
 
@@ -23,7 +23,7 @@ Defined in: [data-integrity-proof/interface.ts:25](https://github.com/dcdpr/did-
 
 ### addProof()
 
-> **addProof**(`params`): `Promise`\<`DidUpdateInvocation`\>
+&gt; **addProof**(`params`): `Promise`\<`DidUpdateInvocation`\&gt;
 
 Defined in: [data-integrity-proof/interface.ts:34](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/data-integrity-proof/interface.ts#L34)
 
@@ -39,7 +39,7 @@ Parameters for adding a proof to a document.
 
 #### Returns
 
-`Promise`\<`DidUpdateInvocation`\>
+`Promise`\<`DidUpdateInvocation`\&gt;
 
 A document with a proof added.
 
@@ -47,7 +47,7 @@ A document with a proof added.
 
 ### verifyProof()
 
-> **verifyProof**(`params`): `Promise`\<[`VerificationResult`](VerificationResult.md)\>
+&gt; **verifyProof**(`params`): `Promise`\<[`VerificationResult`](VerificationResult.md)\&gt;
 
 Defined in: [data-integrity-proof/interface.ts:46](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/data-integrity-proof/interface.ts#L46)
 
@@ -63,6 +63,6 @@ Parameters for verifying a proof.
 
 #### Returns
 
-`Promise`\<[`VerificationResult`](VerificationResult.md)\>
+`Promise`\<[`VerificationResult`](VerificationResult.md)\&gt;
 
 The result of verifying the proof.

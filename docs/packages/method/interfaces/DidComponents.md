@@ -12,7 +12,7 @@ Defined in: [packages/method/src/utils/appendix.ts:17](https://github.com/dcdpr/
 
 ### genesisBytes
 
-> **genesisBytes**: `Bytes`
+&gt; **genesisBytes**: `Bytes`
 
 Defined in: [packages/method/src/utils/appendix.ts:22](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/appendix.ts#L22)
 
@@ -20,7 +20,7 @@ Defined in: [packages/method/src/utils/appendix.ts:22](https://github.com/dcdpr/
 
 ### hrp
 
-> **hrp**: `string`
+&gt; **hrp**: `string`
 
 Defined in: [packages/method/src/utils/appendix.ts:18](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/appendix.ts#L18)
 
@@ -28,7 +28,7 @@ Defined in: [packages/method/src/utils/appendix.ts:18](https://github.com/dcdpr/
 
 ### idType
 
-> **idType**: `string`
+&gt; **idType**: `string`
 
 Defined in: [packages/method/src/utils/appendix.ts:19](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/appendix.ts#L19)
 
@@ -36,7 +36,7 @@ Defined in: [packages/method/src/utils/appendix.ts:19](https://github.com/dcdpr/
 
 ### network
 
-> **network**: `string`
+&gt; **network**: `string`
 
 Defined in: [packages/method/src/utils/appendix.ts:21](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/appendix.ts#L21)
 
@@ -44,6 +44,6 @@ Defined in: [packages/method/src/utils/appendix.ts:21](https://github.com/dcdpr/
 
 ### version
 
-> **version**: `number`
+&gt; **version**: `number`
 
 Defined in: [packages/method/src/utils/appendix.ts:20](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/appendix.ts#L20)

@@ -12,7 +12,7 @@ Defined in: [public.ts:16](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d9
 
 ### x
 
-> **x**: `Bytes`
+&gt; **x**: `Bytes`
 
 Defined in: [public.ts:17](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L17)
 
@@ -20,6 +20,6 @@ Defined in: [public.ts:17](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d9
 
 ### y
 
-> **y**: `Bytes`
+&gt; **y**: `Bytes`
 
 Defined in: [public.ts:18](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L18)

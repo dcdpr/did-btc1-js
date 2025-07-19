@@ -30,7 +30,7 @@ non-inclusion for that signal.
 
 ### Constructor
 
-> **new SMTAggregateBeacon**(`service`, `sidecar?`): `SMTAggregateBeacon`
+&gt; **new SMTAggregateBeacon**(`service`, `sidecar?`): `SMTAggregateBeacon`
 
 Defined in: [packages/method/src/btc1/beacon/smt-aggregate.ts:31](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/beacon/smt-aggregate.ts#L31)
 
@@ -62,7 +62,7 @@ Optional sidecar data.
 
 ### id
 
-> **id**: `string`
+&gt; **id**: `string`
 
 Defined in: [packages/method/src/interfaces/beacon.ts:37](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L37)
 
@@ -76,7 +76,7 @@ A unique identifier for the Beacon
 
 ### serviceEndpoint
 
-> **serviceEndpoint**: `DidServiceEndpoint`
+&gt; **serviceEndpoint**: `DidServiceEndpoint`
 
 Defined in: [packages/method/src/interfaces/beacon.ts:39](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L39)
 
@@ -90,7 +90,7 @@ The service endpoint of the Beacon
 
 ### sidecar?
 
-> `optional` **sidecar**: `undefined`
+&gt; `optional` **sidecar**: `undefined`
 
 Defined in: [packages/method/src/interfaces/beacon.ts:40](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L40)
 
@@ -102,7 +102,7 @@ Defined in: [packages/method/src/interfaces/beacon.ts:40](https://github.com/dcd
 
 ### type
 
-> **type**: `string`
+&gt; **type**: `string`
 
 Defined in: [packages/method/src/interfaces/beacon.ts:38](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L38)
 
@@ -118,7 +118,7 @@ The type of the Beacon
 
 #### Get Signature
 
-> **get** **service**(): [`BeaconService`](../interfaces/BeaconService.md)
+&gt; **get** **service**(): [`BeaconService`](../interfaces/BeaconService.md)
 
 Defined in: [packages/method/src/btc1/beacon/smt-aggregate.ts:40](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/beacon/smt-aggregate.ts#L40)
 
@@ -138,7 +138,7 @@ Returns the Beacon Service object
 
 ### broadcastSignal()
 
-> **broadcastSignal**(`didUpdatePayload`): `Promise`\<[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)\>
+&gt; **broadcastSignal**(`didUpdatePayload`): `Promise`\<[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)\&gt;
 
 Defined in: [packages/method/src/btc1/beacon/smt-aggregate.ts:102](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/beacon/smt-aggregate.ts#L102)
 
@@ -165,7 +165,7 @@ The DID Update Payload to broadcast.
 
 #### Returns
 
-`Promise`\<[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)\>
+`Promise`\<[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)\&gt;
 
 The signal metadata.
 
@@ -181,7 +181,7 @@ if the signal is invalid.
 
 ### generateSignal()
 
-> **generateSignal**(`didUpdatePayload`): [`BeaconSignal`](../interfaces/BeaconSignal.md)
+&gt; **generateSignal**(`didUpdatePayload`): [`BeaconSignal`](../interfaces/BeaconSignal.md)
 
 Defined in: [packages/method/src/btc1/beacon/smt-aggregate.ts:55](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/beacon/smt-aggregate.ts#L55)
 
@@ -213,7 +213,7 @@ if the signal is invalid.
 
 ### processSignal()
 
-> **processSignal**(`signal`, `signalsMetadata`): `Promise`\<`undefined` \| `DidUpdatePayload`\>
+&gt; **processSignal**(`signal`, `signalsMetadata`): `Promise`\<`undefined` \| `DidUpdatePayload`\&gt;
 
 Defined in: [packages/method/src/btc1/beacon/smt-aggregate.ts:133](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/beacon/smt-aggregate.ts#L133)
 
@@ -222,7 +222,7 @@ Implements [5.3.3 Process SMTAggregate Beacon Signal](https://dcdpr.github.io/di
 See [Beacon Interface Method processSignal](Beacon.md#processsignal) for more information.
 
 A Beacon Signal from a SMTAggregate Beacon is a Bitcoin transaction with the first transaction output of the format
-[OP_RETURN, OP_PUSH32, <32bytes>]. The 32 bytes of data contained within this transaction output represent the root
+[OP_RETURN, OP_PUSH32, <32bytes&gt;]. The 32 bytes of data contained within this transaction output represent the root
 of a Sparse Merkle Tree (SMT). This SMT aggregates a set of hashes of DID Update payloads. In order to process
 these Beacon Signals, the resolver MUST have been passed Sidecar data for this signal containing either the DID
 Update payload object and a SMT proof that the hash of this object is in the SMT at the leaf indexed by the
@@ -253,7 +253,7 @@ The signals metadata.
 
 #### Returns
 
-`Promise`\<`undefined` \| `DidUpdatePayload`\>
+`Promise`\<`undefined` \| `DidUpdatePayload`\&gt;
 
 The updated DID document.
 
@@ -269,7 +269,7 @@ if the signal is invalid.
 
 ### establish()
 
-> `static` **establish**(`id`, `type`, `serviceEndpoint`): `SMTAggregateBeacon`
+&gt; `static` **establish**(`id`, `type`, `serviceEndpoint`): `SMTAggregateBeacon`
 
 Defined in: [packages/method/src/btc1/beacon/smt-aggregate.ts:79](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/beacon/smt-aggregate.ts#L79)
 

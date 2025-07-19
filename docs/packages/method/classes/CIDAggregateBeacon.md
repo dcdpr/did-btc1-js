@@ -29,7 +29,7 @@ n-of-n P2TR Bitcoin address where n is the number of unique DID controllers subm
 
 ### Constructor
 
-> **new CIDAggregateBeacon**(`service`, `sidecar?`): `CIDAggregateBeacon`
+&gt; **new CIDAggregateBeacon**(`service`, `sidecar?`): `CIDAggregateBeacon`
 
 Defined in: [packages/method/src/btc1/beacon/cid-aggregate.ts:30](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/beacon/cid-aggregate.ts#L30)
 
@@ -61,7 +61,7 @@ The sidecar data of the Beacon.
 
 ### id
 
-> **id**: `string`
+&gt; **id**: `string`
 
 Defined in: [packages/method/src/interfaces/beacon.ts:37](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L37)
 
@@ -75,7 +75,7 @@ A unique identifier for the Beacon
 
 ### serviceEndpoint
 
-> **serviceEndpoint**: `DidServiceEndpoint`
+&gt; **serviceEndpoint**: `DidServiceEndpoint`
 
 Defined in: [packages/method/src/interfaces/beacon.ts:39](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L39)
 
@@ -89,7 +89,7 @@ The service endpoint of the Beacon
 
 ### sidecar?
 
-> `optional` **sidecar**: `undefined`
+&gt; `optional` **sidecar**: `undefined`
 
 Defined in: [packages/method/src/interfaces/beacon.ts:40](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L40)
 
@@ -101,7 +101,7 @@ Defined in: [packages/method/src/interfaces/beacon.ts:40](https://github.com/dcd
 
 ### type
 
-> **type**: `string`
+&gt; **type**: `string`
 
 Defined in: [packages/method/src/interfaces/beacon.ts:38](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L38)
 
@@ -117,7 +117,7 @@ The type of the Beacon
 
 #### Get Signature
 
-> **get** **service**(): [`BeaconService`](../interfaces/BeaconService.md)
+&gt; **get** **service**(): [`BeaconService`](../interfaces/BeaconService.md)
 
 Defined in: [packages/method/src/btc1/beacon/cid-aggregate.ts:33](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/beacon/cid-aggregate.ts#L33)
 
@@ -137,7 +137,7 @@ Returns the Beacon Service object
 
 ### broadcastSignal()
 
-> **broadcastSignal**(`didUpdatePayload`): `Promise`\<[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)\>
+&gt; **broadcastSignal**(`didUpdatePayload`): `Promise`\<[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)\&gt;
 
 Defined in: [packages/method/src/btc1/beacon/cid-aggregate.ts:124](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/beacon/cid-aggregate.ts#L124)
 
@@ -163,7 +163,7 @@ The verificationMethod object to be used for signing.
 
 #### Returns
 
-`Promise`\<[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)\>
+`Promise`\<[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)\&gt;
 
 Successful output of a bitcoin transaction.
 
@@ -179,7 +179,7 @@ if the bitcoin address is invalid or unfunded.
 
 ### generateSignal()
 
-> **generateSignal**(`didUpdatePayload`): [`BeaconSignal`](../interfaces/BeaconSignal.md)
+&gt; **generateSignal**(`didUpdatePayload`): [`BeaconSignal`](../interfaces/BeaconSignal.md)
 
 Defined in: [packages/method/src/btc1/beacon/cid-aggregate.ts:71](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/beacon/cid-aggregate.ts#L71)
 
@@ -211,7 +211,7 @@ if the signal is invalid.
 
 ### processSignal()
 
-> **processSignal**(`signal`, `signalsMetadata`): `Promise`\<`undefined` \| `DidUpdateInvocation`\>
+&gt; **processSignal**(`signal`, `signalsMetadata`): `Promise`\<`undefined` \| `DidUpdateInvocation`\&gt;
 
 Defined in: [packages/method/src/btc1/beacon/cid-aggregate.ts:103](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/beacon/cid-aggregate.ts#L103)
 
@@ -252,7 +252,7 @@ Optional sidecar data for the Beacon Signal.
 
 #### Returns
 
-`Promise`\<`undefined` \| `DidUpdateInvocation`\>
+`Promise`\<`undefined` \| `DidUpdateInvocation`\&gt;
 
 The DID Update payload announced by the Beacon Signal.
 
@@ -268,7 +268,7 @@ if the signalTx is invalid or the signalsMetadata is invalid.
 
 ### establish()
 
-> `static` **establish**(`id`, `type`, `serviceEndpoint`): `CIDAggregateBeacon`
+&gt; `static` **establish**(`id`, `type`, `serviceEndpoint`): `CIDAggregateBeacon`
 
 Defined in: [packages/method/src/btc1/beacon/cid-aggregate.ts:60](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/beacon/cid-aggregate.ts#L60)
 

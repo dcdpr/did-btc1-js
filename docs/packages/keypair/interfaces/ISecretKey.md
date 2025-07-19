@@ -15,7 +15,7 @@ Interface for the SecretKey class.
 
 ### bytes
 
-> `readonly` **bytes**: `Bytes`
+&gt; `readonly` **bytes**: `Bytes`
 
 Defined in: [secret.ts:29](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L29)
 
@@ -25,7 +25,7 @@ Get the secret key bytes.
 
 ### hex
 
-> `readonly` **hex**: `Hex`
+&gt; `readonly` **hex**: `Hex`
 
 Defined in: [secret.ts:42](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L42)
 
@@ -35,7 +35,7 @@ Get the secret key as a hex string.
 
 ### seed
 
-> **seed**: `bigint`
+&gt; **seed**: `bigint`
 
 Defined in: [secret.ts:36](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L36)
 
@@ -46,7 +46,7 @@ Setter allows alternative method of using a bigint seed for the entropy.
 
 ### computePublicKey()
 
-> **computePublicKey**(): `Bytes`
+&gt; **computePublicKey**(): `Bytes`
 
 Defined in: [secret.ts:55](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L55)
 
@@ -62,7 +62,7 @@ A new PublicKey object.
 
 ### equals()
 
-> **equals**(`other`): `boolean`
+&gt; **equals**(`other`): `boolean`
 
 Defined in: [secret.ts:49](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L49)
 
@@ -84,7 +84,7 @@ True if the private keys are equal.
 
 ### isValid()
 
-> **isValid**(): `boolean`
+&gt; **isValid**(): `boolean`
 
 Defined in: [secret.ts:61](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L61)
 
@@ -100,7 +100,7 @@ Whether the secret key is valid.
 
 ### json()
 
-> **json**(): `SecretKeyObject`
+&gt; **json**(): `SecretKeyObject`
 
 Defined in: [secret.ts:68](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/secret.ts#L68)
 

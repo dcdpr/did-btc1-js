@@ -15,7 +15,7 @@ Interface for KeyPair class.
 
 ### publicKey
 
-> `readonly` **publicKey**: [`PublicKey`](../classes/PublicKey.md)
+&gt; `readonly` **publicKey**: [`PublicKey`](../classes/PublicKey.md)
 
 Defined in: [pair.ts:19](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/pair.ts#L19)
 
@@ -23,7 +23,7 @@ Defined in: [pair.ts:19](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95b
 
 ### secretKey?
 
-> `readonly` `optional` **secretKey**: [`SecretKey`](../classes/SecretKey.md)
+&gt; `readonly` `optional` **secretKey**: [`SecretKey`](../classes/SecretKey.md)
 
 Defined in: [pair.ts:25](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/pair.ts#L25)
 
@@ -35,7 +35,7 @@ If the secret key is not available.
 
 ### json()
 
-> **json**(): `SchnorrKeyPairObject`
+&gt; **json**(): `SchnorrKeyPairObject`
 
 Defined in: [pair.ts:31](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/pair.ts#L31)
 

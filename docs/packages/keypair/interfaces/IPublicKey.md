@@ -15,7 +15,7 @@ Interface for the PublicKey class.
 
 ### compressed
 
-> `readonly` **compressed**: `Bytes`
+&gt; `readonly` **compressed**: `Bytes`
 
 Defined in: [public.ts:37](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L37)
 
@@ -25,7 +25,7 @@ Compressed public key getter.
 
 ### hex
 
-> `readonly` **hex**: `Hex`
+&gt; `readonly` **hex**: `Hex`
 
 Defined in: [public.ts:67](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L67)
 
@@ -35,7 +35,7 @@ PublicKey hex string getter.
 
 ### multibase
 
-> `readonly` **multibase**: `MultibaseObject`
+&gt; `readonly` **multibase**: `MultibaseObject`
 
 Defined in: [public.ts:61](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L61)
 
@@ -49,7 +49,7 @@ The public key as MultibaseObject as a address string, key and prefix bytes.
 
 ### parity
 
-> `readonly` **parity**: `number`
+&gt; `readonly` **parity**: `number`
 
 Defined in: [public.ts:43](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L43)
 
@@ -59,7 +59,7 @@ PublicKey parity getter.
 
 ### uncompressed
 
-> `readonly` **uncompressed**: `Bytes`
+&gt; `readonly` **uncompressed**: `Bytes`
 
 Defined in: [public.ts:31](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L31)
 
@@ -69,7 +69,7 @@ Uncompressed public key getter.
 
 ### x
 
-> `readonly` **x**: `Bytes`
+&gt; `readonly` **x**: `Bytes`
 
 Defined in: [public.ts:49](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L49)
 
@@ -79,7 +79,7 @@ PublicKey x-coordinate getter.
 
 ### y
 
-> `readonly` **y**: `Bytes`
+&gt; `readonly` **y**: `Bytes`
 
 Defined in: [public.ts:55](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L55)
 
@@ -89,7 +89,7 @@ PublicKey y-coordinate getter.
 
 ### decode()
 
-> **decode**(): `Bytes`
+&gt; **decode**(): `Bytes`
 
 Defined in: [public.ts:73](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L73)
 
@@ -105,7 +105,7 @@ The public key as a 33-byte compressed public key with header.
 
 ### encode()
 
-> **encode**(): `string`
+&gt; **encode**(): `string`
 
 Defined in: [public.ts:79](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L79)
 
@@ -121,7 +121,7 @@ The public key formatted a base58btc multibase string.
 
 ### equals()
 
-> **equals**(`other`): `boolean`
+&gt; **equals**(`other`): `boolean`
 
 Defined in: [public.ts:86](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L86)
 
@@ -145,7 +145,7 @@ True if the public keys are equal.
 
 ### json()
 
-> **json**(): `PublicKeyObject`
+&gt; **json**(): `PublicKeyObject`
 
 Defined in: [public.ts:92](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L92)
 

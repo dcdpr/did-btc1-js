@@ -16,7 +16,7 @@ Used to specify the format of returned block or transaction data.
 
 ### hex
 
-> **hex**: `0`
+&gt; **hex**: `0`
 
 Defined in: [packages/method/src/types/bitcoin.ts:1000](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L1000)
 
@@ -26,7 +26,7 @@ Return block or transaction data in raw hex-encoded format
 
 ### json
 
-> **json**: `1`
+&gt; **json**: `1`
 
 Defined in: [packages/method/src/types/bitcoin.ts:1002](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L1002)
 
@@ -36,7 +36,7 @@ Return block or transaction data in JSON object format
 
 ### jsonext
 
-> **jsonext**: `2`
+&gt; **jsonext**: `2`
 
 Defined in: [packages/method/src/types/bitcoin.ts:1008](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L1008)
 
@@ -48,7 +48,7 @@ Returns transaction data with information about the transaction including fee an
 
 ### jsonextprev
 
-> **jsonextprev**: `3`
+&gt; **jsonextprev**: `3`
 
 Defined in: [packages/method/src/types/bitcoin.ts:1013](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L1013)
 

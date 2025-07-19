@@ -6,7 +6,7 @@
 
 # Type Alias: MultibaseObject
 
-> **MultibaseObject** = `object`
+&gt; **MultibaseObject** = `object`
 
 Defined in: [types.ts:44](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/types.ts#L44)
 
@@ -14,7 +14,7 @@ Defined in: [types.ts:44](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95
 
 ### address
 
-> **address**: `string`
+&gt; **address**: `string`
 
 Defined in: [types.ts:45](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/types.ts#L45)
 
@@ -22,7 +22,7 @@ Defined in: [types.ts:45](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95
 
 ### key
 
-> **key**: `number`[]
+&gt; **key**: `number`[]
 
 Defined in: [types.ts:47](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/types.ts#L47)
 
@@ -30,6 +30,6 @@ Defined in: [types.ts:47](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95
 
 ### prefix
 
-> **prefix**: [`Bytes`](Bytes.md)
+&gt; **prefix**: [`Bytes`](Bytes.md)
 
 Defined in: [types.ts:46](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/types.ts#L46)

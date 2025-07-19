@@ -12,7 +12,7 @@ Defined in: [cli.ts:5](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95bee
 
 ### execute()
 
-> **execute**(`params`): `Promise`\<`void`\>
+&gt; **execute**(`params`): `Promise`\<`void`\&gt;
 
 Defined in: [cli.ts:6](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cli/src/cli.ts#L6)
 
@@ -30,4 +30,4 @@ Defined in: [cli.ts:6](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95bee
 
 #### Returns
 
-`Promise`\<`void`\>
+`Promise`\<`void`\&gt;

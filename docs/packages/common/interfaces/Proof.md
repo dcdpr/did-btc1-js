@@ -25,12 +25,12 @@ DID BTC1
 
 ### capability?
 
-> `optional` **capability**: `string`
+&gt; `optional` **capability**: `string`
 
 Defined in: [interfaces.ts:166](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L166)
 
 The root capability being invoked. In did:btc1, this is typically
-`urn:zcap:root:<urlencoded-did>` (see Section 9.4.1).
+`urn:zcap:root:<urlencoded-did&gt;` (see Section 9.4.1).
 
 #### Inherited from
 
@@ -40,7 +40,7 @@ The root capability being invoked. In did:btc1, this is typically
 
 ### capabilityAction?
 
-> `optional` **capabilityAction**: `string`
+&gt; `optional` **capabilityAction**: `string`
 
 Defined in: [interfaces.ts:172](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L172)
 
@@ -55,7 +55,7 @@ for DID document updates.
 
 ### challenge?
 
-> `optional` **challenge**: `string`
+&gt; `optional` **challenge**: `string`
 
 Defined in: [interfaces.ts:181](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L181)
 
@@ -67,7 +67,7 @@ Defined in: [interfaces.ts:181](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9
 
 ### created?
 
-> `optional` **created**: `string`
+&gt; `optional` **created**: `string`
 
 Defined in: [interfaces.ts:179](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L179)
 
@@ -83,7 +83,7 @@ often appear in Data Integrity proofs and may be included as needed.
 
 ### cryptosuite
 
-> **cryptosuite**: `string`
+&gt; **cryptosuite**: `string`
 
 Defined in: [interfaces.ts:149](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L149)
 
@@ -97,7 +97,7 @@ The cryptographic suite used, e.g. "schnorr-secp256k1-jcs-2025".
 
 ### domain?
 
-> `optional` **domain**: `string`
+&gt; `optional` **domain**: `string`
 
 Defined in: [interfaces.ts:180](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L180)
 
@@ -109,7 +109,7 @@ Defined in: [interfaces.ts:180](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9
 
 ### proofPurpose
 
-> **proofPurpose**: `string`
+&gt; **proofPurpose**: `string`
 
 Defined in: [interfaces.ts:160](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L160)
 
@@ -123,7 +123,7 @@ The purpose of the proof, which the spec sets to "capabilityInvocation".
 
 ### proofValue
 
-> **proofValue**: `string`
+&gt; **proofValue**: `string`
 
 Defined in: [interfaces.ts:127](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L127)
 
@@ -135,7 +135,7 @@ contains the actual signature bytes in an encoded form.
 
 ### type
 
-> **type**: `string`
+&gt; **type**: `string`
 
 Defined in: [interfaces.ts:144](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L144)
 
@@ -149,7 +149,7 @@ The proof type—per the spec’s example, "DataIntegrityProof".
 
 ### verificationMethod
 
-> **verificationMethod**: `string`
+&gt; **verificationMethod**: `string`
 
 Defined in: [interfaces.ts:155](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L155)
 
