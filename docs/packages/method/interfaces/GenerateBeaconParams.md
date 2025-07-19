@@ -12,7 +12,7 @@ Defined in: [packages/method/src/utils/beacons.ts:8](https://github.com/dcdpr/di
 
 ### identifier
 
-> **identifier**: `string`
+&gt; **identifier**: `string`
 
 Defined in: [packages/method/src/utils/beacons.ts:9](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/beacons.ts#L9)
 
@@ -20,7 +20,7 @@ Defined in: [packages/method/src/utils/beacons.ts:9](https://github.com/dcdpr/di
 
 ### network
 
-> **network**: `Network`
+&gt; **network**: `Network`
 
 Defined in: [packages/method/src/utils/beacons.ts:11](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/beacons.ts#L11)
 
@@ -28,7 +28,7 @@ Defined in: [packages/method/src/utils/beacons.ts:11](https://github.com/dcdpr/d
 
 ### publicKey
 
-> **publicKey**: `Bytes`
+&gt; **publicKey**: `Bytes`
 
 Defined in: [packages/method/src/utils/beacons.ts:10](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/beacons.ts#L10)
 
@@ -36,6 +36,6 @@ Defined in: [packages/method/src/utils/beacons.ts:10](https://github.com/dcdpr/d
 
 ### type
 
-> **type**: `string`
+&gt; **type**: `string`
 
 Defined in: [packages/method/src/utils/beacons.ts:12](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/beacons.ts#L12)

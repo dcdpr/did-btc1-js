@@ -21,7 +21,7 @@ A did:btc1 DID consists of a did:btc1 prefix, followed by an id-bech32 value, wh
 
 ### Constructor
 
-> **new Btc1Identifier**(): `Btc1Identifier`
+&gt; **new Btc1Identifier**(): `Btc1Identifier`
 
 #### Returns
 
@@ -31,7 +31,7 @@ A did:btc1 DID consists of a did:btc1 prefix, followed by an id-bech32 value, wh
 
 ### decode()
 
-> `static` **decode**(`identifier`): [`DidComponents`](../interfaces/DidComponents.md)
+&gt; `static` **decode**(`identifier`): [`DidComponents`](../interfaces/DidComponents.md)
 
 Defined in: [packages/method/src/utils/identifier.ts:135](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/identifier.ts#L135)
 
@@ -67,7 +67,7 @@ if the method is not supported
 
 ### encode()
 
-> `static` **encode**(`params`): `string`
+&gt; `static` **encode**(`params`): `string`
 
 Defined in: [packages/method/src/utils/identifier.ts:35](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/identifier.ts#L35)
 
@@ -120,7 +120,7 @@ The new did:btc1 identifier.
 
 ### generate()
 
-> `static` **generate**(): `object`
+&gt; `static` **generate**(): `object`
 
 Defined in: [packages/method/src/utils/identifier.ts:265](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/identifier.ts#L265)
 
@@ -134,16 +134,16 @@ The new did:btc1 identifier.
 
 ##### identifier
 
-> **identifier**: `object`
+&gt; **identifier**: `object`
 
 ###### identifier.controller
 
-> **controller**: `string`
+&gt; **controller**: `string`
 
 ###### identifier.id
 
-> **id**: `string`
+&gt; **id**: `string`
 
 ##### keys
 
-> **keys**: `SchnorrKeyPair`
+&gt; **keys**: `SchnorrKeyPair`

@@ -6,7 +6,7 @@
 
 # Type Alias: Btc1CreateExternalParams
 
-> **Btc1CreateExternalParams** = `object`
+&gt; **Btc1CreateExternalParams** = `object`
 
 Defined in: [packages/method/src/btc1/crud/create.ts:41](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L41)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/btc1/crud/create.ts:41](https://github.com/dcdp
 
 ### idType
 
-> **idType**: `"EXTERNAL"`
+&gt; **idType**: `"EXTERNAL"`
 
 Defined in: [packages/method/src/btc1/crud/create.ts:42](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L42)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/btc1/crud/create.ts:42](https://github.com/dcdp
 
 ### intermediateDocument
 
-> **intermediateDocument**: [`IntermediateDidDocument`](../classes/IntermediateDidDocument.md)
+&gt; **intermediateDocument**: [`IntermediateDidDocument`](../classes/IntermediateDidDocument.md)
 
 Defined in: [packages/method/src/btc1/crud/create.ts:43](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L43)
 
@@ -30,6 +30,6 @@ Defined in: [packages/method/src/btc1/crud/create.ts:43](https://github.com/dcdp
 
 ### options?
 
-> `optional` **options**: [`DidCreateOptions`](../interfaces/DidCreateOptions.md)
+&gt; `optional` **options**: [`DidCreateOptions`](../interfaces/DidCreateOptions.md)
 
 Defined in: [packages/method/src/btc1/crud/create.ts:44](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L44)

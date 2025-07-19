@@ -6,7 +6,7 @@
 
 # Type Alias: NetTotals
 
-> **NetTotals** = `object`
+&gt; **NetTotals** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:203](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L203)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:203](https://github.com/dcdpr/
 
 ### timemlillis
 
-> **timemlillis**: `number`
+&gt; **timemlillis**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:206](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L206)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:206](https://github.com/dcdpr/
 
 ### totalbytesrecv
 
-> **totalbytesrecv**: `number`
+&gt; **totalbytesrecv**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:204](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L204)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:204](https://github.com/dcdpr/
 
 ### totalbytessent
 
-> **totalbytessent**: `number`
+&gt; **totalbytessent**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:205](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L205)
 
@@ -38,30 +38,30 @@ Defined in: [packages/method/src/types/bitcoin.ts:205](https://github.com/dcdpr/
 
 ### uploadtarget
 
-> **uploadtarget**: `object`
+&gt; **uploadtarget**: `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:207](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L207)
 
 #### bytes\_left\_in\_cycle
 
-> **bytes\_left\_in\_cycle**: `number`
+&gt; **bytes\_left\_in\_cycle**: `number`
 
 #### save\_historical\_blocks
 
-> **save\_historical\_blocks**: `boolean`
+&gt; **save\_historical\_blocks**: `boolean`
 
 #### target
 
-> **target**: `number`
+&gt; **target**: `number`
 
 #### target\_reached
 
-> **target\_reached**: `boolean`
+&gt; **target\_reached**: `boolean`
 
 #### time\_lef\_in\_cycle
 
-> **time\_lef\_in\_cycle**: `number`
+&gt; **time\_lef\_in\_cycle**: `number`
 
 #### timeframe
 
-> **timeframe**: `number`
+&gt; **timeframe**: `number`

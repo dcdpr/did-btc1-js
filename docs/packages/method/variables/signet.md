@@ -6,7 +6,7 @@
 
 # Variable: signet
 
-> `const` **signet**: `object`
+&gt; `const` **signet**: `object`
 
 Defined in: [packages/method/src/bitcoin/network.ts:7](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/network.ts#L7)
 
@@ -17,48 +17,48 @@ Signet is a Bitcoin test network that requires block signing.
 
 ### bech32
 
-> **bech32**: `string` = `'tb'`
+&gt; **bech32**: `string` = `'tb'`
 
 The Bech32 prefix used for Signet addresses (same as Testnet).
 
 ### bip32
 
-> **bip32**: `object`
+&gt; **bip32**: `object`
 
 The BIP32 key prefixes for Signet (same as Testnet).
 
 #### bip32.private
 
-> **private**: `number` = `0x04358394`
+&gt; **private**: `number` = `0x04358394`
 
 The private key prefix for BIP32 extended private key.
 
 #### bip32.public
 
-> **public**: `number` = `0x043587cf`
+&gt; **public**: `number` = `0x043587cf`
 
 The public key prefix for BIP32 extended public keys.
 
 ### messagePrefix
 
-> **messagePrefix**: `string` = `'\x18Bitcoin Signed Message:\n'`
+&gt; **messagePrefix**: `string` = `'\x18Bitcoin Signed Message:\n'`
 
 The message prefix used for signing Bitcoin messages on Signet.
 
 ### pubKeyHash
 
-> **pubKeyHash**: `number` = `0x6f`
+&gt; **pubKeyHash**: `number` = `0x6f`
 
 The prefix for Signet public key hashes (same as Testnet).
 
 ### scriptHash
 
-> **scriptHash**: `number` = `0xc4`
+&gt; **scriptHash**: `number` = `0xc4`
 
 The prefix for Signet script hashes (same as Testnet).
 
 ### wif
 
-> **wif**: `number` = `0xef`
+&gt; **wif**: `number` = `0xef`
 
 The prefix for Signet Wallet Import Format (WIF) private keys (same as Testnet).

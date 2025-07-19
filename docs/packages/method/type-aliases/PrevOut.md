@@ -6,7 +6,7 @@
 
 # Type Alias: PrevOut
 
-> **PrevOut** = `object`
+&gt; **PrevOut** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:282](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L282)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:282](https://github.com/dcdpr/
 
 ### amount
 
-> **amount**: `number`
+&gt; **amount**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:287](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L287)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:287](https://github.com/dcdpr/
 
 ### redeemScript?
 
-> `optional` **redeemScript**: `string`
+&gt; `optional` **redeemScript**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:286](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L286)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:286](https://github.com/dcdpr/
 
 ### scriptPubKey
 
-> **scriptPubKey**: `string`
+&gt; **scriptPubKey**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:285](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L285)
 
@@ -38,7 +38,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:285](https://github.com/dcdpr/
 
 ### txid
 
-> **txid**: `string`
+&gt; **txid**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:283](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L283)
 
@@ -46,6 +46,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:283](https://github.com/dcdpr/
 
 ### vout
 
-> **vout**: `number`
+&gt; **vout**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:284](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L284)

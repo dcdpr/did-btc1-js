@@ -16,7 +16,7 @@ Implements [9. Appendix](https://dcdpr.github.io/did-btc1/#appendix) methods.
 
 ### Constructor
 
-> **new Btc1Appendix**(): `Btc1Appendix`
+&gt; **new Btc1Appendix**(): `Btc1Appendix`
 
 #### Returns
 
@@ -26,7 +26,7 @@ Implements [9. Appendix](https://dcdpr.github.io/did-btc1/#appendix) methods.
 
 ### derefernceRootCapabilityIdentifier()
 
-> `static` **derefernceRootCapabilityIdentifier**(`capabilityId`): [`Btc1RootCapability`](../interfaces/Btc1RootCapability.md)
+&gt; `static` **derefernceRootCapabilityIdentifier**(`capabilityId`): [`Btc1RootCapability`](../interfaces/Btc1RootCapability.md)
 
 Defined in: [packages/method/src/utils/appendix.ts:185](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/appendix.ts#L185)
 
@@ -86,7 +86,7 @@ for did:btc1:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u SHOUL
 
 ### deriveRootCapability()
 
-> `static` **deriveRootCapability**(`identifier`): [`Btc1RootCapability`](../interfaces/Btc1RootCapability.md)
+&gt; `static` **deriveRootCapability**(`identifier`): [`Btc1RootCapability`](../interfaces/Btc1RootCapability.md)
 
 Defined in: [packages/method/src/utils/appendix.ts:121](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/appendix.ts#L121)
 
@@ -127,7 +127,7 @@ did:btc1:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u
 
 ### extractDidFragment()
 
-> `static` **extractDidFragment**(`input`): `undefined` \| `string`
+&gt; `static` **extractDidFragment**(`input`): `undefined` \| `string`
 
 Defined in: [packages/method/src/utils/appendix.ts:37](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/appendix.ts#L37)
 
@@ -151,7 +151,7 @@ The extracted DID fragment or undefined if not found
 
 ### fetchFromCas()
 
-> `static` **fetchFromCas**(`hashBytes`): `Promise`\<`undefined` \| `string`\>
+&gt; `static` **fetchFromCas**(`hashBytes`): `Promise`\<`undefined` \| `string`\&gt;
 
 Defined in: [packages/method/src/utils/appendix.ts:242](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/appendix.ts#L242)
 
@@ -171,7 +171,7 @@ The SHA256 hash of the content to be fetched.
 
 #### Returns
 
-`Promise`\<`undefined` \| `string`\>
+`Promise`\<`undefined` \| `string`\&gt;
 
 The fetched content or null if not found.
 
@@ -179,7 +179,7 @@ The fetched content or null if not found.
 
 ### getVerificationMethods()
 
-> `static` **getVerificationMethods**(`didDocument`): [`Btc1VerificationMethod`](Btc1VerificationMethod.md)[]
+&gt; `static` **getVerificationMethods**(`didDocument`): [`Btc1VerificationMethod`](Btc1VerificationMethod.md)[]
 
 Defined in: [packages/method/src/utils/appendix.ts:84](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/appendix.ts#L84)
 
@@ -205,7 +205,7 @@ if the didDocument is not provided
 
 ### isDidService()
 
-> `static` **isDidService**(`obj`): `obj is DidService`
+&gt; `static` **isDidService**(`obj`): `obj is DidService`
 
 Defined in: [packages/method/src/utils/appendix.ts:67](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/appendix.ts#L67)
 
@@ -229,7 +229,7 @@ A boolean indicating whether the object is a DidService
 
 ### isDidVerificationMethod()
 
-> `static` **isDidVerificationMethod**(`obj`): `obj is DidVerificationMethod`
+&gt; `static` **isDidVerificationMethod**(`obj`): `obj is DidVerificationMethod`
 
 Defined in: [packages/method/src/utils/appendix.ts:48](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/appendix.ts#L48)
 

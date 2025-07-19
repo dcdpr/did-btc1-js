@@ -12,7 +12,7 @@ Defined in: [packages/method/src/btc1/key-manager/interface.ts:121](https://gith
 
 ### signTransaction()
 
-> **signTransaction**(`txHex`, `keyUri?`): `Promise`\<`Hex`\>
+&gt; **signTransaction**(`txHex`, `keyUri?`): `Promise`\<`Hex`\&gt;
 
 Defined in: [packages/method/src/btc1/key-manager/interface.ts:128](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/interface.ts#L128)
 
@@ -34,6 +34,6 @@ The URI of the key to sign the transaction with.
 
 #### Returns
 
-`Promise`\<`Hex`\>
+`Promise`\<`Hex`\&gt;
 
 A promise that resolves to the hex-encoded signed transaction.

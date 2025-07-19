@@ -6,7 +6,7 @@
 
 # Type Alias: TxOut
 
-> **TxOut** = `object`
+&gt; **TxOut** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:446](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L446)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:446](https://github.com/dcdpr/
 
 ### n
 
-> **n**: `number`
+&gt; **n**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:448](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L448)
 
@@ -22,38 +22,38 @@ Defined in: [packages/method/src/types/bitcoin.ts:448](https://github.com/dcdpr/
 
 ### scriptPubKey
 
-> **scriptPubKey**: `object`
+&gt; **scriptPubKey**: `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:449](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L449)
 
 #### address?
 
-> `optional` **address**: `string`
+&gt; `optional` **address**: `string`
 
 #### asm
 
-> **asm**: `string`
+&gt; **asm**: `string`
 
 #### desc
 
-> **desc**: `string`
+&gt; **desc**: `string`
 
 #### hex
 
-> **hex**: `string`
+&gt; **hex**: `string`
 
 #### reqSigs
 
-> **reqSigs**: `number`
+&gt; **reqSigs**: `number`
 
 #### type
 
-> **type**: [`scriptPubkeyType`](scriptPubkeyType.md)
+&gt; **type**: [`scriptPubkeyType`](scriptPubkeyType.md)
 
 ***
 
 ### value
 
-> **value**: `number`
+&gt; **value**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:447](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L447)

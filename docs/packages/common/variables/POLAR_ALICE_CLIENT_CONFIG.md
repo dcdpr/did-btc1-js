@@ -6,7 +6,7 @@
 
 # Variable: POLAR\_ALICE\_CLIENT\_CONFIG
 
-> `const` **POLAR\_ALICE\_CLIENT\_CONFIG**: `object`
+&gt; `const` **POLAR\_ALICE\_CLIENT\_CONFIG**: `object`
 
 Defined in: [constants.ts:19](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/constants.ts#L19)
 
@@ -14,20 +14,20 @@ Defined in: [constants.ts:19](https://github.com/dcdpr/did-btc1-js/blob/4ab6f991
 
 ### allowDefaultWallet
 
-> **allowDefaultWallet**: `boolean` = `true`
+&gt; **allowDefaultWallet**: `boolean` = `true`
 
 ### host
 
-> **host**: `string` = `'http://127.0.0.1:18444'`
+&gt; **host**: `string` = `'http://127.0.0.1:18444'`
 
 ### password
 
-> **password**: `string` = `'polarpass'`
+&gt; **password**: `string` = `'polarpass'`
 
 ### username
 
-> **username**: `string` = `'polaruser'`
+&gt; **username**: `string` = `'polaruser'`
 
 ### version
 
-> **version**: `string` = `'28.1.0'`
+&gt; **version**: `string` = `'28.1.0'`

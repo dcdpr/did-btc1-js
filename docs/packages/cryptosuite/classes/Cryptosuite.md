@@ -34,7 +34,7 @@ Verify Proof functions in Verifiable Credential Data Integrity 1.0. The algorith
 
 ### Constructor
 
-> **new Cryptosuite**(`params`): `Cryptosuite`
+&gt; **new Cryptosuite**(`params`): `Cryptosuite`
 
 Defined in: [cryptosuite/index.ts:88](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/index.ts#L88)
 
@@ -56,7 +56,7 @@ See [CryptosuiteParams](../interfaces/CryptosuiteParams.md) for required paramet
 
 ### algorithm
 
-> **algorithm**: `"rdfc"` \| `"jcs"`
+&gt; **algorithm**: `"rdfc"` \| `"jcs"`
 
 Defined in: [cryptosuite/index.ts:80](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/index.ts#L80)
 
@@ -66,7 +66,7 @@ The algorithm used for canonicalization
 
 ### cryptosuite
 
-> **cryptosuite**: `"bip340-jcs-2025"` \| `"bip340-rdfc-2025"`
+&gt; **cryptosuite**: `"bip340-jcs-2025"` \| `"bip340-rdfc-2025"`
 
 Defined in: [cryptosuite/index.ts:66](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/index.ts#L66)
 
@@ -80,7 +80,7 @@ The name of the cryptosuite
 
 ### multikey
 
-> **multikey**: [`SchnorrMultikey`](SchnorrMultikey.md)
+&gt; **multikey**: [`SchnorrMultikey`](SchnorrMultikey.md)
 
 Defined in: [cryptosuite/index.ts:73](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/index.ts#L73)
 
@@ -94,7 +94,7 @@ The multikey used to sign and verify proofs
 
 ### type
 
-> **type**: `"DataIntegrityProof"` = `'DataIntegrityProof'`
+&gt; **type**: `"DataIntegrityProof"` = `'DataIntegrityProof'`
 
 Defined in: [cryptosuite/index.ts:59](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/index.ts#L59)
 
@@ -108,7 +108,7 @@ The type of the proof
 
 ### createProof()
 
-> **createProof**(`params`): `Promise`\<`Proof`\>
+&gt; **createProof**(`params`): `Promise`\<`Proof`\&gt;
 
 Defined in: [cryptosuite/index.ts:115](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/index.ts#L115)
 
@@ -124,7 +124,7 @@ See [CreateProofParams](../interfaces/CreateProofParams.md) for details.
 
 #### Returns
 
-`Promise`\<`Proof`\>
+`Promise`\<`Proof`\&gt;
 
 The proof for the document.
 
@@ -136,7 +136,7 @@ The proof for the document.
 
 ### generateHash()
 
-> **generateHash**(`params`): `Bytes`
+&gt; **generateHash**(`params`): `Bytes`
 
 Defined in: [cryptosuite/index.ts:226](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/index.ts#L226)
 
@@ -164,7 +164,7 @@ The hash string of the proof configuration and document.
 
 ### proofConfiguration()
 
-> **proofConfiguration**(`options`): `Promise`\<`string`\>
+&gt; **proofConfiguration**(`options`): `Promise`\<`string`\&gt;
 
 Defined in: [cryptosuite/index.ts:246](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/index.ts#L246)
 
@@ -180,7 +180,7 @@ The options to use when transforming the proof.
 
 #### Returns
 
-`Promise`\<`string`\>
+`Promise`\<`string`\&gt;
 
 The canonicalized proof configuration.
 
@@ -196,7 +196,7 @@ if the proof configuration cannot be canonicalized.
 
 ### proofSerialization()
 
-> **proofSerialization**(`params`): `Bytes`
+&gt; **proofSerialization**(`params`): `Bytes`
 
 Defined in: [cryptosuite/index.ts:277](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/index.ts#L277)
 
@@ -228,7 +228,7 @@ if the multikey does not match the verification method.
 
 ### proofVerification()
 
-> **proofVerification**(`params`): `boolean`
+&gt; **proofVerification**(`params`): `boolean`
 
 Defined in: [cryptosuite/index.ts:299](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/index.ts#L299)
 
@@ -260,7 +260,7 @@ if the multikey does not match the verification method.
 
 ### toDataIntegrityProof()
 
-> **toDataIntegrityProof**(): [`DataIntegrityProof`](DataIntegrityProof.md)
+&gt; **toDataIntegrityProof**(): [`DataIntegrityProof`](DataIntegrityProof.md)
 
 Defined in: [cryptosuite/index.ts:100](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/index.ts#L100)
 
@@ -276,7 +276,7 @@ A new DataIntegrityProof instance.
 
 ### transformDocument()
 
-> **transformDocument**(`params`): `Promise`\<`string`\>
+&gt; **transformDocument**(`params`): `Promise`\<`string`\&gt;
 
 Defined in: [cryptosuite/index.ts:192](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/index.ts#L192)
 
@@ -292,7 +292,7 @@ See [TransformDocumentParams](../interfaces/TransformDocumentParams.md) for deta
 
 #### Returns
 
-`Promise`\<`string`\>
+`Promise`\<`string`\&gt;
 
 The canonicalized document.
 
@@ -308,7 +308,7 @@ if the document cannot be transformed.
 
 ### verifyProof()
 
-> **verifyProof**(`document`): `Promise`\<[`VerificationResult`](../interfaces/VerificationResult.md)\>
+&gt; **verifyProof**(`document`): `Promise`\<[`VerificationResult`](../interfaces/VerificationResult.md)\&gt;
 
 Defined in: [cryptosuite/index.ts:158](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/index.ts#L158)
 
@@ -325,7 +325,7 @@ The secure document to verify.
 
 #### Returns
 
-`Promise`\<[`VerificationResult`](../interfaces/VerificationResult.md)\>
+`Promise`\<[`VerificationResult`](../interfaces/VerificationResult.md)\&gt;
 
 The result of the verification.
 

@@ -12,7 +12,7 @@ Defined in: [packages/method/src/interfaces/ibeacon.ts:69](https://github.com/dc
 
 ### beaconAddress
 
-> **beaconAddress**: `string`
+&gt; **beaconAddress**: `string`
 
 Defined in: [packages/method/src/interfaces/ibeacon.ts:72](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/ibeacon.ts#L72)
 
@@ -20,7 +20,7 @@ Defined in: [packages/method/src/interfaces/ibeacon.ts:72](https://github.com/dc
 
 ### beaconId
 
-> **beaconId**: `string`
+&gt; **beaconId**: `string`
 
 Defined in: [packages/method/src/interfaces/ibeacon.ts:70](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/ibeacon.ts#L70)
 
@@ -28,7 +28,7 @@ Defined in: [packages/method/src/interfaces/ibeacon.ts:70](https://github.com/dc
 
 ### beaconType
 
-> **beaconType**: `string`
+&gt; **beaconType**: `string`
 
 Defined in: [packages/method/src/interfaces/ibeacon.ts:71](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/ibeacon.ts#L71)
 
@@ -36,7 +36,7 @@ Defined in: [packages/method/src/interfaces/ibeacon.ts:71](https://github.com/dc
 
 ### blockheight
 
-> **blockheight**: `number`
+&gt; **blockheight**: `number`
 
 Defined in: [packages/method/src/interfaces/ibeacon.ts:74](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/ibeacon.ts#L74)
 
@@ -44,7 +44,7 @@ Defined in: [packages/method/src/interfaces/ibeacon.ts:74](https://github.com/dc
 
 ### blocktime
 
-> **blocktime**: `number`
+&gt; **blocktime**: `number`
 
 Defined in: [packages/method/src/interfaces/ibeacon.ts:75](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/ibeacon.ts#L75)
 
@@ -52,6 +52,6 @@ Defined in: [packages/method/src/interfaces/ibeacon.ts:75](https://github.com/dc
 
 ### tx
 
-> **tx**: [`RawTransactionV2`](RawTransactionV2.md) \| `RawTransactionRest`
+&gt; **tx**: [`RawTransactionV2`](RawTransactionV2.md) \| `RawTransactionRest`
 
 Defined in: [packages/method/src/interfaces/ibeacon.ts:73](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/ibeacon.ts#L73)

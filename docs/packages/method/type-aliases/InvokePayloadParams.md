@@ -6,7 +6,7 @@
 
 # Type Alias: InvokePayloadParams
 
-> **InvokePayloadParams** = `object`
+&gt; **InvokePayloadParams** = `object`
 
 Defined in: [packages/method/src/btc1/crud/update.ts:24](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/update.ts#L24)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/btc1/crud/update.ts:24](https://github.com/dcdp
 
 ### didUpdatePayload
 
-> **didUpdatePayload**: `DidUpdatePayload`
+&gt; **didUpdatePayload**: `DidUpdatePayload`
 
 Defined in: [packages/method/src/btc1/crud/update.ts:26](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/update.ts#L26)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/btc1/crud/update.ts:26](https://github.com/dcdp
 
 ### identifier
 
-> **identifier**: `string`
+&gt; **identifier**: `string`
 
 Defined in: [packages/method/src/btc1/crud/update.ts:25](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/update.ts#L25)
 
@@ -30,6 +30,6 @@ Defined in: [packages/method/src/btc1/crud/update.ts:25](https://github.com/dcdp
 
 ### verificationMethod
 
-> **verificationMethod**: [`Btc1VerificationMethod`](../classes/Btc1VerificationMethod.md)
+&gt; **verificationMethod**: [`Btc1VerificationMethod`](../classes/Btc1VerificationMethod.md)
 
 Defined in: [packages/method/src/btc1/crud/update.ts:27](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/update.ts#L27)

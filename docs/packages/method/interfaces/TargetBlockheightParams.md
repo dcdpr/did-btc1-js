@@ -12,7 +12,7 @@ Defined in: [packages/method/src/btc1/crud/read.ts:90](https://github.com/dcdpr/
 
 ### network
 
-> **network**: `BitcoinNetworkNames`
+&gt; **network**: `BitcoinNetworkNames`
 
 Defined in: [packages/method/src/btc1/crud/read.ts:91](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/read.ts#L91)
 
@@ -20,6 +20,6 @@ Defined in: [packages/method/src/btc1/crud/read.ts:91](https://github.com/dcdpr/
 
 ### targetTime?
 
-> `optional` **targetTime**: `number`
+&gt; `optional` **targetTime**: `number`
 
 Defined in: [packages/method/src/btc1/crud/read.ts:92](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/read.ts#L92)

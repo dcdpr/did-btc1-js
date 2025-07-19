@@ -47,7 +47,7 @@ All resolvers of did:btc1 DIDs MUST support the core Beacon Types defined in thi
 
 ### Constructor
 
-> **new Beacon**(`__namedParameters`, `sidecar?`): `Beacon`
+&gt; **new Beacon**(`__namedParameters`, `sidecar?`): `Beacon`
 
 Defined in: [packages/method/src/interfaces/beacon.ts:42](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L42)
 
@@ -69,7 +69,7 @@ Defined in: [packages/method/src/interfaces/beacon.ts:42](https://github.com/dcd
 
 ### id
 
-> **id**: `string`
+&gt; **id**: `string`
 
 Defined in: [packages/method/src/interfaces/beacon.ts:37](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L37)
 
@@ -83,7 +83,7 @@ A unique identifier for the Beacon
 
 ### serviceEndpoint
 
-> **serviceEndpoint**: `DidServiceEndpoint`
+&gt; **serviceEndpoint**: `DidServiceEndpoint`
 
 Defined in: [packages/method/src/interfaces/beacon.ts:39](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L39)
 
@@ -97,7 +97,7 @@ The service endpoint of the Beacon
 
 ### sidecar?
 
-> `optional` **sidecar**: `undefined`
+&gt; `optional` **sidecar**: `undefined`
 
 Defined in: [packages/method/src/interfaces/beacon.ts:40](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L40)
 
@@ -105,7 +105,7 @@ Defined in: [packages/method/src/interfaces/beacon.ts:40](https://github.com/dcd
 
 ### type
 
-> **type**: `string`
+&gt; **type**: `string`
 
 Defined in: [packages/method/src/interfaces/beacon.ts:38](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L38)
 
@@ -121,7 +121,7 @@ The type of the Beacon
 
 #### Get Signature
 
-> **get** `abstract` **service**(): [`BeaconService`](../interfaces/BeaconService.md)
+&gt; **get** `abstract` **service**(): [`BeaconService`](../interfaces/BeaconService.md)
 
 Defined in: [packages/method/src/interfaces/beacon.ts:52](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L52)
 
@@ -141,7 +141,7 @@ Returns the Beacon Service object
 
 ### broadcastSignal()
 
-> `abstract` **broadcastSignal**(`didUpdatePayload`): `Promise`\<[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)\>
+&gt; `abstract` **broadcastSignal**(`didUpdatePayload`): `Promise`\<[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)\&gt;
 
 Defined in: [packages/method/src/interfaces/beacon.ts:67](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L67)
 
@@ -155,7 +155,7 @@ Broadcasts a Beacon Signal (implemented by subclasses).
 
 #### Returns
 
-`Promise`\<[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)\>
+`Promise`\<[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)\&gt;
 
 #### Implementation of
 
@@ -165,7 +165,7 @@ Broadcasts a Beacon Signal (implemented by subclasses).
 
 ### generateSignal()
 
-> `abstract` **generateSignal**(`didUpdatePayload`): [`BeaconSignal`](../interfaces/BeaconSignal.md)
+&gt; `abstract` **generateSignal**(`didUpdatePayload`): [`BeaconSignal`](../interfaces/BeaconSignal.md)
 
 Defined in: [packages/method/src/interfaces/beacon.ts:57](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L57)
 
@@ -189,7 +189,7 @@ Generates a Beacon Signal (implemented by subclasses).
 
 ### processSignal()
 
-> `abstract` **processSignal**(`signal`, `signalsMetadata`): `Promise`\<`undefined` \| `DidUpdatePayload`\>
+&gt; `abstract` **processSignal**(`signal`, `signalsMetadata`): `Promise`\<`undefined` \| `DidUpdatePayload`\&gt;
 
 Defined in: [packages/method/src/interfaces/beacon.ts:62](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L62)
 
@@ -207,7 +207,7 @@ Processes a Beacon Signal (implemented by subclasses).
 
 #### Returns
 
-`Promise`\<`undefined` \| `DidUpdatePayload`\>
+`Promise`\<`undefined` \| `DidUpdatePayload`\&gt;
 
 #### Implementation of
 

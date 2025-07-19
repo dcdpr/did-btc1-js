@@ -6,7 +6,7 @@
 
 # Type Alias: SignedRawTx
 
-> **SignedRawTx** = `object`
+&gt; **SignedRawTx** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:551](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L551)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:551](https://github.com/dcdpr/
 
 ### complete
 
-> **complete**: `boolean`
+&gt; **complete**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:553](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L553)
 
@@ -22,34 +22,34 @@ Defined in: [packages/method/src/types/bitcoin.ts:553](https://github.com/dcdpr/
 
 ### errors?
 
-> `optional` **errors**: `object`[]
+&gt; `optional` **errors**: `object`[]
 
 Defined in: [packages/method/src/types/bitcoin.ts:554](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L554)
 
 #### error
 
-> **error**: `string`
+&gt; **error**: `string`
 
 #### scriptSig
 
-> **scriptSig**: `string`
+&gt; **scriptSig**: `string`
 
 #### sequence
 
-> **sequence**: `number`
+&gt; **sequence**: `number`
 
 #### txid
 
-> **txid**: `string`
+&gt; **txid**: `string`
 
 #### vout
 
-> **vout**: `number`
+&gt; **vout**: `number`
 
 ***
 
 ### hex
 
-> **hex**: `string`
+&gt; **hex**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:552](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L552)

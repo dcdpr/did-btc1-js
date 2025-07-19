@@ -6,7 +6,7 @@
 
 # Type Alias: ReceivedByAddress
 
-> **ReceivedByAddress** = `object` & [`Received`](Received.md)
+&gt; **ReceivedByAddress** = `object` & [`Received`](Received.md)
 
 Defined in: [packages/method/src/types/bitcoin.ts:654](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L654)
 
@@ -14,8 +14,8 @@ Defined in: [packages/method/src/types/bitcoin.ts:654](https://github.com/dcdpr/
 
 ### address
 
-> **address**: `string`
+&gt; **address**: `string`
 
 ### txids
 
-> **txids**: `string`[]
+&gt; **txids**: `string`[]

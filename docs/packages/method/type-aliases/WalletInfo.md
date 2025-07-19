@@ -6,7 +6,7 @@
 
 # Type Alias: WalletInfo
 
-> **WalletInfo** = `object`
+&gt; **WalletInfo** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:528](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L528)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:528](https://github.com/dcdpr/
 
 ### balance
 
-> **balance**: `number`
+&gt; **balance**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:531](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L531)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:531](https://github.com/dcdpr/
 
 ### hdmasterkeyid
 
-> **hdmasterkeyid**: `string`
+&gt; **hdmasterkeyid**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:538](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L538)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:538](https://github.com/dcdpr/
 
 ### immature\_balance
 
-> **immature\_balance**: `number`
+&gt; **immature\_balance**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:533](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L533)
 
@@ -38,7 +38,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:533](https://github.com/dcdpr/
 
 ### keypoololdest
 
-> **keypoololdest**: `number`
+&gt; **keypoololdest**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:535](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L535)
 
@@ -46,7 +46,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:535](https://github.com/dcdpr/
 
 ### keypoolsize
 
-> **keypoolsize**: `number`
+&gt; **keypoolsize**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:536](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L536)
 
@@ -54,7 +54,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:536](https://github.com/dcdpr/
 
 ### paytxfee
 
-> **paytxfee**: `number`
+&gt; **paytxfee**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:537](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L537)
 
@@ -62,7 +62,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:537](https://github.com/dcdpr/
 
 ### txcount
 
-> **txcount**: `number`
+&gt; **txcount**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:534](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L534)
 
@@ -70,7 +70,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:534](https://github.com/dcdpr/
 
 ### unconfirmed\_balance
 
-> **unconfirmed\_balance**: `number`
+&gt; **unconfirmed\_balance**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:532](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L532)
 
@@ -78,7 +78,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:532](https://github.com/dcdpr/
 
 ### walletname
 
-> **walletname**: `string`
+&gt; **walletname**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:529](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L529)
 
@@ -86,6 +86,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:529](https://github.com/dcdpr/
 
 ### walletversion
 
-> **walletversion**: `number`
+&gt; **walletversion**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:530](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L530)

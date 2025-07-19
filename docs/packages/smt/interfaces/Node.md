@@ -12,7 +12,7 @@ Defined in: [node.ts:4](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95be
 
 ### copy()
 
-> **copy**(): `Node`
+&gt; **copy**(): `Node`
 
 Defined in: [node.ts:15](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/smt/src/node.ts#L15)
 
@@ -27,7 +27,7 @@ In real usage, you might store partial subtrees or do a shallow copy.
 
 ### getHash()
 
-> **getHash**(): `Uint8Array`
+&gt; **getHash**(): `Uint8Array`
 
 Defined in: [node.ts:6](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/smt/src/node.ts#L6)
 
@@ -41,7 +41,7 @@ getHash returns the Merkle hash of this node.
 
 ### getSum()
 
-> **getSum**(): `bigint`
+&gt; **getSum**(): `bigint`
 
 Defined in: [node.ts:9](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/smt/src/node.ts#L9)
 

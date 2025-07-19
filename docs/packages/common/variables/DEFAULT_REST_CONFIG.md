@@ -6,7 +6,7 @@
 
 # Variable: DEFAULT\_REST\_CONFIG
 
-> `const` **DEFAULT\_REST\_CONFIG**: `object`
+&gt; `const` **DEFAULT\_REST\_CONFIG**: `object`
 
 Defined in: [constants.ts:26](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/constants.ts#L26)
 
@@ -14,4 +14,4 @@ Defined in: [constants.ts:26](https://github.com/dcdpr/did-btc1-js/blob/4ab6f991
 
 ### host
 
-> **host**: `string` = `'http://localhost:3000'`
+&gt; **host**: `string` = `'http://localhost:3000'`

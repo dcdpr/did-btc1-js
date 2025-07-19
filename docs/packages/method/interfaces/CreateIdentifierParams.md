@@ -12,7 +12,7 @@ Defined in: [packages/method/src/btc1/crud/create.ts:11](https://github.com/dcdp
 
 ### genesisBytes
 
-> **genesisBytes**: `Uint8Array`
+&gt; **genesisBytes**: `Uint8Array`
 
 Defined in: [packages/method/src/btc1/crud/create.ts:12](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L12)
 
@@ -20,7 +20,7 @@ Defined in: [packages/method/src/btc1/crud/create.ts:12](https://github.com/dcdp
 
 ### newtork?
 
-> `optional` **newtork**: `string`
+&gt; `optional` **newtork**: `string`
 
 Defined in: [packages/method/src/btc1/crud/create.ts:13](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L13)
 
@@ -28,6 +28,6 @@ Defined in: [packages/method/src/btc1/crud/create.ts:13](https://github.com/dcdp
 
 ### version?
 
-> `optional` **version**: `string`
+&gt; `optional` **version**: `string`
 
 Defined in: [packages/method/src/btc1/crud/create.ts:14](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L14)

@@ -6,6 +6,6 @@
 
 # Variable: HASH\_SIZE
 
-> `const` **HASH\_SIZE**: `32` = `32`
+&gt; `const` **HASH\_SIZE**: `32` = `32`
 
 Defined in: [constants.ts:3](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/smt/src/constants.ts#L3)

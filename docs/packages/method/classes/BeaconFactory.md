@@ -15,7 +15,7 @@ Beacon Factory pattern to create Beacon instances.
 
 ### Constructor
 
-> **new BeaconFactory**(): `BeaconFactory`
+&gt; **new BeaconFactory**(): `BeaconFactory`
 
 #### Returns
 
@@ -25,7 +25,7 @@ Beacon Factory pattern to create Beacon instances.
 
 ### establish()
 
-> `static` **establish**(`service`, `sidecar?`): [`Beacon`](Beacon.md)
+&gt; `static` **establish**(`service`, `sidecar?`): [`Beacon`](Beacon.md)
 
 Defined in: [packages/method/src/btc1/beacon/factory.ts:15](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/beacon/factory.ts#L15)
 

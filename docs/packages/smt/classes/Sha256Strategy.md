@@ -16,7 +16,7 @@ Defined in: [hashing.ts:10](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d
 
 ### Constructor
 
-> **new Sha256Strategy**(): `Sha256Strategy`
+&gt; **new Sha256Strategy**(): `Sha256Strategy`
 
 #### Returns
 
@@ -26,7 +26,7 @@ Defined in: [hashing.ts:10](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d
 
 ### digest()
 
-> **digest**(...`inputs`): `Uint8Array`
+&gt; **digest**(...`inputs`): `Uint8Array`
 
 Defined in: [hashing.ts:11](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/smt/src/hashing.ts#L11)
 
@@ -34,7 +34,7 @@ Defined in: [hashing.ts:11](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d
 
 ##### inputs
 
-...`Uint8Array`\<`ArrayBufferLike`\>[]
+...`Uint8Array`\<`ArrayBufferLike`\&gt;[]
 
 #### Returns
 

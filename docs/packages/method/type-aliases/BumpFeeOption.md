@@ -6,7 +6,7 @@
 
 # Type Alias: BumpFeeOption
 
-> **BumpFeeOption** = `object`
+&gt; **BumpFeeOption** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:784](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L784)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:784](https://github.com/dcdpr/
 
 ### confTarget?
 
-> `optional` **confTarget**: `number`
+&gt; `optional` **confTarget**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:785](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L785)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:785](https://github.com/dcdpr/
 
 ### estimate\_mode?
 
-> `optional` **estimate\_mode**: [`FeeEstimateMode`](FeeEstimateMode.md)
+&gt; `optional` **estimate\_mode**: [`FeeEstimateMode`](FeeEstimateMode.md)
 
 Defined in: [packages/method/src/types/bitcoin.ts:788](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L788)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:788](https://github.com/dcdpr/
 
 ### replaceable?
 
-> `optional` **replaceable**: `boolean`
+&gt; `optional` **replaceable**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:787](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L787)
 
@@ -38,6 +38,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:787](https://github.com/dcdpr/
 
 ### totalFee?
 
-> `optional` **totalFee**: `number`
+&gt; `optional` **totalFee**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:786](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L786)

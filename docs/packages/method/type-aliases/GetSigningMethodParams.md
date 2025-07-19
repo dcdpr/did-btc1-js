@@ -6,7 +6,7 @@
 
 # Type Alias: GetSigningMethodParams
 
-> **GetSigningMethodParams** = `object`
+&gt; **GetSigningMethodParams** = `object`
 
 Defined in: [packages/method/src/types/crud.ts:35](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/crud.ts#L35)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/crud.ts:35](https://github.com/dcdpr/did-
 
 ### didDocument
 
-> **didDocument**: [`Btc1DidDocument`](../classes/Btc1DidDocument.md)
+&gt; **didDocument**: [`Btc1DidDocument`](../classes/Btc1DidDocument.md)
 
 Defined in: [packages/method/src/types/crud.ts:36](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/crud.ts#L36)
 
@@ -22,6 +22,6 @@ Defined in: [packages/method/src/types/crud.ts:36](https://github.com/dcdpr/did-
 
 ### methodId?
 
-> `optional` **methodId**: `string`
+&gt; `optional` **methodId**: `string`
 
 Defined in: [packages/method/src/types/crud.ts:37](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/crud.ts#L37)

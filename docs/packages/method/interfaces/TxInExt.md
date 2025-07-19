@@ -16,7 +16,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:443](https://github.com/dcdpr/
 
 ### coinbase?
 
-> `optional` **coinbase**: `string`
+&gt; `optional` **coinbase**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:421](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L421)
 
@@ -28,7 +28,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:421](https://github.com/dcdpr/
 
 ### prevout
 
-> **prevout**: [`TxInPrevout`](../type-aliases/TxInPrevout.md)
+&gt; **prevout**: [`TxInPrevout`](../type-aliases/TxInPrevout.md)
 
 Defined in: [packages/method/src/types/bitcoin.ts:444](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L444)
 
@@ -36,17 +36,17 @@ Defined in: [packages/method/src/types/bitcoin.ts:444](https://github.com/dcdpr/
 
 ### scriptSig?
 
-> `optional` **scriptSig**: `object`
+&gt; `optional` **scriptSig**: `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:424](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L424)
 
 #### asm
 
-> **asm**: `string`
+&gt; **asm**: `string`
 
 #### hex
 
-> **hex**: `string`
+&gt; **hex**: `string`
 
 #### Inherited from
 
@@ -56,7 +56,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:424](https://github.com/dcdpr/
 
 ### sequence
 
-> **sequence**: `number`
+&gt; **sequence**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:429](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L429)
 
@@ -68,7 +68,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:429](https://github.com/dcdpr/
 
 ### txid?
 
-> `optional` **txid**: `string`
+&gt; `optional` **txid**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:422](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L422)
 
@@ -80,7 +80,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:422](https://github.com/dcdpr/
 
 ### txinwitness?
 
-> `optional` **txinwitness**: `string`[]
+&gt; `optional` **txinwitness**: `string`[]
 
 Defined in: [packages/method/src/types/bitcoin.ts:428](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L428)
 
@@ -92,7 +92,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:428](https://github.com/dcdpr/
 
 ### vout?
 
-> `optional` **vout**: `number`
+&gt; `optional` **vout**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:423](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L423)
 

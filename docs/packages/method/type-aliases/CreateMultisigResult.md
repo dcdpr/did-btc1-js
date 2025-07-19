@@ -6,7 +6,7 @@
 
 # Type Alias: CreateMultisigResult
 
-> **CreateMultisigResult** = `object`
+&gt; **CreateMultisigResult** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:985](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L985)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:985](https://github.com/dcdpr/
 
 ### address
 
-> **address**: `string`
+&gt; **address**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:986](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L986)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:986](https://github.com/dcdpr/
 
 ### descriptor
 
-> **descriptor**: `string`
+&gt; **descriptor**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:988](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L988)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:988](https://github.com/dcdpr/
 
 ### redeemScript
 
-> **redeemScript**: `Hex`
+&gt; **redeemScript**: `Hex`
 
 Defined in: [packages/method/src/types/bitcoin.ts:987](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L987)
 
@@ -38,6 +38,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:987](https://github.com/dcdpr/
 
 ### warnings?
 
-> `optional` **warnings**: `string`[]
+&gt; `optional` **warnings**: `string`[]
 
 Defined in: [packages/method/src/types/bitcoin.ts:989](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L989)

@@ -6,7 +6,7 @@
 
 # Type Alias: WalletTxBase
 
-> **WalletTxBase** = `object`
+&gt; **WalletTxBase** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:792](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L792)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:792](https://github.com/dcdpr/
 
 ### abandoned?
 
-> `optional` **abandoned**: `boolean`
+&gt; `optional` **abandoned**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:808](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L808)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:808](https://github.com/dcdpr/
 
 ### account
 
-> **account**: `string`
+&gt; **account**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:793](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L793)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:793](https://github.com/dcdpr/
 
 ### address
 
-> **address**: `string`
+&gt; **address**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:794](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L794)
 
@@ -38,7 +38,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:794](https://github.com/dcdpr/
 
 ### amount
 
-> **amount**: `number`
+&gt; **amount**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:796](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L796)
 
@@ -46,7 +46,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:796](https://github.com/dcdpr/
 
 ### bip125-replaceable
 
-> **bip125-replaceable**: `"yes"` \| `"no"` \| `"unknown"`
+&gt; **bip125-replaceable**: `"yes"` \| `"no"` \| `"unknown"`
 
 Defined in: [packages/method/src/types/bitcoin.ts:807](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L807)
 
@@ -54,7 +54,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:807](https://github.com/dcdpr/
 
 ### blockhash
 
-> **blockhash**: `string`
+&gt; **blockhash**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:800](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L800)
 
@@ -62,7 +62,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:800](https://github.com/dcdpr/
 
 ### blockindex
 
-> **blockindex**: `number`
+&gt; **blockindex**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:801](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L801)
 
@@ -70,7 +70,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:801](https://github.com/dcdpr/
 
 ### blocktime
 
-> **blocktime**: `number`
+&gt; **blocktime**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:802](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L802)
 
@@ -78,7 +78,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:802](https://github.com/dcdpr/
 
 ### category
 
-> **category**: `"send"` \| `"receive"`
+&gt; **category**: `"send"` \| `"receive"`
 
 Defined in: [packages/method/src/types/bitcoin.ts:795](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L795)
 
@@ -86,7 +86,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:795](https://github.com/dcdpr/
 
 ### comment?
 
-> `optional` **comment**: `string`
+&gt; `optional` **comment**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:809](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L809)
 
@@ -94,7 +94,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:809](https://github.com/dcdpr/
 
 ### confirmations
 
-> **confirmations**: `number`
+&gt; **confirmations**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:799](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L799)
 
@@ -102,7 +102,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:799](https://github.com/dcdpr/
 
 ### fee
 
-> **fee**: `number`
+&gt; **fee**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:798](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L798)
 
@@ -110,7 +110,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:798](https://github.com/dcdpr/
 
 ### label
 
-> **label**: `string`
+&gt; **label**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:810](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L810)
 
@@ -118,7 +118,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:810](https://github.com/dcdpr/
 
 ### time
 
-> **time**: `number`
+&gt; **time**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:804](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L804)
 
@@ -126,7 +126,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:804](https://github.com/dcdpr/
 
 ### timereceived
 
-> **timereceived**: `number`
+&gt; **timereceived**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:805](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L805)
 
@@ -134,7 +134,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:805](https://github.com/dcdpr/
 
 ### to?
 
-> `optional` **to**: `string`
+&gt; `optional` **to**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:811](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L811)
 
@@ -142,7 +142,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:811](https://github.com/dcdpr/
 
 ### txid
 
-> **txid**: `string`
+&gt; **txid**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:803](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L803)
 
@@ -150,7 +150,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:803](https://github.com/dcdpr/
 
 ### vout
 
-> **vout**: `number`
+&gt; **vout**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:797](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L797)
 
@@ -158,6 +158,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:797](https://github.com/dcdpr/
 
 ### walletconflicts
 
-> **walletconflicts**: `string`[]
+&gt; **walletconflicts**: `string`[]
 
 Defined in: [packages/method/src/types/bitcoin.ts:806](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L806)

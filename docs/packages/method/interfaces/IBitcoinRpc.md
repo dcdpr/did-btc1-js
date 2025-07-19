@@ -14,7 +14,7 @@ Interface for the Bitcoin Core RPC client.
 
 ### abandonTransaction()
 
-> **abandonTransaction**(`txid`): `Promise`\<`void`\>
+&gt; **abandonTransaction**(`txid`): `Promise`\<`void`\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:33](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L33)
 
@@ -28,13 +28,13 @@ Marks a transaction and its in-wallet descendants as abandoned, allowing their i
 
 #### Returns
 
-`Promise`\<`void`\>
+`Promise`\<`void`\&gt;
 
 ***
 
 ### abortRescan()
 
-> **abortRescan**(): `Promise`\<`void`\>
+&gt; **abortRescan**(): `Promise`\<`void`\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:36](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L36)
 
@@ -42,13 +42,13 @@ Stops the current wallet rescan triggered by an RPC call, such as by an importpr
 
 #### Returns
 
-`Promise`\<`void`\>
+`Promise`\<`void`\&gt;
 
 ***
 
 ### addMultiSigAddress()
 
-> **addMultiSigAddress**(`__namedParameters`): `Promise`\<`string`\>
+&gt; **addMultiSigAddress**(`__namedParameters`): `Promise`\<`string`\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:39](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L39)
 
@@ -62,13 +62,13 @@ Adds a multi-signature address with n required signatures and a set of keys.
 
 #### Returns
 
-`Promise`\<`string`\>
+`Promise`\<`string`\&gt;
 
 ***
 
 ### addWitnessAddress()
 
-> **addWitnessAddress**(`address`): `Promise`\<`void`\>
+&gt; **addWitnessAddress**(`address`): `Promise`\<`void`\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:42](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L42)
 
@@ -82,13 +82,13 @@ Adds a witness address for SegWit compatibility.
 
 #### Returns
 
-`Promise`\<`void`\>
+`Promise`\<`void`\&gt;
 
 ***
 
 ### backupWallet()
 
-> **backupWallet**(`destination`): `Promise`\<`void`\>
+&gt; **backupWallet**(`destination`): `Promise`\<`void`\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:45](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L45)
 
@@ -102,13 +102,13 @@ Backs up the wallet file to a specified destination.
 
 #### Returns
 
-`Promise`\<`void`\>
+`Promise`\<`void`\&gt;
 
 ***
 
 ### bumpFee()
 
-> **bumpFee**(`txid`, `options?`): `Promise`\<[`BumpFeeResult`](../type-aliases/BumpFeeResult.md)\>
+&gt; **bumpFee**(`txid`, `options?`): `Promise`\<[`BumpFeeResult`](../type-aliases/BumpFeeResult.md)\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:48](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L48)
 
@@ -126,13 +126,13 @@ Increases the fee of an unconfirmed transaction to improve its confirmation time
 
 #### Returns
 
-`Promise`\<[`BumpFeeResult`](../type-aliases/BumpFeeResult.md)\>
+`Promise`\<[`BumpFeeResult`](../type-aliases/BumpFeeResult.md)\&gt;
 
 ***
 
 ### clearBanned()
 
-> **clearBanned**(): `Promise`\<`void`\>
+&gt; **clearBanned**(): `Promise`\<`void`\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:51](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L51)
 
@@ -140,13 +140,13 @@ Removes all banned nodes from the ban list.
 
 #### Returns
 
-`Promise`\<`void`\>
+`Promise`\<`void`\&gt;
 
 ***
 
 ### combineRawTransaction()
 
-> **combineRawTransaction**(`txs`): `Promise`\<`string`\>
+&gt; **combineRawTransaction**(`txs`): `Promise`\<`string`\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:54](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L54)
 
@@ -160,13 +160,13 @@ Combines multiple raw transactions into a single transaction.
 
 #### Returns
 
-`Promise`\<`string`\>
+`Promise`\<`string`\&gt;
 
 ***
 
 ### command()?
 
-> `optional` **command**\<`R`\>(`methods`): `Promise`\<readonly `R`[]\>
+&gt; `optional` **command**\<`R`\&gt;(`methods`): `Promise`\<readonly `R`[]\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:30](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L30)
 
@@ -186,13 +186,13 @@ Executes multiple commands in a batch request.
 
 #### Returns
 
-`Promise`\<readonly `R`[]\>
+`Promise`\<readonly `R`[]\&gt;
 
 ***
 
 ### createMultiSig()
 
-> **createMultiSig**(`nrequired`, `keys`): `Promise`\<[`CreateMultiSigResult`](../type-aliases/CreateMultiSigResult-1.md)\>
+&gt; **createMultiSig**(`nrequired`, `keys`): `Promise`\<[`CreateMultiSigResult`](../type-aliases/CreateMultiSigResult-1.md)\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:57](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L57)
 
@@ -210,13 +210,13 @@ Creates a multi-signature address with n required signatures and a set of keys.
 
 #### Returns
 
-`Promise`\<[`CreateMultiSigResult`](../type-aliases/CreateMultiSigResult-1.md)\>
+`Promise`\<[`CreateMultiSigResult`](../type-aliases/CreateMultiSigResult-1.md)\&gt;
 
 ***
 
 ### createRawTransaction()
 
-> **createRawTransaction**(`inputs`, `outputs`, `locktime?`, `replacable?`): `Promise`\<`string`\>
+&gt; **createRawTransaction**(`inputs`, `outputs`, `locktime?`, `replacable?`): `Promise`\<`string`\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:60](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L60)
 
@@ -242,13 +242,13 @@ Creates a raw transaction spending specified inputs to specified outputs.
 
 #### Returns
 
-`Promise`\<`string`\>
+`Promise`\<`string`\&gt;
 
 ***
 
 ### createWallet()
 
-> **createWallet**(`__namedParameters`): `Promise`\<[`CreateWalletResult`](../type-aliases/CreateWalletResult.md)\>
+&gt; **createWallet**(`__namedParameters`): `Promise`\<[`CreateWalletResult`](../type-aliases/CreateWalletResult.md)\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:63](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L63)
 
@@ -262,13 +262,13 @@ Creates a new wallet with various optional parameters.
 
 #### Returns
 
-`Promise`\<[`CreateWalletResult`](../type-aliases/CreateWalletResult.md)\>
+`Promise`\<[`CreateWalletResult`](../type-aliases/CreateWalletResult.md)\&gt;
 
 ***
 
 ### decodeRawTransaction()
 
-> **decodeRawTransaction**(`hexstring`): `Promise`\<[`DecodedRawTransaction`](../type-aliases/DecodedRawTransaction.md)\>
+&gt; **decodeRawTransaction**(`hexstring`): `Promise`\<[`DecodedRawTransaction`](../type-aliases/DecodedRawTransaction.md)\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:74](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L74)
 
@@ -282,13 +282,13 @@ Decodes a raw transaction hex string.
 
 #### Returns
 
-`Promise`\<[`DecodedRawTransaction`](../type-aliases/DecodedRawTransaction.md)\>
+`Promise`\<[`DecodedRawTransaction`](../type-aliases/DecodedRawTransaction.md)\&gt;
 
 ***
 
 ### decodeScript()
 
-> **decodeScript**(`hexstring`): `Promise`\<[`ScriptDecoded`](../type-aliases/ScriptDecoded.md)\>
+&gt; **decodeScript**(`hexstring`): `Promise`\<[`ScriptDecoded`](../type-aliases/ScriptDecoded.md)\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:77](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L77)
 
@@ -302,13 +302,13 @@ Decodes a hex-encoded script.
 
 #### Returns
 
-`Promise`\<[`ScriptDecoded`](../type-aliases/ScriptDecoded.md)\>
+`Promise`\<[`ScriptDecoded`](../type-aliases/ScriptDecoded.md)\&gt;
 
 ***
 
 ### disconnectNode()
 
-> **disconnectNode**(`address?`, `nodeid?`): `Promise`\<`void`\>
+&gt; **disconnectNode**(`address?`, `nodeid?`): `Promise`\<`void`\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:80](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L80)
 
@@ -326,13 +326,13 @@ Disconnects a node by address or node ID.
 
 #### Returns
 
-`Promise`\<`void`\>
+`Promise`\<`void`\&gt;
 
 ***
 
 ### dumpPrivKey()
 
-> **dumpPrivKey**(`address`): `Promise`\<`string`\>
+&gt; **dumpPrivKey**(`address`): `Promise`\<`string`\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:83](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L83)
 
@@ -346,13 +346,13 @@ Reveals the private key corresponding to an address.
 
 #### Returns
 
-`Promise`\<`string`\>
+`Promise`\<`string`\&gt;
 
 ***
 
 ### dumpWallet()
 
-> **dumpWallet**(`filename`): `Promise`\<\{ `filename`: `string`; \}\>
+&gt; **dumpWallet**(`filename`): `Promise`\<\{ `filename`: `string`; \}\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:86](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L86)
 
@@ -366,13 +366,13 @@ Dumps all wallet keys and metadata to a file.
 
 #### Returns
 
-`Promise`\<\{ `filename`: `string`; \}\>
+`Promise`\<\{ `filename`: `string`; \}\&gt;
 
 ***
 
 ### encryptWallet()
 
-> **encryptWallet**(`passphrase`): `Promise`\<`void`\>
+&gt; **encryptWallet**(`passphrase`): `Promise`\<`void`\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:89](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L89)
 
@@ -386,13 +386,13 @@ Encrypts the wallet with a passphrase.
 
 #### Returns
 
-`Promise`\<`void`\>
+`Promise`\<`void`\&gt;
 
 ***
 
 ### estimateSmartFee()
 
-> **estimateSmartFee**(`conf_target`, `estimate_mode?`): `Promise`\<\{ `blocks?`: `number`; `errors?`: `string`[]; `feerate?`: `number`; \}\>
+&gt; **estimateSmartFee**(`conf_target`, `estimate_mode?`): `Promise`\<\{ `blocks?`: `number`; `errors?`: `string`[]; `feerate?`: `number`; \}\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:92](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L92)
 
@@ -410,13 +410,13 @@ Estimates the fee rate for a given confirmation target.
 
 #### Returns
 
-`Promise`\<\{ `blocks?`: `number`; `errors?`: `string`[]; `feerate?`: `number`; \}\>
+`Promise`\<\{ `blocks?`: `number`; `errors?`: `string`[]; `feerate?`: `number`; \}\&gt;
 
 ***
 
 ### fundRawTransaction()
 
-> **fundRawTransaction**(`hexstring`, `options`): `Promise`\<\{ `changepos`: `number`; `fee`: `number`; `hex`: `string`; \}\>
+&gt; **fundRawTransaction**(`hexstring`, `options`): `Promise`\<\{ `changepos`: `number`; `fee`: `number`; `hex`: `string`; \}\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:98](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L98)
 
@@ -434,13 +434,13 @@ Funds a raw transaction by adding necessary inputs and change.
 
 #### Returns
 
-`Promise`\<\{ `changepos`: `number`; `fee`: `number`; `hex`: `string`; \}\>
+`Promise`\<\{ `changepos`: `number`; `fee`: `number`; `hex`: `string`; \}\&gt;
 
 ***
 
 ### getBlock()
 
-> **getBlock**(`__namedParameters`): `Promise`\<`undefined` \| [`BlockResponse`](../type-aliases/BlockResponse.md)\>
+&gt; **getBlock**(`__namedParameters`): `Promise`\<`undefined` \| [`BlockResponse`](../type-aliases/BlockResponse.md)\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:110](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L110)
 
@@ -454,13 +454,13 @@ Gets detailed information about a specific block.
 
 #### Returns
 
-`Promise`\<`undefined` \| [`BlockResponse`](../type-aliases/BlockResponse.md)\>
+`Promise`\<`undefined` \| [`BlockResponse`](../type-aliases/BlockResponse.md)\&gt;
 
 ***
 
 ### getBlockchainInfo()
 
-> **getBlockchainInfo**(): `Promise`\<[`ChainInfo`](../type-aliases/ChainInfo.md)\>
+&gt; **getBlockchainInfo**(): `Promise`\<[`ChainInfo`](../type-aliases/ChainInfo.md)\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:113](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L113)
 
@@ -468,13 +468,13 @@ Retrieves general blockchain state info.
 
 #### Returns
 
-`Promise`\<[`ChainInfo`](../type-aliases/ChainInfo.md)\>
+`Promise`\<[`ChainInfo`](../type-aliases/ChainInfo.md)\&gt;
 
 ***
 
 ### getBlockCount()
 
-> **getBlockCount**(): `Promise`\<`number`\>
+&gt; **getBlockCount**(): `Promise`\<`number`\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:104](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L104)
 
@@ -482,13 +482,13 @@ Returns the number of blocks in the longest blockchain.
 
 #### Returns
 
-`Promise`\<`number`\>
+`Promise`\<`number`\&gt;
 
 ***
 
 ### getBlockHash()
 
-> **getBlockHash**(`height`): `Promise`\<`string`\>
+&gt; **getBlockHash**(`height`): `Promise`\<`string`\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:107](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L107)
 
@@ -502,13 +502,13 @@ Gets the hash of a block at a given height.
 
 #### Returns
 
-`Promise`\<`string`\>
+`Promise`\<`string`\&gt;
 
 ***
 
 ### getConnectionCount()
 
-> **getConnectionCount**(): `Promise`\<`number`\>
+&gt; **getConnectionCount**(): `Promise`\<`number`\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:116](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L116)
 
@@ -516,13 +516,13 @@ Gets the number of active connections to other nodes.
 
 #### Returns
 
-`Promise`\<`number`\>
+`Promise`\<`number`\&gt;
 
 ***
 
 ### getDifficulty()
 
-> **getDifficulty**(): `Promise`\<`number`\>
+&gt; **getDifficulty**(): `Promise`\<`number`\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:119](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L119)
 
@@ -530,13 +530,13 @@ Gets the estimated network difficulty.
 
 #### Returns
 
-`Promise`\<`number`\>
+`Promise`\<`number`\&gt;
 
 ***
 
 ### getMempoolInfo()
 
-> **getMempoolInfo**(): `Promise`\<[`MempoolInfo`](../type-aliases/MempoolInfo.md)\>
+&gt; **getMempoolInfo**(): `Promise`\<[`MempoolInfo`](../type-aliases/MempoolInfo.md)\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:122](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L122)
 
@@ -544,13 +544,13 @@ Retrieves memory pool statistics.
 
 #### Returns
 
-`Promise`\<[`MempoolInfo`](../type-aliases/MempoolInfo.md)\>
+`Promise`\<[`MempoolInfo`](../type-aliases/MempoolInfo.md)\&gt;
 
 ***
 
 ### getMiningInfo()
 
-> **getMiningInfo**(): `Promise`\<[`MiningInfo`](../type-aliases/MiningInfo.md)\>
+&gt; **getMiningInfo**(): `Promise`\<[`MiningInfo`](../type-aliases/MiningInfo.md)\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:125](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L125)
 
@@ -558,13 +558,13 @@ Retrieves mining statistics.
 
 #### Returns
 
-`Promise`\<[`MiningInfo`](../type-aliases/MiningInfo.md)\>
+`Promise`\<[`MiningInfo`](../type-aliases/MiningInfo.md)\&gt;
 
 ***
 
 ### getNewAddress()
 
-> **getNewAddress**(`account?`): `Promise`\<`string`\>
+&gt; **getNewAddress**(`account?`): `Promise`\<`string`\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:128](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L128)
 
@@ -578,13 +578,13 @@ Gets a new Bitcoin address for receiving payments.
 
 #### Returns
 
-`Promise`\<`string`\>
+`Promise`\<`string`\&gt;
 
 ***
 
 ### getPeerInfo()
 
-> **getPeerInfo**(): `Promise`\<[`PeerInfo`](../type-aliases/PeerInfo.md)[]\>
+&gt; **getPeerInfo**(): `Promise`\<[`PeerInfo`](../type-aliases/PeerInfo.md)[]\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:131](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L131)
 
@@ -592,13 +592,13 @@ Gets detailed peer connection information.
 
 #### Returns
 
-`Promise`\<[`PeerInfo`](../type-aliases/PeerInfo.md)[]\>
+`Promise`\<[`PeerInfo`](../type-aliases/PeerInfo.md)[]\&gt;
 
 ***
 
 ### sendRawTransaction()
 
-> **sendRawTransaction**(`hexstring`, `maxfeerate?`, `maxBurnAmount?`): `Promise`\<`string`\>
+&gt; **sendRawTransaction**(`hexstring`, `maxfeerate?`, `maxBurnAmount?`): `Promise`\<`string`\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:134](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L134)
 
@@ -620,13 +620,13 @@ Sends raw transaction hex to the Bitcoin network.
 
 #### Returns
 
-`Promise`\<`string`\>
+`Promise`\<`string`\&gt;
 
 ***
 
 ### sendToAddress()
 
-> **sendToAddress**(`address`, `amount`, `comment?`, `comment_to?`, `subtreactfeefromamount?`, `replaceable?`, `conf_target?`, `estimate_mode?`): `Promise`\<[`RawTransactionResponse`](../type-aliases/RawTransactionResponse.md)\>
+&gt; **sendToAddress**(`address`, `amount`, `comment?`, `comment_to?`, `subtreactfeefromamount?`, `replaceable?`, `conf_target?`, `estimate_mode?`): `Promise`\<[`RawTransactionResponse`](../type-aliases/RawTransactionResponse.md)\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:141](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L141)
 
@@ -668,13 +668,13 @@ Sends bitcoins to a specified address.
 
 #### Returns
 
-`Promise`\<[`RawTransactionResponse`](../type-aliases/RawTransactionResponse.md)\>
+`Promise`\<[`RawTransactionResponse`](../type-aliases/RawTransactionResponse.md)\&gt;
 
 ***
 
 ### validateAddress()
 
-> **validateAddress**(`address`): `Promise`\<[`ValidateAddressResult`](../type-aliases/ValidateAddressResult.md)\>
+&gt; **validateAddress**(`address`): `Promise`\<[`ValidateAddressResult`](../type-aliases/ValidateAddressResult.md)\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:153](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L153)
 
@@ -688,13 +688,13 @@ Validates a Bitcoin address.
 
 #### Returns
 
-`Promise`\<[`ValidateAddressResult`](../type-aliases/ValidateAddressResult.md)\>
+`Promise`\<[`ValidateAddressResult`](../type-aliases/ValidateAddressResult.md)\&gt;
 
 ***
 
 ### verifyMessage()
 
-> **verifyMessage**(`address`, `signature`, `message`): `Promise`\<`boolean`\>
+&gt; **verifyMessage**(`address`, `signature`, `message`): `Promise`\<`boolean`\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:156](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L156)
 
@@ -716,13 +716,13 @@ Verifies a signed message.
 
 #### Returns
 
-`Promise`\<`boolean`\>
+`Promise`\<`boolean`\&gt;
 
 ***
 
 ### walletLock()
 
-> **walletLock**(`passphrase`, `timeout`): `Promise`\<`void`\>
+&gt; **walletLock**(`passphrase`, `timeout`): `Promise`\<`void`\&gt;
 
 Defined in: [packages/method/src/bitcoin/interface.ts:159](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/bitcoin/interface.ts#L159)
 
@@ -740,4 +740,4 @@ Locks the wallet, requiring a passphrase to unlock.
 
 #### Returns
 
-`Promise`\<`void`\>
+`Promise`\<`void`\&gt;

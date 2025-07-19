@@ -14,7 +14,7 @@ A JSON Patch operation, as defined in [RFC 6902](https://datatracker.ietf.org/do
 
 ### from?
 
-> `optional` **from**: `string`
+&gt; `optional` **from**: `string`
 
 Defined in: [interfaces.ts:10](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L10)
 
@@ -22,7 +22,7 @@ Defined in: [interfaces.ts:10](https://github.com/dcdpr/did-btc1-js/blob/4ab6f99
 
 ### op
 
-> **op**: `string`
+&gt; **op**: `string`
 
 Defined in: [interfaces.ts:7](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L7)
 
@@ -30,7 +30,7 @@ Defined in: [interfaces.ts:7](https://github.com/dcdpr/did-btc1-js/blob/4ab6f991
 
 ### path
 
-> **path**: `string`
+&gt; **path**: `string`
 
 Defined in: [interfaces.ts:8](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L8)
 
@@ -38,6 +38,6 @@ Defined in: [interfaces.ts:8](https://github.com/dcdpr/did-btc1-js/blob/4ab6f991
 
 ### value?
 
-> `optional` **value**: `any`
+&gt; `optional` **value**: `any`
 
 Defined in: [interfaces.ts:9](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L9)

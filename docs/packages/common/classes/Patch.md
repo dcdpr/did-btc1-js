@@ -20,7 +20,7 @@ apply to a JavaScript Object Notation (JSON) document; it is suitable for use wi
 
 ### Constructor
 
-> **new Patch**(): `Patch`
+&gt; **new Patch**(): `Patch`
 
 #### Returns
 
@@ -30,7 +30,7 @@ apply to a JavaScript Object Notation (JSON) document; it is suitable for use wi
 
 ### apply()
 
-> **apply**(`sourceDocument`, `operations`): [`JSONObject`](../type-aliases/JSONObject.md)
+&gt; **apply**(`sourceDocument`, `operations`): [`JSONObject`](../type-aliases/JSONObject.md)
 
 Defined in: [patch.ts:23](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/patch.ts#L23)
 
@@ -64,7 +64,7 @@ If an unsupported operation is provided.
 
 ### create()
 
-> **create**(`patches`): [`PatchOperation`](../interfaces/PatchOperation.md)[]
+&gt; **create**(`patches`): [`PatchOperation`](../interfaces/PatchOperation.md)[]
 
 Defined in: [patch.ts:82](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/patch.ts#L82)
 
@@ -88,11 +88,11 @@ A single-entry JSON Patch array.
 
 ### diff()
 
-> **diff**(`sourceDocument`, `targetDocument`, `path`): [`PatchOperation`](../interfaces/PatchOperation.md)[]
+&gt; **diff**(`sourceDocument`, `targetDocument`, `path`): [`PatchOperation`](../interfaces/PatchOperation.md)[]
 
 Defined in: [patch.ts:104](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/patch.ts#L104)
 
-Find the diff between a source and target document constructing the patch operations from source => target.
+Find the diff between a source and target document constructing the patch operations from source =&gt; target.
 
 #### Parameters
 

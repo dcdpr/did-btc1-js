@@ -6,7 +6,7 @@
 
 # Type Alias: Received
 
-> **Received** = `object`
+&gt; **Received** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:637](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L637)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:637](https://github.com/dcdpr/
 
 ### account
 
-> **account**: `string`
+&gt; **account**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:639](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L639)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:639](https://github.com/dcdpr/
 
 ### amount
 
-> **amount**: `number`
+&gt; **amount**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:640](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L640)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:640](https://github.com/dcdpr/
 
 ### confirmations
 
-> **confirmations**: `number`
+&gt; **confirmations**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:641](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L641)
 
@@ -38,7 +38,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:641](https://github.com/dcdpr/
 
 ### involvesWatchonly?
 
-> `optional` **involvesWatchonly**: `boolean`
+&gt; `optional` **involvesWatchonly**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:638](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L638)
 
@@ -46,6 +46,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:638](https://github.com/dcdpr/
 
 ### label
 
-> **label**: `string`
+&gt; **label**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:642](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L642)

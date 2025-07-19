@@ -6,7 +6,7 @@
 
 # Type Alias: ListTransactionsResult
 
-> **ListTransactionsResult** = `object` & [`WalletTxBase`](WalletTxBase.md)
+&gt; **ListTransactionsResult** = `object` & [`WalletTxBase`](WalletTxBase.md)
 
 Defined in: [packages/method/src/types/bitcoin.ts:822](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L822)
 
@@ -14,12 +14,12 @@ Defined in: [packages/method/src/types/bitcoin.ts:822](https://github.com/dcdpr/
 
 ### abandoned?
 
-> `optional` **abandoned**: `boolean`
+&gt; `optional` **abandoned**: `boolean`
 
 ### otheraccount?
 
-> `optional` **otheraccount**: `string`
+&gt; `optional` **otheraccount**: `string`
 
 ### trusted
 
-> **trusted**: `boolean`
+&gt; **trusted**: `boolean`

@@ -28,7 +28,7 @@ communication of the DID document; private DID resolution; and non-repudiation a
 
 ### Constructor
 
-> **new DidBtc1**(): `DidBtc1`
+&gt; **new DidBtc1**(): `DidBtc1`
 
 #### Returns
 
@@ -38,7 +38,7 @@ communication of the DID document; private DID resolution; and non-repudiation a
 
 ### methodName
 
-> `static` **methodName**: `string` = `'btc1'`
+&gt; `static` **methodName**: `string` = `'btc1'`
 
 Defined in: [packages/method/src/did-btc1.ts:47](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/did-btc1.ts#L47)
 
@@ -46,7 +46,7 @@ Defined in: [packages/method/src/did-btc1.ts:47](https://github.com/dcdpr/did-bt
 
 ### create()
 
-> `static` **create**(`params`): `Promise`\<[`Btc1CreateResponse`](../type-aliases/Btc1CreateResponse.md)\>
+&gt; `static` **create**(`params`): `Promise`\<[`Btc1CreateResponse`](../type-aliases/Btc1CreateResponse.md)\&gt;
 
 Defined in: [packages/method/src/did-btc1.ts:67](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/did-btc1.ts#L67)
 
@@ -68,7 +68,7 @@ See [Btc1CreateParams](../type-aliases/Btc1CreateParams.md) for details.
 
 #### Returns
 
-`Promise`\<[`Btc1CreateResponse`](../type-aliases/Btc1CreateResponse.md)\>
+`Promise`\<[`Btc1CreateResponse`](../type-aliases/Btc1CreateResponse.md)\&gt;
 
 Promise resolving to a CreateResponse object.
 
@@ -80,7 +80,7 @@ if any of the checks fail
 
 ### getSigningMethod()
 
-> `static` **getSigningMethod**(`params`): [`Btc1VerificationMethod`](Btc1VerificationMethod.md)
+&gt; `static` **getSigningMethod**(`params`): [`Btc1VerificationMethod`](Btc1VerificationMethod.md)
 
 Defined in: [packages/method/src/did-btc1.ts:256](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/did-btc1.ts#L256)
 
@@ -121,7 +121,7 @@ if the parsed did method does not match `btc1` or signing method could not be de
 
 ### resolve()
 
-> `static` **resolve**(`identifier`, `options`): `Promise`\<`DidResolutionResult`\>
+&gt; `static` **resolve**(`identifier`, `options`): `Promise`\<`DidResolutionResult`\&gt;
 
 Defined in: [packages/method/src/did-btc1.ts:114](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/did-btc1.ts#L114)
 
@@ -150,7 +150,7 @@ Optional parameters for the resolution operation
 
 #### Returns
 
-`Promise`\<`DidResolutionResult`\>
+`Promise`\<`DidResolutionResult`\&gt;
 
 Promise resolving to a DID Resolution Result
 
@@ -172,7 +172,7 @@ const resolution = await DidBtc1.resolve('did:btc1:k1q0dygyp3gz969tp46dychzy4q78
 
 ### update()
 
-> `static` **update**(`params`): `Promise`\<`any`\>
+&gt; `static` **update**(`params`): `Promise`\<`any`\&gt;
 
 Defined in: [packages/method/src/did-btc1.ts:182](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/did-btc1.ts#L182)
 
@@ -234,7 +234,7 @@ The verificationMethod ID to sign the update
 
 #### Returns
 
-`Promise`\<`any`\>
+`Promise`\<`any`\&gt;
 
 Promise resolving to void
 

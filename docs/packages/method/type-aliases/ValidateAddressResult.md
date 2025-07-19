@@ -6,7 +6,7 @@
 
 # Type Alias: ValidateAddressResult
 
-> **ValidateAddressResult** = `object`
+&gt; **ValidateAddressResult** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:563](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L563)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:563](https://github.com/dcdpr/
 
 ### account?
 
-> `optional` **account**: `string`
+&gt; `optional` **account**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:576](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L576)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:576](https://github.com/dcdpr/
 
 ### address?
 
-> `optional` **address**: `string`
+&gt; `optional` **address**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:565](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L565)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:565](https://github.com/dcdpr/
 
 ### addresses?
 
-> `optional` **addresses**: `string`[]
+&gt; `optional` **addresses**: `string`[]
 
 Defined in: [packages/method/src/types/bitcoin.ts:572](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L572)
 
@@ -38,7 +38,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:572](https://github.com/dcdpr/
 
 ### hdkeypath?
 
-> `optional` **hdkeypath**: `string`
+&gt; `optional` **hdkeypath**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:578](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L578)
 
@@ -46,7 +46,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:578](https://github.com/dcdpr/
 
 ### hdmasterkeyid?
 
-> `optional` **hdmasterkeyid**: `string`
+&gt; `optional` **hdmasterkeyid**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:579](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L579)
 
@@ -54,7 +54,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:579](https://github.com/dcdpr/
 
 ### hex?
 
-> `optional` **hex**: `string`
+&gt; `optional` **hex**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:571](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L571)
 
@@ -62,7 +62,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:571](https://github.com/dcdpr/
 
 ### iscompressed?
 
-> `optional` **iscompressed**: `boolean`
+&gt; `optional` **iscompressed**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:575](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L575)
 
@@ -70,7 +70,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:575](https://github.com/dcdpr/
 
 ### ismine?
 
-> `optional` **ismine**: `boolean`
+&gt; `optional` **ismine**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:567](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L567)
 
@@ -78,7 +78,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:567](https://github.com/dcdpr/
 
 ### isscript?
 
-> `optional` **isscript**: `boolean`
+&gt; `optional` **isscript**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:569](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L569)
 
@@ -86,7 +86,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:569](https://github.com/dcdpr/
 
 ### isvalid
 
-> **isvalid**: `boolean`
+&gt; **isvalid**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:564](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L564)
 
@@ -94,7 +94,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:564](https://github.com/dcdpr/
 
 ### iswatchonly?
 
-> `optional` **iswatchonly**: `boolean`
+&gt; `optional` **iswatchonly**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:568](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L568)
 
@@ -102,7 +102,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:568](https://github.com/dcdpr/
 
 ### pubkey?
 
-> `optional` **pubkey**: `string`
+&gt; `optional` **pubkey**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:574](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L574)
 
@@ -110,7 +110,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:574](https://github.com/dcdpr/
 
 ### script?
 
-> `optional` **script**: `string`
+&gt; `optional` **script**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:570](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L570)
 
@@ -118,7 +118,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:570](https://github.com/dcdpr/
 
 ### scriptPubKey?
 
-> `optional` **scriptPubKey**: `string`
+&gt; `optional` **scriptPubKey**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:566](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L566)
 
@@ -126,7 +126,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:566](https://github.com/dcdpr/
 
 ### sigsrequired?
 
-> `optional` **sigsrequired**: `number`
+&gt; `optional` **sigsrequired**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:573](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L573)
 
@@ -134,6 +134,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:573](https://github.com/dcdpr/
 
 ### timestamp?
 
-> `optional` **timestamp**: `number`
+&gt; `optional` **timestamp**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:577](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L577)

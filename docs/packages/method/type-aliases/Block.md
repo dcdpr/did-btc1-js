@@ -6,7 +6,7 @@
 
 # Type Alias: Block
 
-> **Block** = `object`
+&gt; **Block** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:375](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L375)
 
@@ -22,7 +22,7 @@ Block and GetBlock
 
 ### bits
 
-> **bits**: `string`
+&gt; **bits**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:385](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L385)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:385](https://github.com/dcdpr/
 
 ### chainwork
 
-> **chainwork**: `string`
+&gt; **chainwork**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:387](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L387)
 
@@ -38,7 +38,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:387](https://github.com/dcdpr/
 
 ### confirmations
 
-> **confirmations**: `number`
+&gt; **confirmations**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:377](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L377)
 
@@ -46,7 +46,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:377](https://github.com/dcdpr/
 
 ### difficulty
 
-> **difficulty**: `number`
+&gt; **difficulty**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:386](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L386)
 
@@ -54,7 +54,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:386](https://github.com/dcdpr/
 
 ### hash
 
-> **hash**: `string`
+&gt; **hash**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:376](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L376)
 
@@ -62,7 +62,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:376](https://github.com/dcdpr/
 
 ### height
 
-> **height**: `number`
+&gt; **height**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:378](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L378)
 
@@ -70,7 +70,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:378](https://github.com/dcdpr/
 
 ### mediantime
 
-> **mediantime**: `number`
+&gt; **mediantime**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:383](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L383)
 
@@ -78,7 +78,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:383](https://github.com/dcdpr/
 
 ### merkleroot
 
-> **merkleroot**: `string`
+&gt; **merkleroot**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:381](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L381)
 
@@ -86,7 +86,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:381](https://github.com/dcdpr/
 
 ### nextblockhash?
 
-> `optional` **nextblockhash**: `string`
+&gt; `optional` **nextblockhash**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:390](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L390)
 
@@ -94,7 +94,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:390](https://github.com/dcdpr/
 
 ### nonce
 
-> **nonce**: `number`
+&gt; **nonce**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:384](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L384)
 
@@ -102,7 +102,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:384](https://github.com/dcdpr/
 
 ### nTx
 
-> **nTx**: `number`
+&gt; **nTx**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:388](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L388)
 
@@ -110,7 +110,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:388](https://github.com/dcdpr/
 
 ### previousblockhash
 
-> **previousblockhash**: `string`
+&gt; **previousblockhash**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:389](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L389)
 
@@ -118,7 +118,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:389](https://github.com/dcdpr/
 
 ### size
 
-> **size**: `number`
+&gt; **size**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:392](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L392)
 
@@ -126,7 +126,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:392](https://github.com/dcdpr/
 
 ### strippedsize
 
-> **strippedsize**: `number`
+&gt; **strippedsize**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:391](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L391)
 
@@ -134,7 +134,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:391](https://github.com/dcdpr/
 
 ### time
 
-> **time**: `number`
+&gt; **time**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:382](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L382)
 
@@ -142,7 +142,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:382](https://github.com/dcdpr/
 
 ### version
 
-> **version**: `number`
+&gt; **version**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:379](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L379)
 
@@ -150,7 +150,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:379](https://github.com/dcdpr/
 
 ### versionHex
 
-> **versionHex**: `string`
+&gt; **versionHex**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:380](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L380)
 
@@ -158,6 +158,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:380](https://github.com/dcdpr/
 
 ### weight
 
-> **weight**: `number`
+&gt; **weight**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:393](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L393)

@@ -17,7 +17,7 @@ Sidecar data for a specific Beacon Signal. Different Beacon types store differen
 
 ### smtProof?
 
-> `optional` **smtProof**: [`SmtProof`](SmtProof.md)
+&gt; `optional` **smtProof**: [`SmtProof`](SmtProof.md)
 
 Defined in: [interfaces.ts:240](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L240)
 
@@ -28,7 +28,7 @@ is included (or not included) in the aggregator's Sparse Merkle Tree.
 
 ### updateBundle?
 
-> `optional` **updateBundle**: [`DidUpdateBundle`](DidUpdateBundle.md)
+&gt; `optional` **updateBundle**: [`DidUpdateBundle`](DidUpdateBundle.md)
 
 Defined in: [interfaces.ts:235](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L235)
 
@@ -36,6 +36,6 @@ Defined in: [interfaces.ts:235](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9
 
 ### updatePayload?
 
-> `optional` **updatePayload**: [`DidUpdateInvocation`](DidUpdateInvocation.md)
+&gt; `optional` **updatePayload**: [`DidUpdateInvocation`](DidUpdateInvocation.md)
 
 Defined in: [interfaces.ts:234](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L234)

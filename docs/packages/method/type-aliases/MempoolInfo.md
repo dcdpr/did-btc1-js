@@ -6,7 +6,7 @@
 
 # Type Alias: MempoolInfo
 
-> **MempoolInfo** = `object`
+&gt; **MempoolInfo** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:349](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L349)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:349](https://github.com/dcdpr/
 
 ### bytes
 
-> **bytes**: `number`
+&gt; **bytes**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:351](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L351)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:351](https://github.com/dcdpr/
 
 ### maxmempol
 
-> **maxmempol**: `number`
+&gt; **maxmempol**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:353](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L353)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:353](https://github.com/dcdpr/
 
 ### mempoolminfee
 
-> **mempoolminfee**: `number`
+&gt; **mempoolminfee**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:354](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L354)
 
@@ -38,7 +38,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:354](https://github.com/dcdpr/
 
 ### minrelaytxfee
 
-> **minrelaytxfee**: `number`
+&gt; **minrelaytxfee**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:355](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L355)
 
@@ -46,7 +46,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:355](https://github.com/dcdpr/
 
 ### size
 
-> **size**: `number`
+&gt; **size**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:350](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L350)
 
@@ -54,6 +54,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:350](https://github.com/dcdpr/
 
 ### usage
 
-> **usage**: `number`
+&gt; **usage**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:352](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L352)

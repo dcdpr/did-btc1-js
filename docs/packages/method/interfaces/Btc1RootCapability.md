@@ -12,7 +12,7 @@ Defined in: [packages/method/src/interfaces/crud.ts:20](https://github.com/dcdpr
 
 ### @context
 
-> **@context**: `string`
+&gt; **@context**: `string`
 
 Defined in: [packages/method/src/interfaces/crud.ts:21](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/crud.ts#L21)
 
@@ -20,7 +20,7 @@ Defined in: [packages/method/src/interfaces/crud.ts:21](https://github.com/dcdpr
 
 ### controller
 
-> **controller**: `string`
+&gt; **controller**: `string`
 
 Defined in: [packages/method/src/interfaces/crud.ts:23](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/crud.ts#L23)
 
@@ -28,7 +28,7 @@ Defined in: [packages/method/src/interfaces/crud.ts:23](https://github.com/dcdpr
 
 ### id
 
-> **id**: `string`
+&gt; **id**: `string`
 
 Defined in: [packages/method/src/interfaces/crud.ts:22](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/crud.ts#L22)
 
@@ -36,6 +36,6 @@ Defined in: [packages/method/src/interfaces/crud.ts:22](https://github.com/dcdpr
 
 ### invocationTarget
 
-> **invocationTarget**: `string`
+&gt; **invocationTarget**: `string`
 
 Defined in: [packages/method/src/interfaces/crud.ts:24](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/crud.ts#L24)

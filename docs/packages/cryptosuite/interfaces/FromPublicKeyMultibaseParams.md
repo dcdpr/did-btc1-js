@@ -16,7 +16,7 @@ Defined in: [multikey/interface.ts:24](https://github.com/dcdpr/did-btc1-js/blob
 
 ### controller
 
-> **controller**: `string`
+&gt; **controller**: `string`
 
 Defined in: [multikey/interface.ts:15](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/interface.ts#L15)
 
@@ -28,7 +28,7 @@ Defined in: [multikey/interface.ts:15](https://github.com/dcdpr/did-btc1-js/blob
 
 ### id
 
-> **id**: `string`
+&gt; **id**: `string`
 
 Defined in: [multikey/interface.ts:14](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/interface.ts#L14)
 
@@ -40,6 +40,6 @@ Defined in: [multikey/interface.ts:14](https://github.com/dcdpr/did-btc1-js/blob
 
 ### publicKeyMultibase
 
-> **publicKeyMultibase**: `string`
+&gt; **publicKeyMultibase**: `string`
 
 Defined in: [multikey/interface.ts:25](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/interface.ts#L25)

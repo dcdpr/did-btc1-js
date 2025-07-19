@@ -16,7 +16,7 @@ Defined in: [packages/method/src/types/crud.ts:26](https://github.com/dcdpr/did-
 
 ### did
 
-> **did**: `string`
+&gt; **did**: `string`
 
 Defined in: [packages/method/src/types/crud.ts:16](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/crud.ts#L16)
 
@@ -28,6 +28,6 @@ Defined in: [packages/method/src/types/crud.ts:16](https://github.com/dcdpr/did-
 
 ### smtProof
 
-> **smtProof**: `Bytes`
+&gt; **smtProof**: `Bytes`
 
 Defined in: [packages/method/src/types/crud.ts:28](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/crud.ts#L28)

@@ -1,0 +1,39 @@
+# .github/workflows/deploy.yml
+name: Deploy VitePress to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js with pnpm
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'pnpm'
+
+      - name: 📦 Install pnpm
+        run: npm install -g pnpm
+
+      - name: 📥 Install dependencies
+        run: pnpm install -r --no-lockfile
+
+      - name: 📚 Build VitePress site
+        run: |
+          pnpm docs:build
+
+      - name: 🚀 Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+        with:
+          publish_dir: docs/.vitepress/dist

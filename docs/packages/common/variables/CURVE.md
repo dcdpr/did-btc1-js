@@ -6,7 +6,7 @@
 
 # Variable: CURVE
 
-> `const` **CURVE**: `object`
+&gt; `const` **CURVE**: `object`
 
 Defined in: [constants.ts:53](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/constants.ts#L53)
 
@@ -14,24 +14,24 @@ Defined in: [constants.ts:53](https://github.com/dcdpr/did-btc1-js/blob/4ab6f991
 
 ### a
 
-> **a**: `bigint`
+&gt; **a**: `bigint`
 
 ### b
 
-> **b**: `bigint`
+&gt; **b**: `bigint`
 
 ### Gx
 
-> **Gx**: `bigint`
+&gt; **Gx**: `bigint`
 
 ### Gy
 
-> **Gy**: `bigint`
+&gt; **Gy**: `bigint`
 
 ### n
 
-> **n**: `bigint`
+&gt; **n**: `bigint`
 
 ### p
 
-> **p**: `bigint`
+&gt; **p**: `bigint`

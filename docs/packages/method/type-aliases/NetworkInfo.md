@@ -6,7 +6,7 @@
 
 # Type Alias: NetworkInfo
 
-> **NetworkInfo** = `object`
+&gt; **NetworkInfo** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:144](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L144)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:144](https://github.com/dcdpr/
 
 ### connections
 
-> **connections**: `number`
+&gt; **connections**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:151](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L151)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:151](https://github.com/dcdpr/
 
 ### incrementalfee
 
-> **incrementalfee**: `number`
+&gt; **incrementalfee**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:161](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L161)
 
@@ -30,27 +30,27 @@ Defined in: [packages/method/src/types/bitcoin.ts:161](https://github.com/dcdpr/
 
 ### localaddresses
 
-> **localaddresses**: `object`[]
+&gt; **localaddresses**: `object`[]
 
 Defined in: [packages/method/src/types/bitcoin.ts:162](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L162)
 
 #### address
 
-> **address**: `string`
+&gt; **address**: `string`
 
 #### port
 
-> **port**: `number`
+&gt; **port**: `number`
 
 #### score
 
-> **score**: `number`
+&gt; **score**: `number`
 
 ***
 
 ### localrelay
 
-> **localrelay**: `boolean`
+&gt; **localrelay**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:149](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L149)
 
@@ -58,7 +58,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:149](https://github.com/dcdpr/
 
 ### localservices
 
-> **localservices**: `string`
+&gt; **localservices**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:148](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L148)
 
@@ -66,7 +66,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:148](https://github.com/dcdpr/
 
 ### networkactive
 
-> **networkactive**: `boolean`
+&gt; **networkactive**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:152](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L152)
 
@@ -74,35 +74,35 @@ Defined in: [packages/method/src/types/bitcoin.ts:152](https://github.com/dcdpr/
 
 ### networks
 
-> **networks**: `object`[]
+&gt; **networks**: `object`[]
 
 Defined in: [packages/method/src/types/bitcoin.ts:153](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L153)
 
 #### limited
 
-> **limited**: `boolean`
+&gt; **limited**: `boolean`
 
 #### name
 
-> **name**: `string`
+&gt; **name**: `string`
 
 #### proxy
 
-> **proxy**: `string`
+&gt; **proxy**: `string`
 
 #### proxy\_randomize\_credentials
 
-> **proxy\_randomize\_credentials**: `boolean`
+&gt; **proxy\_randomize\_credentials**: `boolean`
 
 #### reachable
 
-> **reachable**: `boolean`
+&gt; **reachable**: `boolean`
 
 ***
 
 ### protocolversion
 
-> **protocolversion**: `number`
+&gt; **protocolversion**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:147](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L147)
 
@@ -110,7 +110,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:147](https://github.com/dcdpr/
 
 ### relayfee
 
-> **relayfee**: `number`
+&gt; **relayfee**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:160](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L160)
 
@@ -118,7 +118,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:160](https://github.com/dcdpr/
 
 ### subversion
 
-> **subversion**: `string`
+&gt; **subversion**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:146](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L146)
 
@@ -126,7 +126,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:146](https://github.com/dcdpr/
 
 ### timeoffset
 
-> **timeoffset**: `number`
+&gt; **timeoffset**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:150](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L150)
 
@@ -134,7 +134,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:150](https://github.com/dcdpr/
 
 ### version
 
-> **version**: `number`
+&gt; **version**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:145](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L145)
 
@@ -142,6 +142,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:145](https://github.com/dcdpr/
 
 ### warnings?
 
-> `optional` **warnings**: `string`
+&gt; `optional` **warnings**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:167](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L167)

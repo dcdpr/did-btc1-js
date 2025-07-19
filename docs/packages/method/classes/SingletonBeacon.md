@@ -26,7 +26,7 @@ material that controls it are generated is left to the implementation.
 
 ### Constructor
 
-> **new SingletonBeacon**(`service`, `sidecar?`): `SingletonBeacon`
+&gt; **new SingletonBeacon**(`service`, `sidecar?`): `SingletonBeacon`
 
 Defined in: [packages/method/src/btc1/beacon/singleton.ts:33](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/beacon/singleton.ts#L33)
 
@@ -58,7 +58,7 @@ Optional sidecar data.
 
 ### id
 
-> **id**: `string`
+&gt; **id**: `string`
 
 Defined in: [packages/method/src/interfaces/beacon.ts:37](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L37)
 
@@ -72,7 +72,7 @@ A unique identifier for the Beacon
 
 ### serviceEndpoint
 
-> **serviceEndpoint**: `DidServiceEndpoint`
+&gt; **serviceEndpoint**: `DidServiceEndpoint`
 
 Defined in: [packages/method/src/interfaces/beacon.ts:39](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L39)
 
@@ -86,7 +86,7 @@ The service endpoint of the Beacon
 
 ### sidecar?
 
-> `optional` **sidecar**: `undefined`
+&gt; `optional` **sidecar**: `undefined`
 
 Defined in: [packages/method/src/interfaces/beacon.ts:40](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L40)
 
@@ -98,7 +98,7 @@ Defined in: [packages/method/src/interfaces/beacon.ts:40](https://github.com/dcd
 
 ### type
 
-> **type**: `string`
+&gt; **type**: `string`
 
 Defined in: [packages/method/src/interfaces/beacon.ts:38](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/beacon.ts#L38)
 
@@ -114,7 +114,7 @@ The type of the Beacon
 
 #### Get Signature
 
-> **get** **service**(): [`BeaconService`](../interfaces/BeaconService.md)
+&gt; **get** **service**(): [`BeaconService`](../interfaces/BeaconService.md)
 
 Defined in: [packages/method/src/btc1/beacon/singleton.ts:42](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/beacon/singleton.ts#L42)
 
@@ -134,7 +134,7 @@ Returns the Beacon Service object
 
 ### broadcastSignal()
 
-> **broadcastSignal**(`didUpdatePayload`): `Promise`\<[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)\>
+&gt; **broadcastSignal**(`didUpdatePayload`): `Promise`&lt;[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)&gt;
 
 Defined in: [packages/method/src/btc1/beacon/singleton.ts:179](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/beacon/singleton.ts#L179)
 
@@ -143,7 +143,7 @@ Implements [5.1.2 Broadcast Singleton Beacon Signal](https://dcdpr.github.io/did
 The Broadcast Singleton Beacon Signal algorithm is called by the Announce DID Update algorithm as part of the
 Update operation, if the Beacon being used is of the type SingletonBeacon. It takes as input a Beacon service and a
 secured didUpdatePayload. The algorithm constructs a Bitcoin transaction that spends from the Beacon address
-identified in the service and contains a transaction output of the format [OP_RETURN, OP_PUSH32, <hashBytes>],
+identified in the service and contains a transaction output of the format [OP_RETURN, OP_PUSH32, &lt;hashBytes&gt;],
 where hashBytes is the SHA256 hash of the canonical didUpdatePayload. The Bitcoin transaction is then signed and
 broadcast to the Bitcoin network, thereby publicly announcing a DID update in a Beacon Signal. It returns a
 signalMetadata object mapping the Bitcoin transaction identifier of the Beacon Signal to the necessary data needed
@@ -161,7 +161,7 @@ The verificationMethod object to be used for signing.
 
 #### Returns
 
-`Promise`\<[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)\>
+`Promise`&gt;[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)&gt;
 
 Successful output of a bitcoin transaction.
 
@@ -177,7 +177,7 @@ if the bitcoin address is invalid or unfunded.
 
 ### generateSignal()
 
-> **generateSignal**(`didUpdatePayload`): [`BeaconSignal`](../interfaces/BeaconSignal.md)
+&gt; **generateSignal**(`didUpdatePayload`): [`BeaconSignal`](../interfaces/BeaconSignal.md)
 
 Defined in: [packages/method/src/btc1/beacon/singleton.ts:76](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/beacon/singleton.ts#L76)
 
@@ -209,7 +209,7 @@ if the signal is invalid.
 
 ### processSignal()
 
-> **processSignal**(`signal`, `signalsMetadata`): `Promise`\<`undefined` \| `DidUpdatePayload`\>
+&gt; **processSignal**(`signal`, `signalsMetadata`): `Promise`&gt;`undefined` \| `DidUpdatePayload`&gt;
 
 Defined in: [packages/method/src/btc1/beacon/singleton.ts:96](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/beacon/singleton.ts#L96)
 
@@ -237,7 +237,7 @@ Bitcoin transaction representing a Beacon Signal.
 
 #### Returns
 
-`Promise`\<`undefined` \| `DidUpdatePayload`\>
+`Promise`&gt;`undefined` \| `DidUpdatePayload`&gt;
 
 The DID Update payload announced by the Beacon Signal.
 
@@ -253,7 +253,7 @@ if the signalTx is invalid or the signalSidecarData is invalid.
 
 ### establish()
 
-> `static` **establish**(`service`, `sidecar`): `SingletonBeacon`
+&gt; `static` **establish**(`service`, `sidecar`): `SingletonBeacon`
 
 Defined in: [packages/method/src/btc1/beacon/singleton.ts:66](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/beacon/singleton.ts#L66)
 

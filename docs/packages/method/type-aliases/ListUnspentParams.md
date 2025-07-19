@@ -6,7 +6,7 @@
 
 # Type Alias: ListUnspentParams
 
-> **ListUnspentParams** = `object`
+&gt; **ListUnspentParams** = `object`
 
 Defined in: [packages/method/src/types/bitcoin.ts:930](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L930)
 
@@ -14,7 +14,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:930](https://github.com/dcdpr/
 
 ### address?
 
-> `optional` **address**: `string`[]
+&gt; `optional` **address**: `string`[]
 
 Defined in: [packages/method/src/types/bitcoin.ts:933](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L933)
 
@@ -22,7 +22,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:933](https://github.com/dcdpr/
 
 ### include\_unsafe?
 
-> `optional` **include\_unsafe**: `boolean`
+&gt; `optional` **include\_unsafe**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:934](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L934)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:934](https://github.com/dcdpr/
 
 ### maxconf?
 
-> `optional` **maxconf**: `number`
+&gt; `optional` **maxconf**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:932](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L932)
 
@@ -38,7 +38,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:932](https://github.com/dcdpr/
 
 ### minconf?
 
-> `optional` **minconf**: `number`
+&gt; `optional` **minconf**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:931](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L931)
 
@@ -46,6 +46,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:931](https://github.com/dcdpr/
 
 ### query\_options?
 
-> `optional` **query\_options**: [`ListUnspentOptions`](ListUnspentOptions.md)
+&gt; `optional` **query\_options**: [`ListUnspentOptions`](ListUnspentOptions.md)
 
 Defined in: [packages/method/src/types/bitcoin.ts:935](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L935)
