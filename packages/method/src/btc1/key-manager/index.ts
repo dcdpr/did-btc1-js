@@ -33,7 +33,6 @@ export class Btc1KeyManager implements KeyManager, CryptoSigner, BitcoinSigner  
    * Singleton instance of the Btc1KeyManager.
    * @private
    * @type {Btc1KeyManager}
-   * @static
    */
   static #instance?: Btc1KeyManager;
 
@@ -82,7 +81,6 @@ export class Btc1KeyManager implements KeyManager, CryptoSigner, BitcoinSigner  
 
   /**
    * Gets the singleton instance of the Btc1KeyManager.
-   * @static
    * @returns {Btc1KeyManager} The singleton instance of the Btc1KeyManager.
    */
   public static get instance(): Btc1KeyManager {

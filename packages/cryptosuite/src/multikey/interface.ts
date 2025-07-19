@@ -21,9 +21,6 @@ export interface FromSecretKey extends DidParams {
 export interface FromPublicKey extends DidParams {
   publicKeyBytes: KeyBytes;
 }
-export interface MultikeyParams extends DidParams {
-  keys?: SchnorrKeyPair;
-}
 export interface FromPublicKeyMultibaseParams extends DidParams {
   publicKeyMultibase: string;
 }

@@ -17,7 +17,6 @@ import { DataIntegrityProof } from '../data-integrity-proof/index.js';
 import { SchnorrMultikey } from '../multikey/index.js';
 import {
   CreateProofParams,
-  CryptosuiteParams,
   GenerateHashParams,
   ICryptosuite,
   ProofSerializationParams,
@@ -26,9 +25,14 @@ import {
   VerificationResult
 } from './interface.js';
 
+export interface CryptosuiteParams {
+  type?: 'DataIntegrityProof';
+  cryptosuite: 'bip340-jcs-2025' | 'bip340-rdfc-2025';
+  multikey: SchnorrMultikey;
+}
+
 /**
- * Implements
- * {@link https://dcdpr.github.io/data-integrity-schnorr-secp256k1/#instantiate-cryptosuite | 3.1 Instantiate Cryptosuite}
+ * Implements {@link https://dcdpr.github.io/data-integrity-schnorr-secp256k1/#instantiate-cryptosuite | 3.1 Instantiate Cryptosuite}
  *
  * The Instantiate Cryptosuite algorithm is used to configure a cryptographic suite to be used by the Add Proof and
  * Verify Proof functions in Verifiable Credential Data Integrity 1.0. The algorithm takes an options object
@@ -87,7 +91,6 @@ export class Cryptosuite implements ICryptosuite {
     this.algorithm = cryptosuite.includes('rdfc') ? 'rdfc' : 'jcs';
     JSON.canonicalization.algorithm = this.algorithm;
   }
-
 
   /**
    * Constructs an instance of DataIntegrityProof from the current Cryptosuite instance.

@@ -1,14 +1,23 @@
 import { Hex, MultikeyError, SignatureBytes, VERIFICATION_METHOD_ERROR } from '@did-btc1/common';
-import { SchnorrKeyPair, PublicKey, SecretKey } from '@did-btc1/keypair';
+import { PublicKey, SchnorrKeyPair, SecretKey } from '@did-btc1/keypair';
 import { schnorr, secp256k1 } from '@noble/curves/secp256k1';
 import { DidVerificationMethod } from '@web5/dids';
 import { randomBytes } from 'crypto';
 import { base58btc } from 'multiformats/bases/base58';
 import { Cryptosuite } from '../cryptosuite/index.js';
-import { FromPublicKey, FromPublicKeyMultibaseParams, FromSecretKey, Multikey, MultikeyObject, MultikeyParams } from './interface.js';
+import {
+  DidParams,
+  FromPublicKey,
+  FromPublicKeyMultibaseParams,
+  FromSecretKey,
+  Multikey,
+  MultikeyObject
+} from './interface.js';
 
 type CryptoOptions = { scheme: 'ecdsa' | 'schnorr' }
-
+interface MultikeyParams extends DidParams {
+  keys?: SchnorrKeyPair;
+}
 /**
  * SchnorrMultikey is an implementation of {@link https://dcdpr.github.io/data-integrity-schnorr-secp256k1/#multikey | 2.1.1 Multikey}.
  * The publicKeyMultibase value of the verification method MUST be a base-58-btc Multibase encoding of a Multikey encoded secp256k1 public key.

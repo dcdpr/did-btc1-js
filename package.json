@@ -1,6 +1,6 @@
 {
   "name": "did-btc1-js",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Monorepo for did:btc1 js/ts implementation and supporting packages.",
   "type": "module",
   "workspaces": [
