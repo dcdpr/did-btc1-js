@@ -1,7 +1,7 @@
 import { KeyBytes, Logger, Maybe } from '@did-btc1/common';
 import { SchnorrKeyPair } from '@did-btc1/keypair';
 import { nonceGen } from '@scure/btc-signer/musig2';
-import { Event, Filter, finalizeEvent, generateSecretKey, getPublicKey, nip44 } from 'nostr-tools';
+import { Event, Filter, finalizeEvent, nip44 } from 'nostr-tools';
 import { SimplePool, } from 'nostr-tools/pool';
 import { Btc1Identifier } from '../../../../../utils/identifier.js';
 import {
