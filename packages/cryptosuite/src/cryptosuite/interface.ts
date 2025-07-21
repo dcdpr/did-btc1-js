@@ -10,12 +10,6 @@ import {
 } from '@did-btc1/common';
 import { SchnorrMultikey } from '../multikey/index.js';
 
-export interface CryptosuiteParams {
-  type?: 'DataIntegrityProof';
-  cryptosuite: 'bip340-jcs-2025' | 'bip340-rdfc-2025';
-  multikey: SchnorrMultikey;
-}
-
 export interface CreateProofParams {
   options: ProofOptions;
   document: DidUpdatePayload;

@@ -25,8 +25,6 @@ import { SidecarData, SignalsMetadata } from '../types.js';
 export class CIDAggregateBeacon extends UpdateBeacon {
   /**
    * Creates an instance of CIDAggregateBeacon.
-   *
-   * @constructor
    * @param {BeaconService} service The service of the Beacon.
    * @param {?SidecarData} [sidecar] The sidecar data of the Beacon.
    */

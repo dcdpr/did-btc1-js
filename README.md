@@ -14,7 +14,6 @@ did:btc1 is created for those who wish to have it all:
 * long-term identifiers that can support frequent updates; and
 * Non-Repudiation appropriate for serious contracts.
 
-
 ## Technical Specification
 
 To learn more about did:btc1 method, visit the specification at [dcdpr.github.io/did-btc1](https://dcdpr.github.io/did-btc1/).
@@ -65,7 +64,7 @@ pnpm build
 To use the @did-btc1/method package in your own project, install it using your favorite package manager.
 
 ```sh
-pnpm install @did-btc1/{common,cryptosuite,key-pair,method}
+pnpm install @did-btc1/{common,cryptosuite,keypair,method}
 # Swap in npm or yarn depending on preference or requirement
 ```
 
@@ -76,7 +75,7 @@ Once installed, import the method to your project and use it to perform CRUD ope
 ```ts
 // ESM
 import { DidBtc1, BeaconUtils, getNetwork } from "@did-btc1/method";
-import { KeyPairUtils } from "@did-btc1/key-pair";
+import { KeyPairUtils } from "@did-btc1/keypair";
 
 const idType = 'key';
 const { publicKey } = KeyPairUtils.generate();
@@ -140,30 +139,30 @@ console.log('initialDocument', initialDocument);
 
 ## Packages
 
-* [@did-btc1/cryptosuite](/packages/cryptosuite/README.md)
-* [@did-btc1/common](/packages/common/README.md)
-* [@did-btc1/key-pair](/packages/key-pair/README.md)
-* [@did-btc1/method](/packages/method/README.md)
-* [@did-btc1/cli](/packages/cli/README.md)
-* [@did-btc1/smt](/packages/smt/README.md)
+* [@did-btc1/cryptosuite](packages/cryptosuite/README.md)
+* [@did-btc1/common](packages/common/README.md)
+* [@did-btc1/keypair](packages/keypair/README.md)
+* [@did-btc1/method](packages/method/README.md)
+* [@did-btc1/cli](packages/cli/README.md)
+* [@did-btc1/smt](packages/smt/README.md)
 
 ## Package Versions
 
-|                   package                      |                             npm                               |                               issues                                |                               prs                                  |
-| ---------------------------------------------- | :-----------------------------------------------------------: | :-----------------------------------------------------------------: | :----------------------------------------------------------------: |
-| [@did-btc1/common](/packages/common/)          | [![NPM Package][common-npm-badge]][common-npm-link]           | [![Open Issues][common-issues-badge]][common-issues-link]           | [![Open PRs][common-pulls-badge]][common-pulls-link]               |
-| [@did-btc1/cryptosuite](/packages/cryptosuite) | [![NPM Package][cryptosuite-npm-badge]][cryptosuite-npm-link] | [![Open Issues][cryptosuite-issues-badge]][cryptosuite-issues-link] | [![Open PRs][cryptosuite-pulls-badge]][cryptosuite-pulls-link]     |
-| [@did-btc1/key-pair](/packages/key-pair)       | [![NPM Package][key-pair-npm-badge]][key-pair-npm-link]       | [![Open Issues][key-pair-issues-badge]][key-pair-issues-link]       | [![Open PRs][key-pair-pulls-badge]][key-pair-pulls-link]           |
-| [@did-btc1/method](/packages/method/)          | [![NPM Package][method-npm-badge]][method-npm-link]           | [![Open Issues][method-issues-badge]][method-issues-link]           | [![Open PRs][method-pulls-badge]][method-pulls-link]               |
-| [@did-btc1/cli](/packages/cli/)                | [![NPM Package][cli-npm-badge]][cli-npm-link]                 | [![Open Issues][cli-issues-badge]][cli-issues-link]                 | [![Open PRs][cli-pulls-badge]][cli-pulls-link]                     |
-| [@did-btc1/smt](/packages/smt/)                | [![NPM Package][smt-npm-badge]][smt-npm-link]                 | [![Open Issues][smt-issues-badge]][smt-issues-link]                 | [![Open PRs][smt-pulls-badge]][smt-pulls-link]                     |
+|                   package                     |                             npm                               |                               issues                                |                               prs                                  |
+| ----------------------------------------------| :------------------------------------------------------------:| :------------------------------------------------------------------:| :-----------------------------------------------------------------:|
+| [@did-btc1/common](packages/common/)          | [![NPM Package][common-npm-badge]][common-npm-link]           | [![Open Issues][common-issues-badge]][common-issues-link]           | [![Open PRs][common-pulls-badge]][common-pulls-link]               |
+| [@did-btc1/cryptosuite](packages/cryptosuite) | [![NPM Package][cryptosuite-npm-badge]][cryptosuite-npm-link] | [![Open Issues][cryptosuite-issues-badge]][cryptosuite-issues-link] | [![Open PRs][cryptosuite-pulls-badge]][cryptosuite-pulls-link]     |
+| [@did-btc1/keypair](packages/keypair)         | [![NPM Package][keypair-npm-badge]][keypair-npm-link]         | [![Open Issues][keypair-issues-badge]][keypair-issues-link]       | [![Open PRs][keypair-pulls-badge]][keypair-pulls-link]               |
+| [@did-btc1/method](packages/method/)          | [![NPM Package][method-npm-badge]][method-npm-link]           | [![Open Issues][method-issues-badge]][method-issues-link]           | [![Open PRs][method-pulls-badge]][method-pulls-link]               |
+| [@did-btc1/cli](packages/cli/)                | [![NPM Package][cli-npm-badge]][cli-npm-link]                 | [![Open Issues][cli-issues-badge]][cli-issues-link]                 | [![Open PRs][cli-pulls-badge]][cli-pulls-link]                     |
+| [@did-btc1/smt](packages/smt/)                | [![NPM Package][smt-npm-badge]][smt-npm-link]                 | [![Open Issues][smt-issues-badge]][smt-issues-link]                 | [![Open PRs][smt-pulls-badge]][smt-pulls-link]                     |
 
 ## Project Resources
 
 | Resource                                   | Description                                                                   |
 | ------------------------------------------ | ----------------------------------------------------------------------------- |
-| [CODEOWNERS](./CODEOWNERS)                 | Outlines the project lead(s)                                                  |
-| [LICENSE](./LICENSE)                       | Project Open Source License [![MPL-2.0][mpl-license-badge]][mpl-license-link] |
+| [CODEOWNERS](CODEOWNERS)                 | Outlines the project lead(s)                                                  |
+| [LICENSE](LICENSE)                       | Project Open Source License [![MPL-2.0][mpl-license-badge]][mpl-license-link] |
 
 [mpl-license-badge]: https://img.shields.io/badge/license-MPL%202.0-blue.svg
 [mpl-license-link]: https://opensource.org/license/MPL-2.0
@@ -175,12 +174,12 @@ console.log('initialDocument', initialDocument);
 [common-pulls-badge]: https://img.shields.io/github/issues-pr/jintekc/did-btc1-js/package%3A%20common?label=PRs
 [common-pulls-link]: https://github.com/jintekc/did-btc1-js/pulls?q=is%3Aopen+is%3Apr+label%3A%22package%3A+common%22
 
-[key-pair-npm-badge]: https://img.shields.io/npm/v/@did-btc1/key-pair.svg?&color=green&santize=true
-[key-pair-npm-link]: https://www.npmjs.com/package/@did-btc1/key-pair
-[key-pair-issues-badge]: https://img.shields.io/github/issues/jintekc/did-btc1-js/package:%20key-pair?label=issues
-[key-pair-issues-link]: https://github.com/jintekc/did-btc1-js/issues?q=is%3Aopen+is%3Aissue+label%3A%22package%3A+key-pair%22
-[key-pair-pulls-badge]: https://img.shields.io/github/issues-pr/jintekc/did-btc1-js/package%3A%20key-pair?label=PRs
-[key-pair-pulls-link]: https://github.com/jintekc/did-btc1-js/pulls?q=is%3Aopen+is%3Apr+label%3A%22package%3A+key-pair%22
+[keypair-npm-badge]: https://img.shields.io/npm/v/@did-btc1/keypair.svg?&color=green&santize=true
+[keypair-npm-link]: https://www.npmjs.com/package/@did-btc1/keypair
+[keypair-issues-badge]: https://img.shields.io/github/issues/jintekc/did-btc1-js/package:%20keypair?label=issues
+[keypair-issues-link]: https://github.com/jintekc/did-btc1-js/issues?q=is%3Aopen+is%3Aissue+label%3A%22package%3A+keypair%22
+[keypair-pulls-badge]: https://img.shields.io/github/issues-pr/jintekc/did-btc1-js/package%3A%20keypair?label=PRs
+[keypair-pulls-link]: https://github.com/jintekc/did-btc1-js/pulls?q=is%3Aopen+is%3Apr+label%3A%22package%3A+keypair%22
 
 [cryptosuite-npm-badge]: https://img.shields.io/npm/v/@did-btc1/cryptosuite.svg?&color=green&santize=true
 [cryptosuite-npm-link]: https://www.npmjs.com/package/@did-btc1/cryptosuite

@@ -263,7 +263,6 @@ export class SecretKey implements ISecretKey {
 
   /**
    * Decodes the multibase string to the 34-byte secret key (2 byte prefix + 32 byte key).
-   * @static
    * @param {string} multibase The multibase string to decode
    * @returns {Bytes} The decoded secret key.
    */
@@ -299,7 +298,6 @@ export class SecretKey implements ISecretKey {
 
   /**
    * Creates a SecretKey object from a JSON object.
-   * @static
    * @param {SecretKeyObject} json The JSON object containing the secret key bytes
    * @returns {SecretKey} A new SecretKey object
    */
@@ -309,7 +307,6 @@ export class SecretKey implements ISecretKey {
 
   /**
    * Converts a SecretKey or KeyBytes to a Pair.
-   * @static
    * @param {KeyBytes} bytes
    * @returns {SchnorrKeyPair} The SchnorrKeyPair object containing the public and private keys
    * @throws {SecretKeyError} If the secret key is not valid
@@ -356,7 +353,7 @@ export class SecretKey implements ISecretKey {
   }
 
   /**
-   * Creates a new SecretKey object from a bigint secret.
+   * Creates a new SecretKey object from a bigint seed.
    * @static
    * @param {bigint} seed The seed bigint
    * @returns {SecretKey} A new SecretKey object
@@ -372,7 +369,6 @@ export class SecretKey implements ISecretKey {
 
   /**
    * Generates random secret key bytes.
-   * @static
    * @returns {KeyBytes} Uint8Array of 32 random bytes.
    */
   public static random(): KeyBytes {
@@ -386,7 +382,6 @@ export class SecretKey implements ISecretKey {
 
   /**
    * Creates a new SecretKey from random secret key bytes.
-   * @static
    * @returns {SecretKey} A new SecretKey object
    */
   public static generate(): SecretKey {
@@ -399,7 +394,6 @@ export class SecretKey implements ISecretKey {
 
   /**
    * Generates a public key from the given secret key bytes.
-   * @static
    * @param {KeyBytes} bytes The secret key bytes
    * @returns {KeyBytes} The computed public key bytes
    */
