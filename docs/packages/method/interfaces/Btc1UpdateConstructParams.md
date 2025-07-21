@@ -16,7 +16,7 @@ Defined in: [packages/method/src/btc1/crud/create.ts:20](https://github.com/dcdp
 
 ### identifier
 
-&gt; **identifier**: `string`
+> **identifier**: `string`
 
 Defined in: [packages/method/src/btc1/crud/create.ts:21](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L21)
 
@@ -24,7 +24,7 @@ Defined in: [packages/method/src/btc1/crud/create.ts:21](https://github.com/dcdp
 
 ### patch
 
-&gt; **patch**: `PatchOperation`[]
+> **patch**: `PatchOperation`[]
 
 Defined in: [packages/method/src/btc1/crud/create.ts:24](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L24)
 
@@ -32,7 +32,7 @@ Defined in: [packages/method/src/btc1/crud/create.ts:24](https://github.com/dcdp
 
 ### sourceDocument
 
-&gt; **sourceDocument**: [`Btc1DidDocument`](../classes/Btc1DidDocument.md)
+> **sourceDocument**: [`Btc1DidDocument`](../classes/Btc1DidDocument.md)
 
 Defined in: [packages/method/src/btc1/crud/create.ts:22](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L22)
 
@@ -40,6 +40,6 @@ Defined in: [packages/method/src/btc1/crud/create.ts:22](https://github.com/dcdp
 
 ### sourceVersionId
 
-&gt; **sourceVersionId**: `number`
+> **sourceVersionId**: `number`
 
 Defined in: [packages/method/src/btc1/crud/create.ts:23](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L23)

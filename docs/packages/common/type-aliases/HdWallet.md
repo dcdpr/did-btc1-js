@@ -6,7 +6,7 @@
 
 # Type Alias: HdWallet
 
-&gt; **HdWallet** = `object`
+> **HdWallet** = `object`
 
 Defined in: [types.ts:49](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/types.ts#L49)
 
@@ -14,7 +14,7 @@ Defined in: [types.ts:49](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95
 
 ### hdkey
 
-&gt; **hdkey**: `HDKey`
+> **hdkey**: `HDKey`
 
 Defined in: [types.ts:51](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/types.ts#L51)
 
@@ -22,6 +22,6 @@ Defined in: [types.ts:51](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95
 
 ### mnemonic
 
-&gt; **mnemonic**: `string`
+> **mnemonic**: `string`
 
 Defined in: [types.ts:50](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/types.ts#L50)

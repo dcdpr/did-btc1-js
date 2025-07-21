@@ -6,6 +6,6 @@
 
 # Variable: INVALID\_SIGNATURE
 
-&gt; **INVALID\_SIGNATURE**: [`INVALID_SIGNATURE`](../enumerations/Btc1ErrorCode.md#invalid_signature)
+> **INVALID\_SIGNATURE**: [`INVALID_SIGNATURE`](../enumerations/Btc1ErrorCode.md#invalid_signature)
 
 Defined in: [errors.ts:98](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/errors.ts#L98)

@@ -38,7 +38,7 @@ The sidecar data for resolving the DID Document
 
 ### network?
 
-&gt; `optional` **network**: `BitcoinNetworkNames`
+> `optional` **network**: `BitcoinNetworkNames`
 
 Defined in: [packages/method/src/interfaces/crud.ts:18](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/crud.ts#L18)
 
@@ -46,7 +46,7 @@ Defined in: [packages/method/src/interfaces/crud.ts:18](https://github.com/dcdpr
 
 ### rpc?
 
-&gt; `optional` **rpc**: `BitcoinRpc`
+> `optional` **rpc**: `BitcoinRpc`
 
 Defined in: [packages/method/src/interfaces/crud.ts:16](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/crud.ts#L16)
 
@@ -54,7 +54,7 @@ Defined in: [packages/method/src/interfaces/crud.ts:16](https://github.com/dcdpr
 
 ### sidecarData?
 
-&gt; `optional` **sidecarData**: `SidecarData`
+> `optional` **sidecarData**: `SidecarData`
 
 Defined in: [packages/method/src/interfaces/crud.ts:17](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/crud.ts#L17)
 
@@ -62,7 +62,7 @@ Defined in: [packages/method/src/interfaces/crud.ts:17](https://github.com/dcdpr
 
 ### versionId?
 
-&gt; `optional` **versionId**: `number`
+> `optional` **versionId**: `number`
 
 Defined in: [packages/method/src/interfaces/crud.ts:14](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/crud.ts#L14)
 
@@ -70,6 +70,6 @@ Defined in: [packages/method/src/interfaces/crud.ts:14](https://github.com/dcdpr
 
 ### versionTime?
 
-&gt; `optional` **versionTime**: `number`
+> `optional` **versionTime**: `number`
 
 Defined in: [packages/method/src/interfaces/crud.ts:15](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/crud.ts#L15)

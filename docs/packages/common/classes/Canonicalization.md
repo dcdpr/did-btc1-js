@@ -17,7 +17,7 @@ algorithms and encoding formats (hex and base58).
 
 ### Constructor
 
-&gt; **new Canonicalization**(`algorithm`): `Canonicalization`
+> **new Canonicalization**(`algorithm`): `Canonicalization`
 
 Defined in: [canonicalization.ts:23](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/canonicalization.ts#L23)
 
@@ -41,7 +41,7 @@ The canonicalization algorithm to use ('jcs' or 'rdfc').
 
 #### Get Signature
 
-&gt; **get** **algorithm**(): [`CanonicalizationAlgorithm`](../type-aliases/CanonicalizationAlgorithm.md)
+> **get** **algorithm**(): [`CanonicalizationAlgorithm`](../type-aliases/CanonicalizationAlgorithm.md)
 
 Defined in: [canonicalization.ts:47](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/canonicalization.ts#L47)
 
@@ -55,7 +55,7 @@ The current canonicalization algorithm.
 
 #### Set Signature
 
-&gt; **set** **algorithm**(`algorithm`): `void`
+> **set** **algorithm**(`algorithm`): `void`
 
 Defined in: [canonicalization.ts:31](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/canonicalization.ts#L31)
 
@@ -77,7 +77,7 @@ Either 'jcs' or 'rdfc'.
 
 ### base58()
 
-&gt; **base58**(`hashBytes`): `string`
+> **base58**(`hashBytes`): `string`
 
 Defined in: [canonicalization.ts:143](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/canonicalization.ts#L143)
 
@@ -101,7 +101,7 @@ The hash as a hex string.
 
 ### canonicalhash()
 
-&gt; **canonicalhash**(`object`): `Promise`\<[`Bytes`](../type-aliases/Bytes.md)\&gt;
+> **canonicalhash**(`object`): `Promise`\<[`Bytes`](../type-aliases/Bytes.md)\>
 
 Defined in: [canonicalization.ts:153](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/canonicalization.ts#L153)
 
@@ -118,7 +118,7 @@ The object to process.
 
 #### Returns
 
-`Promise`\<[`Bytes`](../type-aliases/Bytes.md)\&gt;
+`Promise`\<[`Bytes`](../type-aliases/Bytes.md)\>
 
 The final SHA-256 hash bytes.
 
@@ -126,7 +126,7 @@ The final SHA-256 hash bytes.
 
 ### canonicalize()
 
-&gt; **canonicalize**(`object`): `Promise`\<`string`\&gt;
+> **canonicalize**(`object`): `Promise`\<`string`\>
 
 Defined in: [canonicalization.ts:80](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/canonicalization.ts#L80)
 
@@ -142,7 +142,7 @@ The object to canonicalize.
 
 #### Returns
 
-`Promise`\<`string`\&gt;
+`Promise`\<`string`\>
 
 The canonicalized object.
 
@@ -150,7 +150,7 @@ The canonicalized object.
 
 ### encode()
 
-&gt; **encode**(`canonicalizedhash`, `encoding`): `string`
+> **encode**(`canonicalizedhash`, `encoding`): `string`
 
 Defined in: [canonicalization.ts:118](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/canonicalization.ts#L118)
 
@@ -184,7 +184,7 @@ If the encoding format is not supported.
 
 ### hash()
 
-&gt; **hash**(`canonicalized`): [`Bytes`](../type-aliases/Bytes.md)
+> **hash**(`canonicalized`): [`Bytes`](../type-aliases/Bytes.md)
 
 Defined in: [canonicalization.ts:107](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/canonicalization.ts#L107)
 
@@ -208,7 +208,7 @@ The SHA-256 HashBytes (Uint8Array).
 
 ### hashb58()
 
-&gt; **hashb58**(`canonicalized`): `string`
+> **hashb58**(`canonicalized`): `string`
 
 Defined in: [canonicalization.ts:174](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/canonicalization.ts#L174)
 
@@ -233,7 +233,7 @@ The SHA-256 hash as a base58 string.
 
 ### hashhex()
 
-&gt; **hashhex**(`canonicalized`): `string`
+> **hashhex**(`canonicalized`): `string`
 
 Defined in: [canonicalization.ts:164](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/canonicalization.ts#L164)
 
@@ -258,7 +258,7 @@ The SHA-256 hash as a hex string.
 
 ### hex()
 
-&gt; **hex**(`hashBytes`): `string`
+> **hex**(`hashBytes`): `string`
 
 Defined in: [canonicalization.ts:134](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/canonicalization.ts#L134)
 
@@ -282,7 +282,7 @@ The hash as a hex string.
 
 ### jcs()
 
-&gt; **jcs**(`object`): `any`
+> **jcs**(`object`): `any`
 
 Defined in: [canonicalization.ts:89](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/canonicalization.ts#L89)
 
@@ -306,7 +306,7 @@ The canonicalized object.
 
 ### process()
 
-&gt; **process**(`object`, `encoding`): `Promise`\<`string`\&gt;
+> **process**(`object`, `encoding`): `Promise`\<`string`\>
 
 Defined in: [canonicalization.ts:64](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/canonicalization.ts#L64)
 
@@ -334,7 +334,7 @@ The encoding format ('hex' or 'base58').
 
 #### Returns
 
-`Promise`\<`string`\&gt;
+`Promise`\<`string`\>
 
 The final SHA-256 hash bytes as a hex string.
 
@@ -342,7 +342,7 @@ The final SHA-256 hash bytes as a hex string.
 
 ### rdfc()
 
-&gt; **rdfc**(`object`): `Promise`\<`string`\&gt;
+> **rdfc**(`object`): `Promise`\<`string`\>
 
 Defined in: [canonicalization.ts:98](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/canonicalization.ts#L98)
 
@@ -358,6 +358,6 @@ The object to canonicalize.
 
 #### Returns
 
-`Promise`\<`string`\&gt;
+`Promise`\<`string`\>
 
 The canonicalized object.

@@ -12,7 +12,7 @@ Defined in: [cryptosuite/index.ts:28](https://github.com/dcdpr/did-btc1-js/blob/
 
 ### cryptosuite
 
-&gt; **cryptosuite**: `"bip340-jcs-2025"` \| `"bip340-rdfc-2025"`
+> **cryptosuite**: `"bip340-jcs-2025"` \| `"bip340-rdfc-2025"`
 
 Defined in: [cryptosuite/index.ts:30](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/index.ts#L30)
 
@@ -20,7 +20,7 @@ Defined in: [cryptosuite/index.ts:30](https://github.com/dcdpr/did-btc1-js/blob/
 
 ### multikey
 
-&gt; **multikey**: [`SchnorrMultikey`](../classes/SchnorrMultikey.md)
+> **multikey**: [`SchnorrMultikey`](../classes/SchnorrMultikey.md)
 
 Defined in: [cryptosuite/index.ts:31](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/index.ts#L31)
 
@@ -28,6 +28,6 @@ Defined in: [cryptosuite/index.ts:31](https://github.com/dcdpr/did-btc1-js/blob/
 
 ### type?
 
-&gt; `optional` **type**: `"DataIntegrityProof"`
+> `optional` **type**: `"DataIntegrityProof"`
 
 Defined in: [cryptosuite/index.ts:29](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/index.ts#L29)

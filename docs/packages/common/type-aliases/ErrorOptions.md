@@ -6,7 +6,7 @@
 
 # Type Alias: ErrorOptions
 
-&gt; **ErrorOptions** = `object`
+> **ErrorOptions** = `object`
 
 Defined in: [errors.ts:113](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/errors.ts#L113)
 
@@ -14,7 +14,7 @@ Defined in: [errors.ts:113](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d
 
 ### data?
 
-&gt; `optional` **data**: `any`
+> `optional` **data**: `any`
 
 Defined in: [errors.ts:116](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/errors.ts#L116)
 
@@ -22,7 +22,7 @@ Defined in: [errors.ts:116](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d
 
 ### name?
 
-&gt; `optional` **name**: `string`
+> `optional` **name**: `string`
 
 Defined in: [errors.ts:115](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/errors.ts#L115)
 
@@ -30,6 +30,6 @@ Defined in: [errors.ts:115](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d
 
 ### type?
 
-&gt; `optional` **type**: `string`
+> `optional` **type**: `string`
 
 Defined in: [errors.ts:114](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/errors.ts#L114)

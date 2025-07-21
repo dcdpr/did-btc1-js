@@ -12,7 +12,7 @@ Defined in: [packages/method/src/btc1/key-manager/interface.ts:95](https://githu
 
 ### digest()
 
-&gt; **digest**(`data`): `Bytes`
+> **digest**(`data`): `Bytes`
 
 Defined in: [packages/method/src/btc1/key-manager/interface.ts:118](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/interface.ts#L118)
 
@@ -36,7 +36,7 @@ The sha256 hash of the input data.
 
 ### sign()
 
-&gt; **sign**(`data`, `keyUri?`): `Promise`\<`Bytes`\&gt;
+> **sign**(`data`, `keyUri?`): `Promise`\<`Bytes`\>
 
 Defined in: [packages/method/src/btc1/key-manager/interface.ts:102](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/interface.ts#L102)
 
@@ -58,7 +58,7 @@ The URI of the key to sign the data with.
 
 #### Returns
 
-`Promise`\<`Bytes`\&gt;
+`Promise`\<`Bytes`\>
 
 The signature of the input data.
 
@@ -66,7 +66,7 @@ The signature of the input data.
 
 ### verify()
 
-&gt; **verify**(`signature`, `data`, `keyUri?`): `Promise`\<`boolean`\&gt;
+> **verify**(`signature`, `data`, `keyUri?`): `Promise`\<`boolean`\>
 
 Defined in: [packages/method/src/btc1/key-manager/interface.ts:111](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/interface.ts#L111)
 
@@ -94,6 +94,6 @@ The URI of the key to use for verification.
 
 #### Returns
 
-`Promise`\<`boolean`\&gt;
+`Promise`\<`boolean`\>
 
 A promise that resolves if the signature is valid, and rejects otherwise.

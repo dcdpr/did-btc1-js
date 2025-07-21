@@ -6,7 +6,7 @@
 
 # Type Alias: Point
 
-&gt; **Point** = `object`
+> **Point** = `object`
 
 Defined in: [types.ts:21](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/types.ts#L21)
 
@@ -14,7 +14,7 @@ Defined in: [types.ts:21](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95
 
 ### parity
 
-&gt; **parity**: `number`
+> **parity**: `number`
 
 Defined in: [types.ts:24](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/types.ts#L24)
 
@@ -22,7 +22,7 @@ Defined in: [types.ts:24](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95
 
 ### x
 
-&gt; **x**: `number`[]
+> **x**: `number`[]
 
 Defined in: [types.ts:22](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/types.ts#L22)
 
@@ -30,6 +30,6 @@ Defined in: [types.ts:22](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95
 
 ### y
 
-&gt; **y**: `number`[]
+> **y**: `number`[]
 
 Defined in: [types.ts:23](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/types.ts#L23)

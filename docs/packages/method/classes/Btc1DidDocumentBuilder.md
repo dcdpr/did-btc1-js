@@ -12,7 +12,7 @@ Defined in: [packages/method/src/utils/did-document-builder.ts:5](https://github
 
 ### Constructor
 
-&gt; **new Btc1DidDocumentBuilder**(`initialDocument`): `Btc1DidDocumentBuilder`
+> **new Btc1DidDocumentBuilder**(`initialDocument`): `Btc1DidDocumentBuilder`
 
 Defined in: [packages/method/src/utils/did-document-builder.ts:8](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document-builder.ts#L8)
 
@@ -20,7 +20,7 @@ Defined in: [packages/method/src/utils/did-document-builder.ts:8](https://github
 
 ##### initialDocument
 
-`Partial`\<[`Btc1DidDocument`](Btc1DidDocument.md)\&gt;
+`Partial`\<[`Btc1DidDocument`](Btc1DidDocument.md)\>
 
 #### Returns
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/utils/did-document-builder.ts:8](https://github
 
 ### build()
 
-&gt; **build**(): [`Btc1DidDocument`](Btc1DidDocument.md)
+> **build**(): [`Btc1DidDocument`](Btc1DidDocument.md)
 
 Defined in: [packages/method/src/utils/did-document-builder.ts:62](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document-builder.ts#L62)
 
@@ -42,7 +42,7 @@ Defined in: [packages/method/src/utils/did-document-builder.ts:62](https://githu
 
 ### withAssertionMethod()
 
-&gt; **withAssertionMethod**(`assertionMethod`): `this`
+> **withAssertionMethod**(`assertionMethod`): `this`
 
 Defined in: [packages/method/src/utils/did-document-builder.ts:34](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document-builder.ts#L34)
 
@@ -60,7 +60,7 @@ Defined in: [packages/method/src/utils/did-document-builder.ts:34](https://githu
 
 ### withAuthentication()
 
-&gt; **withAuthentication**(`authentication`): `this`
+> **withAuthentication**(`authentication`): `this`
 
 Defined in: [packages/method/src/utils/did-document-builder.ts:27](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document-builder.ts#L27)
 
@@ -78,7 +78,7 @@ Defined in: [packages/method/src/utils/did-document-builder.ts:27](https://githu
 
 ### withCapabilityDelegation()
 
-&gt; **withCapabilityDelegation**(`capabilityDelegation`): `this`
+> **withCapabilityDelegation**(`capabilityDelegation`): `this`
 
 Defined in: [packages/method/src/utils/did-document-builder.ts:48](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document-builder.ts#L48)
 
@@ -96,7 +96,7 @@ Defined in: [packages/method/src/utils/did-document-builder.ts:48](https://githu
 
 ### withCapabilityInvocation()
 
-&gt; **withCapabilityInvocation**(`capabilityInvocation`): `this`
+> **withCapabilityInvocation**(`capabilityInvocation`): `this`
 
 Defined in: [packages/method/src/utils/did-document-builder.ts:41](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document-builder.ts#L41)
 
@@ -114,7 +114,7 @@ Defined in: [packages/method/src/utils/did-document-builder.ts:41](https://githu
 
 ### withController()
 
-&gt; **withController**(`controller?`): `this`
+> **withController**(`controller?`): `this`
 
 Defined in: [packages/method/src/utils/did-document-builder.ts:20](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document-builder.ts#L20)
 
@@ -132,7 +132,7 @@ Defined in: [packages/method/src/utils/did-document-builder.ts:20](https://githu
 
 ### withService()
 
-&gt; **withService**(`service`): `this`
+> **withService**(`service`): `this`
 
 Defined in: [packages/method/src/utils/did-document-builder.ts:55](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document-builder.ts#L55)
 

@@ -21,7 +21,7 @@ Provides helpers methods for comparison and serialization.
 
 ### Constructor
 
-&gt; **new PublicKey**(`bytes`): `PublicKey`
+> **new PublicKey**(`bytes`): `PublicKey`
 
 Defined in: [public.ts:118](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L118)
 
@@ -49,7 +49,7 @@ if the byte length is not 32 (x-only) or 33 (compressed)
 
 #### Get Signature
 
-&gt; **get** **compressed**(): `Bytes`
+> **get** **compressed**(): `Bytes`
 
 Defined in: [public.ts:138](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L138)
 
@@ -71,7 +71,7 @@ The 33-byte compressed public key (0x02 or 0x03, x).
 
 #### Get Signature
 
-&gt; **get** **hex**(): `Hex`
+> **get** **hex**(): `Hex`
 
 Defined in: [public.ts:192](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L192)
 
@@ -93,7 +93,7 @@ The public key as a hex string.
 
 #### Get Signature
 
-&gt; **get** **multibase**(): `MultibaseObject`
+> **get** **multibase**(): `MultibaseObject`
 
 Defined in: [public.ts:183](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L183)
 
@@ -115,7 +115,7 @@ An object containing the multibase bytes, address and prefix.
 
 #### Get Signature
 
-&gt; **get** **parity**(): `number`
+> **get** **parity**(): `number`
 
 Defined in: [public.ts:156](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L156)
 
@@ -137,7 +137,7 @@ The parity byte of the public key.
 
 #### Get Signature
 
-&gt; **get** **point**(): [`Point`](../interfaces/Point.md)
+> **get** **point**(): [`Point`](../interfaces/Point.md)
 
 Defined in: [public.ts:201](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L201)
 
@@ -159,7 +159,7 @@ The public key point.
 
 #### Get Signature
 
-&gt; **get** **uncompressed**(): `Bytes`
+> **get** **uncompressed**(): `Bytes`
 
 Defined in: [public.ts:147](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L147)
 
@@ -181,7 +181,7 @@ The 65-byte uncompressed public key (0x04, x, y).
 
 #### Get Signature
 
-&gt; **get** **x**(): `Bytes`
+> **get** **x**(): `Bytes`
 
 Defined in: [public.ts:165](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L165)
 
@@ -203,7 +203,7 @@ The 32-byte x-coordinate of the public key.
 
 #### Get Signature
 
-&gt; **get** **y**(): `Bytes`
+> **get** **y**(): `Bytes`
 
 Defined in: [public.ts:174](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L174)
 
@@ -223,7 +223,7 @@ The 32-byte y-coordinate of the public key.
 
 ### decode()
 
-&gt; **decode**(): `Bytes`
+> **decode**(): `Bytes`
 
 Defined in: [public.ts:238](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L238)
 
@@ -243,7 +243,7 @@ The decoded public key: prefix and public key bytes
 
 ### encode()
 
-&gt; **encode**(): `string`
+> **encode**(): `string`
 
 Defined in: [public.ts:272](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L272)
 
@@ -263,7 +263,7 @@ The public key encoded in base-58-btc multibase format.
 
 ### equals()
 
-&gt; **equals**(`other`): `boolean`
+> **equals**(`other`): `boolean`
 
 Defined in: [public.ts:299](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L299)
 
@@ -291,7 +291,7 @@ True if the public keys are equal, false otherwise.
 
 ### json()
 
-&gt; **json**(): `PublicKeyObject`
+> **json**(): `PublicKeyObject`
 
 Defined in: [public.ts:307](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L307)
 
@@ -311,7 +311,7 @@ The PublicKey as a JSON object.
 
 ### liftX()
 
-&gt; **liftX**(): `Uint8Array`
+> **liftX**(): `Uint8Array`
 
 Defined in: [public.ts:384](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L384)
 
@@ -331,7 +331,7 @@ Lifts a 32-byte x-only coordinate into a full secp256k1 point (x, y).
 
 ### modPow()
 
-&gt; **modPow**(`base`, `exp`, `mod`): `bigint`
+> **modPow**(`base`, `exp`, `mod`): `bigint`
 
 Defined in: [public.ts:358](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L358)
 
@@ -372,7 +372,7 @@ The result of the modular exponentiation
 
 ### sqrtMod()
 
-&gt; **sqrtMod**(`a`, `p`): `bigint`
+> **sqrtMod**(`a`, `p`): `bigint`
 
 Defined in: [public.ts:375](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L375)
 
@@ -407,7 +407,7 @@ The square root of `a` mod `p`
 
 ### fromJSON()
 
-&gt; `static` **fromJSON**(`json`): `PublicKey`
+> `static` **fromJSON**(`json`): `PublicKey`
 
 Defined in: [public.ts:324](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L324)
 
@@ -431,7 +431,7 @@ The initialized PublicKey object.
 
 ### fromSecretKey()
 
-&gt; `static` **fromSecretKey**(`sk`): `PublicKey`
+> `static` **fromSecretKey**(`sk`): `PublicKey`
 
 Defined in: [public.ts:334](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L334)
 
@@ -455,7 +455,7 @@ A new PublicKey object
 
 ### point()
 
-&gt; `static` **point**(`pk`): [`Point`](../interfaces/Point.md)
+> `static` **point**(`pk`): [`Point`](../interfaces/Point.md)
 
 Defined in: [public.ts:214](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L214)
 
@@ -483,7 +483,7 @@ If the public key is not a valid hex string or byte array.
 
 ### xOnly()
 
-&gt; `static` **xOnly**(`x`): `Uint8Array`
+> `static` **xOnly**(`x`): `Uint8Array`
 
 Defined in: [public.ts:414](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/public.ts#L414)
 

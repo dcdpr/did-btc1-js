@@ -16,7 +16,7 @@ Defined in: [packages/method/src/types/crud.ts:22](https://github.com/dcdpr/did-
 
 ### cidUpdates
 
-&gt; **cidUpdates**: `string`[]
+> **cidUpdates**: `string`[]
 
 Defined in: [packages/method/src/types/crud.ts:24](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/crud.ts#L24)
 
@@ -24,7 +24,7 @@ Defined in: [packages/method/src/types/crud.ts:24](https://github.com/dcdpr/did-
 
 ### did
 
-&gt; **did**: `string`
+> **did**: `string`
 
 Defined in: [packages/method/src/types/crud.ts:16](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/crud.ts#L16)
 
@@ -36,6 +36,6 @@ Defined in: [packages/method/src/types/crud.ts:16](https://github.com/dcdpr/did-
 
 ### initialDocument
 
-&gt; **initialDocument**: [`Btc1DidDocument`](../classes/Btc1DidDocument.md)
+> **initialDocument**: [`Btc1DidDocument`](../classes/Btc1DidDocument.md)
 
 Defined in: [packages/method/src/types/crud.ts:23](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/crud.ts#L23)

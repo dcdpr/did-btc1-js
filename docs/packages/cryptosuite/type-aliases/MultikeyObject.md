@@ -6,7 +6,7 @@
 
 # Type Alias: MultikeyObject
 
-&gt; **MultikeyObject** = `object`
+> **MultikeyObject** = `object`
 
 Defined in: [multikey/interface.ts:5](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/interface.ts#L5)
 
@@ -14,7 +14,7 @@ Defined in: [multikey/interface.ts:5](https://github.com/dcdpr/did-btc1-js/blob/
 
 ### controller
 
-&gt; **controller**: `string`
+> **controller**: `string`
 
 Defined in: [multikey/interface.ts:7](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/interface.ts#L7)
 
@@ -22,7 +22,7 @@ Defined in: [multikey/interface.ts:7](https://github.com/dcdpr/did-btc1-js/blob/
 
 ### fullId
 
-&gt; **fullId**: `string`
+> **fullId**: `string`
 
 Defined in: [multikey/interface.ts:8](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/interface.ts#L8)
 
@@ -30,7 +30,7 @@ Defined in: [multikey/interface.ts:8](https://github.com/dcdpr/did-btc1-js/blob/
 
 ### id
 
-&gt; **id**: `string`
+> **id**: `string`
 
 Defined in: [multikey/interface.ts:6](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/interface.ts#L6)
 
@@ -38,7 +38,7 @@ Defined in: [multikey/interface.ts:6](https://github.com/dcdpr/did-btc1-js/blob/
 
 ### keys
 
-&gt; **keys**: `SchnorrKeyPairObject`
+> **keys**: `SchnorrKeyPairObject`
 
 Defined in: [multikey/interface.ts:10](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/interface.ts#L10)
 
@@ -46,7 +46,7 @@ Defined in: [multikey/interface.ts:10](https://github.com/dcdpr/did-btc1-js/blob
 
 ### signer
 
-&gt; **signer**: `boolean`
+> **signer**: `boolean`
 
 Defined in: [multikey/interface.ts:9](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/interface.ts#L9)
 
@@ -54,6 +54,6 @@ Defined in: [multikey/interface.ts:9](https://github.com/dcdpr/did-btc1-js/blob/
 
 ### verificationMethod
 
-&gt; **verificationMethod**: `DidVerificationMethod`
+> **verificationMethod**: `DidVerificationMethod`
 
 Defined in: [multikey/interface.ts:11](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/interface.ts#L11)

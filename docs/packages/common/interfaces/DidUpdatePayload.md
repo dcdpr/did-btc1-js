@@ -58,7 +58,7 @@ Found in DID BTC1 Specification [Section 9.4.2](https://dcdpr.github.io/did-btc1
 
 ### @context
 
-&gt; **@context**: `string`[]
+> **@context**: `string`[]
 
 Defined in: [interfaces.ts:59](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L59)
 
@@ -69,7 +69,7 @@ for ZCAP (capabilities), Data Integrity proofs, and JSON-LD patch ops.
 
 ### patch
 
-&gt; **patch**: [`JsonPatch`](../type-aliases/JsonPatch.md)
+> **patch**: [`JsonPatch`](../type-aliases/JsonPatch.md)
 
 Defined in: [interfaces.ts:66](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L66)
 
@@ -81,7 +81,7 @@ the new DID Document (which must remain valid per DID Core spec).
 
 ### proof?
 
-&gt; `optional` **proof**: [`Proof`](Proof.md)
+> `optional` **proof**: [`Proof`](Proof.md)
 
 Defined in: [interfaces.ts:94](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L94)
 
@@ -94,7 +94,7 @@ Schnorr secp256k1 in did:btc1).
 
 ### sourceHash
 
-&gt; **sourceHash**: `string`
+> **sourceHash**: `string`
 
 Defined in: [interfaces.ts:73](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L73)
 
@@ -106,7 +106,7 @@ Document, used to ensure the patch is applied to the correct document state.
 
 ### targetHash
 
-&gt; **targetHash**: `string`
+> **targetHash**: `string`
 
 Defined in: [interfaces.ts:80](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L80)
 
@@ -118,7 +118,7 @@ DID Document after applying the patch, used to verify the update result.
 
 ### targetVersionId
 
-&gt; **targetVersionId**: `number`
+> **targetVersionId**: `number`
 
 Defined in: [interfaces.ts:86](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L86)
 

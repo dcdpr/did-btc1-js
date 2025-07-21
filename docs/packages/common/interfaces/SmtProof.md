@@ -17,7 +17,7 @@ DID BTC1
 
 ### leafIndex?
 
-&gt; `optional` **leafIndex**: `string`
+> `optional` **leafIndex**: `string`
 
 Defined in: [interfaces.ts:252](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L252)
 
@@ -25,6 +25,6 @@ Defined in: [interfaces.ts:252](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9
 
 ### siblingHashes
 
-&gt; **siblingHashes**: `string`[]
+> **siblingHashes**: `string`[]
 
 Defined in: [interfaces.ts:251](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L251)

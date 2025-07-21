@@ -16,7 +16,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:24](https://github.com/dcdpr/d
 
 ### Constructor
 
-&gt; **new RpcClientConfig**(`options`): `RpcClientConfig`
+> **new RpcClientConfig**(`options`): `RpcClientConfig`
 
 Defined in: [packages/method/src/types/bitcoin.ts:36](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L36)
 
@@ -34,7 +34,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:36](https://github.com/dcdpr/d
 
 ### allowDefaultWallet?
 
-&gt; `optional` **allowDefaultWallet**: `boolean`
+> `optional` **allowDefaultWallet**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:34](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L34)
 
@@ -46,7 +46,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:34](https://github.com/dcdpr/d
 
 ### headers?
 
-&gt; `optional` **headers**: `Record`\<`string`, `string`\&gt;
+> `optional` **headers**: `Record`\<`string`, `string`\>
 
 Defined in: [packages/method/src/types/bitcoin.ts:26](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L26)
 
@@ -58,7 +58,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:26](https://github.com/dcdpr/d
 
 ### host?
 
-&gt; `optional` **host**: `string`
+> `optional` **host**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:27](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L27)
 
@@ -70,7 +70,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:27](https://github.com/dcdpr/d
 
 ### logger?
 
-&gt; `optional` **logger**: `any`
+> `optional` **logger**: `any`
 
 Defined in: [packages/method/src/types/bitcoin.ts:28](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L28)
 
@@ -82,7 +82,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:28](https://github.com/dcdpr/d
 
 ### network?
 
-&gt; `optional` **network**: `string`
+> `optional` **network**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:25](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L25)
 
@@ -90,7 +90,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:25](https://github.com/dcdpr/d
 
 ### password?
 
-&gt; `optional` **password**: `string`
+> `optional` **password**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:29](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L29)
 
@@ -102,7 +102,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:29](https://github.com/dcdpr/d
 
 ### timeout?
 
-&gt; `optional` **timeout**: `number`
+> `optional` **timeout**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:30](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L30)
 
@@ -114,7 +114,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:30](https://github.com/dcdpr/d
 
 ### username?
 
-&gt; `optional` **username**: `string`
+> `optional` **username**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:31](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L31)
 
@@ -126,7 +126,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:31](https://github.com/dcdpr/d
 
 ### version?
 
-&gt; `optional` **version**: `string`
+> `optional` **version**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:32](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L32)
 
@@ -138,7 +138,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:32](https://github.com/dcdpr/d
 
 ### wallet?
 
-&gt; `optional` **wallet**: `string`
+> `optional` **wallet**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:33](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L33)
 
@@ -150,7 +150,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:33](https://github.com/dcdpr/d
 
 ### initialize()
 
-&gt; `static` **initialize**(`options?`): `RpcClientConfig`
+> `static` **initialize**(`options?`): `RpcClientConfig`
 
 Defined in: [packages/method/src/types/bitcoin.ts:58](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L58)
 

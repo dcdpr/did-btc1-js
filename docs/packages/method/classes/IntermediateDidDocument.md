@@ -21,7 +21,7 @@ It is used in the process of creating a new DID document.
 
 ### Constructor
 
-&gt; **new IntermediateDidDocument**(`document`): `IntermediateDidDocument`
+> **new IntermediateDidDocument**(`document`): `IntermediateDidDocument`
 
 Defined in: [packages/method/src/utils/did-document.ts:434](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L434)
 
@@ -43,7 +43,7 @@ Defined in: [packages/method/src/utils/did-document.ts:434](https://github.com/d
 
 ### @context?
 
-&gt; `optional` **@context**: (`string` \| `JSONObject`)[] = `BTC1_DID_DOCUMENT_CONTEXT`
+> `optional` **@context**: (`string` \| `JSONObject`)[] = `BTC1_DID_DOCUMENT_CONTEXT`
 
 Defined in: [packages/method/src/utils/did-document.ts:114](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L114)
 
@@ -58,7 +58,7 @@ interpret the DID document JSON. The default context URL is 'https://www.w3.org/
 
 ### assertionMethod?
 
-&gt; `optional` **assertionMethod**: (`string` \| [`Btc1VerificationMethod`](Btc1VerificationMethod.md))[]
+> `optional` **assertionMethod**: (`string` \| [`Btc1VerificationMethod`](Btc1VerificationMethod.md))[]
 
 Defined in: [packages/method/src/utils/did-document.ts:117](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L117)
 
@@ -72,7 +72,7 @@ The assertion methods of the DID Document.
 
 ### authentication?
 
-&gt; `optional` **authentication**: (`string` \| [`Btc1VerificationMethod`](Btc1VerificationMethod.md))[]
+> `optional` **authentication**: (`string` \| [`Btc1VerificationMethod`](Btc1VerificationMethod.md))[]
 
 Defined in: [packages/method/src/utils/did-document.ts:116](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L116)
 
@@ -86,7 +86,7 @@ The authentication methods of the DID Document.
 
 ### capabilityDelegation?
 
-&gt; `optional` **capabilityDelegation**: (`string` \| [`Btc1VerificationMethod`](Btc1VerificationMethod.md))[]
+> `optional` **capabilityDelegation**: (`string` \| [`Btc1VerificationMethod`](Btc1VerificationMethod.md))[]
 
 Defined in: [packages/method/src/utils/did-document.ts:119](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L119)
 
@@ -100,7 +100,7 @@ The capability delegation methods of the DID Document.
 
 ### capabilityInvocation?
 
-&gt; `optional` **capabilityInvocation**: (`string` \| [`Btc1VerificationMethod`](Btc1VerificationMethod.md))[]
+> `optional` **capabilityInvocation**: (`string` \| [`Btc1VerificationMethod`](Btc1VerificationMethod.md))[]
 
 Defined in: [packages/method/src/utils/did-document.ts:118](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L118)
 
@@ -114,7 +114,7 @@ The capability invocation methods of the DID Document.
 
 ### controller?
 
-&gt; `optional` **controller**: `string`[]
+> `optional` **controller**: `string`[]
 
 Defined in: [packages/method/src/utils/did-document.ts:113](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L113)
 
@@ -128,7 +128,7 @@ The controller of the DID Document.
 
 ### id
 
-&gt; **id**: `string`
+> **id**: `string`
 
 Defined in: [packages/method/src/utils/did-document.ts:112](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L112)
 
@@ -142,7 +142,7 @@ The identifier of the DID Document.
 
 ### service
 
-&gt; **service**: [`BeaconService`](../interfaces/BeaconService.md)[]
+> **service**: [`BeaconService`](../interfaces/BeaconService.md)[]
 
 Defined in: [packages/method/src/utils/did-document.ts:120](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L120)
 
@@ -156,7 +156,7 @@ The services of the DID Document.
 
 ### verificationMethod
 
-&gt; **verificationMethod**: [`Btc1VerificationMethod`](Btc1VerificationMethod.md)[]
+> **verificationMethod**: [`Btc1VerificationMethod`](Btc1VerificationMethod.md)[]
 
 Defined in: [packages/method/src/utils/did-document.ts:115](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L115)
 
@@ -170,7 +170,7 @@ The verification methods of the DID Document.
 
 ### json()
 
-&gt; **json**(): `JSONObject`
+> **json**(): `JSONObject`
 
 Defined in: [packages/method/src/utils/did-document.ts:184](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L184)
 
@@ -190,7 +190,7 @@ The JSON representation of the Btc1DidDocument.
 
 ### toBtc1DidDocument()
 
-&gt; **toBtc1DidDocument**(`did`): [`Btc1DidDocument`](Btc1DidDocument.md)
+> **toBtc1DidDocument**(`did`): [`Btc1DidDocument`](Btc1DidDocument.md)
 
 Defined in: [packages/method/src/utils/did-document.ts:460](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L460)
 
@@ -214,7 +214,7 @@ A new Btc1DidDocument with the placeholder value replaced by the provided DID.
 
 ### toIntermediate()
 
-&gt; **toIntermediate**(): `IntermediateDidDocument`
+> **toIntermediate**(): `IntermediateDidDocument`
 
 Defined in: [packages/method/src/utils/did-document.ts:418](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L418)
 
@@ -234,7 +234,7 @@ The IntermediateDidDocument representation of the Btc1DidDocument.
 
 ### validateIntermediate()
 
-&gt; **validateIntermediate**(): `void`
+> **validateIntermediate**(): `void`
 
 Defined in: [packages/method/src/utils/did-document.ts:391](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L391)
 
@@ -254,7 +254,7 @@ True if the IntermediateDidDocument is valid.
 
 ### create()
 
-&gt; `static` **create**(`verificationMethod`, `relationships`, `service`): `IntermediateDidDocument`
+> `static` **create**(`verificationMethod`, `relationships`, `service`): `IntermediateDidDocument`
 
 Defined in: [packages/method/src/utils/did-document.ts:446](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L446)
 
@@ -290,7 +290,7 @@ A new IntermediateDidDocument with the placeholder ID.
 
 ### from()
 
-&gt; `static` **from**(`object`): [`Btc1DidDocument`](Btc1DidDocument.md)
+> `static` **from**(`object`): [`Btc1DidDocument`](Btc1DidDocument.md)
 
 Defined in: [packages/method/src/utils/did-document.ts:471](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L471)
 
@@ -314,7 +314,7 @@ The created Btc1DidDocument.
 
 ### fromExternalIdentifier()
 
-&gt; `static` **fromExternalIdentifier**(`data`): [`Btc1DidDocument`](Btc1DidDocument.md)
+> `static` **fromExternalIdentifier**(`data`): [`Btc1DidDocument`](Btc1DidDocument.md)
 
 Defined in: [packages/method/src/utils/did-document.ts:232](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L232)
 
@@ -342,7 +342,7 @@ A new Btc1DidDocument.
 
 ### fromKeyIdentifier()
 
-&gt; `static` **fromKeyIdentifier**(`id`, `publicKeyMultibase`, `service`): [`Btc1DidDocument`](Btc1DidDocument.md)
+> `static` **fromKeyIdentifier**(`id`, `publicKeyMultibase`, `service`): [`Btc1DidDocument`](Btc1DidDocument.md)
 
 Defined in: [packages/method/src/utils/did-document.ts:204](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L204)
 
@@ -380,7 +380,7 @@ A new Btc1DidDocument with the placeholder ID.
 
 ### isValid()
 
-&gt; `static` **isValid**(`didDocument`): `boolean`
+> `static` **isValid**(`didDocument`): `boolean`
 
 Defined in: [packages/method/src/utils/did-document.ts:256](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L256)
 
@@ -412,7 +412,7 @@ If any validation check fails.
 
 ### sanitize()
 
-&gt; `static` **sanitize**(`doc`): [`Btc1DidDocument`](Btc1DidDocument.md)
+> `static` **sanitize**(`doc`): [`Btc1DidDocument`](Btc1DidDocument.md)
 
 Defined in: [packages/method/src/utils/did-document.ts:241](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L241)
 
@@ -438,7 +438,7 @@ The sanitized DID Document
 
 ### validate()
 
-&gt; `static` **validate**(`didDocument`): [`Btc1DidDocument`](Btc1DidDocument.md)
+> `static` **validate**(`didDocument`): [`Btc1DidDocument`](Btc1DidDocument.md)
 
 Defined in: [packages/method/src/utils/did-document.ts:376](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/did-document.ts#L376)
 

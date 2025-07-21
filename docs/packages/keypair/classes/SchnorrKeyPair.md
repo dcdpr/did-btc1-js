@@ -19,7 +19,7 @@ Encapsulates a PublicKey and a SecretKey object as a single Keys object.
 
 ### Constructor
 
-&gt; **new SchnorrKeyPair**(`secretKey`): `SchnorrKeyPair`
+> **new SchnorrKeyPair**(`secretKey`): `SchnorrKeyPair`
 
 Defined in: [pair.ts:72](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/pair.ts#L72)
 
@@ -44,7 +44,7 @@ The secret key object
 
 #### Get Signature
 
-&gt; **get** **multibase**(): `MultibaseKeys`
+> **get** **multibase**(): `MultibaseKeys`
 
 Defined in: [pair.ts:156](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/pair.ts#L156)
 
@@ -62,7 +62,7 @@ The SecretKey in multibase format
 
 #### Get Signature
 
-&gt; **get** **publicKey**(): [`PublicKey`](PublicKey.md)
+> **get** **publicKey**(): [`PublicKey`](PublicKey.md)
 
 Defined in: [pair.ts:136](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/pair.ts#L136)
 
@@ -76,7 +76,7 @@ The PublicKey object
 
 #### Set Signature
 
-&gt; **set** **publicKey**(`publicKey`): `void`
+> **set** **publicKey**(`publicKey`): `void`
 
 Defined in: [pair.ts:122](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/pair.ts#L122)
 
@@ -108,7 +108,7 @@ The PublicKey object
 
 #### Get Signature
 
-&gt; **get** **raw**(): `RawKeyPair`
+> **get** **raw**(): `RawKeyPair`
 
 Defined in: [pair.ts:145](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/pair.ts#L145)
 
@@ -126,7 +126,7 @@ The Keys as a raw key pair
 
 #### Get Signature
 
-&gt; **get** **secretKey**(): [`SecretKey`](SecretKey.md)
+> **get** **secretKey**(): [`SecretKey`](SecretKey.md)
 
 Defined in: [pair.ts:103](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/pair.ts#L103)
 
@@ -154,7 +154,7 @@ If the secret key is not available.
 
 ### json()
 
-&gt; **json**(): `SchnorrKeyPairObject`
+> **json**(): `SchnorrKeyPairObject`
 
 Defined in: [pair.ts:167](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/pair.ts#L167)
 
@@ -174,7 +174,7 @@ The Keys as a JSON object
 
 ### equals()
 
-&gt; `static` **equals**(`keys`, `otherKeys`): `boolean`
+> `static` **equals**(`keys`, `otherKeys`): `boolean`
 
 Defined in: [pair.ts:236](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/pair.ts#L236)
 
@@ -204,7 +204,7 @@ True if the public key and secret key are equal, false otherwise.
 
 ### fromJSON()
 
-&gt; `static` **fromJSON**(`keys`): `SchnorrKeyPair`
+> `static` **fromJSON**(`keys`): `SchnorrKeyPair`
 
 Defined in: [pair.ts:179](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/pair.ts#L179)
 
@@ -228,7 +228,7 @@ The initialized Keys object.
 
 ### fromPrivateKey()
 
-&gt; `static` **fromPrivateKey**(`data`): `SchnorrKeyPair`
+> `static` **fromPrivateKey**(`data`): `SchnorrKeyPair`
 
 Defined in: [pair.ts:190](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/pair.ts#L190)
 
@@ -252,7 +252,7 @@ A new SchnorrKeyPair object
 
 ### fromSecret()
 
-&gt; `static` **fromSecret**(`secret`): `SchnorrKeyPair`
+> `static` **fromSecret**(`secret`): `SchnorrKeyPair`
 
 Defined in: [pair.ts:215](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/pair.ts#L215)
 
@@ -276,7 +276,7 @@ A new Keys object
 
 ### generate()
 
-&gt; `static` **generate**(): `SchnorrKeyPair`
+> `static` **generate**(): `SchnorrKeyPair`
 
 Defined in: [pair.ts:261](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/pair.ts#L261)
 
@@ -292,7 +292,7 @@ A new SecretKey object.
 
 ### toHex()
 
-&gt; `static` **toHex**(`keyBytes`): `Hex`
+> `static` **toHex**(`keyBytes`): `Hex`
 
 Defined in: [pair.ts:226](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/keypair/src/pair.ts#L226)
 

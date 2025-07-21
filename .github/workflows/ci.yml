@@ -1,39 +1,40 @@
-# .github/workflows/ci.yml
 name: CI
 
-on:
-  push:
-    branches:
-      - main
-      - dev
+on: [push]
 
 jobs:
-  ci:
+  push-workflow:
     runs-on: ubuntu-latest
 
     steps:
-      - name: ⬇️ Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: 🟢 Setup Node.js with pnpm
-        uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: '22.x'
-
-      - name: 📦 Install pnpm
+      
+      - name: Install pnpm
         run: npm install -g pnpm
       
-      - name: 📥 Install dependencies
+      - name: Install dependencies
         run: pnpm install -r --no-lockfile
 
-      - name: 🧹 Run linter
+      - name: Run linter for all packages
         run: pnpm lint
 
-      - name: 🏗️ Build packages
+      - name: Build packages
         run: pnpm build
 
-      - name: 🧪 Build tests
+      - name: Build test
         run: pnpm build:tests
       
-      # - name: 🧪 Run tests
+      # - name: Run tests
       #   run: pnpm test
+      
+      # - name: Upload coverage reports to Codecov
+      #   uses: codecov/codecov-action@v4.0.1
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
+      #     slug: jintekc/did-btc1-js

@@ -12,7 +12,7 @@ Defined in: [cryptosuite/interface.ts:18](https://github.com/dcdpr/did-btc1-js/b
 
 ### mediaType?
 
-&gt; `optional` **mediaType**: `string`
+> `optional` **mediaType**: `string`
 
 Defined in: [cryptosuite/interface.ts:21](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/interface.ts#L21)
 
@@ -20,7 +20,7 @@ Defined in: [cryptosuite/interface.ts:21](https://github.com/dcdpr/did-btc1-js/b
 
 ### verified
 
-&gt; **verified**: `boolean`
+> **verified**: `boolean`
 
 Defined in: [cryptosuite/interface.ts:19](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/interface.ts#L19)
 
@@ -28,6 +28,6 @@ Defined in: [cryptosuite/interface.ts:19](https://github.com/dcdpr/did-btc1-js/b
 
 ### verifiedDocument?
 
-&gt; `optional` **verifiedDocument**: `DidUpdateInvocation`
+> `optional` **verifiedDocument**: `DidUpdateInvocation`
 
 Defined in: [cryptosuite/interface.ts:20](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/interface.ts#L20)

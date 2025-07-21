@@ -28,7 +28,7 @@ DID BTC1
 
 ### @context
 
-&gt; **@context**: `string` \| `string`[]
+> **@context**: `string` \| `string`[]
 
 Defined in: [interfaces.ts:307](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L307)
 
@@ -36,7 +36,7 @@ Defined in: [interfaces.ts:307](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9
 
 ### controller
 
-&gt; **controller**: `string`
+> **controller**: `string`
 
 Defined in: [interfaces.ts:309](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L309)
 
@@ -44,7 +44,7 @@ Defined in: [interfaces.ts:309](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9
 
 ### id
 
-&gt; **id**: `string`
+> **id**: `string`
 
 Defined in: [interfaces.ts:308](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L308)
 
@@ -52,6 +52,6 @@ Defined in: [interfaces.ts:308](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9
 
 ### invocationTarget
 
-&gt; **invocationTarget**: `string`
+> **invocationTarget**: `string`
 
 Defined in: [interfaces.ts:310](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/interfaces.ts#L310)

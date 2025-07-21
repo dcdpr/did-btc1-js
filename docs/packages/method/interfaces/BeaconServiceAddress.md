@@ -20,7 +20,7 @@ Defined in: [packages/method/src/interfaces/ibeacon.ts:66](https://github.com/dc
 
 ### address
 
-&gt; **address**: `string`
+> **address**: `string`
 
 Defined in: [packages/method/src/interfaces/ibeacon.ts:67](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/ibeacon.ts#L67)
 
@@ -28,7 +28,7 @@ Defined in: [packages/method/src/interfaces/ibeacon.ts:67](https://github.com/dc
 
 ### casType?
 
-&gt; `optional` **casType**: `string`
+> `optional` **casType**: `string`
 
 Defined in: [packages/method/src/interfaces/ibeacon.ts:63](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/ibeacon.ts#L63)
 
@@ -40,7 +40,7 @@ Defined in: [packages/method/src/interfaces/ibeacon.ts:63](https://github.com/dc
 
 ### serviceEndpoint
 
-&gt; **serviceEndpoint**: `DidServiceEndpoint`
+> **serviceEndpoint**: `DidServiceEndpoint`
 
 Defined in: [packages/method/src/interfaces/ibeacon.ts:62](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/interfaces/ibeacon.ts#L62)
 

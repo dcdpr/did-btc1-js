@@ -12,7 +12,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:63](https://github.com/dcdpr/d
 
 ### agentOptions?
 
-&gt; `optional` **agentOptions**: `any`
+> `optional` **agentOptions**: `any`
 
 Defined in: [packages/method/src/types/bitcoin.ts:64](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L64)
 
@@ -20,7 +20,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:64](https://github.com/dcdpr/d
 
 ### headers?
 
-&gt; `optional` **headers**: `boolean`
+> `optional` **headers**: `boolean`
 
 Defined in: [packages/method/src/types/bitcoin.ts:65](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L65)
 
@@ -28,7 +28,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:65](https://github.com/dcdpr/d
 
 ### host?
 
-&gt; `optional` **host**: `string`
+> `optional` **host**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:66](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L66)
 
@@ -36,7 +36,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:66](https://github.com/dcdpr/d
 
 ### logger?
 
-&gt; `optional` **logger**: `Function`
+> `optional` **logger**: `Function`
 
 Defined in: [packages/method/src/types/bitcoin.ts:67](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L67)
 
@@ -44,7 +44,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:67](https://github.com/dcdpr/d
 
 ### network?
 
-&gt; `optional` **network**: `"regtest"` \| `"mainnet"` \| `"testnet"`
+> `optional` **network**: `"regtest"` \| `"mainnet"` \| `"testnet"`
 
 Defined in: [packages/method/src/types/bitcoin.ts:68](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L68)
 
@@ -52,7 +52,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:68](https://github.com/dcdpr/d
 
 ### password?
 
-&gt; `optional` **password**: `string`
+> `optional` **password**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:69](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L69)
 
@@ -60,7 +60,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:69](https://github.com/dcdpr/d
 
 ### port?
 
-&gt; `optional` **port**: `string` \| `number`
+> `optional` **port**: `string` \| `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:70](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L70)
 
@@ -68,7 +68,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:70](https://github.com/dcdpr/d
 
 ### ssl?
 
-&gt; `optional` **ssl**: `any`
+> `optional` **ssl**: `any`
 
 Defined in: [packages/method/src/types/bitcoin.ts:71](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L71)
 
@@ -76,7 +76,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:71](https://github.com/dcdpr/d
 
 ### timeout?
 
-&gt; `optional` **timeout**: `number`
+> `optional` **timeout**: `number`
 
 Defined in: [packages/method/src/types/bitcoin.ts:72](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L72)
 
@@ -84,7 +84,7 @@ Defined in: [packages/method/src/types/bitcoin.ts:72](https://github.com/dcdpr/d
 
 ### username?
 
-&gt; `optional` **username**: `string`
+> `optional` **username**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:73](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L73)
 
@@ -92,6 +92,6 @@ Defined in: [packages/method/src/types/bitcoin.ts:73](https://github.com/dcdpr/d
 
 ### version?
 
-&gt; `optional` **version**: `string`
+> `optional` **version**: `string`
 
 Defined in: [packages/method/src/types/bitcoin.ts:74](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/types/bitcoin.ts#L74)

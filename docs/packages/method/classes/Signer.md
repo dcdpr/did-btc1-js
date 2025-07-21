@@ -12,7 +12,7 @@ Defined in: [packages/method/src/btc1/key-manager/index.ts:343](https://github.c
 
 ### Constructor
 
-&gt; **new Signer**(`params`): `Signer`
+> **new Signer**(`params`): `Signer`
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:347](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L347)
 
@@ -30,7 +30,7 @@ Defined in: [packages/method/src/btc1/key-manager/index.ts:347](https://github.c
 
 ### multikey
 
-&gt; **multikey**: `SchnorrMultikey`
+> **multikey**: `SchnorrMultikey`
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:344](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L344)
 
@@ -38,7 +38,7 @@ Defined in: [packages/method/src/btc1/key-manager/index.ts:344](https://github.c
 
 ### network
 
-&gt; **network**: keyof `AvailableNetworks`
+> **network**: keyof `AvailableNetworks`
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:345](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L345)
 
@@ -48,7 +48,7 @@ Defined in: [packages/method/src/btc1/key-manager/index.ts:345](https://github.c
 
 #### Get Signature
 
-&gt; **get** **publicKey**(): `Bytes`
+> **get** **publicKey**(): `Bytes`
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:352](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L352)
 
@@ -60,7 +60,7 @@ Defined in: [packages/method/src/btc1/key-manager/index.ts:352](https://github.c
 
 ### sign()
 
-&gt; **sign**(`hash`): `Bytes`
+> **sign**(`hash`): `Bytes`
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:357](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L357)
 
@@ -78,7 +78,7 @@ Defined in: [packages/method/src/btc1/key-manager/index.ts:357](https://github.c
 
 ### signSchnorr()
 
-&gt; **signSchnorr**(`hash`): `Bytes`
+> **signSchnorr**(`hash`): `Bytes`
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:361](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L361)
 

@@ -12,7 +12,7 @@ Defined in: [data-integrity-proof/interface.ts:5](https://github.com/dcdpr/did-b
 
 ### document
 
-&gt; **document**: `string`
+> **document**: `string`
 
 Defined in: [data-integrity-proof/interface.ts:7](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/data-integrity-proof/interface.ts#L7)
 
@@ -20,7 +20,7 @@ Defined in: [data-integrity-proof/interface.ts:7](https://github.com/dcdpr/did-b
 
 ### expectedChallenge?
 
-&gt; `optional` **expectedChallenge**: `string`
+> `optional` **expectedChallenge**: `string`
 
 Defined in: [data-integrity-proof/interface.ts:10](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/data-integrity-proof/interface.ts#L10)
 
@@ -28,7 +28,7 @@ Defined in: [data-integrity-proof/interface.ts:10](https://github.com/dcdpr/did-
 
 ### expectedDomain?
 
-&gt; `optional` **expectedDomain**: `string`[]
+> `optional` **expectedDomain**: `string`[]
 
 Defined in: [data-integrity-proof/interface.ts:9](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/data-integrity-proof/interface.ts#L9)
 
@@ -36,7 +36,7 @@ Defined in: [data-integrity-proof/interface.ts:9](https://github.com/dcdpr/did-b
 
 ### expectedPurpose
 
-&gt; **expectedPurpose**: `string`
+> **expectedPurpose**: `string`
 
 Defined in: [data-integrity-proof/interface.ts:8](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/data-integrity-proof/interface.ts#L8)
 
@@ -44,6 +44,6 @@ Defined in: [data-integrity-proof/interface.ts:8](https://github.com/dcdpr/did-b
 
 ### mediaType?
 
-&gt; `optional` **mediaType**: `string`
+> `optional` **mediaType**: `string`
 
 Defined in: [data-integrity-proof/interface.ts:6](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/data-integrity-proof/interface.ts#L6)

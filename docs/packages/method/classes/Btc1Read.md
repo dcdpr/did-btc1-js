@@ -29,7 +29,7 @@ To do so it executes the following algorithm:
 
 ### Constructor
 
-&gt; **new Btc1Read**(): `Btc1Read`
+> **new Btc1Read**(): `Btc1Read`
 
 #### Returns
 
@@ -39,7 +39,7 @@ To do so it executes the following algorithm:
 
 ### applyDidUpdate()
 
-&gt; `static` **applyDidUpdate**(`params`): `Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\&gt;
+> `static` **applyDidUpdate**(`params`): `Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\>
 
 Defined in: [packages/method/src/btc1/crud/read.ts:838](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/read.ts#L838)
 
@@ -71,13 +71,13 @@ The DID Update Payload to apply.
 
 #### Returns
 
-`Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\&gt;
+`Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\>
 
 ***
 
 ### cas()
 
-&gt; `static` **cas**(`params`): `Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\&gt;
+> `static` **cas**(`params`): `Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\>
 
 Defined in: [packages/method/src/btc1/crud/read.ts:251](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/read.ts#L251)
 
@@ -97,7 +97,7 @@ Required params for calling the cas method
 
 #### Returns
 
-`Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\&gt;
+`Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\>
 
 The resolved DID Document object
 
@@ -109,7 +109,7 @@ if the DID Document content is invalid
 
 ### confirmDuplicateUpdate()
 
-&gt; `static` **confirmDuplicateUpdate**(`params`): `Promise`\<`void`\&gt;
+> `static` **confirmDuplicateUpdate**(`params`): `Promise`\<`void`\>
 
 Defined in: [packages/method/src/btc1/crud/read.ts:804](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/read.ts#L804)
 
@@ -140,7 +140,7 @@ The history of hashes for previously applied updates.
 
 #### Returns
 
-`Promise`\<`void`\&gt;
+`Promise`\<`void`\>
 
 A promise that resolves if the update is a duplicate, otherwise throws an error.
 
@@ -152,7 +152,7 @@ if the update hash does not match the historical hash.
 
 ### deterministic()
 
-&gt; `static` **deterministic**(`params`): [`Btc1DidDocument`](Btc1DidDocument.md)
+> `static` **deterministic**(`params`): [`Btc1DidDocument`](Btc1DidDocument.md)
 
 Defined in: [packages/method/src/btc1/crud/read.ts:127](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/read.ts#L127)
 
@@ -190,7 +190,7 @@ The resolved DID Document object.
 
 ### external()
 
-&gt; `static` **external**(`params`): `Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\&gt;
+> `static` **external**(`params`): `Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\>
 
 Defined in: [packages/method/src/btc1/crud/read.ts:175](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/read.ts#L175)
 
@@ -228,7 +228,7 @@ The options for resolving the DID Document.
 
 #### Returns
 
-`Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\&gt;
+`Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\>
 
 The resolved DID Document object
 
@@ -236,7 +236,7 @@ The resolved DID Document object
 
 ### findNextSignals()
 
-&gt; `static` **findNextSignals**(`params`): `Promise`\<[`BeaconSignal`](../interfaces/BeaconSignal.md)[]\&gt;
+> `static` **findNextSignals**(`params`): `Promise`\<[`BeaconSignal`](../interfaces/BeaconSignal.md)[]\>
 
 Defined in: [packages/method/src/btc1/crud/read.ts:543](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/read.ts#L543)
 
@@ -292,7 +292,7 @@ The beacons to look for in the block.
 
 #### Returns
 
-`Promise`\<[`BeaconSignal`](../interfaces/BeaconSignal.md)[]\&gt;
+`Promise`\<[`BeaconSignal`](../interfaces/BeaconSignal.md)[]\>
 
 An array of BeaconSignal objects with blockHeight and signals.
 
@@ -300,7 +300,7 @@ An array of BeaconSignal objects with blockHeight and signals.
 
 ### findSignalsRest()
 
-&gt; `static` **findSignalsRest**(`params`): `Promise`\<[`BeaconSignal`](../interfaces/BeaconSignal.md)[]\&gt;
+> `static` **findSignalsRest**(`params`): `Promise`\<[`BeaconSignal`](../interfaces/BeaconSignal.md)[]\>
 
 Defined in: [packages/method/src/btc1/crud/read.ts:659](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/read.ts#L659)
 
@@ -320,7 +320,7 @@ The beacons to process.
 
 #### Returns
 
-`Promise`\<[`BeaconSignal`](../interfaces/BeaconSignal.md)[]\&gt;
+`Promise`\<[`BeaconSignal`](../interfaces/BeaconSignal.md)[]\>
 
 The beacon signals found in the block.
 
@@ -328,7 +328,7 @@ The beacon signals found in the block.
 
 ### initialDocument()
 
-&gt; `static` **initialDocument**(`params`): `Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\&gt;
+> `static` **initialDocument**(`params`): `Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\>
 
 Defined in: [packages/method/src/btc1/crud/read.ts:287](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/read.ts#L287)
 
@@ -364,7 +364,7 @@ See [DidResolutionOptions](../interfaces/DidResolutionOptions.md) for resolving 
 
 #### Returns
 
-`Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\&gt;
+`Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\>
 
 The resolved DID Document object.
 
@@ -376,7 +376,7 @@ if the DID hrp is invalid, no sidecarData passed and hrp = "x".
 
 ### processBeaconSignal()
 
-&gt; `static` **processBeaconSignal**(`signal`, `signalsMetadata`): `Promise`\<`DidUpdatePayload`\&gt;
+> `static` **processBeaconSignal**(`signal`, `signalsMetadata`): `Promise`\<`DidUpdatePayload`\>
 
 Defined in: [packages/method/src/btc1/crud/read.ts:720](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/read.ts#L720)
 
@@ -414,7 +414,7 @@ The sidecar data for the DID Document.
 
 #### Returns
 
-`Promise`\<`DidUpdatePayload`\&gt;
+`Promise`\<`DidUpdatePayload`\>
 
 The updated DID Document object.
 
@@ -422,7 +422,7 @@ The updated DID Document object.
 
 ### sidecar()
 
-&gt; `static` **sidecar**(`params`): `Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\&gt;
+> `static` **sidecar**(`params`): `Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\>
 
 Defined in: [packages/method/src/btc1/crud/read.ts:214](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/read.ts#L214)
 
@@ -443,7 +443,7 @@ Required params for calling the sidecar method
 
 #### Returns
 
-`Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\&gt;
+`Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\>
 
 The resolved DID Document object
 
@@ -455,7 +455,7 @@ InvalidDidDocument if genesisBytes !== initialDocument hashBytes
 
 ### targetDocument()
 
-&gt; `static` **targetDocument**(`params`): `Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\&gt;
+> `static` **targetDocument**(`params`): `Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\>
 
 Defined in: [packages/method/src/btc1/crud/read.ts:324](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/read.ts#L324)
 
@@ -485,6 +485,6 @@ See [DidResolutionOptions](../interfaces/DidResolutionOptions.md) for details.
 
 #### Returns
 
-`Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\&gt;
+`Promise`\<[`Btc1DidDocument`](Btc1DidDocument.md)\>
 
 The resolved DID Document object with a validated single, canonical history

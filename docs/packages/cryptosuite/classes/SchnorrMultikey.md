@@ -21,7 +21,7 @@ The secretKeyMultibase value of the verification method MUST be a Multikey encod
 
 ### Constructor
 
-&gt; **new SchnorrMultikey**(`params`): `SchnorrMultikey`
+> **new SchnorrMultikey**(`params`): `SchnorrMultikey`
 
 Defined in: [multikey/index.ts:51](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/index.ts#L51)
 
@@ -47,7 +47,7 @@ if neither a publicKey nor a privateKey is provided
 
 ### controller
 
-&gt; `readonly` **controller**: `string`
+> `readonly` **controller**: `string`
 
 Defined in: [multikey/index.ts:36](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/index.ts#L36)
 
@@ -59,7 +59,7 @@ Defined in: [multikey/index.ts:36](https://github.com/dcdpr/did-btc1-js/blob/4ab
 
 ### id
 
-&gt; `readonly` **id**: `string`
+> `readonly` **id**: `string`
 
 Defined in: [multikey/index.ts:33](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/index.ts#L33)
 
@@ -71,7 +71,7 @@ Defined in: [multikey/index.ts:33](https://github.com/dcdpr/did-btc1-js/blob/4ab
 
 ### type
 
-&gt; `readonly` `static` **type**: `string` = `'Multikey'`
+> `readonly` `static` **type**: `string` = `'Multikey'`
 
 Defined in: [multikey/index.ts:30](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/index.ts#L30)
 
@@ -81,7 +81,7 @@ Defined in: [multikey/index.ts:30](https://github.com/dcdpr/did-btc1-js/blob/4ab
 
 #### Get Signature
 
-&gt; **get** **keys**(): `SchnorrKeyPair`
+> **get** **keys**(): `SchnorrKeyPair`
 
 Defined in: [multikey/index.ts:69](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/index.ts#L69)
 
@@ -99,7 +99,7 @@ Defined in: [multikey/index.ts:69](https://github.com/dcdpr/did-btc1-js/blob/4ab
 
 #### Get Signature
 
-&gt; **get** **publicKey**(): `PublicKey`
+> **get** **publicKey**(): `PublicKey`
 
 Defined in: [multikey/index.ts:76](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/index.ts#L76)
 
@@ -117,7 +117,7 @@ Defined in: [multikey/index.ts:76](https://github.com/dcdpr/did-btc1-js/blob/4ab
 
 #### Get Signature
 
-&gt; **get** **secretKey**(): `SecretKey`
+> **get** **secretKey**(): `SecretKey`
 
 Defined in: [multikey/index.ts:83](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/index.ts#L83)
 
@@ -135,7 +135,7 @@ Defined in: [multikey/index.ts:83](https://github.com/dcdpr/did-btc1-js/blob/4ab
 
 #### Get Signature
 
-&gt; **get** **signer**(): `boolean`
+> **get** **signer**(): `boolean`
 
 Defined in: [multikey/index.ts:242](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/index.ts#L242)
 
@@ -151,7 +151,7 @@ Defined in: [multikey/index.ts:242](https://github.com/dcdpr/did-btc1-js/blob/4a
 
 ### fromVerificationMethod()
 
-&gt; **fromVerificationMethod**(`verificationMethod`): [`Multikey`](../interfaces/Multikey.md)
+> **fromVerificationMethod**(`verificationMethod`): [`Multikey`](../interfaces/Multikey.md)
 
 Defined in: [multikey/index.ts:192](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/index.ts#L192)
 
@@ -185,7 +185,7 @@ if the publicKeyMultibase has an invalid prefix.
 
 ### fullId()
 
-&gt; **fullId**(): `string`
+> **fullId**(): `string`
 
 Defined in: [multikey/index.ts:164](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/index.ts#L164)
 
@@ -205,7 +205,7 @@ The full id of the multikey
 
 ### json()
 
-&gt; **json**(): [`MultikeyObject`](../type-aliases/MultikeyObject.md)
+> **json**(): [`MultikeyObject`](../type-aliases/MultikeyObject.md)
 
 Defined in: [multikey/index.ts:250](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/index.ts#L250)
 
@@ -225,7 +225,7 @@ The multikey as a JSON object.
 
 ### sign()
 
-&gt; **sign**(`data`, `opts?`): `Bytes`
+> **sign**(`data`, `opts?`): `Bytes`
 
 Defined in: [multikey/index.ts:109](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/index.ts#L109)
 
@@ -261,7 +261,7 @@ if no private key is provided.
 
 ### toCryptosuite()
 
-&gt; **toCryptosuite**(`cryptosuite?`): [`Cryptosuite`](Cryptosuite.md)
+> **toCryptosuite**(`cryptosuite?`): [`Cryptosuite`](Cryptosuite.md)
 
 Defined in: [multikey/index.ts:99](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/index.ts#L99)
 
@@ -281,7 +281,7 @@ Constructs an instance of Cryptosuite from the current Multikey instance.
 
 ### toVerificationMethod()
 
-&gt; **toVerificationMethod**(): `DidVerificationMethod`
+> **toVerificationMethod**(): `DidVerificationMethod`
 
 Defined in: [multikey/index.ts:173](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/index.ts#L173)
 
@@ -301,7 +301,7 @@ The verification method.
 
 ### verify()
 
-&gt; **verify**(`signature`, `data`, `opts?`): `boolean`
+> **verify**(`signature`, `data`, `opts?`): `boolean`
 
 Defined in: [multikey/index.ts:137](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/index.ts#L137)
 
@@ -339,7 +339,7 @@ If the signature is valid against the public key.
 
 ### verifyEcdsa()
 
-&gt; **verifyEcdsa**(`signature`, `data`): `boolean`
+> **verifyEcdsa**(`signature`, `data`): `boolean`
 
 Defined in: [multikey/index.ts:155](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/index.ts#L155)
 
@@ -369,7 +369,7 @@ If the signature is valid against the public key.
 
 ### fromPrivateKey()
 
-&gt; `static` **fromPrivateKey**(`params`): `SchnorrMultikey`
+> `static` **fromPrivateKey**(`params`): `SchnorrMultikey`
 
 Defined in: [multikey/index.ts:284](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/index.ts#L284)
 
@@ -393,7 +393,7 @@ The new multikey instance
 
 ### fromPublicKey()
 
-&gt; `static` **fromPublicKey**(`params`): [`Multikey`](../interfaces/Multikey.md)
+> `static` **fromPublicKey**(`params`): [`Multikey`](../interfaces/Multikey.md)
 
 Defined in: [multikey/index.ts:306](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/index.ts#L306)
 
@@ -417,7 +417,7 @@ The new multikey instance
 
 ### fromPublicKeyMultibase()
 
-&gt; `static` **fromPublicKeyMultibase**(`params`): `SchnorrMultikey`
+> `static` **fromPublicKeyMultibase**(`params`): `SchnorrMultikey`
 
 Defined in: [multikey/index.ts:322](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/index.ts#L322)
 
@@ -441,7 +441,7 @@ The new multikey instance.
 
 ### initialize()
 
-&gt; `static` **initialize**(`params`): `SchnorrMultikey`
+> `static` **initialize**(`params`): `SchnorrMultikey`
 
 Defined in: [multikey/index.ts:272](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/multikey/index.ts#L272)
 

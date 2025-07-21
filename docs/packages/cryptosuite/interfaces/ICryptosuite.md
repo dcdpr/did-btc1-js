@@ -15,7 +15,7 @@ Interface representing a BIP-340 Cryptosuite.
 
 ### cryptosuite
 
-&gt; **cryptosuite**: `string`
+> **cryptosuite**: `string`
 
 Defined in: [cryptosuite/interface.ts:55](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/interface.ts#L55)
 
@@ -23,7 +23,7 @@ Defined in: [cryptosuite/interface.ts:55](https://github.com/dcdpr/did-btc1-js/b
 
 ### multikey
 
-&gt; **multikey**: [`SchnorrMultikey`](../classes/SchnorrMultikey.md)
+> **multikey**: [`SchnorrMultikey`](../classes/SchnorrMultikey.md)
 
 Defined in: [cryptosuite/interface.ts:58](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/interface.ts#L58)
 
@@ -31,7 +31,7 @@ Defined in: [cryptosuite/interface.ts:58](https://github.com/dcdpr/did-btc1-js/b
 
 ### type
 
-&gt; **type**: `"DataIntegrityProof"`
+> **type**: `"DataIntegrityProof"`
 
 Defined in: [cryptosuite/interface.ts:52](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/interface.ts#L52)
 
@@ -39,7 +39,7 @@ Defined in: [cryptosuite/interface.ts:52](https://github.com/dcdpr/did-btc1-js/b
 
 ### createProof()
 
-&gt; **createProof**(`params`): `Promise`\<`Proof`\&gt;
+> **createProof**(`params`): `Promise`\<`Proof`\>
 
 Defined in: [cryptosuite/interface.ts:67](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/interface.ts#L67)
 
@@ -55,7 +55,7 @@ See [CreateProofParams](CreateProofParams.md) for details.
 
 #### Returns
 
-`Promise`\<`Proof`\&gt;
+`Promise`\<`Proof`\>
 
 The proof for the document.
 
@@ -63,7 +63,7 @@ The proof for the document.
 
 ### generateHash()
 
-&gt; **generateHash**(`params`): `Hex`
+> **generateHash**(`params`): `Hex`
 
 Defined in: [cryptosuite/interface.ts:93](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/interface.ts#L93)
 
@@ -87,7 +87,7 @@ The hash string of the proof configuration and document.
 
 ### proofConfiguration()
 
-&gt; **proofConfiguration**(`options`): `Promise`\<`string`\&gt;
+> **proofConfiguration**(`options`): `Promise`\<`string`\>
 
 Defined in: [cryptosuite/interface.ts:101](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/interface.ts#L101)
 
@@ -103,7 +103,7 @@ The options to use when transforming the proof.
 
 #### Returns
 
-`Promise`\<`string`\&gt;
+`Promise`\<`string`\>
 
 The canonicalized proof configuration.
 
@@ -115,7 +115,7 @@ if the proof configuration cannot be canonicalized.
 
 ### proofSerialization()
 
-&gt; **proofSerialization**(`params`): `Bytes`
+> **proofSerialization**(`params`): `Bytes`
 
 Defined in: [cryptosuite/interface.ts:111](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/interface.ts#L111)
 
@@ -143,7 +143,7 @@ if the multikey does not match the verification method.
 
 ### proofVerification()
 
-&gt; **proofVerification**(`params`): `boolean`
+> **proofVerification**(`params`): `boolean`
 
 Defined in: [cryptosuite/interface.ts:122](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/interface.ts#L122)
 
@@ -171,7 +171,7 @@ if the multikey does not match the verification method.
 
 ### transformDocument()
 
-&gt; **transformDocument**(`params`): `Promise`\<`string`\&gt;
+> **transformDocument**(`params`): `Promise`\<`string`\>
 
 Defined in: [cryptosuite/interface.ts:84](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/interface.ts#L84)
 
@@ -187,7 +187,7 @@ See [TransformDocumentParams](TransformDocumentParams.md) for details.
 
 #### Returns
 
-`Promise`\<`string`\&gt;
+`Promise`\<`string`\>
 
 The canonicalized document.
 
@@ -199,7 +199,7 @@ if the document cannot be transformed.
 
 ### verifyProof()
 
-&gt; **verifyProof**(`document`): `Promise`\<[`VerificationResult`](VerificationResult.md)\&gt;
+> **verifyProof**(`document`): `Promise`\<[`VerificationResult`](VerificationResult.md)\>
 
 Defined in: [cryptosuite/interface.ts:74](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/cryptosuite/src/cryptosuite/interface.ts#L74)
 
@@ -215,6 +215,6 @@ The secure document to verify.
 
 #### Returns
 
-`Promise`\<[`VerificationResult`](VerificationResult.md)\&gt;
+`Promise`\<[`VerificationResult`](VerificationResult.md)\>
 
 The result of the verification.

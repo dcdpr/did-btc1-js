@@ -10,13 +10,13 @@ Defined in: [packages/method/src/btc1/crud/create.ts:30](https://github.com/dcdp
 
 ## Extends
 
-- `DidCreateOptions`\<[`Btc1KeyManager`](../classes/Btc1KeyManager.md)\&gt;
+- `DidCreateOptions`\<[`Btc1KeyManager`](../classes/Btc1KeyManager.md)\>
 
 ## Properties
 
 ### network?
 
-&gt; `optional` **network**: `string`
+> `optional` **network**: `string`
 
 Defined in: [packages/method/src/btc1/crud/create.ts:34](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L34)
 
@@ -26,7 +26,7 @@ Bitcoin Network
 
 ### version?
 
-&gt; `optional` **version**: `number`
+> `optional` **version**: `number`
 
 Defined in: [packages/method/src/btc1/crud/create.ts:32](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/crud/create.ts#L32)
 

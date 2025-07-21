@@ -15,7 +15,7 @@ Required parameters for generating Beacon Services.
 
 ### beaconType
 
-&gt; **beaconType**: `string`
+> **beaconType**: `string`
 
 Defined in: [packages/method/src/utils/beacons.ts:32](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/beacons.ts#L32)
 
@@ -23,7 +23,7 @@ Defined in: [packages/method/src/utils/beacons.ts:32](https://github.com/dcdpr/d
 
 ### network
 
-&gt; **network**: `Network`
+> **network**: `Network`
 
 Defined in: [packages/method/src/utils/beacons.ts:31](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/beacons.ts#L31)
 
@@ -31,6 +31,6 @@ Defined in: [packages/method/src/utils/beacons.ts:31](https://github.com/dcdpr/d
 
 ### publicKey
 
-&gt; **publicKey**: `Bytes`
+> **publicKey**: `Bytes`
 
 Defined in: [packages/method/src/utils/beacons.ts:30](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/utils/beacons.ts#L30)

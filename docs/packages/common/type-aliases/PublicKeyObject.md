@@ -6,7 +6,7 @@
 
 # Type Alias: PublicKeyObject
 
-&gt; **PublicKeyObject** = `object`
+> **PublicKeyObject** = `object`
 
 Defined in: [types.ts:26](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/types.ts#L26)
 
@@ -14,7 +14,7 @@ Defined in: [types.ts:26](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95
 
 ### hex
 
-&gt; **hex**: [`Hex`](Hex.md)
+> **hex**: [`Hex`](Hex.md)
 
 Defined in: [types.ts:28](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/types.ts#L28)
 
@@ -22,7 +22,7 @@ Defined in: [types.ts:28](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95
 
 ### multibase
 
-&gt; **multibase**: [`MultibaseObject`](MultibaseObject.md)
+> **multibase**: [`MultibaseObject`](MultibaseObject.md)
 
 Defined in: [types.ts:29](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/types.ts#L29)
 
@@ -30,6 +30,6 @@ Defined in: [types.ts:29](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95
 
 ### point
 
-&gt; **point**: [`Point`](Point.md)
+> **point**: [`Point`](Point.md)
 
 Defined in: [types.ts:27](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/common/src/types.ts#L27)

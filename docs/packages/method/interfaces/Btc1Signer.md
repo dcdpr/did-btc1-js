@@ -12,7 +12,7 @@ Defined in: [packages/method/src/btc1/key-manager/index.ts:21](https://github.co
 
 ### multikey
 
-&gt; **multikey**: `SchnorrMultikey`
+> **multikey**: `SchnorrMultikey`
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:22](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L22)
 
@@ -20,6 +20,6 @@ Defined in: [packages/method/src/btc1/key-manager/index.ts:22](https://github.co
 
 ### network
 
-&gt; **network**: keyof `AvailableNetworks`
+> **network**: keyof `AvailableNetworks`
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:23](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L23)

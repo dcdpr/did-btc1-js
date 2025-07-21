@@ -21,7 +21,7 @@ Class for managing cryptographic keys for the Btc1 DID method.
 
 ### Constructor
 
-&gt; **new Btc1KeyManager**(`params`): `Btc1KeyManager`
+> **new Btc1KeyManager**(`params`): `Btc1KeyManager`
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:70](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L70)
 
@@ -43,7 +43,7 @@ The parameters to initialize the key manager.
 
 ### activeKeyUri?
 
-&gt; `optional` **activeKeyUri**: `string`
+> `optional` **activeKeyUri**: `string`
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:46](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L46)
 
@@ -62,7 +62,7 @@ This property is optional and can be set to a specific key URI when initializing
 
 #### Get Signature
 
-&gt; **get** `static` **instance**(): `Btc1KeyManager`
+> **get** `static` **instance**(): `Btc1KeyManager`
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:86](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L86)
 
@@ -78,7 +78,7 @@ The singleton instance of the Btc1KeyManager.
 
 ### digest()
 
-&gt; **digest**(`data`): `Bytes`
+> **digest**(`data`): `Bytes`
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:250](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L250)
 
@@ -106,7 +106,7 @@ The hash of the data.
 
 ### exportKey()
 
-&gt; **exportKey**(`keyUri?`): `Promise`\<`undefined` \| `SchnorrMultikey`\&gt;
+> **exportKey**(`keyUri?`): `Promise`\<`undefined` \| `SchnorrMultikey`\>
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:192](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L192)
 
@@ -120,7 +120,7 @@ Exports the full multikeypair from the key store.
 
 #### Returns
 
-`Promise`\<`undefined` \| `SchnorrMultikey`\&gt;
+`Promise`\<`undefined` \| `SchnorrMultikey`\>
 
 The key pair associated with the key URI.
 
@@ -136,7 +136,7 @@ If the key is not found in the key store.
 
 ### getKeySigner()
 
-&gt; **getKeySigner**(`keyUri`, `network`): `Promise`\<[`Signer`](Signer.md)\&gt;
+> **getKeySigner**(`keyUri`, `network`): `Promise`\<[`Signer`](Signer.md)\>
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:334](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L334)
 
@@ -152,13 +152,13 @@ keyof `AvailableNetworks`
 
 #### Returns
 
-`Promise`\<[`Signer`](Signer.md)\&gt;
+`Promise`\<[`Signer`](Signer.md)\>
 
 ***
 
 ### getPublicKey()
 
-&gt; **getPublicKey**(`keyUri?`): `Promise`\<`PublicKey`\&gt;
+> **getPublicKey**(`keyUri?`): `Promise`\<`PublicKey`\>
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:111](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L111)
 
@@ -174,7 +174,7 @@ The URI of the key to get the public key for.
 
 #### Returns
 
-`Promise`\<`PublicKey`\&gt;
+`Promise`\<`PublicKey`\>
 
 The public key associated with the key URI.
 
@@ -186,7 +186,7 @@ The public key associated with the key URI.
 
 ### importKey()
 
-&gt; **importKey**(`keys`, `keyUri`, `options`): `Promise`\<`string`\&gt;
+> **importKey**(`keys`, `keyUri`, `options`): `Promise`\<`string`\>
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:205](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L205)
 
@@ -214,7 +214,7 @@ Relevant import options.
 
 #### Returns
 
-`Promise`\<`string`\&gt;
+`Promise`\<`string`\>
 
 A promise that resolves to the key identifier of the imported key.
 
@@ -226,7 +226,7 @@ A promise that resolves to the key identifier of the imported key.
 
 ### sign()
 
-&gt; **sign**(`data`, `keyUri?`): `Promise`\<`Bytes`\&gt;
+> **sign**(`data`, `keyUri?`): `Promise`\<`Bytes`\>
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:130](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L130)
 
@@ -248,7 +248,7 @@ The URI of the key to sign the data with.
 
 #### Returns
 
-`Promise`\<`Bytes`\&gt;
+`Promise`\<`Bytes`\>
 
 A promise resolving to the signature of the data.
 
@@ -260,7 +260,7 @@ A promise resolving to the signature of the data.
 
 ### signTransaction()
 
-&gt; **signTransaction**(`txHex`, `keyUri?`): `Promise`\<`Hex`\&gt;
+> **signTransaction**(`txHex`, `keyUri?`): `Promise`\<`Hex`\>
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:102](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L102)
 
@@ -282,7 +282,7 @@ The URI of the key to sign the transaction with.
 
 #### Returns
 
-`Promise`\<`Hex`\&gt;
+`Promise`\<`Hex`\>
 
 A promise resolving to the signed transaction hex.
 
@@ -294,7 +294,7 @@ A promise resolving to the signed transaction hex.
 
 ### verify()
 
-&gt; **verify**(`signature`, `data`, `keyUri?`): `Promise`\<`boolean`\&gt;
+> **verify**(`signature`, `data`, `keyUri?`): `Promise`\<`boolean`\>
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:155](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L155)
 
@@ -322,7 +322,7 @@ The URI of the key to verify the signature with.
 
 #### Returns
 
-`Promise`\<`boolean`\&gt;
+`Promise`\<`boolean`\>
 
 A promise resolving to a boolean indicating the verification result.
 
@@ -334,7 +334,7 @@ A promise resolving to a boolean indicating the verification result.
 
 ### computeKeyUri()
 
-&gt; `static` **computeKeyUri**(`id`, `controller?`): `string`
+> `static` **computeKeyUri**(`id`, `controller?`): `string`
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:260](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L260)
 
@@ -364,7 +364,7 @@ A full DID fragment URI (e.g. 'did:btc1:xyz#key-1')
 
 ### getKeyPair()
 
-&gt; `static` **getKeyPair**(`keyUri?`): `Promise`\<`undefined` \| `SchnorrMultikey`\&gt;
+> `static` **getKeyPair**(`keyUri?`): `Promise`\<`undefined` \| `SchnorrMultikey`\>
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:327](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L327)
 
@@ -380,7 +380,7 @@ The URI of the keypair to retrieve.
 
 #### Returns
 
-`Promise`\<`undefined` \| `SchnorrMultikey`\&gt;
+`Promise`\<`undefined` \| `SchnorrMultikey`\>
 
 The retrieved keypair, or undefined if not found.
 
@@ -388,7 +388,7 @@ The retrieved keypair, or undefined if not found.
 
 ### initialize()
 
-&gt; `static` **initialize**(`keys`, `keyUri`): `Promise`\<`Btc1KeyManager`\&gt;
+> `static` **initialize**(`keys`, `keyUri`): `Promise`\<`Btc1KeyManager`\>
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:285](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L285)
 
@@ -408,13 +408,13 @@ The keypair used to initialize the key manager.
 
 #### Returns
 
-`Promise`\<`Btc1KeyManager`\&gt;
+`Promise`\<`Btc1KeyManager`\>
 
 ***
 
 ### toMultibaseUri()
 
-&gt; `static` **toMultibaseUri**(`data`): `string`
+> `static` **toMultibaseUri**(`data`): `string`
 
 Defined in: [packages/method/src/btc1/key-manager/index.ts:270](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d95beed9bc633644c9db1539395f512/packages/method/src/btc1/key-manager/index.ts#L270)
 
@@ -424,7 +424,7 @@ Computes a multibase-compliant URI from a key.
 
 ##### data
 
-`PublicKey` | `SchnorrKeyPair` | `Multibase`\<`"zQ3s"`\&gt;
+`PublicKey` | `SchnorrKeyPair` | `Multibase`\<`"zQ3s"`\>
 
 #### Returns
 
