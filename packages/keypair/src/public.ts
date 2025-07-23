@@ -317,37 +317,6 @@ export class PublicKey implements PublicKey {
   }
 
   /**
-   * Creates a PublicKey object from a JSON representation.
-   * @param {PublicKeyObject} json The JSON object to initialize the PublicKey.
-   * @returns {PublicKey} The initialized PublicKey object.
-   */
-  public static fromJSON(json: Maybe<PublicKeyObject>): PublicKey {
-    json.x.unshift(json.parity);
-    return new PublicKey(json.x.toUint8Array());
-  }
-
-  /**
-   * Computes the deterministic public key for a given private key.
-   * @param {PrivateKey | KeyBytes} sk The PrivateKey object or the private key bytes
-   * @returns {PublicKey} A new PublicKey object
-   */
-  public static fromSecretKey(sk: SecretKey | KeyBytes): PublicKey {
-    // If the private key is a PrivateKey object, get the raw bytes else use the bytes
-    const bytes = sk instanceof SecretKey ? sk.bytes : sk;
-
-    // Throw error if the private key is not 32 bytes
-    if(bytes.length !== 32) {
-      throw new PublicKeyError('Invalid arg: must be 32 byte private key', 'FROM_PRIVATE_KEY_ERROR');
-    }
-
-    // Compute the public key from the private key
-    const privateKey = sk instanceof SecretKey ? sk : new SecretKey(sk);
-
-    // Return a new PublicKey object
-    return new PublicKey(privateKey.computePublicKey());
-  }
-
-  /**
    * Computes modular exponentiation: (base^exp) % mod.
    * Used for computing modular square roots.
    * @param {bigint} base The base value
@@ -405,6 +374,47 @@ export class PublicKey implements PublicKey {
     // Return 65-byte uncompressed public key: `0x04 || x || y`
     return new Uint8Array(Buffer.concat([Buffer.from([0x04]), Buffer.from(this.x), yBytes]));
   };
+
+
+  /**
+   * Creates a PublicKey object from a JSON representation.
+   * @param {PublicKeyObject} json The JSON object to initialize the PublicKey.
+   * @returns {PublicKey} The initialized PublicKey object.
+   */
+  public static fromJSON(json: Pick<PublicKeyObject, 'point'>): PublicKey {
+    return new PublicKey(json.point.x.toUint8Array());
+  }
+
+  /**
+   * Creates a PublicKey object from Hex bytes or string.
+   * @param {Hex} hex The hex bytes or string to initialize the PublicKey.
+   * @returns {PublicKey} The initialized PublicKey object.
+   */
+  public static fromHex(hex: Hex): PublicKey {
+    const d = hex instanceof Uint8Array ? hex : Buffer.fromHex(hex as string);
+    return new PublicKey(d);
+  }
+
+  /**
+   * Computes the deterministic public key for a given private key.
+   * @param {PrivateKey | KeyBytes} sk The PrivateKey object or the private key bytes
+   * @returns {PublicKey} A new PublicKey object
+   */
+  public static fromSecretKey(sk: SecretKey | KeyBytes): PublicKey {
+    // If the private key is a PrivateKey object, get the raw bytes else use the bytes
+    const bytes = sk instanceof SecretKey ? sk.bytes : sk;
+
+    // Throw error if the private key is not 32 bytes
+    if(bytes.length !== 32) {
+      throw new PublicKeyError('Invalid arg: must be 32 byte private key', 'FROM_PRIVATE_KEY_ERROR');
+    }
+
+    // Compute the public key from the private key
+    const privateKey = sk instanceof SecretKey ? sk : new SecretKey(sk);
+
+    // Return a new PublicKey object
+    return new PublicKey(privateKey.computePublicKey());
+  }
 
   /**
    * Static version of liftX method.

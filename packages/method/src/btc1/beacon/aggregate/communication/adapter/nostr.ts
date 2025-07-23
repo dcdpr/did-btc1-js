@@ -30,6 +30,8 @@ export const DEFAULT_NOSTR_RELAYS = [
   // 'wss://relay.snort.social',
   // 'wss://nostr-pub.wellorder.net',
 ];
+export const DEFAULT_NOSTR_FILTERS: Filter[] = [{ kinds: [1, 1059] }];
+
 type Btc1Did = string;
 
 /**
@@ -64,10 +66,10 @@ export class NostrAdapter implements CommunicationService {
   public relays: string[] = DEFAULT_NOSTR_RELAYS;
 
   /**
-   * The keys used for Nostr communication.
-   * @type {ServiceAdapterIdentity<NostrKeys>}
+   * An array of filters to apply when subscribing to Nostr events.
+   * @type {Filter[]}
    */
-  public keys: ServiceAdapterIdentity<NostrKeys>;
+  public filters: Filter[] = DEFAULT_NOSTR_FILTERS;
 
   /**
    * A map of message handlers for different message types.
@@ -82,13 +84,21 @@ export class NostrAdapter implements CommunicationService {
   public pool?: SimplePool;
 
   /**
+   * The keys used for Nostr communication.
+   * @type {ServiceAdapterIdentity<NostrKeys>}
+   */
+  public keys?: ServiceAdapterIdentity<NostrKeys>;
+
+
+  /**
    * Constructs a new NostrAdapter instance with the provided configuration.
    * @param {ServiceAdapterIdentity<NostrKeys>} keys The keys used for Nostr communication, containing public and secret keys.
    * @param {string[]} [relays] Optional list of Nostr relays to connect to. Defaults to predefined relays.
    */
-  constructor(keys: ServiceAdapterIdentity<NostrKeys>, relays?: string[]) {
+  constructor(keys?: ServiceAdapterIdentity<NostrKeys>, relays?: string[], filters?: Filter[]) {
     this.keys = keys;
     this.relays = relays ?? DEFAULT_NOSTR_RELAYS;
+    this.filters = filters ?? DEFAULT_NOSTR_FILTERS;
   }
 
   /**
@@ -98,16 +108,10 @@ export class NostrAdapter implements CommunicationService {
   public start(): ServiceAdapter<NostrAdapter> {
     this.pool = new SimplePool();
 
-    this.pool.subscribe(this.relays, { kinds: [1] } as Filter, {
+    this.pool.subscribe(this.relays, { kinds: [1, 1059] }, {
       onclose : (reasons: string[]) => console.log('Subscription to kind 1 closed', reasons),
       onevent : this.onEvent.bind(this),
     });
-
-    // this.pool.subscribe(this.config.relays, { kinds: [1059] } as Filter, {
-    //   onclose : (reasons: string[]) => console.log('Subscription to kind 1059 closed for reasons:', reasons),
-    //   onevent : this.onEvent.bind(this),
-    //   oneose  : () => { Logger.info('EOSE kinds 1059'); }
-    // });
 
     return this;
   }
@@ -117,42 +121,40 @@ export class NostrAdapter implements CommunicationService {
    * @param {Event} event The Nostr event received from the relay.
    */
   private async onEvent(event: Event): Promise<void> {
-    // Logger.debug('nostr.onEvent: event.tags', event.tags);
+    Logger.debug('NostrAdapter received event:', event);
     // Dispatch the event to the registered handler
-    const ptags = event.tags.filter(([name, _]) => name === 'p') ?? [];
-    // Logger.debug('nostr.onEvent: event.tags.find => ptags', ptags);
+    const tag = event.tags.find(
+      ([tag, _]) => AggregateBeaconMessage.isValidType(tag)
+    );
 
-    for(const [p, pk] of ptags ){
-      if(pk === 'b71d3052dcdc8ba4564388948b655b58aaa7f37497ef1fc98829f9191adc8f85') {
-        Logger.debug('nostr.onEvent: event.tags.find => p, pk', p, pk);
-      }
+    if(!tag) {
+      Logger.warn(`Event ${event.id} does not contain a valid agg beacon message type, skipping handler dispatch.`);
+      return;
     }
-    // if(!type && !value) {
-    //   // Logger.warn(`Event ${event.id} does not have a valid tag, skipping handler dispatch.`);
-    //   return;
-    // }
-    // Logger.debug('nostr.onEvent: event.tags.find => type, value', type, value);
 
-    // Logger.debug('nostr.onEvent: event', event);
-    // Logger.debug('nostr.onEvent: event.tags', event.tags);
+    const [name, value] = tag;
+    if(!name || !value) {
+      Logger.warn(`Event ${event.id} does not contain a valid agg beacon message type, skipping handler dispatch.`);
+      return;
+    }
 
-    // if(event.kind === 1 && !AggregateBeaconMessage.isKeyGenMessageValue(value)) {
-    //   Logger.warn(`Event ${event.id} is not a key generation message type: ${value}, skipping handler dispatch.`);
-    //   return;
-    // }
+    if(event.kind === 1 && !AggregateBeaconMessage.isKeyGenMessageValue(value)) {
+      Logger.warn(`Event ${event.id} is not a key generation message type: ${value}, skipping handler dispatch.`);
+      return;
+    }
 
-    // if(event.kind === 1059 && !AggregateBeaconMessage.isSignMessageValue(value)) {
-    //   Logger.warn(`Event ${event.id} has an invalid title tag: ${value}, skipping handler dispatch.`);
-    //   return;
-    // }
+    if(event.kind === 1059 && !AggregateBeaconMessage.isSignMessageValue(value)) {
+      Logger.warn(`Event ${event.id} not a sign message type: ${value}, skipping handler dispatch.`);
+      return;
+    }
 
-    // const handler = this.handlers.get(value);
-    // if (!handler) {
-    //   Logger.warn(`No handler found for message with tag value: ${value}`);
-    //   return;
-    // }
+    const handler = this.handlers.get(value);
+    if (!handler) {
+      Logger.warn(`No handler found for message with message type: ${value}`);
+      return;
+    }
 
-    // await handler(event);
+    await handler(event.content);
   }
 
   /**
@@ -185,33 +187,38 @@ export class NostrAdapter implements CommunicationService {
         'SEND_MESSAGE_ERROR', { adapter: this.name }
       );
     }
+
+    // Check if the secret key is available
+    if(!this.keys?.secret) {
+      Logger.error(`No secret key available for signing`);
+      throw new CommunicationAdapterError(
+        `No secret key available for signing`,
+        'SEND_MESSAGE_ERROR', { adapter: this.name }
+      );
+    }
     // Decode the sender and recipient DIDs to get their genesis bytes in hex
-    const sender = new PublicKey(Btc1Identifier.decode(from).genesisBytes);
+    const sender = new PublicKey(Btc1Identifier.decode(from).genesisBytes).x.toHex();
     Logger.info(`Sending message from ${sender}:`, message);
 
-    // if(message.type === BEACON_COHORT_SUBSCRIBE_ACCEPT) {
-    //   this.config.coordinatorDids.push(recipient);
-    // }
-
-    const tags = [['p', sender.x.toHex()]];
+    const tags = [['p', sender]];
     if(to) {
-      const recipient = new PublicKey(Btc1Identifier.decode(to).genesisBytes);
-      tags.push(['p', recipient.x.toHex()]);
+      const recipient = new PublicKey(Btc1Identifier.decode(to).genesisBytes).x.toHex();
+      tags.push(['p', recipient]);
     }
 
     if(AggregateBeaconMessage.isKeyGenMessageValue(message.type)) {
       switch(message.type) {
         case BEACON_COHORT_ADVERT:
-          Logger.info('Add tag', ['BEACON_COHORT_ADVERT', message.type]);
+          tags.push(['BEACON_COHORT_ADVERT', message.type]);
           break;
         case BEACON_COHORT_OPT_IN:
-          Logger.info('Add tag', ['BEACON_COHORT_OPT_IN', message.type]);
+          tags.push(['BEACON_COHORT_OPT_IN', message.type]);
           break;
         case BEACON_COHORT_OPT_IN_ACCEPT:
-          Logger.info('Add tag', ['BEACON_COHORT_OPT_IN_ACCEPT', message.type]);
+          tags.push(['BEACON_COHORT_OPT_IN_ACCEPT', message.type]);
           break;
         case BEACON_COHORT_READY:
-          Logger.info('Add tag', ['BEACON_COHORT_READY', message.type]);
+          tags.push(['BEACON_COHORT_READY', message.type]);
           break;
       }
       const event = finalizeEvent({
@@ -227,19 +234,19 @@ export class NostrAdapter implements CommunicationService {
     if(AggregateBeaconMessage.isSignMessageValue(message.type)) {
       switch(message.type) {
         case BEACON_COHORT_REQUEST_SIGNATURE:
-          Logger.info('Add tag', ['BEACON_COHORT_REQUEST_SIGNATURE', message.type]);
+          tags.push(['BEACON_COHORT_REQUEST_SIGNATURE', message.type]);
           break;
         case BEACON_COHORT_AUTHORIZATION_REQUEST:
-          Logger.info('Add tag', ['BEACON_COHORT_AUTHORIZATION_REQUEST', message.type]);
+          tags.push(['BEACON_COHORT_AUTHORIZATION_REQUEST', message.type]);
           break;
         case BEACON_COHORT_NONCE_CONTRIBUTION:
-          Logger.info('Add tag', ['BEACON_COHORT_NONCE_CONTRIBUTION', message.type]);
+          tags.push(['BEACON_COHORT_NONCE_CONTRIBUTION', message.type]);
           break;
         case BEACON_COHORT_AGGREGATED_NONCE:
-          Logger.info('Add tag', ['BEACON_COHORT_AGGREGATED_NONCE', message.type]);
+          tags.push(['BEACON_COHORT_AGGREGATED_NONCE', message.type]);
           break;
         case BEACON_COHORT_SIGNATURE_AUTHORIZATION:
-          Logger.info('Add tag', ['BEACON_COHORT_SIGNATURE_AUTHORIZATION', message.type]);
+          tags.push(['BEACON_COHORT_SIGNATURE_AUTHORIZATION', message.type]);
           break;
       }
       const { publicKey, secretKey } = SchnorrKeyPair.generate();
