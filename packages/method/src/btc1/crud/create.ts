@@ -69,7 +69,7 @@ export class Btc1Create {
    * @returns {Btc1CreateResponse} A response object of type {@link Btc1CreateResponse}.
    * @throws {DidError} if the public key is missing or invalid.
    */
-  public static key({ pubKeyBytes, options }: {
+  public static deterministic({ pubKeyBytes, options }: {
     pubKeyBytes: KeyBytes;
     options: DidCreateOptions;
   }): Btc1CreateResponse {

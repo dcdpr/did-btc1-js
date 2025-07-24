@@ -73,8 +73,8 @@ export class DidBtc1 implements DidMethod {
       // Deconstruct the pubKeyBytes from the params
       const { pubKeyBytes } = params;
 
-      // Return call to Btc1Create.key
-      return Btc1Create.key({ pubKeyBytes, options });
+      // Return call to Btc1Create.deterministic
+      return Btc1Create.deterministic({ pubKeyBytes, options });
     }
 
     // If idType is external, call Btc1Create.external

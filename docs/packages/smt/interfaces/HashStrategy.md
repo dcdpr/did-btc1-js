@@ -20,7 +20,7 @@ Defined in: [hashing.ts:7](https://github.com/dcdpr/did-btc1-js/blob/4ab6f9915d9
 
 ##### inputs
 
-...`Uint8Array`\<`ArrayBufferLike`\&gt;[]
+...`Uint8Array`;&lt;`ArrayBufferLike`&gt;[]
 
 #### Returns
 

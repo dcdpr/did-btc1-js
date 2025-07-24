@@ -32,6 +32,7 @@ export default defineConfig({
           { text: 'Installation', link: '/installation' },
           { text: 'Configuration', link: '/configuration' },
           { text: 'Usage', link: '/usage' },
+          { text: 'Diagrams', link: '/diagrams' },
         ],
       },
       {
