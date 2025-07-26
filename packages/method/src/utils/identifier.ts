@@ -1,7 +1,14 @@
-import { BitcoinNetworkNames, Btc1Error, Btc1IdentifierTypes, Bytes, INVALID_DID, METHOD_NOT_SUPPORTED } from '@did-btc1/common';
+import { BitcoinNetworkNames, Btc1Error, Btc1IdentifierTypes, Bytes, INVALID_DID, Logger, METHOD_NOT_SUPPORTED } from '@did-btc1/common';
 import { PublicKey, SchnorrKeyPair } from '@did-btc1/keypair';
 import { bech32m } from '@scure/base';
-import { DidComponents } from './appendix.js';
+
+export interface DidComponents {
+    hrp: string;
+    idType: string;
+    version: number;
+    network: string;
+    genesisBytes: Bytes;
+};
 
 /**
  * Implements {@link https://dcdpr.github.io/did-btc1/#syntax | 3 Syntax}.
@@ -256,6 +263,21 @@ export class Btc1Identifier {
 
     // 20. Return idType, version, network, and genesisBytes.
     return {idType, hrp, version, network, genesisBytes} as DidComponents;
+  }
+
+  /**
+   * Checks if the given identifier is a valid did:btc1 identifier.
+   * @param {string} identifier The identifier to check.
+   * @returns {boolean} True if the identifier is valid, false otherwise.
+   */
+  public static isValid(identifier: string): boolean {
+    try {
+      this.decode(identifier);
+      return true;
+    } catch (error: any) {
+      Logger.error(`Invalid BTC1 identifier: ${error.message}`);
+      return false;
+    }
   }
 
   /**

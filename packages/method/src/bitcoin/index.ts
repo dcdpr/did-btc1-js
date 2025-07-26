@@ -2,8 +2,8 @@ import { Btc1Error } from '@did-btc1/common';
 import { networks } from 'bitcoinjs-lib';
 import { DEFAULT_REST_CLIENT_CONFIG, DEFAULT_RPC_CLIENT_CONFIG } from './constants.js';
 import { getNetwork } from './network.js';
-import BitcoinRest from './rest-client.js';
-import BitcoinRpc from './rpc-client.js';
+import BitcoinRest from './rest/index.js';
+import BitcoinRpc from './rpc/index.js';
 
 type BitcoinClientConfig = {
   rpc: {

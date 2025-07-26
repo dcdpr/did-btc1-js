@@ -1,5 +1,5 @@
 import { ID_PLACEHOLDER_VALUE } from '@did-btc1/common';
-import { KeyPairUtils } from '@did-btc1/keypair';
+import { KeyPairUtils } from '../../../../../keypair/dist/types/secret/index.js';
 import { Did } from '@web5/dids';
 import { writeFile } from 'fs/promises';
 import path from 'path';
