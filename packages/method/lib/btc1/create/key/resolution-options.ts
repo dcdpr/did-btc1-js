@@ -19,9 +19,9 @@ const verificationMethodId = initialDocument.verificationMethod[0].id;
 const verificationMethod = DidBtc1.getSigningMethod({ didDocument: sourceDocument, methodId: verificationMethodId, });
 
 const identifier = verificationMethodId;
-const [id, controller] = identifier.split('#');
+const [uri, fragment] = identifier.split('#');
 const secretKey = Buffer.from(keys.genesisKey.sk, 'hex');
-const keyUri = Btc1KeyManager.computeKeyUri(id, controller);
+const keyUri = Btc1KeyManager.computeKeyUri(uri, fragment);
 await Btc1KeyManager.initialize(new SchnorrKeyPair({ secretKey }), keyUri);
 
 const didUpdateInvocation = await Btc1Update.invoke({ identifier, verificationMethod, didUpdatePayload, });

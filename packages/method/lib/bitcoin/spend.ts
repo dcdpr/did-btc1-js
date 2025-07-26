@@ -4,14 +4,14 @@ import { AddressUtxo } from '../../src/bitcoin/rest-client.js';
 import { Btc1KeyManager } from '../../src/index.js';
 import { SchnorrKeyPair } from '@did-btc1/keypair';
 
-const [id = '#initialP2PKH', controller = 'did:btc1:k1qyp3al8fedye95ueca9ezrmcm49vhur3zhze49wlgyfzdl5qk4dgltccfavpw'] = process.argv.slice(2);
+const [fragment = '#initialP2PKH', uri = 'did:btc1:k1qyp3al8fedye95ueca9ezrmcm49vhur3zhze49wlgyfzdl5qk4dgltccfavpw'] = process.argv.slice(2);
 
-if(!controller) {
+if(!uri) {
   throw new Error('Controller is required as the second argument.');
 }
 const secretKey = Buffer.fromHex('4359bb2996ca9edb3566765cd8c5d56ee402399ec541f489273eb320f29f4ae8');
 const keys = new SchnorrKeyPair({ secretKey });
-const keyUri = Btc1KeyManager.computeKeyUri(id, controller);
+const keyUri = Btc1KeyManager.computeKeyUri(uri, fragment);
 await Btc1KeyManager.initialize(keys, keyUri);
 const multikey = await Btc1KeyManager.getKeyPair();
 if (!multikey) {

@@ -490,7 +490,7 @@ export class Btc1Read {
         //  9.3. If update.targetVersionId is greater than currentVersionId + 1, MUST throw a LatePublishing error.
       } else if (update.targetVersionId > currentVersionId + 1) {
         throw new Btc1ReadError(
-          `Version Id Mismatch: target ${update.targetVersionId} cannot be > current+1 ${currentVersionId + 1}`,
+          `Version Id Mismatch: targetVersionId ${update.targetVersionId} cannot be > currentVersionId+1 ${currentVersionId + 1}`,
           'LATE_PUBLISHING_ERROR'
         );
       }

@@ -253,13 +253,13 @@ export class Btc1KeyManager implements KeyManager, CryptoSigner, BitcoinSigner  
 
   /**
    * Computes the key URI of a given keypair.
-   * @param {string} id The fragment identifier (e.g. 'key-1').
-   * @param {string} [controller] The DID controller (e.g. 'did:btc1:xyz').
+   * @param {string} fragment The fragment identifier (e.g. 'key-1').
+   * @param {string} uri The DID uri (e.g. 'did:btc1:xyz').
    * @returns {KeyIdentifier} A full DID fragment URI (e.g. 'did:btc1:xyz#key-1')
    */
-  public static computeKeyUri(id: string, controller: string): KeyIdentifier {
+  public static computeKeyUri(uri: string, fragment: string): KeyIdentifier {
     // Concat the id to the controller and return
-    return `${controller}${id.startsWith('#') ? id : `#${id}`}`;
+    return `${uri}${fragment.startsWith('#') ? fragment : `#${fragment}`}`;
   }
 
   /**
@@ -280,7 +280,9 @@ export class Btc1KeyManager implements KeyManager, CryptoSigner, BitcoinSigner  
   /**
    * Initializes a singleton Btc1KeyManager instance.
    * @param {SchnorrKeyPair} keys The keypair used to initialize the key manager.
-   * @returns {void}
+   * @param {KeyIdentifier} keyUri The URI of the keypair to be set as active.
+   * Use Btc1KeyManager.computeKeyUri(uri, fragment) to compute the key URI.
+   * @returns {Promise<Btc1KeyManager>} A promise that resolves to the initialized Btc1KeyManager instance.
    */
   public static async initialize(keys: SchnorrKeyPair | SchnorrKeyPairObject, keyUri: string): Promise<Btc1KeyManager> {
     if(!(keys instanceof SchnorrKeyPair)) {
@@ -331,6 +333,13 @@ export class Btc1KeyManager implements KeyManager, CryptoSigner, BitcoinSigner  
     return await Btc1KeyManager.#instance?.getKey(keyUri);
   }
 
+  /**
+   * Retrieves a key signer for the given key URI and network.
+   * @param {KeyIdentifier} keyUri The URI of the key to retrieve the signer for.
+   * @param {keyof AvailableNetworks} network The network for which the signer is required.
+   * @throws {Btc1KeyManagerError} If the key is not found for
+   * @returns {Promise<Signer>} A promise that resolves to a Signer instance for the specified key URI and network.
+   */
   public async getKeySigner(keyUri: KeyIdentifier, network: keyof AvailableNetworks): Promise<Signer> {
     const multikey = await this.getKey(keyUri);
     if(!multikey) {
@@ -340,6 +349,11 @@ export class Btc1KeyManager implements KeyManager, CryptoSigner, BitcoinSigner  
   }
 }
 
+/**
+ * Represents a signer for a specific key and network.
+ * @class Signer
+ * @type {Signer}
+ */
 export class Signer {
   public multikey: SchnorrMultikey;
   public network: keyof AvailableNetworks;

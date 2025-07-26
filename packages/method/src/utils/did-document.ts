@@ -44,14 +44,19 @@ export interface IBtc1VerificationMethod extends DidVerificationMethod {
  * DID BTC1 Verification Method extends the DidVerificationMethod class adding helper methods and properties
  * @class Btc1VerificationMethod
  * @type {Btc1VerificationMethod}
- *
+ * @implements {IBtc1VerificationMethod}
+ * @property {string} id - The identifier of the verification method.
+ * @property {string} type - The type of the verification method.
+ * @property {string} controller - The controller of the verification method.
+ * @property {string} publicKeyMultibase - The public key in multibase format.
+ * @property {string} [secretKeyMultibase] - The secret key in multibase format, optional.
  */
 export class Btc1VerificationMethod implements IBtc1VerificationMethod {
-  id: string;
-  type: string;
-  controller: string;
-  publicKeyMultibase: string;
-  secretKeyMultibase?: string | undefined;
+  public id: string;
+  public type: string;
+  public controller: string;
+  public publicKeyMultibase: string;
+  public secretKeyMultibase?: string | undefined;
 
   constructor({ id, type, controller, publicKeyMultibase, secretKeyMultibase }: IBtc1VerificationMethod) {
     this.id = id;
@@ -59,7 +64,7 @@ export class Btc1VerificationMethod implements IBtc1VerificationMethod {
     this.controller = controller;
     this.publicKeyMultibase = publicKeyMultibase;
     this.secretKeyMultibase = secretKeyMultibase;
-    if(!secretKeyMultibase){
+    if(!secretKeyMultibase) {
       delete this.secretKeyMultibase;
     }
   }
@@ -91,6 +96,7 @@ export interface IBtc1DidDocument extends IDidDocument {
   capabilityInvocation?: Array<string | Btc1VerificationMethod>;
   capabilityDelegation?: Array<string | Btc1VerificationMethod>;
   service: Array<BeaconService>;
+  deactivated?: boolean;
 }
 
 /**
@@ -109,15 +115,16 @@ export interface IBtc1DidDocument extends IDidDocument {
  * @property {Array<BeaconService>} service - The services of the DID Document.
  */
 export class Btc1DidDocument implements IBtc1DidDocument {
-  id: string;
-  controller?: Array<string>;
-  '@context'?: Array<string | JSONObject> = BTC1_DID_DOCUMENT_CONTEXT;
-  verificationMethod: Array<Btc1VerificationMethod>;
-  authentication?: Array<string | Btc1VerificationMethod>;
-  assertionMethod?: Array<string | Btc1VerificationMethod>;
-  capabilityInvocation?: Array<string | Btc1VerificationMethod>;
-  capabilityDelegation?: Array<string | Btc1VerificationMethod>;
-  service: Array<BeaconService>;
+  public id: string;
+  public controller?: Array<string>;
+  public '@context'?: Array<string | JSONObject> = BTC1_DID_DOCUMENT_CONTEXT;
+  public verificationMethod: Array<Btc1VerificationMethod>;
+  public authentication?: Array<string | Btc1VerificationMethod>;
+  public assertionMethod?: Array<string | Btc1VerificationMethod>;
+  public capabilityInvocation?: Array<string | Btc1VerificationMethod>;
+  public capabilityDelegation?: Array<string | Btc1VerificationMethod>;
+  public service: Array<BeaconService>;
+  public deactivated?: boolean;
 
   constructor(document: IBtc1DidDocument) {
     // Set the ID and ID type

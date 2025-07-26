@@ -262,7 +262,7 @@ export class Btc1Identifier {
    * Generates a new did:btc1 identifier based on a newly generated key pair.
    * @returns {string} The new did:btc1 identifier.
    */
-  public static generate(): { keys: SchnorrKeyPair; identifier: { controller: string; id: string } } {
+  public static generate(): { keys: SchnorrKeyPair; identifier: { uri: string; fragment: string } } {
     const keys = SchnorrKeyPair.generate();
     const did = this.encode({
       idType       : Btc1IdentifierTypes.KEY,
@@ -271,6 +271,6 @@ export class Btc1Identifier {
       genesisBytes : keys.publicKey.compressed
     });
 
-    return { keys, identifier: { controller: did, id: '#initialKey'} };
+    return { keys, identifier: { uri: did, fragment: '#initialKey'} };
   }
 }

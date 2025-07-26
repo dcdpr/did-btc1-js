@@ -1,8 +1,8 @@
-import { KeyPairUtils } from '@did-btc1/keypair';
 import { Did } from '@web5/dids';
 import { mkdir, readdir, readFile, rename, writeFile } from 'fs/promises';
 import path from 'path';
 import { DidBtc1 } from '../../../../src/did-btc1.js';
+import { SchnorrKeyPair } from '@did-btc1/keypair';
 
 const cwd = process.cwd();
 const network = process.argv[2] || 'regtest';
@@ -40,13 +40,13 @@ try {
 }
 
 // Step 1: Generate new key pairs
-const genesisKey = KeyPairUtils.generate();
-const replacementKey = KeyPairUtils.generate();
+const genesisKey = SchnorrKeyPair.generate();
+const replacementKey = SchnorrKeyPair.generate();
 
 // Step 2: Create a new DID and initial DID document
 const { did, initialDocument } = await DidBtc1.create({
   idType      : 'KEY',
-  pubKeyBytes : genesisKey.publicKey.bytes,
+  pubKeyBytes : genesisKey.publicKey.compressed,
   options     : { network, version: 1 },
 });
 
@@ -57,11 +57,11 @@ if(!parts) {
 const keyId = parts.id;
 const keys = {
   genesisKey : {
-    sk : genesisKey.privateKey.hex,
+    sk : genesisKey.secretKey.hex,
     pk : genesisKey.publicKey.hex,
   },
   [keyId] : {
-    sk : replacementKey.privateKey.hex,
+    sk : replacementKey.secretKey.hex,
     pk : replacementKey.publicKey.hex,
   }
 };

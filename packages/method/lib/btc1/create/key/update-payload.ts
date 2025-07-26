@@ -26,7 +26,7 @@ const patch = args[1] && JSON.parsable(args[1])
         publicKey   : Buffer.from(keys.genesisKey.publicKey.hex, 'hex'),
         network     : getNetwork(network),
         addressType : 'p2pkh',
-        beaconType  : 'SingletonBeacon',
+        type        : 'SingletonBeacon',
       })
     }
   ]);

@@ -15,18 +15,18 @@ const initialDocument = JSON.parse(await readFile(`${latestdir}/initialDocument.
 const keys = JSON.parse(await readFile(`${latestdir}/keys.json`, { encoding: 'utf-8' }));
 const genesisKey = keys.genesisKey;
 const genesisKeyPair = new SchnorrKeyPair({
-  privateKey : Buffer.from(genesisKey.sk, 'hex'),
-  publicKey  : Buffer.from(genesisKey.pk, 'hex')
+  secretKey : Buffer.from(genesisKey.sk, 'hex'),
+  publicKey : Buffer.from(genesisKey.pk, 'hex')
 });
 
-const parts = Did.parse(initialDocument.id);
+const parts = Did.parse(initialDocument.verificationMethod[0].id);
 if (!parts) {
   throw new Error('Failed to parse DID');
 }
 const replacementKey = keys[parts.id];
 const replacementKeyPair = new SchnorrKeyPair({
-  privateKey : Buffer.from(replacementKey.sk, 'hex'),
-  publicKey  : Buffer.from(replacementKey.pk, 'hex')
+  secretKey : Buffer.from(replacementKey.sk, 'hex'),
+  publicKey : Buffer.from(replacementKey.pk, 'hex')
 });
 
 const identifier = initialDocument.id;
@@ -38,15 +38,19 @@ const patch = JSON.patch.create([
     path  : '/service/0',
     value : BeaconUtils.generateBeaconService({
       id          : identifier,
-      publicKey   : replacementKeyPair.publicKey.bytes,
+      publicKey   : replacementKeyPair.publicKey.x,
       network     : getNetwork(network),
       addressType : 'p2pkh',
       type        : 'SingletonBeacon',
     })
   }
 ]);
+if(!parts.fragment) {
+  throw new Error('DID fragment is missing');
+}
+const keyUri = initialDocument.verificationMethod[0].id;
 
-await Btc1KeyManager.initialize(genesisKeyPair);
+await Btc1KeyManager.initialize(genesisKeyPair, keyUri);
 
 const verificationMethodId = initialDocument.verificationMethod[0].id;
 const beaconIds = [initialDocument.service[0].id];
