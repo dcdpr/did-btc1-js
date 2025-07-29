@@ -26,24 +26,22 @@ import {
 
 export const DEFAULT_NOSTR_RELAYS = [
   'wss://relay.damus.io',
-  // 'wss://nos.lol',
-  // 'wss://relay.snort.social',
-  // 'wss://nostr-pub.wellorder.net',
+  'wss://nos.lol',
+  'wss://relay.snort.social',
+  'wss://nostr-pub.wellorder.net',
 ];
 export const DEFAULT_NOSTR_FILTERS: Filter[] = [{ kinds: [1, 1059] }];
 
-type Btc1Did = string;
-
-/**
- * NostrKeys defines the structure for Nostr public and secret keys.
- * It is used to store the key pair for communication over the Nostr protocol.
- * @type {NostrKeys}
- */
+export type NostrAdapterConfig = {
+  keys?: ServiceAdapterIdentity<NostrKeys>;
+  relays?: string[];
+  filters?: Filter[]
+}
+export type Btc1Did = string;
 export type NostrKeys = {
   public: KeyBytes;
   secret: KeyBytes;
 }
-
 
 /**
  * NostrAdapter implements the CommunicationService interface for Nostr protocol.
@@ -92,13 +90,15 @@ export class NostrAdapter implements CommunicationService {
 
   /**
    * Constructs a new NostrAdapter instance with the provided configuration.
-   * @param {ServiceAdapterIdentity<NostrKeys>} keys The keys used for Nostr communication, containing public and secret keys.
-   * @param {string[]} [relays] Optional list of Nostr relays to connect to. Defaults to predefined relays.
+   * @param {NostrAdapterConfig} [config] The configuration for the NostrAdapter.
+   * @param {ServiceAdapterIdentity<NostrKeys>} config.keys The keys used for Nostr communication, containing public and secret keys.
+   * @param {string[]} [config.relays] The list of Nostr relays to connect to. Defaults to a predefined set of relays.
+   * @param {Filter[]} [config.filters] The filters to apply when subscribing to Nostr
    */
-  constructor(keys?: ServiceAdapterIdentity<NostrKeys>, relays?: string[], filters?: Filter[]) {
-    this.keys = keys;
+  constructor({ keys, relays, filters }: NostrAdapterConfig = {}) {
     this.relays = relays ?? DEFAULT_NOSTR_RELAYS;
     this.filters = filters ?? DEFAULT_NOSTR_FILTERS;
+    this.keys = keys;
   }
 
   /**
@@ -114,6 +114,14 @@ export class NostrAdapter implements CommunicationService {
     });
 
     return this;
+  }
+
+  /**
+   * Sets the keys used for Nostr communication.
+   * @param {ServiceAdapterIdentity<NostrKeys>} keys The keys to set.
+   */
+  public setKeys(keys: ServiceAdapterIdentity<NostrKeys>): void {
+    this.keys = keys;
   }
 
   /**
