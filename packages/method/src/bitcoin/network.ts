@@ -34,6 +34,7 @@ export function getNetwork(network: string): networks.Network {
   switch (network) {
     case 'bitcoin':
       return networks.bitcoin;
+    case 'mutinynet':
     case 'signet':
       return signet;
     case 'regtest':

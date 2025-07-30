@@ -800,7 +800,7 @@ export class Btc1Read {
     update: DidUpdatePayload;
     updateHashHistory: string[];
   }): Promise<void> {
-    Logger.warn('// TODO: Does this algorithm need `contemporaryHash` passed in?');
+    // Logger.warn('// TODO: Does this algorithm need `contemporaryHash` passed in?');
 
     // Hash the update payload
     const updateHash = await JSON.canonicalization.process(update);
