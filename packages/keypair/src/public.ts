@@ -12,6 +12,7 @@ import {
 import { sha256 } from '@noble/hashes/sha2';
 import { base58btc } from 'multiformats/bases/base58';
 import { SecretKey } from './secret.js';
+import { bigintToBytes, bytesToBigint } from './utils.js';
 
 export interface Point {
   x: KeyBytes;
@@ -145,7 +146,7 @@ export class PublicKey implements PublicKey {
    * @returns {Uint8Array} The 65-byte uncompressed public key (0x04, x, y).
    */
   get uncompressed(): KeyBytes {
-    const uncompressed = this.liftX();
+    const uncompressed = new Uint8Array([0x04, ...this.x, ...this.y]);
     return uncompressed;
   }
 
@@ -168,11 +169,15 @@ export class PublicKey implements PublicKey {
   }
 
   /**
-   * Get the y-coordinate of the public key.
-   * @returns {Uint8Array} The 32-byte y-coordinate of the public key.
-   */
+ * Get the y-coordinate of the public key.
+ * If the key's original parity was odd (0x03), return `p - y` to normalize to even.
+ * @returns {KeyBytes} The 32-byte y-coordinate of the public key.
+ */
   get y(): KeyBytes {
-    const y = this.uncompressed.slice(33, 65);
+    const y = this.uncompressed.slice(33, 65); // last 32 bytes of uncompressed
+    if (this.parity === 0x03) {
+      return this.negateY(y);
+    }
     return y;
   }
 
@@ -229,6 +234,17 @@ export class PublicKey implements PublicKey {
       'Invalid publicKey: must be a hex string or byte array',
       'POINT_ERROR', { publicKey: pk }
     );
+  }
+
+  /**
+ * Negates a y-coordinate to produce the opposite parity (i.e., `p - y mod p`).
+ * @param {KeyBytes} oddY The original y-coordinate
+ * @returns {KeyBytes} The negated y-coordinate
+ */
+  private negateY(oddY: KeyBytes): KeyBytes {
+    const y = bytesToBigint(oddY);
+    const negated = (CURVE.p - y) % CURVE.p;
+    return bigintToBytes(negated);
   }
 
   /**
