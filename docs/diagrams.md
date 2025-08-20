@@ -4,7 +4,7 @@
 
 Below is the high-level architecture of the did-btc1-js monorepo.
 
-<img src="/did-btc1-js-architecture.svg" />
+<!-- <img src="/did-btc1-js-architecture.svg" /> -->
 
 ## Sequence
 
@@ -18,13 +18,13 @@ A did:btc1 identifier and associated DID document can either be created determin
 
 For deterministic creation, the did:btc1 encodes a secp256k1 public key into an identifier. The key is then used to deterministically generate the initial DID document.
 
-<img src="/sequence/create-deterministic.svg" />
+<!-- <img src="/sequence/create-deterministic.svg" /> -->
 
 **Create External**
 
 For external creation, the did:btc1 encodes an arbitrary DID document into an identifier. The initial document is then used as the initial DID Document.
 
-<img src="/sequence/create-external.svg" />
+<!-- <img src="/sequence/create-external.svg" /> -->
 
 ### Resolve (Read)
 
