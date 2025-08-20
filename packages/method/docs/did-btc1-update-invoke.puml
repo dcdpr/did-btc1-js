@@ -1,0 +1,39 @@
+@startuml BTC1 Update – Invoke Details
+title Btc1Update.invoke – key retrieval and proof
+
+participant "Btc1Update.invoke" as Invoke
+participant "Btc1KeyManager" as KMS
+participant "SchnorrMultikey" as Multi
+participant "Btc1Appendix" as Appendix
+
+== Inputs ==
+Invoke -> Invoke: (identifier, didUpdatePayload, verificationMethod)
+
+alt missing publicKeyMultibase
+  Invoke --> Invoke: throw Btc1Error(INVALID_PUBLIC_KEY_TYPE)
+  return
+end
+
+== Try to obtain private key ==
+Invoke -> KMS: getKeyPair(verificationMethod.id)
+alt key exists in KMS
+  KMS --> Invoke: SchnorrMultikey
+else key not in KMS
+  alt verificationMethod.secretKeyMultibase present
+    Invoke -> Multi: initialize({ id, controller,\nkeys: SecretKey.decode(secretKeyMultibase) })
+    Multi --> Invoke: SchnorrMultikey
+  else no key material available
+    Invoke --> Invoke: throw Btc1Error(NOT_FOUND)
+    return
+  end
+end
+
+== Build capability + proof options ==
+Invoke -> Appendix: deriveRootCapability(identifier)
+Appendix --> Invoke: rootCapability
+Invoke -> Multi: toCryptosuite("bip340-jcs-2025").toDataIntegrityProof()
+Invoke -> Multi: addProof(document=didUpdatePayload,\noptions={type: DataIntegrityProof,\nverificationMethod, proofPurpose: capabilityInvocation,\ncapability: rootCapability.id, capabilityAction: Write})
+Multi --> Invoke: DidUpdateInvocation
+
+Invoke --> Invoke: return DidUpdateInvocation
+@enduml
