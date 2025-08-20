@@ -48,7 +48,7 @@ export class Btc1Update {
    * sourceVersionId, and documentPatch objects. It returns an unsigned DID Update Payload.
    *
    * @param {ConstructPayloadParams} params See  {@link ConstructPayloadParams} for more details.
-   * @param {string} params.identifier The did-btc1 identifier to derive the root capability from.
+   * @param {string} params.identifier The did-btc1 identifier to use for verification.
    * @param {Btc1DidDocument} params.sourceDocument The source document to be updated.
    * @param {string} params.sourceVersionId The versionId of the source document.
    * @param {DidDocumentPatch} params.patch The JSON patch to be applied to the source document.
@@ -135,27 +135,39 @@ export class Btc1Update {
     didUpdatePayload: DidUpdatePayload;
     verificationMethod: Btc1VerificationMethod;
   }): Promise<DidUpdateInvocation> {
-    console.log('Invoke DID Update Payload', { didUpdatePayload, verificationMethod });
     // Deconstruct the verificationMethod
     const { id: fullId, controller, publicKeyMultibase, secretKeyMultibase } = verificationMethod;
 
     // Validate the verificationMethod
     if(!publicKeyMultibase) {
-      throw new Btc1Error('Invalid publicKeyMultibase: cannot be undefined', INVALID_PUBLIC_KEY_TYPE, verificationMethod);
+      throw new Btc1Error(
+        'Invalid publicKeyMultibase: cannot be undefined',
+        INVALID_PUBLIC_KEY_TYPE, verificationMethod
+      );
     }
 
-    // 1. Set privateKeyBytes to the result of retrieving the private key bytes associated with the verificationMethod
-    //    value. How this is achieved is left to the implementation.
-    // 1.1 Compute the keyUri and check if the key is in the keystore
-    // 1.2 If not, use the secretKeyMultibase from the verificationMethod
+    // 1. Set privateKeyBytes to the result of retrieving the private key bytes
+    // associated with the verificationMethod value.
     const id = fullId.slice(fullId.indexOf('#'));
     const multikey = !secretKeyMultibase
+    // 1.1 Compute the keyUri and check if the key is in the keystore
       ? await Btc1KeyManager.getKeyPair(fullId)
-      : SchnorrMultikey.initialize({ id, controller, keys: new SchnorrKeyPair({ secretKey: SecretKey.decode(secretKeyMultibase) }) });
+    // 1.2 If not, use the secretKeyMultibase from the verificationMethod
+      : SchnorrMultikey
+        .initialize({
+          id,
+          controller,
+          keys : new SchnorrKeyPair({
+            secretKey : SecretKey.decode(secretKeyMultibase)
+          })
+        });
 
     // 1.3 If the privateKey is not found, throw an error
     if (!multikey) {
-      throw new Btc1Error('No privateKey found in kms or vm', NOT_FOUND, verificationMethod);
+      throw new Btc1Error(
+        'No privateKey found in kms or vm',
+        NOT_FOUND, verificationMethod
+      );
     }
 
     // 2. Set rootCapability to the result of passing btc1Identifier into the Derive Root Capability from did:btc1
@@ -188,7 +200,8 @@ export class Btc1Update {
     // 12. Set didUpdateInvocation to the result of executing the Add Proof algorithm from VC Data Integrity passing
     //     didUpdatePayload as the input document, cryptosuite, and the set of proofOptions.
     // 13. Return didUpdateInvocation.
-    return await diproof.addProof({ document: didUpdatePayload, options });  }
+    return await diproof.addProof({ document: didUpdatePayload, options });
+  }
 
   /**
    * Implements {@link https://dcdpr.github.io/did-btc1/#announce-did-update | 4.3.3 Announce DID Update}.
@@ -252,7 +265,10 @@ export class Btc1Update {
       signalsMetadata = await beacon.broadcastSignal(didUpdateInvocation);
     }
     if(!signalsMetadata) {
-      throw new Btc1Error('Invalid beacon: no signalsMetadata found', INVALID_DID_DOCUMENT, { beaconServices });
+      throw new Btc1Error(
+        'Invalid beacon: no signalsMetadata found',
+        INVALID_DID_DOCUMENT, { beaconServices }
+      );
     }
     Logger.debug('signalsMetadata', signalsMetadata);
     // Return the signalsMetadata

@@ -15,7 +15,7 @@ const initialDocument = JSON.parse(await readFile(`${latestdir}/initialDocument.
 const keys = JSON.parse(await readFile(`${latestdir}/keys.json`, { encoding: 'utf-8' }));
 const genesisKey = keys.genesisKey;
 const genesisKeyPair = new SchnorrKeyPair({
-  privateKey : Buffer.from(genesisKey.sk, 'hex'),
+  secretKey : Buffer.from(genesisKey.sk, 'hex'),
   publicKey  : Buffer.from(genesisKey.pk, 'hex')
 });
 
@@ -25,7 +25,7 @@ if (!parts) {
 }
 const replacementKey = keys[parts.id];
 const replacementKeyPair = new SchnorrKeyPair({
-  privateKey : Buffer.from(replacementKey.sk, 'hex'),
+  secretKey : Buffer.from(replacementKey.sk, 'hex'),
   publicKey  : Buffer.from(replacementKey.pk, 'hex')
 });
 
@@ -38,7 +38,7 @@ const patch = JSON.patch.create([
     path  : '/service/0',
     value : BeaconUtils.generateBeaconService({
       id          : identifier,
-      publicKey   : replacementKeyPair.publicKey.bytes,
+      publicKey   : replacementKeyPair.publicKey.compressed,
       network     : getNetwork(network),
       addressType : 'p2pkh',
       type        : 'SingletonBeacon',
@@ -46,7 +46,8 @@ const patch = JSON.patch.create([
   }
 ]);
 
-await Btc1KeyManager.initialize(genesisKeyPair);
+const keyUri = Btc1KeyManager.computeKeyUri(parts.id, parts.fragment ?? '')
+await Btc1KeyManager.initialize(genesisKeyPair, keyUri);
 
 const verificationMethodId = initialDocument.verificationMethod[0].id;
 const beaconIds = [initialDocument.service[0].id];

@@ -370,8 +370,6 @@ export class Btc1Read {
   }
 
   /**
-   * TODO: Need to finish implementing the traverseBlockchainHistory method
-   *
    * Implements {@link https://dcdpr.github.io/did-btc1/#traverse-blockchain-history | 4.2.3.2 Traverse Blockchain History}.
    *
    * The Traverse Blockchain History algorithm traverses Bitcoin blocks, starting from the block with the
@@ -805,8 +803,6 @@ export class Btc1Read {
     update: DidUpdatePayload;
     updateHashHistory: string[];
   }): Promise<void> {
-    Logger.warn('// TODO: Does this algorithm need `contemporaryHash` passed in?');
-
     // Hash the update payload
     const updateHash = await JSON.canonicalization.process(update);
 
@@ -815,7 +811,10 @@ export class Btc1Read {
 
     // Check if the updateHash matches the historical hash
     if (historicalUpdateHash !== updateHash) {
-      throw new Btc1ReadError(`Invalid duplicate: ${updateHash} does not match ${historicalUpdateHash}`, 'LATE_PUBLISHING_ERROR');
+      throw new Btc1ReadError(
+        `Invalid duplicate: ${updateHash} does not match ${historicalUpdateHash}`,
+        'LATE_PUBLISHING_ERROR', { updateHash, updateHashHistory }
+      );
     }
   }
 

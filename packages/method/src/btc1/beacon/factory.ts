@@ -12,7 +12,16 @@ import { SMTAggregateBeacon } from './smt-aggregate.js';
  * @type {BeaconFactory}
  */
 export class BeaconFactory {
-  static establish(service: BeaconService, sidecar?: SidecarData<SingletonSidecar | CIDAggregateSidecar | SMTAggregateSidecar>): Beacon {
+  /**
+   * Establish a Beacon instance based on the provided service and optional sidecar data.
+   * @param {BeaconService} service - The beacon service configuration.
+   * @param {SidecarData<SingletonSidecar | CIDAggregateSidecar | SMTAggregateSidecar>} [sidecar] - The optional sidecar data.
+   * @returns {Beacon} The established Beacon instance.
+   */
+  static establish(
+    service: BeaconService,
+    sidecar?: SidecarData<SingletonSidecar | CIDAggregateSidecar | SMTAggregateSidecar>
+  ): Beacon {
     switch (service.type) {
       case 'SingletonBeacon':
         return new SingletonBeacon(service, sidecar);
@@ -21,7 +30,10 @@ export class BeaconFactory {
       case 'SMTAggregateBeacon':
         return new SMTAggregateBeacon(service, sidecar);
       default:
-        throw new Btc1Error('Invalid Beacon Type', 'INVALID_BEACON_ERROR', { service, sidecar });
+        throw new Btc1Error(
+          'Invalid Beacon Type',
+          'INVALID_BEACON_ERROR', { service, sidecar }
+        );
     }
   }
 }
