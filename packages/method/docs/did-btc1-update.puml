@@ -1,0 +1,62 @@
+@startuml BTC1 Update – High Level
+title DID BTC1 Update (happy path)
+
+actor "DidBtc1 (caller)" as Client
+participant "Btc1Update" as Update
+participant "BeaconFactory" as Factory
+participant "Beacon (Singleton/CID/SMT)" as Beacon
+
+== Start ==
+Client -> Update: update({ identifier, sourceDocument,\nsourceVersionId, patch, verificationMethodId, beaconIds })
+activate Update
+
+group Construct DID Update Payload
+  Update -> Update: construct({ identifier, sourceDocument,\nsourceVersionId, patch })
+  note right of Update
+    - Verify sourceDocument.id === identifier
+    - Apply JSON Patch -> targetDocument
+    - Validate targetDocument (DID Core)
+    - JCS + hash -> sourceHash, targetHash
+    - targetVersionId = sourceVersionId + 1
+  end note
+  Update --> Update: DidUpdatePayload
+end
+
+group Resolve & validate signing method
+  Update -> Update: getSigningMethod(sourceDocument, verificationMethodId)
+  Update --> Update: verificationMethod
+  alt invalid verificationMethod
+    Update --> Client: throw Btc1Error(INVALID_DID_DOCUMENT)
+    deactivate Update
+    return
+  end
+  alt type !== "Multikey" OR publicKeyMultibase prefix !== "zQ3s"
+    Update --> Client: throw Btc1Error(INVALID_DID_DOCUMENT)
+    deactivate Update
+    return
+  end
+end
+
+group Invoke DID Update Payload (add ZCAP-LD Data Integrity proof)
+  Update -> Update: invoke({ identifier, didUpdatePayload,\nverificationMethod })
+  Update --> Update: DidUpdateInvocation
+end
+
+group Announce DID Update (broadcast to beacons)
+  loop for beaconId in beaconIds
+    Update -> Update: find service in sourceDocument.service
+    alt not found
+      Update --> Client: throw Btc1Error(INVALID_DID_DOCUMENT)
+      deactivate Update
+      return
+    end
+    Update -> Factory: establish(beaconService)
+    Factory --> Update: Beacon instance
+    Update -> Beacon: broadcastSignal(DidUpdateInvocation)
+    Beacon --> Update: signalMetadata (accumulate)
+  end
+end
+
+Update --> Client: signalsMetadata
+deactivate Update
+@enduml
