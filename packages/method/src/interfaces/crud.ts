@@ -1,4 +1,4 @@
-import { BitcoinNetworkNames, UnixTimestamp } from '@did-btc1/common';
+import { BitcoinNetworkNames, UnixTimestamp } from '@did-btcr2/common';
 import { DidResolutionOptions as IDidResolutionOptions } from '@web5/dids';
 import BitcoinRpc from '../bitcoin/rpc-client.js';
 import { SidecarData } from '../types/crud.js';

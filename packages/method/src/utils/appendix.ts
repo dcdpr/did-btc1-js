@@ -1,4 +1,4 @@
-import { Bytes, HashBytes, Logger, W3C_ZCAP_V1 } from '@did-btc1/common';
+import { Bytes, HashBytes, Logger, W3C_ZCAP_V1 } from '@did-btcr2/common';
 import { strings } from '@helia/strings';
 import {
   DidDocument,
@@ -23,7 +23,7 @@ export interface DidComponents {
 };
 
 /**
- * Implements {@link https://dcdpr.github.io/did-btc1/#appendix | 9. Appendix} methods.
+ * Implements {@link https://dcdpr.github.io/did-btcr2/#appendix | 9. Appendix} methods.
  *
  * @class Btc1Appendix
  * @type {Btc1Appendix}
@@ -98,23 +98,23 @@ export class Btc1Appendix {
 
 
   /**
-   * Implements {@link https://dcdpr.github.io/did-btc1/#derive-root-capability-from-didbtc1-identifier | 9.4.1 Derive Root Capability from did:btc1 Identifier}.
+   * Implements {@link https://dcdpr.github.io/did-btcr2/#derive-root-capability-from-didbtc1-identifier | 9.4.1 Derive Root Capability from did:btcr2 Identifier}.
    *
-   * The Derive Root Capability algorithm deterministically generates a ZCAP-LD root capability from a given did:btc1
+   * The Derive Root Capability algorithm deterministically generates a ZCAP-LD root capability from a given did:btcr2
    * identifier. Each root capability is unique to the identifier. This root capability is defined and understood by the
-   * did:btc1 specification as the root capability to authorize updates to the specific did:btc1 identifiers DID
-   * document. It takes in a did:btc1 identifier and returns a rootCapability object. It returns the root capability.
+   * did:btcr2 specification as the root capability to authorize updates to the specific did:btcr2 identifiers DID
+   * document. It takes in a did:btcr2 identifier and returns a rootCapability object. It returns the root capability.
    *
-   * @param {string} identifier The did-btc1 identifier to derive the root capability from
+   * @param {string} identifier The did-btcr2 identifier to derive the root capability from
    * @returns {Btc1RootCapability} The root capability object
    * @example Root capability for updating the DID document for
-   * did:btc1:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u
+   * did:btcr2:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u
    * ```
    * {
    *  "@context": "https://w3id.org/zcap/v1",
-   *  "id": "urn:zcap:root:did:btc1:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u",
-   *  "controller": "did:btc1:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u",
-   *  "invocationTarget": "did:btc1:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u"
+   *  "id": "urn:zcap:root:did:btcr2:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u",
+   *  "controller": "did:btcr2:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u",
+   *  "invocationTarget": "did:btcr2:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u"
    * }
    * ```
    */
@@ -143,7 +143,7 @@ export class Btc1Appendix {
 
 
   /**
-   * Implements {@link https://dcdpr.github.io/did-btc1/#dereference-root-capability-identifier | 9.4.2 Dereference Root Capability Identifier}.
+   * Implements {@link https://dcdpr.github.io/did-btcr2/#dereference-root-capability-identifier | 9.4.2 Dereference Root Capability Identifier}.
    *
    * This algorithm takes in capabilityId, a root capability identifier, and dereferences it to rootCapability, the root
    * capability object.
@@ -151,7 +151,7 @@ export class Btc1Appendix {
    * @param {string} capabilityId The root capability identifier to dereference.
    * @returns {Btc1RootCapability} The root capability object.
    * @example a didUpdatePayload with an invoked ZCAP-LD capability containing a patch defining how the DID document
-   * for did:btc1:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u SHOULD be mutated.
+   * for did:btcr2:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u SHOULD be mutated.
    * ```
    * {
    *  "@context": [
@@ -173,8 +173,8 @@ export class Btc1Appendix {
    *  "proof": {
    *    "type": "DataIntegrityProof",
    *    "cryptosuite": "schnorr-secp256k1-jcs-2025",
-   *    "verificationMethod": "did:btc1:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u#initialKey",
-   *    "invocationTarget": "did:btc1:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u",
+   *    "verificationMethod": "did:btcr2:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u#initialKey",
+   *    "invocationTarget": "did:btcr2:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u",
    *    "capability": "urn:zcap:root:did%3Abtc1%3Ak1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u",
    *    "capabilityAction": "Write",
    *    "proofPurpose": "assertionMethod",
@@ -230,7 +230,7 @@ export class Btc1Appendix {
   }
 
   /**
-   * Implements {@link https://dcdpr.github.io/did-btc1/#fetch-content-from-addressable-storage | 9.3. Fetch Content from Addressable Storage}.
+   * Implements {@link https://dcdpr.github.io/did-btcr2/#fetch-content-from-addressable-storage | 9.3. Fetch Content from Addressable Storage}.
    *
    * The Fetch Content from Addressable Storage function takes in SHA256 hash of some content, hashBytes, converts these
    * bytes to a IPFS v1 Content Identifier and attempts to retrieve the identified content from Content Addressable

@@ -1,4 +1,4 @@
-import { SchnorrKeyPair } from '@did-btc1/keypair';
+import { SchnorrKeyPair } from '@did-btcr2/keypair';
 import { base58btc } from 'multiformats/bases/base58';
 import { Cryptosuite, DataIntegrityProof, Multikey } from '../../src/index.js';
 

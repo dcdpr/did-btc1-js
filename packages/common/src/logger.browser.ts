@@ -42,7 +42,7 @@ export class Logger {
 
   constructor(namespace?: string) {
     this.levels = LOG_LEVELS[NODE_ENV] || [];
-    this.namespace = namespace ?? 'did-btc1-js';
+    this.namespace = namespace ?? 'did-btcr2-js';
   }
 
   private _log(level: Level, message?: unknown, ...args: unknown[]) {

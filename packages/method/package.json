@@ -1,8 +1,8 @@
 {
-    "name": "@did-btc1/method",
+    "name": "@did-btcr2/method",
     "version": "0.13.0",
     "type": "module",
-    "description": "Javascript/TypeScript reference implementation of did:btc1 method, a censorship resistant DID Method using the Bitcoin blockchain as a Verifiable Data Registry to announce changes to the DID document. Core package of the did-btc1-js monorepo.",
+    "description": "Javascript/TypeScript reference implementation of did:btcr2 method, a censorship resistant DID Method using the Bitcoin blockchain as a Verifiable Data Registry to announce changes to the DID document. Core package of the did-btcr2-js monorepo.",
     "main": "./dist/cjs/index.js",
     "module": "./dist/esm/index.js",
     "types": "./dist/types/index.d.ts",
@@ -34,13 +34,13 @@
             "email": "github@jintek.consulting"
         }
     ],
-    "homepage": "https://github.com/dcdpr/did-btc1-js/tree/main/packages/method",
+    "homepage": "https://github.com/dcdpr/did-btcr2-js/tree/main/packages/method",
     "repository": {
         "type": "git",
-        "url": "git+ssh://git@github.com:dcdpr/did-btc1-js.git",
+        "url": "git+ssh://git@github.com:dcdpr/did-btcr2-js.git",
         "directory": "packages/method"
     },
-    "bugs": "https://github.com/dcdpr/did-btc1-js/issues",
+    "bugs": "https://github.com/dcdpr/did-btcr2-js/issues",
     "publishConfig": {
         "access": "public"
     },
@@ -53,7 +53,7 @@
         "decentralized identity",
         "decentralized identifiers",
         "did method",
-        "did:btc1",
+        "did:btcr2",
         "bitcoin"
     ],
     "scripts": {
@@ -84,12 +84,12 @@
         "do": "pnpm tsx",
         "do:lib": "${PWD}/lib/run-lib.sh",
         "do:lib:btc": "${PWD}/lib/do-lib.sh bitcoin",
-        "do:lib:btc1": "${PWD}/lib/do-lib.sh btc1"
+        "do:lib:btcr2": "${PWD}/lib/do-lib.sh btcr2"
     },
     "dependencies": {
-        "@did-btc1/common": "workspace:*",
-        "@did-btc1/cryptosuite": "workspace:*",
-        "@did-btc1/keypair": "workspace:*",
+        "@did-btcr2/common": "workspace:*",
+        "@did-btcr2/cryptosuite": "workspace:*",
+        "@did-btcr2/keypair": "workspace:*",
         "@helia/strings": "^4.0.2",
         "@noble/curves": "^1.8.1",
         "@noble/hashes": "^1.5.0",

@@ -1,6 +1,6 @@
 import * as tinysecp from 'tiny-secp256k1';
 import { payments, script, opcodes } from 'bitcoinjs-lib';
-import { PublicKey } from '@did-btc1/keypair';
+import { PublicKey } from '@did-btcr2/keypair';
 
 /**
  * Aggregate an array of public keys by point addition
