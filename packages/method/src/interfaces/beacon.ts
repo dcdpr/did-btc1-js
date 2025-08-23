@@ -1,9 +1,9 @@
 import { DidUpdatePayload } from '@did-btc1/common';
 import { DidServiceEndpoint } from '@web5/dids';
-import { RawTransactionV2 } from '../types/bitcoin.js';
-import { CIDAggregateSidecar, SidecarData, SignalsMetadata, SingletonSidecar, SMTAggregateSidecar } from '../types/crud.js';
-import { BeaconService, BeaconSignal, IBeacon } from './ibeacon.js';
 import { RawTransactionRest } from '../bitcoin/rest-client.js';
+import { RawTransactionV2 } from '../types/bitcoin.js';
+import { SidecarData, SignalsMetadata } from '../types/crud.js';
+import { BeaconService, BeaconSignal, IBeacon } from './ibeacon.js';
 
 /**
  * Implements {@link https://dcdpr.github.io/did-btc1/#update-beacons | 5. Beacons}.
@@ -37,9 +37,9 @@ export abstract class Beacon implements IBeacon {
   public id: string;
   public type: string;
   public serviceEndpoint: DidServiceEndpoint;
-  public sidecar?: SidecarData<SingletonSidecar | CIDAggregateSidecar | SMTAggregateSidecar>;
+  public sidecar?: SidecarData;
 
-  constructor({ id, type, serviceEndpoint }: BeaconService, sidecar?: SidecarData<SingletonSidecar | CIDAggregateSidecar | SMTAggregateSidecar>) {
+  constructor({ id, type, serviceEndpoint }: BeaconService, sidecar?: SidecarData) {
     this.id = id;
     this.type = type;
     this.serviceEndpoint = serviceEndpoint;

@@ -3,7 +3,7 @@ import { DidServiceEndpoint } from '@web5/dids';
 import { Beacon } from '../../interfaces/beacon.js';
 import { BeaconService, BeaconSignal } from '../../interfaces/ibeacon.js';
 import { RawTransactionV2 } from '../../types/bitcoin.js';
-import { CIDAggregateSidecar, SidecarData, SignalsMetadata } from '../../types/crud.js';
+import { BeaconSidecarData, CIDAggregateSidecar, SignalsMetadata } from '../../types/crud.js';
 
 /**
  * Implements {@link https://dcdpr.github.io/did-btc1/#cidaggregate-beacon | 5.2 CIDAggregate Beacon}.
@@ -25,9 +25,9 @@ export class CIDAggregateBeacon extends Beacon {
   /**
    * Creates an instance of CIDAggregateBeacon.
    * @param {BeaconService} service The service of the Beacon.
-   * @param {?SidecarData} [sidecar] The sidecar data of the Beacon.
+   * @param {?BeaconSidecarData} [sidecar] The sidecar data of the Beacon.
    */
-  constructor(service: BeaconService, sidecar?: SidecarData<CIDAggregateSidecar>) {
+  constructor(service: BeaconService, sidecar?: BeaconSidecarData<CIDAggregateSidecar>) {
     super({ ...service, type: 'CIDAggregateBeacon' }, sidecar);
   }
   get service(): BeaconService {

@@ -219,7 +219,7 @@ export interface SidecarData {
    * Each signal might provide a single DID Update Payload, or (for aggregator beacons)
    * a bundle or proofs.
    */
-  signalsMetadata?: {
+  signalsMetadata: {
     [txid: string]: SignalSidecarData;
   };
 }

@@ -8,8 +8,8 @@ export type FindNextSignals = {
   beacons: BeaconService[]
 };
 export type Metadata = {
-  updatePayload: DidUpdatePayload;
-  proofs?: any;
+  btc1Update: DidUpdatePayload;
+  proofs?: string;
 };
 export type SignalSidecarData = Metadata;
 export interface Btc1SidecarData {
@@ -21,17 +21,20 @@ export interface SingletonSidecar extends Btc1SidecarData {
 }
 export interface CIDAggregateSidecar extends Btc1SidecarData {
   initialDocument: Btc1DidDocument;
+  signalsMetadata: SignalsMetadata;
   cidUpdates: Array<string>;
 }
 export interface SMTAggregateSidecar extends Btc1SidecarData {
-  // SMTAggregate
+  initialDocument: Btc1DidDocument;
+  signalsMetadata: SignalsMetadata;
   smtProof: ProofBytes;
 }
-export type SidecarData<T> =
+export type BeaconSidecarData<T> =
   T extends 'SingletonBeacon' ? SingletonSidecar :
   T extends 'CIDAggregateBeacon' ? CIDAggregateSidecar :
   T extends 'SMTAggregateBeacon' ? SMTAggregateSidecar :
-  never;
+  T;
+export type SidecarData = BeaconSidecarData<SingletonSidecar | CIDAggregateSidecar | SMTAggregateSidecar>;
 export type GetSigningMethodParams = {
   didDocument: Btc1DidDocument;
   methodId?: string;

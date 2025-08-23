@@ -1,6 +1,6 @@
 {
   "name": "@did-btc1/common",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "type": "module",
   "description": "Common utilities, types, interfaces, etc. shared across the did-btc1-js monorepo packages.",
   "main": "./dist/cjs/index.js",

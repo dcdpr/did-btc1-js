@@ -9,7 +9,7 @@ const [id = '#initialP2PKH', controller = 'did:btc1:k1qyp3al8fedye95ueca9ezrmcm4
 if(!controller) {
   throw new Error('Controller is required as the second argument.');
 }
-const secretKey = Buffer.fromHex('4359bb2996ca9edb3566765cd8c5d56ee402399ec541f489273eb320f29f4ae8');
+const secretKey = Buffer.fromHex('b8e9cdde0453f6608df2dde9f4b0000416537361d08b8981ea0187455113c259');
 const keys = new SchnorrKeyPair({ secretKey });
 const keyUri = Btc1KeyManager.computeKeyUri(id, controller);
 await Btc1KeyManager.initialize(keys, keyUri);
@@ -17,8 +17,8 @@ const multikey = await Btc1KeyManager.getKeyPair();
 if (!multikey) {
   throw new Error('Multikey not found.');
 }
-const sender = 'mv6FGwgr91ZzW4vT5GWEoXDPMk29j1LRpP';
-const receiver = 'mh9sw9VFe82gNUBbuLXAkBhS42Z1c6JH8E';
+const sender = 'mh9sw9VFe82gNUBbuLXAkBhS42Z1c6JH8E';
+const receiver = 'mv6FGwgr91ZzW4vT5GWEoXDPMk29j1LRpP'; // n4CBvMmJ3XMajuNhMiuNx1cDHLBtwQbKRX
 const utxos = await bitcoin.rest.address.getUtxos(sender);
 console.log('utxos:', utxos);
 const utxo: AddressUtxo = utxos.sort((a, b) => b.status.block_height - a.status.block_height)[0];
@@ -26,8 +26,8 @@ console.log('utxo:', utxo);
 const signer = {
   publicKey   : multikey.publicKey.compressed,
   network     : bitcoin.network.data,
-  sign        : (hash: Uint8Array) => multikey.sign(hash, { scheme: 'schnorr' }),
   signSchnorr : (hash: Uint8Array) => multikey.sign(hash),
+  sign        : (hash: Uint8Array) => multikey.sign(hash, { scheme: 'ecdsa' }),
 };
 const {txid, vout} = utxo;
 const prevTx = await bitcoin.rest.transaction.getHex(txid);
@@ -40,7 +40,7 @@ const input = {
 console.log('input:', input);
 const signedSpendTx  = new Psbt({ network: bitcoin.network.data })
   .addInput(input)
-  .addOutput({ address: receiver, value: BigInt(utxo.value) - BigInt(250) })
+  .addOutput({ address: receiver, value: BigInt(1750) })
   .signAllInputs(signer)
   .finalizeAllInputs()
   .extractTransaction()

@@ -91,19 +91,23 @@ export class DidBtc1 implements DidMethod {
   }
 
   /**
-   * Entry point for section {@link https://dcdpr.github.io/did-btc1/#read | 4.2 Read}.
+   * Entry point for section {@link https://dcdpr.github.io/did-btc1/#read | 7.2 Read}.
    * See {@link Btc1Read} for implementation details.
    *
-   * The read operation is executed by a resolver after a resolution request identifying a specific did:btc1 identifier
-   * is received from a client at Resolution Time. The request MAY contain a resolutionOptions object containing
-   * additional information to be used in resolution. The resolver then attempts to resolve the DID document of the
-   * identifier at a specific Target Time. The Target Time is either provided in resolutionOptions or is set to the
-   * Resolution Time of the request.
+   * The Read operation is an algorithm consisting of a series of subroutine algorithms executed by a resolver after a
+   * resolution request identifying a specific did:btc1 identifier is received from a client at Resolution Time. The
+   * request MUST always contain the resolutionOptions object containing additional information to be used in resolution.
+   * This object MAY be empty. See the DID Resolution specification for further details about the DID Resolution Options
+   * object. The resolver then attempts to resolve the DID document of the identifier at a specific Target Time. The
+   * Target Time is either provided in resolutionOptions or is set to the Resolution Time of the request.
    *
-   * @param {string} identifier The DID to be resolved
-   * @param {DidResolutionOptions} options Optional parameters for the resolution operation
-   * @param {Btc1DidDocument} options.sidecarData.initialDocument User-provided, offline DID Document to resolve sidecar
-   * @returns {DidResolutionResult} Promise resolving to a DID Resolution Result
+   * @param {string} identifier a valid did:btc1 identifier to be resolved
+   * @param {DidResolutionOptions} [resolutionsOptions] see {@link https://www.w3.org/TR/did-1.0/#did-resolution-options | DidResolutionOptions}
+   * @param {number} options.versionId the version of the identifier and/or DID document
+   * @param {number} options.versionTime a timestamp used during resolution as a bound for when to stop resolving
+   * @param {Btc1DidDocument} options.sidecarData data necessary for resolving a DID
+   * @param {string} options.network Bitcoin network name (mainnet, testnet, signet, regtest).
+   * @returns {DidResolutionResult} Promise resolving to a DID Resolution Result containing the `targetDocument`
    * @throws {Error} if the resolution fails for any reason
    * @throws {DidError} InvalidDid if the identifier is invalid
    * @example
@@ -111,25 +115,24 @@ export class DidBtc1 implements DidMethod {
    * const resolution = await DidBtc1.resolve('did:btc1:k1q0dygyp3gz969tp46dychzy4q78c2k3js68kvyr0shanzg67jnuez2cfplh')
    * ```
    */
-  public static async resolve(identifier: string, options: DidResolutionOptions = {}): Promise<DidResolutionResult> {
+  public static async resolve(identifier: string, resolutionsOptions: DidResolutionOptions = {}): Promise<DidResolutionResult> {
     try {
-      // 1. Pass identifier to the did:btc1 Identifier Decoding algorithm, retrieving idType, version, network, and
-      //    genesisBytes.
+      // 1. Pass identifier to the did:btc1 Identifier Decoding algorithm, retrieving idType, version, network, and genesisBytes.
       // 2. Set identifierComponents to a map of idType, version, network, and genesisBytes.
-      const components = Btc1Identifier.decode(identifier);
+      const identifierComponents = Btc1Identifier.decode(identifier);
 
       // 3. Set initialDocument to the result of running the algorithm in Resolve Initial Document passing in the
       //    identifier, identifierComponents and resolutionOptions.
-      const initialDocument = await Btc1Read.initialDocument({ identifier, components, options });
+      const initialDocument = await Btc1Read.initialDocument({ identifier, identifierComponents, resolutionsOptions });
 
       // 4. Set targetDocument to the result of running the algorithm in Resolve Target Document passing in
       //    initialDocument and resolutionOptions.
-      const targetDocument = await Btc1Read.targetDocument({ initialDocument, options });
+      const targetDocument = await Btc1Read.targetDocument({ initialDocument, resolutionsOptions });
 
       // 5. Return targetDocument.
       const didResolutionResult: DidResolutionResult = {
         '@context'            : W3C_DID_RESOLUTION_V1,
-        didResolutionMetadata : { contentType: 'application/did+json' },
+        didResolutionMetadata : { contentType: 'application/ld+json' },
         didDocumentMetadata   : { created: new Date().getUTCDateTime() },
         didDocument           : targetDocument,
       };
