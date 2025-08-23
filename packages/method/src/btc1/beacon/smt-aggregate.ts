@@ -3,7 +3,7 @@ import { DidServiceEndpoint } from '@web5/dids';
 import { Beacon } from '../../interfaces/beacon.js';
 import { BeaconService, BeaconSignal } from '../../interfaces/ibeacon.js';
 import { RawTransactionV2 } from '../../types/bitcoin.js';
-import { SidecarData, SignalsMetadata, SMTAggregateSidecar } from '../../types/crud.js';
+import { BeaconSidecarData, SignalsMetadata, SMTAggregateSidecar } from '../../types/crud.js';
 
 /**
  * TODO: Finish implementation
@@ -26,9 +26,9 @@ export class SMTAggregateBeacon extends Beacon {
   /**
    * Creates an instance of SMTAggregateBeacon.
    * @param {BeaconService} service The Beacon service.
-   * @param {?SidecarData} [sidecar] Optional sidecar data.
+   * @param {?BeaconSidecarData} [sidecar] Optional sidecar data.
    */
-  constructor(service: BeaconService, sidecar?: SidecarData<SMTAggregateSidecar>) {
+  constructor(service: BeaconService, sidecar?: BeaconSidecarData<SMTAggregateSidecar>) {
     super({ ...service, type: 'SMTAggregateBeacon' }, sidecar);
   }
 

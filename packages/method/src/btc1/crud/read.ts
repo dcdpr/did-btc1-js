@@ -27,9 +27,7 @@ import { BlockV3, RawTransactionV2 } from '../../types/bitcoin.js';
 import {
   CIDAggregateSidecar,
   SidecarData,
-  SignalsMetadata,
-  SingletonSidecar,
-  SMTAggregateSidecar
+  SignalsMetadata
 } from '../../types/crud.js';
 import { Btc1Appendix, DidComponents } from '../../utils/appendix.js';
 import { BeaconUtils } from '../../utils/beacons.js';
@@ -52,7 +50,7 @@ export type NetworkVersion = {
 export type ResolveInitialDocument = {
   identifier: string;
   components: DidComponents;
-  options: DidResolutionOptions;
+  resolutionsOptions: DidResolutionOptions;
 };
 
 // Deterministic
@@ -65,15 +63,15 @@ export interface Btc1ReadDeterministic {
 export interface Btc1ReadExternal {
   components: DidComponents;
   identifier: string;
-  options: DidResolutionOptions;
+  resolutionsOptions: DidResolutionOptions;
 }
 export interface Btc1ReadSidecar {
-  components: DidComponents;
+  identifierComponents: DidComponents;
   initialDocument: Btc1DidDocument;
 };
 export interface DidReadCas {
   identifier: string;
-  components: DidComponents;
+  identifierComponents: DidComponents;
 }
 
 // Methods
@@ -84,7 +82,7 @@ export interface ApplyDidUpdateParams {
 
 export interface TargetDocumentParams {
   initialDocument: Btc1DidDocument;
-  options: DidResolutionOptions;
+  resolutionsOptions: DidResolutionOptions;
 };
 
 export interface TargetBlockheightParams {
@@ -121,15 +119,15 @@ export class Btc1Read {
    *
    * @param {Btc1ReadDeterministic} params See {@link Btc1ReadDeterministic} for details.
    * @param {string} params.identifier The did-btc1 version.
-   * @param {DidComponents} params.components The name of the bitcoin network (mainnet, testnet, regtest).
+   * @param {DidComponents} params.identifierComponents The decoded components of the identifier.
    * @returns {Btc1DidDocument} The resolved DID Document object.
    */
-  public static deterministic({ identifier, components }: {
+  public static deterministic({ identifier, identifierComponents }: {
     identifier: string;
-    components: DidComponents;
+    identifierComponents: DidComponents;
   }): Btc1DidDocument {
     // Deconstruct the components
-    const { network, genesisBytes } = components;
+    const { network, genesisBytes } = identifierComponents;
 
     // Construct a new PublicKey and deconstruct the publicKey and publicKeyMultibase
     const { compressed: publicKey, multibase: publicKeyMultibase } = new PublicKey(genesisBytes);
@@ -166,27 +164,27 @@ export class Btc1Read {
    *
    * @param {Btc1ReadExternal} params Required params for calling the external method.
    * @param {string} params.identifier The DID to be resolved.
-   * @param {DidComponents} params.components The components of the identifier.
-   * @param {DidResolutionOptions} params.options The options for resolving the DID Document.
-   * @param {Btc1DidDocument} params.options.sidecarData The sidecar data for resolving the DID Document.
-   * @param {Btc1DidDocument} params.options.sidecarData.initialDocument The offline user-provided DID Document
+   * @param {DidComponents} params.identifierComponents The decoded components of the identifier.
+   * @param {DidResolutionOptions} params.resolutionsOptions The options for resolving the DID Document.
+   * @param {Btc1DidDocument} params.resolutionsOptions.sidecarData The sidecar data for resolving the DID Document.
+   * @param {Btc1DidDocument} params.resolutionsOptions.sidecarData.initialDocument The offline user-provided DID Document
    * @returns {Btc1DidDocument} The resolved DID Document object
    */
-  public static async external({ identifier, components, options }: {
+  public static async external({ identifier, identifierComponents, resolutionsOptions }: {
     identifier: string;
-    components: DidComponents;
-    options: DidResolutionOptions;
+    identifierComponents: DidComponents;
+    resolutionsOptions: DidResolutionOptions;
   }): Promise<Btc1DidDocument> {
     // Deconstruct the options
-    const { initialDocument: document } = options.sidecarData as CIDAggregateSidecar;
+    const { initialDocument: document } = resolutionsOptions.sidecarData as CIDAggregateSidecar;
 
     // 1. If resolutionOptions.sidecarData.initialDocument is not null, set initialDocument to the result of passing
     //    identifier, identifierComponents and resolutionOptions.sidecarData.initialDocument into algorithm Sidecar
     //    Initial Document Validation.
     // 2. Else set initialDocument to the result of passing identifier and identifierComponents to the CAS Retrieval algorithm.
     const initialDocument = document
-      ? await this.sidecar({ components, initialDocument: document })
-      : await this.cas({ identifier, components });
+      ? await this.sidecar({ identifierComponents, initialDocument: document })
+      : await this.cas({ identifier, identifierComponents });
 
     // 3. Validate initialDocument is a conformant DID document according to the DID Core 1.1 specification. Else MUST
     //    raise invalidDidDocument error.
@@ -206,12 +204,12 @@ export class Btc1Read {
    *
    * @param {Btc1ReadSidecar} params Required params for calling the sidecar method
    * @param {string} params.identifier The DID to be resolved
-   * @param {DidComponents} params.components The components of the DID identifier
+   * @param {DidComponents} params.identifierComponents The components of the DID identifier
    * @param {Btc1DidDocument} params.initialDocument The initial DID Document provided by the user
    * @returns {Btc1DidDocument} The resolved DID Document object
    * @throws {DidError} InvalidDidDocument if genesisBytes !== initialDocument hashBytes
    */
-  public static async sidecar({ components, initialDocument }: Btc1ReadSidecar): Promise<Btc1DidDocument> {
+  public static async sidecar({ identifierComponents, initialDocument }: Btc1ReadSidecar): Promise<Btc1DidDocument> {
     // Replace the placeholder did with the identifier throughout the initialDocument.
     const intermediateDocument = JSON.parse(
       JSON.stringify(initialDocument).replaceAll(initialDocument.id, ID_PLACEHOLDER_VALUE)
@@ -221,7 +219,7 @@ export class Btc1Read {
     const hashBytes = await JSON.canonicalization.process(intermediateDocument, 'hex');
 
     // Compare the genesisBytes to the hashBytes
-    const genesisBytes = bytesToHex(components.genesisBytes);
+    const genesisBytes = bytesToHex(identifierComponents.genesisBytes);
 
     // If the genesisBytes do not match the hashBytes, throw an error
     if (genesisBytes !== hashBytes) {
@@ -244,13 +242,13 @@ export class Btc1Read {
    *
    * @param {DidReadCas} params Required params for calling the cas method
    * @param {string} params.identifier BTC1 DID used to resolve the DID Document
-   * @param {DidComponents} params.components BTC1 DID components used to resolve the DID Document
+   * @param {DidComponents} params.identifierComponents BTC1 DID components used to resolve the DID Document
    * @returns {Btc1DidDocument} The resolved DID Document object
    * @throws {Btc1Error} if the DID Document content is invalid
    */
-  public static async cas({ identifier, components }: DidReadCas): Promise<Btc1DidDocument> {
+  public static async cas({ identifier, identifierComponents }: DidReadCas): Promise<Btc1DidDocument> {
     // 1. Set hashBytes to identifierComponents.genesisBytes.
-    const hashBytes = components.genesisBytes;
+    const hashBytes = identifierComponents.genesisBytes;
 
     // 3. Set intermediateDocumentRepresentation to the result of fetching the cid against a Content Addressable Storage
     //    (CAS) system such as IPFS.
@@ -279,18 +277,18 @@ export class Btc1Read {
    * @public
    * @param {ResolveInitialDocument} params See {@link ResolveInitialDocument} for parameter details.
    * @param {string} params.identifier The DID to be resolved.
-   * @param {DidComponents} params.components The components of the identifier.
-   * @param {DidResolutionOptions} params.options See {@link DidResolutionOptions} for resolving the DID Document.
+   * @param {DidComponents} params.identifierComponents The decoded components of the identifier.
+   * @param {DidResolutionOptions} params.resolutionsOptions Options for resolving the DID Document. See {@link DidResolutionOptions}.
    * @returns {Promise<Btc1DidDocument>} The resolved DID Document object.
    * @throws {DidError} if the DID hrp is invalid, no sidecarData passed and hrp = "x".
    */
-  public static async initialDocument({ identifier, components, options }: {
+  public static async initialDocument({ identifier, identifierComponents, resolutionsOptions }: {
     identifier: string;
-    components: DidComponents;
-    options: DidResolutionOptions
+    identifierComponents: DidComponents;
+    resolutionsOptions: DidResolutionOptions
   }): Promise<Btc1DidDocument> {
     // Deconstruct the hrp from the components
-    const hrp = components.hrp;
+    const hrp = identifierComponents.hrp;
 
     // Validate the hrp is either 'k' or 'x'
     if (!(hrp in Btc1IdentifierHrp)) {
@@ -298,13 +296,13 @@ export class Btc1Read {
     }
 
     //  Make sure options.sidecarData is not null if hrp === x
-    if (hrp === Btc1IdentifierHrp.x && !options.sidecarData) {
-      throw new Btc1Error('External resolution requires sidecar data', INVALID_DID, options);
+    if (hrp === Btc1IdentifierHrp.x && !resolutionsOptions.sidecarData) {
+      throw new Btc1Error('External resolution requires sidecar data', INVALID_DID, resolutionsOptions);
     }
 
     return hrp === Btc1IdentifierHrp.k
-      ? this.deterministic({ identifier, components })
-      : await this.external({ identifier, components, options });
+      ? this.deterministic({ identifier, identifierComponents })
+      : await this.external({ identifier, identifierComponents, resolutionsOptions });
 
   }
 
@@ -321,47 +319,43 @@ export class Btc1Read {
    * @param {ResolutionOptions} params.options See {@link DidResolutionOptions} for details.
    * @returns {Btc1DidDocument} The resolved DID Document object with a validated single, canonical history
    */
-  public static async targetDocument({ initialDocument, options }: {
+  public static async targetDocument({ initialDocument, resolutionsOptions }: {
     initialDocument: Btc1DidDocument;
-    options: DidResolutionOptions;
+    resolutionsOptions: DidResolutionOptions;
   }): Promise<Btc1DidDocument> {
     // Set the network from the options or default to mainnet
-    const network = options.network ?? BitcoinNetworkNames.bitcoin;
+    const network = resolutionsOptions.network ?? BitcoinNetworkNames.bitcoin;
 
-    // If options.versionId is not null, set targetVersionId to options.versionId
-    const targetVersionId = options.versionId;
+    // 1. If resolutionOptions.versionId is not null, set targetVersionId to resolutionOptions.versionId.
+    const targetVersionId = resolutionsOptions.versionId;
 
-    // If options.versionTime is not null, set targetTime to options.versionTime
-    const targetTime = options.versionTime ?? -1;
+    // 2. Else if resolutionOptions.versionTime is not null, set targetTime to resolutionOptions.versionTime.
+    // 3. Else set targetTime to the UNIX timestamp for now at the moment of execution.
+    const targetTime = resolutionsOptions.versionTime ?? new Date().toUnix();
 
-    // Set the targetBlockheight to the result of passing targetTime to the algorithm Determine Target Blockheight
-    // const targetBlockHeight = await this.determineTargetBlockHeight({ network, targetTime });
+    // 4. Set signalsMetadata to resolutionOptions.sidecarData.signalsMetadata.
+    const signalsMetadata = (resolutionsOptions.sidecarData as SidecarData).signalsMetadata;
 
-    // Get signalsMetadata from sidecarData if it exists
-    const signalsMetadata = (options.sidecarData as SingletonSidecar)?.signalsMetadata;
-
-    // Set currentVersionId to 1
+    // 5. Set currentVersionId to 1
     const currentVersionId = 1;
 
-    // 6. If the targetVersionId equals currentVersionId, return initialDocument
-    if (targetVersionId === currentVersionId) {
+    // 6. If currentVersionId equals targetVersionId return initialDocument.
+    if (currentVersionId === targetVersionId) {
       return new Btc1DidDocument(initialDocument);
     }
 
-    if (!targetTime || targetTime < 0) {
-      throw new Btc1ReadError('Must provide a valid targetTime', 'INVALID_TARGET_TIME', { targetTime });
-    }
-    // 10. Set targetDocument to the result of calling the Traverse Blockchain History algorithm passing in
-    //     contemporaryDidDocument, contemporaryBlockheight, currentVersionId, targetVersionId, targetTime,
-    //     updateHashHistory, signalsMetadata, and network.
+    // 10. Set targetDocument to the result of calling the Traverse Bitcoin Blockchain History algorithm
+    // passing in contemporaryDIDDocument, contemporaryBlockheight, currentVersionId, targetVersionId,
+    // targetTime, didDocumentHistory, btc1UpdateHashHistory, signalsMetadata, and network.
     const targetDocument = this.traverseBlockchainHistory({
-      currentVersionId,
-      targetVersionId,
-      signalsMetadata,
-      targetTime,
       contemporaryDidDocument : initialDocument,
       contemporaryBlockHeight : 0,
-      updateHashHistory       : new Array(),
+      currentVersionId,
+      targetVersionId,
+      targetTime,
+      didDocumentHistory      : new Array(),
+      btc1UpdateHashHistory   : new Array(),
+      signalsMetadata,
       network
     });
 
@@ -386,13 +380,20 @@ export class Btc1Read {
    *
    * @protected
    * @param {ReadBlockchainParams} params The parameters for the traverseBlockchainHistory operation.
-   * @param {Btc1DidDocument} params.contemporaryDidDocument The DID Document at the contemporaryBlockheight.
-   * @param {number} params.contemporaryBlockHeight The blockheight of the contemporaryDidDocument.
-   * @param {number} params.currentVersionId The current versionId of the DID Document.
-   * @param {number} params.targetVersionId The target versionId of the DID Document.
-   * @param {number} params.targetTime The target blockheight to resolve the DID Document.
-   * @param {boolean} params.updateHashHistory The hash history of the DID Document updates.
-   * @param {ResolutionOptions} params.signalsMetadata See {@link SignalsMetadata} for details.
+   * @param {Btc1DidDocument} params.contemporaryDidDocument The DID document for the did:btc1 identifier being resolved.
+   *    It should be "current" (contemporary) at the blockheight of the contemporaryBlockheight.
+   *    It should be a DID Core conformant DID document.
+   * @param {number} params.contemporaryBlockHeight The Bitcoin blockheight signaling the "contemporary time" of the
+   *    contemporary DID Document that is being resolved and updated using the Traverse Blockchain History algorithm.
+   * @param {number} params.currentVersionId The version of the contemporary DID document starting from 1 and
+   *    incrementing by 1 with each BTC1 Update applied to the DID document.
+   * @param {number} params.targetVersionId The version of the DID document where resolution will complete.
+   * @param {UnixTimestamp} params.targetTime The timestamp used to target specific historical states of a DID document.
+   *    Only Beacon Signals included in the Bitcoin blockchain before the targetTime are processed.
+   * @param {boolean} params.didDocumentHistory An array of DID documents ordered ascensing by version (1...N).
+   * @param {boolean} params.btc1UpdateHashHistory An array of SHA256 hashes of BTC1 Updates ordered by version that are
+   *    applied to the DID document in order to construct the contemporaryDIDDocument.
+   * @param {SignalsMetadata} params.signalsMetadata See {@link SignalsMetadata} for details.
    * @param {BitcoinNetworkNames} params.network The bitcoin network to connect to (mainnet, signet, testnet, regtest).
    * @returns {Promise<Btc1DidDocument>} The resolved DID Document object with a validated single, canonical history.
    */
@@ -402,7 +403,8 @@ export class Btc1Read {
     currentVersionId,
     targetVersionId,
     targetTime,
-    updateHashHistory,
+    didDocumentHistory,
+    btc1UpdateHashHistory,
     signalsMetadata,
     network
   }: {
@@ -411,24 +413,25 @@ export class Btc1Read {
     currentVersionId: number;
     targetVersionId?: number;
     targetTime: number;
-    updateHashHistory: string[];
+    didDocumentHistory: Btc1DidDocument[];
+    btc1UpdateHashHistory: string[];
     signalsMetadata: SignalsMetadata;
     network: BitcoinNetworkNames;
   }): Promise<Btc1DidDocument> {
     // 1. Set contemporaryHash to the SHA256 hash of the contemporaryDidDocument
     let contemporaryHash = await JSON.canonicalization.process(contemporaryDidDocument, 'base58');
 
-    // 2. Find all beacons in contemporaryDidDocument: All service in contemporaryDidDocument.services where
-    //    service.type equals one of SingletonBeacon, CIDAggregateBeacon and SMTAggregateBeacon Beacon.
-    // 3. For each beacon in beacons convert the beacon.serviceEndpoint to a Bitcoin address following BIP21.
-    //    Set beacon.address to the Bitcoin address.
+    // 2. Find all BTC1 Beacons in contemporaryDIDDocument.service where service.type equals one of
+    //    SingletonBeacon, CIDAggregateBeacon and SMTAggregateBeacon.
+    // 3. For each beacon in beacons convert the beacon.serviceEndpoint to a Bitcoin address
+    //    following BIP21. Set beacon.address to the Bitcoin address.
     const beacons = BeaconUtils.toBeaconServiceAddress(
       BeaconUtils.getBeaconServices(contemporaryDidDocument)
     );
 
-    // 4. Set nextSignals to the result of calling algorithm Find Next Signals passing in contemporaryBlockheight and
-    //    beacons.
-    const nextSignals = await this.findNextSignals({ contemporaryBlockHeight, targetTime, beacons, network });
+    // 4. Set nextSignals to the result of calling algorithm Find Next Signals passing in contemporaryBlockheight,
+    //    beacons and network.
+    const nextSignals = await this.findNextSignals({ contemporaryBlockHeight, beacons, network, targetTime });
     if (!nextSignals || nextSignals.length === 0) {
       // 5. If nextSignals is null or empty, return contemporaryDidDocument.
       return new Btc1DidDocument(contemporaryDidDocument);
@@ -450,7 +453,7 @@ export class Btc1Read {
       // 9.1. If update.targetVersionId is less than or equal to currentVersionId, run Algorithm Confirm Duplicate
       //      Update passing in update, documentHistory, and contemporaryHash.
       if (updateTargetVersionId <= currentVersionId) {
-        await this.confirmDuplicateUpdate({ update, updateHashHistory });
+        await this.confirmDuplicateUpdate({ update, updateHashHistory: btc1UpdateHashHistory });
 
         //  9.2. If update.targetVersionId equals currentVersionId + 1:
       } else if (updateTargetVersionId === currentVersionId + 1) {
@@ -481,7 +484,7 @@ export class Btc1Read {
         const updateHash = await JSON.canonicalization.process(update, 'base58');
 
         // 9.2.6. Push updateHash onto updateHashHistory.
-        updateHashHistory.push(updateHash as string);
+        btc1UpdateHashHistory.push(updateHash as string);
 
         // 9.2.7. Set contemporaryHash to result of passing contemporaryDidDocument into the JSON Canonicalization
         //        and Hash algorithm.
@@ -542,9 +545,9 @@ export class Btc1Read {
    */
   public static async findNextSignals({ contemporaryBlockHeight, targetTime, beacons }: {
     contemporaryBlockHeight: number;
-    targetTime: UnixTimestamp;
     beacons: Array<BeaconServiceAddress>;
     network: BitcoinNetworkNames;
+    targetTime: UnixTimestamp;
   }): Promise<Array<BeaconSignal>> {
     let height = contemporaryBlockHeight;
 
@@ -745,7 +748,7 @@ export class Btc1Read {
     //     2.8.1 Set didUpdatePayload to the result of passing signalTx and signalSidecarData to the Process SMTAggregate Beacon Signal algorithm.
 
     // TODO: processBeaconSignal - where/how to convert signalsMetadata to diff sidecars
-    const sidecar = { signalsMetadata } as SidecarData<SingletonSidecar | CIDAggregateSidecar | SMTAggregateSidecar>;
+    const sidecar = { signalsMetadata } as SidecarData;
     // switch (type) {
     //   case 'SingletonBeacon': {
     //     sidecar = { signalsMetadata } as SingletonSidecar;
