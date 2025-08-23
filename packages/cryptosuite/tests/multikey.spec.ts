@@ -1,5 +1,5 @@
-import { KeyPairError, MultikeyError } from '@did-btc1/common';
-import { SchnorrKeyPair, SecretKey, PublicKey } from '@did-btc1/keypair';
+import { KeyPairError, MultikeyError } from '@did-btcr2/common';
+import { SchnorrKeyPair, SecretKey, PublicKey } from '@did-btcr2/keypair';
 import { expect } from 'chai';
 import { SchnorrMultikey } from '../src/index.js';
 
@@ -25,14 +25,14 @@ describe('SchnorrMultikey', () => {
   const fullId = `${controller}${id}`;
   const publicKeyMultibase = 'zQ3shcERTF2BZqz4v51hDdPdM4di9xFWNadCakCkQmNEZPdPt';
   const verificationMethod = { id, type: 'Multikey', controller, publicKeyMultibase };
-  const message = Buffer.from('Hello BTC1!');
+  const message = Buffer.from('hello, world');
   const validSignature = new Uint8Array([
-    85,  48,  48, 200, 201, 230, 173,  26, 182,  77,  38,
-    134, 190, 167, 208,  58, 190, 165, 243, 187,  71, 193,
-    232, 243,   1, 110, 127,  15, 234, 208,  21, 154, 111,
-    110, 141, 130,  83, 111, 128, 223,  85, 221, 218, 127,
-    240, 108,  12,  95,  69, 101, 185, 118, 100, 215, 127,
-    204,  11, 107,  75, 251, 240, 246,  93, 113
+    230, 121, 211, 219, 114, 235, 178, 235, 140, 226, 13,
+    104,  26,  57, 212,  69, 118,   5,  98,  23, 174, 17,
+    41, 234, 139,  74, 203, 102,  77,  82, 165,  28, 33,
+    248, 217, 150,  45, 209,  98, 157, 185,  37, 193, 72,
+    165, 134, 136, 217, 180, 143, 206, 208, 247, 163, 93,
+    178,  19, 144, 137, 252,  47, 215, 237,  28
   ]);
   const invalidSignature =  new Uint8Array([
     25, 105, 158, 232,  91,   7,  61,   8,   2, 215, 191,

@@ -6,9 +6,9 @@ export default defineConfig({
   srcDir          : 'docs',
   ignoreDeadLinks : true,
   lang            : 'en-US',
-  base            : '/', // https://btc1.tools
-  title           : 'DID BTC1 JS',
-  description     : 'Monorepo for did:btc1 js/ts implementation and supporting packages.',
+  base            : '/', // https://js.btcr2.dev
+  title           : 'DID BTCR2 JS',
+  description     : 'Monorepo for did:btcr2 js/ts implementation and supporting packages.',
   cleanUrls       : true,
   themeConfig     : {
     outline : {
@@ -49,6 +49,6 @@ export default defineConfig({
       }
     ],
 
-    socialLinks : [{ icon: 'github', link: 'https://github.com/dcdpr/did-btc1-js' }],
+    socialLinks : [{ icon: 'github', link: 'https://github.com/dcdpr/did-btcr2-js' }],
   }
 });

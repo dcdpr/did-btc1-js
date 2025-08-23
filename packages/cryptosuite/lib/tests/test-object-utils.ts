@@ -1,4 +1,4 @@
-import { ObjectUtils } from '@did-btc1/common';
+import { ObjectUtils } from '@did-btcr2/common';
 const securedDocument = {
   '@context' : [
     'https://w3id.org/security/v2',

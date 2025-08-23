@@ -3,7 +3,7 @@ import {
   KeyBytes,
   KeyPairError,
   SchnorrKeyPairObject
-} from '@did-btc1/common';
+} from '@did-btcr2/common';
 import { PublicKey } from './public.js';
 import { SecretKey } from './secret.js';
 

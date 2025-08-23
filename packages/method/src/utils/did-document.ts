@@ -1,12 +1,12 @@
 import {
-  BTC1_DID_DOCUMENT_CONTEXT,
-  Btc1IdentifierTypes,
+  BTCR2_DID_DOCUMENT_CONTEXT,
+  Btcr2IdentifierTypes,
   DidDocumentError,
   ID_PLACEHOLDER_VALUE,
   INVALID_DID_DOCUMENT,
   JSONObject,
   Logger
-} from '@did-btc1/common';
+} from '@did-btcr2/common';
 import { DidService, DidVerificationMethod, DidDocument as IDidDocument } from '@web5/dids';
 import { BeaconService } from '../interfaces/ibeacon.js';
 import { Btc1Appendix } from './appendix.js';
@@ -14,7 +14,7 @@ import { BeaconUtils } from './beacons.js';
 import { Btc1Identifier } from './identifier.js';
 
 export const BECH32M_CHARS = '';
-export const BTC1_DID_REGEX = /did:btc1:(x1[qpzry9x8gf2tvdw0s3jn54khce6mua7l]*)/g;
+export const BTC1_DID_REGEX = /did:btcr2:(x1[qpzry9x8gf2tvdw0s3jn54khce6mua7l]*)/g;
 
 export type ExternalData = {
   id: string,
@@ -41,7 +41,7 @@ export interface IBtc1VerificationMethod extends DidVerificationMethod {
 }
 
 /**
- * DID BTC1 Verification Method extends the DidVerificationMethod class adding helper methods and properties
+ * DID BTCR2 Verification Method extends the DidVerificationMethod class adding helper methods and properties
  * @class Btc1VerificationMethod
  * @type {Btc1VerificationMethod}
  *
@@ -67,7 +67,7 @@ export class Btc1VerificationMethod implements IBtc1VerificationMethod {
 }
 
 /**
- * BTC1 DID Document Interface
+ * BTCR2 DID Document Interface
  * @interface IBtc1DidDocument
  * @type {IBtc1DidDocument}
  * @extends {IDidDocument}
@@ -94,7 +94,7 @@ export interface IBtc1DidDocument extends IDidDocument {
 }
 
 /**
- * BTC1 DID Document extends the DidDocument class adding helper methods and properties
+ * BTCR2 DID Document extends the DidDocument class adding helper methods and properties
  * @class Btc1DidDocument
  * @type {Btc1DidDocument}
  * @implements {IBtc1DidDocument}
@@ -111,7 +111,7 @@ export interface IBtc1DidDocument extends IDidDocument {
 export class Btc1DidDocument implements IBtc1DidDocument {
   id: string;
   controller?: Array<string>;
-  '@context'?: Array<string | JSONObject> = BTC1_DID_DOCUMENT_CONTEXT;
+  '@context'?: Array<string | JSONObject> = BTCR2_DID_DOCUMENT_CONTEXT;
   verificationMethod: Array<Btc1VerificationMethod>;
   authentication?: Array<string | Btc1VerificationMethod>;
   assertionMethod?: Array<string | Btc1VerificationMethod>;
@@ -122,8 +122,8 @@ export class Btc1DidDocument implements IBtc1DidDocument {
   constructor(document: IBtc1DidDocument) {
     // Set the ID and ID type
     const idType = document.id.includes('k1')
-      ? Btc1IdentifierTypes.KEY
-      : Btc1IdentifierTypes.EXTERNAL;
+      ? Btcr2IdentifierTypes.KEY
+      : Btcr2IdentifierTypes.EXTERNAL;
 
     // Validate ID and parts for non-intermediate
     const isIntermediate = document.id === ID_PLACEHOLDER_VALUE;
@@ -148,11 +148,11 @@ export class Btc1DidDocument implements IBtc1DidDocument {
     this.id = document.id;
     this.verificationMethod = document.verificationMethod;
     this.service = document.service;
-    this['@context'] = document['@context'] || BTC1_DID_DOCUMENT_CONTEXT;
+    this['@context'] = document['@context'] || BTCR2_DID_DOCUMENT_CONTEXT;
     this.controller = document.controller || [this.id];
 
     // Relationships logic based on idType
-    if (idType === Btc1IdentifierTypes.KEY) {
+    if (idType === Btcr2IdentifierTypes.KEY) {
       // auto-generate #initialKey if missing
       const keyRef = `${this.id}#initialKey`;
       this.authentication = document.authentication || [keyRef];
@@ -196,7 +196,7 @@ export class Btc1DidDocument implements IBtc1DidDocument {
   }
 
   /**
-   * Create a minimal Btc1DidDocument from "k1" btc1 identifier.
+   * Create a minimal Btc1DidDocument from "k1" btcr2 identifier.
    * @param {string} publicKeyMultibase The public key in multibase format.
    * @param {Array<BeaconService>} service The beacon services to be included in the document.
    * @returns {Btc1DidDocument} A new Btc1DidDocument with the placeholder ID.
@@ -225,7 +225,7 @@ export class Btc1DidDocument implements IBtc1DidDocument {
   }
 
   /**
-   * Create a Btc1DidDocument from "x1" btc1 identifier.
+   * Create a Btc1DidDocument from "x1" btcr2 identifier.
    * @param {ExternalData} data The verification methods of the DID Document.
    * @returns {Btc1DidDocument} A new Btc1DidDocument.
    */
@@ -281,7 +281,7 @@ export class Btc1DidDocument implements IBtc1DidDocument {
   private static isValidContext(context: Btc1DidDocument['@context']): boolean {
     if(!context) return false;
     if(!Array.isArray(context)) return false;
-    if(!context.every(ctx => typeof ctx === 'string' && BTC1_DID_DOCUMENT_CONTEXT.includes(ctx))) return false;
+    if(!context.every(ctx => typeof ctx === 'string' && BTCR2_DID_DOCUMENT_CONTEXT.includes(ctx))) return false;
     return true;
   }
 

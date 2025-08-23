@@ -1,4 +1,4 @@
-import { Btc1Error } from '@did-btc1/common';
+import { Btcr2Error } from '@did-btcr2/common';
 import { networks } from 'bitcoinjs-lib';
 import { DEFAULT_REST_CLIENT_CONFIG, DEFAULT_RPC_CLIENT_CONFIG } from './constants.js';
 import { getNetwork } from './network.js';
@@ -57,7 +57,7 @@ export class Bitcoin {
    * Creates an instance of the Bitcoin class.
    * @param {BitcoinNetworkConfigMap} configs Optional configuration object for the Bitcoin client. If not provided, it will
    * be loaded from the BITCOIN_CLIENT_CONFIG environment variables.
-   * @throws {Btc1Error} If no configs is passed and BITCOIN_NETWORK_CONFIG is missing or invalid.
+   * @throws {Btcr2Error} If no configs is passed and BITCOIN_NETWORK_CONFIG is missing or invalid.
    */
   constructor(configs?: BitcoinNetworkConfigMap) {
     const BITCOIN_NETWORK_CONFIG = process.env.BITCOIN_NETWORK_CONFIG ?? JSON.stringify(configs ?? {
@@ -68,7 +68,7 @@ export class Bitcoin {
     });
 
     if(!BITCOIN_NETWORK_CONFIG) {
-      throw new Btc1Error(
+      throw new Btcr2Error(
         'No BITCOIN_NETWORK_CONFIG available: must pass `configs` to constructor or set `BITCOIN_NETWORK_CONFIG` in env',
         'MISSING_BITCOIN_NETWORK_CONFIG',
         { BITCOIN_NETWORK_CONFIG }
@@ -77,7 +77,7 @@ export class Bitcoin {
 
     // Check if BITCOIN_NETWORK_CONFIG is parsable JSON string
     if (!JSON.parsable(BITCOIN_NETWORK_CONFIG)) {
-      throw new Btc1Error(
+      throw new Btcr2Error(
         'Parsing failed: malformed BITCOIN_NETWORK_CONFIG',
         'MISSING_MALFORMED_BITCOIN_NETWORK_CONFIG',
         { BITCOIN_NETWORK_CONFIG }
@@ -107,12 +107,12 @@ export class Bitcoin {
     // Load and check the ACTIVE_NETWORK variable
     const ACTIVE_NETWORK = (process.env.ACTIVE_NETWORK?.toLowerCase() ?? 'regtest') as keyof AvailableNetworks;
     if (!ACTIVE_NETWORK) {
-      throw new Btc1Error('Missing ACTIVE_NETWORK environment variable', 'MISSING_ACTIVE_NETWORK', { ACTIVE_NETWORK });
+      throw new Btcr2Error('Missing ACTIVE_NETWORK environment variable', 'MISSING_ACTIVE_NETWORK', { ACTIVE_NETWORK });
     }
 
 
     if (!this[ACTIVE_NETWORK]) {
-      throw new Btc1Error(
+      throw new Btcr2Error(
         `No configuration found for ACTIVE_NETWORK='${ACTIVE_NETWORK}'`,
         'MISSING_CONFIG_FOR_NETWORK'
       );
