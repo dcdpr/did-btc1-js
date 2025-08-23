@@ -20,6 +20,7 @@ export class Canonicalization {
    * Initializes the Canonicalization class with the specified algorithm.
    * @param {CanonicalizationAlgorithm} algorithm The canonicalization algorithm to use ('jcs' or 'rdfc').
    */
+  // TODO: Need to move to using RDFC by default
   constructor(algorithm: CanonicalizationAlgorithm = 'jcs') {
     this._algorithm = algorithm;
   }

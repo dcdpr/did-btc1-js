@@ -1,7 +1,7 @@
 import { Btc1Error } from '@did-btc1/common';
 import { Beacon } from '../../interfaces/beacon.js';
 import { BeaconService } from '../../interfaces/ibeacon.js';
-import { CIDAggregateSidecar, SidecarData, SingletonSidecar, SMTAggregateSidecar } from '../../types/crud.js';
+import { CIDAggregateSidecar, SidecarData, SMTAggregateSidecar } from '../../types/crud.js';
 import { CIDAggregateBeacon } from './cid-aggregate.js';
 import { SingletonBeacon } from './singleton.js';
 import { SMTAggregateBeacon } from './smt-aggregate.js';
@@ -15,20 +15,17 @@ export class BeaconFactory {
   /**
    * Establish a Beacon instance based on the provided service and optional sidecar data.
    * @param {BeaconService} service - The beacon service configuration.
-   * @param {SidecarData<SingletonSidecar | CIDAggregateSidecar | SMTAggregateSidecar>} [sidecar] - The optional sidecar data.
+   * @param {SidecarData} [sidecar] - The optional sidecar data.
    * @returns {Beacon} The established Beacon instance.
    */
-  static establish(
-    service: BeaconService,
-    sidecar?: SidecarData<SingletonSidecar | CIDAggregateSidecar | SMTAggregateSidecar>
-  ): Beacon {
+  static establish(service: BeaconService, sidecar?: SidecarData): Beacon {
     switch (service.type) {
       case 'SingletonBeacon':
         return new SingletonBeacon(service, sidecar);
       case 'CIDAggregateBeacon':
-        return new CIDAggregateBeacon(service, sidecar);
+        return new CIDAggregateBeacon(service, sidecar as CIDAggregateSidecar);
       case 'SMTAggregateBeacon':
-        return new SMTAggregateBeacon(service, sidecar);
+        return new SMTAggregateBeacon(service, sidecar as SMTAggregateSidecar);
       default:
         throw new Btc1Error(
           'Invalid Beacon Type',

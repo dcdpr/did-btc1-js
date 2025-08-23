@@ -1,6 +1,7 @@
-import { BitcoinNetworkNames, SidecarData, UnixTimestamp } from '@did-btc1/common';
+import { BitcoinNetworkNames, UnixTimestamp } from '@did-btc1/common';
 import { DidResolutionOptions as IDidResolutionOptions } from '@web5/dids';
 import BitcoinRpc from '../bitcoin/rpc-client.js';
+import { SidecarData } from '../types/crud.js';
 import { Btc1DidDocument } from '../utils/did-document.js';
 
 /**
@@ -13,9 +14,9 @@ import { Btc1DidDocument } from '../utils/did-document.js';
 export interface DidResolutionOptions extends IDidResolutionOptions {
   versionId?: number
   versionTime?: UnixTimestamp;
-  rpc?: BitcoinRpc;
   sidecarData?: SidecarData;
   network?: BitcoinNetworkNames;
+  rpc?: BitcoinRpc;
 }
 export interface Btc1RootCapability {
     '@context': string;

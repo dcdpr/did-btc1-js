@@ -64,8 +64,7 @@ export const W3C_DID_V1_1 =  'https://www.w3.org/TR/did-1.1';
 export const W3C_DATA_INTEGRITY_V1 = 'https://w3id.org/security/data-integrity/v1';
 export const W3C_DATA_INTEGRITY_V2 = 'https://w3id.org/security/data-integrity/v2';
 export const W3C_SECURITY_V2 = 'https://w3id.org/security/v2';
-export const BTC1_METHOD_CONTEXT = 'https://did-btc1/TBD/context';
-export const BTC1_DID_DOCUMENT_V1 = 'https://jintekc.github.io/did-btc1-js/ns/did-document/v1';
+export const BTC1_METHOD_CONTEXT = 'https://btc1.dev/context/v1';
 export const W3C_ZCAP_V1 = 'https://w3id.org/zcap/v1';
 export const W3C_JSONLD_PATCH_V1 = 'https://w3id.org/json-ld-patch/v1';
 export const W3C_MULTIKEY_V1 = 'https://w3id.org/security/multikey/v1';
@@ -101,7 +100,7 @@ export const CONTEXT_URL_MAP = {
       v1 : 'https://dcdpr.github.io/did-btc1-js/ns/did-document/v1',
     },
     method : {
-      v1 : 'https://did-btc1/TBD/context'
+      v1 : 'https://btc1.dev/context/v1'
     },
   },
 

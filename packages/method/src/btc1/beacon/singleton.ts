@@ -6,7 +6,7 @@ import { AddressUtxo, RawTransactionRest, Vout } from '../../bitcoin/rest-client
 import { Beacon } from '../../interfaces/beacon.js';
 import { BeaconService, BeaconSignal } from '../../interfaces/ibeacon.js';
 import { RawTransactionV2, TxOut } from '../../types/bitcoin.js';
-import { Metadata, SidecarData, SignalsMetadata, SingletonSidecar } from '../../types/crud.js';
+import { BeaconSidecarData, Metadata, SignalsMetadata, SingletonSidecar } from '../../types/crud.js';
 import { Btc1Appendix } from '../../utils/appendix.js';
 import { Btc1KeyManager, Signer } from '../key-manager/index.js';
 
@@ -28,9 +28,9 @@ export class SingletonBeacon extends Beacon {
   /**
    * Creates an instance of SingletonBeacon.
    * @param {BeaconService} service The Beacon service.
-   * @param {?SidecarData} [sidecar] Optional sidecar data.
+   * @param {?BeaconSidecarData} [sidecar] Optional sidecar data.
    */
-  constructor(service: BeaconService, sidecar?: SidecarData<SingletonSidecar>) {
+  constructor(service: BeaconService, sidecar?: BeaconSidecarData<SingletonSidecar>) {
     super({ ...service, type: 'SingletonBeacon' }, sidecar);
   }
 
@@ -60,10 +60,10 @@ export class SingletonBeacon extends Beacon {
    * It returns a SignletonBeacon object with the given id, type, and serviceEndpoint.
    *
    * @param {string} service The Beacon service.
-   * @param {SidecarData<SingletonSidecar>} sidecar The sidecar data.
+   * @param {BeaconSidecarData<SingletonSidecar>} sidecar The sidecar data.
    * @returns {SingletonBeacon} The Singleton Beacon.
    */
-  public static establish(service: BeaconService, sidecar: SidecarData<SingletonSidecar>): SingletonBeacon {
+  public static establish(service: BeaconService, sidecar: BeaconSidecarData<SingletonSidecar>): SingletonBeacon {
     return new SingletonBeacon(service, sidecar);
   }
 
@@ -119,7 +119,7 @@ export class SingletonBeacon extends Beacon {
     // 5. If signalsMetadata:
     if (signalsMetadata) {
       // 5.1 Set didUpdatePayload to signalsMetadata.updatePayload
-      didUpdatePayload = signalsMetadataMap.get(signal.txid)?.updatePayload;
+      didUpdatePayload = signalsMetadataMap.get(signal.txid)?.btc1Update;
 
       if(!didUpdatePayload) {
         throw new SingletonBeaconError('Update Payload not found in signal metadata.', 'PROCESS_SIGNAL_ERROR');
@@ -223,6 +223,8 @@ export class SingletonBeacon extends Beacon {
     // 6. Retrieve the cryptographic material, e.g private key or signing capability, associated with the bitcoinAddress
     //    or service. How this is done is left to the implementer.
     // TODO: Determine how we want to handle this. Currently, this code uses the RPC to handle signing.
+    console.log('Btc1KeyManager', Btc1KeyManager.instance);
+    console.log('this.service.id', this.service.id);
     const multikey = await Btc1KeyManager.getKeyPair(this.service.id);
     console.log('multikey', multikey);
     if (!multikey) {
@@ -232,7 +234,7 @@ export class SingletonBeacon extends Beacon {
     const signer = new Signer({ multikey, network: bitcoin.network.name });
 
     // 7. Sign the spendTx.
-    const signedTx = spendTx.signInput(input.index, signer)
+    const signedTx = spendTx.signInput(0, signer)
       .finalizeAllInputs()
       .extractTransaction()
       .toHex();
@@ -250,6 +252,6 @@ export class SingletonBeacon extends Beacon {
     // 10. Initialize signalMetadata to an empty object.
     // 11. Set signalMetadata.updatePayload to didUpdatePayload.
     // 12. Return the object {<signalId>: { updatePayload: DidUpdatePayload; proofs?: any; }}.
-    return { [spentTx]: { updatePayload: didUpdatePayload } };
+    return { [spentTx]: { btc1Update: didUpdatePayload } };
   }
 }

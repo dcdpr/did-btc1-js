@@ -9,11 +9,11 @@ console.log('Running for network:', network);
 const latestdir = `${cwd}/data/${network}/latest`;
 const keys = JSON.parse(await readFile(`${latestdir}/keys.json`, { encoding: 'utf-8' }));
 
-const privateKey = Buffer.from(keys.genesisKey.sk, 'hex');
-const keys = new SchnorrKeyPair({ privateKey });
+const secretKey = Buffer.from(keys.genesisKey.sk, 'hex');
+const keyPair = new SchnorrKeyPair({ secretKey });
 const { did, initialDocument } = await DidBtc1.create({
   idType      : 'KEY',
-  pubKeyBytes : keyPair.publicKey.bytes,
+  pubKeyBytes : keyPair.publicKey.compressed,
   options     : { network, version: 1 }
 });
 await writeFile(`${latestdir}/did.txt`, did, { encoding: 'utf-8' });
