@@ -1,5 +1,5 @@
-import { ProofOptions } from '@did-btc1/common';
-import { SchnorrKeyPair, SecretKey } from '@did-btc1/keypair';
+import { ProofOptions } from '@did-btcr2/common';
+import { SchnorrKeyPair, SecretKey } from '@did-btcr2/keypair';
 import { SchnorrMultikey } from '../../src/index.js';
 
 const unsecuredDocument = {

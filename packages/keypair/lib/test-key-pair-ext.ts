@@ -1,4 +1,4 @@
-import { BitcoinNetworkNames } from '@did-btc1/common';
+import { BitcoinNetworkNames } from '@did-btcr2/common';
 import { SchnorrKeyPair } from '../src/pair.js';
 
 const secretKey = new Uint8Array([

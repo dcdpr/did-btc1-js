@@ -1,4 +1,4 @@
-import { DidUpdatePayload, ProofBytes } from '@did-btc1/common';
+import { DidUpdatePayload, ProofBytes } from '@did-btcr2/common';
 import { BeaconService } from '../interfaces/ibeacon.js';
 import { Btc1DidDocument } from '../utils/did-document.js';
 import { BlockV3 } from './bitcoin.js';

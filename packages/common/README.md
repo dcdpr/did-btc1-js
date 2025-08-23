@@ -1,3 +1,3 @@
 # Common
 
-Common utilities, types, and interfaces shared across the did-btc1-js packages.
+Common utilities, types, and interfaces shared across the did-btcr2-js packages.

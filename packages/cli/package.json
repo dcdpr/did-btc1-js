@@ -1,13 +1,13 @@
 {
-  "name": "@did-btc1/cli",
+  "name": "@did-btcr2/cli",
   "version": "0.1.2",
   "type": "module",
-  "description": "CLI for interacting with did-btc1-js, the JavaScript/TypeScript reference implementation of the did:btc1 method. Uses various parts of the did-btc1-js monorepo.",
+  "description": "CLI for interacting with did-btcr2-js, the JavaScript/TypeScript reference implementation of the did:btcr2 method. Uses various parts of the did-btcr2-js monorepo.",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
   "bin": {
-    "btc1": "./dist/esm/bin/btc1.js"
+    "btcr2": "./dist/esm/bin/btcr2.js"
   },
   "exports": {
     ".": {
@@ -32,13 +32,13 @@
       "email": "github@jintek.consulting"
     }
   ],
-  "homepage": "https://github.com/dcdpr/did-btc1-js/tree/main/packages/cli",
+  "homepage": "https://github.com/dcdpr/did-btcr2-js/tree/main/packages/cli",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:dcdpr/did-btc1-js.git",
+    "url": "git+ssh://git@github.com:dcdpr/did-btcr2-js.git",
     "directory": "packages/cli"
   },
-  "bugs": "https://github.com/dcdpr/did-btc1-js/issues",
+  "bugs": "https://github.com/dcdpr/did-btcr2-js/issues",
   "publishConfig": {
     "access": "public"
   },
@@ -51,7 +51,7 @@
     "decentralized identity",
     "decentralized identifiers",
     "did method",
-    "did:btc1",
+    "did:btcr2",
     "bitcoin",
     "cli"
   ],
@@ -81,8 +81,8 @@
     "version:new": "[ -z \"$NEW_VERSION\" ] && echo 'ERROR: NEW_VERSION is not set' && exit 1 || (git checkout -b $NEW_VERSION && git tag $NEW_VERSION && pnpm version:no-git $NEW_VERSION)"
   },
   "dependencies": {
-    "@did-btc1/common": "workspace:*",
-    "@did-btc1/method": "workspace:*",
+    "@did-btcr2/common": "workspace:*",
+    "@did-btcr2/method": "workspace:*",
     "commander": "^13.1.0"
   },
   "devDependencies": {

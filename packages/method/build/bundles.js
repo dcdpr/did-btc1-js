@@ -12,6 +12,6 @@ esbuild.build({
 esbuild.build({
     ...browserConfig,
     format: 'iife',
-    globalName: 'BTC1',
+    globalName: 'BTCR2',
     outfile: 'dist/browser.js',
 });

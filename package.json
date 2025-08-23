@@ -1,7 +1,7 @@
 {
-  "name": "did-btc1-js",
+  "name": "did-btcr2-js",
   "version": "2.1.5",
-  "description": "Monorepo for did:btc1 js/ts implementation and supporting packages.",
+  "description": "Monorepo for did:btcr2 js/ts implementation and supporting packages.",
   "type": "module",
   "workspaces": [
     "packages/common",
@@ -51,18 +51,18 @@
     "dids",
     "decentralized identifiers",
     "did method",
-    "btc1",
-    "did btc1",
-    "did:btc1",
+    "btcr2",
+    "did btcr2",
+    "did:btcr2",
     "bitcoin"
   ],
   "license": "MPL-2.0",
-  "homepage": "https://github.com/dcdpr/did-btc1-js",
+  "homepage": "https://github.com/dcdpr/did-btcr2-js",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:dcdpr/did-btc1-js.git"
+    "url": "git+ssh://git@github.com:dcdpr/did-btcr2-js.git"
   },
-  "bugs": "https://github.com/dcdpr/did-btc1-js/issues",
+  "bugs": "https://github.com/dcdpr/did-btcr2-js/issues",
   "publishConfig": {
     "access": "public"
   },

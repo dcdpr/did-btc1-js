@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { PublicKey } from '../src/public.js';
-import { BIP340_PUBLIC_KEY_MULTIBASE_PREFIX, PublicKeyError } from '@did-btc1/common';
+import { BIP340_PUBLIC_KEY_MULTIBASE_PREFIX, PublicKeyError } from '@did-btcr2/common';
 
 describe('PublicKey', () => {
   const hex = '027f87843047622ad7556ed37c981e096a6bf606e7ccfc2ef3db1e9148ccb4cbb9';

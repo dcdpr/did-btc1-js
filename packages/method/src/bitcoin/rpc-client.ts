@@ -92,7 +92,7 @@ export default class BitcoinRpc implements IBitcoinRpc {
    * @param {RpcClientConfig} config The bitcoin-core client instance.
    * @example
    * ```
-   *  import BitcoinRpc from '@did-btc1/method';
+   *  import BitcoinRpc from '@did-btcr2/method';
    *  const bob = BitcoinRpc.connect(); // To use default polar config, pass no args. Polar must run locally.
    * ```
    */
@@ -106,7 +106,7 @@ export default class BitcoinRpc implements IBitcoinRpc {
    * @returns {RpcClientConfig} The encapsulated {@link RpcClientConfig} object.
    * @example
    * ```
-   *  import BitcoinRpc from '@did-btc1/method';
+   *  import BitcoinRpc from '@did-btcr2/method';
    *  const alice = BitcoinRpc.connect();
    *  const config = alice.config;
    * ```

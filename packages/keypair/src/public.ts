@@ -8,7 +8,7 @@ import {
   MultibaseObject,
   PublicKeyError,
   PublicKeyObject
-} from '@did-btc1/common';
+} from '@did-btcr2/common';
 import { sha256 } from '@noble/hashes/sha2';
 import { base58btc } from 'multiformats/bases/base58';
 import { SecretKey } from './secret.js';

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { SecretKey } from '../src/secret.js';
 import { PublicKey } from '../src/public.js';
-import { SecretKeyError } from '@did-btc1/common';
+import { SecretKeyError } from '@did-btcr2/common';
 
 describe('SecretKey', () => {
   const bytes = new Uint8Array([

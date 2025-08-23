@@ -1,6 +1,6 @@
-import { PublicKey } from '@did-btc1/keypair';
+import { PublicKey } from '@did-btcr2/keypair';
 import { expect } from 'chai';
-import { DidBtc1 } from '../src/did-btc1.js';
+import { DidBtc1 } from '../src/did-btcr2.js';
 import { BeaconUtils, Btc1DidDocument, getNetwork } from '../src/index.js';
 
 /**
@@ -13,21 +13,16 @@ import { BeaconUtils, Btc1DidDocument, getNetwork } from '../src/index.js';
 describe('DidBtc1 Create Deterministic', () => {
   const version = 1;
   const expectedDidMap = new Map<string, string>([
-    ['bitcoin', 'did:btc1:k1qqpexkrg4808au9rydeglsk3rnl53740krmheawht0wgr0cdzsaz7gq3dnzlj'],
-    ['signet', 'did:btc1:k1qypexkrg4808au9rydeglsk3rnl53740krmheawht0wgr0cdzsaz7gq4xsaah'],
-    ['regtest', 'did:btc1:k1qgpexkrg4808au9rydeglsk3rnl53740krmheawht0wgr0cdzsaz7gqem44mc'],
-    ['testnet3', 'did:btc1:k1qvpexkrg4808au9rydeglsk3rnl53740krmheawht0wgr0cdzsaz7gqask2ea'],
-    ['testnet4', 'did:btc1:k1qspexkrg4808au9rydeglsk3rnl53740krmheawht0wgr0cdzsaz7gqpgl9hx']
+    ['bitcoin', 'did:btcr2:k1qqpkyr20hr2ugzcdctulmprrdkz5slj3an64l0x4encgc6kpfz7g5dsaaw53r'],
+    ['mutinynet', 'did:btcr2:k1q5pkyr20hr2ugzcdctulmprrdkz5slj3an64l0x4encgc6kpfz7g5dsfnpvmj'],
+    ['regtest', 'did:btcr2:k1qgpkyr20hr2ugzcdctulmprrdkz5slj3an64l0x4encgc6kpfz7g5ds4tgr4f'],
+    ['signet', 'did:btcr2:k1qypkyr20hr2ugzcdctulmprrdkz5slj3an64l0x4encgc6kpfz7g5dsekdtnx'],
+    ['testnet3', 'did:btcr2:k1qvpkyr20hr2ugzcdctulmprrdkz5slj3an64l0x4encgc6kpfz7g5ds3qtuhv'],
+    ['testnet4', 'did:btcr2:k1qspkyr20hr2ugzcdctulmprrdkz5slj3an64l0x4encgc6kpfz7g5dsdczneh']
   ]);
   const networkDidEntries = Object.entries(expectedDidMap);
   const idType = 'KEY';
-  const pubKeyBytes = new Uint8Array([
-    3, 147,  88, 104, 169, 222, 126, 240,
-    163,  35, 114, 143, 194, 209,  28, 255,
-    72, 250, 175, 176, 247, 124, 245, 215,
-    91, 220, 129, 191,  13,  20,  58,  47,
-    32
-  ]);
+  const pubKeyBytes = Buffer.fromHex('03620d4fb8d5c40b0dc2f9fd84636d85487e51ecf55fbcd5ccf08c6ac148bc8a36');
   const publicKey = new PublicKey(pubKeyBytes);
   const publicKeyMultibase = publicKey.multibase;
 

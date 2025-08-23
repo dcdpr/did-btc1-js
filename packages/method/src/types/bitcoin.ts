@@ -1,4 +1,4 @@
-import { Hex, UnixTimestamp } from '@did-btc1/common';
+import { Hex, UnixTimestamp } from '@did-btcr2/common';
 import BitcoinRpc from '../bitcoin/rpc-client.js';
 
 export interface ReturnFormatOptions {
