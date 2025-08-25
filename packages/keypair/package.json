@@ -2,7 +2,7 @@
   "name": "@did-btc1/keypair",
   "version": "0.5.0",
   "type": "module",
-  "description": "JavaScript/TypeScript implementation of secp256k1 public/private key pairs with BIP340 schnorr signatures. Used by various parts of the did-btc1-js monorepo.",
+  "description": "Implements BIP340 schnorr signatures with secp256k1 public/private key pairs. Used by various parts of the did-btc1-js monorepo.",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",

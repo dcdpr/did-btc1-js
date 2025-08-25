@@ -1,5 +1,5 @@
 import { DidDocumentError, INVALID_DID_DOCUMENT } from '@did-btc1/common';
-import { BeaconService } from '../interfaces/ibeacon.js';
+import { BeaconService } from '../btc1/beacon/interfaces.js';
 import { Btc1DidDocument, Btc1VerificationMethod } from './did-document.js';
 
 export class Btc1DidDocumentBuilder {

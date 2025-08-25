@@ -1,4 +1,4 @@
-import { Bytes, HashBytes, Logger, W3C_ZCAP_V1 } from '@did-btc1/common';
+import { HashBytes, Logger, W3C_ZCAP_V1 } from '@did-btc1/common';
 import { strings } from '@helia/strings';
 import {
   DidDocument,
@@ -11,16 +11,8 @@ import {
 import { createHelia } from 'helia';
 import { CID } from 'multiformats';
 import { create as createDigest } from 'multiformats/hashes/digest';
-import { Btc1RootCapability } from '../interfaces/crud.js';
+import { Btc1RootCapability } from '../btc1/crud/interfaces.js';
 import { Btc1VerificationMethod } from './did-document.js';
-
-export interface DidComponents {
-    hrp: string;
-    idType: string;
-    version: number;
-    network: string;
-    genesisBytes: Bytes;
-};
 
 /**
  * Implements {@link https://dcdpr.github.io/did-btc1/#appendix | 9. Appendix} methods.

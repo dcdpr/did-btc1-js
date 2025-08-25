@@ -21,15 +21,16 @@ describe('DidBtc1 Create Deterministic', () => {
   ]);
   const networkDidEntries = Object.entries(expectedDidMap);
   const idType = 'KEY';
-  const pubKeyBytes = new Uint8Array([
+  const pk = new Uint8Array([
     3, 147,  88, 104, 169, 222, 126, 240,
     163,  35, 114, 143, 194, 209,  28, 255,
     72, 250, 175, 176, 247, 124, 245, 215,
     91, 220, 129, 191,  13,  20,  58,  47,
     32
   ]);
-  const publicKey = new PublicKey(pubKeyBytes);
+  const publicKey = new PublicKey(pk);
   const publicKeyMultibase = publicKey.multibase;
+  const pubKeyBytes = publicKey.compressed;
 
   it('should create a deterministic key identifier and DID document from a publicKey',
     async () => {

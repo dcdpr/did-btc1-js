@@ -1,8 +1,5 @@
 import {
-  BIP340_SECRET_KEY_MULTIBASE_PREFIX,
-  BIP340_SECRET_KEY_MULTIBASE_PREFIX_HASH,
   Bytes,
-  CURVE,
   Entropy,
   Hex,
   KeyBytes,
@@ -13,6 +10,7 @@ import { sha256 } from '@noble/hashes/sha2';
 import { getRandomValues } from 'crypto';
 import { base58btc } from 'multiformats/bases/base58';
 import * as tinysecp from 'tiny-secp256k1';
+import { BIP340_SECRET_KEY_MULTIBASE_PREFIX, BIP340_SECRET_KEY_MULTIBASE_PREFIX_HASH, SECP256K1_CURVE } from './constants.js';
 import { SchnorrKeyPair } from './pair.js';
 import { PublicKey } from './public.js';
 
@@ -105,11 +103,11 @@ export class SecretKey implements ISecretKey {
     // If bytes and bytes are not length 32
     if (isBytes && entropy.length === 32) {
       this._bytes = entropy;
-      this._seed = SecretKey.toSecret(entropy);
+      this._seed = SecretKey.toSeed(entropy);
     }
 
     // If secret and secret is not a valid bigint, throw error
-    if (isSecret && !(entropy < 1n || entropy >= CURVE.n)) {
+    if (isSecret && !(entropy < 1n || entropy >= SECP256K1_CURVE.N)) {
       this._bytes = SecretKey.toBytes(entropy);
       this._seed = entropy;
     }
@@ -121,7 +119,7 @@ export class SecretKey implements ISecretKey {
       );
     }
 
-    if(!this._seed || (this._seed < 1n || this._seed >= CURVE.n)) {
+    if(!this._seed || (this._seed < 1n || this._seed >= SECP256K1_CURVE.N)) {
       throw new SecretKeyError(
         'Invalid seed: must must be valid bigint',
         'CONSTRUCTOR_ERROR'
@@ -158,7 +156,7 @@ export class SecretKey implements ISecretKey {
    */
   get hex(): Hex {
     // Convert the raw secret key bytes to a hex string
-    return Buffer.from(this.bytes).toString('hex');
+    return this.bytes.toHex();
   }
 
 
@@ -237,11 +235,7 @@ export class SecretKey implements ISecretKey {
    * @returns {SecretKeyObject} The secret key as a JSON object
    */
   public json(): SecretKeyObject {
-    return {
-      bytes : this.bytes.toArray(),
-      seed  : this.seed.toString(),
-      hex   : this.hex,
-    };
+    return Object.json(this) as SecretKeyObject;
   }
 
   /**
@@ -288,7 +282,7 @@ export class SecretKey implements ISecretKey {
     const prefix = decoded.slice(0, 2);
 
     // Compute the prefix hash
-    const prefixHash = Buffer.from(sha256(prefix)).toString('hex');
+    const prefixHash = sha256(prefix).toHex();
 
     // If the prefix hash does not equal the BIP340 prefix hash, throw an error
     if (prefixHash !== BIP340_SECRET_KEY_MULTIBASE_PREFIX_HASH) {
@@ -321,56 +315,56 @@ export class SecretKey implements ISecretKey {
     // Create a new SecretKey from the bytes
     const secretKey = new SecretKey(bytes);
 
-    // Compute the public key from the secret key
-    const publicKey = secretKey.computePublicKey();
-
     // Create a new Pair from the public key and secret key
-    return new SchnorrKeyPair({ publicKey, secretKey });
+    return new SchnorrKeyPair(secretKey);
   }
 
   /**
-   * Convert a bigint secret to secret key bytes.
+   * Convert a key bytes to bigint seed.
+   * @static
    * @param {KeyBytes} bytes The secret key bytes
-   * @returns {bigint} The secret key bytes as a bigint secret
+   * @returns {bigint} The secret key bytes as a bigint seed
    */
-  public static toSecret(bytes: KeyBytes): bigint {
+  public static toSeed(bytes: KeyBytes): bigint {
     return bytes.reduce((acc, byte) => (acc << 8n) | BigInt(byte), 0n);
   }
 
   /**
-   * Convert a secret key bytes to a bigint secret.
-   * @param {bigint} secret The secret key secret.
-   * @returns {KeyBytes} The secret key secret as secret key bytes.
+   * Convert a bigint seed to secret key bytes.
+   * @static
+   * @param {bigint} seed The seed key seed.
+   * @returns {KeyBytes} The seed key seed as seed key bytes.
    */
-  public static toBytes(secret: bigint): KeyBytes {
+  public static toBytes(seed: bigint): KeyBytes {
     // Ensure it’s a valid 32-byte value in [1, n-1] and convert bigint to Uint8Array
     const bytes = Uint8Array.from(
       { length: 32 },
-      (_, i) => Number(secret >> BigInt(8 * (31 - i)) & BigInt(0xff))
+      (_, i) => Number(seed >> BigInt(8 * (31 - i)) & BigInt(0xff))
     );
 
-    // If bytes are not a valid secp256k1 secret key, throw error
+    // If bytes are not a valid secp256k1 seed key, throw error
     if (!tinysecp.isPrivate(bytes)) {
       throw new SecretKeyError(
-        'Invalid secret key: secret out of valid range',
-        'SET_PRIVATE_KEY_ERROR'
+        'Invalid seed: out of valid range',
+        'SET_SECRET_KEY_ERROR'
       );
     }
     return new Uint8Array(bytes);
   }
 
   /**
-   * Creates a new SecretKey object from a bigint secret.
-   * @param {bigint} secret The secret bigint
+   * Creates a new SecretKey object from a bigint seed.
+   * @static
+   * @param {bigint} seed The seed bigint
    * @returns {SecretKey} A new SecretKey object
    */
-  public static fromSecret(secret: bigint): SecretKey {
-    // Convert the secret bigint to a hex string
-    const hexsecret = secret.toString(16).padStart(64, '0');
+  public static fromSeed(seed: bigint): SecretKey {
+    // Convert the seed bigint to a hex string
+    const hexsecret = seed.toString(16).padStart(64, '0');
     // Convert the hex string to a Uint8Array
-    const privateKeyBytes = new Uint8Array(hexsecret.match(/.{2}/g)!.map(byte => parseInt(byte, 16)));
+    const sk = new Uint8Array(hexsecret.match(/.{2}/g)!.map(byte => parseInt(byte, 16)));
     // Return a new SecretKey object
-    return new SecretKey(privateKeyBytes);
+    return new SecretKey(sk);
   }
 
   /**

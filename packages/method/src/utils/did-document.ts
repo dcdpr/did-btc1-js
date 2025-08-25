@@ -8,9 +8,9 @@ import {
   Logger
 } from '@did-btc1/common';
 import { DidService, DidVerificationMethod, DidDocument as IDidDocument } from '@web5/dids';
-import { BeaconService } from '../interfaces/ibeacon.js';
+import { BeaconService } from '../btc1/beacon/interfaces.js';
 import { Btc1Appendix } from './appendix.js';
-import { BeaconUtils } from './beacons.js';
+import { BeaconUtils } from './beacon.js';
 import { Btc1Identifier } from './identifier.js';
 
 export const BECH32M_CHARS = '';

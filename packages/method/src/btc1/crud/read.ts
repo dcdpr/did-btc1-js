@@ -18,23 +18,18 @@ import { bytesToHex } from '@noble/hashes/utils';
 import { GENESIS_TX_ID, TXIN_WITNESS_COINBASE } from '../../bitcoin/constants.js';
 import bitcoinNetwork, { Bitcoin } from '../../bitcoin/index.js';
 import { getNetwork } from '../../bitcoin/network.js';
-import BitcoinRest, { RawTransactionRest } from '../../bitcoin/rest-client.js';
-import BitcoinRpc from '../../bitcoin/rpc-client.js';
+import BitcoinRest, { RawTransactionRest } from '../../bitcoin/rest/index.js';
+import BitcoinRpc from '../../bitcoin/rpc/index.js';
 import { DidBtc1 } from '../../did-btc1.js';
-import { DidResolutionOptions } from '../../interfaces/crud.js';
-import { BeaconService, BeaconServiceAddress, BeaconSignal } from '../../interfaces/ibeacon.js';
-import { BlockV3, RawTransactionV2 } from '../../types/bitcoin.js';
-import {
-  CIDAggregateSidecar,
-  SidecarData,
-  SignalsMetadata,
-  SingletonSidecar,
-  SMTAggregateSidecar
-} from '../../types/crud.js';
-import { Btc1Appendix, DidComponents } from '../../utils/appendix.js';
-import { BeaconUtils } from '../../utils/beacons.js';
+import { Btc1Appendix } from '../../utils/appendix.js';
+import { BeaconUtils } from '../../utils/beacon.js';
 import { Btc1DidDocument } from '../../utils/did-document.js';
 import { BeaconFactory } from '../beacon/factory.js';
+import { BeaconService, BeaconServiceAddress, BeaconSignal, CIDAggregateSidecar, SingletonSidecar, SMTAggregateSidecar } from '../beacon/interfaces.js';
+import { SidecarData, SignalsMetadata } from '../beacon/types.js';
+import { BlockV3, RawTransactionV2 } from '../../bitcoin/rpc/types.js';
+import { DidResolutionOptions } from './interfaces.js';
+import { DidComponents } from '../../utils/identifier.js';
 
 export type FindNextSignalsRestParams = {
   connection: BitcoinRest;
@@ -805,7 +800,7 @@ export class Btc1Read {
     update: DidUpdatePayload;
     updateHashHistory: string[];
   }): Promise<void> {
-    Logger.warn('// TODO: Does this algorithm need `contemporaryHash` passed in?');
+    // Logger.warn('// TODO: Does this algorithm need `contemporaryHash` passed in?');
 
     // Hash the update payload
     const updateHash = await JSON.canonicalization.process(update);

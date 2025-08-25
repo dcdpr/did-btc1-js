@@ -1,5 +1,5 @@
 import { KeyBytes, SchnorrKeyPairObject, MessageBytes, SignatureBytes } from '@did-btc1/common';
-import { SchnorrKeyPair, PublicKey, SecretKey } from '@did-btc1/keypair';
+import { PublicKey, SchnorrKeyPair, SecretKey } from '@did-btc1/keypair';
 import { DidVerificationMethod } from '@web5/dids';
 
 export type MultikeyObject = {

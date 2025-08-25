@@ -1,4 +1,4 @@
-import { SchnorrKeyPair } from '@did-btc1/keypair';
+import { SchnorrKeyPair } from '../../../../keypair/dist/types/secret/index.js';
 import { mkdir, readFile, writeFile } from 'fs/promises';
 import bitcoin from '../../../src/bitcoin/index.js';
 import { RawTransactionRest } from '../../../src/bitcoin/rest-client.js';

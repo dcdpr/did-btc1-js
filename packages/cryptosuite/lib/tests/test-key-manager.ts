@@ -1,4 +1,4 @@
-import { SchnorrKeyPair } from '@did-btc1/keypair';
+import { SchnorrKeyPair } from '../../../keypair/dist/types/secret/index.js';
 import { Btc1KeyManager } from '../../../method/src/index.js';
 
 const secretKey = new Uint8Array([

@@ -21,9 +21,9 @@ import {
 import { initEccLib } from 'bitcoinjs-lib';
 import * as tinysecp from 'tiny-secp256k1';
 import { Btc1Create, Btc1CreateParams, Btc1CreateResponse } from './btc1/crud/create.js';
+import { DidResolutionOptions } from './btc1/crud/interfaces.js';
 import { Btc1Read } from './btc1/crud/read.js';
 import { Btc1Update } from './btc1/crud/update.js';
-import { DidResolutionOptions } from './interfaces/crud.js';
 import { Btc1Appendix } from './utils/appendix.js';
 import { Btc1DidDocument, Btc1VerificationMethod } from './utils/did-document.js';
 import { Btc1Identifier } from './utils/identifier.js';
