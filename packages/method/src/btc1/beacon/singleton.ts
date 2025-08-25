@@ -6,7 +6,7 @@ import { AddressUtxo, RawTransactionRest, Vout } from '../../bitcoin/rest-client
 import { Beacon } from '../../interfaces/beacon.js';
 import { BeaconService, BeaconSignal } from '../../interfaces/ibeacon.js';
 import { RawTransactionV2, TxOut } from '../../types/bitcoin.js';
-import { Metadata, SidecarData, SignalsMetadata, SingletonSidecar } from '../../types/crud.js';
+import { BeaconSidecarData, Metadata, SignalsMetadata, SingletonSidecar } from '../../types/crud.js';
 import { Btc1Appendix } from '../../utils/appendix.js';
 import { Btc1KeyManager, Signer } from '../key-manager/index.js';
 
@@ -28,9 +28,9 @@ export class SingletonBeacon extends Beacon {
   /**
    * Creates an instance of SingletonBeacon.
    * @param {BeaconService} service The Beacon service.
-   * @param {?SidecarData} [sidecar] Optional sidecar data.
+   * @param {?BeaconSidecarData} [sidecar] Optional sidecar data.
    */
-  constructor(service: BeaconService, sidecar?: SidecarData<SingletonSidecar>) {
+  constructor(service: BeaconService, sidecar?: BeaconSidecarData<SingletonSidecar>) {
     super({ ...service, type: 'SingletonBeacon' }, sidecar);
   }
 
@@ -60,10 +60,10 @@ export class SingletonBeacon extends Beacon {
    * It returns a SignletonBeacon object with the given id, type, and serviceEndpoint.
    *
    * @param {string} service The Beacon service.
-   * @param {SidecarData<SingletonSidecar>} sidecar The sidecar data.
+   * @param {BeaconSidecarData<SingletonSidecar>} sidecar The sidecar data.
    * @returns {SingletonBeacon} The Singleton Beacon.
    */
-  public static establish(service: BeaconService, sidecar: SidecarData<SingletonSidecar>): SingletonBeacon {
+  public static establish(service: BeaconService, sidecar: BeaconSidecarData<SingletonSidecar>): SingletonBeacon {
     return new SingletonBeacon(service, sidecar);
   }
 

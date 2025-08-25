@@ -101,7 +101,7 @@ export const CONTEXT_URL_MAP = {
       v1 : 'https://dcdpr.github.io/did-btc1-js/ns/did-document/v1',
     },
     method : {
-      v1 : 'https://did-btc1/TBD/context'
+      v1 : 'https://btc1.dev/context/v1'
     },
   },
 
