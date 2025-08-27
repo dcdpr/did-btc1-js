@@ -1,6 +1,6 @@
 {
   "name": "@did-btc1/cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "description": "CLI for interacting with did-btc1-js, the JavaScript/TypeScript reference implementation of the did:btc1 method. Uses various parts of the did-btc1-js monorepo.",
   "main": "./dist/cjs/index.js",
@@ -32,13 +32,13 @@
       "email": "github@jintek.consulting"
     }
   ],
-  "homepage": "https://github.com/jintekc/did-btc1-js/tree/main/packages/cli",
+  "homepage": "https://github.com/dcdpr/did-btc1-js/tree/main/packages/cli",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:jintekc/did-btc1-js.git",
+    "url": "git+ssh://git@github.com:dcdpr/did-btc1-js.git",
     "directory": "packages/cli"
   },
-  "bugs": "https://github.com/jintekc/did-btc1-js/issues",
+  "bugs": "https://github.com/dcdpr/did-btc1-js/issues",
   "publishConfig": {
     "access": "public"
   },
