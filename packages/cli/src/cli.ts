@@ -41,9 +41,13 @@ export class DidBtc1CLI {
     this.CLI
       .command('create')
       .description('Create a did:btc1 identifier and initial DID document')
-      .requiredOption('-t, --type <type>', 'Type of the identifier (key, external)', 'key')
-      .option('-p, --pubkey <pubkey>', 'Hex public key (when type=key)')
-      .option('-d, --document <document>', 'JSON DID document (when type=external)')
+      .requiredOption('-t, --type <type>', 'Type of the identifier (key | external)', 'key')
+      .option(
+        '-b, --bytes <bytes>',
+        `The bytes used to create a DID and DID document. ` +
+        `Can be either: a secp256k1 public key (idType=key) ` +
+        `or intermediate document (idType=external)`
+      )
       .option('-o, --options <options>', 'JSON object of optional parameters')
       .action(async (options) => {
         // The action name is "create"
