@@ -230,6 +230,22 @@ export class Btc1Appendix {
   }
 
   /**
+   * Publishes the given hashBytes to Content Addressable Storage (CAS).
+   * @param {HashBytes} hashBytes The SHA256 hash of the content to be published.
+   * @returns {Promise<string>} The CID of the published content.
+   */
+  public static async publishToCas(hashBytes: HashBytes): Promise<string> {
+    // Connect to helia node
+    const helia = strings(await createHelia());
+
+    // Add hex string of hashBytes to helia
+    const cid = await helia.add(Buffer.toHex(hashBytes));
+
+    // 3. Return the cid.
+    return cid.toString();
+  }
+
+  /**
    * Implements {@link https://dcdpr.github.io/did-btc1/#fetch-content-from-addressable-storage | 9.3. Fetch Content from Addressable Storage}.
    *
    * The Fetch Content from Addressable Storage function takes in SHA256 hash of some content, hashBytes, converts these
@@ -241,14 +257,15 @@ export class Btc1Appendix {
    */
   public static async fetchFromCas(hashBytes: HashBytes): Promise<string | undefined> {
     // 1. Set cid to the result of converting hashBytes to an IPFS v1 CID.
-    const cid = CID.create(1, 1, createDigest(1, hashBytes));
+    const id = Buffer.from(await this.publishToCas(hashBytes));
+    const cid = CID.create(1, 1, createDigest(1, id));
 
     // Create a Helia node connection to IPFS
     const helia = strings(await createHelia());
 
     // 2. Set content to the result of fetching the cid from a CAS system. Which CAS systems checked is up to implementation.
     Logger.warn('// TODO: Is this right? Are implementations just supposed to check all CAS they trust?');
-    const content = await helia.get(cid, {});
+    const content = await helia.get(cid);
 
     // 3. If content for cid cannot be found, set content to null.
     // 4. Return content.

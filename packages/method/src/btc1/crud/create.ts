@@ -6,6 +6,7 @@ import { BeaconUtils } from '../../utils/beacons.js';
 import { Btc1DidDocument, IntermediateDidDocument } from '../../utils/did-document.js';
 import { Btc1Identifier } from '../../utils/identifier.js';
 import { Btc1KeyManager } from '../key-manager/index.js';
+import { Btc1Appendix } from '../../utils/appendix.js';
 
 export type Btc1CreateParams = Btc1CreateKeyParams | Btc1CreateExternalParams;
 export interface CreateIdentifierParams {
@@ -32,6 +33,8 @@ export interface DidCreateOptions extends IDidCreateOptions<Btc1KeyManager> {
   version?: number;
   /** Bitcoin Network */
   network?: string;
+  /** Store on Content Addressable Storage (CAS) */
+  storeOnCAS?: boolean;
 }
 export type Btc1CreateKeyParams = {
   idType: 'KEY';
@@ -153,6 +156,13 @@ export class Btc1Create {
     // 7. Set initialDocument to a copy of the intermediateDocument.
     // 8. Replace all did:btc1:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx values in the initialDocument with the did.
     const initialDocument = intermediateDocument.toBtc1DidDocument(did);
+
+    // 9. Optionally store canonicalBytes on a Content Addressable Storage (CAS) system like the InterPlanetary File
+    //    System (IPFS). If doing so, implementations MUST use Content Identifiers (CIDs) generated following the IPFS
+    //    v1 algorithm.
+    if (options.storeOnCAS) {
+      await Btc1Appendix.publishToCas(genesisBytes);
+    }
 
     // Return DID & DID Document.
     return { did, initialDocument };
