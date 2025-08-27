@@ -59,110 +59,23 @@ pnpm build
 
 * Create a new branch off of `main`, make your changes, push and submit a cross repo PR from fork to this repo.
 
-## Usage
-
-To use the @did-btc1/method package in your own project, install it using your favorite package manager.
-
-```sh
-pnpm install @did-btc1/{common,cryptosuite,keypair,method}
-# Swap in npm or yarn depending on preference or requirement
-```
-
-Once installed, import the method to your project and use it to perform CRUD operations or interact with Beacons.
-
-### CRUD operations
-
-```ts
-// ESM
-import { DidBtc1, BeaconUtils, getNetwork } from "@did-btc1/method";
-import { KeyPairUtils } from "@did-btc1/keypair";
-
-const idType = 'key';
-const { publicKey } = KeyPairUtils.generate();
-const pubKeyBytes = publicKey.bytes;
-
-// Create
-const { did, initialDocument } = await DidBtc1.create({ idType, pubKeyBytes })
-console.log('{ did, initialDocument }', { did, initialDocument });
-
-// Read / Resolve
-const resolution = await DidBtc1.resolve(did);
-console.log('resolution', resolution);
-
-const patch = JSON.patch.create([
-  {
-    op    : 'replace',
-    path  : '/service/0',
-    value : BeaconUtils.generateBeaconService({
-      id          : identifier,
-      publicKey   : Buffer.from(keyPair1.publicKey.hex, 'hex'),
-      network     : getNetwork('regtest'),
-      addressType : 'p2pkh',
-      beaconType  : 'SingletonBeacon',
-    })
-  }
-]);
-// Update
-const update = await DidBtc1.update({
-  identifier           : did,
-  sourceDocument       : initialDocument,
-  sourceVersionId      : 1,
-  patch                : JSON.patch.create([
-    {
-      op    : 'replace',
-      path  : '/service/0',
-      value : BeaconUtils.generateBeaconService({
-        id          : identifier,
-        publicKey   : Buffer.from(keyPair1.publicKey.hex, 'hex'),
-        network     : getNetwork('regtest'),
-        addressType : 'p2pkh',
-        beaconType  : 'SingletonBeacon',
-      })
-    }
-  ]),
-  verificationMethodId : `#initialP2PKH`,
-  beaconIds            : [`${did}#initialP2PKH`],
-});
-
-// TODO: Deactivate / Delete
-```
-
-```ts
-// CommonJS
-const { DidBtc1 } = require("@did-btc1/method");
-const idType = 'key';
-const pubKeyBytes = new Uint8Array(32);
-const { did, initialDocument } = await DidBtc1.create({ idType, pubKeyBytes })
-console.log('did', did);
-console.log('initialDocument', initialDocument);
-```
-
 ## Packages
 
-* [@did-btc1/cryptosuite](packages/cryptosuite/README.md)
-* [@did-btc1/common](packages/common/README.md)
-* [@did-btc1/keypair](packages/keypair/README.md)
-* [@did-btc1/method](packages/method/README.md)
-* [@did-btc1/cli](packages/cli/README.md)
-* [@did-btc1/smt](packages/smt/README.md)
-
-## Package Versions
-
-|                   package                     |                             npm                               |                               issues                                |                               prs                                  |
-| ----------------------------------------------| :------------------------------------------------------------:| :------------------------------------------------------------------:| :-----------------------------------------------------------------:|
-| [@did-btc1/common](packages/common/)          | [![NPM Package][common-npm-badge]][common-npm-link]           | [![Open Issues][common-issues-badge]][common-issues-link]           | [![Open PRs][common-pulls-badge]][common-pulls-link]               |
-| [@did-btc1/cryptosuite](packages/cryptosuite) | [![NPM Package][cryptosuite-npm-badge]][cryptosuite-npm-link] | [![Open Issues][cryptosuite-issues-badge]][cryptosuite-issues-link] | [![Open PRs][cryptosuite-pulls-badge]][cryptosuite-pulls-link]     |
-| [@did-btc1/keypair](packages/keypair)         | [![NPM Package][keypair-npm-badge]][keypair-npm-link]         | [![Open Issues][keypair-issues-badge]][keypair-issues-link]       | [![Open PRs][keypair-pulls-badge]][keypair-pulls-link]               |
-| [@did-btc1/method](packages/method/)          | [![NPM Package][method-npm-badge]][method-npm-link]           | [![Open Issues][method-issues-badge]][method-issues-link]           | [![Open PRs][method-pulls-badge]][method-pulls-link]               |
-| [@did-btc1/cli](packages/cli/)                | [![NPM Package][cli-npm-badge]][cli-npm-link]                 | [![Open Issues][cli-issues-badge]][cli-issues-link]                 | [![Open PRs][cli-pulls-badge]][cli-pulls-link]                     |
-| [@did-btc1/smt](packages/smt/)                | [![NPM Package][smt-npm-badge]][smt-npm-link]                 | [![Open Issues][smt-issues-badge]][smt-issues-link]                 | [![Open PRs][smt-pulls-badge]][smt-pulls-link]                     |
+| Package                                          | Version                                                        | Issues                                                               | Pull Requests                                                       |
+| :----------------------------------------------: | :------------------------------------------------------------: | :------------------------------------------------------------------: | :-----------------------------------------------------------------: |
+| [@did-btc1/common](packages/common/)             | [![NPM Package][common-npm-badge]][common-npm-link]            | [![Open Issues][common-issues-badge]][common-issues-link]            | [![Open PRs][common-pulls-badge]][common-pulls-link]                |
+| [@did-btc1/cryptosuite](packages/cryptosuite)    | [![NPM Package][cryptosuite-npm-badge]][cryptosuite-npm-link]  | [![Open Issues][cryptosuite-issues-badge]][cryptosuite-issues-link]  | [![Open PRs][cryptosuite-pulls-badge]][cryptosuite-pulls-link]      |
+| [@did-btc1/keypair](packages/keypair)            | [![NPM Package][keypair-npm-badge]][keypair-npm-link]          | [![Open Issues][keypair-issues-badge]][keypair-issues-link]          | [![Open PRs][keypair-pulls-badge]][keypair-pulls-link]              |
+| [@did-btc1/method](packages/method/)             | [![NPM Package][method-npm-badge]][method-npm-link]            | [![Open Issues][method-issues-badge]][method-issues-link]            | [![Open PRs][method-pulls-badge]][method-pulls-link]                |
+| [@did-btc1/cli](packages/cli/)                   | [![NPM Package][cli-npm-badge]][cli-npm-link]                  | [![Open Issues][cli-issues-badge]][cli-issues-link]                  | [![Open PRs][cli-pulls-badge]][cli-pulls-link]                      |
+| [@did-btc1/smt](packages/smt/)                   | [![NPM Package][smt-npm-badge]][smt-npm-link]                  | [![Open Issues][smt-issues-badge]][smt-issues-link]                  | [![Open PRs][smt-pulls-badge]][smt-pulls-link]                      |
 
 ## Project Resources
 
-| Resource                                   | Description                                                                   |
-| ------------------------------------------ | ----------------------------------------------------------------------------- |
-| [CODEOWNERS](CODEOWNERS)                 | Outlines the project lead(s)                                                  |
-| [LICENSE](LICENSE)                       | Project Open Source License [![MPL-2.0][mpl-license-badge]][mpl-license-link] |
+| Resource                                    | Description                                                                   |
+| :------------------------------------------ | ----------------------------------------------------------------------------- |
+| [CODEOWNERS](CODEOWNERS)                    | Outlines the project lead(s)                                                  |
+| [LICENSE](LICENSE)                          | Project Open Source License [![MPL-2.0][mpl-license-badge]][mpl-license-link] |
 
 [mpl-license-badge]: https://img.shields.io/badge/license-MPL%202.0-blue.svg
 [mpl-license-link]: https://opensource.org/license/MPL-2.0
