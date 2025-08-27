@@ -178,7 +178,7 @@ export class Btc1Read {
     options: DidResolutionOptions;
   }): Promise<Btc1DidDocument> {
     // Deconstruct the options
-    const { initialDocument: document } = options.sidecarData as CIDAggregateSidecar;
+    const { initialDocument: document } = options.sidecarData as SidecarData<CIDAggregateSidecar>;
 
     // 1. If resolutionOptions.sidecarData.initialDocument is not null, set initialDocument to the result of passing
     //    identifier, identifierComponents and resolutionOptions.sidecarData.initialDocument into algorithm Sidecar
