@@ -26,6 +26,7 @@ const LOG_LEVELS: Record<Env, Level[]> = {
   production  : ['error'],
 };
 
+// eslint-disable-next-line no-undef
 const LEVEL_METHODS: Record<Level, keyof Console> = {
   debug    : 'debug',
   error    : 'error',
