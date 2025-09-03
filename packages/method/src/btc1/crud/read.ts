@@ -435,8 +435,13 @@ export class Btc1Read {
       return new Btc1DidDocument(contemporaryDidDocument);
     }
 
-    // 7. Set updates to the result of calling algorithm Process Beacon Signals passing in signals and sidecarData.
-    // 8. Set orderedUpdates to the list of updates ordered by the targetVersionId property.
+    // 6. If nextSignals[0].blocktime is greater than targetTime, return contemporaryDIDDocument.
+    if (nextSignals[0].blocktime > targetTime) {
+      return new Btc1DidDocument(contemporaryDidDocument);
+    }
+
+    // 8. Set updates to the result of calling algorithm Process Beacon Signals passing in signals and sidecarData.
+    // 9. Set orderedUpdates to the list of updates ordered by the targetVersionId property.
     const orderedUpdates = (
       await Promise.all(
         nextSignals.map(
@@ -445,20 +450,21 @@ export class Btc1Read {
       )
     ).sort((a, b) => a.targetVersionId - b.targetVersionId);
 
-    // 9. For update in orderedUpdates:
+    // 10. For update in orderedUpdates:
     for (let update of orderedUpdates) {
       const updateTargetVersionId = update.targetVersionId;
-      // 9.1. If update.targetVersionId is less than or equal to currentVersionId, run Algorithm Confirm Duplicate
+      // 10.1. If update.targetVersionId is less than or equal to currentVersionId, run Algorithm Confirm Duplicate
       //      Update passing in update, documentHistory, and contemporaryHash.
       if (updateTargetVersionId <= currentVersionId) {
+        btc1UpdateHashHistory.push(contemporaryHash);
         await this.confirmDuplicateUpdate({ update, updateHashHistory: btc1UpdateHashHistory });
 
-        //  9.2. If update.targetVersionId equals currentVersionId + 1:
+        //  10.2. If update.targetVersionId equals currentVersionId + 1:
       } else if (updateTargetVersionId === currentVersionId + 1) {
         // Prepend `z` to the sourceHash if it does not start with it
         const sourceHash = update.sourceHash.startsWith('z') ? update.sourceHash : `z${update.sourceHash}`;
 
-        //  9.2.1. Check that update.sourceHash equals contemporaryHash, else MUST raise latePublishing error.
+        //  10.2.1. Check that update.sourceHash equals contemporaryHash, else MUST raise latePublishing error.
         if (sourceHash !== contemporaryHash) {
           throw new Btc1ReadError(
             `Hash mismatch: sourceHash ${sourceHash} !== contemporaryHash ${contemporaryHash}`,
@@ -466,29 +472,29 @@ export class Btc1Read {
           );
         }
 
-        // 9.2.2. Set contemporaryDidDocument to the result of calling Apply DID Update algorithm passing in
+        // 10.2.2. Set contemporaryDidDocument to the result of calling Apply DID Update algorithm passing in
         //        contemporaryDidDocument, update.
         contemporaryDidDocument = await this.applyDidUpdate({ contemporaryDidDocument, update });
 
-        // 9.2.3. Increment currentVersionId.
+        // 10.2.3. Increment currentVersionId.
         currentVersionId++;
 
-        // 9.2.4. If currentVersionId equals targetVersionId return contemporaryDidDocument.
+        // 10.2.4. If currentVersionId equals targetVersionId return contemporaryDidDocument.
         if (currentVersionId === targetVersionId) {
           return new Btc1DidDocument(contemporaryDidDocument);
         }
 
-        // 9.2.5. Set updateHash to the result of passing update into the JSON Canonicalization and Hash algorithm.
+        // 10.2.5. Set updateHash to the result of passing update into the JSON Canonicalization and Hash algorithm.
         const updateHash = await JSON.canonicalization.process(update, 'base58');
 
-        // 9.2.6. Push updateHash onto updateHashHistory.
+        // 10.2.6. Push updateHash onto updateHashHistory.
         btc1UpdateHashHistory.push(updateHash as string);
 
-        // 9.2.7. Set contemporaryHash to result of passing contemporaryDidDocument into the JSON Canonicalization
+        // 10.2.7. Set contemporaryHash to result of passing contemporaryDidDocument into the JSON Canonicalization
         //        and Hash algorithm.
         contemporaryHash = await JSON.canonicalization.process(contemporaryDidDocument, 'base58');
 
-        //  9.3. If update.targetVersionId is greater than currentVersionId + 1, MUST throw a LatePublishing error.
+        //  10.3. If update.targetVersionId is greater than currentVersionId + 1, MUST throw a LatePublishing error.
       } else if (update.targetVersionId > currentVersionId + 1) {
         throw new Btc1ReadError(
           `Version Id Mismatch: target ${update.targetVersionId} cannot be > current+1 ${currentVersionId + 1}`,
@@ -605,7 +611,7 @@ export class Btc1Read {
           // Get the address from the scriptPubKey from the prevvout (previous output's input at the vout index)
           const scriptPubKey = prevout.vout[vin.vout].scriptPubKey;
 
-          // If the beaconAddress is undefined, continue ...
+          // If the scriptPubKey.address is undefined, continue ...
           if (!scriptPubKey.address) {
             continue;
           }
@@ -617,9 +623,13 @@ export class Btc1Read {
             continue;
           }
 
-          // Log the found txid and beacon
-          Logger.info(`Tx ${tx.txid} contains beacon address ${scriptPubKey.address}!`, tx);
+          // If the prevout.vout[vin.vout].scriptPubKey.asm does not include 'OP_RETURN', continue ...
+          if(!prevout.vout[vin.vout].scriptPubKey.asm.includes('OP_RETURN')) {
+            continue;
+          }
 
+          // Log the found txid and beacon
+          Logger.info(`Tx ${tx.txid} contains beacon address ${scriptPubKey.address} and OP_RETURN!`, tx);
 
           // Push the signal object to to signals array
           beaconSignals.push({
@@ -788,7 +798,7 @@ export class Btc1Read {
   }
 
   /**
-   * Implements {@link https://dcdpr.github.io/did-btc1/#confirm-duplicate-update | 4.2.3.5 Confirm Duplicate Update}.
+   * Implements {@link https://dcdpr.github.io/did-btc1/#confirm-duplicate-update | 7.2.2.4 Confirm Duplicate Update}.
    *
    * The Confirm Duplicate Update algorithm takes in a {@link DidUpdatePayload | DID Update Payload} and verifies that
    * the update is a duplicate against the hash history of previously applied updates. The algorithm takes in an update
@@ -806,10 +816,19 @@ export class Btc1Read {
     update: DidUpdatePayload;
     updateHashHistory: string[];
   }): Promise<void> {
-    // Hash the update payload
-    const updateHash = await JSON.canonicalization.process(update);
+    // 1. Let unsecuredUpdate be a copy of the update object.
+    const unsecuredUpdate = update;
 
-    // Get the historical update hash from the updateHashHistory
+    // 2. Remove the proof property from the unsecuredUpdate object.
+    delete unsecuredUpdate.proof;
+
+    // 3. Let updateHash equal the result of passing unsecuredUpdate into the JSON Canonicalization and Hash algorithm.
+    const updateHash = await JSON.canonicalization.process(unsecuredUpdate);
+
+    // 4. Let updateHashIndex equal update.targetVersionId - 2.
+    // const updateHashIndex = update.targetVersionId - 2;
+
+    // 5. Let historicalUpdateHash equal updateHashHistory[updateHashIndex].
     const historicalUpdateHash = updateHashHistory[update.targetVersionId - 2];
 
     // Check if the updateHash matches the historical hash

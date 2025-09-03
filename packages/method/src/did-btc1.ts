@@ -91,22 +91,21 @@ export class DidBtc1 implements DidMethod {
   }
 
   /**
-   * Entry point for section {@link https://dcdpr.github.io/did-btc1/#read | 4.2 Read}.
+   * Entry point for section {@link https://dcdpr.github.io/did-btc1/#read | 7.2 Read}.
    * See {@link Btc1Read} for implementation details.
    *
    * The Read operation is an algorithm consisting of a series of subroutine algorithms executed by a resolver after a
    * resolution request identifying a specific did:btc1 identifier is received from a client at Resolution Time. The
    * request MUST always contain the resolutionOptions object containing additional information to be used in resolution.
-   * This object MAY be empty. The resolver then attempts to resolve the DID document of the identifier at a specific
-   * Target Time. The Target Time is either provided in resolutionOptions or is set to the Resolution Time of the request.
+   * This object MAY be empty. See the DID Resolution specification for further details about the DID Resolution Options
+   * object. The resolver then attempts to resolve the DID document of the identifier at a specific Target Time. The
+   * Target Time is either provided in resolutionOptions or is set to the Resolution Time of the request.
    *
    * @param {string} identifier a valid did:btc1 identifier to be resolved
-   * @param {DidResolutionOptions} resolutionsOptions Optional resolution operation. See {@link https://www.w3.org/TR/did-1.0/#did-resolution-options | DidResolutionOptions}
+   * @param {DidResolutionOptions} [resolutionsOptions] see {@link https://www.w3.org/TR/did-1.0/#did-resolution-options | DidResolutionOptions}
    * @param {number} options.versionId the version of the identifier and/or DID document
    * @param {number} options.versionTime a timestamp used during resolution as a bound for when to stop resolving
-   * @param {Btc1DidDocument} options.sidecarData data necessary for resolving a DID such as
-   *    {@link https://dcdpr.github.io/did-btc1/#def-btc1-update | BTC1Updates}
-   *    and {@link https://dcdpr.github.io/did-btc1/#def-smt-proof | SMT proofs}.
+   * @param {Btc1DidDocument} options.sidecarData data necessary for resolving a DID
    * @param {string} options.network Bitcoin network name (mainnet, testnet, signet, regtest).
    * @returns {DidResolutionResult} Promise resolving to a DID Resolution Result containing the `targetDocument`
    * @throws {Error} if the resolution fails for any reason
@@ -118,8 +117,7 @@ export class DidBtc1 implements DidMethod {
    */
   public static async resolve(identifier: string, resolutionsOptions: DidResolutionOptions = {}): Promise<DidResolutionResult> {
     try {
-      // 1. Pass identifier to the did:btc1 Identifier Decoding algorithm, retrieving idType, version, network, and
-      //    genesisBytes.
+      // 1. Pass identifier to the did:btc1 Identifier Decoding algorithm, retrieving idType, version, network, and genesisBytes.
       // 2. Set identifierComponents to a map of idType, version, network, and genesisBytes.
       const identifierComponents = Btc1Identifier.decode(identifier);
 

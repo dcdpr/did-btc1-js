@@ -8,8 +8,8 @@ export type FindNextSignals = {
   beacons: BeaconService[]
 };
 export type Metadata = {
-  updatePayload: DidUpdatePayload;
-  proofs?: any;
+  btc1Update: DidUpdatePayload;
+  proofs?: string;
 };
 export type SignalSidecarData = Metadata;
 export interface Btc1SidecarData {
