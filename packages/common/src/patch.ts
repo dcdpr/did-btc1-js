@@ -122,7 +122,7 @@ export class Patch {
       if (!(key in (sourceDocument || {}))) {
         operations.push({ op: 'add', path: currentPath, value: targetVal });
       } else if (typeof sourceVal === 'object' && sourceVal !== null && typeof targetVal === 'object' && targetVal !== null) {
-        this.diff(sourceVal, targetVal, currentPath);
+        operations.push(...this.diff(sourceVal, targetVal, currentPath));
       } else if (JSON.stringify(sourceVal) !== JSON.stringify(targetVal)) {
         operations.push({ op: 'replace', path: currentPath, value: targetVal });
       }
