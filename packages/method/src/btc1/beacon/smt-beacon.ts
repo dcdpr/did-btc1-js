@@ -10,7 +10,7 @@ import { SidecarData, SignalsMetadata, SMTAggregateSidecar } from '../../types/c
  *
  * Implements {@link https://dcdpr.github.io/did-btc1/#smtaggregate-beacon | 5.3 SMTAggregate Beacon}.
  *
- * A SMTAggregate Beacon is a Beacon whose Beacon Signals are Bitcoin transactions containing the root of a Sparse
+ * A SMTBeacon is a Beacon whose Beacon Signals are Bitcoin transactions containing the root of a Sparse
  * Merkle Tree (SMT). The SMT root attests to a set of DID Update Payloads, however, the updates themselves MUST be
  * provided along with a proof of inclusion against the SMT root through a Sidecar mechanism during resolution. Using
  * the SMT root a resolver can then verify the inclusion proof for the given DID Update Payload. If a DID document
@@ -18,18 +18,18 @@ import { SidecarData, SignalsMetadata, SMTAggregateSidecar } from '../../types/c
  * the Beacon broadcasts. If they did not submit an update to their DID in a signal, then they MUST provide a proof of
  * non-inclusion for that signal.
  *
- * @class SMTAggregateBeacon
- * @type {SMTAggregateBeacon}
+ * @class SMTBeacon
+ * @type {SMTBeacon}
  * @extends {Beacon}
  */
-export class SMTAggregateBeacon extends Beacon {
+export class SMTBeacon extends Beacon {
   /**
-   * Creates an instance of SMTAggregateBeacon.
+   * Creates an instance of SMTBeacon.
    * @param {BeaconService} service The Beacon service.
    * @param {?SidecarData} [sidecar] Optional sidecar data.
    */
   constructor(service: BeaconService, sidecar?: SidecarData<SMTAggregateSidecar>) {
-    super({ ...service, type: 'SMTAggregateBeacon' }, sidecar);
+    super({ ...service, type: 'SMTBeacon' }, sidecar);
   }
 
   /**
@@ -76,8 +76,8 @@ export class SMTAggregateBeacon extends Beacon {
    * @param {DidServiceEndpoint} serviceEndpoint The service endpoint.
    * @returns {Beacon} The Beacon.
    */
-  public static establish(id: string, type: string, serviceEndpoint: DidServiceEndpoint): SMTAggregateBeacon {
-    return new SMTAggregateBeacon({ id, type, serviceEndpoint });
+  public static establish(id: string, type: string, serviceEndpoint: DidServiceEndpoint): SMTBeacon {
+    return new SMTBeacon({ id, type, serviceEndpoint });
   }
 
   /**
