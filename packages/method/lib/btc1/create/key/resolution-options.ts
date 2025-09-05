@@ -19,15 +19,21 @@ const verificationMethodId = initialDocument.verificationMethod[0].id;
 const verificationMethod = DidBtc1.getSigningMethod({ didDocument: sourceDocument, methodId: verificationMethodId, });
 
 const identifier = verificationMethodId;
-const [id, controller] = identifier.split('#');
+// const [controller, fragment] = identifier.split('#');
+// console.log('id:', id);
+// console.log('controller:', controller);
+
 const secretKey = Buffer.from(keys.genesisKey.sk, 'hex');
-const keyUri = Btc1KeyManager.computeKeyUri(id, controller);
-await Btc1KeyManager.initialize(new SchnorrKeyPair({ secretKey }), keyUri);
+// const keyUri = Btc1KeyManager.computeKeyUri(id, controller);
+const keyPair = new SchnorrKeyPair({ secretKey });
+const kms = await Btc1KeyManager.initialize(keyPair, identifier);
+console.log('kms:', kms);
 
 const didUpdateInvocation = await Btc1Update.invoke({ identifier, verificationMethod, didUpdatePayload, });
 
-const beaconIds = [initialDocument.service[0].id];
-const signalsMetadata = await Btc1Update.announce({ sourceDocument, beaconIds, didUpdateInvocation });
+const beaconId = initialDocument.service[0].id;
+await kms.importKey(keyPair, beaconId)
+const signalsMetadata = await Btc1Update.announce({ sourceDocument, beaconIds: [beaconId], didUpdateInvocation });
 
 for (const [txId, updates] of Object.entries(signalsMetadata)) {
   let tx = await bitcoin.rest.transaction.get(txId) as RawTransactionRest;

@@ -1,4 +1,4 @@
-import { KeyPairUtils } from '@did-btc1/keypair';
+import { SchnorrKeyPair } from '@did-btc1/keypair';
 import { Did } from '@web5/dids';
 import { mkdir, readdir, readFile, rename, writeFile } from 'fs/promises';
 import path from 'path';
@@ -40,28 +40,23 @@ try {
 }
 
 // Step 1: Generate new key pairs
-const genesisKey = KeyPairUtils.generate();
-const replacementKey = KeyPairUtils.generate();
+const genesisKey = SchnorrKeyPair.generate();
+const replacementKey = SchnorrKeyPair.generate();
 
 // Step 2: Create a new DID and initial DID document
 const { did, initialDocument } = await DidBtc1.create({
   idType      : 'KEY',
-  pubKeyBytes : genesisKey.publicKey.bytes,
+  pubKeyBytes : genesisKey.publicKey.compressed,
   options     : { network, version: 1 },
 });
 
-const parts = Did.parse(did);
-if(!parts) {
-  throw new Error('Failed to parse DID');
-}
-const keyId = parts.id;
 const keys = {
   genesisKey : {
-    sk : genesisKey.privateKey.hex,
+    sk : genesisKey.secretKey.hex,
     pk : genesisKey.publicKey.hex,
   },
-  [keyId] : {
-    sk : replacementKey.privateKey.hex,
+  replacementKey : {
+    sk : replacementKey.secretKey.hex,
     pk : replacementKey.publicKey.hex,
   }
 };
@@ -78,7 +73,7 @@ const initialDocumentPath = path.join(latestdir, 'initialDocument.json');
 await writeFile(initialDocumentPath, JSON.stringify(initialDocument, null, 4), { encoding: 'utf-8' });
 
 // Step 4: Write the new latest.txt file with the new UUID
-await writeFile(latestTxtPath, keyId, { encoding: 'utf-8' });
+await writeFile(latestTxtPath, did, { encoding: 'utf-8' });
 
-console.log(`New output UUID: ${keyId}`);
+console.log(`New output DID: ${did}`);
 console.log(`Output files written to: ${latestdir}`);

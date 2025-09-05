@@ -476,22 +476,25 @@ export class Btc1Read {
         //        contemporaryDidDocument, update.
         contemporaryDidDocument = await this.applyDidUpdate({ contemporaryDidDocument, update });
 
-        // 10.2.3. Increment currentVersionId.
+        // 10.2.4 Push contemporaryDIDDocument onto didDocumentHistory.
+        didDocumentHistory.push(contemporaryDidDocument);
+
+        // 10.2.4. Increment currentVersionId.
         currentVersionId++;
 
-        // 10.2.4. If currentVersionId equals targetVersionId return contemporaryDidDocument.
-        if (currentVersionId === targetVersionId) {
-          return new Btc1DidDocument(contemporaryDidDocument);
-        }
+        // 10.2.5. Set unsecuredUpdate to a copy of the update object.
+        const unsecuredUpdate = update;
 
-        // 10.2.5. Set updateHash to the result of passing update into the JSON Canonicalization and Hash algorithm.
+        // 10.2.6 Remove the proof property from the unsecuredUpdate object.
+        delete unsecuredUpdate.proof;
+
+        // 10.2.7 Set updateHash to the result of passing unsecuredUpdate into the JSON Canonicalization and Hash algorithm.
         const updateHash = await JSON.canonicalization.process(update, 'base58');
 
-        // 10.2.6. Push updateHash onto updateHashHistory.
+        // 10.2.8. Push updateHash onto btc1UpdateHashHistory.
         btc1UpdateHashHistory.push(updateHash as string);
 
-        // 10.2.7. Set contemporaryHash to result of passing contemporaryDidDocument into the JSON Canonicalization
-        //        and Hash algorithm.
+        // 10.2.9. Set contemporaryHash to result of passing contemporaryDIDDocument into the JSON Canonicalization and Hash algorithm.
         contemporaryHash = await JSON.canonicalization.process(contemporaryDidDocument, 'base58');
 
         //  10.3. If update.targetVersionId is greater than currentVersionId + 1, MUST throw a LatePublishing error.
@@ -503,12 +506,12 @@ export class Btc1Read {
       }
     }
 
-    // 10. If contemporaryBlockheight equals targetBlockheight, return contemporaryDidDocument.
-    if (contemporaryBlockHeight === targetTime) {
-      return new Btc1DidDocument(contemporaryDidDocument);
+    // 13. If targetVersionId in not null, set targetDocument to the index at the targetVersionId of the didDocumentHistory array.
+    if(targetVersionId) {
+      return new Btc1DidDocument(didDocumentHistory[targetVersionId]);
     }
 
-    // 13. Return contemporaryDidDocument.
+    // 14. Return contemporaryDidDocument.
     return new Btc1DidDocument(contemporaryDidDocument);
   }
 
@@ -782,19 +785,19 @@ export class Btc1Read {
     // Establish a Beacon instance using the service and sidecar
     const beacon = BeaconFactory.establish(service, sidecar);
 
-    // 2.5 Set didUpdatePayload to null.
-    const didUpdatePayload = await beacon.processSignal(signalTx, signalsMetadata) ?? null;
+    // 2.5 Set btc1Update to null.
+    const btc1Update = await beacon.processSignal(signalTx, signalsMetadata) ?? null;
 
     // If the updates is null, throw an error
-    if (!didUpdatePayload) {
-      throw new Btc1Error('No didUpdatePayload for beacon', 'PROCESS_BEACON_SIGNALS_ERROR', { tx, signalsMetadata });
+    if (!btc1Update) {
+      throw new Btc1Error('No btc1Update for beacon', 'PROCESS_BEACON_SIGNALS_ERROR', { tx, signalsMetadata });
     }
 
-    // 2.9 If didUpdatePayload is not null, push didUpdatePayload to updates.
-    updates.push(didUpdatePayload);
+    // 2.9 If btc1Update is not null, push btc1Update to updates.
+    updates.push(btc1Update);
 
     // 3. Return updates.
-    return didUpdatePayload;
+    return btc1Update;
   }
 
   /**

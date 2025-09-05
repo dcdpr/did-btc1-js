@@ -223,6 +223,8 @@ export class SingletonBeacon extends Beacon {
     // 6. Retrieve the cryptographic material, e.g private key or signing capability, associated with the bitcoinAddress
     //    or service. How this is done is left to the implementer.
     // TODO: Determine how we want to handle this. Currently, this code uses the RPC to handle signing.
+    console.log('Btc1KeyManager', Btc1KeyManager.instance);
+    console.log('this.service.id', this.service.id);
     const multikey = await Btc1KeyManager.getKeyPair(this.service.id);
     console.log('multikey', multikey);
     if (!multikey) {
@@ -232,7 +234,7 @@ export class SingletonBeacon extends Beacon {
     const signer = new Signer({ multikey, network: bitcoin.network.name });
 
     // 7. Sign the spendTx.
-    const signedTx = spendTx.signInput(input.index, signer)
+    const signedTx = spendTx.signInput(0, signer)
       .finalizeAllInputs()
       .extractTransaction()
       .toHex();
