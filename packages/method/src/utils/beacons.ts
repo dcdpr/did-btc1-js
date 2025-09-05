@@ -136,11 +136,7 @@ export class BeaconUtils {
   }): BeaconService {
     try {
       if(!id.includes('#')) {
-        throw new Btc1Error(
-          'Invalid id format. It should include a fragment identifier (e.g., #initialP2PKH).',
-          'BEACON_ERROR',
-          { id }
-        );
+        id = `${id}#initial${addressType.toUpperCase()}`;
       }
       const serviceEndpoint = `bitcoin:${payments[addressType]({ pubkey, network }).address}`;
       return { id, type, serviceEndpoint, };

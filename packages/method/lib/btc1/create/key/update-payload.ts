@@ -23,10 +23,10 @@ const patch = args[1] && JSON.parsable(args[1])
       path  : '/service/0',
       value : BeaconUtils.generateBeaconService({
         id          : identifier,
-        publicKey   : Buffer.from(keys.genesisKey.publicKey.hex, 'hex'),
+        publicKey   : Buffer.from(keys.replacementKey.pk, 'hex'),
         network     : getNetwork(network),
         addressType : 'p2pkh',
-        beaconType  : 'SingletonBeacon',
+        type        : 'SingletonBeacon',
       })
     }
   ]);

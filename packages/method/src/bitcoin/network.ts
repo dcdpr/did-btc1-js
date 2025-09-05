@@ -7,6 +7,7 @@ export function getNetwork(network: string): networks.Network {
     case 'testnet3':
     case 'testnet4':
     case 'signet':
+    case 'mutinynet':
       return networks.testnet;
     case 'regtest':
       return networks.regtest;
