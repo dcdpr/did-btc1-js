@@ -43,7 +43,7 @@ const verificationMethod = [
 const intermediateDocument = IntermediateDidDocument.create(verificationMethod, relationships, [service]);
 await writeFile(path.join(latestdir, 'intermediateDocument.json'), JSON.stringify(intermediateDocument, null, 4), { encoding: 'utf-8' });
 
-const { did, initialDocument } = await DidBtc1.create({
+const { did, initialDocument } = await DidBtcr2.create({
   idType  : 'EXTERNAL',
   intermediateDocument,
   options : { version: 1, network }

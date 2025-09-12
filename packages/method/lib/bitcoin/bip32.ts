@@ -35,12 +35,12 @@ const key = {
   d   : base64url.encode(Buffer.from(hdkey.privateKey))
 } as Jwk;
 const keyUri = await keyManager.importKey({ key });
-const did = `did:btc1:testnet:k1${bech32EncodedPublicKey}`;
+const did = `did:btcr2:testnet:k1${bech32EncodedPublicKey}`;
 
 const didDocument: DidDocument = {
   '@context'           : [
     'https://www.w3.org/ns/did/v1',
-    'https://github.com/dcdpr/did-btc1'
+    'https://github.com/dcdpr/did-btcr2'
   ],
   id                 : did,
   verificationMethod : [{

@@ -1,6 +1,6 @@
 import { PublicKey } from '@did-btcr2/keypair';
 import { expect } from 'chai';
-import { DidBtc1 } from '../src/did-btcr2.js';
+import { DidBtcr2 } from '../src/did-btcr2.js';
 import { BeaconUtils, DidDocument, getNetwork } from '../src/index.js';
 
 /**
@@ -28,7 +28,7 @@ describe('DidBtc1 Create Deterministic', () => {
 
   it('should create a deterministic key identifier and DID document from a publicKey',
     async () => {
-      const { did, initialDocument } = await DidBtc1.create({ idType, pubKeyBytes });
+      const { did, initialDocument } = await DidBtcr2.create({ idType, pubKeyBytes });
       const verificationMethod = [
         {
           id                 : `${did}#initialKey`,
@@ -57,7 +57,7 @@ describe('DidBtc1 Create Deterministic', () => {
 
   it('should create a deterministic key identifier and DID document from a publicKey and version',
     async () => {
-      const { did, initialDocument } = await DidBtc1.create({ idType, pubKeyBytes, options: { version } });
+      const { did, initialDocument } = await DidBtcr2.create({ idType, pubKeyBytes, options: { version } });
       const verificationMethod = [
         {
           id                 : `${did}#initialKey`,
@@ -104,7 +104,7 @@ describe('DidBtc1 Create Deterministic', () => {
               publicKey  : publicKey.compressed
             });
             const didDocument = new DidDocument({ id: did, verificationMethod, service });
-            const result = await DidBtc1.create({ idType, pubKeyBytes, options: { network } });
+            const result = await DidBtcr2.create({ idType, pubKeyBytes, options: { network } });
             expect(result.did).to.equal(did);
             expect(result.initialDocument).to.be.instanceOf(DidDocument);
             expect(result.initialDocument.verificationMethod[0].id).to.equals(didDocument.verificationMethod[0].id);

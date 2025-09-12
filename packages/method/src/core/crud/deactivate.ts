@@ -1,4 +1,4 @@
-import { DidBtc1 } from '../../did-btcr2.js';
+import { DidBtcr2 } from '../../did-btcr2.js';
 
 /**
  * Implements {@link https://dcdpr.github.io/did-btcr2/#deactivate | 4.4 Deactivate}
@@ -10,4 +10,4 @@ import { DidBtc1 } from '../../did-btcr2.js';
  * @type {Btc1Deactivate}
  * @extends {DidBtc1}
  */
-export class Btc1Deactivate extends DidBtc1 {}
+export class Btc1Deactivate extends DidBtcr2 {}

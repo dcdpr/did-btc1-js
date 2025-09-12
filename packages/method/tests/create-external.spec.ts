@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { DidBtc1 } from '../src/did-btcr2.js';
+import { DidBtcr2 } from '../src/did-btcr2.js';
 import { DidDocument, IntermediateDidDocument } from '../src/index.js';
 
 /**
@@ -93,7 +93,7 @@ describe('DidBtc1 Create External', () => {
   it('should create new bitcoin DID and initial DID document',
     async () => {
       const network = 'bitcoin';
-      const {did, initialDocument} = await DidBtc1.create({
+      const {did, initialDocument} = await DidBtcr2.create({
         idType,
         intermediateDocument : mainInterDoc,
         options              : { network }
@@ -113,7 +113,7 @@ describe('DidBtc1 Create External', () => {
   it('should create new mutinynet DID and initial DID Document',
     async () => {
       const network = 'mutinynet';
-      const {did, initialDocument} = await DidBtc1.create({ idType, intermediateDocument: nonMainInterDoc, options: { network }});
+      const {did, initialDocument} = await DidBtcr2.create({ idType, intermediateDocument: nonMainInterDoc, options: { network }});
 
       expect(did).to.equal(expectedDidMap.get(network));
       expect(initialDocument).to.be.instanceOf(DidDocument);
@@ -129,7 +129,7 @@ describe('DidBtc1 Create External', () => {
   it('should create new regtest DID and initial DID Document',
     async () => {
       const network = 'regtest';
-      const {did, initialDocument} = await DidBtc1.create({ idType, intermediateDocument: nonMainInterDoc, options: { network }});
+      const {did, initialDocument} = await DidBtcr2.create({ idType, intermediateDocument: nonMainInterDoc, options: { network }});
 
       expect(did).to.equal(expectedDidMap.get(network));
       expect(initialDocument).to.be.instanceOf(DidDocument);
@@ -145,7 +145,7 @@ describe('DidBtc1 Create External', () => {
   it('should create new signet DID and initial DID Document',
     async () => {
       const network = 'signet';
-      const {did, initialDocument} = await DidBtc1.create({ idType, intermediateDocument: nonMainInterDoc, options: { network }});
+      const {did, initialDocument} = await DidBtcr2.create({ idType, intermediateDocument: nonMainInterDoc, options: { network }});
 
       expect(did).to.equal(expectedDidMap.get(network));
       expect(initialDocument).to.be.instanceOf(DidDocument);
@@ -161,7 +161,7 @@ describe('DidBtc1 Create External', () => {
   it('should create new testnet3 DID and initial DID Document',
     async () => {
       const network = 'testnet3';
-      const {did, initialDocument} = await DidBtc1.create({ idType, intermediateDocument: nonMainInterDoc, options: { network }});
+      const {did, initialDocument} = await DidBtcr2.create({ idType, intermediateDocument: nonMainInterDoc, options: { network }});
 
       expect(did).to.equal(expectedDidMap.get(network));
       expect(initialDocument).to.be.instanceOf(DidDocument);
@@ -177,7 +177,7 @@ describe('DidBtc1 Create External', () => {
   it('should create new testnet4 DID and initial DID Document',
     async () => {
       const network = 'testnet4';
-      const {did, initialDocument} = await DidBtc1.create({ idType, intermediateDocument: nonMainInterDoc, options: { network }});
+      const {did, initialDocument} = await DidBtcr2.create({ idType, intermediateDocument: nonMainInterDoc, options: { network }});
 
       expect(did).to.equal(expectedDidMap.get(network));
       expect(initialDocument).to.be.instanceOf(DidDocument);

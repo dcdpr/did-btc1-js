@@ -16,7 +16,7 @@ const didUpdatePayload = JSON.parse(await readFile(path.join(latestdir, 'updates
 
 const sourceDocument = new DidDocument(initialDocument);
 const verificationMethodId = initialDocument.verificationMethod[0].id;
-const verificationMethod = DidBtc1.getSigningMethod({ didDocument: sourceDocument, methodId: verificationMethodId, });
+const verificationMethod = DidBtcr2.getSigningMethod({ didDocument: sourceDocument, methodId: verificationMethodId, });
 
 const identifier = verificationMethodId;
 // const [controller, fragment] = identifier.split('#');

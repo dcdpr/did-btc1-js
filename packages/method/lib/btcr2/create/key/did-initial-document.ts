@@ -1,5 +1,5 @@
 import { readFile, writeFile } from 'fs/promises';
-import { DidBtc1 } from '../../../../src/did-btcr2.js';
+import { DidBtcr2 } from '../../../../src/did-btcr2.js';
 import { SchnorrKeyPair } from '@did-btcr2/keypair';
 
 const cwd = process.cwd();
@@ -11,7 +11,7 @@ const keys = JSON.parse(await readFile(`${latestdir}/keys.json`, { encoding: 'ut
 
 const secretKey = Buffer.from(keys.genesisKey.sk, 'hex');
 const keyPair = new SchnorrKeyPair({ secretKey });
-const { did, initialDocument } = await DidBtc1.create({
+const { did, initialDocument } = await DidBtcr2.create({
   idType      : 'KEY',
   pubKeyBytes : keyPair.publicKey.compressed,
   options     : { network, version: 1 }
