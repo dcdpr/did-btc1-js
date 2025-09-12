@@ -1,5 +1,4 @@
 import chalk, { ChalkInstance } from 'chalk';
-import path from 'path';
 
 export enum Env {
   Development = 'development',
@@ -138,25 +137,5 @@ export class Logger {
 
   public static newline() {
     new Logger().newline();
-  }
-
-  /**
-   * Returns the caller's file and line number.
-   */
-  private static getCallerLocation(): string {
-    const stack = new Error().stack?.split('\n');
-    if (!stack) return '';
-
-    // The first lines are irrelevant, we want the caller of the logger
-    const callerLine = stack[3] || stack[2] || '';
-
-    // Extract file path and line number
-    const match = callerLine.match(/\((.*):(\d+):(\d+)\)/);
-    if (!match) return '';
-
-    const filePath = match[1];
-    const lineNumber = match[2];
-
-    return `${path.basename(filePath)}:${lineNumber}`;
   }
 }

@@ -66,7 +66,7 @@
         "clean:install": "pnpm clean && pnpm install",
         "wipe:clean:install": "pnpm wipe:clean && pnpm install",
         "reinstall": "pnpm install --force",
-        "build": "pnpm clean:build && pnpm build:esm && pnpm build:cjs",
+        "build": "pnpm clean:build && pnpm build:esm && pnpm build:cjs && pnpm build:browser",
         "build:esm": "rimraf dist/esm dist/types && pnpm tsc -p tsconfig.json",
         "build:cjs": "rimraf dist/cjs && tsc -p tsconfig.cjs.json && echo '{\"type\": \"commonjs\"}' > ./dist/cjs/package.json",
         "build:browser": "rimraf dist/browser.mjs dist/browser.js && node build/bundles.js",
