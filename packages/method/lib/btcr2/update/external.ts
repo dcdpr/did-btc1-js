@@ -2,7 +2,7 @@ import { SchnorrKeyPair } from '@did-btcr2/keypair';
 import { mkdir, readFile, writeFile } from 'fs/promises';
 import bitcoin from '../../../src/bitcoin/index.js';
 import { RawTransactionRest } from '../../../src/bitcoin/rest-client.js';
-import { BeaconUtils, Btc1DidDocument, Btc1KeyManager, DidBtc1, getNetwork } from '../../../src/index.js';
+import { BeaconUtils, DidDocument, KeyManager, DidBtc1, getNetwork } from '../../../src/index.js';
 import { ID_PLACEHOLDER_VALUE } from '@did-btcr2/common';
 
 const cwd = process.cwd();
@@ -13,7 +13,7 @@ const latestdir = `${cwd}/data/${network}/${idType}/latest`;
 
 const initialDocument = JSON.parse(await readFile(`${latestdir}/initialDocument.json`, { encoding: 'utf-8' }));
 const identifier = initialDocument.id;
-const sourceDocument = new Btc1DidDocument(initialDocument);
+const sourceDocument = new DidDocument(initialDocument);
 
 const keyPairMap = new Map(Object.entries(JSON.parse(await readFile(`${latestdir}/keys.json`, { encoding: 'utf-8' }))));
 
@@ -21,7 +21,7 @@ const keyId = `${identifier}#key-0`;
 const key = keyPairMap.get(keyId) as { sk: string, pk: string };
 const keys = new SchnorrKeyPair({ privateKey: Buffer.fromHex(key.sk) });
 
-const kms = await Btc1KeyManager.initialize(keyPair, keyId);
+const kms = await KeyManager.initialize(keyPair, keyId);
 
 const serviceId = `${initialDocument.id}#service-0`;
 const serviceKey = keyPairMap.get(serviceId) as { sk: string, pk: string };

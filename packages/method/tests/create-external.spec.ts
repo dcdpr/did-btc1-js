@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { DidBtc1 } from '../src/did-btcr2.js';
-import { Btc1DidDocument, IntermediateDidDocument } from '../src/index.js';
+import { DidDocument, IntermediateDidDocument } from '../src/index.js';
 
 /**
  * DidBtc1 Create External Test Cases
@@ -100,7 +100,7 @@ describe('DidBtc1 Create External', () => {
       });
 
       expect(did).to.equal(expectedDidMap.get(network));
-      expect(initialDocument).to.be.instanceOf(Btc1DidDocument);
+      expect(initialDocument).to.be.instanceOf(DidDocument);
 
       expect(initialDocument.verificationMethod[0].type).to.equal(mainInterDoc.verificationMethod[0].type);
       expect(initialDocument.verificationMethod[0].publicKeyMultibase).to.equal(mainInterDoc.verificationMethod[0].publicKeyMultibase);
@@ -116,7 +116,7 @@ describe('DidBtc1 Create External', () => {
       const {did, initialDocument} = await DidBtc1.create({ idType, intermediateDocument: nonMainInterDoc, options: { network }});
 
       expect(did).to.equal(expectedDidMap.get(network));
-      expect(initialDocument).to.be.instanceOf(Btc1DidDocument);
+      expect(initialDocument).to.be.instanceOf(DidDocument);
 
       expect(initialDocument.verificationMethod[0].type).to.equal(nonMainInterDoc.verificationMethod[0].type);
       expect(initialDocument.verificationMethod[0].publicKeyMultibase).to.equal(nonMainInterDoc.verificationMethod[0].publicKeyMultibase);
@@ -132,7 +132,7 @@ describe('DidBtc1 Create External', () => {
       const {did, initialDocument} = await DidBtc1.create({ idType, intermediateDocument: nonMainInterDoc, options: { network }});
 
       expect(did).to.equal(expectedDidMap.get(network));
-      expect(initialDocument).to.be.instanceOf(Btc1DidDocument);
+      expect(initialDocument).to.be.instanceOf(DidDocument);
 
       expect(initialDocument.verificationMethod[0].type).to.equal(nonMainInterDoc.verificationMethod[0].type);
       expect(initialDocument.verificationMethod[0].publicKeyMultibase).to.equal(nonMainInterDoc.verificationMethod[0].publicKeyMultibase);
@@ -148,7 +148,7 @@ describe('DidBtc1 Create External', () => {
       const {did, initialDocument} = await DidBtc1.create({ idType, intermediateDocument: nonMainInterDoc, options: { network }});
 
       expect(did).to.equal(expectedDidMap.get(network));
-      expect(initialDocument).to.be.instanceOf(Btc1DidDocument);
+      expect(initialDocument).to.be.instanceOf(DidDocument);
 
       expect(initialDocument.verificationMethod[0].type).to.equal(nonMainInterDoc.verificationMethod[0].type);
       expect(initialDocument.verificationMethod[0].publicKeyMultibase).to.equal(nonMainInterDoc.verificationMethod[0].publicKeyMultibase);
@@ -164,7 +164,7 @@ describe('DidBtc1 Create External', () => {
       const {did, initialDocument} = await DidBtc1.create({ idType, intermediateDocument: nonMainInterDoc, options: { network }});
 
       expect(did).to.equal(expectedDidMap.get(network));
-      expect(initialDocument).to.be.instanceOf(Btc1DidDocument);
+      expect(initialDocument).to.be.instanceOf(DidDocument);
 
       expect(initialDocument.verificationMethod[0].type).to.equal(nonMainInterDoc.verificationMethod[0].type);
       expect(initialDocument.verificationMethod[0].publicKeyMultibase).to.equal(nonMainInterDoc.verificationMethod[0].publicKeyMultibase);
@@ -180,7 +180,7 @@ describe('DidBtc1 Create External', () => {
       const {did, initialDocument} = await DidBtc1.create({ idType, intermediateDocument: nonMainInterDoc, options: { network }});
 
       expect(did).to.equal(expectedDidMap.get(network));
-      expect(initialDocument).to.be.instanceOf(Btc1DidDocument);
+      expect(initialDocument).to.be.instanceOf(DidDocument);
 
       expect(initialDocument.verificationMethod[0].type).to.equal(nonMainInterDoc.verificationMethod[0].type);
       expect(initialDocument.verificationMethod[0].publicKeyMultibase).to.equal(nonMainInterDoc.verificationMethod[0].publicKeyMultibase);

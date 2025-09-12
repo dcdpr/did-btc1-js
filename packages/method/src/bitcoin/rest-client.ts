@@ -1,4 +1,4 @@
-import { Btcr2Error, Bytes, UnixTimestamp } from '@did-btcr2/common';
+import { MethodError, Bytes, UnixTimestamp } from '@did-btcr2/common';
 import {
   BlockResponse,
   BlockV3,
@@ -208,7 +208,7 @@ export default class BitcoinRest {
 
     // Check if the response is ok (status in the range 200-299)
     if (!response.ok) {
-      throw new Btcr2Error(
+      throw new MethodError(
         `Request to ${url} failed: ${response.status} - ${response.statusText}`,
         'FAILED_HTTP_REQUEST',
         { data, response }

@@ -1,5 +1,5 @@
 import { SchnorrKeyPair } from '@did-btcr2/keypair';
-import { Btc1DidDocument } from '../../src/index.js';
+import { DidDocument } from '../../src/index.js';
 import initialKeyDocument from '../in/resolve/key/initialDidDocument.json' with { type: 'json' };
 
 const privateKeyBytes = new Uint8Array([
@@ -12,6 +12,6 @@ const keys = new SchnorrKeyPair({ privateKey: privateKeyBytes });
 console.log('keys:', keys);
 const service = initialKeyDocument.service;
 
-const create = Btc1DidDocument.fromKeyIdentifier(initialKeyDocument.id, keys.publicKey.multibase, service);
+const create = DidDocument.fromKeyIdentifier(initialKeyDocument.id, keys.publicKey.multibase, service);
 console.log('create:', create);
 console.log('--------------------------------------');

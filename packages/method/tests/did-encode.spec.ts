@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import { Btc1Identifier } from '../src/index.js';
+import { Identifier } from '../src/index.js';
 
-describe('Btc1Identifier Encode', () => {
+describe('Identifier Encode', () => {
   const vectors = [
     {
       did        : 'did:btcr2:k1qqpvksjk8vfxpp0pl6jzwvc4sw7knmv8q4l2j5j2vgsjwfrfer2vqqqvgmw6r',
@@ -115,7 +115,7 @@ describe('Btc1Identifier Encode', () => {
 
   it('should properly encode and match each vector', () => {
     vectors.map(({ did, components }) => {
-      expect(Btc1Identifier.encode(components)).to.equal(did);
+      expect(Identifier.encode(components)).to.equal(did);
     });
   }
   );

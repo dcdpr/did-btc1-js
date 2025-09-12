@@ -3,7 +3,7 @@ import { mkdir, readFile, writeFile } from 'fs/promises';
 import path from 'path';
 import bitcoin from '../../../../src/bitcoin/index.js';
 import { RawTransactionRest } from '../../../../src/bitcoin/rest-client.js';
-import { Btc1DidDocument, Btc1KeyManager, Btc1Update, DidBtc1 } from '../../../../src/index.js';
+import { DidDocument, KeyManager, Btc1Update, DidBtc1 } from '../../../../src/index.js';
 
 const cwd = process.cwd();
 const network = process.argv.slice(2)[0] || 'regtest';
@@ -14,7 +14,7 @@ const initialDocument = JSON.parse(await readFile(path.join(latestdir, 'initialD
 const keys = JSON.parse(await readFile(path.join(latestdir, 'keys.json'), { encoding: 'utf-8' }));
 const didUpdatePayload = JSON.parse(await readFile(path.join(latestdir, 'updates.json'), { encoding: 'utf-8' }));
 
-const sourceDocument = new Btc1DidDocument(initialDocument);
+const sourceDocument = new DidDocument(initialDocument);
 const verificationMethodId = initialDocument.verificationMethod[0].id;
 const verificationMethod = DidBtc1.getSigningMethod({ didDocument: sourceDocument, methodId: verificationMethodId, });
 
@@ -24,9 +24,9 @@ const identifier = verificationMethodId;
 // console.log('controller:', controller);
 
 const secretKey = Buffer.from(keys.genesisKey.sk, 'hex');
-// const keyUri = Btc1KeyManager.computeKeyUri(id, controller);
+// const keyUri = KeyManager.computeKeyUri(id, controller);
 const keyPair = new SchnorrKeyPair({ secretKey });
-const kms = await Btc1KeyManager.initialize(keyPair, identifier);
+const kms = await KeyManager.initialize(keyPair, identifier);
 console.log('kms:', kms);
 
 const didUpdateInvocation = await Btc1Update.invoke({ identifier, verificationMethod, didUpdatePayload, });

@@ -1,4 +1,4 @@
-import { Btcr2Error, DidUpdatePayload } from '@did-btcr2/common';
+import { MethodError, DidUpdatePayload } from '@did-btcr2/common';
 import { DidServiceEndpoint } from '@web5/dids';
 import { Beacon } from '../../interfaces/beacon.js';
 import { BeaconService, BeaconSignal } from '../../interfaces/ibeacon.js';
@@ -50,10 +50,10 @@ export class SMTAggregateBeacon extends Beacon {
    * TODO: Figure out if this is necessary or not.
    * @param {string} didUpdatePayload The DID Update Payload to generate the signal for.
    * @returns {BeaconSignal} The generated signal.
-   * @throws {Btcr2Error} if the signal is invalid.
+   * @throws {MethodError} if the signal is invalid.
    */
   public generateSignal(didUpdatePayload: string): BeaconSignal {
-    throw new Btcr2Error('Method not implemented.', `METHOD_NOT_IMPLEMENTED`, {didUpdatePayload});
+    throw new MethodError('Method not implemented.', `METHOD_NOT_IMPLEMENTED`, {didUpdatePayload});
   }
 
   /**
@@ -97,10 +97,10 @@ export class SMTAggregateBeacon extends Beacon {
    *
    * @param {DidUpdatePayload} didUpdatePayload The DID Update Payload to broadcast.
    * @returns {Promise<SignalMetadata>} The signal metadata.
-   * @throws {Btcr2Error} if the signal is invalid.
+   * @throws {MethodError} if the signal is invalid.
    */
   public broadcastSignal(didUpdatePayload: DidUpdatePayload): Promise<SignalsMetadata> {
-    throw new Btcr2Error('Method not implemented.', `METHOD_NOT_IMPLEMENTED`, didUpdatePayload);
+    throw new MethodError('Method not implemented.', `METHOD_NOT_IMPLEMENTED`, didUpdatePayload);
   }
 
 
@@ -114,11 +114,11 @@ export class SMTAggregateBeacon extends Beacon {
    * of a Sparse Merkle Tree (SMT). This SMT aggregates a set of hashes of DID Update payloads. In order to process
    * these Beacon Signals, the resolver MUST have been passed Sidecar data for this signal containing either the DID
    * Update payload object and a SMT proof that the hash of this object is in the SMT at the leaf indexed by the
-   * did:btc1identifier being resolved. Or theSidecar data:: MUST contain a proof that the leaf indexed by the
-   * did:btc1identifier is empty, thereby proving that theSMT:: does not contain an update for their identifier.
+   * did:Identifier being resolved. Or theSidecar data:: MUST contain a proof that the leaf indexed by the
+   * did:Identifier is empty, thereby proving that theSMT:: does not contain an update for their identifier.
    *
    * The Process SMTAggregate Beacon Signal is called by the Process Beacon Signals algorithm as part of the Read
-   * operation. It takes as inputs a did:btcr2 identifier, btc1Identifier, a Beacon Signal, tx, and a optional object,
+   * operation. It takes as inputs a did:btcr2 identifier, Identifier, a Beacon Signal, tx, and a optional object,
    * signalSidecarData, containing any sidecar data provided to the resolver for the Beacon Signal identified by the
    * Bitcoin transaction identifier.
    *
@@ -128,9 +128,9 @@ export class SMTAggregateBeacon extends Beacon {
    * @param {RawTransactionV2} signal The raw transaction signal.
    * @param {SignalsMetadata} signalsMetadata The signals metadata.
    * @returns {Promise<DidUpdatePayload | undefined>} The updated DID document.
-   * @throws {Btcr2Error} if the signal is invalid.
+   * @throws {MethodError} if the signal is invalid.
    */
   public processSignal(signal: RawTransactionV2, signalsMetadata: SignalsMetadata): Promise<DidUpdatePayload | undefined> {
-    throw new Btcr2Error('Method not implemented.', `METHOD_NOT_IMPLEMENTED`, {signal, signalsMetadata});
+    throw new MethodError('Method not implemented.', `METHOD_NOT_IMPLEMENTED`, {signal, signalsMetadata});
   }
 }
