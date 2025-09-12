@@ -50,29 +50,11 @@ export type HdWallet = {
     mnemonic: string;
     hdkey: HDKey
 };
-
-/* DID Types */
-export type DID = 'did';
-export type MethodName = string;
-export type MethodSpecificId = string;
-export type DecentralizedIdentifierExplicit = `${DID}:${MethodName}:${MethodSpecificId}`;
-export type DecentralizedIdentifier = string;
-export type Btcr2MethodName = 'btcr2';
-export type Btcr2DeterministicPrefix = 'k';
-export type Btcr2ExternalPrefix = 'x';
-export type Btcr2Prefix = `${Btcr2DeterministicPrefix | Btcr2ExternalPrefix}1`;
-export type Bech32Id = string;
-export type Btcr2Id = `${Btcr2Prefix}${Bech32Id}`
-export type Btcr2IdentifierExplicit = `${DID}:${Btcr2MethodName}:${Btcr2Id}`;
-export type Btcr2Identifier = string;
-export type Controller = Btcr2Identifier;
-export type Id = 'initialKey';
-export type FullId = `${Controller}#${Id}`;
-export enum Btcr2IdentifierTypes {
+export enum IdentifierTypes {
     KEY = 'KEY',
     EXTERNAL = 'EXTERNAL'
 }
-export enum Btcr2IdentifierHrp {
+export enum IdentifierHrp {
     k = 'k',
     x = 'x'
 }

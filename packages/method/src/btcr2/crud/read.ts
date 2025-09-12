@@ -1,8 +1,8 @@
 import {
   BitcoinNetworkNames,
-  Btcr2Error,
-  Btcr2IdentifierHrp,
-  Btcr2ReadError,
+  MethodError,
+  IdentifierHrp,
+  ResolveError,
   DidUpdatePayload,
   ID_PLACEHOLDER_VALUE,
   INVALID_DID,
@@ -29,9 +29,9 @@ import {
   SidecarData,
   SignalsMetadata
 } from '../../types/crud.js';
-import { Btc1Appendix, DidComponents } from '../../utils/appendix.js';
+import { Appendix, DidComponents } from '../../utils/appendix.js';
 import { BeaconUtils } from '../../utils/beacons.js';
-import { Btc1DidDocument } from '../../utils/did-document.js';
+import { DidDocument } from '../../utils/did-document.js';
 import { BeaconFactory } from '../beacon/factory.js';
 
 export type FindNextSignalsRestParams = {
@@ -54,34 +54,34 @@ export type ResolveInitialDocument = {
 };
 
 // Deterministic
-export interface Btc1ReadDeterministic {
+export interface ResolveDeterministic {
   components: DidComponents;
   identifier: string;
 };
 
 // External
-export interface Btc1ReadExternal {
+export interface ResolveExternal {
   components: DidComponents;
   identifier: string;
   resolutionsOptions: DidResolutionOptions;
 }
-export interface Btc1ReadSidecar {
+export interface ResolveSidecar {
   identifierComponents: DidComponents;
-  initialDocument: Btc1DidDocument;
+  initialDocument: DidDocument;
 };
-export interface DidReadCas {
+export interface ResolveCas {
   identifier: string;
   identifierComponents: DidComponents;
 }
 
 // Methods
 export interface ApplyDidUpdateParams {
-  contemporaryDidDocument: Btc1DidDocument;
+  contemporaryDidDocument: DidDocument;
   update: DidUpdatePayload;
 }
 
 export interface TargetDocumentParams {
-  initialDocument: Btc1DidDocument;
+  initialDocument: DidDocument;
   resolutionsOptions: DidResolutionOptions;
 };
 
@@ -106,10 +106,10 @@ export interface TargetBlockheightParams {
  *     Target Document passing in initialDocument and resolutionOptions.
  *  4. Return targetDocument.
  *
- * @class Btc1Read
- * @type {Btc1Read}
+ * @class Resolve
+ * @type {Resolve}
  */
-export class Btc1Read {
+export class Resolve {
   /**
    * Implements {@link https://dcdpr.github.io/did-btcr2/#deterministically-generate-initial-did-document | 4.2.2.1 Deterministically Generate Initial DID Document}.
    *
@@ -117,15 +117,15 @@ export class Btc1Read {
    * Document from a secp256k1 public key. It takes in a did:btcr2 identifier and a identifierComponents object and
    * returns an initialDocument.
    *
-   * @param {Btc1ReadDeterministic} params See {@link Btc1ReadDeterministic} for details.
+   * @param {ResolveDeterministic} params See {@link ResolveDeterministic} for details.
    * @param {string} params.identifier The did-btcr2 version.
    * @param {DidComponents} params.identifierComponents The decoded components of the identifier.
-   * @returns {Btc1DidDocument} The resolved DID Document object.
+   * @returns {DidDocument} The resolved DID Document object.
    */
   public static deterministic({ identifier, identifierComponents }: {
     identifier: string;
     identifierComponents: DidComponents;
-  }): Btc1DidDocument {
+  }): DidDocument {
     // Deconstruct the components
     const { network, genesisBytes } = identifierComponents;
 
@@ -140,7 +140,7 @@ export class Btc1Read {
       type    : 'SingletonBeacon',
     });
 
-    return new Btc1DidDocument({
+    return new DidDocument({
       id                 : identifier,
       controller         : [identifier],
       verificationMethod : [{
@@ -162,19 +162,19 @@ export class Btc1Read {
    * resolution request. It takes in a did:btcr2 identifier, a identifierComponents object and a resolutionOptions object.
    * It returns an initialDocument, which is a conformant DID document validated against the identifier.
    *
-   * @param {Btc1ReadExternal} params Required params for calling the external method.
+   * @param {ResolveExternal} params Required params for calling the external method.
    * @param {string} params.identifier The DID to be resolved.
    * @param {DidComponents} params.identifierComponents The decoded components of the identifier.
    * @param {DidResolutionOptions} params.resolutionsOptions The options for resolving the DID Document.
-   * @param {Btc1DidDocument} params.resolutionsOptions.sidecarData The sidecar data for resolving the DID Document.
-   * @param {Btc1DidDocument} params.resolutionsOptions.sidecarData.initialDocument The offline user-provided DID Document
-   * @returns {Btc1DidDocument} The resolved DID Document object
+   * @param {DidDocument} params.resolutionsOptions.sidecarData The sidecar data for resolving the DID Document.
+   * @param {DidDocument} params.resolutionsOptions.sidecarData.initialDocument The offline user-provided DID Document
+   * @returns {DidDocument} The resolved DID Document object
    */
   public static async external({ identifier, identifierComponents, resolutionsOptions }: {
     identifier: string;
     identifierComponents: DidComponents;
     resolutionsOptions: DidResolutionOptions;
-  }): Promise<Btc1DidDocument> {
+  }): Promise<DidDocument> {
     // Deconstruct the options
     const { initialDocument: document } = resolutionsOptions.sidecarData as CIDAggregateSidecar;
 
@@ -188,7 +188,7 @@ export class Btc1Read {
 
     // 3. Validate initialDocument is a conformant DID document according to the DID Core 1.1 specification. Else MUST
     //    raise invalidDidDocument error.
-    Btc1DidDocument.validate(initialDocument);
+    DidDocument.validate(initialDocument);
 
     // 4. Return initialDocument.
     return initialDocument;
@@ -202,14 +202,14 @@ export class Btc1Read {
    * encoded within the identifier. It takes in a did:btcr2 identifier, identifierComponents and a
    * initialDocument. It returns the initialDocument if validated, otherwise it throws an error.
    *
-   * @param {Btc1ReadSidecar} params Required params for calling the sidecar method
+   * @param {ResolveSidecar} params Required params for calling the sidecar method
    * @param {string} params.identifier The DID to be resolved
    * @param {DidComponents} params.identifierComponents The components of the DID identifier
-   * @param {Btc1DidDocument} params.initialDocument The initial DID Document provided by the user
-   * @returns {Btc1DidDocument} The resolved DID Document object
+   * @param {DidDocument} params.initialDocument The initial DID Document provided by the user
+   * @returns {DidDocument} The resolved DID Document object
    * @throws {DidError} InvalidDidDocument if genesisBytes !== initialDocument hashBytes
    */
-  public static async sidecar({ identifierComponents, initialDocument }: Btc1ReadSidecar): Promise<Btc1DidDocument> {
+  public static async sidecar({ identifierComponents, initialDocument }: ResolveSidecar): Promise<DidDocument> {
     // Replace the placeholder did with the identifier throughout the initialDocument.
     const intermediateDocument = JSON.parse(
       JSON.stringify(initialDocument).replaceAll(initialDocument.id, ID_PLACEHOLDER_VALUE)
@@ -223,14 +223,14 @@ export class Btc1Read {
 
     // If the genesisBytes do not match the hashBytes, throw an error
     if (genesisBytes !== hashBytes) {
-      throw new Btcr2Error(
+      throw new MethodError(
         `Initial document mismatch: genesisBytes ${genesisBytes} !== hashBytes ${hashBytes}`,
         INVALID_DID_DOCUMENT, { genesisBytes, hashBytes }
       );
     }
 
     // Return a W3C conformant DID Document
-    return new Btc1DidDocument(initialDocument);
+    return new DidDocument(initialDocument);
   }
 
   /**
@@ -240,23 +240,23 @@ export class Btc1Read {
    * by converting the bytes in the identifier into a Content Identifier (CID). It takes in an identifier and
    * an identifierComponents object. It returns an initialDocument.
    *
-   * @param {DidReadCas} params Required params for calling the cas method
+   * @param {ResolveCas} params Required params for calling the cas method
    * @param {string} params.identifier BTCR2 DID used to resolve the DID Document
    * @param {DidComponents} params.identifierComponents BTCR2 DID components used to resolve the DID Document
-   * @returns {Btc1DidDocument} The resolved DID Document object
-   * @throws {Btcr2Error} if the DID Document content is invalid
+   * @returns {DidDocument} The resolved DID Document object
+   * @throws {MethodError} if the DID Document content is invalid
    */
-  public static async cas({ identifier, identifierComponents }: DidReadCas): Promise<Btc1DidDocument> {
+  public static async cas({ identifier, identifierComponents }: ResolveCas): Promise<DidDocument> {
     // 1. Set hashBytes to identifierComponents.genesisBytes.
     const hashBytes = identifierComponents.genesisBytes;
 
     // 3. Set intermediateDocumentRepresentation to the result of fetching the cid against a Content Addressable Storage
     //    (CAS) system such as IPFS.
-    const intermediateDocument = await Btc1Appendix.fetchFromCas(hashBytes);
+    const intermediateDocument = await Appendix.fetchFromCas(hashBytes);
 
     // Validate the intermediateDocument is not null and is parsable JSON
     if (!intermediateDocument || !JSON.parsable(intermediateDocument)) {
-      throw new Btcr2Error(INVALID_DID_DOCUMENT, 'Invalid DID Document content', { intermediateDocument });
+      throw new MethodError(INVALID_DID_DOCUMENT, 'Invalid DID Document content', { intermediateDocument });
     }
     // 5. Replace the placeholder did with the identifier throughout the initialDocument.
     const initialDocument = JSON.parse(
@@ -264,7 +264,7 @@ export class Btc1Read {
     );
 
     // 6. Return initialDocument.
-    return new Btc1DidDocument(initialDocument);
+    return new DidDocument(initialDocument);
   }
 
   /**
@@ -279,28 +279,28 @@ export class Btc1Read {
    * @param {string} params.identifier The DID to be resolved.
    * @param {DidComponents} params.identifierComponents The decoded components of the identifier.
    * @param {DidResolutionOptions} params.resolutionsOptions Options for resolving the DID Document. See {@link DidResolutionOptions}.
-   * @returns {Promise<Btc1DidDocument>} The resolved DID Document object.
+   * @returns {Promise<DidDocument>} The resolved DID Document object.
    * @throws {DidError} if the DID hrp is invalid, no sidecarData passed and hrp = "x".
    */
   public static async initialDocument({ identifier, identifierComponents, resolutionsOptions }: {
     identifier: string;
     identifierComponents: DidComponents;
     resolutionsOptions: DidResolutionOptions
-  }): Promise<Btc1DidDocument> {
+  }): Promise<DidDocument> {
     // Deconstruct the hrp from the components
     const hrp = identifierComponents.hrp;
 
     // Validate the hrp is either 'k' or 'x'
-    if (!(hrp in Btcr2IdentifierHrp)) {
-      throw new Btcr2Error(`Invalid DID hrp ${hrp}`, INVALID_DID, { hrp });
+    if (!(hrp in IdentifierHrp)) {
+      throw new MethodError(`Invalid DID hrp ${hrp}`, INVALID_DID, { hrp });
     }
 
     //  Make sure options.sidecarData is not null if hrp === x
-    if (hrp === Btcr2IdentifierHrp.x && !resolutionsOptions.sidecarData) {
-      throw new Btcr2Error('External resolution requires sidecar data', INVALID_DID, resolutionsOptions);
+    if (hrp === IdentifierHrp.x && !resolutionsOptions.sidecarData) {
+      throw new MethodError('External resolution requires sidecar data', INVALID_DID, resolutionsOptions);
     }
 
-    return hrp === Btcr2IdentifierHrp.k
+    return hrp === IdentifierHrp.k
       ? this.deterministic({ identifier, identifierComponents })
       : await this.external({ identifier, identifierComponents, resolutionsOptions });
 
@@ -315,14 +315,14 @@ export class Btc1Read {
    *
    * @public
    * @param {TargetDocumentParams} params See {@link TargetDocumentParams} for details.
-   * @param {Btc1DidDocument} params.initialDocument The initial DID Document to resolve
+   * @param {DidDocument} params.initialDocument The initial DID Document to resolve
    * @param {ResolutionOptions} params.options See {@link DidResolutionOptions} for details.
-   * @returns {Btc1DidDocument} The resolved DID Document object with a validated single, canonical history
+   * @returns {DidDocument} The resolved DID Document object with a validated single, canonical history
    */
   public static async targetDocument({ initialDocument, resolutionsOptions }: {
-    initialDocument: Btc1DidDocument;
+    initialDocument: DidDocument;
     resolutionsOptions: DidResolutionOptions;
-  }): Promise<Btc1DidDocument> {
+  }): Promise<DidDocument> {
     // Set the network from the options or default to mainnet
     const network = resolutionsOptions.network ?? BitcoinNetworkNames.bitcoin;
 
@@ -341,7 +341,7 @@ export class Btc1Read {
 
     // 6. If currentVersionId equals targetVersionId return initialDocument.
     if (currentVersionId === targetVersionId) {
-      return new Btc1DidDocument(initialDocument);
+      return new DidDocument(initialDocument);
     }
 
     // 10. Set targetDocument to the result of calling the Traverse Bitcoin Blockchain History algorithm
@@ -378,7 +378,7 @@ export class Btc1Read {
    *
    * @protected
    * @param {ReadBlockchainParams} params The parameters for the traverseBlockchainHistory operation.
-   * @param {Btc1DidDocument} params.contemporaryDidDocument The DID document for the did:btcr2 identifier being resolved.
+   * @param {DidDocument} params.contemporaryDidDocument The DID document for the did:btcr2 identifier being resolved.
    *    It should be "current" (contemporary) at the blockheight of the contemporaryBlockheight.
    *    It should be a DID Core conformant DID document.
    * @param {number} params.contemporaryBlockHeight The Bitcoin blockheight signaling the "contemporary time" of the
@@ -393,7 +393,7 @@ export class Btc1Read {
    *    applied to the DID document in order to construct the contemporaryDIDDocument.
    * @param {SignalsMetadata} params.signalsMetadata See {@link SignalsMetadata} for details.
    * @param {BitcoinNetworkNames} params.network The bitcoin network to connect to (mainnet, signet, testnet, regtest).
-   * @returns {Promise<Btc1DidDocument>} The resolved DID Document object with a validated single, canonical history.
+   * @returns {Promise<DidDocument>} The resolved DID Document object with a validated single, canonical history.
    */
   protected static async traverseBlockchainHistory({
     contemporaryDidDocument,
@@ -406,16 +406,16 @@ export class Btc1Read {
     signalsMetadata,
     network
   }: {
-    contemporaryDidDocument: Btc1DidDocument;
+    contemporaryDidDocument: DidDocument;
     contemporaryBlockHeight: number;
     currentVersionId: number;
     targetVersionId?: number;
     targetTime: number;
-    didDocumentHistory: Btc1DidDocument[];
+    didDocumentHistory: DidDocument[];
     btc1UpdateHashHistory: string[];
     signalsMetadata: SignalsMetadata;
     network: BitcoinNetworkNames;
-  }): Promise<Btc1DidDocument> {
+  }): Promise<DidDocument> {
     // 1. Set contemporaryHash to the SHA256 hash of the contemporaryDidDocument
     let contemporaryHash = await JSON.canonicalization.process(contemporaryDidDocument, 'base58');
 
@@ -432,12 +432,12 @@ export class Btc1Read {
     const nextSignals = await this.findNextSignals({ contemporaryBlockHeight, beacons, network, targetTime });
     if (!nextSignals || nextSignals.length === 0) {
       // 5. If nextSignals is null or empty, return contemporaryDidDocument.
-      return new Btc1DidDocument(contemporaryDidDocument);
+      return new DidDocument(contemporaryDidDocument);
     }
 
     // 6. If nextSignals[0].blocktime is greater than targetTime, return contemporaryDIDDocument.
     if (nextSignals[0].blocktime > targetTime) {
-      return new Btc1DidDocument(contemporaryDidDocument);
+      return new DidDocument(contemporaryDidDocument);
     }
 
     // 8. Set updates to the result of calling algorithm Process Beacon Signals passing in signals and sidecarData.
@@ -466,7 +466,7 @@ export class Btc1Read {
 
         //  10.2.1. Check that update.sourceHash equals contemporaryHash, else MUST raise latePublishing error.
         if (sourceHash !== contemporaryHash) {
-          throw new Btcr2ReadError(
+          throw new ResolveError(
             `Hash mismatch: sourceHash ${sourceHash} !== contemporaryHash ${contemporaryHash}`,
             LATE_PUBLISHING_ERROR, { sourceHash: sourceHash, contemporaryHash }
           );
@@ -499,7 +499,7 @@ export class Btc1Read {
 
         //  10.3. If update.targetVersionId is greater than currentVersionId + 1, MUST throw a LatePublishing error.
       } else if (update.targetVersionId > currentVersionId + 1) {
-        throw new Btcr2ReadError(
+        throw new ResolveError(
           `Version Id Mismatch: target ${update.targetVersionId} cannot be > current+1 ${currentVersionId + 1}`,
           'LATE_PUBLISHING_ERROR'
         );
@@ -508,11 +508,11 @@ export class Btc1Read {
 
     // 13. If targetVersionId in not null, set targetDocument to the index at the targetVersionId of the didDocumentHistory array.
     if(targetVersionId) {
-      return new Btc1DidDocument(didDocumentHistory[targetVersionId]);
+      return new DidDocument(didDocumentHistory[targetVersionId]);
     }
 
     // 14. Return contemporaryDidDocument.
-    return new Btc1DidDocument(contemporaryDidDocument);
+    return new DidDocument(contemporaryDidDocument);
   }
 
 
@@ -774,7 +774,7 @@ export class Btc1Read {
     //     break;
     //   }
     //   default: {
-    //     throw new Btcr2Error('Invalid beacon type', 'INVALID_BEACON_TYPE', { type });
+    //     throw new MethodError('Invalid beacon type', 'INVALID_BEACON_TYPE', { type });
     //   }
     // }
 
@@ -790,7 +790,7 @@ export class Btc1Read {
 
     // If the updates is null, throw an error
     if (!btc1Update) {
-      throw new Btcr2Error('No btc1Update for beacon', 'PROCESS_BEACON_SIGNALS_ERROR', { tx, signalsMetadata });
+      throw new MethodError('No btc1Update for beacon', 'PROCESS_BEACON_SIGNALS_ERROR', { tx, signalsMetadata });
     }
 
     // 2.9 If btc1Update is not null, push btc1Update to updates.
@@ -836,7 +836,7 @@ export class Btc1Read {
 
     // Check if the updateHash matches the historical hash
     if (historicalUpdateHash !== updateHash) {
-      throw new Btcr2ReadError(
+      throw new ResolveError(
         `Invalid duplicate: ${updateHash} does not match ${historicalUpdateHash}`,
         'LATE_PUBLISHING_ERROR', { updateHash, updateHashHistory }
       );
@@ -854,36 +854,36 @@ export class Btc1Read {
    *
    * @public
    * @param {ApplyDidUpdateParams} params Parameters for applyDidUpdate.
-   * @param {Btc1DidDocument} params.contemporaryDidDocument The current DID Document to update.
+   * @param {DidDocument} params.contemporaryDidDocument The current DID Document to update.
    * @param {DidUpdatePayload} params.update The DID Update Payload to apply.
    * @param {Bytes} params.genesisBytes The genesis bytes for the DID Document.
-   * @returns {Promise<Btc1DidDocument>}
+   * @returns {Promise<DidDocument>}
    */
   public static async applyDidUpdate({ contemporaryDidDocument, update }: {
-    contemporaryDidDocument: Btc1DidDocument;
+    contemporaryDidDocument: DidDocument;
     update: DidUpdatePayload;
-  }): Promise<Btc1DidDocument> {
+  }): Promise<DidDocument> {
     // 1. Set capabilityId to update.proof.capability.
     const capabilityId = update.proof?.capability;
     if (!capabilityId) {
-      throw new Btcr2ReadError('No capabilityId found in update', INVALID_DID_UPDATE);
+      throw new ResolveError('No capabilityId found in update', INVALID_DID_UPDATE);
     }
 
     // 2. Set rootCapability to the result of passing capabilityId to the Dereference Root Capability Identifier algorithm.
-    const rootCapability = Btc1Appendix.derefernceRootCapabilityIdentifier(capabilityId);
+    const rootCapability = Appendix.derefernceRootCapabilityIdentifier(capabilityId);
 
     // 3. If rootCapability.invocationTarget does not equal contemporaryDidDocument.id
     //    and rootCapability.controller does not equal contemporaryDidDocument.id, MUST throw an invalidDidUpdate error.
     const { invocationTarget, controller: rootController } = rootCapability;
     if (![invocationTarget, rootController].every((id) => id === contemporaryDidDocument.id)) {
-      throw new Btcr2ReadError(`Invalid root capability: ${rootCapability}`, INVALID_DID_UPDATE);
+      throw new ResolveError(`Invalid root capability: ${rootCapability}`, INVALID_DID_UPDATE);
     }
 
     // 4. Instantiate a bip340-jcs-2025 cryptosuite instance using the key referenced by the verificationMethod field in the update.
     // Get the verificationMethod field from the update.
     const methodId = update.proof?.verificationMethod;
     if(!methodId) {
-      throw new Btcr2ReadError('No verificationMethod found in update', INVALID_DID_UPDATE, update);
+      throw new ResolveError('No verificationMethod found in update', INVALID_DID_UPDATE, update);
     }
 
     // Get the verificationMethod from the DID Document using the methodId.
@@ -916,17 +916,17 @@ export class Btc1Read {
 
     // 9. If verificationResult.verified equals False, MUST raise a invalidUpdateProof exception.
     if (!verificationResult.verified) {
-      throw new Btcr2Error('Invalid update: proof not verified', INVALID_DID_UPDATE, verificationResult);
+      throw new MethodError('Invalid update: proof not verified', INVALID_DID_UPDATE, verificationResult);
     }
 
     // 10. Set targetDIDDocument to a copy of contemporaryDidDocument.
     let targetDIDDocument = contemporaryDidDocument;
 
     // 11. Use JSON Patch to apply the update.patch to the targetDIDDOcument.
-    targetDIDDocument = JSON.patch.apply(targetDIDDocument, update.patch) as Btc1DidDocument;
+    targetDIDDocument = JSON.patch.apply(targetDIDDocument, update.patch) as DidDocument;
 
     // 12. Verify that targetDIDDocument is conformant with the data model specified by the DID Core specification.
-    Btc1DidDocument.validate(targetDIDDocument);
+    DidDocument.validate(targetDIDDocument);
 
     // 13. Set targetHash to the SHA256 hash of targetDIDDocument.
     const targetHash = await JSON.canonicalization.process(targetDIDDocument, 'base58');
@@ -937,7 +937,7 @@ export class Btc1Read {
       : `z${update.targetHash}`;
     // 14. Check that targetHash equals update.targetHash, else raise InvalidDIDUpdate error.
     if (updateTargetHash !== targetHash) {
-      throw new Btcr2Error(`Invalid update: updateTargetHash ${updateTargetHash} does not match targetHash ${targetHash}`, INVALID_DID_UPDATE);
+      throw new MethodError(`Invalid update: updateTargetHash ${updateTargetHash} does not match targetHash ${targetHash}`, INVALID_DID_UPDATE);
     }
 
     // 15. Return targetDIDDocument.

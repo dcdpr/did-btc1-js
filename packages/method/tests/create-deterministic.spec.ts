@@ -1,7 +1,7 @@
 import { PublicKey } from '@did-btcr2/keypair';
 import { expect } from 'chai';
 import { DidBtc1 } from '../src/did-btcr2.js';
-import { BeaconUtils, Btc1DidDocument, getNetwork } from '../src/index.js';
+import { BeaconUtils, DidDocument, getNetwork } from '../src/index.js';
 
 /**
  * DidBtc1 Create Key Test Cases
@@ -43,9 +43,9 @@ describe('DidBtc1 Create Deterministic', () => {
         type       : 'SingletonBeacon',
         publicKey  : publicKey.compressed
       });
-      const didDocument = new Btc1DidDocument({ id: did, verificationMethod, service });
+      const didDocument = new DidDocument({ id: did, verificationMethod, service });
       expect(did).to.equal(expectedDidMap.get('bitcoin'));
-      expect(initialDocument).to.be.instanceOf(Btc1DidDocument);
+      expect(initialDocument).to.be.instanceOf(DidDocument);
       expect(initialDocument.verificationMethod[0].id).to.equals(didDocument.verificationMethod[0].id);
       expect(initialDocument.verificationMethod[0].type).to.equals(didDocument.verificationMethod[0].type);
       expect(initialDocument.verificationMethod[0].controller).to.equals(didDocument.verificationMethod[0].controller);
@@ -72,9 +72,9 @@ describe('DidBtc1 Create Deterministic', () => {
         type       : 'SingletonBeacon',
         publicKey  : publicKey.compressed
       });
-      const didDocument = new Btc1DidDocument({ id: did, verificationMethod, service });
+      const didDocument = new DidDocument({ id: did, verificationMethod, service });
       expect(did).to.equal(did);
-      expect(initialDocument).to.be.instanceOf(Btc1DidDocument);
+      expect(initialDocument).to.be.instanceOf(DidDocument);
       expect(initialDocument.verificationMethod[0].id).to.equals(didDocument.verificationMethod[0].id);
       expect(initialDocument.verificationMethod[0].type).to.equals(didDocument.verificationMethod[0].type);
       expect(initialDocument.verificationMethod[0].controller).to.equals(didDocument.verificationMethod[0].controller);
@@ -103,10 +103,10 @@ describe('DidBtc1 Create Deterministic', () => {
               type       : 'SingletonBeacon',
               publicKey  : publicKey.compressed
             });
-            const didDocument = new Btc1DidDocument({ id: did, verificationMethod, service });
+            const didDocument = new DidDocument({ id: did, verificationMethod, service });
             const result = await DidBtc1.create({ idType, pubKeyBytes, options: { network } });
             expect(result.did).to.equal(did);
-            expect(result.initialDocument).to.be.instanceOf(Btc1DidDocument);
+            expect(result.initialDocument).to.be.instanceOf(DidDocument);
             expect(result.initialDocument.verificationMethod[0].id).to.equals(didDocument.verificationMethod[0].id);
             expect(result.initialDocument.verificationMethod[0].type).to.equals(didDocument.verificationMethod[0].type);
             expect(result.initialDocument.verificationMethod[0].controller).to.equals(didDocument.verificationMethod[0].controller);

@@ -1,44 +1,44 @@
-import { Btcr2IdentifierTypes, KeyBytes, PatchOperation } from '@did-btcr2/common';
+import { IdentifierTypes, KeyBytes, PatchOperation } from '@did-btcr2/common';
 import { PublicKey } from '@did-btcr2/keypair';
 import { DidCreateOptions as IDidCreateOptions } from '@web5/dids';
 import { getNetwork } from '../../bitcoin/network.js';
 import { BeaconUtils } from '../../utils/beacons.js';
-import { Btc1DidDocument, IntermediateDidDocument } from '../../utils/did-document.js';
-import { Btc1Identifier } from '../../utils/identifier.js';
-import { Btc1KeyManager } from '../key-manager/index.js';
+import { DidDocument, IntermediateDidDocument } from '../../utils/did-document.js';
+import { Identifier } from '../../utils/identifier.js';
+import { KeyManager } from '../key-manager/index.js';
 
-export type Btc1CreateParams = Btc1CreateKeyParams | Btc1CreateExternalParams;
+export type CreateParams = CreateKeyParams | CreateExternalParams;
 export interface CreateIdentifierParams {
   genesisBytes: Uint8Array;
   newtork?: string;
   version?: string;
 }
-export type Btc1CreateResponse = {
+export type CreateResponse = {
   did: string;
-  initialDocument: Btc1DidDocument;
+  initialDocument: DidDocument;
 };
-export interface Btc1UpdateConstructParams {
+export interface ConstructUpdateParams {
     identifier: string;
-    sourceDocument: Btc1DidDocument;
+    sourceDocument: DidDocument;
     sourceVersionId: number;
     patch: PatchOperation[];
 }
-export interface Btc1UpdateParams extends Btc1UpdateConstructParams {
+export interface UpdateParams extends ConstructUpdateParams {
     verificationMethodId: string;
     beaconIds: string[];
 }
-export interface DidCreateOptions extends IDidCreateOptions<Btc1KeyManager> {
+export interface DidCreateOptions extends IDidCreateOptions<KeyManager> {
   /** DID BTCR2 Version Number */
   version?: number;
   /** Bitcoin Network */
   network?: string;
 }
-export type Btc1CreateKeyParams = {
+export type CreateKeyParams = {
   idType: 'KEY';
   pubKeyBytes: KeyBytes;
   options?: DidCreateOptions;
 };
-export type Btc1CreateExternalParams = {
+export type CreateExternalParams = {
   idType: 'EXTERNAL';
   intermediateDocument: IntermediateDidDocument;
   options?: DidCreateOptions;
@@ -52,35 +52,35 @@ export type Btc1CreateExternalParams = {
  * can be undertaken in an offline manner, i.e., the DID controller does not need to interact with the Bitcoin network
  * to create their DID.
  *
- * @class Btc1Create
- * @type {Btc1Create}
+ * @class Create
+ * @type {Create}
  */
-export class Btc1Create {
+export class Create {
   /**
    * Implements {@link https://dcdpr.github.io/did-btcr2/#deterministic-key-based-creation | 4.1.1 Deterministic Key-Based Creation}.
    *
    * For deterministic key-based creation, the did:btcr2 identifier encodes a secp256k1 public key. The key is then used
    * to deterministically generate the initial DID document.
    *
-   * @param {Btc1CreateKeyParams} params See {@link Btc1CreateKeyParams} for details.
+   * @param {CreateKeyParams} params See {@link CreateKeyParams} for details.
    * @param {number} params.version did-btcr2 identifier version.
    * @param {string} params.network did-btcr2 bitcoin network.
    * @param {KeyBytes} params.pubKeyBytes public key bytes for id creation.
-   * @returns {Btc1CreateResponse} A response object of type {@link Btc1CreateResponse}.
+   * @returns {CreateResponse} A response object of type {@link CreateResponse}.
    * @throws {DidError} if the public key is missing or invalid.
    */
   public static deterministic({ pubKeyBytes, options }: {
     pubKeyBytes: KeyBytes;
     options: DidCreateOptions;
-  }): Btc1CreateResponse {
+  }): CreateResponse {
     // Deconstruct options and set the default values
     const { version = 1, network = 'bitcoin' } = options;
 
     // Set idType to "KEY"
-    const idType = Btcr2IdentifierTypes.KEY;
+    const idType = IdentifierTypes.KEY;
 
     // Call the the did:btcr2 Identifier Encoding algorithm
-    const identifier = Btc1Identifier.encode({ version, network, idType, genesisBytes: pubKeyBytes });
+    const identifier = Identifier.encode({ version, network, idType, genesisBytes: pubKeyBytes });
 
     // Instantiate PublicKey object and get the multibase formatted publicKey
     const { compressed: publicKey, multibase: publicKeyMultibase } = new PublicKey(pubKeyBytes);
@@ -93,8 +93,8 @@ export class Btc1Create {
       type    : 'SingletonBeacon',
     });
 
-    // Create initialDocument ensuring conformant to spec as Btc1DidDocument
-    const initialDocument = new Btc1DidDocument({
+    // Create initialDocument ensuring conformant to spec as DidDocument
+    const initialDocument = new DidDocument({
       id                 : identifier,
       controller         : [identifier],
       verificationMethod : [{
@@ -121,19 +121,19 @@ export class Btc1Create {
    * `did:btcr2:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`. The intermediateDocument should include at
    * least one verificationMethod and service of the type SingletonBeacon.
    *
-   * @param {Btc1CreateExternalParams} params See {@link Btc1CreateExternalParams} for details.
+   * @param {CreateExternalParams} params See {@link CreateExternalParams} for details.
    * @param {number} params.version Identifier version.
    * @param {string} params.network Identifier network name.
    * @param {string} params.documentBytes Intermediate DID Document bytes.
-   * @returns {Btc1CreateResponse} A Promise resolving to {@link Btc1CreateResponses}.
+   * @returns {CreateResponse} A Promise resolving to {@link CreateResponses}.
    * @throws {DidError} if the verificationMethod or service objects are missing required properties
    */
   public static async external({ intermediateDocument, options }: {
     intermediateDocument: IntermediateDidDocument;
     options: DidCreateOptions;
-  }): Promise<Btc1CreateResponse> {
+  }): Promise<CreateResponse> {
     // 1. Set idType to "EXTERNAL"
-    const idType = Btcr2IdentifierTypes.EXTERNAL;
+    const idType = IdentifierTypes.EXTERNAL;
 
     // 2. Set version to 1
     // 3. Set network to the desired network.
@@ -148,11 +148,11 @@ export class Btc1Create {
 
     // 5. Pass idType, version, network, and genesisBytes to the did:btcr2 Identifier Encoding algorithm, retrieving id.
     // 6. Set did to id
-    const did = Btc1Identifier.encode({ idType, genesisBytes, version, network });
+    const did = Identifier.encode({ idType, genesisBytes, version, network });
 
     // 7. Set initialDocument to a copy of the intermediateDocument.
     // 8. Replace all did:btcr2:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx values in the initialDocument with the did.
-    const initialDocument = intermediateDocument.toBtc1DidDocument(did);
+    const initialDocument = intermediateDocument.toDidDocument(did);
 
     // Return DID & DID Document.
     return { did, initialDocument };
