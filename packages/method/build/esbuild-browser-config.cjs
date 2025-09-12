@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const polyfillProviderPlugin = require('node-stdlib-browser/helpers/esbuild/plugin');
 const stdLibBrowser = require('node-stdlib-browser');
-const path = require('path');
 
 const requiredPolyfills = new Set(['crypto', 'node:crypto', 'stream']);
 
@@ -14,22 +13,6 @@ for (let lib in stdLibBrowser) {
     }
 }
 
-function aliasCommonLoggerToBrowser() {
-    // Handles:
-    //  - ../common/dist/esm/logger.js
-    //  - ../../common/dist/esm/logger.js
-    //  - @scope/common/dist/esm/logger.js (if you ever use the package name)
-    const filter = /(^|\/)(?:@[^/]+\/)?common\/dist\/esm\/logger\.js$/;
-    const replacement = path.resolve(__dirname, '../common/dist/esm/logger.browser.js');
-
-    return {
-        name: 'alias-common-logger-to-browser',
-        setup(build) {
-            build.onResolve({ filter }, () => ({ path: replacement }));
-        },
-    };
-}
-
 /** @type {import('esbuild').BuildOptions} */
 module.exports = {
     entryPoints: ['./src/index.ts'],
@@ -40,10 +23,7 @@ module.exports = {
     platform: 'browser',
     target: ['chrome101', 'firefox108', 'safari16'],
     inject: [require.resolve('node-stdlib-browser/helpers/esbuild/shim')],
-    plugins: [
-        polyfillProviderPlugin(polyfills),
-        aliasCommonLoggerToBrowser()
-    ],
+    plugins: [polyfillProviderPlugin(polyfills)],
     loader: { '.wasm': 'binary' },
     mainFields: ['browser', 'module', 'main'],
     define: { 'global': 'globalThis' },
