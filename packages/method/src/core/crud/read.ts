@@ -20,7 +20,7 @@ import bitcoinNetwork, { Bitcoin } from '../../bitcoin/index.js';
 import { getNetwork } from '../../bitcoin/network.js';
 import BitcoinRest, { RawTransactionRest } from '../../bitcoin/rest-client.js';
 import BitcoinRpc from '../../bitcoin/rpc-client.js';
-import { DidBtc1 } from '../../did-btcr2.js';
+import { DidBtcr2 } from '../../did-btcr2.js';
 import { DidResolutionOptions } from '../../interfaces/crud.js';
 import { BeaconService, BeaconServiceAddress, BeaconSignal } from '../../interfaces/ibeacon.js';
 import { BlockV3, RawTransactionV2 } from '../../types/bitcoin.js';
@@ -887,7 +887,7 @@ export class Resolve {
     }
 
     // Get the verificationMethod from the DID Document using the methodId.
-    const { id: vmId, publicKeyMultibase } = DidBtc1.getSigningMethod({ didDocument: contemporaryDidDocument, methodId });
+    const { id: vmId, publicKeyMultibase } = DidBtcr2.getSigningMethod({ didDocument: contemporaryDidDocument, methodId });
 
     // Split the vmId by the `#` to get the id and controller.
     const [controller, id] = vmId.split('#');

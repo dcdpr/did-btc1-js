@@ -2,7 +2,7 @@ import { SchnorrKeyPair } from '@did-btcr2/keypair';
 import { Did } from '@web5/dids';
 import { mkdir, readdir, readFile, rename, writeFile } from 'fs/promises';
 import path from 'path';
-import { DidBtc1 } from '../../../../src/did-btcr2.js';
+import { DidBtcr2 } from '../../../../src/did-btcr2.js';
 
 const cwd = process.cwd();
 const network = process.argv[2] || 'regtest';
@@ -44,7 +44,7 @@ const genesisKey = SchnorrKeyPair.generate();
 const replacementKey = SchnorrKeyPair.generate();
 
 // Step 2: Create a new DID and initial DID document
-const { did, initialDocument } = await DidBtc1.create({
+const { did, initialDocument } = await DidBtcr2.create({
   idType      : 'KEY',
   pubKeyBytes : genesisKey.publicKey.compressed,
   options     : { network, version: 1 },

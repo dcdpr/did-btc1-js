@@ -13,7 +13,7 @@ import { DidBtc1CLI } from '../src/cli.js';
  */
 describe('CLI Tests', () => {
   it('should initialize the CLI', () => {
-    const btc1 = new DidBtc1CLI();
-    expect(btc1).to.exist;
+    const btcr2 = new DidBtc1CLI();
+    expect(btcr2).to.exist;
   });
 });

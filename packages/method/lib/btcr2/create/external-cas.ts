@@ -5,14 +5,14 @@ import { canonicalize } from '@web5/crypto';
 import { createHelia } from 'helia';
 import { Identifier } from '../../src/index.js';
 
-const did = 'did:btc1:x1rfkaxzfh23nrh33llxysztuhssguysnkywexde4wghszrvqc570q7gtfea';
+const did = 'did:btcr2:x1rfkaxzfh23nrh33llxysztuhssguysnkywexde4wghszrvqc570q7gtfea';
 const didDocument = {
   '@context' : [
     'https://www.w3.org/ns/did/v1',
     'https://w3id.org/security/multikey/v1',
-    'https://github.com/dcdpr/did-btc1'
+    'https://github.com/dcdpr/did-btcr2'
   ],
-  'id'                   : 'did:btc1:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+  'id'                   : 'did:btcr2:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
   'authentication'       : ['#initialKey'],
   'assertionMethod'      : ['#initialKey'],
   'capabilityInvocation' : ['#initialKey'],
@@ -20,7 +20,7 @@ const didDocument = {
   'verificationMethod'   : [{
     'id'                 : '#initialKey',
     'type'               : 'Multikey',
-    'controller'         : 'did:btc1:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ',
+    'controller'         : 'did:btcr2:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ',
     'publicKeyMultibase' : 'z4jKbyg1bUG6fJwYh4swsUt4YKK2oAd5MJg2tN7je1GtjX2qc'
   }],
   'service' : [

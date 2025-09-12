@@ -1,16 +1,16 @@
 export default {
-  did      : 'did:btc1:regtest:k1qtwrw6r00e3rh6hv02ak42mweykcg0u7n478vl5ks4ugfppl9dfs7m3gyfg',
+  did      : 'did:btcr2:regtest:k1qtwrw6r00e3rh6hv02ak42mweykcg0u7n478vl5ks4ugfppl9dfs7m3gyfg',
   document : {
     '@context' : [
       'https://www.w3.org/ns/did/v1',
-      'https://did-btc1/TBD/context'
+      'https://did-btcr2/TBD/context'
     ],
-    id                 : 'did:btc1:regtest:k1qtwrw6r00e3rh6hv02ak42mweykcg0u7n478vl5ks4ugfppl9dfs7m3gyfg',
+    id                 : 'did:btcr2:regtest:k1qtwrw6r00e3rh6hv02ak42mweykcg0u7n478vl5ks4ugfppl9dfs7m3gyfg',
     verificationMethod : [
       {
         id                 : '#initialKey',
         type               : 'Multikey',
-        controller         : 'did:btc1:regtest:k1qtwrw6r00e3rh6hv02ak42mweykcg0u7n478vl5ks4ugfppl9dfs7m3gyfg',
+        controller         : 'did:btcr2:regtest:k1qtwrw6r00e3rh6hv02ak42mweykcg0u7n478vl5ks4ugfppl9dfs7m3gyfg',
         publicKeyMultibase : 'zQ3shcERTF2BZqz4v51hDdPdM4di9xFWNadCakCkQmNEZPdPt'
       }
     ],
