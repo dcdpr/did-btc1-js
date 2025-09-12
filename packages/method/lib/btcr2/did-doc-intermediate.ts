@@ -33,6 +33,6 @@ const fromExt = IntermediateDidDocument.fromExternalIdentifier({ id, verificatio
 console.log('fromExt:', fromExt);
 console.log('--------------------------------------');
 
-const btc1DidDocument = intermediateDocument.toBtc1DidDocument(initialExternalDocument.id);
-console.log('btc1DidDocument:', btc1DidDocument);
+const DidDocument = intermediateDocument.toBtc1DidDocument(initialExternalDocument.id);
+console.log('DidDocument:', DidDocument);
 console.log('--------------------------------------');

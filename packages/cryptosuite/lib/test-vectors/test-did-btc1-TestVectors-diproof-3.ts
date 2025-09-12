@@ -1,5 +1,5 @@
 import { SchnorrKeyPair } from '@did-btcr2/keypair';
-import { Btc1Identifier } from '../../../method/src/index.js';
+import { Identifier } from '../../../method/src/index.js';
 import { SchnorrMultikey } from '../../src/index.js';
 
 const securedDocument = {
@@ -40,7 +40,7 @@ const securedDocument = {
 
 const id = '#initialKey';
 const controller = 'did:btc1:k1qgpzs6takyvuhv3dy8epaqhwee6eamxttprpn4k48ft4xyvw5sp3mvqqavunt';
-const components = Btc1Identifier.decode(controller);
+const components = Identifier.decode(controller);
 console.log('components:', components);
 const keys = new SchnorrKeyPair({ publicKey: components.genesisBytes });
 const diProof = Multikey.initialize({ id, controller, keyPair })

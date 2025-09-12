@@ -1,6 +1,6 @@
 import { readFile, writeFile } from 'fs/promises';
 import path from 'path';
-import { BeaconUtils, Btc1DidDocument, Btc1Update, getNetwork } from '../../../../src/index.js';
+import { BeaconUtils, DidDocument, Btc1Update, getNetwork } from '../../../../src/index.js';
 
 const args = process.argv.slice(2);
 const cwd = process.cwd();
@@ -13,7 +13,7 @@ const initialDocument = JSON.parse(await readFile(path.join(latestdir, 'initialD
 const keys = JSON.parse(await readFile(path.join(latestdir, 'keys.json'), { encoding: 'utf-8' }));
 
 const identifier = initialDocument.id;
-const sourceDocument = new Btc1DidDocument(initialDocument);
+const sourceDocument = new DidDocument(initialDocument);
 const sourceVersionId = 1;
 const patch = args[1] && JSON.parsable(args[1])
   ? JSON.parse(args[1])

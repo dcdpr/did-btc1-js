@@ -1,5 +1,5 @@
 
-import { Btcr2Error, Logger } from '@did-btcr2/common';
+import { MethodError, Logger } from '@did-btcr2/common';
 import { DidBtc1 } from '@did-btcr2/method';
 import { ICommand } from './cli.js';
 
@@ -23,7 +23,7 @@ export default class CRUD implements ICommand {
           Logger.warn('// TODO: Update once DidBtc1.deactivate implemented');
           break;
         default:
-          throw new Btcr2Error(`Invalid command: ${action}`, 'INVALID_COMMAND');
+          throw new MethodError(`Invalid command: ${action}`, 'INVALID_COMMAND');
       }
     } catch (error: any) {
       console.error(error.message);

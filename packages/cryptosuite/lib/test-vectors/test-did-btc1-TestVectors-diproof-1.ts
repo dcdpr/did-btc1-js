@@ -1,7 +1,7 @@
 // NOTE: Does not verify due to bad input data!
 
 import { SchnorrKeyPair } from '@did-btcr2/keypair';
-import { Btc1Identifier } from '../../../method/src/index.js';
+import { Identifier } from '../../../method/src/index.js';
 import { SchnorrMultikey } from '../../src/index.js';
 
 const initialDocument = {
@@ -87,7 +87,7 @@ const securedDocument = {
 const vm = initialDocument.verificationMethod[0];
 const id = vm.id;
 const controller = vm.controller;
-const components = Btc1Identifier.decode(controller);
+const components = Identifier.decode(controller);
 console.log('components:', components);
 const publicKey = components.genesisBytes;
 console.log('publicKey:', publicKey);

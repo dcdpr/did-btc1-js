@@ -3,7 +3,7 @@ import { sha256 } from '@noble/hashes/sha2';
 import { bech32 } from '@scure/base';
 import { canonicalize } from '@web5/crypto';
 import { createHelia } from 'helia';
-import { Btc1Identifier } from '../../src/index.js';
+import { Identifier } from '../../src/index.js';
 
 const did = 'did:btc1:x1rfkaxzfh23nrh33llxysztuhssguysnkywexde4wghszrvqc570q7gtfea';
 const didDocument = {
@@ -50,7 +50,7 @@ console.log('genesisBytes', genesisBytes);
 const hexDigest = Buffer.from(genesisBytes).toString('hex');
 console.log('hexDigest', hexDigest);
 
-const identifierComponents = Btc1Identifier.decode(did);
+const identifierComponents = Identifier.decode(did);
 console.log('identifierComponents', identifierComponents);
 
 const hashBytes = identifierComponents.genesisBytes;

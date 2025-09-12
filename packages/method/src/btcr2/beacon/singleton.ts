@@ -7,8 +7,8 @@ import { Beacon } from '../../interfaces/beacon.js';
 import { BeaconService, BeaconSignal } from '../../interfaces/ibeacon.js';
 import { RawTransactionV2, TxOut } from '../../types/bitcoin.js';
 import { BeaconSidecarData, Metadata, SignalsMetadata, SingletonSidecar } from '../../types/crud.js';
-import { Btc1Appendix } from '../../utils/appendix.js';
-import { Btc1KeyManager, Signer } from '../key-manager/index.js';
+import { Appendix } from '../../utils/appendix.js';
+import { KeyManager, Signer } from '../key-manager/index.js';
 
 /**
  * Implements {@link https://dcdpr.github.io/did-btcr2/#singleton-beacon | 5.1 Singleton Beacon}.
@@ -71,7 +71,7 @@ export class SingletonBeacon extends Beacon {
    * TODO: Figure out if this is necessary or not.
    * @param {string} didUpdatePayload The DID Update Payload to generate the signal for.
    * @returns {BeaconSignal} The generated signal.
-   * @throws {Btcr2Error} if the signal is invalid.
+   * @throws {MethodError} if the signal is invalid.
    */
   public generateSignal(didUpdatePayload: string): BeaconSignal {
     throw new Error('Method not implemented.' + didUpdatePayload);
@@ -142,7 +142,7 @@ export class SingletonBeacon extends Beacon {
 
     // 6. Else:
     //  6.1 Set didUpdatePayload to the result of passing hashBytes into the Fetch Content from Addressable Storage algorithm.
-    const didUpdatePayloadString = await Btc1Appendix.fetchFromCas(base58btc.decode(hashBytes));
+    const didUpdatePayloadString = await Appendix.fetchFromCas(base58btc.decode(hashBytes));
     if(!didUpdatePayloadString || !JSON.parse(didUpdatePayloadString)) {
       throw new SingletonBeaconError('Update payload not found in addressable storage.', INVALID_SIDECAR_DATA);
     }
@@ -223,10 +223,7 @@ export class SingletonBeacon extends Beacon {
     // 6. Retrieve the cryptographic material, e.g private key or signing capability, associated with the bitcoinAddress
     //    or service. How this is done is left to the implementer.
     // TODO: Determine how we want to handle this. Currently, this code uses the RPC to handle signing.
-    console.log('Btc1KeyManager', Btc1KeyManager.instance);
-    console.log('this.service.id', this.service.id);
-    const multikey = await Btc1KeyManager.getKeyPair(this.service.id);
-    console.log('multikey', multikey);
+    const multikey = await KeyManager.getKeyPair(this.service.id);
     if (!multikey) {
       throw new Error('Key pair not found.');
     }

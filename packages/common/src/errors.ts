@@ -1,7 +1,7 @@
 /**
  * An enumeration of possible DID error codes.
  */
-export enum Btcr2ErrorCode {
+export enum MethodErrorCode {
   /** The DID supplied does not conform to valid syntax. */
   INVALID_DID = 'INVALID_DID',
 
@@ -108,7 +108,7 @@ export const {
   INVALID_SIDECAR_DATA,
   INVALID_CHALLENGE_ERROR,
   INVALID_DOMAIN_ERROR
-} = Btcr2ErrorCode;
+} = MethodErrorCode;
 
 export type ErrorOptions = {
   type?: string;
@@ -116,9 +116,9 @@ export type ErrorOptions = {
   data?: any;
 }
 
-export class DidBtcr2Error extends Error {
-  name: string = 'DidBtcr2Error';
-  type: string = 'DidBtcr2Error';
+export class DidMethodError extends Error {
+  name: string = 'DidMethodError';
+  type: string = 'DidMethodError';
   data?: Record<string, any>;
 
   constructor(message: string, options: ErrorOptions = {}) {
@@ -134,90 +134,90 @@ export class DidBtcr2Error extends Error {
     // Captures the stack trace in V8 engines (like Chrome, Edge, and Node.js).
     // In non-V8 environments, the stack trace will still be captured.
     if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, DidBtcr2Error);
+      Error.captureStackTrace(this, DidMethodError);
     }
   }
 }
 
-export class Btcr2Error extends DidBtcr2Error {
+export class MethodError extends DidMethodError {
   constructor(message: string, type: string, data?: Record<string, any>) {
     super(message, { type, name: type, data });
   }
 }
 
-export class Btcr2ReadError extends DidBtcr2Error {
-  constructor(message: string, type: string = 'Btcr2ReadError', data?: Record<string, any>) {
-    super(message, { type, name: 'Btcr2ReadError', data });
+export class ResolveError extends DidMethodError {
+  constructor(message: string, type: string = 'ResolveError', data?: Record<string, any>) {
+    super(message, { type, name: 'ResolveError', data });
   }
 }
 
-export class Btcr2KeyManagerError extends DidBtcr2Error {
-  constructor(message: string, type: string = 'Btcr2KeyManagerError', data?: Record<string, any>) {
+export class KeyManagerError extends DidMethodError {
+  constructor(message: string, type: string = 'KeyManagerError', data?: Record<string, any>) {
     super(message, { type, name: type, data });
   }
 }
 
-export class DidDocumentError extends DidBtcr2Error {
+export class DidDocumentError extends DidMethodError {
   constructor(message: string, type: string = 'DidDocumentError', data?: Record<string, any>) {
     super(message, { type, name: type, data });
   }
 }
 
-export class CryptosuiteError extends DidBtcr2Error {
+export class CryptosuiteError extends DidMethodError {
   constructor(message: string, type: string = 'CryptosuiteError', data?: Record<string, any>) {
     super(message, { type, name: type, data });
   }
 }
 
-export class KeyPairError extends DidBtcr2Error {
+export class KeyPairError extends DidMethodError {
   constructor(message: string, type: string = 'KeyPairError', data?: Record<string, any>) {
     super(message, { type, name: type, data });
   }
 }
 
-export class SecretKeyError extends DidBtcr2Error {
+export class SecretKeyError extends DidMethodError {
   constructor(message: string, type: string = 'SecretKeyError', data?: Record<string, any>) {
     super(message, { type, name: type, data });
   }
 }
 
-export class PublicKeyError extends DidBtcr2Error {
+export class PublicKeyError extends DidMethodError {
   constructor(message: string, type: string = 'PublicKeyError', data?: Record<string, any>) {
     super(message, { type, name: type, data });
   }
 }
 
-export class MultikeyError extends DidBtcr2Error {
+export class MultikeyError extends DidMethodError {
   constructor(message: string, type: string = 'MultikeyError', data?: Record<string, any>) {
     super(message, { type, name: type, data });
   }
 }
 
-export class ProofError extends DidBtcr2Error {
+export class ProofError extends DidMethodError {
   constructor(message: string, type: string = 'ProofError', data?: Record<string, any>) {
     super(message, { type, name: type, data });
   }
 }
 
-export class SingletonBeaconError extends DidBtcr2Error {
+export class SingletonBeaconError extends DidMethodError {
   constructor(message: string, type: string = 'SingletonBeaconError', data?: Record<string, any>) {
     super(message, { type, name: type, data });
   }
 }
 
-export class CIDAggregateBeaconError extends DidBtcr2Error {
+export class CIDAggregateBeaconError extends DidMethodError {
   constructor(message: string, type: string = 'CIDAggregateBeaconError', data?: Record<string, any>) {
     super(message, { type, name: type, data });
   }
 }
 
-export class SMTAggregateBeaconError extends DidBtcr2Error {
+export class SMTAggregateBeaconError extends DidMethodError {
   constructor(message: string, type: string = 'SMTAggregateBeaconError', data?: Record<string, any>) {
     super(message, { type, name: type, data });
   }
 }
 
-export class CanonicalizationError extends DidBtcr2Error {
+export class CanonicalizationError extends DidMethodError {
   constructor(message: string, type: string = 'CanonicalizationError', data?: Record<string, any>) {
     super(message, { type, name: type, data });
   }

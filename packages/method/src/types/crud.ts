@@ -1,6 +1,6 @@
 import { DidUpdatePayload, ProofBytes } from '@did-btcr2/common';
 import { BeaconService } from '../interfaces/ibeacon.js';
-import { Btc1DidDocument } from '../utils/did-document.js';
+import { DidDocument } from '../utils/did-document.js';
 import { BlockV3 } from './bitcoin.js';
 
 export type FindNextSignals = {
@@ -20,12 +20,12 @@ export interface SingletonSidecar extends Btc1SidecarData {
   signalsMetadata: SignalsMetadata;
 }
 export interface CIDAggregateSidecar extends Btc1SidecarData {
-  initialDocument: Btc1DidDocument;
+  initialDocument: DidDocument;
   signalsMetadata: SignalsMetadata;
   cidUpdates: Array<string>;
 }
 export interface SMTAggregateSidecar extends Btc1SidecarData {
-  initialDocument: Btc1DidDocument;
+  initialDocument: DidDocument;
   signalsMetadata: SignalsMetadata;
   smtProof: ProofBytes;
 }
@@ -36,6 +36,6 @@ export type BeaconSidecarData<T> =
   T;
 export type SidecarData = BeaconSidecarData<SingletonSidecar | CIDAggregateSidecar | SMTAggregateSidecar>;
 export type GetSigningMethodParams = {
-  didDocument: Btc1DidDocument;
+  didDocument: DidDocument;
   methodId?: string;
 };

@@ -1,4 +1,4 @@
-import { Btcr2Error } from '@did-btcr2/common';
+import { MethodError } from '@did-btcr2/common';
 import { Beacon } from '../../interfaces/beacon.js';
 import { BeaconService } from '../../interfaces/ibeacon.js';
 import { CIDAggregateSidecar, SidecarData, SMTAggregateSidecar } from '../../types/crud.js';
@@ -27,7 +27,7 @@ export class BeaconFactory {
       case 'SMTAggregateBeacon':
         return new SMTAggregateBeacon(service, sidecar as SMTAggregateSidecar);
       default:
-        throw new Btcr2Error(
+        throw new MethodError(
           'Invalid Beacon Type',
           'INVALID_BEACON_ERROR', { service, sidecar }
         );

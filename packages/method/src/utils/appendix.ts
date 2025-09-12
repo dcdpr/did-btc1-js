@@ -5,14 +5,13 @@ import {
   DidError,
   DidErrorCode,
   DidService,
-  DidVerificationMethod,
   DidVerificationRelationship
 } from '@web5/dids';
 import { createHelia } from 'helia';
 import { CID } from 'multiformats';
 import { create as createDigest } from 'multiformats/hashes/digest';
 import { Btc1RootCapability } from '../interfaces/crud.js';
-import { Btc1VerificationMethod } from './did-document.js';
+import { DidVerificationMethod } from './did-document.js';
 
 export interface DidComponents {
     hrp: string;
@@ -25,10 +24,10 @@ export interface DidComponents {
 /**
  * Implements {@link https://dcdpr.github.io/did-btcr2/#appendix | 9. Appendix} methods.
  *
- * @class Btc1Appendix
- * @type {Btc1Appendix}
+ * @class Appendix
+ * @type {Appendix}
  */
-export class Btc1Appendix {
+export class Appendix {
   /**
    * Extracts a DID fragment from a given input
    * @param {unknown} input The input to extract the DID fragment from
@@ -81,19 +80,19 @@ export class Btc1Appendix {
    * @returns {DidVerificationMethod[]} An array of DidVerificationMethod objects
    * @throws {TypeError} if the didDocument is not provided
    */
-  public static getVerificationMethods(didDocument: DidDocument): Btc1VerificationMethod[] {
+  public static getVerificationMethods(didDocument: DidDocument): DidVerificationMethod[] {
     if (!didDocument) throw new TypeError(`Required parameter missing: 'didDocument'`);
     const verificationMethods: DidVerificationMethod[] = [];
     // Check the 'verificationMethod' array.
-    verificationMethods.push(...didDocument.verificationMethod?.filter(Btc1Appendix.isDidVerificationMethod) ?? []);
+    verificationMethods.push(...didDocument.verificationMethod?.filter(Appendix.isDidVerificationMethod) ?? []);
     // Check verification relationship properties for embedded verification methods.
     Object.keys(DidVerificationRelationship).forEach((relationship) => {
       verificationMethods.push(
         ...(didDocument[relationship as keyof DidDocument] as (DidVerificationMethod)[])
-          ?.filter(Btc1Appendix.isDidVerificationMethod) ?? []
+          ?.filter(Appendix.isDidVerificationMethod) ?? []
       );
     });
-    return verificationMethods as Btc1VerificationMethod[];
+    return verificationMethods as DidVerificationMethod[];
   }
 
 
@@ -213,17 +212,17 @@ export class Btc1Appendix {
     // 4. Set uriEncodedId to components[3].
     const uriEncodedId = did;
 
-    // 5. Set btc1Identifier the result of decodeURIComponent(uriEncodedId).
-    const btc1Identifier = decodeURIComponent(uriEncodedId);
+    // 5. Set Identifier the result of decodeURIComponent(uriEncodedId).
+    const Identifier = decodeURIComponent(uriEncodedId);
 
     // 6. Set rootCapability.id to capabilityId.
     rootCapability.id = capabilityId;
 
-    // 7. Set rootCapability.controller to btc1Identifier.
-    rootCapability.controller = btc1Identifier;
+    // 7. Set rootCapability.controller to Identifier.
+    rootCapability.controller = Identifier;
 
-    // 8. Set rootCapability.invocationTarget to btc1Identifier.
-    rootCapability.invocationTarget = btc1Identifier;
+    // 8. Set rootCapability.invocationTarget to Identifier.
+    rootCapability.invocationTarget = Identifier;
 
     // 9. Return rootCapability.
     return rootCapability;

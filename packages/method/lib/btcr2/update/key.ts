@@ -1,6 +1,6 @@
 import { SchnorrKeyPair } from '@did-btcr2/keypair';
 import { mkdir, readFile, writeFile } from 'fs/promises';
-import { BeaconUtils, Btc1DidDocument, Btc1KeyManager, DidBtc1, getNetwork } from '../../../src/index.js';
+import { BeaconUtils, DidDocument, KeyManager, DidBtc1, getNetwork } from '../../../src/index.js';
 import { Did } from '@web5/dids';
 import bitcoin from '../../../src/bitcoin/index.js';
 import { RawTransactionRest } from '../../../src/bitcoin/rest-client.js';
@@ -30,7 +30,7 @@ const replacementKeyPair = new SchnorrKeyPair({
 });
 
 const identifier = initialDocument.id;
-const sourceDocument = new Btc1DidDocument(initialDocument);
+const sourceDocument = new DidDocument(initialDocument);
 const sourceVersionId = 1;
 const patch = JSON.patch.create([
   {
@@ -46,8 +46,8 @@ const patch = JSON.patch.create([
   }
 ]);
 
-const keyUri = Btc1KeyManager.computeKeyUri(parts.id, parts.fragment ?? '')
-await Btc1KeyManager.initialize(genesisKeyPair, keyUri);
+const keyUri = KeyManager.computeKeyUri(parts.id, parts.fragment ?? '')
+await KeyManager.initialize(genesisKeyPair, keyUri);
 
 const verificationMethodId = initialDocument.verificationMethod[0].id;
 const beaconIds = [initialDocument.service[0].id];

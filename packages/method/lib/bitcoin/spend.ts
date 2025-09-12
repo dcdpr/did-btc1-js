@@ -1,7 +1,7 @@
 import { Psbt } from 'bitcoinjs-lib';
 import bitcoin from '../../src/bitcoin/index.js';
 import { AddressUtxo } from '../../src/bitcoin/rest-client.js';
-import { Btc1KeyManager } from '../../src/index.js';
+import { KeyManager } from '../../src/index.js';
 import { SchnorrKeyPair } from '@did-btcr2/keypair';
 
 const [id = '#initialP2PKH', controller = 'did:btc1:k1qyp3al8fedye95ueca9ezrmcm49vhur3zhze49wlgyfzdl5qk4dgltccfavpw'] = process.argv.slice(2);
@@ -11,9 +11,9 @@ if(!controller) {
 }
 const secretKey = Buffer.fromHex('b8e9cdde0453f6608df2dde9f4b0000416537361d08b8981ea0187455113c259');
 const keys = new SchnorrKeyPair({ secretKey });
-const keyUri = Btc1KeyManager.computeKeyUri(id, controller);
-await Btc1KeyManager.initialize(keys, keyUri);
-const multikey = await Btc1KeyManager.getKeyPair();
+const keyUri = KeyManager.computeKeyUri(id, controller);
+await KeyManager.initialize(keys, keyUri);
+const multikey = await KeyManager.getKeyPair();
 if (!multikey) {
   throw new Error('Multikey not found.');
 }

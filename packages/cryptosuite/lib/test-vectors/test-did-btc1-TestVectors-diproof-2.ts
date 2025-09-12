@@ -1,6 +1,6 @@
 import { SchnorrKeyPair } from '@did-btcr2/keypair';
 import { hexToBytes } from '@noble/hashes/utils';
-import { Btc1Appendix, Btc1Identifier } from '../../../method/src/index.js';
+import { Appendix, Identifier } from '../../../method/src/index.js';
 import { SchnorrMultikey } from '../../src/index.js';
 
 const securedDocument = {
@@ -41,7 +41,7 @@ const securedDocument = {
 
 const id = '#initialKey';
 const controller = 'did:btc1:k1qgp8lpuyxprky2kh24hdxlycrcyk56lkqmnuelpw70d3ay2gej6vhwgfqurtz';
-const components = Btc1Identifier.decode(controller);
+const components = Identifier.decode(controller);
 console.log('components:', components);
 const publicKey = components.genesisBytes;
 console.log('publicKey:', publicKey);
