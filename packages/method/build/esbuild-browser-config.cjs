@@ -28,8 +28,9 @@ module.exports = {
     mainFields: ['browser', 'module', 'main'],
     define: { 'global': 'globalThis' },
     external: [
-        'bunyan',
+        'tiny-secp256k1',
         'bitcoin-core',
+        'bunyan',
         '@uphold/request-logger',
         'request',
         'dtrace-provider',
