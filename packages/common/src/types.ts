@@ -42,9 +42,9 @@ export type SchnorrKeyPairObject = {
   publicKey: PublicKeyObject;
 };
 export type MultibaseObject = {
-  address: string;
   prefix: Bytes;
   key: Array<number>;
+  encoded: string;
 };
 export type HdWallet = {
     mnemonic: string;
