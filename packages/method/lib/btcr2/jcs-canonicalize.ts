@@ -4,16 +4,16 @@ import canonicalize from 'canonicalize';
 import { base58btc } from 'multiformats/bases/base58';
 import { Canonicalization } from '@did-btcr2/common';
 const didDocument = {
-  'id'       : 'did:btc1:regtest:k1qdh2ef3aqne63sdhq8tr7c8zv9lyl5xy4llj8uw3ejfj5xsuhcacjq98ccc',
+  'id'       : 'did:btcr2:regtest:k1qdh2ef3aqne63sdhq8tr7c8zv9lyl5xy4llj8uw3ejfj5xsuhcacjq98ccc',
   '@context' : [
     'https://www.w3.org/ns/did/v1',
-    'https://did-btc1/TBD/context'
+    'https://did-btcr2/TBD/context'
   ],
   'verificationMethod' : [
     {
       'id'                 : '#initialKey',
       'type'               : 'Multikey',
-      'controller'         : 'did:btc1:regtest:k1qdh2ef3aqne63sdhq8tr7c8zv9lyl5xy4llj8uw3ejfj5xsuhcacjq98ccc',
+      'controller'         : 'did:btcr2:regtest:k1qdh2ef3aqne63sdhq8tr7c8zv9lyl5xy4llj8uw3ejfj5xsuhcacjq98ccc',
       'publicKeyMultibase' : 'zQ3shn68faoXE2EqCTtefQXNLgaTa7ZohG2ftZjgXphStJsGc'
     }
   ],
@@ -70,7 +70,7 @@ const updatePayload = {
   proof           : {
     type               : 'DataIntegrityProof',
     cryptosuite        : 'bip340-jcs-2025',
-    verificationMethod : 'did:btc1:regtest:k1qdh2ef3aqne63sdhq8tr7c8zv9lyl5xy4llj8uw3ejfj5xsuhcacjq98ccc#initialKey',
+    verificationMethod : 'did:btcr2:regtest:k1qdh2ef3aqne63sdhq8tr7c8zv9lyl5xy4llj8uw3ejfj5xsuhcacjq98ccc#initialKey',
     proofPurpose       : 'capabilityInvocation',
     capability         : 'urn:zcap:root:did%3Abtc1%3Aregtest%3Ak1qdh2ef3aqne63sdhq8tr7c8zv9lyl5xy4llj8uw3ejfj5xsuhcacjq98ccc',
     capabilityAction   : 'Write',

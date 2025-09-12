@@ -52,7 +52,7 @@ const patch = JSON.patch.create([
 const sourceVersionId = 1;
 const verificationMethodId = initialDocument.verificationMethod[0].id;
 const beaconIds = [initialDocument.service[0].id];
-const signalsMetadata = await DidBtc1.update({
+const signalsMetadata = await DidBtcr2.update({
   identifier,
   sourceDocument,
   sourceVersionId,

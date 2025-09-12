@@ -17,9 +17,9 @@ import {
 } from '@web5/dids';
 import { initEccLib } from 'bitcoinjs-lib';
 import * as tinysecp from 'tiny-secp256k1';
-import { Create, CreateParams, CreateResponse } from './btcr2/crud/create.js';
-import { Resolve } from './btcr2/crud/read.js';
-import { Update } from './btcr2/crud/update.js';
+import { Create, CreateParams, CreateResponse } from './core/crud/create.js';
+import { Resolve } from './core/crud/read.js';
+import { Update } from './core/crud/update.js';
 import { DidResolutionOptions } from './interfaces/crud.js';
 import { Appendix } from './utils/appendix.js';
 import { DidDocument, DidVerificationMethod } from './utils/did-document.js';
@@ -35,11 +35,11 @@ initEccLib(tinysecp);
  * updates for scalable on-chain update costs; long-term identifiers that can support frequent updates; private
  * communication of the DID document; private DID resolution; and non-repudiation appropriate for serious contracts.
  *
- * @class DidBtc1
- * @type {DidBtc1}
+ * @class DidBtcr2
+ * @type {DidBtcr2}
  *
  */
-export class DidBtc1 implements DidMethod {
+export class DidBtcr2 implements DidMethod {
   /** @type {string} Name of the DID method, as defined in the DID BTCR2 specification */
   public static methodName: string = 'btcr2';
 
@@ -59,7 +59,7 @@ export class DidBtc1 implements DidMethod {
    * @param {number} params.options.version Version number of the btcr2 method.
    * @param {string} params.options.network Bitcoin network name (mainnet, testnet, signet, regtest).
    * @returns {Promise<CreateResponse>} Promise resolving to a CreateResponse object.
-   * @throws {DidBtc1Error} if any of the checks fail
+   * @throws {DidBtcr2Error} if any of the checks fail
    */
   public static async create(params: CreateParams): Promise<CreateResponse> {
     // Deconstruct the idType and options from the params
@@ -109,7 +109,7 @@ export class DidBtc1 implements DidMethod {
    * @throws {DidError} InvalidDid if the identifier is invalid
    * @example
    * ```ts
-   * const resolution = await DidBtc1.resolve('did:btcr2:k1q0dygyp3gz969tp46dychzy4q78c2k3js68kvyr0shanzg67jnuez2cfplh')
+   * const resolution = await DidBtcr2.resolve('did:btcr2:k1q0dygyp3gz969tp46dychzy4q78c2k3js68kvyr0shanzg67jnuez2cfplh')
    * ```
    */
   public static async resolve(identifier: string, resolutionsOptions: DidResolutionOptions = {}): Promise<DidResolutionResult> {

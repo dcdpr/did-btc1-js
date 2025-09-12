@@ -21,7 +21,7 @@ describe('SchnorrMultikey', () => {
   const publicKey = schnorrKeyPair.publicKey;
   // Multikey Constants
   const id = '#initialKey';
-  const controller = 'did:btc1:regtest:k1qtwrw6r00e3rh6hv02ak42mweykcg0u7n478vl5ks4ugfppl9dfs7m3gyfg';
+  const controller = 'did:btcr2:regtest:k1qtwrw6r00e3rh6hv02ak42mweykcg0u7n478vl5ks4ugfppl9dfs7m3gyfg';
   const fullId = `${controller}${id}`;
   const publicKeyMultibase = 'zQ3shcERTF2BZqz4v51hDdPdM4di9xFWNadCakCkQmNEZPdPt';
   const verificationMethod = { id, type: 'Multikey', controller, publicKeyMultibase };

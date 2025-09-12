@@ -1,5 +1,5 @@
 import { writeFile } from 'fs/promises';
-import { DidBtc1 } from "../../../../src/did-btcr2.js";
+import { DidBtcr2 } from "../../../../src/did-btcr2.js";
 import { BeaconUtils, getNetwork, IntermediateDidDocument } from "../../../../src/index.js";
 import { SchnorrKeyPair } from '@did-btcr2/keypair';
 import { ID_PLACEHOLDER_VALUE } from '@did-btcr2/common';
@@ -34,7 +34,7 @@ const verificationMethod = [
 const intermediateDocument = IntermediateDidDocument.create(verificationMethod, relationships, [service]);
 
 
-    const response = await DidBtc1.create({
+    const response = await DidBtcr2.create({
         idType: 'EXTERNAL',
         intermediateDocument,
         options: { version: 1, network }
