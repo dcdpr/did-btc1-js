@@ -1,11 +1,11 @@
 import { HDKey } from '@scure/bip32';
 
 /* Crypto Types */
-export type Hex = Uint8Array | string;
+export type Bytes = Uint8Array;
+export type Hex = Bytes | string;
 export type SignatureHex = Hex;
 export type HashHex = Hex;
 
-export type Bytes = Uint8Array;
 export type DocumentBytes = Bytes;
 export type SignatureBytes = Bytes;
 export type ProofBytes = Bytes;
