@@ -134,7 +134,7 @@ export class SchnorrMultikey implements Multikey {
    * @param {string} data Data for verification.
    * @returns {boolean} If the signature is valid against the public key.
    */
-  public verify(signature: SignatureBytes, data: Hex, opts?: CryptoOptions): boolean {
+  public verify(signature: Hex, data: Hex, opts?: CryptoOptions): boolean {
     opts ??= { scheme: 'schnorr' };
     // Verify the signature depending on the scheme and return the result
     if(opts.scheme === 'ecdsa') {
@@ -152,7 +152,7 @@ export class SchnorrMultikey implements Multikey {
    * @param {string} data Data for verification.
    * @returns {boolean} If the signature is valid against the public key.
    */
-  public verifyEcdsa(signature: SignatureBytes, data: Hex): boolean {
+  public verifyEcdsa(signature: Hex, data: Hex): boolean {
     // Verify the signature and return the result
     return secp256k1.verify(signature, data, this.publicKey.compressed);
   }
