@@ -2,10 +2,7 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - main
-      - dev
+  push
 
 jobs:
   ci:
