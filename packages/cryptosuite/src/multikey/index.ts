@@ -1,4 +1,4 @@
-import { Hex, MultikeyError, SignatureBytes, VERIFICATION_METHOD_ERROR } from '@did-btcr2/common';
+import { Bytes, Hex, MultikeyError, SignatureBytes, VERIFICATION_METHOD_ERROR } from '@did-btcr2/common';
 import { PublicKey, SchnorrKeyPair, SecretKey } from '@did-btcr2/keypair';
 import { schnorr, secp256k1 } from '@noble/curves/secp256k1';
 import { DidVerificationMethod } from '@web5/dids';
@@ -101,8 +101,10 @@ export class SchnorrMultikey implements Multikey {
   }
 
   /**
-   * Produce a schnorr signature over arbitrary data.
+   * Produce a signature over arbitrary data using schnorr or ecdsa.
    * @param {MessageBytes} data Data to be signed.
+   * @param {CryptoOptions} opts Options for signing.
+   * @param {('ecdsa' | 'schnorr')} opts.scheme The signature scheme to use. Default is 'schnorr'.
    * @returns {SignatureBytes} Signature byte array.
    * @throws {MultikeyError} if no private key is provided.
    */
@@ -129,32 +131,23 @@ export class SchnorrMultikey implements Multikey {
   }
 
   /**
-   * Verify a schnorr signature.
+   * Verify a signature using schnorr or ecdsa.
    * @param {SignatureBytes} signature Signature for verification.
    * @param {string} data Data for verification.
+   * @param {CryptoOptions} opts Options for signing.
+   * @param {('ecdsa' | 'schnorr')} opts.scheme The signature scheme to use. Default is 'schnorr'.
    * @returns {boolean} If the signature is valid against the public key.
    */
-  public verify(signature: Hex, data: Hex, opts?: CryptoOptions): boolean {
+  public verify(signature: SignatureBytes, data: Hex, opts?: CryptoOptions): boolean {
     opts ??= { scheme: 'schnorr' };
     // Verify the signature depending on the scheme and return the result
     if(opts.scheme === 'ecdsa') {
-      return secp256k1.verify(signature, data, this.publicKey.compressed); }
+      return secp256k1.verify(signature, data as Bytes, this.publicKey.compressed); }
     else if(opts.scheme === 'schnorr') {
       return schnorr.verify(signature, data, this.publicKey.x);
     }
 
     throw new MultikeyError(`Invalid scheme: ${opts.scheme}.`, 'VERIFY_SIGNATURE_ERROR', opts);
-  }
-
-  /**
-   * Verify an ecdsa signature.
-   * @param {SignatureBytes} signature Signature for verification.
-   * @param {string} data Data for verification.
-   * @returns {boolean} If the signature is valid against the public key.
-   */
-  public verifyEcdsa(signature: Hex, data: Hex): boolean {
-    // Verify the signature and return the result
-    return secp256k1.verify(signature, data, this.publicKey.compressed);
   }
 
   /**
