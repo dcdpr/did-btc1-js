@@ -28,9 +28,5 @@ module.exports = {
     external: [
         'tiny-secp256k1',
         'bitcoin-core',
-        'bunyan',
-        '@uphold/request-logger',
-        'request',
-        'dtrace-provider',
     ],
 };
