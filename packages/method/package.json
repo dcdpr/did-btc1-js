@@ -72,7 +72,7 @@
         "build:browser": "rimraf dist/browser.mjs dist/browser.js && node build/bundles.js",
         "build:tests": "pnpm clean:tests && pnpm tsc -p tests/tsconfig.json",
         "build:docs": "typedoc --options typedoc.json",
-        "build:all": "pnpm build && pnpm build:tests && pnpm build:docs",
+        "build:all": "pnpm build && pnpm build:tests",
         "release": "pnpm build && pnpm pack && mv *.tgz ../../release/method",
         "lint": "eslint . --max-warnings 0",
         "lint:fix": "eslint . --fix",

@@ -4,7 +4,7 @@ layout: home
 hero:
   name: DID BTCR2 JS
   text: Monorepo for did:btcr2 js/ts implementation and supporting packages
-  tagline: &gt;
+  tagline: >
     An implementation of did:btcr2, a censorship-resistant DID Method using the Bitcoin blockchain as a Verifiable Data Registry to announce changes to the DID document.
 
   actions:
