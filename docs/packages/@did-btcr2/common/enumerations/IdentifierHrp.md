@@ -1,0 +1,19 @@
+# Enumeration: IdentifierHrp
+
+Defined in: [packages/common/src/types.ts:57](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/types.ts#L57)
+
+## Enumeration Members
+
+### k
+
+> **k**: `"k"`
+
+Defined in: [packages/common/src/types.ts:58](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/types.ts#L58)
+
+***
+
+### x
+
+> **x**: `"x"`
+
+Defined in: [packages/common/src/types.ts:59](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/types.ts#L59)

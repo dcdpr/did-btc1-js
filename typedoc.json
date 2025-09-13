@@ -1,0 +1,24 @@
+{
+    "$schema": "https://typedoc-plugin-markdown.org/schema.json",
+    "plugin": [
+        "typedoc-plugin-markdown",
+        "typedoc-vitepress-theme"
+    ],
+    "out": "docs/packages",
+    "docsRoot": "./docs",
+    "entryPointStrategy": "packages",
+    "entryPoints": [
+        "packages/*"
+    ],
+    "packageOptions": {
+        "entryPoints": [
+            "src/index.ts"
+        ]
+    },
+    "hideBreadcrumbs": true,
+    "hidePageHeader": true,
+    "useHTMLEncodedBrackets": true,
+    "sanitizeComments": true,
+    "readme": "none",
+    "entryFileName": "index"
+}
