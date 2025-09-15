@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress';
-import typedocSidebar from '../packages/typedoc-sidebar.json'; // <-- added
+import typedocSidebar from '../packages/typedoc-sidebar.json';
 
 export default defineConfig({
   srcExclude      : ['README.md', 'packages/**/README.md'],
