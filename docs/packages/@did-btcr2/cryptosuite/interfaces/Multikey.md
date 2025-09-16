@@ -1,6 +1,6 @@
 # Interface: Multikey
 
-Defined in: [multikey/interface.ts:32](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L32)
+Defined in: [multikey/interface.ts:32](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L32)
 
 Interface for a [2.1.1 Multikey](https://dcdpr.github.io/data-integrity-schnorr-secp256k1/#multikey).
  Multikey
@@ -11,7 +11,7 @@ Interface for a [2.1.1 Multikey](https://dcdpr.github.io/data-integrity-schnorr-
 
 > `readonly` **controller**: `string`
 
-Defined in: [multikey/interface.ts:37](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L37)
+Defined in: [multikey/interface.ts:37](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L37)
 
 ***
 
@@ -19,7 +19,7 @@ Defined in: [multikey/interface.ts:37](https://github.com/dcdpr/did-btcr2-js/blo
 
 > `readonly` **id**: `string`
 
-Defined in: [multikey/interface.ts:34](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L34)
+Defined in: [multikey/interface.ts:34](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L34)
 
 ***
 
@@ -27,7 +27,7 @@ Defined in: [multikey/interface.ts:34](https://github.com/dcdpr/did-btcr2-js/blo
 
 > `readonly` **keys**: [`SchnorrKeyPair`](../../keypair/classes/SchnorrKeyPair.md)
 
-Defined in: [multikey/interface.ts:40](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L40)
+Defined in: [multikey/interface.ts:40](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L40)
 
 ***
 
@@ -35,7 +35,7 @@ Defined in: [multikey/interface.ts:40](https://github.com/dcdpr/did-btcr2-js/blo
 
 > `readonly` **publicKey**: [`PublicKey`](../../keypair/classes/PublicKey.md)
 
-Defined in: [multikey/interface.ts:43](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L43)
+Defined in: [multikey/interface.ts:43](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L43)
 
 ***
 
@@ -43,7 +43,7 @@ Defined in: [multikey/interface.ts:43](https://github.com/dcdpr/did-btcr2-js/blo
 
 > `readonly` `optional` **secretKey**: [`SecretKey`](../../keypair/classes/SecretKey.md)
 
-Defined in: [multikey/interface.ts:46](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L46)
+Defined in: [multikey/interface.ts:46](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L46)
 
 ***
 
@@ -51,7 +51,7 @@ Defined in: [multikey/interface.ts:46](https://github.com/dcdpr/did-btcr2-js/blo
 
 > `readonly` **signer**: `boolean`
 
-Defined in: [multikey/interface.ts:49](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L49)
+Defined in: [multikey/interface.ts:49](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L49)
 
 ## Methods
 
@@ -59,7 +59,7 @@ Defined in: [multikey/interface.ts:49](https://github.com/dcdpr/did-btcr2-js/blo
 
 > **fromVerificationMethod**(`verificationMethod`): `Multikey`
 
-Defined in: [multikey/interface.ts:88](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L88)
+Defined in: [multikey/interface.ts:88](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L88)
 
 Convert a verification method to a multikey.
 
@@ -89,7 +89,7 @@ if the publicKeyMultibase has an invalid prefix.
 
 > **fullId**(): `string`
 
-Defined in: [multikey/interface.ts:71](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L71)
+Defined in: [multikey/interface.ts:71](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L71)
 
 Get the full id of the multikey
 
@@ -105,7 +105,7 @@ The full id of the multikey
 
 > **json**(): [`MultikeyObject`](../type-aliases/MultikeyObject.md)
 
-Defined in: [multikey/interface.ts:94](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L94)
+Defined in: [multikey/interface.ts:94](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L94)
 
 Convert the multikey to a JSON object.
 
@@ -121,7 +121,7 @@ The multikey as a JSON object.
 
 > **sign**(`data`, `opts`): [`Bytes`](../../common/type-aliases/Bytes.md)
 
-Defined in: [multikey/interface.ts:57](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L57)
+Defined in: [multikey/interface.ts:57](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L57)
 
 Produce signed data with a secret key.
 
@@ -155,7 +155,7 @@ if no secret key is provided.
 
 > **toVerificationMethod**(): `DidVerificationMethod`
 
-Defined in: [multikey/interface.ts:77](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L77)
+Defined in: [multikey/interface.ts:77](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L77)
 
 Convert the multikey to a verification method.
 
@@ -171,7 +171,7 @@ The verification method.
 
 > **verify**(`signature`, `message`, `opts`): `boolean`
 
-Defined in: [multikey/interface.ts:65](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L65)
+Defined in: [multikey/interface.ts:65](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L65)
 
 Verify a schnorr signature.
 

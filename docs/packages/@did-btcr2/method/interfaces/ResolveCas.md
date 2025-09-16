@@ -1,6 +1,6 @@
 # Interface: ResolveCas
 
-Defined in: [packages/method/src/core/crud/read.ts:72](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L72)
+Defined in: [packages/method/src/core/crud/read.ts:77](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L77)
 
 ## Properties
 
@@ -8,7 +8,7 @@ Defined in: [packages/method/src/core/crud/read.ts:72](https://github.com/dcdpr/
 
 > **identifier**: `string`
 
-Defined in: [packages/method/src/core/crud/read.ts:73](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L73)
+Defined in: [packages/method/src/core/crud/read.ts:78](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L78)
 
 ***
 
@@ -16,4 +16,4 @@ Defined in: [packages/method/src/core/crud/read.ts:73](https://github.com/dcdpr/
 
 > **identifierComponents**: [`DidComponents`](DidComponents.md)
 
-Defined in: [packages/method/src/core/crud/read.ts:74](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L74)
+Defined in: [packages/method/src/core/crud/read.ts:79](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L79)

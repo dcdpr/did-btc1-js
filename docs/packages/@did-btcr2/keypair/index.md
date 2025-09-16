@@ -1,7 +1,7 @@
 # Keypair
 
 TypeScript implementation of secp256k1 public/private key pairs with [BIP340](https://github.com/bitcoin/bips/blob/master/bip-0340.mediawiki) schnorr signatures.
-Designed for use by [@did-btcr2/cryptosuite](../../_media/README-1.md) and [@did-btcr2/method](../../_media/README.md).
+Designed for use by [@did-btcr2/cryptosuite](../cryptosuite/index.md) and [@did-btcr2/method](../method/index.md).
 
 ## Classes
 

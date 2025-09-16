@@ -1,6 +1,6 @@
 # Interface: TargetDocumentParams
 
-Defined in: [packages/method/src/core/crud/read.ts:83](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L83)
+Defined in: [packages/method/src/core/crud/read.ts:88](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L88)
 
 ## Properties
 
@@ -8,7 +8,7 @@ Defined in: [packages/method/src/core/crud/read.ts:83](https://github.com/dcdpr/
 
 > **initialDocument**: [`DidDocument`](../classes/DidDocument.md)
 
-Defined in: [packages/method/src/core/crud/read.ts:84](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L84)
+Defined in: [packages/method/src/core/crud/read.ts:89](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L89)
 
 ***
 
@@ -16,4 +16,4 @@ Defined in: [packages/method/src/core/crud/read.ts:84](https://github.com/dcdpr/
 
 > **resolutionsOptions**: [`DidResolutionOptions`](DidResolutionOptions.md)
 
-Defined in: [packages/method/src/core/crud/read.ts:85](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L85)
+Defined in: [packages/method/src/core/crud/read.ts:90](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L90)

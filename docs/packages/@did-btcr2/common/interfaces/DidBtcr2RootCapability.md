@@ -1,6 +1,6 @@
 # Interface: DidBtcr2RootCapability
 
-Defined in: [packages/common/src/interfaces.ts:306](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/interfaces.ts#L306)
+Defined in: [packages/common/src/interfaces.ts:306](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/interfaces.ts#L306)
 
 A ZCAP-LD root capability object that authorizes updates for a particular did:btcr2.
 
@@ -24,7 +24,7 @@ DID BTCR2
 
 > **@context**: `string` \| `string`[]
 
-Defined in: [packages/common/src/interfaces.ts:307](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/interfaces.ts#L307)
+Defined in: [packages/common/src/interfaces.ts:307](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/interfaces.ts#L307)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [packages/common/src/interfaces.ts:307](https://github.com/dcdpr/did
 
 > **controller**: `string`
 
-Defined in: [packages/common/src/interfaces.ts:309](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/interfaces.ts#L309)
+Defined in: [packages/common/src/interfaces.ts:309](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/interfaces.ts#L309)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [packages/common/src/interfaces.ts:309](https://github.com/dcdpr/did
 
 > **id**: `string`
 
-Defined in: [packages/common/src/interfaces.ts:308](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/interfaces.ts#L308)
+Defined in: [packages/common/src/interfaces.ts:308](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/interfaces.ts#L308)
 
 ***
 
@@ -48,4 +48,4 @@ Defined in: [packages/common/src/interfaces.ts:308](https://github.com/dcdpr/did
 
 > **invocationTarget**: `string`
 
-Defined in: [packages/common/src/interfaces.ts:310](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/interfaces.ts#L310)
+Defined in: [packages/common/src/interfaces.ts:310](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/interfaces.ts#L310)

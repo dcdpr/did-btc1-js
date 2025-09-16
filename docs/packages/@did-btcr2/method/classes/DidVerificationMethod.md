@@ -1,6 +1,6 @@
 # Class: DidVerificationMethod
 
-Defined in: [packages/method/src/utils/did-document.ts:49](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L49)
+Defined in: [packages/method/src/utils/did-document.ts:49](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L49)
 
 DID BTCR2 Verification Method extends the DidVerificationMethod class adding helper methods and properties
  DidVerificationMethod
@@ -15,7 +15,7 @@ DID BTCR2 Verification Method extends the DidVerificationMethod class adding hel
 
 > **new DidVerificationMethod**(`__namedParameters`): `DidVerificationMethod`
 
-Defined in: [packages/method/src/utils/did-document.ts:56](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L56)
+Defined in: [packages/method/src/utils/did-document.ts:56](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L56)
 
 #### Parameters
 
@@ -33,7 +33,7 @@ Defined in: [packages/method/src/utils/did-document.ts:56](https://github.com/dc
 
 > **controller**: `string`
 
-Defined in: [packages/method/src/utils/did-document.ts:52](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L52)
+Defined in: [packages/method/src/utils/did-document.ts:52](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L52)
 
 The DID of the entity that controls this verification method.
 
@@ -47,7 +47,7 @@ The DID of the entity that controls this verification method.
 
 > **id**: `string`
 
-Defined in: [packages/method/src/utils/did-document.ts:50](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L50)
+Defined in: [packages/method/src/utils/did-document.ts:50](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L50)
 
 The identifier of the verification method, which must be a URI.
 
@@ -61,7 +61,7 @@ The identifier of the verification method, which must be a URI.
 
 > **publicKeyMultibase**: `string`
 
-Defined in: [packages/method/src/utils/did-document.ts:53](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L53)
+Defined in: [packages/method/src/utils/did-document.ts:53](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L53)
 
 (Optional) A public key in Multibase format.
 
@@ -78,7 +78,7 @@ A multibase key that conforms to the draft
 
 > `optional` **secretKeyMultibase**: `string`
 
-Defined in: [packages/method/src/utils/did-document.ts:54](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L54)
+Defined in: [packages/method/src/utils/did-document.ts:54](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L54)
 
 #### Implementation of
 
@@ -90,7 +90,7 @@ Defined in: [packages/method/src/utils/did-document.ts:54](https://github.com/dc
 
 > **type**: `string`
 
-Defined in: [packages/method/src/utils/did-document.ts:51](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L51)
+Defined in: [packages/method/src/utils/did-document.ts:51](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L51)
 
 The type of the verification method.
 

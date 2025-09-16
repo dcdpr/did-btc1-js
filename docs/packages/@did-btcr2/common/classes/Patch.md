@@ -1,6 +1,6 @@
 # Class: Patch
 
-Defined in: [packages/common/src/patch.ts:15](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/patch.ts#L15)
+Defined in: [packages/common/src/patch.ts:15](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/patch.ts#L15)
 
 Implementation of [IETF RFC 6902 JSON Patch](https://datatracker.ietf.org/doc/html/rfc6902).
 
@@ -26,7 +26,7 @@ apply to a JavaScript Object Notation (JSON) document; it is suitable for use wi
 
 > **apply**(`sourceDocument`, `operations`): [`JSONObject`](../type-aliases/JSONObject.md)
 
-Defined in: [packages/common/src/patch.ts:23](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/patch.ts#L23)
+Defined in: [packages/common/src/patch.ts:23](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/patch.ts#L23)
 
 Applies a JSON Patch to a source document and returns the patched document.
 
@@ -60,7 +60,7 @@ If an unsupported operation is provided.
 
 > **create**(`patches`): [`PatchOperation`](../interfaces/PatchOperation.md)[]
 
-Defined in: [packages/common/src/patch.ts:82](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/patch.ts#L82)
+Defined in: [packages/common/src/patch.ts:82](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/patch.ts#L82)
 
 Constructs a JSON Patch with a single operation (e.g. add service).
 
@@ -84,7 +84,7 @@ A single-entry JSON Patch array.
 
 > **diff**(`sourceDocument`, `targetDocument`, `path`): [`PatchOperation`](../interfaces/PatchOperation.md)[]
 
-Defined in: [packages/common/src/patch.ts:104](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/patch.ts#L104)
+Defined in: [packages/common/src/patch.ts:104](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/patch.ts#L104)
 
 Find the diff between a source and target document constructing the patch operations from source =\> target.
 

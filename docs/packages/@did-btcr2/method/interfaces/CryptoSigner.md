@@ -1,6 +1,6 @@
 # Interface: CryptoSigner
 
-Defined in: [packages/method/src/core/key-manager/interface.ts:95](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/interface.ts#L95)
+Defined in: [packages/method/src/core/key-manager/interface.ts:95](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/interface.ts#L95)
 
 ## Methods
 
@@ -8,7 +8,7 @@ Defined in: [packages/method/src/core/key-manager/interface.ts:95](https://githu
 
 > **digest**(`data`): [`Bytes`](../../common/type-aliases/Bytes.md)
 
-Defined in: [packages/method/src/core/key-manager/interface.ts:118](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/interface.ts#L118)
+Defined in: [packages/method/src/core/key-manager/interface.ts:118](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/interface.ts#L118)
 
 Returns the sha256 hash of the input data.
 
@@ -32,7 +32,7 @@ The sha256 hash of the input data.
 
 > **sign**(`data`, `keyUri?`): `Promise`&lt;[`Bytes`](../../common/type-aliases/Bytes.md)&gt;
 
-Defined in: [packages/method/src/core/key-manager/interface.ts:102](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/interface.ts#L102)
+Defined in: [packages/method/src/core/key-manager/interface.ts:102](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/interface.ts#L102)
 
 Signs a message with a key pair.
 
@@ -62,7 +62,7 @@ The signature of the input data.
 
 > **verify**(`signature`, `data`, `keyUri?`): `Promise`&lt;`boolean`&gt;
 
-Defined in: [packages/method/src/core/key-manager/interface.ts:111](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/interface.ts#L111)
+Defined in: [packages/method/src/core/key-manager/interface.ts:111](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/interface.ts#L111)
 
 Verifies if a signature was produced by a key pair.
 

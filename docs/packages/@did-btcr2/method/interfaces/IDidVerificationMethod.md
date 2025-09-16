@@ -1,6 +1,6 @@
 # Interface: IDidVerificationMethod
 
-Defined in: [packages/method/src/utils/did-document.ts:35](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L35)
+Defined in: [packages/method/src/utils/did-document.ts:35](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L35)
 
 ## Extends
 
@@ -12,7 +12,7 @@ Defined in: [packages/method/src/utils/did-document.ts:35](https://github.com/dc
 
 > **controller**: `string`
 
-Defined in: [packages/method/src/utils/did-document.ts:38](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L38)
+Defined in: [packages/method/src/utils/did-document.ts:38](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L38)
 
 The DID of the entity that controls this verification method.
 
@@ -26,7 +26,7 @@ The DID of the entity that controls this verification method.
 
 > **id**: `string`
 
-Defined in: [packages/method/src/utils/did-document.ts:36](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L36)
+Defined in: [packages/method/src/utils/did-document.ts:36](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L36)
 
 The identifier of the verification method, which must be a URI.
 
@@ -56,7 +56,7 @@ A JSON Web Key (JWK) that conforms to [RFC 7517](https://datatracker.ietf.org/do
 
 > **publicKeyMultibase**: `string`
 
-Defined in: [packages/method/src/utils/did-document.ts:39](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L39)
+Defined in: [packages/method/src/utils/did-document.ts:39](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L39)
 
 (Optional) A public key in Multibase format.
 
@@ -73,7 +73,7 @@ A multibase key that conforms to the draft
 
 > `optional` **secretKeyMultibase**: `string`
 
-Defined in: [packages/method/src/utils/did-document.ts:40](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L40)
+Defined in: [packages/method/src/utils/did-document.ts:40](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L40)
 
 ***
 
@@ -81,7 +81,7 @@ Defined in: [packages/method/src/utils/did-document.ts:40](https://github.com/dc
 
 > **type**: `string`
 
-Defined in: [packages/method/src/utils/did-document.ts:37](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L37)
+Defined in: [packages/method/src/utils/did-document.ts:37](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L37)
 
 The type of the verification method.
 

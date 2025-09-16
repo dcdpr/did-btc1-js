@@ -1,6 +1,6 @@
 # Class: Cryptosuite
 
-Defined in: [cryptosuite/index.ts:54](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/index.ts#L54)
+Defined in: [cryptosuite/index.ts:54](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/index.ts#L54)
 
 Implements [3.1 Instantiate Cryptosuite](https://dcdpr.github.io/data-integrity-schnorr-secp256k1/#instantiate-cryptosuite)
 
@@ -30,7 +30,7 @@ Verify Proof functions in Verifiable Credential Data Integrity 1.0. The algorith
 
 > **new Cryptosuite**(`params`): `Cryptosuite`
 
-Defined in: [cryptosuite/index.ts:88](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/index.ts#L88)
+Defined in: [cryptosuite/index.ts:88](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/index.ts#L88)
 
 Constructs an instance of Cryptosuite.
 
@@ -52,7 +52,7 @@ See [CryptosuiteParams](../interfaces/CryptosuiteParams.md) for required paramet
 
 > **algorithm**: `"rdfc"` \| `"jcs"`
 
-Defined in: [cryptosuite/index.ts:80](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/index.ts#L80)
+Defined in: [cryptosuite/index.ts:80](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/index.ts#L80)
 
 The algorithm used for canonicalization
 
@@ -62,7 +62,7 @@ The algorithm used for canonicalization
 
 > **cryptosuite**: `"bip340-jcs-2025"` \| `"bip340-rdfc-2025"`
 
-Defined in: [cryptosuite/index.ts:66](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/index.ts#L66)
+Defined in: [cryptosuite/index.ts:66](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/index.ts#L66)
 
 The name of the cryptosuite
 
@@ -76,7 +76,7 @@ The name of the cryptosuite
 
 > **multikey**: [`SchnorrMultikey`](SchnorrMultikey.md)
 
-Defined in: [cryptosuite/index.ts:73](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/index.ts#L73)
+Defined in: [cryptosuite/index.ts:73](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/index.ts#L73)
 
 The multikey used to sign and verify proofs
 
@@ -90,7 +90,7 @@ The multikey used to sign and verify proofs
 
 > **type**: `"DataIntegrityProof"` = `'DataIntegrityProof'`
 
-Defined in: [cryptosuite/index.ts:59](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/index.ts#L59)
+Defined in: [cryptosuite/index.ts:59](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/index.ts#L59)
 
 The type of the proof
 
@@ -104,7 +104,7 @@ The type of the proof
 
 > **createProof**(`params`): `Promise`&lt;[`Proof`](../../common/interfaces/Proof.md)&gt;
 
-Defined in: [cryptosuite/index.ts:115](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/index.ts#L115)
+Defined in: [cryptosuite/index.ts:115](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/index.ts#L115)
 
 Create a proof for an insecure document.
 
@@ -132,7 +132,7 @@ The proof for the document.
 
 > **generateHash**(`params`): [`Bytes`](../../common/type-aliases/Bytes.md)
 
-Defined in: [cryptosuite/index.ts:226](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/index.ts#L226)
+Defined in: [cryptosuite/index.ts:226](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/index.ts#L226)
 
 Generate a hash of the canonical proof configuration and document.
 
@@ -160,7 +160,7 @@ The hash string of the proof configuration and document.
 
 > **proofConfiguration**(`options`): `Promise`&lt;`string`&gt;
 
-Defined in: [cryptosuite/index.ts:246](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/index.ts#L246)
+Defined in: [cryptosuite/index.ts:246](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/index.ts#L246)
 
 Configure the proof by canonicalzing it.
 
@@ -192,7 +192,7 @@ if the proof configuration cannot be canonicalized.
 
 > **proofSerialization**(`params`): [`Bytes`](../../common/type-aliases/Bytes.md)
 
-Defined in: [cryptosuite/index.ts:277](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/index.ts#L277)
+Defined in: [cryptosuite/index.ts:277](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/index.ts#L277)
 
 Serialize the proof into a byte array.
 
@@ -224,7 +224,7 @@ if the multikey does not match the verification method.
 
 > **proofVerification**(`params`): `boolean`
 
-Defined in: [cryptosuite/index.ts:299](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/index.ts#L299)
+Defined in: [cryptosuite/index.ts:299](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/index.ts#L299)
 
 Verify the proof by comparing the hash of the proof configuration and document to the proof bytes.
 
@@ -256,7 +256,7 @@ if the multikey does not match the verification method.
 
 > **toDataIntegrityProof**(): [`DataIntegrityProof`](DataIntegrityProof.md)
 
-Defined in: [cryptosuite/index.ts:100](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/index.ts#L100)
+Defined in: [cryptosuite/index.ts:100](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/index.ts#L100)
 
 Constructs an instance of DataIntegrityProof from the current Cryptosuite instance.
 
@@ -272,7 +272,7 @@ A new DataIntegrityProof instance.
 
 > **transformDocument**(`params`): `Promise`&lt;`string`&gt;
 
-Defined in: [cryptosuite/index.ts:192](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/index.ts#L192)
+Defined in: [cryptosuite/index.ts:192](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/index.ts#L192)
 
 Transform a document (secure didUpdateInvocation or insecure didUpdatePayload) into canonical form.
 
@@ -304,7 +304,7 @@ if the document cannot be transformed.
 
 > **verifyProof**(`document`): `Promise`&lt;[`VerificationResult`](../interfaces/VerificationResult.md)&gt;
 
-Defined in: [cryptosuite/index.ts:158](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/index.ts#L158)
+Defined in: [cryptosuite/index.ts:158](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/index.ts#L158)
 
 Verify a proof for a secure document.
 Implements [ICryptosuite Method verifyProof](../interfaces/ICryptosuite.md#verifyproof).

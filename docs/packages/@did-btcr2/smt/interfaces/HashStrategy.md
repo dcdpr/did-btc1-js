@@ -1,6 +1,6 @@
 # Interface: HashStrategy
 
-Defined in: [hashing.ts:6](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/smt/src/hashing.ts#L6)
+Defined in: [hashing.ts:6](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/smt/src/hashing.ts#L6)
 
 ## Methods
 
@@ -8,7 +8,7 @@ Defined in: [hashing.ts:6](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e7
 
 > **digest**(...`inputs`): `Uint8Array`
 
-Defined in: [hashing.ts:7](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/smt/src/hashing.ts#L7)
+Defined in: [hashing.ts:7](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/smt/src/hashing.ts#L7)
 
 #### Parameters
 

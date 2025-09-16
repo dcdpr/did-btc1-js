@@ -1,6 +1,6 @@
 # Interface: SidecarData
 
-Defined in: [packages/common/src/interfaces.ts:210](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/interfaces.ts#L210)
+Defined in: [packages/common/src/interfaces.ts:210](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/interfaces.ts#L210)
 
 A container for out-of-band data the resolver may need. This includes the
 initial DID document if it isn't stored in IPFS, plus references for each
@@ -18,7 +18,7 @@ DID BTCR2
 
 > `optional` **initialDocument**: `Record`&lt;`string`, `any`&gt;
 
-Defined in: [packages/common/src/interfaces.ts:215](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/interfaces.ts#L215)
+Defined in: [packages/common/src/interfaces.ts:215](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/interfaces.ts#L215)
 
 The initial DID Document for an externally created did:btcr2,
 if not fetched from IPFS or another CAS.
@@ -29,7 +29,7 @@ if not fetched from IPFS or another CAS.
 
 > **signalsMetadata**: `object`
 
-Defined in: [packages/common/src/interfaces.ts:222](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/interfaces.ts#L222)
+Defined in: [packages/common/src/interfaces.ts:222](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/interfaces.ts#L222)
 
 A map from Bitcoin transaction IDs to the sidecar info about that signal.
 Each signal might provide a single DID Update Payload, or (for aggregator beacons)

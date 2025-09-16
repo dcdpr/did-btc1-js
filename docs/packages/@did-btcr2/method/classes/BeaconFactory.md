@@ -1,6 +1,6 @@
 # Class: BeaconFactory
 
-Defined in: [packages/method/src/core/beacon/factory.ts:14](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/beacon/factory.ts#L14)
+Defined in: [packages/method/src/core/beacon/factory.ts:14](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/beacon/factory.ts#L14)
 
 Beacon Factory pattern to create Beacon instances.
  BeaconFactory
@@ -21,7 +21,7 @@ Beacon Factory pattern to create Beacon instances.
 
 > `static` **establish**(`service`, `sidecar?`): [`Beacon`](Beacon.md)
 
-Defined in: [packages/method/src/core/beacon/factory.ts:21](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/beacon/factory.ts#L21)
+Defined in: [packages/method/src/core/beacon/factory.ts:21](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/beacon/factory.ts#L21)
 
 Establish a Beacon instance based on the provided service and optional sidecar data.
 

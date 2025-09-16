@@ -1,6 +1,6 @@
 # Interface: IKeyManager
 
-Defined in: [packages/method/src/core/key-manager/interface.ts:62](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/interface.ts#L62)
+Defined in: [packages/method/src/core/key-manager/interface.ts:62](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/interface.ts#L62)
 
 The interface for the KeyManager class.
  IKeyManager
@@ -11,7 +11,7 @@ The interface for the KeyManager class.
 
 > `optional` **activeKeyUri**: `string`
 
-Defined in: [packages/method/src/core/key-manager/interface.ts:67](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/interface.ts#L67)
+Defined in: [packages/method/src/core/key-manager/interface.ts:67](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/interface.ts#L67)
 
 The URI of the active key.
 
@@ -21,7 +21,7 @@ The URI of the active key.
 
 > **exportKey**(`keyUri?`): `Promise`&lt;`undefined` \| [`Multikey`](../../cryptosuite/interfaces/Multikey.md)&gt;
 
-Defined in: [packages/method/src/core/key-manager/interface.ts:75](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/interface.ts#L75)
+Defined in: [packages/method/src/core/key-manager/interface.ts:75](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/interface.ts#L75)
 
 Exports the full key pair from the key store.
 
@@ -49,7 +49,7 @@ If the key is not found in the key store.
 
 > **getPublicKey**(`keyUri`): `Promise`&lt;[`PublicKey`](../../keypair/classes/PublicKey.md)&gt;
 
-Defined in: [packages/method/src/core/key-manager/interface.ts:82](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/interface.ts#L82)
+Defined in: [packages/method/src/core/key-manager/interface.ts:82](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/interface.ts#L82)
 
 Gets the public key of a key pair.
 
@@ -73,7 +73,7 @@ The public key of the key pair.
 
 > **importKey**(`keyPair`, `keyUri`, `options`): `Promise`&lt;`string`&gt;
 
-Defined in: [packages/method/src/core/key-manager/interface.ts:92](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/interface.ts#L92)
+Defined in: [packages/method/src/core/key-manager/interface.ts:92](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/interface.ts#L92)
 
 Imports a key pair into the key store.
 

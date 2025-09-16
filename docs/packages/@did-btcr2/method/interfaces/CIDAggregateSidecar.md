@@ -1,6 +1,6 @@
 # Interface: CIDAggregateSidecar
 
-Defined in: [packages/method/src/types/crud.ts:22](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/types/crud.ts#L22)
+Defined in: [packages/method/src/types/crud.ts:22](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/types/crud.ts#L22)
 
 ## Extends
 
@@ -12,7 +12,7 @@ Defined in: [packages/method/src/types/crud.ts:22](https://github.com/dcdpr/did-
 
 > **cidUpdates**: `string`[]
 
-Defined in: [packages/method/src/types/crud.ts:25](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/types/crud.ts#L25)
+Defined in: [packages/method/src/types/crud.ts:25](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/types/crud.ts#L25)
 
 ***
 
@@ -20,7 +20,7 @@ Defined in: [packages/method/src/types/crud.ts:25](https://github.com/dcdpr/did-
 
 > **did**: `string`
 
-Defined in: [packages/method/src/types/crud.ts:16](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/types/crud.ts#L16)
+Defined in: [packages/method/src/types/crud.ts:16](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/types/crud.ts#L16)
 
 #### Inherited from
 
@@ -32,7 +32,7 @@ Defined in: [packages/method/src/types/crud.ts:16](https://github.com/dcdpr/did-
 
 > **initialDocument**: [`DidDocument`](../classes/DidDocument.md)
 
-Defined in: [packages/method/src/types/crud.ts:23](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/types/crud.ts#L23)
+Defined in: [packages/method/src/types/crud.ts:23](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/types/crud.ts#L23)
 
 ***
 
@@ -40,4 +40,4 @@ Defined in: [packages/method/src/types/crud.ts:23](https://github.com/dcdpr/did-
 
 > **signalsMetadata**: [`SignalsMetadata`](../type-aliases/SignalsMetadata.md)
 
-Defined in: [packages/method/src/types/crud.ts:24](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/types/crud.ts#L24)
+Defined in: [packages/method/src/types/crud.ts:24](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/types/crud.ts#L24)

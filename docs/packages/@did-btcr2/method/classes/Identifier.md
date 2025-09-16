@@ -1,6 +1,6 @@
 # Class: Identifier
 
-Defined in: [packages/method/src/utils/identifier.ts:17](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/identifier.ts#L17)
+Defined in: [packages/method/src/utils/identifier.ts:17](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/identifier.ts#L17)
 
 Implements [3 Syntax](https://dcdpr.github.io/did-btcr2/#syntax).
 A did:btcr2 DID consists of a did:btcr2 prefix, followed by an id-bech32 value, which is a Bech32m encoding of:
@@ -27,7 +27,7 @@ A did:btcr2 DID consists of a did:btcr2 prefix, followed by an id-bech32 value, 
 
 > `static` **decode**(`identifier`): [`DidComponents`](../interfaces/DidComponents.md)
 
-Defined in: [packages/method/src/utils/identifier.ts:135](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/identifier.ts#L135)
+Defined in: [packages/method/src/utils/identifier.ts:135](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/identifier.ts#L135)
 
 Implements [3.3 did:btcr2 Identifier Decoding](https://dcdpr.github.io/did-btcr2/#didbtc1-identifier-decoding).
 
@@ -63,7 +63,7 @@ if the method is not supported
 
 > `static` **encode**(`params`): `string`
 
-Defined in: [packages/method/src/utils/identifier.ts:35](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/identifier.ts#L35)
+Defined in: [packages/method/src/utils/identifier.ts:35](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/identifier.ts#L35)
 
 Implements [3.2 did:btcr2 Identifier Encoding](https://dcdpr.github.io/did-btcr2/#didbtc1-identifier-encoding).
 
@@ -116,7 +116,7 @@ The new did:btcr2 identifier.
 
 > `static` **generate**(): `object`
 
-Defined in: [packages/method/src/utils/identifier.ts:265](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/identifier.ts#L265)
+Defined in: [packages/method/src/utils/identifier.ts:265](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/identifier.ts#L265)
 
 Generates a new did:btcr2 identifier based on a newly generated key pair.
 
@@ -132,11 +132,11 @@ The new did:btcr2 identifier.
 
 ###### identifier.controller
 
-> **identifier.controller**: `string`
+> **controller**: `string`
 
 ###### identifier.id
 
-> **identifier.id**: `string`
+> **id**: `string`
 
 ##### keys
 

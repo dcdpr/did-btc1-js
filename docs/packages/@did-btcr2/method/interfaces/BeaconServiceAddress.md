@@ -1,6 +1,6 @@
 # Interface: BeaconServiceAddress
 
-Defined in: [packages/method/src/interfaces/ibeacon.ts:66](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/ibeacon.ts#L66)
+Defined in: [packages/method/src/interfaces/ibeacon.ts:65](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/ibeacon.ts#L65)
 
 ## Extends
 
@@ -16,7 +16,7 @@ Defined in: [packages/method/src/interfaces/ibeacon.ts:66](https://github.com/dc
 
 > **address**: `string`
 
-Defined in: [packages/method/src/interfaces/ibeacon.ts:67](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/ibeacon.ts#L67)
+Defined in: [packages/method/src/interfaces/ibeacon.ts:66](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/ibeacon.ts#L66)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [packages/method/src/interfaces/ibeacon.ts:67](https://github.com/dc
 
 > `optional` **casType**: `string`
 
-Defined in: [packages/method/src/interfaces/ibeacon.ts:63](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/ibeacon.ts#L63)
+Defined in: [packages/method/src/interfaces/ibeacon.ts:62](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/ibeacon.ts#L62)
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ DID document.
 
 > **serviceEndpoint**: `DidServiceEndpoint`
 
-Defined in: [packages/method/src/interfaces/ibeacon.ts:62](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/ibeacon.ts#L62)
+Defined in: [packages/method/src/interfaces/ibeacon.ts:61](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/ibeacon.ts#L61)
 
 A URI that can be used to interact with the DID service.
 

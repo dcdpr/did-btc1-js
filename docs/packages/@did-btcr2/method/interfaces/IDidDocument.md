@@ -1,6 +1,6 @@
 # Interface: IDidDocument
 
-Defined in: [packages/method/src/utils/did-document.ts:84](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L84)
+Defined in: [packages/method/src/utils/did-document.ts:84](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L84)
 
 BTCR2 DID Document Interface
  IDidDocument
@@ -15,7 +15,7 @@ BTCR2 DID Document Interface
 
 > `optional` **@context**: (`string` \| [`JSONObject`](../../common/type-aliases/JSONObject.md))[]
 
-Defined in: [packages/method/src/utils/did-document.ts:87](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L87)
+Defined in: [packages/method/src/utils/did-document.ts:87](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L87)
 
 A JSON-LD context link, which provides a JSON-LD processor with the information necessary to
 interpret the DID document JSON. The default context URL is 'https://www.w3.org/ns/did/v1'.
@@ -50,7 +50,7 @@ be made using the `alsoKnownAs` property.
 
 > `optional` **assertionMethod**: (`string` \| [`DidVerificationMethod`](../classes/DidVerificationMethod.md))[]
 
-Defined in: [packages/method/src/utils/did-document.ts:90](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L90)
+Defined in: [packages/method/src/utils/did-document.ts:90](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L90)
 
 The assertion methods of the DID Document.
 
@@ -64,7 +64,7 @@ The assertion methods of the DID Document.
 
 > `optional` **authentication**: (`string` \| [`DidVerificationMethod`](../classes/DidVerificationMethod.md))[]
 
-Defined in: [packages/method/src/utils/did-document.ts:89](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L89)
+Defined in: [packages/method/src/utils/did-document.ts:89](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L89)
 
 The authentication methods of the DID Document.
 
@@ -78,7 +78,7 @@ The authentication methods of the DID Document.
 
 > `optional` **capabilityDelegation**: (`string` \| [`DidVerificationMethod`](../classes/DidVerificationMethod.md))[]
 
-Defined in: [packages/method/src/utils/did-document.ts:92](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L92)
+Defined in: [packages/method/src/utils/did-document.ts:92](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L92)
 
 The capability delegation methods of the DID Document.
 
@@ -92,7 +92,7 @@ The capability delegation methods of the DID Document.
 
 > `optional` **capabilityInvocation**: (`string` \| [`DidVerificationMethod`](../classes/DidVerificationMethod.md))[]
 
-Defined in: [packages/method/src/utils/did-document.ts:91](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L91)
+Defined in: [packages/method/src/utils/did-document.ts:91](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L91)
 
 The capability invocation methods of the DID Document.
 
@@ -106,7 +106,7 @@ The capability invocation methods of the DID Document.
 
 > `optional` **controller**: `string`[]
 
-Defined in: [packages/method/src/utils/did-document.ts:86](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L86)
+Defined in: [packages/method/src/utils/did-document.ts:86](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L86)
 
 The controller of the DID Document.
 
@@ -120,7 +120,7 @@ The controller of the DID Document.
 
 > **id**: `string`
 
-Defined in: [packages/method/src/utils/did-document.ts:85](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L85)
+Defined in: [packages/method/src/utils/did-document.ts:85](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L85)
 
 The identifier of the DID Document.
 
@@ -155,7 +155,7 @@ recipient.
 
 > **service**: [`BeaconService`](BeaconService.md)[]
 
-Defined in: [packages/method/src/utils/did-document.ts:93](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L93)
+Defined in: [packages/method/src/utils/did-document.ts:93](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L93)
 
 The services of the DID Document.
 
@@ -169,7 +169,7 @@ The services of the DID Document.
 
 > **verificationMethod**: [`DidVerificationMethod`](../classes/DidVerificationMethod.md)[]
 
-Defined in: [packages/method/src/utils/did-document.ts:88](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/did-document.ts#L88)
+Defined in: [packages/method/src/utils/did-document.ts:88](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/did-document.ts#L88)
 
 The verification methods of the DID Document.
 

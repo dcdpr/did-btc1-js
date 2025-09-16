@@ -1,6 +1,6 @@
 # Interface: UpdateParams
 
-Defined in: [packages/method/src/core/crud/create.ts:26](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/create.ts#L26)
+Defined in: [packages/method/src/core/crud/create.ts:26](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/create.ts#L26)
 
 ## Extends
 
@@ -12,7 +12,7 @@ Defined in: [packages/method/src/core/crud/create.ts:26](https://github.com/dcdp
 
 > **beaconIds**: `string`[]
 
-Defined in: [packages/method/src/core/crud/create.ts:28](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/create.ts#L28)
+Defined in: [packages/method/src/core/crud/create.ts:28](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/create.ts#L28)
 
 ***
 
@@ -20,7 +20,7 @@ Defined in: [packages/method/src/core/crud/create.ts:28](https://github.com/dcdp
 
 > **identifier**: `string`
 
-Defined in: [packages/method/src/core/crud/create.ts:21](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/create.ts#L21)
+Defined in: [packages/method/src/core/crud/create.ts:21](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/create.ts#L21)
 
 #### Inherited from
 
@@ -32,7 +32,7 @@ Defined in: [packages/method/src/core/crud/create.ts:21](https://github.com/dcdp
 
 > **patch**: [`PatchOperation`](../../common/interfaces/PatchOperation.md)[]
 
-Defined in: [packages/method/src/core/crud/create.ts:24](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/create.ts#L24)
+Defined in: [packages/method/src/core/crud/create.ts:24](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/create.ts#L24)
 
 #### Inherited from
 
@@ -44,7 +44,7 @@ Defined in: [packages/method/src/core/crud/create.ts:24](https://github.com/dcdp
 
 > **sourceDocument**: [`DidDocument`](../classes/DidDocument.md)
 
-Defined in: [packages/method/src/core/crud/create.ts:22](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/create.ts#L22)
+Defined in: [packages/method/src/core/crud/create.ts:22](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/create.ts#L22)
 
 #### Inherited from
 
@@ -56,7 +56,7 @@ Defined in: [packages/method/src/core/crud/create.ts:22](https://github.com/dcdp
 
 > **sourceVersionId**: `number`
 
-Defined in: [packages/method/src/core/crud/create.ts:23](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/create.ts#L23)
+Defined in: [packages/method/src/core/crud/create.ts:23](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/create.ts#L23)
 
 #### Inherited from
 
@@ -68,4 +68,4 @@ Defined in: [packages/method/src/core/crud/create.ts:23](https://github.com/dcdp
 
 > **verificationMethodId**: `string`
 
-Defined in: [packages/method/src/core/crud/create.ts:27](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/create.ts#L27)
+Defined in: [packages/method/src/core/crud/create.ts:27](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/create.ts#L27)

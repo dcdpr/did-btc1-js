@@ -2,7 +2,7 @@
 
 > **SecretKeyObject** = `object`
 
-Defined in: [packages/common/src/types.ts:31](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/types.ts#L31)
+Defined in: [packages/common/src/types.ts:31](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/types.ts#L31)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [packages/common/src/types.ts:31](https://github.com/dcdpr/did-btcr2
 
 > **bytes**: `number`[]
 
-Defined in: [packages/common/src/types.ts:32](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/types.ts#L32)
+Defined in: [packages/common/src/types.ts:32](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/types.ts#L32)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [packages/common/src/types.ts:32](https://github.com/dcdpr/did-btcr2
 
 > `optional` **hex**: [`Hex`](Hex.md)
 
-Defined in: [packages/common/src/types.ts:34](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/types.ts#L34)
+Defined in: [packages/common/src/types.ts:34](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/types.ts#L34)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [packages/common/src/types.ts:34](https://github.com/dcdpr/did-btcr2
 
 > `optional` **seed**: `string`
 
-Defined in: [packages/common/src/types.ts:33](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/types.ts#L33)
+Defined in: [packages/common/src/types.ts:33](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/types.ts#L33)

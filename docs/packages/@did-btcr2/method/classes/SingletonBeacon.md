@@ -1,6 +1,6 @@
 # Class: SingletonBeacon
 
-Defined in: [packages/method/src/core/beacon/singleton.ts:26](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/beacon/singleton.ts#L26)
+Defined in: [packages/method/src/core/beacon/singleton.ts:26](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/beacon/singleton.ts#L26)
 
 Implements [5.1 Singleton Beacon](https://dcdpr.github.io/did-btcr2/#singleton-beacon).
 
@@ -22,7 +22,7 @@ material that controls it are generated is left to the implementation.
 
 > **new SingletonBeacon**(`service`, `sidecar?`): `SingletonBeacon`
 
-Defined in: [packages/method/src/core/beacon/singleton.ts:33](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/beacon/singleton.ts#L33)
+Defined in: [packages/method/src/core/beacon/singleton.ts:33](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/beacon/singleton.ts#L33)
 
 Creates an instance of SingletonBeacon.
 
@@ -54,7 +54,7 @@ Optional sidecar data.
 
 > **id**: `string`
 
-Defined in: [packages/method/src/interfaces/beacon.ts:37](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/beacon.ts#L37)
+Defined in: [packages/method/src/interfaces/beacon.ts:36](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/beacon.ts#L36)
 
 A unique identifier for the Beacon
 
@@ -68,7 +68,7 @@ A unique identifier for the Beacon
 
 > **serviceEndpoint**: `DidServiceEndpoint`
 
-Defined in: [packages/method/src/interfaces/beacon.ts:39](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/beacon.ts#L39)
+Defined in: [packages/method/src/interfaces/beacon.ts:38](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/beacon.ts#L38)
 
 The service endpoint of the Beacon
 
@@ -82,7 +82,7 @@ The service endpoint of the Beacon
 
 > `optional` **sidecar**: [`SidecarData`](../type-aliases/SidecarData.md)
 
-Defined in: [packages/method/src/interfaces/beacon.ts:40](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/beacon.ts#L40)
+Defined in: [packages/method/src/interfaces/beacon.ts:39](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/beacon.ts#L39)
 
 #### Inherited from
 
@@ -94,7 +94,7 @@ Defined in: [packages/method/src/interfaces/beacon.ts:40](https://github.com/dcd
 
 > **type**: `string`
 
-Defined in: [packages/method/src/interfaces/beacon.ts:38](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/beacon.ts#L38)
+Defined in: [packages/method/src/interfaces/beacon.ts:37](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/beacon.ts#L37)
 
 The type of the Beacon
 
@@ -110,7 +110,7 @@ The type of the Beacon
 
 > **get** **service**(): [`BeaconService`](../interfaces/BeaconService.md)
 
-Defined in: [packages/method/src/core/beacon/singleton.ts:42](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/beacon/singleton.ts#L42)
+Defined in: [packages/method/src/core/beacon/singleton.ts:42](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/beacon/singleton.ts#L42)
 
 Get the Beacon service.
 
@@ -130,7 +130,7 @@ Returns the Beacon Service object
 
 > **broadcastSignal**(`didUpdatePayload`): `Promise`&lt;[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)&gt;
 
-Defined in: [packages/method/src/core/beacon/singleton.ts:179](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/beacon/singleton.ts#L179)
+Defined in: [packages/method/src/core/beacon/singleton.ts:179](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/beacon/singleton.ts#L179)
 
 Implements [5.1.2 Broadcast Singleton Beacon Signal](https://dcdpr.github.io/did-btcr2/#broadcast-singleton-beacon-signal).
 
@@ -173,7 +173,7 @@ if the bitcoin address is invalid or unfunded.
 
 > **generateSignal**(`didUpdatePayload`): [`BeaconSignal`](../interfaces/BeaconSignal.md)
 
-Defined in: [packages/method/src/core/beacon/singleton.ts:76](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/beacon/singleton.ts#L76)
+Defined in: [packages/method/src/core/beacon/singleton.ts:76](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/beacon/singleton.ts#L76)
 
 TODO: Figure out if this is necessary or not.
 
@@ -205,7 +205,7 @@ if the signal is invalid.
 
 > **processSignal**(`signal`, `signalsMetadata`): `Promise`&lt;`undefined` \| [`DidUpdatePayload`](../../common/interfaces/DidUpdatePayload.md)&gt;
 
-Defined in: [packages/method/src/core/beacon/singleton.ts:96](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/beacon/singleton.ts#L96)
+Defined in: [packages/method/src/core/beacon/singleton.ts:96](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/beacon/singleton.ts#L96)
 
 TODO: Finish implementation per spec
 
@@ -223,7 +223,7 @@ It returns the DID Update payload announced by the Beacon Signal or throws an er
 
 Bitcoin transaction representing a Beacon Signal.
 
-[`RawTransactionV2`](../interfaces/RawTransactionV2.md) | `RawTransactionRest`
+[`RawTransactionV2`](../../bitcoin/index.browser/interfaces/RawTransactionV2.md) | [`RawTransactionRest`](../../bitcoin/index.browser/interfaces/RawTransactionRest.md)
 
 ##### signalsMetadata
 
@@ -249,7 +249,7 @@ if the signalTx is invalid or the signalSidecarData is invalid.
 
 > `static` **establish**(`service`, `sidecar`): `SingletonBeacon`
 
-Defined in: [packages/method/src/core/beacon/singleton.ts:66](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/beacon/singleton.ts#L66)
+Defined in: [packages/method/src/core/beacon/singleton.ts:66](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/beacon/singleton.ts#L66)
 
 Implements [5.1.1 Establish Singleton Beacon](https://dcdpr.github.io/did-btcr2/#establish-singleton-beacon).
 
