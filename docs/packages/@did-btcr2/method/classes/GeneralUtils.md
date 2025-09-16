@@ -1,6 +1,6 @@
 # Class: GeneralUtils
 
-Defined in: [packages/method/src/utils/general.ts:14](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/general.ts#L14)
+Defined in: [packages/method/src/utils/general.ts:14](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/general.ts#L14)
 
 Static class of general utility functions for the did-btcr2 spec implementation
  GeneralUtils
@@ -21,7 +21,7 @@ Static class of general utility functions for the did-btcr2 spec implementation
 
 > `static` **bigintToBuffer**(`value`): `Buffer`
 
-Defined in: [packages/method/src/utils/general.ts:37](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/general.ts#L37)
+Defined in: [packages/method/src/utils/general.ts:37](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/general.ts#L37)
 
 Converts a bigint to a buffer
 
@@ -45,7 +45,7 @@ The buffer representation of the bigint
 
 > `static` **deriveChildKey**(`hdkey`, `path`): `HDKey`
 
-Defined in: [packages/method/src/utils/general.ts:194](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/general.ts#L194)
+Defined in: [packages/method/src/utils/general.ts:194](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/general.ts#L194)
 
 Derives a child key from an HDKey
 
@@ -79,7 +79,7 @@ Error if the child key cannot be derived
 
 > `static` **encode**(`xOnlyKeyBytes`): `string`
 
-Defined in: [packages/method/src/utils/general.ts:20](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/general.ts#L20)
+Defined in: [packages/method/src/utils/general.ts:20](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/general.ts#L20)
 
 Helper function to encode a secp256k1 key in SchnorrSecp256k1 Multikey Format
 
@@ -99,7 +99,7 @@ Helper function to encode a secp256k1 key in SchnorrSecp256k1 Multikey Format
 
 > `static` **generateCompressedSecp256k1KeyPair**(): `object`
 
-Defined in: [packages/method/src/utils/general.ts:61](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/general.ts#L61)
+Defined in: [packages/method/src/utils/general.ts:61](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/general.ts#L61)
 
 #### Returns
 
@@ -119,7 +119,7 @@ Defined in: [packages/method/src/utils/general.ts:61](https://github.com/dcdpr/d
 
 > `static` **generateHdWallet**(): `Promise`&lt;[`HdWallet`](../../common/type-aliases/HdWallet.md)&gt;
 
-Defined in: [packages/method/src/utils/general.ts:47](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/general.ts#L47)
+Defined in: [packages/method/src/utils/general.ts:47](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/general.ts#L47)
 
 Generates a new mnemonic phrase and HD wallet
 
@@ -139,7 +139,7 @@ if the public key bytes cannot be derived
 
 > `static` **recoverHdChildFromMnemonic**(`mnemonic`, `path`): `Promise`&lt;`Uint8Array`&lt;`ArrayBufferLike`&gt;&gt;
 
-Defined in: [packages/method/src/utils/general.ts:172](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/general.ts#L172)
+Defined in: [packages/method/src/utils/general.ts:172](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/general.ts#L172)
 
 Recovers an HDKey from a mnemonic phrase
 
@@ -173,7 +173,7 @@ if the HDKey cannot be recovered
 
 > `static` **recoverHdWallet**(`mnemonic`, `seed?`): `Promise`&lt;`HDKey`&gt;
 
-Defined in: [packages/method/src/utils/general.ts:76](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/general.ts#L76)
+Defined in: [packages/method/src/utils/general.ts:76](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/general.ts#L76)
 
 Recovers an HDKey from a mnemonic phrase
 
@@ -207,7 +207,7 @@ Error if the HDKey cannot be recovered
 
 > `static` **recoverRawPrivateKey**(`entropy`): `Uint8Array`
 
-Defined in: [packages/method/src/utils/general.ts:119](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/general.ts#L119)
+Defined in: [packages/method/src/utils/general.ts:119](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/general.ts#L119)
 
 Recovers a secp256k1 privateKey from its original entropy
 
@@ -235,7 +235,7 @@ if the privateKey cannot be recovered
 
 > `static` **recoverTweakedRawPrivateKey**(`xorEntropy`, `salt`): `Uint8Array`
 
-Defined in: [packages/method/src/utils/general.ts:95](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/general.ts#L95)
+Defined in: [packages/method/src/utils/general.ts:95](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/general.ts#L95)
 
 Recovers a secp256k1 privateKey from its original entropy
 
@@ -269,7 +269,7 @@ if the privateKey cannot be recovered
 
 > `static` **XNOR**(`tweakedEntropy`, `salt`): `Uint8Array`
 
-Defined in: [packages/method/src/utils/general.ts:157](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/general.ts#L157)
+Defined in: [packages/method/src/utils/general.ts:157](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/general.ts#L157)
 
 Untweak the entropy with a salt using XNOR
 
@@ -299,7 +299,7 @@ The original entropy
 
 > `static` **XOR**(`entropy`, `salt`): `Uint8Array`
 
-Defined in: [packages/method/src/utils/general.ts:142](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/general.ts#L142)
+Defined in: [packages/method/src/utils/general.ts:142](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/general.ts#L142)
 
 Tweak the entropy with a salt using XOR
 

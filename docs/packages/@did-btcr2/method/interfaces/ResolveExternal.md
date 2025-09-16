@@ -1,6 +1,6 @@
 # Interface: ResolveExternal
 
-Defined in: [packages/method/src/core/crud/read.ts:63](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L63)
+Defined in: [packages/method/src/core/crud/read.ts:68](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L68)
 
 ## Properties
 
@@ -8,7 +8,7 @@ Defined in: [packages/method/src/core/crud/read.ts:63](https://github.com/dcdpr/
 
 > **components**: [`DidComponents`](DidComponents.md)
 
-Defined in: [packages/method/src/core/crud/read.ts:64](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L64)
+Defined in: [packages/method/src/core/crud/read.ts:69](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L69)
 
 ***
 
@@ -16,7 +16,7 @@ Defined in: [packages/method/src/core/crud/read.ts:64](https://github.com/dcdpr/
 
 > **identifier**: `string`
 
-Defined in: [packages/method/src/core/crud/read.ts:65](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L65)
+Defined in: [packages/method/src/core/crud/read.ts:70](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L70)
 
 ***
 
@@ -24,4 +24,4 @@ Defined in: [packages/method/src/core/crud/read.ts:65](https://github.com/dcdpr/
 
 > **resolutionsOptions**: [`DidResolutionOptions`](DidResolutionOptions.md)
 
-Defined in: [packages/method/src/core/crud/read.ts:66](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L66)
+Defined in: [packages/method/src/core/crud/read.ts:71](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L71)

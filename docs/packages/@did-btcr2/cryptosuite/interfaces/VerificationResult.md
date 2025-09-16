@@ -1,6 +1,6 @@
 # Interface: VerificationResult
 
-Defined in: [cryptosuite/interface.ts:18](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/interface.ts#L18)
+Defined in: [cryptosuite/interface.ts:18](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/interface.ts#L18)
 
 ## Properties
 
@@ -8,7 +8,7 @@ Defined in: [cryptosuite/interface.ts:18](https://github.com/dcdpr/did-btcr2-js/
 
 > `optional` **mediaType**: `string`
 
-Defined in: [cryptosuite/interface.ts:21](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/interface.ts#L21)
+Defined in: [cryptosuite/interface.ts:21](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/interface.ts#L21)
 
 ***
 
@@ -16,7 +16,7 @@ Defined in: [cryptosuite/interface.ts:21](https://github.com/dcdpr/did-btcr2-js/
 
 > **verified**: `boolean`
 
-Defined in: [cryptosuite/interface.ts:19](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/interface.ts#L19)
+Defined in: [cryptosuite/interface.ts:19](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/interface.ts#L19)
 
 ***
 
@@ -24,4 +24,4 @@ Defined in: [cryptosuite/interface.ts:19](https://github.com/dcdpr/did-btcr2-js/
 
 > `optional` **verifiedDocument**: [`DidUpdateInvocation`](../../common/interfaces/DidUpdateInvocation.md)
 
-Defined in: [cryptosuite/interface.ts:20](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/interface.ts#L20)
+Defined in: [cryptosuite/interface.ts:20](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/interface.ts#L20)

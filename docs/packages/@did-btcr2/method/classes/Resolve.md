@@ -1,6 +1,6 @@
 # Class: Resolve
 
-Defined in: [packages/method/src/core/crud/read.ts:112](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L112)
+Defined in: [packages/method/src/core/crud/read.ts:119](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L119)
 
 Implements [4.2 Read](https://dcdpr.github.io/did-btcr2/#read).
 The read operation is executed by a resolver after a resolution request identifying a specific did:btcr2 identifier is
@@ -35,7 +35,7 @@ To do so it executes the following algorithm:
 
 > `static` **applyDidUpdate**(`params`): `Promise`&lt;[`DidDocument`](DidDocument.md)&gt;
 
-Defined in: [packages/method/src/core/crud/read.ts:862](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L862)
+Defined in: [packages/method/src/core/crud/read.ts:864](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L864)
 
 Implements [4.2.3.6 Apply DID Update](https://dcdpr.github.io/did-btcr2/#apply-did-update).
 
@@ -73,7 +73,7 @@ The DID Update Payload to apply.
 
 > `static` **cas**(`params`): `Promise`&lt;[`DidDocument`](DidDocument.md)&gt;
 
-Defined in: [packages/method/src/core/crud/read.ts:249](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L249)
+Defined in: [packages/method/src/core/crud/read.ts:256](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L256)
 
 Implements [4.2.2.2.2 CAS Retrieval](https://dcdpr.github.io/did-btcr2/#cas-retrieval).
 
@@ -105,7 +105,7 @@ if the DID Document content is invalid
 
 > `static` **confirmDuplicateUpdate**(`params`): `Promise`&lt;`void`&gt;
 
-Defined in: [packages/method/src/core/crud/read.ts:818](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L818)
+Defined in: [packages/method/src/core/crud/read.ts:820](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L820)
 
 Implements [7.2.2.4 Confirm Duplicate Update](https://dcdpr.github.io/did-btcr2/#confirm-duplicate-update).
 
@@ -148,7 +148,7 @@ if the update hash does not match the historical hash.
 
 > `static` **deterministic**(`params`): [`DidDocument`](DidDocument.md)
 
-Defined in: [packages/method/src/core/crud/read.ts:125](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L125)
+Defined in: [packages/method/src/core/crud/read.ts:132](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L132)
 
 Implements [4.2.2.1 Deterministically Generate Initial DID Document](https://dcdpr.github.io/did-btcr2/#deterministically-generate-initial-did-document).
 
@@ -186,7 +186,7 @@ The resolved DID Document object.
 
 > `static` **external**(`params`): `Promise`&lt;[`DidDocument`](DidDocument.md)&gt;
 
-Defined in: [packages/method/src/core/crud/read.ts:173](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L173)
+Defined in: [packages/method/src/core/crud/read.ts:180](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L180)
 
 Implements [4.2.2.2 External Resolution](https://dcdpr.github.io/did-btcr2/#external-resolution).
 
@@ -232,7 +232,7 @@ The resolved DID Document object
 
 > `static` **findNextSignals**(`params`): `Promise`&lt;[`BeaconSignal`](../interfaces/BeaconSignal.md)[]&gt;
 
-Defined in: [packages/method/src/core/crud/read.ts:553](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L553)
+Defined in: [packages/method/src/core/crud/read.ts:560](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L560)
 
 Implements [4.2.3.3 Find Next Signals](https://dcdpr.github.io/did-btcr2/#find-next-signals).
 
@@ -296,7 +296,7 @@ An array of BeaconSignal objects with blockHeight and signals.
 
 > `static` **findSignalsRest**(`params`): `Promise`&lt;[`BeaconSignal`](../interfaces/BeaconSignal.md)[]&gt;
 
-Defined in: [packages/method/src/core/crud/read.ts:673](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L673)
+Defined in: [packages/method/src/core/crud/read.ts:677](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L677)
 
 Helper method for the [Find Next Signals](#findnextsignals) algorithm.
 
@@ -324,7 +324,7 @@ The beacon signals found in the block.
 
 > `static` **initialDocument**(`params`): `Promise`&lt;[`DidDocument`](DidDocument.md)&gt;
 
-Defined in: [packages/method/src/core/crud/read.ts:285](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L285)
+Defined in: [packages/method/src/core/crud/read.ts:292](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L292)
 
 Implements [4.2.2 Resolve Initial Document](https://dcdpr.github.io/did-btcr2/#resolve-initial-document).
 
@@ -372,7 +372,7 @@ if the DID hrp is invalid, no sidecarData passed and hrp = "x".
 
 > `static` **processBeaconSignal**(`signal`, `signalsMetadata`): `Promise`&lt;[`DidUpdatePayload`](../../common/interfaces/DidUpdatePayload.md)&gt;
 
-Defined in: [packages/method/src/core/crud/read.ts:734](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L734)
+Defined in: [packages/method/src/core/crud/read.ts:736](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L736)
 
 Implements [4.2.3.4 Process Beacon Signals](https://dcdpr.github.io/did-btcr2/#process-beacon-signals).
 
@@ -418,7 +418,7 @@ The updated DID Document object.
 
 > `static` **sidecar**(`params`): `Promise`&lt;[`DidDocument`](DidDocument.md)&gt;
 
-Defined in: [packages/method/src/core/crud/read.ts:212](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L212)
+Defined in: [packages/method/src/core/crud/read.ts:219](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L219)
 
 Implements [4.2.2.2.1 Sidecar Initial Document Validation](https://dcdpr.github.io/did-btcr2/#sidecar-initial-document-validation).
 
@@ -451,7 +451,7 @@ InvalidDidDocument if genesisBytes !== initialDocument hashBytes
 
 > `static` **targetDocument**(`params`): `Promise`&lt;[`DidDocument`](DidDocument.md)&gt;
 
-Defined in: [packages/method/src/core/crud/read.ts:322](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L322)
+Defined in: [packages/method/src/core/crud/read.ts:329](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L329)
 
 Implements [4.2.3 Resolve Target Document](https://dcdpr.github.io/did-btcr2/#resolve-target-document).
 
@@ -487,7 +487,7 @@ The resolved DID Document object with a validated single, canonical history
 
 > `protected` `static` **traverseBlockchainHistory**(`params`): `Promise`&lt;[`DidDocument`](DidDocument.md)&gt;
 
-Defined in: [packages/method/src/core/crud/read.ts:398](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L398)
+Defined in: [packages/method/src/core/crud/read.ts:405](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L405)
 
 Implements [4.2.3.2 Traverse Blockchain History](https://dcdpr.github.io/did-btcr2/#traverse-blockchain-history).
 

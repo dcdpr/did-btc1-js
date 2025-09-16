@@ -2,7 +2,7 @@
 
 > **PublicKeyObject** = `object`
 
-Defined in: [packages/common/src/types.ts:26](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/types.ts#L26)
+Defined in: [packages/common/src/types.ts:26](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/types.ts#L26)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [packages/common/src/types.ts:26](https://github.com/dcdpr/did-btcr2
 
 > **hex**: [`Hex`](Hex.md)
 
-Defined in: [packages/common/src/types.ts:28](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/types.ts#L28)
+Defined in: [packages/common/src/types.ts:28](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/types.ts#L28)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [packages/common/src/types.ts:28](https://github.com/dcdpr/did-btcr2
 
 > **multibase**: [`MultibaseObject`](MultibaseObject.md)
 
-Defined in: [packages/common/src/types.ts:29](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/types.ts#L29)
+Defined in: [packages/common/src/types.ts:29](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/types.ts#L29)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [packages/common/src/types.ts:29](https://github.com/dcdpr/did-btcr2
 
 > **point**: [`Point`](Point.md)
 
-Defined in: [packages/common/src/types.ts:27](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/types.ts#L27)
+Defined in: [packages/common/src/types.ts:27](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/types.ts#L27)

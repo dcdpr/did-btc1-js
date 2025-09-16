@@ -1,6 +1,6 @@
 # Class: Create
 
-Defined in: [packages/method/src/core/crud/create.ts:58](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/create.ts#L58)
+Defined in: [packages/method/src/core/crud/create.ts:58](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/create.ts#L58)
 
 Implements section [4.1 Create](https://dcdpr.github.io/did-btcr2/#create).
 
@@ -27,7 +27,7 @@ to create their DID.
 
 > `static` **deterministic**(`params`): [`CreateResponse`](../type-aliases/CreateResponse.md)
 
-Defined in: [packages/method/src/core/crud/create.ts:72](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/create.ts#L72)
+Defined in: [packages/method/src/core/crud/create.ts:72](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/create.ts#L72)
 
 Implements [4.1.1 Deterministic Key-Based Creation](https://dcdpr.github.io/did-btcr2/#deterministic-key-based-creation).
 
@@ -66,7 +66,7 @@ if the public key is missing or invalid.
 
 > `static` **external**(`params`): `Promise`&lt;[`CreateResponse`](../type-aliases/CreateResponse.md)&gt;
 
-Defined in: [packages/method/src/core/crud/create.ts:131](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/create.ts#L131)
+Defined in: [packages/method/src/core/crud/create.ts:131](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/create.ts#L131)
 
 Implements [4.1.2 External Initial Document Creation](https://dcdpr.github.io/did-btcr2/#external-initial-document-creation).
 

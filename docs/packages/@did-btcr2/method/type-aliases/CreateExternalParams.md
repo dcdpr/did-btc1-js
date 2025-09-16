@@ -2,7 +2,7 @@
 
 > **CreateExternalParams** = `object`
 
-Defined in: [packages/method/src/core/crud/create.ts:41](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/create.ts#L41)
+Defined in: [packages/method/src/core/crud/create.ts:41](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/create.ts#L41)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [packages/method/src/core/crud/create.ts:41](https://github.com/dcdp
 
 > **idType**: `"EXTERNAL"`
 
-Defined in: [packages/method/src/core/crud/create.ts:42](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/create.ts#L42)
+Defined in: [packages/method/src/core/crud/create.ts:42](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/create.ts#L42)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [packages/method/src/core/crud/create.ts:42](https://github.com/dcdp
 
 > **intermediateDocument**: [`IntermediateDidDocument`](../classes/IntermediateDidDocument.md)
 
-Defined in: [packages/method/src/core/crud/create.ts:43](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/create.ts#L43)
+Defined in: [packages/method/src/core/crud/create.ts:43](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/create.ts#L43)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [packages/method/src/core/crud/create.ts:43](https://github.com/dcdp
 
 > `optional` **options**: [`DidCreateOptions`](../interfaces/DidCreateOptions.md)
 
-Defined in: [packages/method/src/core/crud/create.ts:44](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/create.ts#L44)
+Defined in: [packages/method/src/core/crud/create.ts:44](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/create.ts#L44)

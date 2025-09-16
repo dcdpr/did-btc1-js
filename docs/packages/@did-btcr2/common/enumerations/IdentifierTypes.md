@@ -1,6 +1,6 @@
 # Enumeration: IdentifierTypes
 
-Defined in: [packages/common/src/types.ts:53](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/types.ts#L53)
+Defined in: [packages/common/src/types.ts:53](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/types.ts#L53)
 
 ## Enumeration Members
 
@@ -8,7 +8,7 @@ Defined in: [packages/common/src/types.ts:53](https://github.com/dcdpr/did-btcr2
 
 > **EXTERNAL**: `"EXTERNAL"`
 
-Defined in: [packages/common/src/types.ts:55](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/types.ts#L55)
+Defined in: [packages/common/src/types.ts:55](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/types.ts#L55)
 
 ***
 
@@ -16,4 +16,4 @@ Defined in: [packages/common/src/types.ts:55](https://github.com/dcdpr/did-btcr2
 
 > **KEY**: `"KEY"`
 
-Defined in: [packages/common/src/types.ts:54](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/types.ts#L54)
+Defined in: [packages/common/src/types.ts:54](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/types.ts#L54)

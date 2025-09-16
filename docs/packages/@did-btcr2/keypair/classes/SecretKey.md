@@ -1,6 +1,6 @@
 # Class: SecretKey
 
-Defined in: [secret.ts:79](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L79)
+Defined in: [secret.ts:79](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L79)
 
 Encapsulates a secp256k1 secret key
 Provides get methods for different formats (raw, secret, point).
@@ -17,7 +17,7 @@ Provides helpers methods for comparison, serialization and publicKey generation.
 
 > **new SecretKey**(`entropy`): `SecretKey`
 
-Defined in: [secret.ts:94](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L94)
+Defined in: [secret.ts:94](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L94)
 
 Instantiates an instance of SecretKey.
 
@@ -45,7 +45,7 @@ If entropy is not provided, not a valid 32-byte secret key or not a valid bigint
 
 > **get** **bytes**(): `Uint8Array`
 
-Defined in: [secret.ts:139](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L139)
+Defined in: [secret.ts:139](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L139)
 
 Get the secret key entropy as a byte array.
 
@@ -69,7 +69,7 @@ Get the secret key bytes.
 
 > **get** **hex**(): [`Hex`](../../common/type-aliases/Hex.md)
 
-Defined in: [secret.ts:159](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L159)
+Defined in: [secret.ts:159](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L159)
 
 Returns the raw secret key as a hex string.
 
@@ -93,7 +93,7 @@ Get the secret key as a hex string.
 
 > **get** **multibase**(): `string`
 
-Defined in: [secret.ts:169](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L169)
+Defined in: [secret.ts:169](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L169)
 
 Encode the secret key bytes as a secretKeyMultibase string.
 
@@ -111,7 +111,7 @@ The secret key in base58btc multibase format
 
 > **get** **seed**(): `bigint`
 
-Defined in: [secret.ts:149](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L149)
+Defined in: [secret.ts:149](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L149)
 
 Get the secret key entropy as a bigint.
 
@@ -134,7 +134,7 @@ Setter allows alternative method of using a bigint seed for the entropy.
 
 > **computePublicKey**(): [`Bytes`](../../common/type-aliases/Bytes.md)
 
-Defined in: [secret.ts:212](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L212)
+Defined in: [secret.ts:212](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L212)
 
 Computes the public key from the secret key bytes.
 
@@ -154,7 +154,7 @@ The computed public key
 
 > **encode**(): `string`
 
-Defined in: [secret.ts:178](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L178)
+Defined in: [secret.ts:178](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L178)
 
 Encodes the secret key bytes to BIP340 multibase format.
 
@@ -170,7 +170,7 @@ The secret key in BIP340 multibase format.
 
 > **equals**(`other`): `boolean`
 
-Defined in: [secret.ts:203](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L203)
+Defined in: [secret.ts:203](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L203)
 
 Checks if this secret key is equal to another.
 
@@ -198,7 +198,7 @@ True if the private keys are equal, false otherwise
 
 > **isValid**(): `boolean`
 
-Defined in: [secret.ts:251](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L251)
+Defined in: [secret.ts:251](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L251)
 
 Checks if the secret key is valid.
 
@@ -218,7 +218,7 @@ True if the secret key is valid, false otherwise
 
 > **isValidPair**(`pk`): `boolean`
 
-Defined in: [secret.ts:260](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L260)
+Defined in: [secret.ts:260](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L260)
 
 Checks if the public key is a valid secp256k1 point.
 
@@ -242,7 +242,7 @@ True if the public key is valid, false otherwise
 
 > **json**(): [`SecretKeyObject`](../../common/type-aliases/SecretKeyObject.md)
 
-Defined in: [secret.ts:239](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L239)
+Defined in: [secret.ts:239](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L239)
 
 Converts the secret key to a JSON object.
 
@@ -262,7 +262,7 @@ The secret key as a JSON object
 
 > `static` **decode**(`multibase`): [`Bytes`](../../common/type-aliases/Bytes.md)
 
-Defined in: [secret.ts:275](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L275)
+Defined in: [secret.ts:275](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L275)
 
 Decodes the multibase string to the 34-byte secret key (2 byte prefix + 32 byte key).
 
@@ -286,7 +286,7 @@ The decoded secret key.
 
 > `static` **fromJSON**(`json`): `SecretKey`
 
-Defined in: [secret.ts:310](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L310)
+Defined in: [secret.ts:310](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L310)
 
 Creates a SecretKey object from a JSON object.
 
@@ -310,7 +310,7 @@ A new SecretKey object
 
 > `static` **fromSecret**(`secret`): `SecretKey`
 
-Defined in: [secret.ts:367](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L367)
+Defined in: [secret.ts:367](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L367)
 
 Creates a new SecretKey object from a bigint secret.
 
@@ -334,7 +334,7 @@ A new SecretKey object
 
 > `static` **generate**(): `SecretKey`
 
-Defined in: [secret.ts:393](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L393)
+Defined in: [secret.ts:393](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L393)
 
 Creates a new SecretKey from random secret key bytes.
 
@@ -350,7 +350,7 @@ A new SecretKey object
 
 > `static` **getPublicKey**(`bytes`): [`Bytes`](../../common/type-aliases/Bytes.md)
 
-Defined in: [secret.ts:406](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L406)
+Defined in: [secret.ts:406](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L406)
 
 Generates a public key from the given secret key bytes.
 
@@ -374,7 +374,7 @@ The computed public key bytes
 
 > `static` **random**(): [`Bytes`](../../common/type-aliases/Bytes.md)
 
-Defined in: [secret.ts:380](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L380)
+Defined in: [secret.ts:380](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L380)
 
 Generates random secret key bytes.
 
@@ -390,7 +390,7 @@ Uint8Array of 32 random bytes.
 
 > `static` **toBytes**(`secret`): [`Bytes`](../../common/type-aliases/Bytes.md)
 
-Defined in: [secret.ts:345](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L345)
+Defined in: [secret.ts:345](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L345)
 
 Convert a secret key bytes to a bigint secret.
 
@@ -414,7 +414,7 @@ The secret key secret as secret key bytes.
 
 > `static` **toKeyPair**(`bytes`): [`SchnorrKeyPair`](SchnorrKeyPair.md)
 
-Defined in: [secret.ts:320](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L320)
+Defined in: [secret.ts:320](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L320)
 
 Converts a SecretKey or KeyBytes to a Pair.
 
@@ -440,7 +440,7 @@ If the secret key is not valid
 
 > `static` **toSecret**(`bytes`): `bigint`
 
-Defined in: [secret.ts:336](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L336)
+Defined in: [secret.ts:336](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L336)
 
 Convert a bigint secret to secret key bytes.
 

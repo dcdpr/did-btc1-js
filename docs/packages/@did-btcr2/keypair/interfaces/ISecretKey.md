@@ -1,6 +1,6 @@
 # Interface: ISecretKey
 
-Defined in: [secret.ts:24](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L24)
+Defined in: [secret.ts:24](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L24)
 
 Interface for the SecretKey class.
  ISecretKey
@@ -11,7 +11,7 @@ Interface for the SecretKey class.
 
 > `readonly` **bytes**: [`Bytes`](../../common/type-aliases/Bytes.md)
 
-Defined in: [secret.ts:29](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L29)
+Defined in: [secret.ts:29](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L29)
 
 Get the secret key bytes.
 
@@ -21,7 +21,7 @@ Get the secret key bytes.
 
 > `readonly` **hex**: [`Hex`](../../common/type-aliases/Hex.md)
 
-Defined in: [secret.ts:42](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L42)
+Defined in: [secret.ts:42](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L42)
 
 Get the secret key as a hex string.
 
@@ -31,7 +31,7 @@ Get the secret key as a hex string.
 
 > **seed**: `bigint`
 
-Defined in: [secret.ts:36](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L36)
+Defined in: [secret.ts:36](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L36)
 
 Getter returns the secret key bytes in bigint format.
 Setter allows alternative method of using a bigint seed for the entropy.
@@ -42,7 +42,7 @@ Setter allows alternative method of using a bigint seed for the entropy.
 
 > **computePublicKey**(): [`Bytes`](../../common/type-aliases/Bytes.md)
 
-Defined in: [secret.ts:55](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L55)
+Defined in: [secret.ts:55](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L55)
 
 Uses the secret key to compute the corresponding public key.
 
@@ -58,7 +58,7 @@ A new PublicKey object.
 
 > **equals**(`other`): `boolean`
 
-Defined in: [secret.ts:49](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L49)
+Defined in: [secret.ts:49](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L49)
 
 Checks if this secret key is equal to another secret key.
 
@@ -80,7 +80,7 @@ True if the private keys are equal.
 
 > **isValid**(): `boolean`
 
-Defined in: [secret.ts:61](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L61)
+Defined in: [secret.ts:61](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L61)
 
 Checks if the secret key is valid.
 
@@ -96,7 +96,7 @@ Whether the secret key is valid.
 
 > **json**(): [`SecretKeyObject`](../../common/type-aliases/SecretKeyObject.md)
 
-Defined in: [secret.ts:68](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/secret.ts#L68)
+Defined in: [secret.ts:68](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/secret.ts#L68)
 
 JSON representation of a SecretKey object.
 

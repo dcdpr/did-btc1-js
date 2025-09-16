@@ -1,6 +1,6 @@
 # Interface: DidResolutionOptions
 
-Defined in: [packages/method/src/interfaces/crud.ts:14](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/crud.ts#L14)
+Defined in: [packages/method/src/interfaces/crud.ts:14](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/crud.ts#L14)
 
 Options for resolving a DID Document
 
@@ -60,15 +60,15 @@ data model.
 
 > `optional` **network**: [`BitcoinNetworkNames`](../../common/enumerations/BitcoinNetworkNames.md)
 
-Defined in: [packages/method/src/interfaces/crud.ts:18](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/crud.ts#L18)
+Defined in: [packages/method/src/interfaces/crud.ts:18](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/crud.ts#L18)
 
 ***
 
 ### rpc?
 
-> `optional` **rpc**: `BitcoinRpc`
+> `optional` **rpc**: [`BitcoinRpc`](../../bitcoin/index.browser/classes/BitcoinRpc.md)
 
-Defined in: [packages/method/src/interfaces/crud.ts:19](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/crud.ts#L19)
+Defined in: [packages/method/src/interfaces/crud.ts:19](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/crud.ts#L19)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [packages/method/src/interfaces/crud.ts:19](https://github.com/dcdpr
 
 > `optional` **sidecarData**: [`SidecarData`](../type-aliases/SidecarData.md)
 
-Defined in: [packages/method/src/interfaces/crud.ts:17](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/crud.ts#L17)
+Defined in: [packages/method/src/interfaces/crud.ts:17](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/crud.ts#L17)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [packages/method/src/interfaces/crud.ts:17](https://github.com/dcdpr
 
 > `optional` **versionId**: `number`
 
-Defined in: [packages/method/src/interfaces/crud.ts:15](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/crud.ts#L15)
+Defined in: [packages/method/src/interfaces/crud.ts:15](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/crud.ts#L15)
 
 ***
 
@@ -92,4 +92,4 @@ Defined in: [packages/method/src/interfaces/crud.ts:15](https://github.com/dcdpr
 
 > `optional` **versionTime**: `number`
 
-Defined in: [packages/method/src/interfaces/crud.ts:16](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/crud.ts#L16)
+Defined in: [packages/method/src/interfaces/crud.ts:16](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/crud.ts#L16)

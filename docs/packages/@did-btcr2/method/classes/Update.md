@@ -1,6 +1,6 @@
 # Class: Update
 
-Defined in: [packages/method/src/core/crud/update.ts:42](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/update.ts#L42)
+Defined in: [packages/method/src/core/crud/update.ts:42](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/update.ts#L42)
 
 Implements [4.3 Update](https://dcdpr.github.io/did-btcr2/#update).
 
@@ -28,7 +28,7 @@ bip340-jcs-2025 cryptosuite with a proofPurpose of capabilityInvocation.
 
 > `static` **announce**(`params`): `Promise`&lt;[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)&gt;
 
-Defined in: [packages/method/src/core/crud/update.ts:221](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/update.ts#L221)
+Defined in: [packages/method/src/core/crud/update.ts:221](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/update.ts#L221)
 
 Implements [4.3.3 Announce DID Update](https://dcdpr.github.io/did-btcr2/#announce-did-update).
 
@@ -75,7 +75,7 @@ if the beaconService type is invalid
 
 > `static` **construct**(`params`): `Promise`&lt;[`DidUpdatePayload`](../../common/interfaces/DidUpdatePayload.md)&gt;
 
-Defined in: [packages/method/src/core/crud/update.ts:58](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/update.ts#L58)
+Defined in: [packages/method/src/core/crud/update.ts:58](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/update.ts#L58)
 
 Implements [4.3.1 Construct DID Update Payload](https://dcdpr.github.io/did-btcr2/#construct-did-update-payload).
 
@@ -129,7 +129,7 @@ InvalidDid if sourceDocument.id does not match identifier.
 
 > `static` **invoke**(`params`): `Promise`&lt;[`DidUpdateInvocation`](../../common/interfaces/DidUpdateInvocation.md)&gt;
 
-Defined in: [packages/method/src/core/crud/update.ts:129](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/update.ts#L129)
+Defined in: [packages/method/src/core/crud/update.ts:129](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/update.ts#L129)
 
 [4.3.2 Invoke DID Update Payload](https://dcdpr.github.io/did-btcr2/#invoke-did-update-payload).
 

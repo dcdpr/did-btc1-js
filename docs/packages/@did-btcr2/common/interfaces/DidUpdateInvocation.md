@@ -1,6 +1,6 @@
 # Interface: DidUpdateInvocation
 
-Defined in: [packages/common/src/interfaces.ts:107](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/interfaces.ts#L107)
+Defined in: [packages/common/src/interfaces.ts:107](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/interfaces.ts#L107)
 
 An extension of [DID Update Payload](DidUpdatePayload.md) containing a
 Data Integrity proof that authorizes the update. Once signed, the spec calls
@@ -21,7 +21,7 @@ and
 
 > **@context**: `string`[]
 
-Defined in: [packages/common/src/interfaces.ts:59](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/interfaces.ts#L59)
+Defined in: [packages/common/src/interfaces.ts:59](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/interfaces.ts#L59)
 
 JSON-LD context URIs for interpreting this payload, including contexts
 for ZCAP (capabilities), Data Integrity proofs, and JSON-LD patch ops.
@@ -36,7 +36,7 @@ for ZCAP (capabilities), Data Integrity proofs, and JSON-LD patch ops.
 
 > **patch**: [`JsonPatch`](../type-aliases/JsonPatch.md)
 
-Defined in: [packages/common/src/interfaces.ts:66](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/interfaces.ts#L66)
+Defined in: [packages/common/src/interfaces.ts:66](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/interfaces.ts#L66)
 
 A JSON Patch (or JSON-LD Patch) object defining the mutations to apply to
 the DID Document. Applying this patch to the current DID Document yields
@@ -52,7 +52,7 @@ the new DID Document (which must remain valid per DID Core spec).
 
 > **proof**: [`Proof`](Proof.md)
 
-Defined in: [packages/common/src/interfaces.ts:108](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/interfaces.ts#L108)
+Defined in: [packages/common/src/interfaces.ts:108](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/interfaces.ts#L108)
 
 A proof object (Data Integrity proof) that authorizes this update.
 It is a JSON-LD proof indicating a capability invocation on the DID's
@@ -69,7 +69,7 @@ Schnorr secp256k1 in did:btcr2).
 
 > **sourceHash**: `string`
 
-Defined in: [packages/common/src/interfaces.ts:73](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/interfaces.ts#L73)
+Defined in: [packages/common/src/interfaces.ts:73](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/interfaces.ts#L73)
 
 The multihash of the current (source) DID Document, encoded as a multibase
 base58-btc string. This is a SHA-256 hash of the canonicalized source DID
@@ -85,7 +85,7 @@ Document, used to ensure the patch is applied to the correct document state.
 
 > **targetHash**: `string`
 
-Defined in: [packages/common/src/interfaces.ts:80](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/interfaces.ts#L80)
+Defined in: [packages/common/src/interfaces.ts:80](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/interfaces.ts#L80)
 
 The multihash of the updated (target) DID Document, encoded as multibase
 base58-btc. This is the SHA-256 hash of the canonicalized
@@ -101,7 +101,7 @@ DID Document after applying the patch, used to verify the update result.
 
 > **targetVersionId**: `number`
 
-Defined in: [packages/common/src/interfaces.ts:86](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/interfaces.ts#L86)
+Defined in: [packages/common/src/interfaces.ts:86](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/interfaces.ts#L86)
 
 The version number of the DID Document after this update.
 It is equal to the previous document version + 1.

@@ -1,6 +1,6 @@
 # Class: DataIntegrityProof
 
-Defined in: [data-integrity-proof/index.ts:13](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/data-integrity-proof/index.ts#L13)
+Defined in: [data-integrity-proof/index.ts:13](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/data-integrity-proof/index.ts#L13)
 
 Implements section
 [2.2.1 DataIntegrityProof](https://dcdpr.github.io/data-integrity-schnorr-secp256k1/#dataintegrityproof)
@@ -17,7 +17,7 @@ of the [Data Integrity BIP-340 Cryptosuite](https://dcdpr.github.io/data-integri
 
 > **new DataIntegrityProof**(`cryptosuite`): `DataIntegrityProof`
 
-Defined in: [data-integrity-proof/index.ts:22](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/data-integrity-proof/index.ts#L22)
+Defined in: [data-integrity-proof/index.ts:22](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/data-integrity-proof/index.ts#L22)
 
 Creates an instance of DataIntegrityProof.
 
@@ -39,7 +39,7 @@ The cryptosuite to use for proof generation and verification.
 
 > **cryptosuite**: [`Cryptosuite`](Cryptosuite.md)
 
-Defined in: [data-integrity-proof/index.ts:15](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/data-integrity-proof/index.ts#L15)
+Defined in: [data-integrity-proof/index.ts:15](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/data-integrity-proof/index.ts#L15)
 
 #### Implementation of
 
@@ -51,7 +51,7 @@ Defined in: [data-integrity-proof/index.ts:15](https://github.com/dcdpr/did-btcr
 
 > **addProof**(`params`): `Promise`&lt;[`DidUpdateInvocation`](../../common/interfaces/DidUpdateInvocation.md)&gt;
 
-Defined in: [data-integrity-proof/index.ts:33](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/data-integrity-proof/index.ts#L33)
+Defined in: [data-integrity-proof/index.ts:33](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/data-integrity-proof/index.ts#L33)
 
 Add a proof to a document.
 
@@ -79,7 +79,7 @@ A document with a proof added.
 
 > **verifyProof**(`params`): `Promise`&lt;[`VerificationResult`](../interfaces/VerificationResult.md)&gt;
 
-Defined in: [data-integrity-proof/index.ts:74](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/data-integrity-proof/index.ts#L74)
+Defined in: [data-integrity-proof/index.ts:74](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/data-integrity-proof/index.ts#L74)
 
 Verify a proof.
 

@@ -2,7 +2,7 @@
 
 > **MultikeyObject** = `object`
 
-Defined in: [multikey/interface.ts:5](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L5)
+Defined in: [multikey/interface.ts:5](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L5)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [multikey/interface.ts:5](https://github.com/dcdpr/did-btcr2-js/blob
 
 > **controller**: `string`
 
-Defined in: [multikey/interface.ts:7](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L7)
+Defined in: [multikey/interface.ts:7](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L7)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [multikey/interface.ts:7](https://github.com/dcdpr/did-btcr2-js/blob
 
 > **fullId**: `string`
 
-Defined in: [multikey/interface.ts:8](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L8)
+Defined in: [multikey/interface.ts:8](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L8)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [multikey/interface.ts:8](https://github.com/dcdpr/did-btcr2-js/blob
 
 > **id**: `string`
 
-Defined in: [multikey/interface.ts:6](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L6)
+Defined in: [multikey/interface.ts:6](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L6)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [multikey/interface.ts:6](https://github.com/dcdpr/did-btcr2-js/blob
 
 > **keys**: [`SchnorrKeyPairObject`](../../common/type-aliases/SchnorrKeyPairObject.md)
 
-Defined in: [multikey/interface.ts:10](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L10)
+Defined in: [multikey/interface.ts:10](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L10)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [multikey/interface.ts:10](https://github.com/dcdpr/did-btcr2-js/blo
 
 > **signer**: `boolean`
 
-Defined in: [multikey/interface.ts:9](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L9)
+Defined in: [multikey/interface.ts:9](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L9)
 
 ***
 
@@ -50,4 +50,4 @@ Defined in: [multikey/interface.ts:9](https://github.com/dcdpr/did-btcr2-js/blob
 
 > **verificationMethod**: `DidVerificationMethod`
 
-Defined in: [multikey/interface.ts:11](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L11)
+Defined in: [multikey/interface.ts:11](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L11)

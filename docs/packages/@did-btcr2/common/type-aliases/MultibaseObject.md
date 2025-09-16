@@ -2,7 +2,7 @@
 
 > **MultibaseObject** = `object`
 
-Defined in: [packages/common/src/types.ts:44](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/types.ts#L44)
+Defined in: [packages/common/src/types.ts:44](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/types.ts#L44)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [packages/common/src/types.ts:44](https://github.com/dcdpr/did-btcr2
 
 > **address**: `string`
 
-Defined in: [packages/common/src/types.ts:45](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/types.ts#L45)
+Defined in: [packages/common/src/types.ts:45](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/types.ts#L45)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [packages/common/src/types.ts:45](https://github.com/dcdpr/did-btcr2
 
 > **key**: `number`[]
 
-Defined in: [packages/common/src/types.ts:47](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/types.ts#L47)
+Defined in: [packages/common/src/types.ts:47](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/types.ts#L47)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [packages/common/src/types.ts:47](https://github.com/dcdpr/did-btcr2
 
 > **prefix**: [`Bytes`](Bytes.md)
 
-Defined in: [packages/common/src/types.ts:46](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/types.ts#L46)
+Defined in: [packages/common/src/types.ts:46](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/types.ts#L46)

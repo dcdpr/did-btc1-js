@@ -1,5 +1,0 @@
-# Variable: TXIN\_WITNESS\_COINBASE
-
-> `const` **TXIN\_WITNESS\_COINBASE**: `"0000000000000000000000000000000000000000000000000000000000000000"` = `'0000000000000000000000000000000000000000000000000000000000000000'`
-
-Defined in: [packages/method/src/bitcoin/constants.ts:18](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/bitcoin/constants.ts#L18)

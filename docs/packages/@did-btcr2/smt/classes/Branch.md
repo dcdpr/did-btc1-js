@@ -1,6 +1,6 @@
 # Class: Branch
 
-Defined in: [branch.ts:7](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/smt/src/branch.ts#L7)
+Defined in: [branch.ts:7](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/smt/src/branch.ts#L7)
 
 ## Implements
 
@@ -12,7 +12,7 @@ Defined in: [branch.ts:7](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e73
 
 > **new Branch**(`leftChild`, `rightChild`, `hasher`): `Branch`
 
-Defined in: [branch.ts:11](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/smt/src/branch.ts#L11)
+Defined in: [branch.ts:11](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/smt/src/branch.ts#L11)
 
 #### Parameters
 
@@ -38,7 +38,7 @@ Defined in: [branch.ts:11](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e7
 
 > **copy**(): [`Node`](../interfaces/Node.md)
 
-Defined in: [branch.ts:41](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/smt/src/branch.ts#L41)
+Defined in: [branch.ts:41](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/smt/src/branch.ts#L41)
 
 copy performs a deep copy (or "computed" reference).
 In real usage, you might store partial subtrees or do a shallow copy.
@@ -57,7 +57,7 @@ In real usage, you might store partial subtrees or do a shallow copy.
 
 > **getHash**(): `Uint8Array`
 
-Defined in: [branch.ts:17](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/smt/src/branch.ts#L17)
+Defined in: [branch.ts:17](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/smt/src/branch.ts#L17)
 
 getHash returns the Merkle hash of this node.
 
@@ -75,7 +75,7 @@ getHash returns the Merkle hash of this node.
 
 > **getLeftChild**(): [`Node`](../interfaces/Node.md)
 
-Defined in: [branch.ts:57](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/smt/src/branch.ts#L57)
+Defined in: [branch.ts:57](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/smt/src/branch.ts#L57)
 
 #### Returns
 
@@ -87,7 +87,7 @@ Defined in: [branch.ts:57](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e7
 
 > **getRightChild**(): [`Node`](../interfaces/Node.md)
 
-Defined in: [branch.ts:61](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/smt/src/branch.ts#L61)
+Defined in: [branch.ts:61](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/smt/src/branch.ts#L61)
 
 #### Returns
 
@@ -99,7 +99,7 @@ Defined in: [branch.ts:61](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e7
 
 > **getSum**(): `bigint`
 
-Defined in: [branch.ts:32](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/smt/src/branch.ts#L32)
+Defined in: [branch.ts:32](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/smt/src/branch.ts#L32)
 
 getSum returns the 64-bit sum that this node contributes upward.
 

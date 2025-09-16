@@ -2,7 +2,7 @@
 
 > **Maybe**&lt;`T`&gt; = `T` \| `any`
 
-Defined in: [packages/common/src/types.ts:78](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/types.ts#L78)
+Defined in: [packages/common/src/types.ts:78](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/types.ts#L78)
 
 ## Type Parameters
 

@@ -1,6 +1,6 @@
 # Interface: GenerateHashParams
 
-Defined in: [cryptosuite/interface.ts:29](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/interface.ts#L29)
+Defined in: [cryptosuite/interface.ts:29](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/interface.ts#L29)
 
 ## Properties
 
@@ -8,7 +8,7 @@ Defined in: [cryptosuite/interface.ts:29](https://github.com/dcdpr/did-btcr2-js/
 
 > **canonicalConfig**: `string`
 
-Defined in: [cryptosuite/interface.ts:30](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/interface.ts#L30)
+Defined in: [cryptosuite/interface.ts:30](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/interface.ts#L30)
 
 ***
 
@@ -16,4 +16,4 @@ Defined in: [cryptosuite/interface.ts:30](https://github.com/dcdpr/did-btcr2-js/
 
 > **canonicalDocument**: `string`
 
-Defined in: [cryptosuite/interface.ts:31](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/cryptosuite/interface.ts#L31)
+Defined in: [cryptosuite/interface.ts:31](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/cryptosuite/interface.ts#L31)

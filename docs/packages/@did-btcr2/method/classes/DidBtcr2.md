@@ -1,6 +1,6 @@
 # Class: DidBtcr2
 
-Defined in: [packages/method/src/did-btcr2.ts:42](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/did-btcr2.ts#L42)
+Defined in: [packages/method/src/did-btcr2.ts:42](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/did-btcr2.ts#L42)
 
 Implements [did:btcr2 DID Method Specification](https://dcdpr.github.io/did-btcr2).
 did:btcr2 is a censorship resistant DID Method using the Bitcoin blockchain as a Verifiable Data Registry to announce
@@ -34,7 +34,7 @@ communication of the DID document; private DID resolution; and non-repudiation a
 
 > `static` **methodName**: `string` = `'btcr2'`
 
-Defined in: [packages/method/src/did-btcr2.ts:44](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/did-btcr2.ts#L44)
+Defined in: [packages/method/src/did-btcr2.ts:44](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/did-btcr2.ts#L44)
 
 ## Methods
 
@@ -42,7 +42,7 @@ Defined in: [packages/method/src/did-btcr2.ts:44](https://github.com/dcdpr/did-b
 
 > `static` **create**(`params`): `Promise`&lt;[`CreateResponse`](../type-aliases/CreateResponse.md)&gt;
 
-Defined in: [packages/method/src/did-btcr2.ts:64](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/did-btcr2.ts#L64)
+Defined in: [packages/method/src/did-btcr2.ts:64](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/did-btcr2.ts#L64)
 
 Entry point for section [4.1 Create](https://dcdpr.github.io/did-btcr2/#create).
 See [Create](Create.md) for implementation details.
@@ -76,7 +76,7 @@ if any of the checks fail
 
 > `static` **getSigningMethod**(`params`): [`DidVerificationMethod`](DidVerificationMethod.md)
 
-Defined in: [packages/method/src/did-btcr2.ts:256](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/did-btcr2.ts#L256)
+Defined in: [packages/method/src/did-btcr2.ts:256](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/did-btcr2.ts#L256)
 
 Given the W3C DID Document of a `did:btcr2` identifier, return the signing verification method that will be used
 for signing messages and credentials. If given, the `methodId` parameter is used to select the
@@ -117,7 +117,7 @@ if the parsed did method does not match `btcr2` or signing method could not be d
 
 > `static` **resolve**(`identifier`, `resolutionsOptions?`): `Promise`&lt;`DidResolutionResult`&gt;
 
-Defined in: [packages/method/src/did-btcr2.ts:115](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/did-btcr2.ts#L115)
+Defined in: [packages/method/src/did-btcr2.ts:115](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/did-btcr2.ts#L115)
 
 Entry point for section [7.2 Read](https://dcdpr.github.io/did-btcr2/#read).
 See [Resolve](Resolve.md) for implementation details.
@@ -169,7 +169,7 @@ const resolution = await DidBtcr2.resolve('did:btcr2:k1q0dygyp3gz969tp46dychzy4q
 
 > `static` **update**(`params`): `Promise`&lt;`any`&gt;
 
-Defined in: [packages/method/src/did-btcr2.ts:182](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/did-btcr2.ts#L182)
+Defined in: [packages/method/src/did-btcr2.ts:182](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/did-btcr2.ts#L182)
 
 Entry point for section [4.3 Update](https://dcdpr.github.io/did-btcr2/#update).
 See [Update](Update.md) for implementation details.
