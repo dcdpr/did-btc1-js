@@ -2,7 +2,7 @@
 
 > **ErrorOptions** = `object`
 
-Defined in: [packages/common/src/errors.ts:113](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/errors.ts#L113)
+Defined in: [packages/common/src/errors.ts:113](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/errors.ts#L113)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [packages/common/src/errors.ts:113](https://github.com/dcdpr/did-btc
 
 > `optional` **data**: `any`
 
-Defined in: [packages/common/src/errors.ts:116](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/errors.ts#L116)
+Defined in: [packages/common/src/errors.ts:116](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/errors.ts#L116)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [packages/common/src/errors.ts:116](https://github.com/dcdpr/did-btc
 
 > `optional` **name**: `string`
 
-Defined in: [packages/common/src/errors.ts:115](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/errors.ts#L115)
+Defined in: [packages/common/src/errors.ts:115](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/errors.ts#L115)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [packages/common/src/errors.ts:115](https://github.com/dcdpr/did-btc
 
 > `optional` **type**: `string`
 
-Defined in: [packages/common/src/errors.ts:114](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/errors.ts#L114)
+Defined in: [packages/common/src/errors.ts:114](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/errors.ts#L114)

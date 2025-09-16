@@ -1,6 +1,6 @@
 # Class: CIDAggregateBeacon
 
-Defined in: [packages/method/src/core/beacon/cid-aggregate.ts:24](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/beacon/cid-aggregate.ts#L24)
+Defined in: [packages/method/src/core/beacon/cid-aggregate.ts:24](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/beacon/cid-aggregate.ts#L24)
 
 Implements [5.2 CIDAggregate Beacon](https://dcdpr.github.io/did-btcr2/#cidaggregate-beacon).
 
@@ -25,7 +25,7 @@ n-of-n P2TR Bitcoin address where n is the number of unique DID controllers subm
 
 > **new CIDAggregateBeacon**(`service`, `sidecar?`): `CIDAggregateBeacon`
 
-Defined in: [packages/method/src/core/beacon/cid-aggregate.ts:30](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/beacon/cid-aggregate.ts#L30)
+Defined in: [packages/method/src/core/beacon/cid-aggregate.ts:30](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/beacon/cid-aggregate.ts#L30)
 
 Creates an instance of CIDAggregateBeacon.
 
@@ -57,7 +57,7 @@ The sidecar data of the Beacon.
 
 > **id**: `string`
 
-Defined in: [packages/method/src/interfaces/beacon.ts:37](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/beacon.ts#L37)
+Defined in: [packages/method/src/interfaces/beacon.ts:36](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/beacon.ts#L36)
 
 A unique identifier for the Beacon
 
@@ -71,7 +71,7 @@ A unique identifier for the Beacon
 
 > **serviceEndpoint**: `DidServiceEndpoint`
 
-Defined in: [packages/method/src/interfaces/beacon.ts:39](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/beacon.ts#L39)
+Defined in: [packages/method/src/interfaces/beacon.ts:38](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/beacon.ts#L38)
 
 The service endpoint of the Beacon
 
@@ -85,7 +85,7 @@ The service endpoint of the Beacon
 
 > `optional` **sidecar**: [`SidecarData`](../type-aliases/SidecarData.md)
 
-Defined in: [packages/method/src/interfaces/beacon.ts:40](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/beacon.ts#L40)
+Defined in: [packages/method/src/interfaces/beacon.ts:39](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/beacon.ts#L39)
 
 #### Inherited from
 
@@ -97,7 +97,7 @@ Defined in: [packages/method/src/interfaces/beacon.ts:40](https://github.com/dcd
 
 > **type**: `string`
 
-Defined in: [packages/method/src/interfaces/beacon.ts:38](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/beacon.ts#L38)
+Defined in: [packages/method/src/interfaces/beacon.ts:37](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/beacon.ts#L37)
 
 The type of the Beacon
 
@@ -113,7 +113,7 @@ The type of the Beacon
 
 > **get** **service**(): [`BeaconService`](../interfaces/BeaconService.md)
 
-Defined in: [packages/method/src/core/beacon/cid-aggregate.ts:33](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/beacon/cid-aggregate.ts#L33)
+Defined in: [packages/method/src/core/beacon/cid-aggregate.ts:33](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/beacon/cid-aggregate.ts#L33)
 
 Returns the Beacon Service object.
 
@@ -133,7 +133,7 @@ Returns the Beacon Service object
 
 > **broadcastSignal**(`didUpdatePayload`): `Promise`&lt;[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)&gt;
 
-Defined in: [packages/method/src/core/beacon/cid-aggregate.ts:124](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/beacon/cid-aggregate.ts#L124)
+Defined in: [packages/method/src/core/beacon/cid-aggregate.ts:124](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/beacon/cid-aggregate.ts#L124)
 
 TODO: Finish implementation
 
@@ -175,7 +175,7 @@ if the bitcoin address is invalid or unfunded.
 
 > **generateSignal**(`didUpdatePayload`): [`BeaconSignal`](../interfaces/BeaconSignal.md)
 
-Defined in: [packages/method/src/core/beacon/cid-aggregate.ts:71](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/beacon/cid-aggregate.ts#L71)
+Defined in: [packages/method/src/core/beacon/cid-aggregate.ts:71](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/beacon/cid-aggregate.ts#L71)
 
 TODO: Figure out if this is necessary or not.
 
@@ -207,7 +207,7 @@ if the signal is invalid.
 
 > **processSignal**(`signal`, `signalsMetadata`): `Promise`&lt;`undefined` \| [`DidUpdateInvocation`](../../common/interfaces/DidUpdateInvocation.md)&gt;
 
-Defined in: [packages/method/src/core/beacon/cid-aggregate.ts:103](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/beacon/cid-aggregate.ts#L103)
+Defined in: [packages/method/src/core/beacon/cid-aggregate.ts:103](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/beacon/cid-aggregate.ts#L103)
 
 TODO: Finish implementation
 
@@ -234,7 +234,7 @@ did:btcr2 identifier being resolved or throws an error.
 
 ##### signal
 
-[`RawTransactionV2`](../interfaces/RawTransactionV2.md)
+[`RawTransactionV2`](../../bitcoin/index.browser/interfaces/RawTransactionV2.md)
 
 Bitcoin transaction representing a Beacon Signal.
 
@@ -264,7 +264,7 @@ if the signalTx is invalid or the signalsMetadata is invalid.
 
 > `static` **establish**(`id`, `type`, `serviceEndpoint`): `CIDAggregateBeacon`
 
-Defined in: [packages/method/src/core/beacon/cid-aggregate.ts:60](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/beacon/cid-aggregate.ts#L60)
+Defined in: [packages/method/src/core/beacon/cid-aggregate.ts:60](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/beacon/cid-aggregate.ts#L60)
 
 TODO: Finish implementation
 

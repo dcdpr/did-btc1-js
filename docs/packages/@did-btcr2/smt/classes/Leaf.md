@@ -1,6 +1,6 @@
 # Class: Leaf
 
-Defined in: [leaf.ts:9](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/smt/src/leaf.ts#L9)
+Defined in: [leaf.ts:9](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/smt/src/leaf.ts#L9)
 
 ## Implements
 
@@ -12,7 +12,7 @@ Defined in: [leaf.ts:9](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e7352
 
 > **new Leaf**(`value`, `sumValue`, `hasher`): `Leaf`
 
-Defined in: [leaf.ts:12](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/smt/src/leaf.ts#L12)
+Defined in: [leaf.ts:12](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/smt/src/leaf.ts#L12)
 
 #### Parameters
 
@@ -38,7 +38,7 @@ Defined in: [leaf.ts:12](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735
 
 > **copy**(): [`Node`](../interfaces/Node.md)
 
-Defined in: [leaf.ts:33](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/smt/src/leaf.ts#L33)
+Defined in: [leaf.ts:33](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/smt/src/leaf.ts#L33)
 
 copy performs a deep copy (or "computed" reference).
 In real usage, you might store partial subtrees or do a shallow copy.
@@ -57,7 +57,7 @@ In real usage, you might store partial subtrees or do a shallow copy.
 
 > **getHash**(): `Uint8Array`
 
-Defined in: [leaf.ts:18](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/smt/src/leaf.ts#L18)
+Defined in: [leaf.ts:18](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/smt/src/leaf.ts#L18)
 
 getHash returns the Merkle hash of this node.
 
@@ -75,7 +75,7 @@ getHash returns the Merkle hash of this node.
 
 > **getSum**(): `bigint`
 
-Defined in: [leaf.ts:29](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/smt/src/leaf.ts#L29)
+Defined in: [leaf.ts:29](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/smt/src/leaf.ts#L29)
 
 getSum returns the 64-bit sum that this node contributes upward.
 
@@ -93,7 +93,7 @@ getSum returns the 64-bit sum that this node contributes upward.
 
 > **isEmpty**(): `boolean`
 
-Defined in: [leaf.ts:43](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/smt/src/leaf.ts#L43)
+Defined in: [leaf.ts:43](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/smt/src/leaf.ts#L43)
 
 #### Returns
 

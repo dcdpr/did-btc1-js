@@ -1,6 +1,6 @@
 # Interface: IBeacon
 
-Defined in: [packages/method/src/interfaces/ibeacon.ts:12](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/ibeacon.ts#L12)
+Defined in: [packages/method/src/interfaces/ibeacon.ts:11](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/ibeacon.ts#L11)
 
 Beacon interface
  IBeacon
@@ -11,7 +11,7 @@ Beacon interface
 
 > **id**: `string`
 
-Defined in: [packages/method/src/interfaces/ibeacon.ts:17](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/ibeacon.ts#L17)
+Defined in: [packages/method/src/interfaces/ibeacon.ts:16](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/ibeacon.ts#L16)
 
 A unique identifier for the Beacon
 
@@ -21,7 +21,7 @@ A unique identifier for the Beacon
 
 > **service**: [`BeaconService`](BeaconService.md)
 
-Defined in: [packages/method/src/interfaces/ibeacon.ts:35](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/ibeacon.ts#L35)
+Defined in: [packages/method/src/interfaces/ibeacon.ts:34](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/ibeacon.ts#L34)
 
 Returns the Beacon Service object
 
@@ -31,7 +31,7 @@ Returns the Beacon Service object
 
 > **serviceEndpoint**: `DidServiceEndpoint`
 
-Defined in: [packages/method/src/interfaces/ibeacon.ts:29](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/ibeacon.ts#L29)
+Defined in: [packages/method/src/interfaces/ibeacon.ts:28](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/ibeacon.ts#L28)
 
 The service endpoint of the Beacon
 
@@ -41,7 +41,7 @@ The service endpoint of the Beacon
 
 > **type**: `string`
 
-Defined in: [packages/method/src/interfaces/ibeacon.ts:23](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/ibeacon.ts#L23)
+Defined in: [packages/method/src/interfaces/ibeacon.ts:22](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/ibeacon.ts#L22)
 
 The type of the Beacon
 
@@ -51,7 +51,7 @@ The type of the Beacon
 
 > **broadcastSignal**(`didUpdatePayload`): `Promise`&lt;[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)&gt;
 
-Defined in: [packages/method/src/interfaces/ibeacon.ts:58](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/ibeacon.ts#L58)
+Defined in: [packages/method/src/interfaces/ibeacon.ts:57](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/ibeacon.ts#L57)
 
 Broadcasts a signal.
 
@@ -75,7 +75,7 @@ The signal metadata.
 
 > **generateSignal**(`didUpdatePayload`): [`BeaconSignal`](BeaconSignal.md)
 
-Defined in: [packages/method/src/interfaces/ibeacon.ts:42](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/ibeacon.ts#L42)
+Defined in: [packages/method/src/interfaces/ibeacon.ts:41](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/ibeacon.ts#L41)
 
 Generates a Beacon Signal Transaction
 
@@ -99,7 +99,7 @@ The Beacon Signal
 
 > **processSignal**(`signal`, `signalsMetadata`): `Promise`&lt;`undefined` \| [`DidUpdatePayload`](../../common/interfaces/DidUpdatePayload.md)&gt;
 
-Defined in: [packages/method/src/interfaces/ibeacon.ts:50](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/ibeacon.ts#L50)
+Defined in: [packages/method/src/interfaces/ibeacon.ts:49](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/ibeacon.ts#L49)
 
 Processes a Beacon Signal.
 
@@ -107,7 +107,7 @@ Processes a Beacon Signal.
 
 ##### signal
 
-[`RawTransactionV2`](RawTransactionV2.md)
+[`RawTransactionV2`](../../bitcoin/index.browser/interfaces/RawTransactionV2.md)
 
 The raw transaction
 

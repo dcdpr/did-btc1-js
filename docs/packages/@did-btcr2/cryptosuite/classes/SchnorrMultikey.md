@@ -1,6 +1,6 @@
 # Class: SchnorrMultikey
 
-Defined in: [multikey/index.ts:28](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/index.ts#L28)
+Defined in: [multikey/index.ts:28](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/index.ts#L28)
 
 SchnorrMultikey is an implementation of [2.1.1 Multikey](https://dcdpr.github.io/data-integrity-schnorr-secp256k1/#multikey).
 The publicKeyMultibase value of the verification method MUST be a base-58-btc Multibase encoding of a Multikey encoded secp256k1 public key.
@@ -17,7 +17,7 @@ The secretKeyMultibase value of the verification method MUST be a Multikey encod
 
 > **new SchnorrMultikey**(`params`): `SchnorrMultikey`
 
-Defined in: [multikey/index.ts:51](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/index.ts#L51)
+Defined in: [multikey/index.ts:51](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/index.ts#L51)
 
 Creates an instance of SchnorrMultikey.
 
@@ -43,7 +43,7 @@ if neither a publicKey nor a privateKey is provided
 
 > `readonly` **controller**: `string`
 
-Defined in: [multikey/index.ts:36](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/index.ts#L36)
+Defined in: [multikey/index.ts:36](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/index.ts#L36)
 
 #### Implementation of
 
@@ -55,7 +55,7 @@ Defined in: [multikey/index.ts:36](https://github.com/dcdpr/did-btcr2-js/blob/4a
 
 > `readonly` **id**: `string`
 
-Defined in: [multikey/index.ts:33](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/index.ts#L33)
+Defined in: [multikey/index.ts:33](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/index.ts#L33)
 
 #### Implementation of
 
@@ -67,7 +67,7 @@ Defined in: [multikey/index.ts:33](https://github.com/dcdpr/did-btcr2-js/blob/4a
 
 > `readonly` `static` **type**: `string` = `'Multikey'`
 
-Defined in: [multikey/index.ts:30](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/index.ts#L30)
+Defined in: [multikey/index.ts:30](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/index.ts#L30)
 
 ## Accessors
 
@@ -77,7 +77,7 @@ Defined in: [multikey/index.ts:30](https://github.com/dcdpr/did-btcr2-js/blob/4a
 
 > **get** **keys**(): [`SchnorrKeyPair`](../../keypair/classes/SchnorrKeyPair.md)
 
-Defined in: [multikey/index.ts:69](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/index.ts#L69)
+Defined in: [multikey/index.ts:69](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/index.ts#L69)
 
 ##### Returns
 
@@ -95,7 +95,7 @@ Defined in: [multikey/index.ts:69](https://github.com/dcdpr/did-btcr2-js/blob/4a
 
 > **get** **publicKey**(): [`PublicKey`](../../keypair/classes/PublicKey.md)
 
-Defined in: [multikey/index.ts:76](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/index.ts#L76)
+Defined in: [multikey/index.ts:76](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/index.ts#L76)
 
 ##### Returns
 
@@ -113,7 +113,7 @@ Defined in: [multikey/index.ts:76](https://github.com/dcdpr/did-btcr2-js/blob/4a
 
 > **get** **secretKey**(): [`SecretKey`](../../keypair/classes/SecretKey.md)
 
-Defined in: [multikey/index.ts:83](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/index.ts#L83)
+Defined in: [multikey/index.ts:83](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/index.ts#L83)
 
 ##### Returns
 
@@ -131,7 +131,7 @@ Defined in: [multikey/index.ts:83](https://github.com/dcdpr/did-btcr2-js/blob/4a
 
 > **get** **signer**(): `boolean`
 
-Defined in: [multikey/index.ts:235](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/index.ts#L235)
+Defined in: [multikey/index.ts:235](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/index.ts#L235)
 
 ##### Returns
 
@@ -147,7 +147,7 @@ Defined in: [multikey/index.ts:235](https://github.com/dcdpr/did-btcr2-js/blob/4
 
 > **fromVerificationMethod**(`verificationMethod`): [`Multikey`](../interfaces/Multikey.md)
 
-Defined in: [multikey/index.ts:185](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/index.ts#L185)
+Defined in: [multikey/index.ts:185](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/index.ts#L185)
 
 Convert a verification method to a multikey.
 
@@ -181,7 +181,7 @@ if the publicKeyMultibase has an invalid prefix.
 
 > **fullId**(): `string`
 
-Defined in: [multikey/index.ts:157](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/index.ts#L157)
+Defined in: [multikey/index.ts:157](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/index.ts#L157)
 
 Get the full id of the multikey
 
@@ -201,7 +201,7 @@ The full id of the multikey
 
 > **json**(): [`MultikeyObject`](../type-aliases/MultikeyObject.md)
 
-Defined in: [multikey/index.ts:243](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/index.ts#L243)
+Defined in: [multikey/index.ts:243](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/index.ts#L243)
 
 Convert the multikey to a JSON object.
 
@@ -221,7 +221,7 @@ The multikey as a JSON object.
 
 > **sign**(`data`, `opts?`): [`Bytes`](../../common/type-aliases/Bytes.md)
 
-Defined in: [multikey/index.ts:111](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/index.ts#L111)
+Defined in: [multikey/index.ts:111](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/index.ts#L111)
 
 Produce a signature over arbitrary data using schnorr or ecdsa.
 
@@ -259,7 +259,7 @@ if no private key is provided.
 
 > **toCryptosuite**(`cryptosuite?`): [`Cryptosuite`](Cryptosuite.md)
 
-Defined in: [multikey/index.ts:99](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/index.ts#L99)
+Defined in: [multikey/index.ts:99](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/index.ts#L99)
 
 Constructs an instance of Cryptosuite from the current Multikey instance.
 
@@ -279,7 +279,7 @@ Constructs an instance of Cryptosuite from the current Multikey instance.
 
 > **toVerificationMethod**(): `DidVerificationMethod`
 
-Defined in: [multikey/index.ts:166](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/index.ts#L166)
+Defined in: [multikey/index.ts:166](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/index.ts#L166)
 
 Convert the multikey to a verification method.
 
@@ -299,7 +299,7 @@ The verification method.
 
 > **verify**(`signature`, `data`, `opts?`): `boolean`
 
-Defined in: [multikey/index.ts:141](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/index.ts#L141)
+Defined in: [multikey/index.ts:141](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/index.ts#L141)
 
 Verify a signature using schnorr or ecdsa.
 
@@ -307,7 +307,7 @@ Verify a signature using schnorr or ecdsa.
 
 ##### signature
 
-[`Bytes`](../../common/type-aliases/Bytes.md)
+[`Hex`](../../common/type-aliases/Hex.md)
 
 Signature for verification.
 
@@ -339,7 +339,7 @@ If the signature is valid against the public key.
 
 > `static` **fromPrivateKey**(`params`): `SchnorrMultikey`
 
-Defined in: [multikey/index.ts:277](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/index.ts#L277)
+Defined in: [multikey/index.ts:277](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/index.ts#L277)
 
 Creates a `Multikey` instance from a private key
 
@@ -363,7 +363,7 @@ The new multikey instance
 
 > `static` **fromPublicKey**(`params`): [`Multikey`](../interfaces/Multikey.md)
 
-Defined in: [multikey/index.ts:299](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/index.ts#L299)
+Defined in: [multikey/index.ts:299](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/index.ts#L299)
 
 Creates a `Multikey` instance from a public key
 
@@ -387,7 +387,7 @@ The new multikey instance
 
 > `static` **fromPublicKeyMultibase**(`params`): `SchnorrMultikey`
 
-Defined in: [multikey/index.ts:315](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/index.ts#L315)
+Defined in: [multikey/index.ts:315](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/index.ts#L315)
 
 Creates a `Multikey` instance from a public key multibase.
 
@@ -411,7 +411,7 @@ The new multikey instance.
 
 > `static` **initialize**(`params`): `SchnorrMultikey`
 
-Defined in: [multikey/index.ts:265](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/index.ts#L265)
+Defined in: [multikey/index.ts:265](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/index.ts#L265)
 
 Static convenience method to create a new Multikey instance.
 

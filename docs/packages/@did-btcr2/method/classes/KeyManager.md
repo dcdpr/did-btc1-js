@@ -1,6 +1,6 @@
 # Class: KeyManager
 
-Defined in: [packages/method/src/core/key-manager/index.ts:31](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/index.ts#L31)
+Defined in: [packages/method/src/core/key-manager/index.ts:31](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/index.ts#L31)
 
 Class for managing cryptographic keys for the B DID method.
  KeyManager
@@ -17,7 +17,7 @@ Class for managing cryptographic keys for the B DID method.
 
 > **new KeyManager**(`params`): `KeyManager`
 
-Defined in: [packages/method/src/core/key-manager/index.ts:70](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/index.ts#L70)
+Defined in: [packages/method/src/core/key-manager/index.ts:70](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/index.ts#L70)
 
 Creates an instance of KeyManager.
 
@@ -39,7 +39,7 @@ The parameters to initialize the key manager.
 
 > `optional` **activeKeyUri**: `string`
 
-Defined in: [packages/method/src/core/key-manager/index.ts:46](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/index.ts#L46)
+Defined in: [packages/method/src/core/key-manager/index.ts:46](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/index.ts#L46)
 
 The `activeKeyUri` property is a string that represents the URI of the currently active key.
 It is used to identify the key that will be used for signing and verifying operations.
@@ -58,7 +58,7 @@ This property is optional and can be set to a specific key URI when initializing
 
 > **get** `static` **instance**(): `KeyManager`
 
-Defined in: [packages/method/src/core/key-manager/index.ts:86](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/index.ts#L86)
+Defined in: [packages/method/src/core/key-manager/index.ts:86](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/index.ts#L86)
 
 Gets the singleton instance of the KeyManager.
 
@@ -74,7 +74,7 @@ The singleton instance of the KeyManager.
 
 > **digest**(`data`): [`Bytes`](../../common/type-aliases/Bytes.md)
 
-Defined in: [packages/method/src/core/key-manager/index.ts:250](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/index.ts#L250)
+Defined in: [packages/method/src/core/key-manager/index.ts:250](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/index.ts#L250)
 
 Computes the hash of the given data.
 
@@ -102,7 +102,7 @@ The hash of the data.
 
 > **exportKey**(`keyUri?`): `Promise`&lt;`undefined` \| [`SchnorrMultikey`](../../cryptosuite/classes/SchnorrMultikey.md)&gt;
 
-Defined in: [packages/method/src/core/key-manager/index.ts:192](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/index.ts#L192)
+Defined in: [packages/method/src/core/key-manager/index.ts:192](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/index.ts#L192)
 
 Exports the full multikeypair from the key store.
 
@@ -132,7 +132,7 @@ If the key is not found in the key store.
 
 > **getKeySigner**(`keyUri`, `network`): `Promise`&lt;[`Signer`](Signer.md)&gt;
 
-Defined in: [packages/method/src/core/key-manager/index.ts:334](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/index.ts#L334)
+Defined in: [packages/method/src/core/key-manager/index.ts:334](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/index.ts#L334)
 
 #### Parameters
 
@@ -142,7 +142,7 @@ Defined in: [packages/method/src/core/key-manager/index.ts:334](https://github.c
 
 ##### network
 
-keyof `AvailableNetworks`
+keyof [`AvailableNetworks`](../../bitcoin/index.browser/type-aliases/AvailableNetworks.md)
 
 #### Returns
 
@@ -154,7 +154,7 @@ keyof `AvailableNetworks`
 
 > **getPublicKey**(`keyUri?`): `Promise`&lt;[`PublicKey`](../../keypair/classes/PublicKey.md)&gt;
 
-Defined in: [packages/method/src/core/key-manager/index.ts:111](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/index.ts#L111)
+Defined in: [packages/method/src/core/key-manager/index.ts:111](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/index.ts#L111)
 
 Gets the key pair from the key store and returns a PublicKey.
 
@@ -182,7 +182,7 @@ The public key associated with the key URI.
 
 > **importKey**(`keys`, `keyUri`, `options`): `Promise`&lt;`string`&gt;
 
-Defined in: [packages/method/src/core/key-manager/index.ts:205](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/index.ts#L205)
+Defined in: [packages/method/src/core/key-manager/index.ts:205](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/index.ts#L205)
 
 Imports a keypair to the store.
 
@@ -222,7 +222,7 @@ A promise that resolves to the key identifier of the imported key.
 
 > **sign**(`data`, `keyUri?`): `Promise`&lt;[`Bytes`](../../common/type-aliases/Bytes.md)&gt;
 
-Defined in: [packages/method/src/core/key-manager/index.ts:130](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/index.ts#L130)
+Defined in: [packages/method/src/core/key-manager/index.ts:130](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/index.ts#L130)
 
 Signs the given data using the key associated with the key URI.
 
@@ -256,7 +256,7 @@ A promise resolving to the signature of the data.
 
 > **signTransaction**(`txHex`, `keyUri?`): `Promise`&lt;[`Hex`](../../common/type-aliases/Hex.md)&gt;
 
-Defined in: [packages/method/src/core/key-manager/index.ts:102](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/index.ts#L102)
+Defined in: [packages/method/src/core/key-manager/index.ts:102](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/index.ts#L102)
 
 Signs a transaction using the key associated with the key URI.
 
@@ -290,7 +290,7 @@ A promise resolving to the signed transaction hex.
 
 > **verify**(`signature`, `data`, `keyUri?`): `Promise`&lt;`boolean`&gt;
 
-Defined in: [packages/method/src/core/key-manager/index.ts:155](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/index.ts#L155)
+Defined in: [packages/method/src/core/key-manager/index.ts:155](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/index.ts#L155)
 
 Verifies a signature using the key associated with the key URI.
 
@@ -330,7 +330,7 @@ A promise resolving to a boolean indicating the verification result.
 
 > `static` **computeKeyUri**(`id`, `controller?`): `string`
 
-Defined in: [packages/method/src/core/key-manager/index.ts:260](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/index.ts#L260)
+Defined in: [packages/method/src/core/key-manager/index.ts:260](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/index.ts#L260)
 
 Computes the key URI of a given keypair.
 
@@ -360,7 +360,7 @@ A full DID fragment URI (e.g. 'did:btcr2:xyz#key-1')
 
 > `static` **getKeyPair**(`keyUri?`): `Promise`&lt;`undefined` \| [`SchnorrMultikey`](../../cryptosuite/classes/SchnorrMultikey.md)&gt;
 
-Defined in: [packages/method/src/core/key-manager/index.ts:327](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/index.ts#L327)
+Defined in: [packages/method/src/core/key-manager/index.ts:327](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/index.ts#L327)
 
 Retrieves a keypair from the key store using the provided key URI.
 
@@ -384,7 +384,7 @@ The retrieved keypair, or undefined if not found.
 
 > `static` **initialize**(`keys`, `keyUri`): `Promise`&lt;`KeyManager`&gt;
 
-Defined in: [packages/method/src/core/key-manager/index.ts:285](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/index.ts#L285)
+Defined in: [packages/method/src/core/key-manager/index.ts:285](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/index.ts#L285)
 
 Initializes a singleton KeyManager instance.
 
@@ -410,7 +410,7 @@ The keypair used to initialize the key manager.
 
 > `static` **toMultibaseUri**(`data`): `string`
 
-Defined in: [packages/method/src/core/key-manager/index.ts:270](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/key-manager/index.ts#L270)
+Defined in: [packages/method/src/core/key-manager/index.ts:270](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/key-manager/index.ts#L270)
 
 Computes a multibase-compliant URI from a key.
 

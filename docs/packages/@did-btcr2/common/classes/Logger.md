@@ -1,6 +1,6 @@
 # Class: Logger
 
-Defined in: [packages/common/src/logger.ts:55](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/logger.ts#L55)
+Defined in: [packages/common/src/logger.ts:55](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/logger.ts#L55)
 
 A flexible, feature-rich logger with:
 - Environment-based filtering
@@ -15,7 +15,7 @@ A flexible, feature-rich logger with:
 
 > **new Logger**(`namespace?`): `Logger`
 
-Defined in: [packages/common/src/logger.ts:59](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/logger.ts#L59)
+Defined in: [packages/common/src/logger.ts:59](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/logger.ts#L59)
 
 #### Parameters
 
@@ -33,7 +33,7 @@ Defined in: [packages/common/src/logger.ts:59](https://github.com/dcdpr/did-btcr
 
 > **debug**(`message?`, ...`args?`): `Logger`
 
-Defined in: [packages/common/src/logger.ts:83](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/logger.ts#L83)
+Defined in: [packages/common/src/logger.ts:83](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/logger.ts#L83)
 
 #### Parameters
 
@@ -55,7 +55,7 @@ Defined in: [packages/common/src/logger.ts:83](https://github.com/dcdpr/did-btcr
 
 > **error**(`message?`, ...`args?`): `Logger`
 
-Defined in: [packages/common/src/logger.ts:87](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/logger.ts#L87)
+Defined in: [packages/common/src/logger.ts:87](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/logger.ts#L87)
 
 #### Parameters
 
@@ -77,7 +77,7 @@ Defined in: [packages/common/src/logger.ts:87](https://github.com/dcdpr/did-btcr
 
 > **info**(`message?`, ...`args?`): `Logger`
 
-Defined in: [packages/common/src/logger.ts:91](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/logger.ts#L91)
+Defined in: [packages/common/src/logger.ts:91](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/logger.ts#L91)
 
 #### Parameters
 
@@ -99,7 +99,7 @@ Defined in: [packages/common/src/logger.ts:91](https://github.com/dcdpr/did-btcr
 
 > **log**(`message?`, ...`args?`): `Logger`
 
-Defined in: [packages/common/src/logger.ts:103](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/logger.ts#L103)
+Defined in: [packages/common/src/logger.ts:103](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/logger.ts#L103)
 
 #### Parameters
 
@@ -121,7 +121,7 @@ Defined in: [packages/common/src/logger.ts:103](https://github.com/dcdpr/did-btc
 
 > **newline**(): `Logger`
 
-Defined in: [packages/common/src/logger.ts:107](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/logger.ts#L107)
+Defined in: [packages/common/src/logger.ts:107](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/logger.ts#L107)
 
 #### Returns
 
@@ -133,7 +133,7 @@ Defined in: [packages/common/src/logger.ts:107](https://github.com/dcdpr/did-btc
 
 > **security**(`message?`, ...`args?`): `Logger`
 
-Defined in: [packages/common/src/logger.ts:99](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/logger.ts#L99)
+Defined in: [packages/common/src/logger.ts:99](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/logger.ts#L99)
 
 #### Parameters
 
@@ -155,7 +155,7 @@ Defined in: [packages/common/src/logger.ts:99](https://github.com/dcdpr/did-btcr
 
 > **warn**(`message?`, ...`args?`): `Logger`
 
-Defined in: [packages/common/src/logger.ts:95](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/logger.ts#L95)
+Defined in: [packages/common/src/logger.ts:95](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/logger.ts#L95)
 
 #### Parameters
 
@@ -177,7 +177,7 @@ Defined in: [packages/common/src/logger.ts:95](https://github.com/dcdpr/did-btcr
 
 > `static` **debug**(`message?`, ...`args?`): `void`
 
-Defined in: [packages/common/src/logger.ts:114](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/logger.ts#L114)
+Defined in: [packages/common/src/logger.ts:114](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/logger.ts#L114)
 
 Static methods for convenience (auto-instantiate).
 
@@ -201,7 +201,7 @@ Static methods for convenience (auto-instantiate).
 
 > `static` **error**(`message?`, ...`args?`): `void`
 
-Defined in: [packages/common/src/logger.ts:118](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/logger.ts#L118)
+Defined in: [packages/common/src/logger.ts:118](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/logger.ts#L118)
 
 #### Parameters
 
@@ -223,7 +223,7 @@ Defined in: [packages/common/src/logger.ts:118](https://github.com/dcdpr/did-btc
 
 > `static` **info**(`message?`, ...`args?`): `void`
 
-Defined in: [packages/common/src/logger.ts:122](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/logger.ts#L122)
+Defined in: [packages/common/src/logger.ts:122](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/logger.ts#L122)
 
 #### Parameters
 
@@ -245,7 +245,7 @@ Defined in: [packages/common/src/logger.ts:122](https://github.com/dcdpr/did-btc
 
 > `static` **log**(`message?`, ...`args?`): `void`
 
-Defined in: [packages/common/src/logger.ts:134](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/logger.ts#L134)
+Defined in: [packages/common/src/logger.ts:134](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/logger.ts#L134)
 
 #### Parameters
 
@@ -267,7 +267,7 @@ Defined in: [packages/common/src/logger.ts:134](https://github.com/dcdpr/did-btc
 
 > `static` **newline**(): `void`
 
-Defined in: [packages/common/src/logger.ts:138](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/logger.ts#L138)
+Defined in: [packages/common/src/logger.ts:138](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/logger.ts#L138)
 
 #### Returns
 
@@ -279,7 +279,7 @@ Defined in: [packages/common/src/logger.ts:138](https://github.com/dcdpr/did-btc
 
 > `static` **security**(`message?`, ...`args?`): `void`
 
-Defined in: [packages/common/src/logger.ts:130](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/logger.ts#L130)
+Defined in: [packages/common/src/logger.ts:130](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/logger.ts#L130)
 
 #### Parameters
 
@@ -301,7 +301,7 @@ Defined in: [packages/common/src/logger.ts:130](https://github.com/dcdpr/did-btc
 
 > `static` **warn**(`message?`, ...`args?`): `void`
 
-Defined in: [packages/common/src/logger.ts:126](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/logger.ts#L126)
+Defined in: [packages/common/src/logger.ts:126](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/logger.ts#L126)
 
 #### Parameters
 

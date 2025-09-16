@@ -1,6 +1,6 @@
 # Class: Appendix
 
-Defined in: [packages/method/src/utils/appendix.ts:30](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/appendix.ts#L30)
+Defined in: [packages/method/src/utils/appendix.ts:30](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/appendix.ts#L30)
 
 Implements [9. Appendix](https://dcdpr.github.io/did-btcr2/#appendix) methods.
 
@@ -22,7 +22,7 @@ Implements [9. Appendix](https://dcdpr.github.io/did-btcr2/#appendix) methods.
 
 > `static` **derefernceRootCapabilityIdentifier**(`capabilityId`): [`Btc1RootCapability`](../interfaces/Btc1RootCapability.md)
 
-Defined in: [packages/method/src/utils/appendix.ts:184](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/appendix.ts#L184)
+Defined in: [packages/method/src/utils/appendix.ts:184](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/appendix.ts#L184)
 
 Implements [9.4.2 Dereference Root Capability Identifier](https://dcdpr.github.io/did-btcr2/#dereference-root-capability-identifier).
 
@@ -82,7 +82,7 @@ for did:btcr2:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u SHOU
 
 > `static` **deriveRootCapability**(`identifier`): [`Btc1RootCapability`](../interfaces/Btc1RootCapability.md)
 
-Defined in: [packages/method/src/utils/appendix.ts:120](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/appendix.ts#L120)
+Defined in: [packages/method/src/utils/appendix.ts:120](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/appendix.ts#L120)
 
 Implements [9.4.1 Derive Root Capability from did:btcr2 Identifier](https://dcdpr.github.io/did-btcr2/#derive-root-capability-from-didbtc1-identifier).
 
@@ -123,7 +123,7 @@ did:btcr2:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u
 
 > `static` **extractDidFragment**(`input`): `undefined` \| `string`
 
-Defined in: [packages/method/src/utils/appendix.ts:36](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/appendix.ts#L36)
+Defined in: [packages/method/src/utils/appendix.ts:36](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/appendix.ts#L36)
 
 Extracts a DID fragment from a given input
 
@@ -147,7 +147,7 @@ The extracted DID fragment or undefined if not found
 
 > `static` **fetchFromCas**(`hashBytes`): `Promise`&lt;`undefined` \| `string`&gt;
 
-Defined in: [packages/method/src/utils/appendix.ts:241](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/appendix.ts#L241)
+Defined in: [packages/method/src/utils/appendix.ts:241](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/appendix.ts#L241)
 
 Implements [9.3. Fetch Content from Addressable Storage](https://dcdpr.github.io/did-btcr2/#fetch-content-from-addressable-storage).
 
@@ -175,7 +175,7 @@ The fetched content or null if not found.
 
 > `static` **getVerificationMethods**(`didDocument`): [`DidVerificationMethod`](DidVerificationMethod.md)[]
 
-Defined in: [packages/method/src/utils/appendix.ts:83](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/appendix.ts#L83)
+Defined in: [packages/method/src/utils/appendix.ts:83](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/appendix.ts#L83)
 
 Extracts the verification methods from a given DID Document
 
@@ -201,7 +201,7 @@ if the didDocument is not provided
 
 > `static` **isDidService**(`obj`): `obj is DidService`
 
-Defined in: [packages/method/src/utils/appendix.ts:66](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/appendix.ts#L66)
+Defined in: [packages/method/src/utils/appendix.ts:66](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/appendix.ts#L66)
 
 Validates that the given object is a DidService
 
@@ -225,7 +225,7 @@ A boolean indicating whether the object is a DidService
 
 > `static` **isDidVerificationMethod**(`obj`): `obj is DidVerificationMethod`
 
-Defined in: [packages/method/src/utils/appendix.ts:47](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/utils/appendix.ts#L47)
+Defined in: [packages/method/src/utils/appendix.ts:47](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/utils/appendix.ts#L47)
 
 Validates that the given object is a DidVerificationMethod
 

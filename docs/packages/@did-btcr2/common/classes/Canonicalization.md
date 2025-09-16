@@ -1,6 +1,6 @@
 # Class: Canonicalization
 
-Defined in: [packages/common/src/canonicalization.ts:16](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/canonicalization.ts#L16)
+Defined in: [packages/common/src/canonicalization.ts:16](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/canonicalization.ts#L16)
 
 Canonicalization class provides methods for canonicalizing JSON objects
 and hashing them using SHA-256. It supports different canonicalization
@@ -13,7 +13,7 @@ algorithms and encoding formats (hex and base58).
 
 > **new Canonicalization**(`algorithm`): `Canonicalization`
 
-Defined in: [packages/common/src/canonicalization.ts:24](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/canonicalization.ts#L24)
+Defined in: [packages/common/src/canonicalization.ts:24](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/canonicalization.ts#L24)
 
 Initializes the Canonicalization class with the specified algorithm.
 
@@ -37,7 +37,7 @@ The canonicalization algorithm to use ('jcs' or 'rdfc').
 
 > **get** **algorithm**(): [`CanonicalizationAlgorithm`](../type-aliases/CanonicalizationAlgorithm.md)
 
-Defined in: [packages/common/src/canonicalization.ts:48](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/canonicalization.ts#L48)
+Defined in: [packages/common/src/canonicalization.ts:48](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/canonicalization.ts#L48)
 
 Gets the canonicalization algorithm.
 
@@ -51,7 +51,7 @@ The current canonicalization algorithm.
 
 > **set** **algorithm**(`algorithm`): `void`
 
-Defined in: [packages/common/src/canonicalization.ts:32](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/canonicalization.ts#L32)
+Defined in: [packages/common/src/canonicalization.ts:32](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/canonicalization.ts#L32)
 
 Sets the canonicalization algorithm.
 
@@ -73,7 +73,7 @@ Either 'jcs' or 'rdfc'.
 
 > **base58**(`hashBytes`): `string`
 
-Defined in: [packages/common/src/canonicalization.ts:144](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/canonicalization.ts#L144)
+Defined in: [packages/common/src/canonicalization.ts:144](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/canonicalization.ts#L144)
 
 Step 3.2: Encodes HashBytes (Uint8Array) to a base58btc string.
 
@@ -97,7 +97,7 @@ The hash as a hex string.
 
 > **canonicalhash**(`object`): `Promise`&lt;[`Bytes`](../type-aliases/Bytes.md)&gt;
 
-Defined in: [packages/common/src/canonicalization.ts:154](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/canonicalization.ts#L154)
+Defined in: [packages/common/src/canonicalization.ts:154](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/canonicalization.ts#L154)
 
 Canonicalizes an object, hashes it and returns it as hash bytes.
 Step 1-2: Canonicalize → Hash.
@@ -122,7 +122,7 @@ The final SHA-256 hash bytes.
 
 > **canonicalize**(`object`): `Promise`&lt;`string`&gt;
 
-Defined in: [packages/common/src/canonicalization.ts:81](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/canonicalization.ts#L81)
+Defined in: [packages/common/src/canonicalization.ts:81](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/canonicalization.ts#L81)
 
 Step 1: Uses this.algorithm to determine the method (JCS/RDFC).
 
@@ -146,7 +146,7 @@ The canonicalized object.
 
 > **encode**(`canonicalizedhash`, `encoding`): `string`
 
-Defined in: [packages/common/src/canonicalization.ts:119](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/canonicalization.ts#L119)
+Defined in: [packages/common/src/canonicalization.ts:119](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/canonicalization.ts#L119)
 
 Step 3: Encodes SHA-256 hashed, canonicalized object as a hex or base58 string.
 
@@ -180,7 +180,7 @@ If the encoding format is not supported.
 
 > **hash**(`canonicalized`): [`Bytes`](../type-aliases/Bytes.md)
 
-Defined in: [packages/common/src/canonicalization.ts:108](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/canonicalization.ts#L108)
+Defined in: [packages/common/src/canonicalization.ts:108](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/canonicalization.ts#L108)
 
 Step 2: SHA-256 hashes a canonicalized object.
 
@@ -204,7 +204,7 @@ The SHA-256 HashBytes (Uint8Array).
 
 > **hashb58**(`canonicalized`): `string`
 
-Defined in: [packages/common/src/canonicalization.ts:175](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/canonicalization.ts#L175)
+Defined in: [packages/common/src/canonicalization.ts:175](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/canonicalization.ts#L175)
 
 Computes the SHA-256 hashes of canonicalized object and encodes it as a base58 string.
 Step 2-3: Hash → Encode(base58).
@@ -229,7 +229,7 @@ The SHA-256 hash as a base58 string.
 
 > **hashhex**(`canonicalized`): `string`
 
-Defined in: [packages/common/src/canonicalization.ts:165](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/canonicalization.ts#L165)
+Defined in: [packages/common/src/canonicalization.ts:165](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/canonicalization.ts#L165)
 
 Computes the SHA-256 hash of a canonicalized object and encodes it as a hex string.
 Step 2-3: Hash → Encode(Hex).
@@ -254,7 +254,7 @@ The SHA-256 hash as a hex string.
 
 > **hex**(`hashBytes`): `string`
 
-Defined in: [packages/common/src/canonicalization.ts:135](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/canonicalization.ts#L135)
+Defined in: [packages/common/src/canonicalization.ts:135](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/canonicalization.ts#L135)
 
 Step 3.1: Encodes HashBytes (Uint8Array) to a hex string.
 
@@ -278,7 +278,7 @@ The hash as a hex string.
 
 > **jcs**(`object`): `any`
 
-Defined in: [packages/common/src/canonicalization.ts:90](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/canonicalization.ts#L90)
+Defined in: [packages/common/src/canonicalization.ts:90](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/canonicalization.ts#L90)
 
 Step 1: Canonicalizes an object using JCS (JSON Canonicalization Scheme).
 
@@ -302,7 +302,7 @@ The canonicalized object.
 
 > **process**(`object`, `encoding`): `Promise`&lt;`string`&gt;
 
-Defined in: [packages/common/src/canonicalization.ts:65](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/canonicalization.ts#L65)
+Defined in: [packages/common/src/canonicalization.ts:65](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/canonicalization.ts#L65)
 
 Implements [9.2 JSON Canonicalization and Hash](http://dcdpr.github.io/did-btcr2/#json-canonicalization-and-hash).
 
@@ -338,7 +338,7 @@ The final SHA-256 hash bytes as a hex string.
 
 > **rdfc**(`object`): `Promise`&lt;`string`&gt;
 
-Defined in: [packages/common/src/canonicalization.ts:99](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/common/src/canonicalization.ts#L99)
+Defined in: [packages/common/src/canonicalization.ts:99](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/common/src/canonicalization.ts#L99)
 
 Step 1: Canonicalizes an object using RDF Canonicalization (RDFC).
 

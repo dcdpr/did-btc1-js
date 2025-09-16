@@ -1,6 +1,6 @@
 # Class: SchnorrKeyPair
 
-Defined in: [pair.ts:54](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/pair.ts#L54)
+Defined in: [pair.ts:54](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/pair.ts#L54)
 
 Encapsulates a PublicKey and a SecretKey object as a single Keys object.
  SchnorrKeyPair
@@ -15,7 +15,7 @@ Encapsulates a PublicKey and a SecretKey object as a single Keys object.
 
 > **new SchnorrKeyPair**(`secretKey`): `SchnorrKeyPair`
 
-Defined in: [pair.ts:72](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/pair.ts#L72)
+Defined in: [pair.ts:72](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/pair.ts#L72)
 
 Creates an instance of Keys. Must provide a at least a secret key.
 Can optionally provide both a private and public key, but must be a valid pair.
@@ -40,7 +40,7 @@ The secret key object
 
 > **get** **multibase**(): `MultibaseKeys`
 
-Defined in: [pair.ts:156](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/pair.ts#L156)
+Defined in: [pair.ts:156](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/pair.ts#L156)
 
 Get the Keys in multibase format.
 
@@ -58,7 +58,7 @@ The SecretKey in multibase format
 
 > **get** **publicKey**(): [`PublicKey`](PublicKey.md)
 
-Defined in: [pair.ts:136](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/pair.ts#L136)
+Defined in: [pair.ts:136](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/pair.ts#L136)
 
 Get the PublicKey.
 
@@ -72,7 +72,7 @@ The PublicKey object
 
 > **set** **publicKey**(`publicKey`): `void`
 
-Defined in: [pair.ts:122](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/pair.ts#L122)
+Defined in: [pair.ts:122](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/pair.ts#L122)
 
 Set the PublicKey.
 
@@ -104,7 +104,7 @@ The PublicKey object
 
 > **get** **raw**(): `RawKeyPair`
 
-Defined in: [pair.ts:145](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/pair.ts#L145)
+Defined in: [pair.ts:145](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/pair.ts#L145)
 
 Get the Keys as a raw key pair.
 
@@ -122,7 +122,7 @@ The Keys as a raw key pair
 
 > **get** **secretKey**(): [`SecretKey`](SecretKey.md)
 
-Defined in: [pair.ts:103](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/pair.ts#L103)
+Defined in: [pair.ts:103](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/pair.ts#L103)
 
 Get the SecretKey.
 
@@ -150,7 +150,7 @@ If the secret key is not available.
 
 > **json**(): [`SchnorrKeyPairObject`](../../common/type-aliases/SchnorrKeyPairObject.md)
 
-Defined in: [pair.ts:167](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/pair.ts#L167)
+Defined in: [pair.ts:167](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/pair.ts#L167)
 
 JSON representation of a Keys.
 
@@ -170,7 +170,7 @@ The Keys as a JSON object
 
 > `static` **equals**(`keys`, `otherKeys`): `boolean`
 
-Defined in: [pair.ts:236](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/pair.ts#L236)
+Defined in: [pair.ts:236](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/pair.ts#L236)
 
 Compares two Keys objects for equality.
 
@@ -200,7 +200,7 @@ True if the public key and secret key are equal, false otherwise.
 
 > `static` **fromJSON**(`keys`): `SchnorrKeyPair`
 
-Defined in: [pair.ts:179](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/pair.ts#L179)
+Defined in: [pair.ts:179](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/pair.ts#L179)
 
 Static method creates a new Keys from a JSON object.
 
@@ -224,7 +224,7 @@ The initialized Keys object.
 
 > `static` **fromPrivateKey**(`data`): `SchnorrKeyPair`
 
-Defined in: [pair.ts:190](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/pair.ts#L190)
+Defined in: [pair.ts:190](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/pair.ts#L190)
 
 Static method creates a new SchnorrKeyPair from a SecretKey object or secret key bytes.
 
@@ -248,7 +248,7 @@ A new SchnorrKeyPair object
 
 > `static` **fromSecret**(`secret`): `SchnorrKeyPair`
 
-Defined in: [pair.ts:215](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/pair.ts#L215)
+Defined in: [pair.ts:215](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/pair.ts#L215)
 
 Static method creates a new Keys (SecretKey/PublicKey) bigint secret.
 
@@ -272,7 +272,7 @@ A new Keys object
 
 > `static` **generate**(): `SchnorrKeyPair`
 
-Defined in: [pair.ts:261](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/pair.ts#L261)
+Defined in: [pair.ts:261](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/pair.ts#L261)
 
 Static method to generate a new random SchnorrKeyPair instance.
 
@@ -288,7 +288,7 @@ A new SecretKey object.
 
 > `static` **toHex**(`keyBytes`): [`Hex`](../../common/type-aliases/Hex.md)
 
-Defined in: [pair.ts:226](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/keypair/src/pair.ts#L226)
+Defined in: [pair.ts:226](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/keypair/src/pair.ts#L226)
 
 Converts key bytes to a hex string.
 

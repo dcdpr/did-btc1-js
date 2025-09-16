@@ -1,6 +1,6 @@
-# Class: `abstract` Beacon
+# Abstract Class: Beacon
 
-Defined in: [packages/method/src/interfaces/beacon.ts:36](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/beacon.ts#L36)
+Defined in: [packages/method/src/interfaces/beacon.ts:35](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/beacon.ts#L35)
 
 Implements [5. Beacons](https://dcdpr.github.io/did-btcr2/#update-beacons).
 Beacons are the mechanism by which a DID controller announces an update to their DID document by broadcasting an
@@ -43,7 +43,7 @@ All resolvers of did:btcr2 DIDs MUST support the core Beacon Types defined in th
 
 > **new Beacon**(`__namedParameters`, `sidecar?`): `Beacon`
 
-Defined in: [packages/method/src/interfaces/beacon.ts:42](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/beacon.ts#L42)
+Defined in: [packages/method/src/interfaces/beacon.ts:41](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/beacon.ts#L41)
 
 #### Parameters
 
@@ -65,7 +65,7 @@ Defined in: [packages/method/src/interfaces/beacon.ts:42](https://github.com/dcd
 
 > **id**: `string`
 
-Defined in: [packages/method/src/interfaces/beacon.ts:37](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/beacon.ts#L37)
+Defined in: [packages/method/src/interfaces/beacon.ts:36](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/beacon.ts#L36)
 
 A unique identifier for the Beacon
 
@@ -79,7 +79,7 @@ A unique identifier for the Beacon
 
 > **serviceEndpoint**: `DidServiceEndpoint`
 
-Defined in: [packages/method/src/interfaces/beacon.ts:39](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/beacon.ts#L39)
+Defined in: [packages/method/src/interfaces/beacon.ts:38](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/beacon.ts#L38)
 
 The service endpoint of the Beacon
 
@@ -93,7 +93,7 @@ The service endpoint of the Beacon
 
 > `optional` **sidecar**: [`SidecarData`](../type-aliases/SidecarData.md)
 
-Defined in: [packages/method/src/interfaces/beacon.ts:40](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/beacon.ts#L40)
+Defined in: [packages/method/src/interfaces/beacon.ts:39](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/beacon.ts#L39)
 
 ***
 
@@ -101,7 +101,7 @@ Defined in: [packages/method/src/interfaces/beacon.ts:40](https://github.com/dcd
 
 > **type**: `string`
 
-Defined in: [packages/method/src/interfaces/beacon.ts:38](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/beacon.ts#L38)
+Defined in: [packages/method/src/interfaces/beacon.ts:37](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/beacon.ts#L37)
 
 The type of the Beacon
 
@@ -117,7 +117,7 @@ The type of the Beacon
 
 > **get** `abstract` **service**(): [`BeaconService`](../interfaces/BeaconService.md)
 
-Defined in: [packages/method/src/interfaces/beacon.ts:52](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/beacon.ts#L52)
+Defined in: [packages/method/src/interfaces/beacon.ts:51](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/beacon.ts#L51)
 
 Returns the Beacon Service object.
 
@@ -137,7 +137,7 @@ Returns the Beacon Service object
 
 > `abstract` **broadcastSignal**(`didUpdatePayload`): `Promise`&lt;[`SignalsMetadata`](../type-aliases/SignalsMetadata.md)&gt;
 
-Defined in: [packages/method/src/interfaces/beacon.ts:67](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/beacon.ts#L67)
+Defined in: [packages/method/src/interfaces/beacon.ts:66](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/beacon.ts#L66)
 
 Broadcasts a Beacon Signal (implemented by subclasses).
 
@@ -161,7 +161,7 @@ Broadcasts a Beacon Signal (implemented by subclasses).
 
 > `abstract` **generateSignal**(`didUpdatePayload`): [`BeaconSignal`](../interfaces/BeaconSignal.md)
 
-Defined in: [packages/method/src/interfaces/beacon.ts:57](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/beacon.ts#L57)
+Defined in: [packages/method/src/interfaces/beacon.ts:56](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/beacon.ts#L56)
 
 Generates a Beacon Signal (implemented by subclasses).
 
@@ -185,7 +185,7 @@ Generates a Beacon Signal (implemented by subclasses).
 
 > `abstract` **processSignal**(`signal`, `signalsMetadata`): `Promise`&lt;`undefined` \| [`DidUpdatePayload`](../../common/interfaces/DidUpdatePayload.md)&gt;
 
-Defined in: [packages/method/src/interfaces/beacon.ts:62](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/interfaces/beacon.ts#L62)
+Defined in: [packages/method/src/interfaces/beacon.ts:61](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/interfaces/beacon.ts#L61)
 
 Processes a Beacon Signal (implemented by subclasses).
 
@@ -193,7 +193,7 @@ Processes a Beacon Signal (implemented by subclasses).
 
 ##### signal
 
-[`RawTransactionV2`](../interfaces/RawTransactionV2.md) | `RawTransactionRest`
+[`RawTransactionV2`](../../bitcoin/index.browser/interfaces/RawTransactionV2.md) | [`RawTransactionRest`](../../bitcoin/index.browser/interfaces/RawTransactionRest.md)
 
 ##### signalsMetadata
 

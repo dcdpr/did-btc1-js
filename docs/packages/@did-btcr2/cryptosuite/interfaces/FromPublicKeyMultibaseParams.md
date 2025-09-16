@@ -1,6 +1,6 @@
 # Interface: FromPublicKeyMultibaseParams
 
-Defined in: [multikey/interface.ts:24](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L24)
+Defined in: [multikey/interface.ts:24](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L24)
 
 ## Extends
 
@@ -12,7 +12,7 @@ Defined in: [multikey/interface.ts:24](https://github.com/dcdpr/did-btcr2-js/blo
 
 > **controller**: `string`
 
-Defined in: [multikey/interface.ts:15](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L15)
+Defined in: [multikey/interface.ts:15](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L15)
 
 #### Inherited from
 
@@ -24,7 +24,7 @@ Defined in: [multikey/interface.ts:15](https://github.com/dcdpr/did-btcr2-js/blo
 
 > **id**: `string`
 
-Defined in: [multikey/interface.ts:14](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L14)
+Defined in: [multikey/interface.ts:14](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L14)
 
 #### Inherited from
 
@@ -36,4 +36,4 @@ Defined in: [multikey/interface.ts:14](https://github.com/dcdpr/did-btcr2-js/blo
 
 > **publicKeyMultibase**: `string`
 
-Defined in: [multikey/interface.ts:25](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/cryptosuite/src/multikey/interface.ts#L25)
+Defined in: [multikey/interface.ts:25](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/cryptosuite/src/multikey/interface.ts#L25)

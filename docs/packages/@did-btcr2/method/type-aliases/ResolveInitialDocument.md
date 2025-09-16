@@ -2,7 +2,7 @@
 
 > **ResolveInitialDocument** = `object`
 
-Defined in: [packages/method/src/core/crud/read.ts:50](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L50)
+Defined in: [packages/method/src/core/crud/read.ts:55](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L55)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [packages/method/src/core/crud/read.ts:50](https://github.com/dcdpr/
 
 > **components**: [`DidComponents`](../interfaces/DidComponents.md)
 
-Defined in: [packages/method/src/core/crud/read.ts:52](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L52)
+Defined in: [packages/method/src/core/crud/read.ts:57](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L57)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [packages/method/src/core/crud/read.ts:52](https://github.com/dcdpr/
 
 > **identifier**: `string`
 
-Defined in: [packages/method/src/core/crud/read.ts:51](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L51)
+Defined in: [packages/method/src/core/crud/read.ts:56](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L56)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [packages/method/src/core/crud/read.ts:51](https://github.com/dcdpr/
 
 > **resolutionsOptions**: [`DidResolutionOptions`](../interfaces/DidResolutionOptions.md)
 
-Defined in: [packages/method/src/core/crud/read.ts:53](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/method/src/core/crud/read.ts#L53)
+Defined in: [packages/method/src/core/crud/read.ts:58](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/method/src/core/crud/read.ts#L58)

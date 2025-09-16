@@ -2,7 +2,7 @@
 
 > **bufferEq**(`a`, `b`): `boolean`
 
-Defined in: [utils.ts:30](https://github.com/dcdpr/did-btcr2-js/blob/4a717493e735221d072999f212891939f4de3f23/packages/smt/src/utils.ts#L30)
+Defined in: [utils.ts:30](https://github.com/dcdpr/did-btcr2-js/blob/c82bc5c69016e1146a0c52c6e6b21621f5abd6d4/packages/smt/src/utils.ts#L30)
 
 bufferEq returns true if both Uint8Arrays have the same length and contents.
 
