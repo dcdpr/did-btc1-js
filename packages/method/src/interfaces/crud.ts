@@ -1,8 +1,8 @@
-import { BitcoinNetworkNames, UnixTimestamp } from '@did-btc1/common';
+import { BitcoinNetworkNames, UnixTimestamp } from '@did-btcr2/common';
 import { DidResolutionOptions as IDidResolutionOptions } from '@web5/dids';
-import BitcoinRpc from '../bitcoin/rpc-client.js';
+import { BitcoinRpc } from '@did-btcr2/bitcoin';
 import { SidecarData } from '../types/crud.js';
-import { Btc1DidDocument } from '../utils/did-document.js';
+import { DidDocument } from '../utils/did-document.js';
 
 /**
  * Options for resolving a DID Document
@@ -25,7 +25,7 @@ export interface Btc1RootCapability {
     invocationTarget: string;
 }
 export interface ReadBlockchainParams {
-  contemporaryDidDocument: Btc1DidDocument;
+  contemporaryDidDocument: DidDocument;
   contemporaryBlockHeight: number | 1;
   currentVersionId: number | 1;
   targetVersionId?: number;

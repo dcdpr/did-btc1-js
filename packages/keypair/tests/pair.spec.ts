@@ -1,4 +1,4 @@
-import { KeyPairError } from '@did-btc1/common';
+import { KeyPairError } from '@did-btcr2/common';
 import { expect } from 'chai';
 import { SchnorrKeyPair } from '../src/pair.js';
 import { PublicKey } from '../src/public.js';

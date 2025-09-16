@@ -1,7 +1,8 @@
 packages:
-  - packages/common
-  - packages/keypair
-  - packages/cryptosuite
-  - packages/method
+  - packages/bitcoin
   - packages/cli
+  - packages/common
+  - packages/cryptosuite
+  - packages/keypair
+  - packages/method
   - packages/smt

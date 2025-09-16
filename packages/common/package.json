@@ -1,8 +1,8 @@
 {
-  "name": "@did-btc1/common",
-  "version": "1.1.0",
+  "name": "@did-btcr2/common",
+  "version": "2.1.0",
   "type": "module",
-  "description": "Common utilities, types, interfaces, etc. shared across the did-btc1-js monorepo packages.",
+  "description": "Common utilities, types, interfaces, etc. shared across the did-btcr2-js monorepo packages.",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
@@ -11,10 +11,6 @@
       "types": "./dist/types/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
-    },
-    "./logger": {
-      "browser": "./dist/esm/logger.browser.js",
-      "default": "./dist/esm/logger.js"
     }
   },
   "files": [
@@ -33,13 +29,13 @@
       "email": "github@jintek.consulting"
     }
   ],
-  "homepage": "https://github.com/dcdpr/did-btc1-js/tree/main/packages/common",
+  "homepage": "https://github.com/dcdpr/did-btcr2-js/tree/main/packages/common",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:dcdpr/did-btc1-js.git",
+    "url": "git+ssh://git@github.com:dcdpr/did-btcr2-js.git",
     "directory": "packages/common"
   },
-  "bugs": "https://github.com/dcdpr/did-btc1-js/issues",
+  "bugs": "https://github.com/dcdpr/did-btcr2-js/issues",
   "publishConfig": {
     "access": "public"
   },
@@ -63,8 +59,7 @@
     "build:esm": "rimraf dist/esm dist/types && pnpm tsc -p tsconfig.json",
     "build:cjs": "rimraf dist/cjs && tsc -p tsconfig.cjs.json && echo '{\"type\": \"commonjs\"}' > ./dist/cjs/package.json",
     "build:tests": "pnpm tsc -p tests/tsconfig.json",
-    "build:docs": "typedoc --options typedoc.json",
-    "build:all": "pnpm build && pnpm build:tests && pnpm build:docs",
+    "build:all": "pnpm build && pnpm build:tests",
     "release": "pnpm build && pnpm pack && mv *.tgz ../../release/common",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --fix",
