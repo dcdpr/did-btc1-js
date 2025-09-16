@@ -1,29 +1,34 @@
 import {
+  Bitcoin,
+  BitcoinRest,
+  BitcoinRpc,
+  BlockV3,
+  GENESIS_TX_ID,
+  getNetwork,
+  RawTransactionRest,
+  RawTransactionV2,
+  TXIN_WITNESS_COINBASE
+} from '@did-btcr2/bitcoin';
+import {
   BitcoinNetworkNames,
-  MethodError,
-  IdentifierHrp,
-  ResolveError,
   DidUpdatePayload,
   ID_PLACEHOLDER_VALUE,
+  IdentifierHrp,
   INVALID_DID,
   INVALID_DID_DOCUMENT,
   INVALID_DID_UPDATE,
   LATE_PUBLISHING_ERROR,
   Logger,
+  MethodError,
+  ResolveError,
   UnixTimestamp
 } from '@did-btcr2/common';
 import { Cryptosuite, DataIntegrityProof, SchnorrMultikey } from '@did-btcr2/cryptosuite';
 import { PublicKey } from '@did-btcr2/keypair';
 import { bytesToHex } from '@noble/hashes/utils';
-import { GENESIS_TX_ID, TXIN_WITNESS_COINBASE } from '../../bitcoin/constants.js';
-import bitcoinNetwork, { Bitcoin } from '../../bitcoin/index.js';
-import { getNetwork } from '../../bitcoin/network.js';
-import BitcoinRest, { RawTransactionRest } from '../../bitcoin/rest-client.js';
-import BitcoinRpc from '../../bitcoin/rpc-client.js';
 import { DidBtcr2 } from '../../did-btcr2.js';
 import { DidResolutionOptions } from '../../interfaces/crud.js';
 import { BeaconService, BeaconServiceAddress, BeaconSignal } from '../../interfaces/ibeacon.js';
-import { BlockV3, RawTransactionV2 } from '../../types/bitcoin.js';
 import {
   CIDAggregateSidecar,
   SidecarData,
@@ -89,6 +94,8 @@ export interface TargetBlockheightParams {
   network: BitcoinNetworkNames;
   targetTime?: UnixTimestamp;
 }
+
+const bitcoin = new Bitcoin();
 
 /**
  * Implements {@link https://dcdpr.github.io/did-btcr2/#read | 4.2 Read}.
@@ -558,9 +565,6 @@ export class Resolve {
   }): Promise<Array<BeaconSignal>> {
     let height = contemporaryBlockHeight;
 
-    // Toggle RPC or REST connection based on the connection type
-    const bitcoin = bitcoinNetwork ?? new Bitcoin();
-
     // Create an default beaconSignal and beaconSignals array
     let beaconSignals: BeaconSignals = [];
 
@@ -671,15 +675,13 @@ export class Resolve {
    * @returns {Promise<Array<BeaconSignal>>} The beacon signals found in the block.
    */
   public static async findSignalsRest({ beacons }: { beacons: Array<BeaconService>; }): Promise<Array<BeaconSignal>> {
-    const bitcoin = bitcoinNetwork ?? new Bitcoin();
-
     // Empty array of beaconSignals
     const beaconSignals = new Array<BeaconSignal>();
 
     // Iterate over each beacon
     for (const beacon of BeaconUtils.toBeaconServiceAddress(beacons)) {
       // Get the transactions for the beacon address via REST
-      const transactions = await bitcoin.rest.address.getTxs(beacon.address);
+      const transactions = await bitcoin.network.rest.address.getTxs(beacon.address);
 
       // If no transactions are found, continue
       if (!transactions || transactions.length === 0) {

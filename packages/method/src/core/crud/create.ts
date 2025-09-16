@@ -1,7 +1,7 @@
 import { IdentifierTypes, KeyBytes, PatchOperation } from '@did-btcr2/common';
 import { PublicKey } from '@did-btcr2/keypair';
 import { DidCreateOptions as IDidCreateOptions } from '@web5/dids';
-import { getNetwork } from '../../bitcoin/network.js';
+import { getNetwork } from  '@did-btcr2/bitcoin';
 import { BeaconUtils } from '../../utils/beacons.js';
 import { DidDocument, IntermediateDidDocument } from '../../utils/did-document.js';
 import { Identifier } from '../../utils/identifier.js';

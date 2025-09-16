@@ -2,7 +2,7 @@ import { MethodError, DidUpdateInvocation, DidUpdatePayload } from '@did-btcr2/c
 import { DidServiceEndpoint } from '@web5/dids';
 import { Beacon } from '../../interfaces/beacon.js';
 import { BeaconService, BeaconSignal } from '../../interfaces/ibeacon.js';
-import { RawTransactionV2 } from '../../types/bitcoin.js';
+import { RawTransactionV2 } from '@did-btcr2/bitcoin';
 import { BeaconSidecarData, CIDAggregateSidecar, SignalsMetadata } from '../../types/crud.js';
 
 /**

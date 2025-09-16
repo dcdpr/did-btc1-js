@@ -20,7 +20,7 @@ import {
   RawTransactionResponse,
   ScriptDecoded,
   ValidateAddressResult
-} from '../types/bitcoin.js';
+} from './types.js';
 
 /**
  * Interface for the Bitcoin Core RPC client.

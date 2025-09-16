@@ -1,4 +1,4 @@
-import { TapRootMultiSig } from '../../../../../bitcoin/taproot.js';
+import { TapRootMultiSig } from '@did-btcr2/bitcoin';
 import { COHORT_STATUS, COHORT_STATUS_TYPE } from './status.js';
 
 export type Musig2CohortParams = {

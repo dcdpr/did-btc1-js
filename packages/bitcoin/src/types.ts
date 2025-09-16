@@ -1,5 +1,27 @@
-import { Hex, UnixTimestamp } from '@did-btcr2/common';
-import BitcoinRpc from '../bitcoin/rpc-client.js';
+import { Hex } from '@did-btcr2/common';
+
+export type BitcoinClientConfig = {
+  rpc: {
+    username: string;
+    password: string;
+    host: string;
+    version: string;
+    allowDefaultWallet: boolean;
+  },
+  rest?: {
+    host: string;
+    username?: string;
+    password?: string;
+  }
+};
+
+export type AvailableNetworks = {
+  mainnet: true;
+  testnet: true;
+  signet: true;
+  mutinynet: true;
+  regtest: true;
+};
 
 export interface ReturnFormatOptions {
     extension?: 'json' | 'bin' | 'hex';
@@ -908,10 +930,7 @@ export type ListTransactionsParams = {
 }
 
 export type FundRawTxResult = { hex: string; fee: number; changepos: number; }
-
-export type BitcoinAddress = string;
-export type DerivedAddresses = Array<BitcoinAddress>;
-
+export type DerivedAddresses = Array<string>;
 export type CreateWalletDescriptorOptions = { internal: boolean; hdkey: string }
 export type WalletDescriptor = string;
 export type CreateWalletDescriptorsResult = { descs: Array<WalletDescriptor>; }
@@ -1011,12 +1030,6 @@ export enum VerbosityLevel {
      * Returns block data with information about each transaction, including prevout information for inputs.
      */
     jsonextprev = 3
-}
-
-export interface TargetBlockHeight {
-    block: BlockV2;
-    rpc: BitcoinRpc;
-    targetTime?: UnixTimestamp;
 }
 
 export type BlockHeight = number;
