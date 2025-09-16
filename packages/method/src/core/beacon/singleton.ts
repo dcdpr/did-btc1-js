@@ -1,14 +1,14 @@
+import { AddressUtxo, Bitcoin, RawTransactionRest, RawTransactionV2, TxOut, Vout } from '@did-btcr2/bitcoin';
 import { DidUpdatePayload, INVALID_SIDECAR_DATA, LATE_PUBLISHING_ERROR, SingletonBeaconError } from '@did-btcr2/common';
 import { opcodes, Psbt, script } from 'bitcoinjs-lib';
 import { base58btc } from 'multiformats/bases/base58';
-import bitcoinNetwork, { Bitcoin } from '../../bitcoin/index.js';
-import { AddressUtxo, RawTransactionRest, Vout } from '../../bitcoin/rest-client.js';
 import { Beacon } from '../../interfaces/beacon.js';
 import { BeaconService, BeaconSignal } from '../../interfaces/ibeacon.js';
-import { RawTransactionV2, TxOut } from '../../types/bitcoin.js';
 import { BeaconSidecarData, Metadata, SignalsMetadata, SingletonSidecar } from '../../types/crud.js';
 import { Appendix } from '../../utils/appendix.js';
 import { KeyManager, Signer } from '../key-manager/index.js';
+
+const bitcoin = new Bitcoin();
 
 /**
  * Implements {@link https://dcdpr.github.io/did-btcr2/#singleton-beacon | 5.1 Singleton Beacon}.
@@ -177,9 +177,6 @@ export class SingletonBeacon extends Beacon {
    * @throws {SingletonBeaconError} if the bitcoin address is invalid or unfunded.
    */
   public async broadcastSignal(didUpdatePayload: DidUpdatePayload): Promise<SignalsMetadata> {
-    // Grab the connection configuration from the environment variable or default to the rpc config
-    const bitcoin = bitcoinNetwork ?? new Bitcoin();
-
     // 1. Initialize an addressURI variable to beacon.serviceEndpoint.
     // 2. Set bitcoinAddress to the decoding of addressURI following BIP21.
     const bitcoinAddress = this.service.serviceEndpoint.replace('bitcoin:', '');
@@ -187,7 +184,7 @@ export class SingletonBeacon extends Beacon {
     // 3. Ensure bitcoinAddress is funded, if not, fund this address.
     // let inputs: Array<CreateRawTxInputs> = [];
 
-    const utxos = await bitcoin.rest.address.getUtxos(bitcoinAddress);
+    const utxos = await bitcoin.network.rest.address.getUtxos(bitcoinAddress);
     if(!utxos.length) {
       // TODO: Discuss what to do here because sending to a beacon address does not allow you to spend from it immediately.
       throw new SingletonBeaconError('No UTXOs found, please fund address!', 'UNFUNDED_BEACON_ADDRESS', { bitcoinAddress });
@@ -208,7 +205,7 @@ export class SingletonBeacon extends Beacon {
     //    contains at least one transaction output. This output MUST have the following format
     //    [OP_RETURN, OP_PUSH32, hashBytes]
     const {txid, vout} = utxo;
-    const prevTx = await bitcoin.rest.transaction.getHex(txid);
+    const prevTx = await bitcoin.network.rest.transaction.getHex(txid);
     const input = {
       hash           : txid,
       index          : vout,
@@ -240,7 +237,7 @@ export class SingletonBeacon extends Beacon {
     }
 
     // 8. Broadcast spendTx to the Bitcoin network.
-    const spentTx = await bitcoin.rest.transaction.send(signedTx);
+    const spentTx = await bitcoin.network.rest.transaction.send(signedTx);
     if(!spentTx) {
       throw new SingletonBeaconError('Failed to send raw transaction.', 'SEND_FAILED', { spentTx });
     }

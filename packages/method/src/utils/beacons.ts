@@ -239,7 +239,7 @@ export class BeaconUtils {
    * @param {BeaconServicesParams} params Required parameters for generating a single Beacon Service.
    * @param {string} params.serviceId The type of service being created (#initialP2PKH, #initialP2WPKH, #initialP2TR).
    * @param {string} params.beaconType The type of beacon service being created (SingletonBeacon, SMTAggregatorBeacon).
-   * @param {BitcoinAddress} params.bitcoinAddress The bitcoin address to use for the service endpoint.
+   * @param {string} params.bitcoinAddress The bitcoin address to use for the service endpoint.
    * @returns {BeaconService} One BeaconService object.
    */
   public static manufactureBeacon(params: BeaconService): BeaconService {
