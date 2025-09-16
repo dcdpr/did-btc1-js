@@ -1,7 +1,8 @@
 import { PublicKey } from '@did-btcr2/keypair';
 import { expect } from 'chai';
 import { DidBtcr2 } from '../src/did-btcr2.js';
-import { BeaconUtils, DidDocument, getNetwork } from '../src/index.js';
+import { BeaconUtils, DidDocument } from '../src/index.js';
+import { getNetwork } from '@did-btcr2/bitcoin';
 
 /**
  * DidBtc1 Create Key Test Cases
