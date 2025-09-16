@@ -1,22 +1,22 @@
+import { AvailableNetworks } from '@did-btcr2/bitcoin';
 import {
-  KeyManagerError,
   HashBytes,
   Hex,
-  SchnorrKeyPairObject,
+  KeyBytes,
+  KeyManagerError,
   Logger,
   MULTIBASE_URI_PREFIX,
-  KeyBytes,
+  SchnorrKeyPairObject,
   SignatureBytes
 } from '@did-btcr2/common';
 import { SchnorrMultikey } from '@did-btcr2/cryptosuite';
-import { SchnorrKeyPair, PublicKey } from '@did-btcr2/keypair';
+import { PublicKey, SchnorrKeyPair } from '@did-btcr2/keypair';
 import { sha256 } from '@noble/hashes/sha2';
 import { KeyValueStore, MemoryStore } from '@web5/common';
 import { KeyIdentifier } from '@web5/crypto';
 import { Did } from '@web5/dids';
 import { Multibase } from 'multiformats';
-import { AvailableNetworks } from '../../bitcoin/index.js';
-import { BitcoinSigner, KeyManagerOptions, CryptoSigner, IKeyManager, KeyManagerParams } from './interface.js';
+import { BitcoinSigner, CryptoSigner, IKeyManager, KeyManagerOptions, KeyManagerParams } from './interface.js';
 
 export interface SignerParams {
   multikey: SchnorrMultikey;

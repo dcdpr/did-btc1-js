@@ -4,11 +4,12 @@
   "description": "Monorepo for did:btcr2 js/ts implementation and supporting packages.",
   "type": "module",
   "workspaces": [
-    "packages/common",
-    "packages/keypair",
-    "packages/cryptosuite",
-    "packages/method",
+    "packages/bitcoin",
     "packages/cli",
+    "packages/common",
+    "packages/cryptosuite",
+    "packages/keypair",
+    "packages/method",
     "packages/smt"
   ],
   "scripts": {
@@ -42,7 +43,8 @@
     "cli": "pnpm --filter cli",
     "smt": "pnpm --filter smt",
     "keypair": "pnpm --filter keypair",
-    "method": "pnpm --filter method"
+    "method": "pnpm --filter method",
+    "bitcoin": "pnpm --filter bitcoin"
   },
   "keywords": [
     "did",

@@ -1,43 +1,19 @@
 import { MethodError } from '@did-btcr2/common';
 import { networks } from 'bitcoinjs-lib';
-import { DEFAULT_REST_CLIENT_CONFIG, DEFAULT_RPC_CLIENT_CONFIG } from './constants.js';
+import { DEFAULT_REST_CLIENT_CONFIG } from './constants.js';
 import { getNetwork } from './network.js';
-import BitcoinRest from './rest-client.js';
-import BitcoinRpc from './rpc-client.js';
+import { BitcoinRest } from './rest-client.js';
+import { AvailableNetworks, BitcoinClientConfig } from './types.js';
 
-type BitcoinClientConfig = {
-  rpc: {
-    username: string;
-    password: string;
-    host: string;
-    version: string;
-    allowDefaultWallet: boolean;
-  },
-  rest?: {
-    host: string;
-    username?: string;
-    password?: string;
-  }
-};
-
-type BitcoinNetworkConfig = {
+export type BitcoinNetworkConfig = {
   name: keyof AvailableNetworks;
-  rpc: BitcoinRpc;
   rest: BitcoinRest;
   config: BitcoinClientConfig;
   data: networks.Network;
 };
 
-type BitcoinNetworkConfigMap = {
+export type BitcoinNetworkConfigMap = {
   [key in keyof AvailableNetworks]?: BitcoinNetworkConfig;
-};
-
-export type AvailableNetworks = {
-  mainnet: true;
-  testnet: true;
-  signet: true;
-  mutinynet: true;
-  regtest: true;
 };
 
 /**
@@ -62,7 +38,6 @@ export class Bitcoin {
   constructor(configs?: BitcoinNetworkConfigMap) {
     const BITCOIN_NETWORK_CONFIG = process.env.BITCOIN_NETWORK_CONFIG ?? JSON.stringify(configs ?? {
       regtest : {
-        rpc  : DEFAULT_RPC_CLIENT_CONFIG,
         rest : DEFAULT_REST_CLIENT_CONFIG
       }
     });
@@ -97,7 +72,6 @@ export class Bitcoin {
         this[network] = {
           name   : network,
           config : networkConfig,
-          rpc    : new BitcoinRpc(networkConfig.rpc ?? DEFAULT_RPC_CLIENT_CONFIG),
           rest   : new BitcoinRest(networkConfig.rest ?? DEFAULT_REST_CLIENT_CONFIG) ,
           data   : getNetwork(network),
         };
@@ -140,15 +114,4 @@ export class Bitcoin {
   };
 }
 
-const connection = new Bitcoin();
-const network = connection.network;
-const bitcoin = {
-  network,
-  rest    :  {
-    transaction : network.rest.transaction,
-    block       : network.rest.block,
-    address     : network.rest.address,
-  }
-};
-
-export default bitcoin;
+export const bitcoin = new Bitcoin();

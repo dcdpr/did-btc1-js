@@ -1,20 +1,20 @@
 {
-    "name": "@did-btcr2/method",
-    "version": "0.14.3",
+    "name": "@did-btcr2/bitcoin",
+    "version": "0.1.0",
     "type": "module",
-    "description": "Javascript/TypeScript reference implementation of did:btcr2 method, a censorship resistant DID Method using the Bitcoin blockchain as a Verifiable Data Registry to announce changes to the DID document. Core package of the did-btcr2-js monorepo.",
-    "main": "./dist/cjs/index.js",
-    "module": "./dist/esm/index.js",
-    "types": "./dist/types/index.d.ts",
+    "description": "Bitcoin Core RPC and Rest Client Implementations in JS/TS. Used by @did-btcr2/method.",
+    "main": "./dist/cjs/index.node.js",
+    "module": "./dist/esm/index.node.js",
+    "types": "./dist/types/index.node.d.ts",
     "exports": {
         ".": {
-            "types": "./dist/types/index.d.ts",
-            "browser": "./dist/browser.mjs",
-            "import": "./dist/esm/index.js",
-            "require": "./dist/cjs/index.js"
+            "types": "./dist/types/index.node.d.ts",
+            "import": "./dist/esm/index.node.js",
+            "require": "./dist/cjs/index.node.js"
         },
         "./browser": {
-            "default": "./dist/browser.mjs"
+            "types": "./dist/types/index.browser.d.ts",
+            "default": "./dist/esm/index.browser.js"
         }
     },
     "files": [
@@ -33,11 +33,11 @@
             "email": "github@jintek.consulting"
         }
     ],
-    "homepage": "https://github.com/dcdpr/did-btcr2-js/tree/main/packages/method",
+    "homepage": "https://github.com/dcdpr/did-btcr2-js/tree/main/packages/bitcoin",
     "repository": {
         "type": "git",
         "url": "git+ssh://git@github.com:dcdpr/did-btcr2-js.git",
-        "directory": "packages/method"
+        "directory": "packages/bitcoin"
     },
     "bugs": "https://github.com/dcdpr/did-btcr2-js/issues",
     "publishConfig": {
@@ -53,7 +53,11 @@
         "decentralized identifiers",
         "did method",
         "did:btcr2",
-        "bitcoin"
+        "bitcoin",
+        "bitcoin core",
+        "bitcoin rpc",
+        "bitcoin rest",
+        "btc"
     ],
     "scripts": {
         "clean": "rimraf dist coverage tests/compiled",
@@ -65,49 +69,26 @@
         "clean:install": "pnpm clean && pnpm install",
         "wipe:clean:install": "pnpm wipe:clean && pnpm install",
         "reinstall": "pnpm install --force",
-        "build": "pnpm clean:build && pnpm build:esm && pnpm build:cjs && pnpm build:browser",
+        "build": "pnpm clean:build && pnpm build:esm && pnpm build:cjs",
         "build:esm": "rimraf dist/esm dist/types && pnpm tsc -p tsconfig.json",
         "build:cjs": "rimraf dist/cjs && tsc -p tsconfig.cjs.json && echo '{\"type\": \"commonjs\"}' > ./dist/cjs/package.json",
-        "build:browser": "rimraf dist/browser.mjs dist/browser.js && node build/bundles.js",
         "build:tests": "pnpm clean:tests && pnpm tsc -p tests/tsconfig.json",
         "build:docs": "typedoc --options typedoc.json",
         "build:all": "pnpm build && pnpm build:tests",
-        "release": "pnpm build && pnpm pack && mv *.tgz ../../release/method",
+        "release": "pnpm build && pnpm pack",
         "lint": "eslint . --max-warnings 0",
         "lint:fix": "eslint . --fix",
         "test": "pnpm c8 mocha",
-        "test:unit": "[ -z \"$FILE_NAME\" ] && echo 'ERROR: FILE_NAME is not set' || pnpm tsx lib/test-$FILE_NAME.ts",
         "build:test": "pnpm build && pnpm build:tests && pnpm c8 mocha",
         "build:lint:test": "pnpm build && pnpm build:tests && pnpm lint:fix",
         "prepublish": "pnpm build",
-        "do": "pnpm tsx",
-        "do:lib": "${PWD}/lib/run-lib.sh",
-        "do:lib:btc": "${PWD}/lib/do-lib.sh bitcoin",
-        "do:lib:btcr2": "${PWD}/lib/do-lib.sh btcr2"
+        "do": "pnpm tsx"
     },
     "dependencies": {
-        "@did-btcr2/bitcoin": "workspace:*",
         "@did-btcr2/common": "workspace:*",
-        "@did-btcr2/cryptosuite": "workspace:*",
         "@did-btcr2/keypair": "workspace:*",
-        "@helia/strings": "^4.0.2",
-        "@noble/curves": "^1.8.1",
-        "@noble/hashes": "^1.5.0",
-        "@noble/secp256k1": "^2.1.0",
-        "@scure/base": "^1.1.9",
-        "@scure/bip32": "^1.5.0",
-        "@scure/bip39": "^1.4.0",
-        "@scure/btc-signer": "^1.8.1",
-        "@web5/common": "^1.1.0",
-        "@web5/crypto": "^1.0.6",
-        "@web5/dids": "^1.2.0",
         "bitcoin-core": "^5.0.0",
         "bitcoinjs-lib": "7.0.0-rc.0",
-        "canonicalize": "^2.1.0",
-        "dotenv": "^16.5.0",
-        "helia": "^5.2.1",
-        "multiformats": "^13.3.1",
-        "nostr-tools": "^2.15.0",
         "tiny-secp256k1": "^2.2.3"
     },
     "devDependencies": {

@@ -22,11 +22,17 @@ module.exports = {
     minify: true,
     platform: 'browser',
     target: ['chrome101', 'firefox108', 'safari16'],
+    mainFields: ['browser', 'module', 'main'],
+    conditions: ['browser'],
     inject: [require.resolve('node-stdlib-browser/helpers/esbuild/shim')],
     plugins: [polyfillProviderPlugin(polyfills)],
+    loader: { '.wasm': 'binary' },
     define: { 'global': 'globalThis' },
     external: [
-        'tiny-secp256k1',
         'bitcoin-core',
+        'request',
+        '@uphold/request-logger',
+        'bunyan',
+        'dtrace-provider'
     ],
 };

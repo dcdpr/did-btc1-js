@@ -1,9 +1,3 @@
-
-export * from './bitcoin/constants.js';
-export * from './bitcoin/interface.js';
-export * from './bitcoin/network.js';
-export * from './bitcoin/rpc-client.js';
-
 export * from './core/beacon/cid-aggregate.js';
 export * from './core/beacon/factory.js';
 export * from './core/beacon/singleton.js';
@@ -21,7 +15,6 @@ export * from './interfaces/beacon.js';
 export * from './interfaces/crud.js';
 export * from './interfaces/ibeacon.js';
 
-export * from './types/bitcoin.js';
 export * from './types/crud.js';
 
 export * from './utils/appendix.js';

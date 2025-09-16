@@ -5,24 +5,28 @@
       "path": "."
     },
     {
-      "name": "common",
-      "path": "packages/common"
+      "name": "bitcoin",
+      "path": "packages/bitcoin"
     },
     {
-      "name": "keypair",
-      "path": "packages/keypair"
+      "name": "cli",
+      "path": "packages/cli"
+    },
+    {
+      "name": "common",
+      "path": "packages/common"
     },
     {
       "name": "cryptosuite",
       "path": "packages/cryptosuite"
     },
     {
-      "name": "method",
-      "path": "packages/method"
+      "name": "keypair",
+      "path": "packages/keypair"
     },
     {
-      "name": "cli",
-      "path": "packages/cli"
+      "name": "method",
+      "path": "packages/method"
     },
     {
       "name": "smt",

@@ -1,7 +1,7 @@
 import { Psbt } from 'bitcoinjs-lib';
 import bitcoin from '../../src/bitcoin/index.js';
 import { AddressUtxo } from '../../src/bitcoin/rest-client.js';
-import { KeyManager } from '../../src/index.js';
+import { KeyManager } from '../../method/src/index.js';
 import { SchnorrKeyPair } from '@did-btcr2/keypair';
 
 const [id = '#initialP2PKH', controller = 'did:btcr2:k1qyp3al8fedye95ueca9ezrmcm49vhur3zhze49wlgyfzdl5qk4dgltccfavpw'] = process.argv.slice(2);

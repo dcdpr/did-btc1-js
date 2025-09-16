@@ -59,7 +59,7 @@ import {
   ValidateAddressResult,
   VerbosityLevel,
   WalletTransaction
-} from '../types/bitcoin.js';
+} from './types.js';
 import { DEFAULT_RPC_CLIENT_CONFIG } from './constants.js';
 import { BitcoinRpcError } from './errors.js';
 import { IBitcoinRpc } from './interface.js';
@@ -70,7 +70,7 @@ import { IBitcoinRpc } from './interface.js';
  * @class BitcoinRpc
  * @type {BitcoinRpc}
  */
-export default class BitcoinRpc implements IBitcoinRpc {
+export class BitcoinRpc implements IBitcoinRpc {
   /**
    * The encapsulated {@link RpcClientConfig} object.
    * @private

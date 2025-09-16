@@ -4,7 +4,7 @@ import {
   BlockV3,
   GetBlockParams,
   TxInPrevout,
-} from '../types/bitcoin.js';
+} from './types.js';
 import { BitcoinRpcError } from './errors.js';
 import { DEFAULT_REST_CLIENT_CONFIG } from './constants.js';
 
@@ -102,7 +102,7 @@ export interface RestResponse extends Response {
  * @class BitcoinRest
  * @type {BitcoinRest}
  */
-export default class BitcoinRest {
+export class BitcoinRest {
   /**
    * The encapsulated {@link RestClientConfig} object.
    * @private
@@ -336,6 +336,11 @@ export class BitcoinBlock {
   }
 }
 
+/**
+ * Implements a strongly-typed BitcoinRest to connect to remote bitcoin node via REST API for address-related operations.
+ * @class BitcoinAddress
+ * @type {BitcoinAddress}
+ */
 export class BitcoinAddress {
   private api: (params: RestApiCallParams) => Promise<any>;
 
