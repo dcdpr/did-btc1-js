@@ -52,6 +52,7 @@
     "bitcoin",
     "schnorr",
     "schnorr signatures",
+    "schnorr key pair",
     "secp256k1",
     "secp256k1 key pair",
     "cryptosuite",
