@@ -12,7 +12,7 @@ import {
 import { sha256 } from '@noble/hashes/sha2';
 import { base58btc } from 'multiformats/bases/base58';
 import * as tinysecp from 'tiny-secp256k1';
-import { SecretKey } from './secret.js';
+import { Secp256k1SecretKey } from './secret.js';
 
 export interface Point {
   x: KeyBytes;
@@ -286,7 +286,7 @@ export class Secp256k1CompressedPublicKey implements PublicKey {
    */
   public decode(): KeyBytes {
     // Decode the public key multibase string
-    const decoded = base58btc.decode(this.multibase.address);
+    const decoded = base58btc.decode(this.multibase.encoded);
 
     // If the public key bytes are not 35 bytes, throw an error
     if(decoded.length !== 35) {
@@ -350,7 +350,7 @@ export class Secp256k1CompressedPublicKey implements PublicKey {
   }
 
   /**
-   * JSON representation of a PublicKey object.
+   * JSON representation of a Secp256k1CompressedPublicKey object.
    * @returns {PublicKeyObject} The PublicKey as a JSON object.
    */
   public json(): PublicKeyObject {
@@ -376,24 +376,24 @@ export class Secp256k1CompressedPublicKey implements PublicKey {
   }
 
   /**
-   * Computes the deterministic public key for a given private key.
-   * @param {PrivateKey | KeyBytes} sk The PrivateKey object or the private key bytes
-   * @returns {Secp256k1CompressedPublicKey} A new PublicKey object
+   * Computes the deterministic public key for a given secret key.
+   * @param {Secp256k1SecretKey | KeyBytes} sk The Secp256k1SecretKey object or the secret key bytes
+   * @returns {Secp256k1CompressedPublicKey} A new Secp256k1CompressedPublicKey object
    */
-  public static fromSecretKey(sk: SecretKey | KeyBytes): Secp256k1CompressedPublicKey {
-    // If the private key is a PrivateKey object, get the raw bytes else use the bytes
-    const bytes = sk instanceof SecretKey ? sk.bytes : sk;
+  public static fromSecretKey(sk: Secp256k1SecretKey | KeyBytes): Secp256k1CompressedPublicKey {
+    // If the secret key is a Secp256k1SecretKey object, get the raw bytes else use the bytes
+    const bytes = sk instanceof Secp256k1SecretKey ? sk.bytes : sk;
 
-    // Throw error if the private key is not 32 bytes
+    // Throw error if the secret key is not 32 bytes
     if(bytes.length !== 32) {
-      throw new PublicKeyError('Invalid arg: must be 32 byte private key', 'FROM_PRIVATE_KEY_ERROR');
+      throw new PublicKeyError('Invalid arg: must be 32 byte secret key', 'FROM_SECRET_KEY_ERROR');
     }
 
-    // Compute the public key from the private key
-    const privateKey = sk instanceof SecretKey ? sk : new SecretKey(sk);
+    // Compute the public key from the secret key
+    const secret = sk instanceof Secp256k1SecretKey ? sk : new Secp256k1SecretKey(sk);
 
     // Return a new PublicKey object
-    return new Secp256k1CompressedPublicKey(privateKey.computePublicKey());
+    return new Secp256k1CompressedPublicKey(secret.computePublicKey());
   }
 
   /**

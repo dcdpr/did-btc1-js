@@ -10,7 +10,7 @@ import {
   SignatureBytes
 } from '@did-btcr2/common';
 import { SchnorrMultikey } from '@did-btcr2/cryptosuite';
-import { PublicKey, SchnorrKeyPair } from '@did-btcr2/keypair';
+import { PublicKey, SchnorrKeyPair, Secp256k1CompressedPublicKey } from '@did-btcr2/keypair';
 import { sha256 } from '@noble/hashes/sha2';
 import { KeyValueStore, MemoryStore } from '@web5/common';
 import { KeyIdentifier } from '@web5/crypto';
@@ -270,8 +270,8 @@ export class KeyManager implements IKeyManager, CryptoSigner, BitcoinSigner  {
   public static toMultibaseUri(data: SchnorrKeyPair | PublicKey | Multibase<'zQ3s'>): string {
     const multibase = data instanceof SchnorrKeyPair
       ? data.publicKey.multibase
-      : data instanceof PublicKey
-        ? data.multibase
+      : data instanceof Secp256k1CompressedPublicKey
+        ? data.multibase.encoded
         : data;
 
     return `${MULTIBASE_URI_PREFIX}${multibase}`;
