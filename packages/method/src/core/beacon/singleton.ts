@@ -1,4 +1,4 @@
-import { AddressUtxo, Bitcoin, RawTransactionRest, RawTransactionV2, TxOut, Vout } from '@did-btcr2/bitcoin';
+import { AddressUtxo, BitcoinNetworkConnection, RawTransactionRest, RawTransactionV2, TxOut, Vout } from '@did-btcr2/bitcoin';
 import { DidUpdatePayload, INVALID_SIDECAR_DATA, LATE_PUBLISHING_ERROR, SingletonBeaconError } from '@did-btcr2/common';
 import { opcodes, Psbt, script } from 'bitcoinjs-lib';
 import { base58btc } from 'multiformats/bases/base58';
@@ -8,7 +8,7 @@ import { BeaconSidecarData, Metadata, SignalsMetadata, SingletonSidecar } from '
 import { Appendix } from '../../utils/appendix.js';
 import { KeyManager, Signer } from '../key-manager/index.js';
 
-const bitcoin = new Bitcoin();
+const bitcoin = new BitcoinNetworkConnection();
 
 /**
  * Implements {@link https://dcdpr.github.io/did-btcr2/#singleton-beacon | 5.1 Singleton Beacon}.

@@ -1,7 +1,7 @@
 import {
-  Bitcoin,
-  BitcoinRest,
-  BitcoinRpc,
+  BitcoinCoreRpcClient,
+  BitcoinNetworkConnection,
+  BitcoinRestClient,
   BlockV3,
   GENESIS_TX_ID,
   getNetwork,
@@ -40,13 +40,13 @@ import { DidDocument } from '../../utils/did-document.js';
 import { BeaconFactory } from '../beacon/factory.js';
 
 export type FindNextSignalsRestParams = {
-  connection: BitcoinRest;
+  connection: BitcoinRestClient;
   beaconSignals: Array<BeaconSignal>;
   block: BlockV3;
   beacons: Array<BeaconServiceAddress>;
 }
 export type BeaconSignals = Array<BeaconSignal>;
-export type BitcoinClient = BitcoinRpc | BitcoinRest;
+export type BitcoinClient = BitcoinCoreRpcClient | BitcoinRestClient;
 
 export type NetworkVersion = {
   version?: string;
@@ -95,7 +95,7 @@ export interface TargetBlockheightParams {
   targetTime?: UnixTimestamp;
 }
 
-const bitcoin = new Bitcoin();
+const bitcoin = new BitcoinNetworkConnection();
 
 /**
  * Implements {@link https://dcdpr.github.io/did-btcr2/#read | 4.2 Read}.
@@ -331,7 +331,7 @@ export class Resolve {
     resolutionsOptions: DidResolutionOptions;
   }): Promise<DidDocument> {
     // Set the network from the options or default to mainnet
-    const network = resolutionsOptions.network ?? BitcoinNetworkNames.bitcoin;
+    const network = resolutionsOptions.network!;
 
     // 1. If resolutionOptions.versionId is not null, set targetVersionId to resolutionOptions.versionId.
     const targetVersionId = resolutionsOptions.versionId;
@@ -341,7 +341,7 @@ export class Resolve {
     const targetTime = resolutionsOptions.versionTime ?? new Date().toUnix();
 
     // 4. Set signalsMetadata to resolutionOptions.sidecarData.signalsMetadata.
-    const signalsMetadata = (resolutionsOptions.sidecarData as SidecarData).signalsMetadata;
+    const signalsMetadata = (resolutionsOptions.sidecarData as SidecarData)?.signalsMetadata ?? {};
 
     // 5. Set currentVersionId to 1
     const currentVersionId = 1;
@@ -399,7 +399,7 @@ export class Resolve {
    * @param {boolean} params.btc1UpdateHashHistory An array of SHA256 hashes of BTCR2 Updates ordered by version that are
    *    applied to the DID document in order to construct the contemporaryDIDDocument.
    * @param {SignalsMetadata} params.signalsMetadata See {@link SignalsMetadata} for details.
-   * @param {BitcoinNetworkNames} params.network The bitcoin network to connect to (mainnet, signet, testnet, regtest).
+   * @param {string} params.network The bitcoin network to connect to (mainnet, signet, testnet, regtest).
    * @returns {Promise<DidDocument>} The resolved DID Document object with a validated single, canonical history.
    */
   protected static async traverseBlockchainHistory({
@@ -421,7 +421,7 @@ export class Resolve {
     didDocumentHistory: DidDocument[];
     btc1UpdateHashHistory: string[];
     signalsMetadata: SignalsMetadata;
-    network: BitcoinNetworkNames;
+    network: string;
   }): Promise<DidDocument> {
     // 1. Set contemporaryHash to the SHA256 hash of the contemporaryDidDocument
     let contemporaryHash = await JSON.canonicalization.process(contemporaryDidDocument, 'base58');
@@ -552,15 +552,17 @@ export class Resolve {
    *
    * @public
    * @param {FindNextSignals} params The parameters for the findNextSignals operation.
-   * @param {number} params.blockheight The blockheight to start looking for beacon signals.
-   * @param {Array<BeaconService>} params.target The target blockheight at which to stop finding signals.
+   * @param {number} params.contemporaryBlockHeight The blockheight to start looking for beacon signals.
    * @param {Array<BeaconService>} params.beacons The beacons to look for in the block.
+   * @param {Array<BeaconService>} params.network The bitcoin network to connect to (mainnet, signet, testnet, regtest).
+   * @param {UnixTimestamp} params.targetTime The timestamp used to target specific historical states of a DID document.
+   *    Only Beacon Signals included in the Bitcoin blockchain before the targetTime are processed.
    * @returns {Promise<Array<BeaconSignal>>} An array of BeaconSignal objects with blockHeight and signals.
    */
-  public static async findNextSignals({ contemporaryBlockHeight, targetTime, beacons }: {
+  public static async findNextSignals({ contemporaryBlockHeight, targetTime, network, beacons }: {
     contemporaryBlockHeight: number;
     beacons: Array<BeaconServiceAddress>;
-    network: BitcoinNetworkNames;
+    network: string;
     targetTime: UnixTimestamp;
   }): Promise<Array<BeaconSignal>> {
     let height = contemporaryBlockHeight;
@@ -568,11 +570,23 @@ export class Resolve {
     // Create an default beaconSignal and beaconSignals array
     let beaconSignals: BeaconSignals = [];
 
-    if (bitcoin.network.rest) {
-      return await this.findSignalsRest({ beacons });
+    // Get the bitcoin network connection
+    bitcoin.setActiveNetwork(network);
+
+    // Opt into REST connection if available
+    if(bitcoin.network.rest) {
+      return await this.findSignalsRest(beacons);
     }
 
-    // Use connection to get the block data at the blockhash
+    // If no rest and no rpc connection is available, throw an error
+    if (!bitcoin.network.rpc) {
+      throw new ResolveError(
+        `No Bitcoin connection available, cannot find next signals`,
+        'NO_BITCOIN_CONNECTION'
+      );
+    }
+
+    // Opt into rpc connection to get the block data at the blockhash
     let block = await bitcoin.network.rpc.getBlock({ height }) as BlockV3;
 
     Logger.info(`Searching for signals, please wait ...`);
@@ -666,15 +680,10 @@ export class Resolve {
 
   /**
    * Helper method for the {@link findNextSignals | Find Next Signals} algorithm.
-   *
-   * @param params See {@link FindNextSignalsRestParams} for details.
-   * @param {BitcoinClient} params.connection The bitcoin connection to use.
-   * @param {Array<BeaconSignal>} params.beaconSignals The beacon signals to process.
-   * @param {BlockV3} params.block The block to process.
-   * @param {Array<BeaconService>} params.beacons The beacons to process.
+   * @param {Array<BeaconService>} beacons The beacons to process.
    * @returns {Promise<Array<BeaconSignal>>} The beacon signals found in the block.
    */
-  public static async findSignalsRest({ beacons }: { beacons: Array<BeaconService>; }): Promise<Array<BeaconSignal>> {
+  public static async findSignalsRest(beacons: Array<BeaconService>): Promise<Array<BeaconSignal>> {
     // Empty array of beaconSignals
     const beaconSignals = new Array<BeaconSignal>();
 
