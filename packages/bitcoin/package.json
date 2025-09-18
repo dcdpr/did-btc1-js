@@ -1,21 +1,16 @@
 {
     "name": "@did-btcr2/bitcoin",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "type": "module",
     "description": "Bitcoin Core RPC and Rest Client Implementations in JS/TS. Used by @did-btcr2/method.",
-    "main": "./dist/cjs/index.node.js",
-    "module": "./dist/esm/index.node.js",
-    "types": "./dist/types/index.node.d.ts",
+    "main": "./dist/cjs/index.js",
+    "module": "./dist/esm/index.js",
+    "types": "./dist/types/index.d.ts",
     "exports": {
         ".": {
-            "types": "./dist/types/index.node.d.ts",
-            "browser": "./dist/esm/index.browser.js",
-            "import": "./dist/esm/index.node.js",
-            "require": "./dist/cjs/index.node.js"
-        },
-        "./browser": {
-            "types": "./dist/types/index.browser.d.ts",
-            "default": "./dist/esm/index.browser.js"
+            "types": "./dist/types/index.d.ts",
+            "import": "./dist/esm/index.js",
+            "require": "./dist/cjs/index.js"
         }
     },
     "files": [
@@ -88,7 +83,6 @@
     "dependencies": {
         "@did-btcr2/common": "workspace:*",
         "@did-btcr2/keypair": "workspace:*",
-        "bitcoin-core": "^5.0.0",
         "bitcoinjs-lib": "7.0.0-rc.0",
         "tiny-secp256k1": "^2.2.3"
     },
