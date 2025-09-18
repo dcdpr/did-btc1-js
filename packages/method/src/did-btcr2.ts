@@ -118,6 +118,9 @@ export class DidBtcr2 implements DidMethod {
       // 2. Set identifierComponents to a map of idType, version, network, and genesisBytes.
       const identifierComponents = Identifier.decode(identifier);
 
+      // Set the network based on the decoded identifier
+      resolutionsOptions.network ??= identifierComponents.network;
+
       // 3. Set initialDocument to the result of running the algorithm in Resolve Initial Document passing in the
       //    identifier, identifierComponents and resolutionOptions.
       const initialDocument = await Resolve.initialDocument({ identifier, identifierComponents, resolutionsOptions });
