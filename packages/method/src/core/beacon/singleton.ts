@@ -119,7 +119,7 @@ export class SingletonBeacon extends Beacon {
     // 5. If signalsMetadata:
     if (signalsMetadata) {
       // 5.1 Set didUpdatePayload to signalsMetadata.updatePayload
-      didUpdatePayload = signalsMetadataMap.get(signal.txid)?.btc1Update;
+      didUpdatePayload = signalsMetadataMap.get(signal.txid)?.didUpdate;
 
       if(!didUpdatePayload) {
         throw new SingletonBeaconError('Update Payload not found in signal metadata.', 'PROCESS_SIGNAL_ERROR');
@@ -246,6 +246,6 @@ export class SingletonBeacon extends Beacon {
     // 10. Initialize signalMetadata to an empty object.
     // 11. Set signalMetadata.updatePayload to didUpdatePayload.
     // 12. Return the object {<signalId>: { updatePayload: DidUpdatePayload; proofs?: any; }}.
-    return { [spentTx]: { btc1Update: didUpdatePayload } };
+    return { [spentTx]: { didUpdate: didUpdatePayload } };
   }
 }

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-import { DidBtc1CLI } from '../src/cli.js';
+import { DidBtcr2Cli } from '../src/cli.js';
 
 // 1. Instantiate your CLI class
-const cli = new DidBtc1CLI();
+const cli = new DidBtcr2Cli();
 
 // 2. Parse the real CLI arguments
 cli.run();
