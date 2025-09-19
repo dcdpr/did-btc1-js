@@ -1,6 +1,6 @@
 import { HashBytes, Hex, SignatureBytes } from '@did-btcr2/common';
 import { Multikey, SchnorrMultikey } from '@did-btcr2/cryptosuite';
-import { SchnorrKeyPair, CompressedSecp256k1PublicKey } from '@did-btcr2/keypair';
+import { SchnorrKeyPair, PublicKey } from '@did-btcr2/keypair';
 import { KeyValueStore } from '@web5/common';
 
 export type KeyManagerOptions = {
@@ -77,9 +77,9 @@ export interface IKeyManager {
     /**
      * Gets the public key of a key pair.
      * @param {KeyIdentifier} keyUri The URI of the key to get the public key for.
-     * @returns {Promise<CompressedSecp256k1PublicKey>} The public key of the key pair.
+     * @returns {Promise<PublicKey>} The public key of the key pair.
      */
-    getPublicKey(keyUri: KeyIdentifier): Promise<CompressedSecp256k1PublicKey>;
+    getPublicKey(keyUri: KeyIdentifier): Promise<PublicKey>;
 
     /**
      * Imports a key pair into the key store.

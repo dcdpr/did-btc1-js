@@ -24,7 +24,7 @@ import {
   UnixTimestamp
 } from '@did-btcr2/common';
 import { Cryptosuite, DataIntegrityProof, SchnorrMultikey } from '@did-btcr2/cryptosuite';
-import { CompressedSecp256k1PublicKey } from '@did-btcr2/keypair';
+import { PublicKey } from '@did-btcr2/keypair';
 import { bytesToHex } from '@noble/hashes/utils';
 import { DidBtcr2 } from '../../did-btcr2.js';
 import { DidResolutionOptions } from '../../interfaces/crud.js';
@@ -136,8 +136,8 @@ export class Resolve {
     // Deconstruct the components
     const { network, genesisBytes } = identifierComponents;
 
-    // Construct a new CompressedSecp256k1PublicKey and deconstruct the publicKey and publicKeyMultibase
-    const { compressed: publicKey, multibase: publicKeyMultibase } = new CompressedSecp256k1PublicKey(genesisBytes);
+    // Construct a new PublicKey and deconstruct the publicKey and publicKeyMultibase
+    const { compressed: publicKey, multibase: publicKeyMultibase } = new PublicKey(genesisBytes);
 
     // Generate the service field for the DID Document
     const service = BeaconUtils.generateBeaconServices({
@@ -154,7 +154,7 @@ export class Resolve {
         id                 : `${identifier}#initialKey`,
         type               : 'Multikey',
         controller         : identifier,
-        publicKeyMultibase : publicKeyMultibase.encoded
+        publicKeyMultibase : publicKeyMultibase.address
       }],
       service
     });

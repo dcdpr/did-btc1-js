@@ -1,4 +1,4 @@
-import { CompressedSecp256k1PublicKey } from '@did-btcr2/keypair';
+import { PublicKey } from '@did-btcr2/keypair';
 import { expect } from 'chai';
 import { DidBtcr2 } from '../src/did-btcr2.js';
 import { BeaconUtils, DidDocument } from '../src/index.js';
@@ -24,7 +24,7 @@ describe('Create Deterministic', () => {
   const networkDidEntries = Object.entries(expectedDidMap);
   const idType = 'KEY';
   const pubKeyBytes = Buffer.fromHex('03620d4fb8d5c40b0dc2f9fd84636d85487e51ecf55fbcd5ccf08c6ac148bc8a36');
-  const publicKey = new CompressedSecp256k1PublicKey(pubKeyBytes);
+  const publicKey = new PublicKey(pubKeyBytes);
   const publicKeyMultibase = publicKey.multibase;
 
   it('should create a deterministic key identifier and DID document from a publicKey',
@@ -35,7 +35,7 @@ describe('Create Deterministic', () => {
           id                 : `${did}#initialKey`,
           type               : 'Multikey',
           controller         : did,
-          publicKeyMultibase : publicKeyMultibase.encoded
+          publicKeyMultibase : publicKeyMultibase.address
         }
       ];
       const service = BeaconUtils.generateBeaconServices({
@@ -64,7 +64,7 @@ describe('Create Deterministic', () => {
           id                 : `${did}#initialKey`,
           type               : 'Multikey',
           controller         : did,
-          publicKeyMultibase : publicKeyMultibase.encoded
+          publicKeyMultibase : publicKeyMultibase.address
         }
       ];
       const service = BeaconUtils.generateBeaconServices({
@@ -95,7 +95,7 @@ describe('Create Deterministic', () => {
                 id                 : `${did}#initialKey`,
                 type               : 'Multikey',
                 controller         : did,
-                publicKeyMultibase : publicKeyMultibase.encoded
+                publicKeyMultibase : publicKeyMultibase.address
               }
             ];
             const service = BeaconUtils.generateBeaconServices({

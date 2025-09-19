@@ -1,5 +1,5 @@
 import { KeyPairError, MultikeyError } from '@did-btcr2/common';
-import { SchnorrKeyPair, Secp256k1SecretKey, CompressedSecp256k1PublicKey } from '@did-btcr2/keypair';
+import { SchnorrKeyPair, SecretKey, PublicKey } from '@did-btcr2/keypair';
 import { expect } from 'chai';
 import { SchnorrMultikey } from '../src/index.js';
 
@@ -66,8 +66,8 @@ describe('SchnorrMultikey', () => {
     it('should have proper variables: id, controller, privateKey, publicKey', () => {
       expect(multikey.id).to.equal(id);
       expect(multikey.controller).to.equal(controller);
-      expect(multikey.secretKey).to.exist.and.to.be.instanceOf(Secp256k1SecretKey);
-      expect(multikey.publicKey).to.exist.and.to.be.instanceOf(CompressedSecp256k1PublicKey);
+      expect(multikey.secretKey).to.exist.and.to.be.instanceOf(SecretKey);
+      expect(multikey.publicKey).to.exist.and.to.be.instanceOf(PublicKey);
       expect(multikey.secretKey.equals(schnorrKeyPair.secretKey)).to.be.true;
       expect(multikey.publicKey.equals(schnorrKeyPair.publicKey)).to.be.true;
     });
@@ -86,10 +86,10 @@ describe('SchnorrMultikey', () => {
       expect(multikey.verify(invalidSignature, message)).to.be.false;
     });
 
-    it('should contain a CompressedSecp256k1PublicKey in x-only base58btc format', () => {
+    it('should contain a PublicKey in x-only base58btc format', () => {
       const publicKey = multikey.publicKey;
-      expect(publicKey).to.exist.and.to.be.instanceOf(CompressedSecp256k1PublicKey);
-      expect(publicKey.multibase.encoded).to.equal(publicKeyMultibase);
+      expect(publicKey).to.exist.and.to.be.instanceOf(PublicKey);
+      expect(publicKey.multibase.address).to.equal(publicKeyMultibase);
     });
 
     it('should decode publicKeyMultibase from Multikey Format to bytes', () => {
@@ -109,7 +109,7 @@ describe('SchnorrMultikey', () => {
       expect(multikeyFromVm).to.exist.and.to.be.instanceOf(SchnorrMultikey);
       expect(multikeyFromVm.id).to.equal(id);
       expect(multikeyFromVm.controller).to.equal(controller);
-      expect(multikeyFromVm.publicKey).to.exist.and.to.be.instanceOf(CompressedSecp256k1PublicKey);
+      expect(multikeyFromVm.publicKey).to.exist.and.to.be.instanceOf(PublicKey);
       expect(multikeyFromVm.publicKey.equals(schnorrKeyPair.publicKey)).to.be.true;
     });
   });
@@ -117,20 +117,20 @@ describe('SchnorrMultikey', () => {
   /**
    * Key Pair with Public Key passed only
    */
-  describe('Verification SchnorrKeyPair (CompressedSecp256k1PublicKey-Only)', () => {
+  describe('Verification SchnorrKeyPair (PublicKey-Only)', () => {
     const keys = new SchnorrKeyPair({ publicKey });
     const multikey = new SchnorrMultikey({ id, controller, keys });
 
     it('should successfully construct a new SchnorrMultikey with publicKey only', () => {
       expect(multikey).to.exist.and.to.be.instanceOf(SchnorrMultikey);
-      expect(multikey.publicKey).to.exist.and.to.be.instanceOf(CompressedSecp256k1PublicKey);
+      expect(multikey.publicKey).to.exist.and.to.be.instanceOf(PublicKey);
     });
 
     it('should have proper variables: id, controller, publicKey', () => {
       expect(multikey.id).to.equal(id);
       expect(multikey.controller).to.equal(controller);
       expect(() => multikey.secretKey).to.throw(KeyPairError, 'Secret key not available');
-      expect(multikey.publicKey).to.exist.and.to.be.instanceOf(CompressedSecp256k1PublicKey);
+      expect(multikey.publicKey).to.exist.and.to.be.instanceOf(PublicKey);
       expect(multikey.publicKey.equals(publicKey)).to.be.true;
     });
 
@@ -168,7 +168,7 @@ describe('SchnorrMultikey', () => {
       expect(multikeyFromVm).to.exist.and.to.be.instanceOf(SchnorrMultikey);
       expect(multikeyFromVm.id).to.equal(id);
       expect(multikeyFromVm.controller).to.equal(controller);
-      expect(multikeyFromVm.publicKey).to.exist.and.to.be.instanceOf(CompressedSecp256k1PublicKey);
+      expect(multikeyFromVm.publicKey).to.exist.and.to.be.instanceOf(PublicKey);
       expect(multikeyFromVm.publicKey.equals(publicKey)).to.be.true;
     });
   });
@@ -176,7 +176,7 @@ describe('SchnorrMultikey', () => {
   /**
    * Key Pair with PrivateKey passed only
    */
-  describe('Sign/Verify SchnorrKeyPair (PrivateKey-CompressedSecp256k1PublicKey)', () => {
+  describe('Sign/Verify SchnorrKeyPair (PrivateKey-PublicKey)', () => {
     const keys = new SchnorrKeyPair({ secretKey: schnorrKeyPair.secretKey });
     const multikey = new SchnorrMultikey({ id, controller, keys });
 
@@ -187,8 +187,8 @@ describe('SchnorrMultikey', () => {
     it('should have proper variables: id, controller, keyPair', () => {
       expect(multikey.id).to.equal(id);
       expect(multikey.controller).to.equal(controller);
-      expect(multikey.publicKey).to.exist.and.to.be.instanceOf(CompressedSecp256k1PublicKey);
-      expect(multikey.secretKey).to.exist.and.to.be.instanceOf(Secp256k1SecretKey);
+      expect(multikey.publicKey).to.exist.and.to.be.instanceOf(PublicKey);
+      expect(multikey.secretKey).to.exist.and.to.be.instanceOf(SecretKey);
       expect(multikey.secretKey.equals(keys.secretKey)).to.be.true;
       expect(multikey.publicKey.equals(keys.publicKey)).to.be.true;
     });
@@ -228,7 +228,7 @@ describe('SchnorrMultikey', () => {
       expect(multikeyFromVm).to.exist.and.to.be.instanceOf(SchnorrMultikey);
       expect(multikeyFromVm.id).to.equal(id);
       expect(multikeyFromVm.controller).to.equal(controller);
-      expect(multikeyFromVm.publicKey).to.exist.and.to.be.instanceOf(CompressedSecp256k1PublicKey);
+      expect(multikeyFromVm.publicKey).to.exist.and.to.be.instanceOf(PublicKey);
       expect(multikeyFromVm.publicKey.equals(publicKey)).to.be.true;
     });
   });
@@ -236,9 +236,9 @@ describe('SchnorrMultikey', () => {
   /**
    * Key Pair from Secret
    */
-  describe('Sign/Verify SchnorrKeyPair (Secp256k1SecretKey.fromEntropy)', () => {
+  describe('Sign/Verify SchnorrKeyPair (PrivateKey.fromSecret)', () => {
     const SECRET = 31408844715744742771434292216794392628447163656691664006588916258271600228809n;
-    const secretKey = Secp256k1SecretKey.fromEntropy(SECRET);
+    const secretKey = SecretKey.fromSecret(SECRET);
     const keys = new SchnorrKeyPair({ secretKey });
     const multikey = new SchnorrMultikey({ id, controller, keys });
 
@@ -249,8 +249,8 @@ describe('SchnorrMultikey', () => {
     it('should have proper variables: id, controller, keyPair', () => {
       expect(multikey.id).to.equal(id);
       expect(multikey.controller).to.equal(controller);
-      expect(multikey.publicKey).to.exist.and.to.be.instanceOf(CompressedSecp256k1PublicKey);
-      expect(multikey.secretKey).to.exist.and.to.be.instanceOf(Secp256k1SecretKey);
+      expect(multikey.publicKey).to.exist.and.to.be.instanceOf(PublicKey);
+      expect(multikey.secretKey).to.exist.and.to.be.instanceOf(SecretKey);
       expect(multikey.secretKey.equals(secretKey)).to.be.true;
       expect(multikey.publicKey.equals(publicKey)).to.be.true;
       expect(multikey.secretKey.seed).to.equal(SECRET);
@@ -291,7 +291,7 @@ describe('SchnorrMultikey', () => {
       expect(multikeyFromVm).to.exist.and.to.be.instanceOf(SchnorrMultikey);
       expect(multikeyFromVm.id).to.equal(id);
       expect(multikeyFromVm.controller).to.equal(controller);
-      expect(multikeyFromVm.publicKey).to.exist.and.to.be.instanceOf(CompressedSecp256k1PublicKey);
+      expect(multikeyFromVm.publicKey).to.exist.and.to.be.instanceOf(PublicKey);
       expect(multikeyFromVm.publicKey.equals(publicKey)).to.be.true;
       expect(() => multikeyFromVm.secretKey?.seed).to.throw(KeyPairError, 'Secret key not available');
     });

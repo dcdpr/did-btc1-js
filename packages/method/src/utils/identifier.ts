@@ -1,5 +1,5 @@
 import { BitcoinNetworkNames, MethodError, IdentifierTypes, Bytes, INVALID_DID, METHOD_NOT_SUPPORTED } from '@did-btcr2/common';
-import { CompressedSecp256k1PublicKey, SchnorrKeyPair } from '@did-btcr2/keypair';
+import { PublicKey, SchnorrKeyPair } from '@did-btcr2/keypair';
 import { bech32m } from '@scure/base';
 import { DidComponents } from './appendix.js';
 
@@ -61,7 +61,7 @@ export class Identifier {
     // 5. If idType is “key” and genesisBytes is not a valid compressed secp256k1 public key, raise invalidDid error.
     if (idType === 'KEY') {
       try {
-        new CompressedSecp256k1PublicKey(genesisBytes);
+        new PublicKey(genesisBytes);
       } catch {
         throw new MethodError(
           'Expected "genesisBytes" to be a valid compressed secp256k1 public key',
@@ -248,7 +248,7 @@ export class Identifier {
     // 19. If idType is “key” and genesisBytes is not a valid compressed secp256k1 public key, raise invalidDid error.
     if (idType === 'KEY') {
       try {
-        new CompressedSecp256k1PublicKey(genesisBytes);
+        new PublicKey(genesisBytes);
       } catch {
         throw new MethodError(`Invalid genesisBytes: ${genesisBytes}`, INVALID_DID, { identifier });
       }

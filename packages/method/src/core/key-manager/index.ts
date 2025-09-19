@@ -10,7 +10,7 @@ import {
   SignatureBytes
 } from '@did-btcr2/common';
 import { SchnorrMultikey } from '@did-btcr2/cryptosuite';
-import { CompressedSecp256k1PublicKey, SchnorrKeyPair } from '@did-btcr2/keypair';
+import { PublicKey, SchnorrKeyPair } from '@did-btcr2/keypair';
 import { sha256 } from '@noble/hashes/sha2';
 import { KeyValueStore, MemoryStore } from '@web5/common';
 import { KeyIdentifier } from '@web5/crypto';
@@ -104,11 +104,11 @@ export class KeyManager implements IKeyManager, CryptoSigner, BitcoinSigner  {
   }
 
   /**
-   * Gets the key pair from the key store and returns a CompressedSecp256k1PublicKey.
+   * Gets the key pair from the key store and returns a PublicKey.
    * @param {KeyIdentifier} keyUri The URI of the key to get the public key for.
-   * @returns {Promise<CompressedSecp256k1PublicKey>} The public key associated with the key URI.
+   * @returns {Promise<PublicKey>} The public key associated with the key URI.
    */
-  public async getPublicKey(keyUri?: KeyIdentifier): Promise<CompressedSecp256k1PublicKey> {
+  public async getPublicKey(keyUri?: KeyIdentifier): Promise<PublicKey> {
     // Use the active key URI if not provided
     const key = await this.getKey(keyUri);
 
@@ -264,13 +264,13 @@ export class KeyManager implements IKeyManager, CryptoSigner, BitcoinSigner  {
 
   /**
    * Computes a multibase-compliant URI from a key.
-   * @param key A SchnorrKeyPair, CompressedSecp256k1PublicKey, or multibase string
+   * @param key A SchnorrKeyPair, PublicKey, or multibase string
    * @returns {string} A multibase URI (e.g. 'urn:mb:zQ3s...')
    */
-  public static toMultibaseUri(data: SchnorrKeyPair | CompressedSecp256k1PublicKey | Multibase<'zQ3s'>): string {
+  public static toMultibaseUri(data: SchnorrKeyPair | PublicKey | Multibase<'zQ3s'>): string {
     const multibase = data instanceof SchnorrKeyPair
       ? data.publicKey.multibase
-      : data instanceof CompressedSecp256k1PublicKey
+      : data instanceof PublicKey
         ? data.multibase
         : data;
 

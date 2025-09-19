@@ -11,8 +11,7 @@ import {
 } from '@did-btcr2/common';
 import { sha256 } from '@noble/hashes/sha2';
 import { base58btc } from 'multiformats/bases/base58';
-import * as tinysecp from 'tiny-secp256k1';
-import { Secp256k1SecretKey } from './secret.js';
+import { SecretKey } from './secret.js';
 
 export interface Point {
   x: KeyBytes;
@@ -20,17 +19,11 @@ export interface Point {
 }
 
 /**
- * General PublicKey Interface used by CompressedSecp256k1PublicKey.
- * @interface PublicKey
- * @type {PublicKey}
+ * Interface for the PublicKey class.
+ * @interface IPublicKey
+ * @type {IPublicKey}
  */
-export interface PublicKey {
-  /**
-   * Compressed public key getter.
-   * @readonly @type {KeyBytes} The 33 byte compressed public key [parity, x-coord].
-   */
-  compressed: KeyBytes;
-
+export interface IPublicKey {
   /**
    * Uncompressed public key getter.
    * @readonly @type {KeyBytes} The 65 byte uncompressed public key [0x04, x-coord, y-coord].
@@ -38,52 +31,40 @@ export interface PublicKey {
   uncompressed: KeyBytes;
 
   /**
-   * X-only public key getter.
-   * @readonly @type {KeyBytes} The 32 byte x-only public key [x-coord].
+   * Compressed public key getter.
+   * @readonly @type {KeyBytes} The 33 byte compressed public key [parity, x-coord].
    */
-  xOnly: KeyBytes;
+  compressed: KeyBytes;
 
   /**
-   * CompressedSecp256k1PublicKey parity getter.
+   * PublicKey parity getter.
    * @readonly @type {number} The 1 byte parity (0x02 if even, 0x03 if odd).
    */
   parity: number;
 
   /**
-   * CompressedSecp256k1PublicKey isEven getter.
-   * @readonly @type {boolean} True if the public key is even, false if odd.
-   */
-  isEven: boolean;
-
-  /**
-   * CompressedSecp256k1PublicKey x-coordinate getter.
+   * PublicKey x-coordinate getter.
    * @readonly @type {KeyBytes} The 32 byte x-coordinate of the public key.
    */
   x: KeyBytes;
 
   /**
-   * CompressedSecp256k1PublicKey y-coordinate getter.
+   * PublicKey y-coordinate getter.
    * @readonly @type {KeyBytes} The 32 byte y-coordinate of the public key.
    */
   y: KeyBytes;
 
   /**
-   * CompressedSecp256k1PublicKey multibase getter.
+   * PublicKey multibase getter.
    * @readonly @returns {MultibaseObject} The public key as MultibaseObject as a address string, key and prefix bytes.
    */
   multibase: MultibaseObject;
 
   /**
-   * CompressedSecp256k1PublicKey hex string getter.
+   * PublicKey hex string getter.
    * @readonly @type {Hex} The public key as a hex string.
    */
   hex: Hex;
-
-  /**
-   * CompressedSecp256k1PublicKey point getter.
-   * @readonly @type {Point} The public key as a point (x, y).
-   */
-  point: Point;
 
   /**
    * Decode the base58btc multibase string to the compressed public key prefixed with 0x02.
@@ -92,21 +73,21 @@ export interface PublicKey {
   decode(): KeyBytes;
 
   /**
-   * Encode the CompressedSecp256k1PublicKey as an x-only base58btc multibase public key.
+   * Encode the PublicKey as an x-only base58btc multibase public key.
    * @returns {string} The public key formatted a base58btc multibase string.
    */
   encode(): string;
 
   /**
-   * CompressedSecp256k1PublicKey key equality check. Checks if `this` public key is equal to `other` public key.
-   * @param {CompressedSecp256k1PublicKey} other The public key to compare.
+   * PublicKey key equality check. Checks if `this` public key is equal to `other` public key.
+   * @param {PublicKey} other The public key to compare.
    * @returns {boolean} True if the public keys are equal.
    */
-  equals(other: CompressedSecp256k1PublicKey): boolean;
+  equals(other: PublicKey): boolean;
 
   /**
-   * JSON representation of a CompressedSecp256k1PublicKey object.
-   * @returns {PublicKeyObject} The CompressedSecp256k1PublicKey as a JSON object.
+   * JSON representation of a PublicKey object.
+   * @returns {PublicKeyObject} The PublicKey as a JSON object.
    */
   json(): PublicKeyObject;
 }
@@ -115,10 +96,10 @@ export interface PublicKey {
  * Encapsulates a secp256k1 public key compliant to BIP-340 BIP schnorr signature scheme.
  * Provides get methods for different formats (compressed, x-only, multibase).
  * Provides helpers methods for comparison and serialization.
- * @class CompressedSecp256k1PublicKey
- * @type {CompressedSecp256k1PublicKey}
+ * @class PublicKey
+ * @type {PublicKey}
  */
-export class CompressedSecp256k1PublicKey implements PublicKey {
+export class PublicKey implements PublicKey {
   /** @type {KeyBytes} The public key bytes */
   private readonly _bytes: KeyBytes;
 
@@ -126,11 +107,11 @@ export class CompressedSecp256k1PublicKey implements PublicKey {
   private _multibase: MultibaseObject = {
     prefix  : BIP340_PUBLIC_KEY_MULTIBASE_PREFIX,
     key     : [],
-    encoded : ''
+    address : ''
   };
 
   /**
-   * Creates a CompressedSecp256k1PublicKey instance.
+   * Creates a PublicKey instance.
    * @param {KeyBytes} bytes The public key byte array.
    * @throws {PublicKeyError} if the byte length is not 32 (x-only) or 33 (compressed)
    */
@@ -142,19 +123,11 @@ export class CompressedSecp256k1PublicKey implements PublicKey {
         'CONSTRUCTOR_ERROR', { bytes }
       );
     }
-
-    // Validate the point is on curve and in compressed form
-    if (!tinysecp.isPoint(bytes)) {
-      throw new PublicKeyError(
-        'Invalid argument: bytes are not a valid secp256k1 compressed point',
-        'CONSTRUCTOR_ERROR', { bytes }
-      );
-    }
     // Set the bytes
     this._bytes = bytes;
 
     // Set multibase
-    this._multibase.encoded = this.encode();
+    this._multibase.address = this.encode();
     this._multibase.key = [...this._multibase.prefix, ...this.compressed];
   }
 
@@ -177,26 +150,12 @@ export class CompressedSecp256k1PublicKey implements PublicKey {
   }
 
   /**
-   * X-only (32-byte) view of the public key per BIP-340.
+   * Get the parity byte of the public key.
+   * @returns {number} The parity byte of the public key.
    */
-  get xOnly(): KeyBytes {
-    return this._bytes.slice(1);
-  }
-
-  /**
-   * Parity of the SEC compressed public key.
-   * @returns {0 | 1} The parity of the public key. 0 = even (0x02), 1 = odd (0x03).
-   */
-  get parity(): 0 | 1 {
-    return (this._bytes[0] & 1) as 0 | 1;
-  }
-
-  /**
-   * Whether the SEC compressed public key has even Y.
-   * @returns {boolean} True if the public key has even Y.
-   */
-  get isEven(): boolean {
-    return this._bytes[0] === 0x02;
+  get parity(): number {
+    const parity = this.compressed[0];
+    return parity;
   }
 
   /**
@@ -247,29 +206,21 @@ export class CompressedSecp256k1PublicKey implements PublicKey {
   }
 
   /**
-   * Returns the BIP-340 (x-only) representation of this key.
-   * @returns {KeyBytes} The BIP-340 (x-only) representation of the public key.
-   */
-  public bip340(): KeyBytes {
-    return this.xOnly;
-  }
-
-  /**
    * Returns the point of the public key.
    * @param {Hex} pk The public key in hex (Uint8Array or string) format.
    * @returns {Point} The point of the public key.
    * @throws {PublicKeyError} If the public key is not a valid hex string or byte array.
    */
   static point(pk: Hex): Point {
-    // If the public key is a hex string, convert it to a CompressedSecp256k1PublicKey object and return the point
+    // If the public key is a hex string, convert it to a PublicKey object and return the point
     if(typeof pk === 'string' && /^[0-9a-fA-F]+$/.test(pk)) {
-      const publicKey = new CompressedSecp256k1PublicKey(Buffer.fromHex(pk));
+      const publicKey = new PublicKey(Buffer.fromHex(pk));
       return publicKey.point;
     }
 
-    // If the public key is a byte array or ArrayBuffer, convert it to a CompressedSecp256k1PublicKey object and return the point
+    // If the public key is a byte array or ArrayBuffer, convert it to a PublicKey object and return the point
     if(pk instanceof Uint8Array || ArrayBuffer.isView(pk)) {
-      const publicKey = new CompressedSecp256k1PublicKey(pk as KeyBytes);
+      const publicKey = new PublicKey(pk as KeyBytes);
       return publicKey.point;
     }
 
@@ -286,7 +237,7 @@ export class CompressedSecp256k1PublicKey implements PublicKey {
    */
   public decode(): KeyBytes {
     // Decode the public key multibase string
-    const decoded = base58btc.decode(this.multibase.encoded);
+    const decoded = base58btc.decode(this.multibase.address);
 
     // If the public key bytes are not 35 bytes, throw an error
     if(decoded.length !== 35) {
@@ -342,16 +293,16 @@ export class CompressedSecp256k1PublicKey implements PublicKey {
 
   /**
    * Compares this public key to another public key.
-   * @param {CompressedSecp256k1PublicKey} other The other public key to compare
+   * @param {PublicKey} other The other public key to compare
    * @returns {boolean} True if the public keys are equal, false otherwise.
    */
-  public equals(other: CompressedSecp256k1PublicKey): boolean {
+  public equals(other: PublicKey): boolean {
     return this.hex === other.hex;
   }
 
   /**
-   * JSON representation of a CompressedSecp256k1PublicKey object.
-   * @returns {PublicKeyObject} The CompressedSecp256k1PublicKey as a JSON object.
+   * JSON representation of a PublicKey object.
+   * @returns {PublicKeyObject} The PublicKey as a JSON object.
    */
   public json(): PublicKeyObject {
     return {
@@ -366,34 +317,34 @@ export class CompressedSecp256k1PublicKey implements PublicKey {
   }
 
   /**
-   * Creates a CompressedSecp256k1PublicKey object from a JSON representation.
-   * @param {PublicKeyObject} json The JSON object to initialize the CompressedSecp256k1PublicKey.
-   * @returns {CompressedSecp256k1PublicKey} The initialized CompressedSecp256k1PublicKey object.
+   * Creates a PublicKey object from a JSON representation.
+   * @param {PublicKeyObject} json The JSON object to initialize the PublicKey.
+   * @returns {PublicKey} The initialized PublicKey object.
    */
-  public static fromJSON(json: Maybe<PublicKeyObject>): CompressedSecp256k1PublicKey {
+  public static fromJSON(json: Maybe<PublicKeyObject>): PublicKey {
     json.x.unshift(json.parity);
-    return new CompressedSecp256k1PublicKey(json.x.toUint8Array());
+    return new PublicKey(json.x.toUint8Array());
   }
 
   /**
-   * Computes the deterministic public key for a given secret key.
-   * @param {Secp256k1SecretKey | KeyBytes} sk The Secp256k1SecretKey object or the secret key bytes
-   * @returns {CompressedSecp256k1PublicKey} A new CompressedSecp256k1PublicKey object
+   * Computes the deterministic public key for a given private key.
+   * @param {PrivateKey | KeyBytes} sk The PrivateKey object or the private key bytes
+   * @returns {PublicKey} A new PublicKey object
    */
-  public static fromSecretKey(sk: Secp256k1SecretKey | KeyBytes): CompressedSecp256k1PublicKey {
-    // If the secret key is a Secp256k1SecretKey object, get the raw bytes else use the bytes
-    const bytes = sk instanceof Secp256k1SecretKey ? sk.bytes : sk;
+  public static fromSecretKey(sk: SecretKey | KeyBytes): PublicKey {
+    // If the private key is a PrivateKey object, get the raw bytes else use the bytes
+    const bytes = sk instanceof SecretKey ? sk.bytes : sk;
 
-    // Throw error if the secret key is not 32 bytes
+    // Throw error if the private key is not 32 bytes
     if(bytes.length !== 32) {
-      throw new PublicKeyError('Invalid arg: must be 32 byte secret key', 'FROM_SECRET_KEY_ERROR');
+      throw new PublicKeyError('Invalid arg: must be 32 byte private key', 'FROM_PRIVATE_KEY_ERROR');
     }
 
-    // Compute the public key from the secret key
-    const secret = sk instanceof Secp256k1SecretKey ? sk : new Secp256k1SecretKey(sk);
+    // Compute the public key from the private key
+    const privateKey = sk instanceof SecretKey ? sk : new SecretKey(sk);
 
-    // Return a new CompressedSecp256k1PublicKey object
-    return new CompressedSecp256k1PublicKey(secret.computePublicKey());
+    // Return a new PublicKey object
+    return new PublicKey(privateKey.computePublicKey());
   }
 
   /**
@@ -454,4 +405,20 @@ export class CompressedSecp256k1PublicKey implements PublicKey {
     // Return 65-byte uncompressed public key: `0x04 || x || y`
     return new Uint8Array(Buffer.concat([Buffer.from([0x04]), Buffer.from(this.x), yBytes]));
   };
+
+  /**
+   * Static version of liftX method.
+   * @param {KeyBytes} x The 32-byte x-coordinate to lift.
+   * @returns {Uint8Array} The 65-byte uncompressed public key (0x04, x, y).
+   */
+  public static xOnly(x: KeyBytes): Uint8Array {
+    // Ensure x-coordinate is 32 bytes
+    if (x.length !== 32) {
+      throw new PublicKeyError('Invalid argument: x-coordinate length must be 32 bytes', 'LIFT_X_ERROR');
+    }
+
+    // Create a PublicKey instance and lift the x-coordinate
+    const publicKey = new PublicKey(x);
+    return publicKey.x;
+  }
 }
