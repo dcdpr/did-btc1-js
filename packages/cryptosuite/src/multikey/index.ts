@@ -1,5 +1,5 @@
 import { Bytes, Hex, MultikeyError, SignatureBytes, VERIFICATION_METHOD_ERROR } from '@did-btcr2/common';
-import { PublicKey, SchnorrKeyPair, SecretKey } from '@did-btcr2/keypair';
+import { CompressedSecp256k1PublicKey, SchnorrKeyPair, Secp256k1SecretKey } from '@did-btcr2/keypair';
 import { schnorr, secp256k1 } from '@noble/curves/secp256k1';
 import { DidVerificationMethod } from '@web5/dids';
 import { randomBytes } from 'crypto';
@@ -44,8 +44,8 @@ export class SchnorrMultikey implements Multikey {
    * @param {string} params.id The id of the multikey (required)
    * @param {string} params.controller The controller of the multikey (required)
    * @param {Keys} params.keys The Keys of the multikey (optional, required if no publicKey)
-   * @param {PublicKey} params.keys.publicKey The public key of the multikey (optional, required if no privateKey)
-   * @param {SecretKey} params.keys.privateKey The private key of the multikey (optional)
+   * @param {CompressedSecp256k1PublicKey} params.keys.publicKey The public key of the multikey (optional, required if no privateKey)
+   * @param {Secp256k1SecretKey} params.keys.privateKey The private key of the multikey (optional)
    * @throws {MultikeyError} if neither a publicKey nor a privateKey is provided
    */
   constructor({ id, controller, keys }: MultikeyParams) {
@@ -72,15 +72,15 @@ export class SchnorrMultikey implements Multikey {
     return keys;
   }
 
-  /** @type {PublicKey} @readonly Get the Multikey PublicKey. */
-  get publicKey(): PublicKey {
+  /** @type {CompressedSecp256k1PublicKey} @readonly Get the Multikey CompressedSecp256k1PublicKey. */
+  get publicKey(): CompressedSecp256k1PublicKey {
     // Create and return a copy of the Keys.publicKey
     const publicKey = this._keys.publicKey;
     return publicKey;
   }
 
   /** @type {PrivateKey} @readonly Get the Multikey PrivateKey. */
-  get secretKey(): SecretKey {
+  get secretKey(): Secp256k1SecretKey {
     // Create and return a copy of the Keys.secretKey
     const secretKey = this._keys.secretKey;
     // If there is no private key, throw an error
@@ -169,7 +169,7 @@ export class SchnorrMultikey implements Multikey {
       id                 : this.id,
       type               : SchnorrMultikey.type,
       controller         : this.controller,
-      publicKeyMultibase : this.publicKey.multibase.address
+      publicKeyMultibase : this.publicKey.multibase.encoded
     };
   }
 
@@ -224,14 +224,14 @@ export class SchnorrMultikey implements Multikey {
     // Get the 32 byte public key from the multibase
     const publicKey = decoded.slice(2, decoded.length);
 
-    // Construct a new PublicKey from the publicKey and a new Keys from the PublicKey
-    const keys = new SchnorrKeyPair({ publicKey: new PublicKey(publicKey) });
+    // Construct a new CompressedSecp256k1PublicKey from the publicKey and a new Keys from the CompressedSecp256k1PublicKey
+    const keys = new SchnorrKeyPair({ publicKey: new CompressedSecp256k1PublicKey(publicKey) });
 
     // Return a new Multikey instance
     return new SchnorrMultikey({ id, controller, keys });
   }
 
-  /** @type {boolean} @readonly Get signing ability of the Multikey (i.e. is there a valid SecretKey). */
+  /** @type {boolean} @readonly Get signing ability of the Multikey (i.e. is there a valid Secp256k1SecretKey). */
   get signer(): boolean {
     return !!this.keys.secretKey;
   }
@@ -276,7 +276,7 @@ export class SchnorrMultikey implements Multikey {
    */
   public static fromPrivateKey({ id, controller, entropy }: FromSecretKey): SchnorrMultikey {
     // Create a new PrivateKey from the private key bytes
-    const secretKey = new SecretKey(entropy);
+    const secretKey = new Secp256k1SecretKey(entropy);
 
     // Compute the public key from the private key
     const publicKey = secretKey.computePublicKey();
@@ -297,8 +297,8 @@ export class SchnorrMultikey implements Multikey {
    * @returns {Multikey} The new multikey instance
    */
   public static fromPublicKey({ id, controller, publicKeyBytes }: FromPublicKey): Multikey {
-    // Create a new PublicKey from the public key bytes
-    const keys = new SchnorrKeyPair({ publicKey: new PublicKey(publicKeyBytes) });
+    // Create a new CompressedSecp256k1PublicKey from the public key bytes
+    const keys = new SchnorrKeyPair({ publicKey: new CompressedSecp256k1PublicKey(publicKeyBytes) });
 
     // Return a new Multikey instance
     return new SchnorrMultikey({ id, controller, keys });

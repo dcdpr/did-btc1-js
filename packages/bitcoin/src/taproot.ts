@@ -1,6 +1,6 @@
 import * as tinysecp from 'tiny-secp256k1';
 import { payments, script, opcodes } from 'bitcoinjs-lib';
-import { PublicKey } from '@did-btcr2/keypair';
+import { CompressedSecp256k1PublicKey } from '@did-btcr2/keypair';
 
 /**
  * Aggregate an array of public keys by point addition
@@ -40,7 +40,7 @@ function buildTapLeafScript(
 
   // push each key as x-only pubkey
   for (const pk of pubkeys) {
-    const [xOnly] = PublicKey.xOnly(pk);
+    const [xOnly] = new CompressedSecp256k1PublicKey(pk).xOnly;
     ops.push(xOnly);
   }
   // push threshold k and total keys n
@@ -56,7 +56,7 @@ function buildTapLeafScript(
  */
 function buildMusigLeafScript(pubkeys: Uint8Array[]): Uint8Array {
   const agg = aggregatePubkeys(pubkeys);
-  const [xOnly] = PublicKey.xOnly(agg);
+  const [xOnly] = new CompressedSecp256k1PublicKey(agg).xOnly;
   // In a taproot script path, OP_CHECKSIG runs schnorr
   return script.compile([xOnly, opcodes.OP_CHECKSIG]);
 }

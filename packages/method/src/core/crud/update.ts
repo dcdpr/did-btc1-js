@@ -12,7 +12,7 @@ import {
   ProofOptions
 } from '@did-btcr2/common';
 import { SchnorrMultikey } from '@did-btcr2/cryptosuite';
-import { SchnorrKeyPair, SecretKey } from '@did-btcr2/keypair';
+import { SchnorrKeyPair, Secp256k1SecretKey } from '@did-btcr2/keypair';
 import type { DidService } from '@web5/dids';
 import { BeaconService } from '../../interfaces/ibeacon.js';
 import { SignalsMetadata } from '../../types/crud.js';
@@ -158,7 +158,7 @@ export class Update {
           id,
           controller,
           keys : new SchnorrKeyPair({
-            secretKey : SecretKey.decode(secretKeyMultibase)
+            secretKey : Secp256k1SecretKey.decode(secretKeyMultibase)
           })
         });
 

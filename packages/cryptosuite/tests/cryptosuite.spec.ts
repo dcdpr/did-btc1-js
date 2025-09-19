@@ -1,5 +1,5 @@
 import { ProofOptions } from '@did-btcr2/common';
-import { SchnorrKeyPair, SecretKey } from '@did-btcr2/keypair';
+import { SchnorrKeyPair, Secp256k1SecretKey } from '@did-btcr2/keypair';
 import { expect } from 'chai';
 import { Cryptosuite, DataIntegrityProof, SchnorrMultikey } from '../src/index.js';
 
@@ -30,7 +30,7 @@ const options: ProofOptions = {
 };
 
 describe('Cryptosuite', () => {
-  const secretKey = new SecretKey(Buffer.fromHex('80d5427d3191c13a0c8e7279abc538a31a1ea210158d38022a80b2fac1660a79'));
+  const secretKey = new Secp256k1SecretKey(Buffer.fromHex('80d5427d3191c13a0c8e7279abc538a31a1ea210158d38022a80b2fac1660a79'));
   const keys = new SchnorrKeyPair({ secretKey });
   const multikey = new SchnorrMultikey({ id, controller, keys });
   const cryptosuite = new Cryptosuite({ cryptosuite: 'bip340-jcs-2025', multikey });
