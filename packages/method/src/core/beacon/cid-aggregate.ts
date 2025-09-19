@@ -111,8 +111,8 @@ export class CIDAggregateBeacon extends Beacon {
    *
    * The Broadcast CIDAggregate Beacon Signal algorithm involving two roles: a set of cohort participants and a Beacon
    * coordinator. The Beacon coordinator collects individual DID Update Payload Content Identifiers (CIDs) for specific
-   * did:btc1s and aggregates them into a DID Update Bundle, which is then published to a Content Addressable Storage
-   * (CAS). The CID for the DID Update Bundle is included in a Partially Signed Bitcoin Transaction (PSBT) transaction
+   * did:btcr2 idntifiers and aggregates them into a DID Update Bundle, which is then published to a Content Addressable
+   * Storage (CAS). The CID for the DID Update Bundle is included in a Partially Signed Bitcoin Transaction (PSBT) transaction
    * output spent from the Beacon’s n-of-n address. Each of the n cohort participants in the Beacon MUST sign the
    * transaction before it can be broadcast to the network. It is RECOMMENDED that cohort participants keep a copy of
    * the DID Update Bundle and separately pin it to the CAS.

@@ -10,7 +10,7 @@ import {
 import { createHelia } from 'helia';
 import { CID } from 'multiformats';
 import { create as createDigest } from 'multiformats/hashes/digest';
-import { Btc1RootCapability } from '../interfaces/crud.js';
+import { RootCapability } from '../interfaces/crud.js';
 import { DidVerificationMethod } from './did-document.js';
 
 export interface DidComponents {
@@ -97,7 +97,7 @@ export class Appendix {
 
 
   /**
-   * Implements {@link https://dcdpr.github.io/did-btcr2/#derive-root-capability-from-didbtc1-identifier | 9.4.1 Derive Root Capability from did:btcr2 Identifier}.
+   * Implements {@link https://dcdpr.github.io/did-btcr2/#derive-root-capability-from-didbtcr2-identifier | 9.4.1 Derive Root Capability from did:btcr2 Identifier }.
    *
    * The Derive Root Capability algorithm deterministically generates a ZCAP-LD root capability from a given did:btcr2
    * identifier. Each root capability is unique to the identifier. This root capability is defined and understood by the
@@ -105,7 +105,7 @@ export class Appendix {
    * document. It takes in a did:btcr2 identifier and returns a rootCapability object. It returns the root capability.
    *
    * @param {string} identifier The did-btcr2 identifier to derive the root capability from
-   * @returns {Btc1RootCapability} The root capability object
+   * @returns {RootCapability} The root capability object
    * @example Root capability for updating the DID document for
    * did:btcr2:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u
    * ```
@@ -117,9 +117,9 @@ export class Appendix {
    * }
    * ```
    */
-  public static deriveRootCapability(identifier: string): Btc1RootCapability {
+  public static deriveRootCapability(identifier: string): RootCapability {
     // 1. Define rootCapability as an empty object.
-    const rootCapability = {} as Btc1RootCapability;
+    const rootCapability = {} as RootCapability;
 
     // 2. Set rootCapability.@context to ‘https://w3id.org/zcap/v1’.
     rootCapability['@context'] = W3C_ZCAP_V1;
@@ -148,7 +148,7 @@ export class Appendix {
    * capability object.
    *
    * @param {string} capabilityId The root capability identifier to dereference.
-   * @returns {Btc1RootCapability} The root capability object.
+   * @returns {RootCapability} The root capability object.
    * @example a didUpdatePayload with an invoked ZCAP-LD capability containing a patch defining how the DID document
    * for did:btcr2:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u SHOULD be mutated.
    * ```
@@ -174,16 +174,16 @@ export class Appendix {
    *    "cryptosuite": "schnorr-secp256k1-jcs-2025",
    *    "verificationMethod": "did:btcr2:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u#initialKey",
    *    "invocationTarget": "did:btcr2:k1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u",
-   *    "capability": "urn:zcap:root:did%3Abtc1%3Ak1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u",
+   *    "capability": "urn:zcap:root:did%3Abtcr2%3Ak1q0rnnwf657vuu8trztlczvlmphjgc6q598h79cm6sp7c4fgqh0fkc0vzd9u",
    *    "capabilityAction": "Write",
    *    "proofPurpose": "assertionMethod",
    *    "proofValue": "z381yXYmxU8NudZ4HXY56DfMN6zfD8syvWcRXzT9xD9uYoQToo8QsXD7ahM3gXTzuay5WJbqTswt2BKaGWYn2hHhVFKJLXaDz"
    *   }
    * }
    */
-  public static derefernceRootCapabilityIdentifier(capabilityId: string): Btc1RootCapability {
+  public static derefernceRootCapabilityIdentifier(capabilityId: string): RootCapability {
     // 1. Set rootCapability to an empty object.
-    const rootCapability = {} as Btc1RootCapability;
+    const rootCapability = {} as RootCapability;
 
     // 2. Set components to the result of capabilityId.split(":").
     const [urn, zcap, root, did] = capabilityId.split(':') ?? [];

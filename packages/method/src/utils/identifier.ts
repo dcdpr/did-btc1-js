@@ -16,7 +16,7 @@ import { DidComponents } from './appendix.js';
  */
 export class Identifier {
   /**
-   * Implements {@link https://dcdpr.github.io/did-btcr2/#didbtc1-identifier-encoding | 3.2 did:btcr2 Identifier Encoding}.
+   * Implements {@link https://dcdpr.github.io/did-btcr2/#didbtcr2-identifier-encoding | 3.2 did:btcr2 Identifier Encoding}.
    *
    * A did:btcr2 DID consists of a did:btcr2 prefix, followed by an id-bech32 value, which is a Bech32m encoding of:
    *  - the specification version;
@@ -125,7 +125,7 @@ export class Identifier {
   }
 
   /**
-   * Implements {@link https://dcdpr.github.io/did-btcr2/#didbtc1-identifier-decoding | 3.3 did:btcr2 Identifier Decoding}.
+   * Implements {@link https://dcdpr.github.io/did-btcr2/#didbtcr2-identifier-decoding | 3.3 did:btcr2 Identifier Decoding}.
    * @param {string} identifier The BTCR2 DID to be parsed
    * @returns {DidComponents} The parsed identifier components. See {@link DidComponents} for details.
    * @throws {DidError} if an error occurs while parsing the identifier

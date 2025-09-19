@@ -11,7 +11,7 @@ export interface ICommand {
  * - No forced process.exit().
  * - Configurable by calling `run(argv?)`.
  */
-export class DidBtc1CLI {
+export class DidBtcr2Cli {
   private CLI: Command;
 
   constructor() {
