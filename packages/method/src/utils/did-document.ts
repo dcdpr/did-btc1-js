@@ -14,7 +14,7 @@ import { BeaconUtils } from './beacons.js';
 import { Identifier } from './identifier.js';
 
 export const BECH32M_CHARS = '';
-export const BTC1_DID_REGEX = /did:btcr2:(x1[qpzry9x8gf2tvdw0s3jn54khce6mua7l]*)/g;
+export const DID_REGEX = /did:btcr2:(x1[qpzry9x8gf2tvdw0s3jn54khce6mua7l]*)/g;
 
 export type ExternalData = {
   id: string,
@@ -432,7 +432,7 @@ export class DidDocument implements IDidDocument {
  */
 export class IntermediateDidDocument extends DidDocument {
   constructor(document: IDidDocument) {
-    const intermediateDocument = JSON.cloneReplace(document, BTC1_DID_REGEX, ID_PLACEHOLDER_VALUE) as IDidDocument;
+    const intermediateDocument = JSON.cloneReplace(document, DID_REGEX, ID_PLACEHOLDER_VALUE) as IDidDocument;
     super(intermediateDocument);
   }
 

@@ -8,23 +8,23 @@ export type FindNextSignals = {
   beacons: BeaconService[]
 };
 export type Metadata = {
-  btc1Update: DidUpdatePayload;
+  didUpdate: DidUpdatePayload;
   proofs?: string;
 };
 export type SignalSidecarData = Metadata;
-export interface Btc1SidecarData {
+export interface Sidecar {
   did: string;
 }
 export type SignalsMetadata = { [signalId: string]: Metadata; };
-export interface SingletonSidecar extends Btc1SidecarData {
+export interface SingletonSidecar extends Sidecar {
   signalsMetadata: SignalsMetadata;
 }
-export interface CIDAggregateSidecar extends Btc1SidecarData {
+export interface CIDAggregateSidecar extends Sidecar {
   initialDocument: DidDocument;
   signalsMetadata: SignalsMetadata;
   cidUpdates: Array<string>;
 }
-export interface SMTAggregateSidecar extends Btc1SidecarData {
+export interface SMTAggregateSidecar extends Sidecar {
   initialDocument: DidDocument;
   signalsMetadata: SignalsMetadata;
   smtProof: ProofBytes;

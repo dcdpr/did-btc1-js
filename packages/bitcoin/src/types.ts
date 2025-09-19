@@ -8,16 +8,16 @@ export type BitcoinClientConfig = {
     version: string;
     allowDefaultWallet: boolean;
   },
-  rest?: {
+  rest: {
     host: string;
-    username?: string;
-    password?: string;
+    headers?: Record<string, string>;
   }
 };
 
 export type AvailableNetworks = {
-  mainnet: true;
-  testnet: true;
+  bitcoin: true;
+  testnet3: true;
+  testnet4: true;
   signet: true;
   mutinynet: true;
   regtest: true;
@@ -31,7 +31,7 @@ export interface BlockHashOptions extends ReturnFormatOptions {
     summary?: boolean;
 }
 
-export interface IClientConfig {
+export interface RpcClientConfig {
     headers?: Record<string, string>;
     host?: string;
     logger?: any;
@@ -43,7 +43,7 @@ export interface IClientConfig {
     allowDefaultWallet?: boolean;
 }
 
-export class RpcClientConfig implements IClientConfig {
+export class BitcoinRpcClientConfig implements RpcClientConfig {
   network?: string;
   headers?: Record<string, string>;
   host?: string;
@@ -55,7 +55,7 @@ export class RpcClientConfig implements IClientConfig {
   wallet?: string;
   allowDefaultWallet?: boolean;
 
-  constructor(options: IClientConfig = {
+  constructor(options: RpcClientConfig = {
     headers            : {},
     host               : 'localhost',
     logger             : console,
@@ -77,8 +77,8 @@ export class RpcClientConfig implements IClientConfig {
     this.allowDefaultWallet = options.allowDefaultWallet;
   }
 
-  public static initialize(options?: IClientConfig): RpcClientConfig {
-    return new RpcClientConfig(options);
+  public static initialize(options?: RpcClientConfig): RpcClientConfig {
+    return new BitcoinRpcClientConfig(options);
   }
 }
 

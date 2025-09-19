@@ -11,3 +11,12 @@ export class BitcoinRpcError extends Error {
     this.name = 'BitcoinRpcError';
   }
 }
+
+export class BitcoinRestError extends Error {
+  public readonly data?: any;
+  constructor(message: string, data?: any) {
+    super(message);
+    this.data = data;
+    this.name = 'BitcoinRestError';
+  }
+}

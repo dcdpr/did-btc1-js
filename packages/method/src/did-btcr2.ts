@@ -118,6 +118,9 @@ export class DidBtcr2 implements DidMethod {
       // 2. Set identifierComponents to a map of idType, version, network, and genesisBytes.
       const identifierComponents = Identifier.decode(identifier);
 
+      // Set the network based on the decoded identifier
+      resolutionsOptions.network ??= identifierComponents.network;
+
       // 3. Set initialDocument to the result of running the algorithm in Resolve Initial Document passing in the
       //    identifier, identifierComponents and resolutionOptions.
       const initialDocument = await Resolve.initialDocument({ identifier, identifierComponents, resolutionsOptions });
@@ -173,7 +176,7 @@ export class DidBtcr2 implements DidMethod {
    * @param {string} params.identifier The btcr2 identifier to be updated.
    * @param {DidDocument} params.sourceDocument The DID document being updated.
    * @param {string} params.sourceVersionId The versionId of the source document.
-   * @param {Btc1DocumentPatch} params.documentPatch The JSON patch to be applied to the source document.
+   * @param {PatchOperation} params.documentPatch The JSON patch to be applied to the source document.
    * @param {string} params.verificationMethodId The verificationMethod ID to sign the update
    * @param {string[]} params.beaconIds The beacon IDs to announce the update
    * @returns {Promise<void>} Promise resolving to void
