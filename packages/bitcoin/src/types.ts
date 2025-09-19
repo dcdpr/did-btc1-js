@@ -1,4 +1,93 @@
-import { Hex } from '@did-btcr2/common';
+import { Hex, UnixTimestamp } from '@did-btcr2/common';
+
+export type TransactionStatus = {
+  confirmed: boolean;
+  block_height: number;
+  block_hash: string;
+  block_time: UnixTimestamp;
+};
+
+export interface Vin {
+  txid: string;
+  vout: number;
+  prevout?: TxInPrevout;
+  scriptsig: string;
+  scriptsig_asm: string;
+  witness: string[];
+  is_coinbase: boolean;
+  sequence: number;
+};
+
+export interface Vout {
+  scriptpubkey: string;
+  scriptpubkey_asm: string;
+  scriptpubkey_type: string;
+  scriptpubkey_address?: string;
+  value: number;
+}
+export interface ChainStats {
+  funded_txo_count: number;
+  funded_txo_sum: number;
+  spent_txo_count: number;
+  spent_txo_sum: number;
+  tx_count: number;
+}
+
+export interface MempoolStats {
+  funded_txo_count: number;
+  funded_txo_sum: number;
+  spent_txo_count: number;
+  spent_txo_sum: number;
+  tx_count: number;
+}
+export interface AddressInfo {
+  address: string;
+  chain_stats: ChainStats;
+  mempool_stats: MempoolStats;
+}
+export interface RawTransactionRest {
+  txid: string;
+  version: number;
+  locktime: number;
+  vin: Array<Vin>;
+  vout: Array<Vout>;
+  size: number;
+  weight: number;
+  fee: number;
+  status: TransactionStatus;
+}
+
+export interface AddressUtxo {
+  txid: string;
+  vout: number;
+  status: TransactionStatus;
+  value: number;
+}
+export interface RestClientConfigParams {
+  host: string;
+  headers?: { [key: string]: string };
+}
+
+export class RestClientConfig {
+  host: string;
+  headers?: { [key: string]: string };
+  constructor({ host, headers }: RestClientConfigParams) {
+    this.host = host;
+    this.headers = headers;
+  }
+}
+
+export interface RestApiCallParams {
+  path: string;
+  url?: string;
+  method?: string;
+  body?: any;
+  headers?: any;
+};
+
+export interface RestResponse extends Response {
+  [key: string]: any;
+}
 
 export type BitcoinClientConfig = {
   rpc: {

@@ -1,5 +1,5 @@
 import { Bytes } from '@did-btcr2/common';
-import { RawTransactionRest, RestApiCallParams } from './index.js';
+import { RawTransactionRest, RestApiCallParams } from '../../types.js';
 
 export class BitcoinTransaction {
   private api: (params: RestApiCallParams) => Promise<any>;
