@@ -25,7 +25,7 @@ export type BitcoinNetworkConfigMap = {
  */
 export class BitcoinNetworkConnection {
   public network: BitcoinNetworkConfig;
-  public mainnet?: BitcoinNetworkConfig;
+  public bitcoin?: BitcoinNetworkConfig;
   public testnet3?: BitcoinNetworkConfig;
   public testnet4?: BitcoinNetworkConfig;
   public signet?: BitcoinNetworkConfig;
@@ -62,7 +62,7 @@ export class BitcoinNetworkConnection {
     const networkConfigs: Record<string, BitcoinClientConfig> = JSON.parse(BITCOIN_NETWORK_CONFIG);
 
     // Set a list of available networks
-    const networks: (keyof AvailableNetworks)[] = ['mainnet', 'testnet3', 'testnet4', 'signet', 'mutinynet', 'regtest'];
+    const networks: (keyof AvailableNetworks)[] = ['bitcoin', 'testnet3', 'testnet4', 'signet', 'mutinynet', 'regtest'];
 
     // Iterate over the networks and create the client connections
     for (const network of networks) {
@@ -97,7 +97,7 @@ export class BitcoinNetworkConnection {
 
   /**
    * Get the Bitcoin network configuration for a specific network.
-   * @param {keyof AvailableNetworks} network - The Bitcoin network (e.g., 'mainnet', 'testnet3', 'signet', 'regtest').
+   * @param {keyof AvailableNetworks} network - The Bitcoin network (e.g., 'bitcoin', 'testnet3', 'signet', 'regtest').
    * @returns {Bitcoin} The Bitcoin object.
    */
   public getNetworkConnection(network: string): BitcoinNetworkConnection {
@@ -113,7 +113,7 @@ export class BitcoinNetworkConnection {
 
   /**
    * Sets the active Bitcoin network.
-   * @param {keyof AvailableNetworks} active - The Bitcoin network to set as active (e.g., 'mainnet', 'testnet3', 'signet', 'regtest').
+   * @param {keyof AvailableNetworks} active - The Bitcoin network to set as active (e.g., 'bitcoin', 'testnet3', 'signet', 'regtest').
    * @throws {MethodError} If no configuration is found for the specified network.
    */
   public setActiveNetwork(active: string): void {
