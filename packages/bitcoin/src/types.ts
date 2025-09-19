@@ -15,7 +15,7 @@ export type BitcoinClientConfig = {
 };
 
 export type AvailableNetworks = {
-  mainnet: true;
+  bitcoin: true;
   testnet3: true;
   testnet4: true;
   signet: true;
