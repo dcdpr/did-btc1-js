@@ -203,9 +203,10 @@ export class SchnorrKeyPair implements KeyPair {
    * @param {bigint} entropy The entropy in bigint form
    * @returns {SchnorrKeyPair} A new SchnorrKeyPair object
    */
-  public static fromEnt(entropy: bigint): SchnorrKeyPair {
-    const secretKey = Secp256k1SecretKey.fromEnt(entropy);
-    return new SchnorrKeyPair({ secretKey, publicKey: secretKey.computePublicKey() });
+  public static fromEntropy(entropy: bigint): SchnorrKeyPair {
+    const secretKey = Secp256k1SecretKey.fromEntropy(entropy);
+    const publicKey = secretKey.computePublicKey();
+    return new SchnorrKeyPair({ secretKey, publicKey });
   }
 
   /**

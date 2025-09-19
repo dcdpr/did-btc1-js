@@ -367,7 +367,7 @@ export class Secp256k1SecretKey implements SecretKey {
    * @param {bigint} entropy The secret bigint
    * @returns {Secp256k1SecretKey} A new Secp256k1SecretKey object
    */
-  public static fromEnt(entropy: bigint): Secp256k1SecretKey {
+  public static fromEntropy(entropy: bigint): Secp256k1SecretKey {
     // Convert the secret bigint to a hex string
     const hexsecret = entropy.toString(16).padStart(64, '0');
     // Convert the hex string to a Uint8Array

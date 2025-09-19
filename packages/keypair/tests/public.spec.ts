@@ -1,8 +1,8 @@
 import { expect } from 'chai';
-import { PublicKey } from '../src/public.js';
+import { CompressedSecp256k1PublicKey } from '../src/public.js';
 import { BIP340_PUBLIC_KEY_MULTIBASE_PREFIX, PublicKeyError } from '@did-btcr2/common';
 
-describe('PublicKey', () => {
+describe('CompressedSecp256k1PublicKey', () => {
   const hex = '027f87843047622ad7556ed37c981e096a6bf606e7ccfc2ef3db1e9148ccb4cbb9';
   const parity = 2;
   const x = new Uint8Array([
@@ -37,16 +37,16 @@ describe('PublicKey', () => {
 
   describe('with invalid bytes', () => {
     it('should throw PublicKeyError if bytes invalid', () => {
-      expect(() => new PublicKey(new Uint8Array([0])))
+      expect(() => new CompressedSecp256k1PublicKey(new Uint8Array([0])))
         .to.throw(PublicKeyError, 'Invalid argument: byte length must be 33 (compressed)');
     });
   });
 
   describe('with valid bytes', () => {
-    const publicKey = new PublicKey(compressed);
+    const publicKey = new CompressedSecp256k1PublicKey(compressed);
 
-    it('should be an instance of PublicKey', () => {
-      expect(publicKey).to.be.instanceOf(PublicKey);
+    it('should be an instance of CompressedSecp256k1PublicKey', () => {
+      expect(publicKey).to.be.instanceOf(CompressedSecp256k1PublicKey);
     });
 
     it('should have property compressed matching compressed bytes', () => {
@@ -62,7 +62,7 @@ describe('PublicKey', () => {
     });
 
     it('should have property multibase.address matching the expected multibase.address', () => {
-      expect(publicKey.multibase.address).to.equal(multibase.address);
+      expect(publicKey.multibase.encoded).to.equal(multibase.address);
     });
 
     it('should have property multibase.prefix matching the expected multibase.prefix', () => {
@@ -93,8 +93,8 @@ describe('PublicKey', () => {
       expect(publicKey.x).to.deep.equal(x);
     });
 
-    it('should equal the expected PublicKey', () => {
-      expect(publicKey.equals(new PublicKey(compressed))).to.be.true;
+    it('should equal the expected CompressedSecp256k1PublicKey', () => {
+      expect(publicKey.equals(new CompressedSecp256k1PublicKey(compressed))).to.be.true;
     });
 
     it('should have property hex matching the expected hex', () => {
