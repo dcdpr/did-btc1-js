@@ -1,6 +1,5 @@
 import { BitcoinRestError } from '../../errors.js';
-import { BlockResponse, BlockV3, GetBlockParams } from '../../types.js';
-import { RestApiCallParams } from './index.js';
+import { RestApiCallParams, BlockResponse, BlockV3, GetBlockParams } from '../../types.js';
 
 /**
  * Implements a strongly-typed BitcoinRest to connect to remote bitcoin node via REST API for block-related operations.

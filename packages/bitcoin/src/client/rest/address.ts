@@ -1,4 +1,4 @@
-import { AddressInfo, AddressUtxo, RawTransactionRest, RestApiCallParams } from './index.js';
+import { AddressInfo, AddressUtxo, RawTransactionRest, RestApiCallParams } from '../../types.js';
 
 /**
  * Implements a strongly-typed BitcoinRest to connect to remote bitcoin node via REST API for address-related operations.

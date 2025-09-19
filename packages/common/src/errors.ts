@@ -116,6 +116,27 @@ export type ErrorOptions = {
   data?: any;
 }
 
+export class NotImplementedError extends Error {
+  name: string = 'NotImplementedError';
+  type: string = 'NotImplementedError';
+
+  constructor(message: string, options: ErrorOptions = {}) {
+    super(message);
+    this.type = options.type ?? this.type;
+    this.name = options.name ?? this.name;
+
+    // Ensures that instanceof works properly, the correct prototype chain when using inheritance,
+    // and that V8 stack traces (like Chrome, Edge, and Node.js) are more readable and relevant.
+    Object.setPrototypeOf(this, new.target.prototype);
+
+    // Captures the stack trace in V8 engines (like Chrome, Edge, and Node.js).
+    // In non-V8 environments, the stack trace will still be captured.
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, NotImplementedError);
+    }
+  }
+}
+
 export class DidMethodError extends Error {
   name: string = 'DidMethodError';
   type: string = 'DidMethodError';
