@@ -36,8 +36,8 @@ export interface Multikey {
   /** @type {string} @readonly Get the controller. */
   readonly controller: string;
 
-  /** @type {Keys} @readonly Get the keys. */
-  readonly keys: SchnorrKeyPair;
+  /** @type {SchnorrKeyPair} @readonly Get the key pair. */
+  readonly keyPair: SchnorrKeyPair;
 
   /** @type {PublicKey} @readonly Get the PublicKey. */
   readonly publicKey: PublicKey;

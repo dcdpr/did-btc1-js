@@ -20,7 +20,7 @@ export interface Point {
 }
 
 /**
- * General PublicKey Interface used by Secp256k1CompressedPublicKey.
+ * General PublicKey Interface used by CompressedSecp256k1PublicKey.
  * @interface PublicKey
  * @type {PublicKey}
  */
@@ -115,10 +115,10 @@ export interface PublicKey {
  * Encapsulates a secp256k1 public key compliant to BIP-340 BIP schnorr signature scheme.
  * Provides get methods for different formats (compressed, x-only, multibase).
  * Provides helpers methods for comparison and serialization.
- * @class Secp256k1CompressedPublicKey
- * @type {Secp256k1CompressedPublicKey}
+ * @class CompressedSecp256k1PublicKey
+ * @type {CompressedSecp256k1PublicKey}
  */
-export class Secp256k1CompressedPublicKey implements PublicKey {
+export class CompressedSecp256k1PublicKey implements PublicKey {
   /** @type {KeyBytes} The public key bytes */
   private readonly _bytes: KeyBytes;
 
@@ -263,13 +263,13 @@ export class Secp256k1CompressedPublicKey implements PublicKey {
   static point(pk: Hex): Point {
     // If the public key is a hex string, convert it to a PublicKey object and return the point
     if(typeof pk === 'string' && /^[0-9a-fA-F]+$/.test(pk)) {
-      const publicKey = new Secp256k1CompressedPublicKey(Buffer.fromHex(pk));
+      const publicKey = new CompressedSecp256k1PublicKey(Buffer.fromHex(pk));
       return publicKey.point;
     }
 
     // If the public key is a byte array or ArrayBuffer, convert it to a PublicKey object and return the point
     if(pk instanceof Uint8Array || ArrayBuffer.isView(pk)) {
-      const publicKey = new Secp256k1CompressedPublicKey(pk as KeyBytes);
+      const publicKey = new CompressedSecp256k1PublicKey(pk as KeyBytes);
       return publicKey.point;
     }
 
@@ -350,7 +350,7 @@ export class Secp256k1CompressedPublicKey implements PublicKey {
   }
 
   /**
-   * JSON representation of a Secp256k1CompressedPublicKey object.
+   * JSON representation of a CompressedSecp256k1PublicKey object.
    * @returns {PublicKeyObject} The PublicKey as a JSON object.
    */
   public json(): PublicKeyObject {
@@ -368,19 +368,19 @@ export class Secp256k1CompressedPublicKey implements PublicKey {
   /**
    * Creates a PublicKey object from a JSON representation.
    * @param {PublicKeyObject} json The JSON object to initialize the PublicKey.
-   * @returns {Secp256k1CompressedPublicKey} The initialized PublicKey object.
+   * @returns {CompressedSecp256k1PublicKey} The initialized PublicKey object.
    */
-  public static fromJSON(json: Maybe<PublicKeyObject>): Secp256k1CompressedPublicKey {
+  public static fromJSON(json: Maybe<PublicKeyObject>): CompressedSecp256k1PublicKey {
     json.x.unshift(json.parity);
-    return new Secp256k1CompressedPublicKey(json.x.toUint8Array());
+    return new CompressedSecp256k1PublicKey(json.x.toUint8Array());
   }
 
   /**
    * Computes the deterministic public key for a given secret key.
    * @param {Secp256k1SecretKey | KeyBytes} sk The Secp256k1SecretKey object or the secret key bytes
-   * @returns {Secp256k1CompressedPublicKey} A new Secp256k1CompressedPublicKey object
+   * @returns {CompressedSecp256k1PublicKey} A new CompressedSecp256k1PublicKey object
    */
-  public static fromSecretKey(sk: Secp256k1SecretKey | KeyBytes): Secp256k1CompressedPublicKey {
+  public static fromSecretKey(sk: Secp256k1SecretKey | KeyBytes): CompressedSecp256k1PublicKey {
     // If the secret key is a Secp256k1SecretKey object, get the raw bytes else use the bytes
     const bytes = sk instanceof Secp256k1SecretKey ? sk.bytes : sk;
 
@@ -393,7 +393,7 @@ export class Secp256k1CompressedPublicKey implements PublicKey {
     const secret = sk instanceof Secp256k1SecretKey ? sk : new Secp256k1SecretKey(sk);
 
     // Return a new PublicKey object
-    return new Secp256k1CompressedPublicKey(secret.computePublicKey());
+    return new CompressedSecp256k1PublicKey(secret.computePublicKey());
   }
 
   /**

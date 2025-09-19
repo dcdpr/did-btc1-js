@@ -1,13 +1,16 @@
 import {
   BTCR2_DID_DOCUMENT_CONTEXT,
-  IdentifierTypes,
   DidDocumentError,
   ID_PLACEHOLDER_VALUE,
+  IdentifierTypes,
   INVALID_DID_DOCUMENT,
   JSONObject,
-  Logger
+  KeyBytes,
+  Logger,
 } from '@did-btcr2/common';
-import { DidService, DidVerificationMethod as IIDidVerificationMethod, DidDocument as IIDidDocument } from '@web5/dids';
+import { CompressedSecp256k1PublicKey } from '@did-btcr2/keypair';
+import { DidService, DidDocument as IIDidDocument, DidVerificationMethod as IIDidVerificationMethod } from '@web5/dids';
+import { networks } from 'bitcoinjs-lib';
 import { BeaconService } from '../interfaces/ibeacon.js';
 import { Appendix } from './appendix.js';
 import { BeaconUtils } from './beacons.js';
@@ -450,6 +453,42 @@ export class IntermediateDidDocument extends DidDocument {
   ): IntermediateDidDocument {
     const id = ID_PLACEHOLDER_VALUE;
     return new IntermediateDidDocument({ id, ...relationships, verificationMethod, service, });
+  }
+
+  /**
+   * Create a minimal IntermediateDidDocument from a public key.
+   * @param {KeyBytes} pk The public key bytes.
+   * @returns {IntermediateDidDocument} A new IntermediateDidDocument with the placeholder ID.
+   */
+  public static fromPublicKey(pk: KeyBytes): IntermediateDidDocument {
+    const publicKey = new CompressedSecp256k1PublicKey(pk);
+    const id = ID_PLACEHOLDER_VALUE;
+    const vmId = `${id}#key-0`;
+    const verificationMethod = [
+      new DidVerificationMethod({
+        id                 : vmId,
+        type               : 'Multikey',
+        controller         : id,
+        publicKeyMultibase : publicKey.multibase.encoded
+      })
+    ];
+
+    const relationships = {
+      authentication       : [`${id}#key-0`],
+      assertionMethod      : [`${id}#key-0`],
+      capabilityInvocation : [`${id}#key-0`],
+      capabilityDelegation : [`${id}#key-0`]
+    };
+    const service = [
+      BeaconUtils.generateBeaconService({
+        id          : `${id}#key-0`,
+        publicKey   : publicKey.compressed,
+        network     : networks.bitcoin,
+        addressType : 'p2pkh',
+        type        : 'SingletonBeacon',
+      })
+    ];
+    return IntermediateDidDocument.create(verificationMethod, relationships, service);
   }
 
   /**

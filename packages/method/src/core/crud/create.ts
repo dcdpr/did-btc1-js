@@ -1,5 +1,5 @@
 import { IdentifierTypes, KeyBytes, PatchOperation } from '@did-btcr2/common';
-import { PublicKey } from '@did-btcr2/keypair';
+import { CompressedSecp256k1PublicKey } from '@did-btcr2/keypair';
 import { DidCreateOptions as IDidCreateOptions } from '@web5/dids';
 import { getNetwork } from  '@did-btcr2/bitcoin';
 import { BeaconUtils } from '../../utils/beacons.js';
@@ -82,8 +82,8 @@ export class Create {
     // Call the the did:btcr2 Identifier Encoding algorithm
     const identifier = Identifier.encode({ version, network, idType, genesisBytes: pubKeyBytes });
 
-    // Instantiate PublicKey object and get the multibase formatted publicKey
-    const { compressed: publicKey, multibase: publicKeyMultibase } = new PublicKey(pubKeyBytes);
+    // Instantiate CompressedSecp256k1PublicKey object and get the multibase formatted publicKey
+    const { compressed: publicKey, multibase: publicKeyMultibase } = new CompressedSecp256k1PublicKey(pubKeyBytes);
 
     // Generate the service field for the DID Document
     const service = BeaconUtils.generateBeaconServices({
@@ -101,7 +101,7 @@ export class Create {
         id                 : `${identifier}#initialKey`,
         type               : 'Multikey',
         controller         : identifier,
-        publicKeyMultibase : publicKeyMultibase.address,
+        publicKeyMultibase : publicKeyMultibase.encoded,
       }],
       service,
     });

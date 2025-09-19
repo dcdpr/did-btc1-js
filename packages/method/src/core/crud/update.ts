@@ -1,18 +1,18 @@
 import {
   BTCR2_DID_UPDATE_PAYLOAD_CONTEXT,
-  MethodError,
   DidUpdateInvocation,
   DidUpdatePayload,
   INVALID_DID_DOCUMENT,
   INVALID_DID_UPDATE,
   INVALID_PUBLIC_KEY_TYPE,
   Logger,
+  MethodError,
   NOT_FOUND,
   PatchOperation,
   ProofOptions
 } from '@did-btcr2/common';
 import { SchnorrMultikey } from '@did-btcr2/cryptosuite';
-import { SchnorrKeyPair, SecretKey } from '@did-btcr2/keypair';
+import { SchnorrKeyPair, Secp256k1SecretKey } from '@did-btcr2/keypair';
 import type { DidService } from '@web5/dids';
 import { BeaconService } from '../../interfaces/ibeacon.js';
 import { SignalsMetadata } from '../../types/crud.js';
@@ -157,8 +157,8 @@ export class Update {
         .initialize({
           id,
           controller,
-          keys : new SchnorrKeyPair({
-            secretKey : SecretKey.decode(secretKeyMultibase)
+          keyPair : new SchnorrKeyPair({
+            secretKey : Secp256k1SecretKey.decode(secretKeyMultibase)
           })
         });
 

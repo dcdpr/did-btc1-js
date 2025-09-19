@@ -10,7 +10,7 @@ import {
   SignatureBytes
 } from '@did-btcr2/common';
 import { SchnorrMultikey } from '@did-btcr2/cryptosuite';
-import { PublicKey, SchnorrKeyPair, Secp256k1CompressedPublicKey } from '@did-btcr2/keypair';
+import { PublicKey, SchnorrKeyPair, CompressedSecp256k1PublicKey } from '@did-btcr2/keypair';
 import { sha256 } from '@noble/hashes/sha2';
 import { KeyValueStore, MemoryStore } from '@web5/common';
 import { KeyIdentifier } from '@web5/crypto';
@@ -196,13 +196,13 @@ export class KeyManager implements IKeyManager, CryptoSigner, BitcoinSigner  {
 
   /**
    * Imports a keypair to the store.
-   * @param {SchnorrKeyPair} keys The keypair to import.
+   * @param {SchnorrKeyPair} keyPair The keypair to import.
    * @param {KeyIdentifier} keyUri The URI of the key to import.
    * @param {KeyManagerOptions} options Relevant import options.
    * @param {boolean} options.active A flag to set the key as active (optional, default: false).
    * @returns {Promise<KeyIdentifier>} A promise that resolves to the key identifier of the imported key.
    */
-  public async importKey(keys: SchnorrKeyPair, keyUri: string, options: KeyManagerOptions = {}): Promise<KeyIdentifier> {
+  public async importKey(keyPair: SchnorrKeyPair, keyUri: string, options: KeyManagerOptions = {}): Promise<KeyIdentifier> {
     const parts = Did.parse(keyUri);
     if(!parts) {
       throw new KeyManagerError(
@@ -228,7 +228,7 @@ export class KeyManager implements IKeyManager, CryptoSigner, BitcoinSigner  {
       );
     }
     // Instantiate a new SchnorrMultikey with the provided keys
-    const multikey = new SchnorrMultikey({ controller: parts.uri, id: `#${parts.fragment}`, keys });
+    const multikey = new SchnorrMultikey({ controller: parts.uri, id: `#${parts.fragment}`, keyPair });
 
     // Store the keypair in the key store
     await this._store.set(keyUri, multikey);
@@ -270,7 +270,7 @@ export class KeyManager implements IKeyManager, CryptoSigner, BitcoinSigner  {
   public static toMultibaseUri(data: SchnorrKeyPair | PublicKey | Multibase<'zQ3s'>): string {
     const multibase = data instanceof SchnorrKeyPair
       ? data.publicKey.multibase
-      : data instanceof Secp256k1CompressedPublicKey
+      : data instanceof CompressedSecp256k1PublicKey
         ? data.multibase.encoded
         : data;
 

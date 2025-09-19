@@ -34,12 +34,12 @@ export type SecretKeyObject = {
   hex?: Hex;
 };
 export type SchnorrKeyPair = {
-  secret: KeyBytes;
-  public: KeyBytes;
+  secretKey: KeyBytes;
+  publicKey: KeyBytes;
 };
 export type SchnorrKeyPairObject = {
-  secret: SecretKeyObject;
-  public: PublicKeyObject;
+  secretKey: SecretKeyObject;
+  publicKey: PublicKeyObject;
 };
 export type MultibaseObject = {
   prefix: Bytes;
