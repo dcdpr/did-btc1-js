@@ -2,7 +2,7 @@ import { DidDocumentError, INVALID_DID_DOCUMENT } from '@did-btcr2/common';
 import { BeaconService } from '../interfaces/ibeacon.js';
 import { DidDocument, DidVerificationMethod } from './did-document.js';
 
-export class Btc1DidDocumentBuilder {
+export class DidDocumentBuilder {
   private document: Partial<DidDocument> = {};
 
   constructor(initialDocument: Partial<DidDocument>) {

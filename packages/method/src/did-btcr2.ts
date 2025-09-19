@@ -176,7 +176,7 @@ export class DidBtcr2 implements DidMethod {
    * @param {string} params.identifier The btcr2 identifier to be updated.
    * @param {DidDocument} params.sourceDocument The DID document being updated.
    * @param {string} params.sourceVersionId The versionId of the source document.
-   * @param {Btc1DocumentPatch} params.documentPatch The JSON patch to be applied to the source document.
+   * @param {PatchOperation} params.documentPatch The JSON patch to be applied to the source document.
    * @param {string} params.verificationMethodId The verificationMethod ID to sign the update
    * @param {string[]} params.beaconIds The beacon IDs to announce the update
    * @returns {Promise<void>} Promise resolving to void

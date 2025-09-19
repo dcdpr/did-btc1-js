@@ -3,9 +3,9 @@ import { DidBtcr2 } from '../src/did-btcr2.js';
 import { DidDocument, IntermediateDidDocument } from '../src/index.js';
 
 /**
- * DidBtc1 Create External Test Cases
+ * Create External Test Cases
  */
-describe('DidBtc1 Create External', () => {
+describe('Create External', () => {
   const expectedDidMap = new Map<string, string>([
     ['bitcoin', 'did:btcr2:x1qrn3k9ttngd7x6lgjlfpykz4aj03672675uw2gt2nj3m5vj680t8vaxz52w'],
     ['mutinynet', 'did:btcr2:x1q5uu7xjnle255xwwvgqu6f8j0x3ztxjs4307z9t04s3jw9z0d7wsswgwz3s'],

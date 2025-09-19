@@ -353,7 +353,7 @@ export class Resolve {
 
     // 10. Set targetDocument to the result of calling the Traverse Bitcoin Blockchain History algorithm
     // passing in contemporaryDIDDocument, contemporaryBlockheight, currentVersionId, targetVersionId,
-    // targetTime, didDocumentHistory, btc1UpdateHashHistory, signalsMetadata, and network.
+    // targetTime, didDocumentHistory, updateHashHistory, signalsMetadata, and network.
     const targetDocument = this.traverseBlockchainHistory({
       contemporaryDidDocument : initialDocument,
       contemporaryBlockHeight : 0,
@@ -361,7 +361,7 @@ export class Resolve {
       targetVersionId,
       targetTime,
       didDocumentHistory      : new Array(),
-      btc1UpdateHashHistory   : new Array(),
+      updateHashHistory       : new Array(),
       signalsMetadata,
       network
     });
@@ -396,7 +396,7 @@ export class Resolve {
    * @param {UnixTimestamp} params.targetTime The timestamp used to target specific historical states of a DID document.
    *    Only Beacon Signals included in the Bitcoin blockchain before the targetTime are processed.
    * @param {boolean} params.didDocumentHistory An array of DID documents ordered ascensing by version (1...N).
-   * @param {boolean} params.btc1UpdateHashHistory An array of SHA256 hashes of BTCR2 Updates ordered by version that are
+   * @param {boolean} params.updateHashHistory An array of SHA256 hashes of BTCR2 Updates ordered by version that are
    *    applied to the DID document in order to construct the contemporaryDIDDocument.
    * @param {SignalsMetadata} params.signalsMetadata See {@link SignalsMetadata} for details.
    * @param {string} params.network The bitcoin network to connect to (mainnet, signet, testnet, regtest).
@@ -409,7 +409,7 @@ export class Resolve {
     targetVersionId,
     targetTime,
     didDocumentHistory,
-    btc1UpdateHashHistory,
+    updateHashHistory,
     signalsMetadata,
     network
   }: {
@@ -419,7 +419,7 @@ export class Resolve {
     targetVersionId?: number;
     targetTime: number;
     didDocumentHistory: DidDocument[];
-    btc1UpdateHashHistory: string[];
+    updateHashHistory: string[];
     signalsMetadata: SignalsMetadata;
     network: string;
   }): Promise<DidDocument> {
@@ -463,8 +463,8 @@ export class Resolve {
       // 10.1. If update.targetVersionId is less than or equal to currentVersionId, run Algorithm Confirm Duplicate
       //      Update passing in update, documentHistory, and contemporaryHash.
       if (updateTargetVersionId <= currentVersionId) {
-        btc1UpdateHashHistory.push(contemporaryHash);
-        await this.confirmDuplicateUpdate({ update, updateHashHistory: btc1UpdateHashHistory });
+        updateHashHistory.push(contemporaryHash);
+        await this.confirmDuplicateUpdate({ update, updateHashHistory: updateHashHistory });
 
         //  10.2. If update.targetVersionId equals currentVersionId + 1:
       } else if (updateTargetVersionId === currentVersionId + 1) {
@@ -498,8 +498,8 @@ export class Resolve {
         // 10.2.7 Set updateHash to the result of passing unsecuredUpdate into the JSON Canonicalization and Hash algorithm.
         const updateHash = await JSON.canonicalization.process(update, 'base58');
 
-        // 10.2.8. Push updateHash onto btc1UpdateHashHistory.
-        btc1UpdateHashHistory.push(updateHash as string);
+        // 10.2.8. Push updateHash onto updateHashHistory.
+        updateHashHistory.push(updateHash as string);
 
         // 10.2.9. Set contemporaryHash to result of passing contemporaryDIDDocument into the JSON Canonicalization and Hash algorithm.
         contemporaryHash = await JSON.canonicalization.process(contemporaryDidDocument, 'base58');
@@ -796,19 +796,19 @@ export class Resolve {
     // Establish a Beacon instance using the service and sidecar
     const beacon = BeaconFactory.establish(service, sidecar);
 
-    // 2.5 Set btc1Update to null.
-    const btc1Update = await beacon.processSignal(signalTx, signalsMetadata) ?? null;
+    // 2.5 Set didUpdate to null.
+    const didUpdate = await beacon.processSignal(signalTx, signalsMetadata) ?? null;
 
     // If the updates is null, throw an error
-    if (!btc1Update) {
-      throw new MethodError('No btc1Update for beacon', 'PROCESS_BEACON_SIGNALS_ERROR', { tx, signalsMetadata });
+    if (!didUpdate) {
+      throw new MethodError('No didUpdate for beacon', 'PROCESS_BEACON_SIGNALS_ERROR', { tx, signalsMetadata });
     }
 
-    // 2.9 If btc1Update is not null, push btc1Update to updates.
-    updates.push(btc1Update);
+    // 2.9 If didUpdate is not null, push didUpdate to updates.
+    updates.push(didUpdate);
 
     // 3. Return updates.
-    return btc1Update;
+    return didUpdate;
   }
 
   /**
@@ -824,7 +824,7 @@ export class Resolve {
    * @param {DidUpdatePayload} params.update The DID Update Payload to confirm.
    * @param {Array<string>} params.updateHashHistory The history of hashes for previously applied updates.
    * @returns {Promise<void>} A promise that resolves if the update is a duplicate, otherwise throws an error.
-   * @throws {DidBtc1Error} if the update hash does not match the historical hash.
+   * @throws {ResolveError} if the update hash does not match the historical hash.
    */
   public static async confirmDuplicateUpdate({ update, updateHashHistory }: {
     update: DidUpdatePayload;
