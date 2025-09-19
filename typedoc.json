@@ -12,9 +12,7 @@
     ],
     "packageOptions": {
         "entryPoints": [
-            "src/index.ts",
-            "src/index.browser.ts",
-            "src/index.node.ts"
+            "src/index.ts"
         ]
     },
     "hideBreadcrumbs": true,

@@ -5,6 +5,10 @@
       "path": "."
     },
     {
+      "name": "api",
+      "path": "packages/api"
+    },
+    {
       "name": "bitcoin",
       "path": "packages/bitcoin"
     },
