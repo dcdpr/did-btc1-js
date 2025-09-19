@@ -1,4 +1,4 @@
-import { SchnorrKeyPair, SecretKey } from '@did-btcr2/keypair';
+import { SchnorrKeyPair, Secp256k1SecretKey } from '@did-btcr2/keypair';
 import { Filter } from 'nostr-tools';
 import { SimplePool, } from 'nostr-tools/pool';
 import { Identifier } from '../../../../utils/identifier.js';
@@ -62,12 +62,12 @@ export class NostrAdapter implements ProtocolService {
   }
 
   /**
-   * Generates a Nostr identity using the SecretKey and Identifier classes.
+   * Generates a Nostr identity using the Secp256k1SecretKey and Identifier classes.
    * @returns {string} A BTCR2 DID used for communication over the nostr protocol
    */
   public generateIdentity(): string {
-    this.config.keys.secret = SecretKey.random();
-    this.config.keys.public = SecretKey.getPublicKey(this.config.keys.secret);
+    this.config.keys.secret = Secp256k1SecretKey.random();
+    this.config.keys.public = Secp256k1SecretKey.getPublicKey(this.config.keys.secret);
     this.config.did = Identifier.encode(
       {
         idType       : this.config.components.idType  || 'KEY',

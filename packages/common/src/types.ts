@@ -42,7 +42,7 @@ export type SchnorrKeyPairObject = {
   publicKey: PublicKeyObject;
 };
 export type MultibaseObject = {
-  address: string;
+  encoded: string;
   prefix: Bytes;
   key: Array<number>;
 };
