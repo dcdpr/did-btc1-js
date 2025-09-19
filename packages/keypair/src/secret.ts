@@ -14,7 +14,7 @@ import { getRandomValues } from 'crypto';
 import { base58btc } from 'multiformats/bases/base58';
 import * as tinysecp from 'tiny-secp256k1';
 import { SchnorrKeyPair } from './pair.js';
-import { Secp256k1CompressedPublicKey } from './public.js';
+import { CompressedSecp256k1PublicKey } from './public.js';
 
 /**
  * General SecretKey interface for the Secp256k1SecretKey class.
@@ -76,7 +76,7 @@ export interface SecretKey {
  * @type {Secp256k1SecretKey}
  * @implements {Secp256k1SecretKey}
  */
-export class Secp256k1SecretKey implements Secp256k1SecretKey {
+export class Secp256k1SecretKey implements SecretKey {
   /** @type {KeyBytes} The entropy for the secret key as a byte array */
   private _bytes?: KeyBytes;
 
@@ -254,17 +254,17 @@ export class Secp256k1SecretKey implements Secp256k1SecretKey {
 
   /**
    * Checks if the public key is a valid secp256k1 point.
-   * @param {Secp256k1CompressedPublicKey} pk The public key to validate
+   * @param {CompressedSecp256k1PublicKey} pk The public key to validate
    * @returns {boolean} True if the public key is valid, false otherwise
    */
-  public hasValidPublicKey(pk: Secp256k1CompressedPublicKey): boolean {
+  public hasValidPublicKey(pk: CompressedSecp256k1PublicKey): boolean {
     // If the public key is not valid, return false
     if (!tinysecp.isPoint(pk.compressed)) {
       return false;
     }
 
     // Compute the public key from the secret key
-    const computed = new Secp256k1CompressedPublicKey(this.computePublicKey());
+    const computed = new CompressedSecp256k1PublicKey(this.computePublicKey());
 
     // Return true if the computed public key equals the provided public key
     return computed.equals(pk);
@@ -322,13 +322,13 @@ export class Secp256k1SecretKey implements Secp256k1SecretKey {
    */
   public static toKeyPair(bytes: KeyBytes): SchnorrKeyPair {
     // Create a new Secp256k1SecretKey from the bytes
-    const secret = new Secp256k1SecretKey(bytes);
+    const secretKey = new Secp256k1SecretKey(bytes);
 
     // Compute the public key from the secret key
-    const pk = secret.computePublicKey();
+    const publicKey = secretKey.computePublicKey();
 
     // Create a new Pair from the public key and secret key
-    return new SchnorrKeyPair({ public: pk, secret });
+    return new SchnorrKeyPair({ publicKey, secretKey });
   }
 
   /**
