@@ -1,3 +1,4 @@
+import { getNetwork } from '@did-btcr2/bitcoin';
 import {
   BTCR2_DID_DOCUMENT_CONTEXT,
   DidDocumentError,
@@ -10,12 +11,10 @@ import {
 } from '@did-btcr2/common';
 import { CompressedSecp256k1PublicKey } from '@did-btcr2/keypair';
 import { DidService, DidDocument as IIDidDocument, DidVerificationMethod as IIDidVerificationMethod } from '@web5/dids';
-import { networks } from 'bitcoinjs-lib';
 import { BeaconService } from '../interfaces/ibeacon.js';
 import { Appendix } from './appendix.js';
 import { BeaconUtils } from './beacons.js';
 import { Identifier } from './identifier.js';
-import { getNetwork } from '@did-btcr2/bitcoin';
 
 export const BECH32M_CHARS = '';
 export const DID_REGEX = /did:btcr2:(x1[qpzry9x8gf2tvdw0s3jn54khce6mua7l]*)/g;
