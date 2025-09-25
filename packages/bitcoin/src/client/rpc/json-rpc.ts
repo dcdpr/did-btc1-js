@@ -20,8 +20,8 @@ export class JsonRpcTransport {
           u.username = ''; u.password = '';
           this.url = u.toString().replace(/\/+$/, '');
         }
-      } catch {
-        console.error('Invalid URL in Bitcoin RPC config');
+      } catch(error: any) {
+        console.error(`Invalid URL in Bitcoin RPC config: ${this.url}`, error);
       }
     }
   }
