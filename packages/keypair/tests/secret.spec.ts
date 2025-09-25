@@ -16,17 +16,17 @@ describe('Secp256k1SecretKey', () => {
   describe('with invalid seed', () => {
     it('should throw SecretKeyError if seed is not bytes or bigint', () => {
       expect(() => new Secp256k1SecretKey('' as any))
-        .to.throw(SecretKeyError, 'Invalid seed: must be 32-byte Uint8Array or bigint seed');
+        .to.throw(SecretKeyError, 'Invalid entropy: must be a valid byte array (32) or bigint');
     });
 
     it('should throw SecretKeyError if seed is invalid bigint seed', () => {
       expect(() => new Secp256k1SecretKey(0n))
-        .to.throw(SecretKeyError, 'Invalid seed: must must be a valid bigint seed');
+        .to.throw(SecretKeyError, 'Invalid bytes: must be a valid 32-byte secret key');
     });
 
     it('should throw SecretKeyError if seed is invalid byte array', () => {
       expect(() => new Secp256k1SecretKey(new Uint8Array([0])))
-        .to.throw(SecretKeyError, 'Invalid seed: must be a valid 32-byte private key');
+        .to.throw(SecretKeyError, 'Invalid bytes: must be a valid 32-byte secret key');
     });
   });
 
@@ -47,6 +47,10 @@ describe('Secp256k1SecretKey', () => {
 
     it('should compute publicKey', () => {
       expect(secretKey.computePublicKey()).to.be.instanceOf(CompressedSecp256k1PublicKey);
+    });
+
+    it('should have a valid public key pair', () => {
+      expect(secretKey.hasValidPublicKey()).to.be.true;
     });
 
     it('should equal Secp256k1SecretKey', () => {

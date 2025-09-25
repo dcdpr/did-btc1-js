@@ -74,7 +74,7 @@ describe('CompressedSecp256k1PublicKey', () => {
     });
 
     it('should have property parity matching the expected parity', () => {
-      expect(publicKey.parity).to.deep.equal(parity);
+      expect(publicKey.parity).to.equal(parity);
     });
 
     it('should x-coordinate matching the expected x-coordinate', () => {

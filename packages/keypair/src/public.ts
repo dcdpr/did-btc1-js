@@ -185,10 +185,18 @@ export class CompressedSecp256k1PublicKey implements PublicKey {
 
   /**
    * Parity of the SEC compressed public key.
-   * @returns {0 | 1} The parity of the public key. 0 = even (0x02), 1 = odd (0x03).
+   * @returns {0x02 | 0x03} The parity byte (0x02 if even, 0x03 if odd).
+   * @throws {PublicKeyError} If the parity byte is not 0x02 or 0x03.
    */
-  get parity(): 0 | 1 {
-    return (this._bytes[0] & 1) as 0 | 1;
+  get parity(): 0x02 | 0x03 {
+    const parity = this._bytes[0];
+    if(![0x02, 0x03].includes(parity)) {
+      throw new PublicKeyError(
+        'Invalid state: parity byte must be 2 or 3',
+        'PARITY_ERROR', { parity }
+      );
+    }
+    return parity as 0x02 | 0x03;
   }
 
   /**
@@ -390,10 +398,12 @@ export class CompressedSecp256k1PublicKey implements PublicKey {
     }
 
     // Compute the public key from the secret key
-    const secret = sk instanceof Secp256k1SecretKey ? sk : new Secp256k1SecretKey(sk);
+    const secret = sk instanceof Secp256k1SecretKey
+      ? sk
+      : new Secp256k1SecretKey(sk);
 
     // Return a new CompressedSecp256k1PublicKey object
-    return new CompressedSecp256k1PublicKey(secret.computePublicKey());
+    return secret.computePublicKey();
   }
 
   /**
