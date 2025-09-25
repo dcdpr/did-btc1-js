@@ -78,7 +78,7 @@ export class SchnorrKeyPair implements KeyPair {
     } else if (params.publicKey instanceof Uint8Array) {
       this._publicKey = new CompressedSecp256k1PublicKey(params.publicKey);
     } else {
-      this._publicKey = new CompressedSecp256k1PublicKey(this._secretKey!.computePublicKey());
+      this._publicKey = this._secretKey!.computePublicKey();
     }
 
     this._publicKeyMultibase = this._publicKey.multibase.encoded;
@@ -111,8 +111,13 @@ export class SchnorrKeyPair implements KeyPair {
    */
   set publicKey(publicKey: CompressedSecp256k1PublicKey) {
     // If the public key is not a valid pair with the secret key, throw an error
-    if(this.secretKey && !this.secretKey.hasValidPublicKey(publicKey)) {
-      throw new KeyPairError('Public key is not a valid pair with the secret key', 'PUBLIC_KEY_ERROR');
+    if(this.secretKey) {
+      if(!this.secretKey.hasValidPublicKey()) {
+        throw new KeyPairError('Secret key is not valid', 'SECRET_KEY_ERROR');
+      }
+      const cPk = this.secretKey.computePublicKey();
+      if(!publicKey.equals(cPk))
+        throw new KeyPairError('Public key is not a valid pair with the secret key', 'PUBLIC_KEY_ERROR');
     }
     this._publicKey = publicKey;
     this._publicKeyMultibase = publicKey.multibase.encoded;

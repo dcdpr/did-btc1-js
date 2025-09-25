@@ -50,9 +50,9 @@ export interface SecretKey {
 
   /**
    * Uses the secret key to compute the corresponding public key.
-   * @returns {KeyBytes} The computed public key bytes.
+   * @returns {CompressedSecp256k1PublicKey} The computed public key bytes.
    */
-  computePublicKey(): KeyBytes;
+  computePublicKey(): CompressedSecp256k1PublicKey;
 
   /**
    * Checks if the secret key is valid.
@@ -207,9 +207,9 @@ export class Secp256k1SecretKey implements SecretKey {
 
   /**
    * Computes the public key from the secret key bytes.
-   * @returns {KeyBytes} The computed public key
+   * @returns {CompressedSecp256k1PublicKey} The computed public key
    */
-  public computePublicKey(): KeyBytes {
+  public computePublicKey(): CompressedSecp256k1PublicKey {
     // Derive the public key from the secret key
     const publicKeyBytes = tinysecp.pointFromScalar(this.bytes, true);
 
@@ -229,7 +229,7 @@ export class Secp256k1SecretKey implements SecretKey {
       );
     }
 
-    return publicKeyBytes;
+    return new CompressedSecp256k1PublicKey(publicKeyBytes);
   }
 
   /**
@@ -254,20 +254,19 @@ export class Secp256k1SecretKey implements SecretKey {
 
   /**
    * Checks if the public key is a valid secp256k1 point.
-   * @param {CompressedSecp256k1PublicKey} pk The public key to validate
    * @returns {boolean} True if the public key is valid, false otherwise
    */
-  public hasValidPublicKey(pk: CompressedSecp256k1PublicKey): boolean {
+  public hasValidPublicKey(): boolean {
+    // Compute the public key from the secret key and compress it
+    const pk = this.computePublicKey();
+
     // If the public key is not valid, return false
     if (!tinysecp.isPoint(pk.compressed)) {
       return false;
     }
 
-    // Compute the public key from the secret key
-    const computed = new CompressedSecp256k1PublicKey(this.computePublicKey());
-
     // Return true if the computed public key equals the provided public key
-    return computed.equals(pk);
+    return true;
   }
 
   /**
@@ -404,9 +403,9 @@ export class Secp256k1SecretKey implements SecretKey {
   /**
    * Generates a public key from the given secret key bytes.
    * @param {KeyBytes} bytes The secret key bytes
-   * @returns {KeyBytes} The computed public key bytes
+   * @returns {CompressedSecp256k1PublicKey} The computed public key bytes
    */
-  public static getPublicKey(bytes: KeyBytes): KeyBytes {
+  public static getPublicKey(bytes: KeyBytes): CompressedSecp256k1PublicKey {
     // Create a new Secp256k1SecretKey from the bytes and compute the public key
     return new Secp256k1SecretKey(bytes).computePublicKey();
   }
