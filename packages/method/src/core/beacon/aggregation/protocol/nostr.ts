@@ -67,7 +67,7 @@ export class NostrAdapter implements ProtocolService {
    */
   public generateIdentity(): string {
     this.config.keys.secret = Secp256k1SecretKey.random();
-    this.config.keys.public = Secp256k1SecretKey.getPublicKey(this.config.keys.secret);
+    this.config.keys.public = Secp256k1SecretKey.getPublicKey(this.config.keys.secret).compressed;
     this.config.did = Identifier.encode(
       {
         idType       : this.config.components.idType  || 'KEY',

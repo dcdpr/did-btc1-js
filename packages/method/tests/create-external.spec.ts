@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { DidBtcr2 } from '../src/did-btcr2.js';
-import { DidDocument, IntermediateDidDocument } from '../src/index.js';
+import { IntermediateDidDocument } from '../src/index.js';
 
 /**
  * Create External Test Cases
@@ -93,99 +93,53 @@ describe('Create External', () => {
   it('should create new bitcoin DID and initial DID document',
     async () => {
       const network = 'bitcoin';
-      const {did, initialDocument} = await DidBtcr2.create({
-        idType,
-        intermediateDocument : mainInterDoc,
-        options              : { network }
-      });
-
+      const genesisBytes = await JSON.canonicalization.canonicalhash(mainInterDoc);
+      const did = await DidBtcr2.create({ idType, genesisBytes, options: { network }});
       expect(did).to.equal(expectedDidMap.get(network));
-      expect(initialDocument).to.be.instanceOf(DidDocument);
-
-      expect(initialDocument.verificationMethod[0].type).to.equal(mainInterDoc.verificationMethod[0].type);
-      expect(initialDocument.verificationMethod[0].publicKeyMultibase).to.equal(mainInterDoc.verificationMethod[0].publicKeyMultibase);
-
-      expect(initialDocument.service[0].type).to.equal(mainInterDoc.service[0].type);
-      expect(initialDocument.service[0].serviceEndpoint).to.equal(mainInterDoc.service[0].serviceEndpoint);
     }
   );
 
   it('should create new mutinynet DID and initial DID Document',
     async () => {
       const network = 'mutinynet';
-      const {did, initialDocument} = await DidBtcr2.create({ idType, intermediateDocument: nonMainInterDoc, options: { network }});
-
+      const genesisBytes = await JSON.canonicalization.canonicalhash(nonMainInterDoc);
+      const did = await DidBtcr2.create({ idType, genesisBytes, options: { network }});
       expect(did).to.equal(expectedDidMap.get(network));
-      expect(initialDocument).to.be.instanceOf(DidDocument);
-
-      expect(initialDocument.verificationMethod[0].type).to.equal(nonMainInterDoc.verificationMethod[0].type);
-      expect(initialDocument.verificationMethod[0].publicKeyMultibase).to.equal(nonMainInterDoc.verificationMethod[0].publicKeyMultibase);
-
-      expect(initialDocument.service[0].type).to.equal(nonMainInterDoc.service[0].type);
-      expect(initialDocument.service[0].serviceEndpoint).to.equal(nonMainInterDoc.service[0].serviceEndpoint);
     }
   );
 
   it('should create new regtest DID and initial DID Document',
     async () => {
       const network = 'regtest';
-      const {did, initialDocument} = await DidBtcr2.create({ idType, intermediateDocument: nonMainInterDoc, options: { network }});
-
+      const genesisBytes = await JSON.canonicalization.canonicalhash(nonMainInterDoc);
+      const did = await DidBtcr2.create({ idType, genesisBytes, options: { network }});
       expect(did).to.equal(expectedDidMap.get(network));
-      expect(initialDocument).to.be.instanceOf(DidDocument);
-
-      expect(initialDocument.verificationMethod[0].type).to.equal(nonMainInterDoc.verificationMethod[0].type);
-      expect(initialDocument.verificationMethod[0].publicKeyMultibase).to.equal(nonMainInterDoc.verificationMethod[0].publicKeyMultibase);
-
-      expect(initialDocument.service[0].type).to.equal(nonMainInterDoc.service[0].type);
-      expect(initialDocument.service[0].serviceEndpoint).to.equal(nonMainInterDoc.service[0].serviceEndpoint);
     }
   );
 
   it('should create new signet DID and initial DID Document',
     async () => {
       const network = 'signet';
-      const {did, initialDocument} = await DidBtcr2.create({ idType, intermediateDocument: nonMainInterDoc, options: { network }});
-
+      const genesisBytes = await JSON.canonicalization.canonicalhash(nonMainInterDoc);
+      const did = await DidBtcr2.create({ idType, genesisBytes, options: { network }});
       expect(did).to.equal(expectedDidMap.get(network));
-      expect(initialDocument).to.be.instanceOf(DidDocument);
-
-      expect(initialDocument.verificationMethod[0].type).to.equal(nonMainInterDoc.verificationMethod[0].type);
-      expect(initialDocument.verificationMethod[0].publicKeyMultibase).to.equal(nonMainInterDoc.verificationMethod[0].publicKeyMultibase);
-
-      expect(initialDocument.service[0].type).to.equal(nonMainInterDoc.service[0].type);
-      expect(initialDocument.service[0].serviceEndpoint).to.equal(nonMainInterDoc.service[0].serviceEndpoint);
     }
   );
 
   it('should create new testnet3 DID and initial DID Document',
     async () => {
       const network = 'testnet3';
-      const {did, initialDocument} = await DidBtcr2.create({ idType, intermediateDocument: nonMainInterDoc, options: { network }});
-
+      const genesisBytes = await JSON.canonicalization.canonicalhash(nonMainInterDoc);
+      const did = await DidBtcr2.create({ idType, genesisBytes, options: { network }});
       expect(did).to.equal(expectedDidMap.get(network));
-      expect(initialDocument).to.be.instanceOf(DidDocument);
-
-      expect(initialDocument.verificationMethod[0].type).to.equal(nonMainInterDoc.verificationMethod[0].type);
-      expect(initialDocument.verificationMethod[0].publicKeyMultibase).to.equal(nonMainInterDoc.verificationMethod[0].publicKeyMultibase);
-
-      expect(initialDocument.service[0].type).to.equal(nonMainInterDoc.service[0].type);
-      expect(initialDocument.service[0].serviceEndpoint).to.equal(nonMainInterDoc.service[0].serviceEndpoint);
     }
   );
 
   it('should create new testnet4 DID and initial DID Document',
     async () => {
       const network = 'testnet4';
-      const {did, initialDocument} = await DidBtcr2.create({ idType, intermediateDocument: nonMainInterDoc, options: { network }});
-
+      const genesisBytes = await JSON.canonicalization.canonicalhash(nonMainInterDoc);
+      const did = await DidBtcr2.create({ idType, genesisBytes, options: { network }});
       expect(did).to.equal(expectedDidMap.get(network));
-      expect(initialDocument).to.be.instanceOf(DidDocument);
-
-      expect(initialDocument.verificationMethod[0].type).to.equal(nonMainInterDoc.verificationMethod[0].type);
-      expect(initialDocument.verificationMethod[0].publicKeyMultibase).to.equal(nonMainInterDoc.verificationMethod[0].publicKeyMultibase);
-
-      expect(initialDocument.service[0].type).to.equal(nonMainInterDoc.service[0].type);
-      expect(initialDocument.service[0].serviceEndpoint).to.equal(nonMainInterDoc.service[0].serviceEndpoint);
     });
 });

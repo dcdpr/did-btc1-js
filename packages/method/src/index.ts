@@ -3,7 +3,6 @@ export * from './core/beacon/factory.js';
 export * from './core/beacon/singleton.js';
 export * from './core/beacon/smt-aggregate.js';
 
-export * from './core/crud/create.js';
 export * from './core/crud/deactivate.js';
 export * from './core/crud/read.js';
 export * from './core/crud/update.js';
