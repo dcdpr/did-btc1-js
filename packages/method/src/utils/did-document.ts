@@ -1,17 +1,21 @@
 import {
   BTCR2_DID_DOCUMENT_CONTEXT,
-  IdentifierTypes,
   DidDocumentError,
   ID_PLACEHOLDER_VALUE,
+  IdentifierTypes,
   INVALID_DID_DOCUMENT,
   JSONObject,
+  KeyBytes,
   Logger
 } from '@did-btcr2/common';
-import { DidService, DidVerificationMethod as IIDidVerificationMethod, DidDocument as IIDidDocument } from '@web5/dids';
+import { CompressedSecp256k1PublicKey } from '@did-btcr2/keypair';
+import { DidService, DidDocument as IIDidDocument, DidVerificationMethod as IIDidVerificationMethod } from '@web5/dids';
+import { networks } from 'bitcoinjs-lib';
 import { BeaconService } from '../interfaces/ibeacon.js';
 import { Appendix } from './appendix.js';
 import { BeaconUtils } from './beacons.js';
 import { Identifier } from './identifier.js';
+import { getNetwork } from '@did-btcr2/bitcoin';
 
 export const BECH32M_CHARS = '';
 export const DID_REGEX = /did:btcr2:(x1[qpzry9x8gf2tvdw0s3jn54khce6mua7l]*)/g;
@@ -120,6 +124,7 @@ export class DidDocument implements IDidDocument {
   service: Array<BeaconService>;
 
   constructor(document: IDidDocument) {
+    console.log('Constructing DidDocument with document:', document);
     // Set the ID and ID type
     const idType = document.id.includes('k1')
       ? IdentifierTypes.KEY
@@ -388,7 +393,7 @@ export class DidDocument implements IDidDocument {
    * Validate the IntermediateDidDocument.
    * @returns {boolean} True if the IntermediateDidDocument is valid.
    */
-  public validateIntermediate(): void {
+  public validateIntermediate(): boolean {
     // Validate the id
     if(this.id !== ID_PLACEHOLDER_VALUE) {
       throw new DidDocumentError('Invalid IntermediateDidDocument ID', INVALID_DID_DOCUMENT, this);
@@ -409,6 +414,8 @@ export class DidDocument implements IDidDocument {
       // Return true if all validations pass
       throw new DidDocumentError('Invalid IntermediateDidDocument assertionMethod', INVALID_DID_DOCUMENT, this);
     }
+
+    return true;
   }
 
   /**
@@ -431,9 +438,30 @@ export class DidDocument implements IDidDocument {
  * @extends {DidDocument}
  */
 export class IntermediateDidDocument extends DidDocument {
-  constructor(document: IDidDocument) {
-    const intermediateDocument = JSON.cloneReplace(document, DID_REGEX, ID_PLACEHOLDER_VALUE) as IDidDocument;
-    super(intermediateDocument);
+  constructor(document: JSONObject) {
+    super(document as IDidDocument);
+  }
+
+  /**
+   * Convert the IntermediateDidDocument to a DidDocument by replacing the placeholder value with the provided DID.
+   * @param did The DID to replace the placeholder value in the document.
+   * @returns {DidDocument} A new DidDocument with the placeholder value replaced by the provided DID.
+   */
+  public toDidDocument(did: string): DidDocument {
+    const stringThis = JSON.stringify(this).replaceAll(ID_PLACEHOLDER_VALUE, did);
+    const parseThis = JSON.parse(stringThis) as IDidDocument;
+    return new DidDocument(parseThis);
+  }
+
+
+  /**
+   * Create an IntermediateDidDocument from a DidDocument by replacing the DID with a placeholder value.
+   * @param {DidDocument} didDocument The DidDocument to convert.
+   * @returns {IntermediateDidDocument} The IntermediateDidDocument representation of the DidDocument.
+   */
+  public static fromDidDocument(didDocument: DidDocument): IntermediateDidDocument {
+    const intermediateDocument = JSON.cloneReplace(didDocument, DID_REGEX, ID_PLACEHOLDER_VALUE) as IDidDocument;
+    return new IntermediateDidDocument(intermediateDocument);
   }
 
   /**
@@ -453,22 +481,51 @@ export class IntermediateDidDocument extends DidDocument {
   }
 
   /**
-   * Convert the IntermediateDidDocument to a DidDocument by replacing the placeholder value with the provided DID.
-   * @param did The DID to replace the placeholder value in the document.
-   * @returns {DidDocument} A new DidDocument with the placeholder value replaced by the provided DID.
+   * Create a minimal IntermediateDidDocument from a public key.
+   * @param {KeyBytes} publicKey The public key in bytes format.
+   * @returns {IntermediateDidDocument} A new IntermediateDidDocument with the placeholder ID.
    */
-  public toDidDocument(did: string): DidDocument {
-    const stringThis = JSON.stringify(this).replaceAll(ID_PLACEHOLDER_VALUE, did);
-    const parseThis = JSON.parse(stringThis) as IDidDocument;
-    return new DidDocument(parseThis);
+  public static fromPublicKey(publicKey: KeyBytes, network: string): IntermediateDidDocument {
+    const pk = new CompressedSecp256k1PublicKey(publicKey);
+    const id = ID_PLACEHOLDER_VALUE;
+    const service = BeaconUtils.generateBeaconService({
+      id          : `${id}#key-0`,
+      publicKey   : pk.compressed,
+      network     : getNetwork(network),
+      addressType : 'p2pkh',
+      type        : 'SingletonBeacon',
+    });
+
+    const relationships = {
+      authentication       : [`${id}#key-0`],
+      assertionMethod      : [`${id}#key-0`],
+      capabilityInvocation : [`${id}#key-0`],
+      capabilityDelegation : [`${id}#key-0`]
+    };
+    const verificationMethod = [
+      {
+        id                 : `${id}#key-0`,
+        type               : 'Multikey',
+        controller         : id,
+        publicKeyMultibase : pk.multibase.encoded,
+      }
+    ];
+
+    return IntermediateDidDocument.create(verificationMethod, relationships, [service]);
   }
 
   /**
-   * Create a DidDocument from a JSON object.
+   * Taken an object, convert it to an IntermediateDocuemnt and then to a DidDocument.
    * @param {JSONObject} object The JSON object to convert.
    * @returns {DidDocument} The created DidDocument.
    */
-  public static from(object: JSONObject): DidDocument {
-    return new IntermediateDidDocument(object as IDidDocument).toDidDocument(object.id as string);
+  public static fromJSON(object: JSONObject): IntermediateDidDocument {
+    return new IntermediateDidDocument(object as IDidDocument);
+  }
+}
+
+export class Document {
+  public static isValid(didDocument: DidDocument | IntermediateDidDocument): boolean {
+    return new DidDocument(didDocument).validateIntermediate();
   }
 }

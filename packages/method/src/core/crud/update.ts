@@ -21,6 +21,18 @@ import { DidDocument, DidVerificationMethod } from '../../utils/did-document.js'
 import { BeaconFactory } from '../beacon/factory.js';
 import { KeyManager } from '../key-manager/index.js';
 
+export interface ConstructUpdateParams {
+    identifier: string;
+    sourceDocument: DidDocument;
+    sourceVersionId: number;
+    patch: PatchOperation[];
+}
+
+export interface UpdateParams extends ConstructUpdateParams {
+    verificationMethodId: string;
+    beaconIds: string[];
+}
+
 export type InvokePayloadParams = {
   identifier: string;
   didUpdatePayload: DidUpdatePayload;

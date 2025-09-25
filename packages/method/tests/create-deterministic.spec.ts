@@ -1,8 +1,5 @@
-import { CompressedSecp256k1PublicKey } from '@did-btcr2/keypair';
 import { expect } from 'chai';
 import { DidBtcr2 } from '../src/did-btcr2.js';
-import { BeaconUtils, DidDocument } from '../src/index.js';
-import { getNetwork } from '@did-btcr2/bitcoin';
 
 /**
  * Create Deterministic Test Cases
@@ -23,66 +20,18 @@ describe('Create Deterministic', () => {
   ]);
   const networkDidEntries = Object.entries(expectedDidMap);
   const idType = 'KEY';
-  const pubKeyBytes = Buffer.fromHex('03620d4fb8d5c40b0dc2f9fd84636d85487e51ecf55fbcd5ccf08c6ac148bc8a36');
-  const publicKey = new CompressedSecp256k1PublicKey(pubKeyBytes);
-  const publicKeyMultibase = publicKey.multibase;
+  const genesisBytes = Buffer.fromHex('03620d4fb8d5c40b0dc2f9fd84636d85487e51ecf55fbcd5ccf08c6ac148bc8a36');
 
   it('should create a deterministic key identifier and DID document from a publicKey',
     async () => {
-      const { did, initialDocument } = await DidBtcr2.create({ idType, pubKeyBytes });
-      const verificationMethod = [
-        {
-          id                 : `${did}#initialKey`,
-          type               : 'Multikey',
-          controller         : did,
-          publicKeyMultibase : publicKeyMultibase.encoded
-        }
-      ];
-      const service = BeaconUtils.generateBeaconServices({
-        identifier : did,
-        network    : getNetwork('bitcoin'),
-        type       : 'SingletonBeacon',
-        publicKey  : publicKey.compressed
-      });
-      const didDocument = new DidDocument({ id: did, verificationMethod, service });
+      const did = await DidBtcr2.create({ idType, genesisBytes });
       expect(did).to.equal(expectedDidMap.get('bitcoin'));
-      expect(initialDocument).to.be.instanceOf(DidDocument);
-      expect(initialDocument.verificationMethod[0].id).to.equals(didDocument.verificationMethod[0].id);
-      expect(initialDocument.verificationMethod[0].type).to.equals(didDocument.verificationMethod[0].type);
-      expect(initialDocument.verificationMethod[0].controller).to.equals(didDocument.verificationMethod[0].controller);
-      expect(initialDocument.verificationMethod[0].publicKeyMultibase).to.equals(didDocument.verificationMethod[0].publicKeyMultibase);
-      expect(initialDocument.service[0].id).to.equals(didDocument.service[0].id);
-      expect(initialDocument.service[0].type).to.equals(didDocument.service[0].type);
-      expect(initialDocument.service[0].serviceEndpoint).to.equals(didDocument.service[0].serviceEndpoint);
     });
 
   it('should create a deterministic key identifier and DID document from a publicKey and version',
     async () => {
-      const { did, initialDocument } = await DidBtcr2.create({ idType, pubKeyBytes, options: { version } });
-      const verificationMethod = [
-        {
-          id                 : `${did}#initialKey`,
-          type               : 'Multikey',
-          controller         : did,
-          publicKeyMultibase : publicKeyMultibase.encoded
-        }
-      ];
-      const service = BeaconUtils.generateBeaconServices({
-        identifier : did,
-        network    : getNetwork('bitcoin'),
-        type       : 'SingletonBeacon',
-        publicKey  : publicKey.compressed
-      });
-      const didDocument = new DidDocument({ id: did, verificationMethod, service });
+      const did = await DidBtcr2.create({ idType, genesisBytes, options: { version } });
       expect(did).to.equal(did);
-      expect(initialDocument).to.be.instanceOf(DidDocument);
-      expect(initialDocument.verificationMethod[0].id).to.equals(didDocument.verificationMethod[0].id);
-      expect(initialDocument.verificationMethod[0].type).to.equals(didDocument.verificationMethod[0].type);
-      expect(initialDocument.verificationMethod[0].controller).to.equals(didDocument.verificationMethod[0].controller);
-      expect(initialDocument.verificationMethod[0].publicKeyMultibase).to.equals(didDocument.verificationMethod[0].publicKeyMultibase);
-      expect(initialDocument.service[0].id).to.equals(didDocument.service[0].id);
-      expect(initialDocument.service[0].type).to.equals(didDocument.service[0].type);
-      expect(initialDocument.service[0].serviceEndpoint).to.equals(didDocument.service[0].serviceEndpoint);
     });
 
   it('should create a deterministic key identifier and DID document from a publicKey and network',
@@ -90,31 +39,8 @@ describe('Create Deterministic', () => {
       await Promise.all(
         networkDidEntries.map(
           async ([network, did]) => {
-            const verificationMethod = [
-              {
-                id                 : `${did}#initialKey`,
-                type               : 'Multikey',
-                controller         : did,
-                publicKeyMultibase : publicKeyMultibase.encoded
-              }
-            ];
-            const service = BeaconUtils.generateBeaconServices({
-              identifier : did,
-              network    : getNetwork('bitcoin'),
-              type       : 'SingletonBeacon',
-              publicKey  : publicKey.compressed
-            });
-            const didDocument = new DidDocument({ id: did, verificationMethod, service });
-            const result = await DidBtcr2.create({ idType, pubKeyBytes, options: { network } });
-            expect(result.did).to.equal(did);
-            expect(result.initialDocument).to.be.instanceOf(DidDocument);
-            expect(result.initialDocument.verificationMethod[0].id).to.equals(didDocument.verificationMethod[0].id);
-            expect(result.initialDocument.verificationMethod[0].type).to.equals(didDocument.verificationMethod[0].type);
-            expect(result.initialDocument.verificationMethod[0].controller).to.equals(didDocument.verificationMethod[0].controller);
-            expect(result.initialDocument.verificationMethod[0].publicKeyMultibase).to.equals(didDocument.verificationMethod[0].publicKeyMultibase);
-            expect(result.initialDocument.service[0].id).to.equals(didDocument.service[0].id);
-            expect(result.initialDocument.service[0].type).to.equals(didDocument.service[0].type);
-            expect(result.initialDocument.service[0].serviceEndpoint).to.equals(didDocument.service[0].serviceEndpoint);
+            const result = await DidBtcr2.create({ idType, genesisBytes, options: { network } });
+            expect(result).to.equal(did);
           })
       );
     });

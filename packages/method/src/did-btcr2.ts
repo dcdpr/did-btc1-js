@@ -1,9 +1,9 @@
 import {
-  MethodError,
-  IdentifierTypes,
-  INVALID_DID,
+  DocumentBytes,
   INVALID_DID_DOCUMENT,
+  KeyBytes,
   METHOD_NOT_SUPPORTED,
+  MethodError,
   PatchOperation,
   W3C_DID_RESOLUTION_V1
 } from '@did-btcr2/common';
@@ -17,13 +17,21 @@ import {
 } from '@web5/dids';
 import { initEccLib } from 'bitcoinjs-lib';
 import * as tinysecp from 'tiny-secp256k1';
-import { Create, CreateParams, CreateResponse } from './core/crud/create.js';
 import { Resolve } from './core/crud/read.js';
 import { Update } from './core/crud/update.js';
 import { DidResolutionOptions } from './interfaces/crud.js';
 import { Appendix } from './utils/appendix.js';
 import { DidDocument, DidVerificationMethod } from './utils/did-document.js';
 import { Identifier } from './utils/identifier.js';
+
+export type Btcr2Identifier = string;
+
+export interface DidCreateOptions {
+  /** DID BTCR2 Version Number */
+  version?: number;
+  /** Bitcoin Network */
+  network?: string;
+}
 
 /** Initialize tiny secp256k1 */
 initEccLib(tinysecp);
@@ -37,7 +45,7 @@ initEccLib(tinysecp);
  *
  * @class DidBtcr2
  * @type {DidBtcr2}
- *
+ * @implements {DidMethod}
  */
 export class DidBtcr2 implements DidMethod {
   /** @type {string} Name of the DID method, as defined in the DID BTCR2 specification */
@@ -61,30 +69,21 @@ export class DidBtcr2 implements DidMethod {
    * @returns {Promise<CreateResponse>} Promise resolving to a CreateResponse object.
    * @throws {DidBtcr2Error} if any of the checks fail
    */
-  public static async create(params: CreateParams): Promise<CreateResponse> {
+  public static async create(params: {
+    idType: 'KEY' | 'EXTERNAL';
+    genesisBytes: KeyBytes | DocumentBytes;
+    options?: DidCreateOptions;
+  }): Promise<Btcr2Identifier> {
     // Deconstruct the idType and options from the params
     const { idType, options = {} } = params;
 
-    // If idType is key, call Create.deterministic
-    if(idType === IdentifierTypes.KEY) {
-      // Deconstruct the pubKeyBytes from the params
-      const { pubKeyBytes } = params;
+    // Deconstruct the version and network from the options, setting defaults if not given
+    const { version = 1, network = 'bitcoin' } = options;
 
-      // Return call to Create.deterministic
-      return Create.deterministic({ pubKeyBytes, options });
-    }
+    // Set the genesisBytes from the params
+    const genesisBytes = params.genesisBytes;
 
-    // If idType is external, call Create.external
-    if(idType === IdentifierTypes.EXTERNAL) {
-      // Deconstruct the intermediateDocument from the params
-      const { intermediateDocument } = params;
-
-      // Return call to Create.external
-      return await Create.external({ intermediateDocument, options });
-    }
-
-    // Throw error if idType is not key or external
-    throw new MethodError('Invalid idType: expected "KEY" or "EXTERNAL"', INVALID_DID, params);
+    return Identifier.encode({ idType, genesisBytes, version, network });
   }
 
   /**
