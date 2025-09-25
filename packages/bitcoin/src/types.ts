@@ -57,7 +57,7 @@ export class BitcoinRpcClientConfig implements RpcClientConfig {
 
   constructor(options: RpcClientConfig = {
     headers            : {},
-    host               : 'localhost',
+    host               : 'http://localhost',
     logger             : console,
     password           : '',
     timeout            : 30000,
