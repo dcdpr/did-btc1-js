@@ -262,7 +262,7 @@ export class SchnorrMultikey implements Multikey {
    * @throws {MultikeyError} if neither a publicKey nor a privateKey is provided
    * @returns {SchnorrMultikey} A new Multikey instance
    */
-  public static initialize({ id, controller, keys }: MultikeyParams): SchnorrMultikey {
+  public static create({ id, controller, keys }: MultikeyParams): SchnorrMultikey {
     return new SchnorrMultikey({ id, controller, keys });
   }
 
