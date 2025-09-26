@@ -166,7 +166,7 @@ export class Update {
       ? await KeyManager.getKeyPair(fullId)
     // 1.2 If not, use the secretKeyMultibase from the verificationMethod
       : SchnorrMultikey
-        .initialize({
+        .create({
           id,
           controller,
           keys : new SchnorrKeyPair({
