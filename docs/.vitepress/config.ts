@@ -8,7 +8,7 @@ export default defineConfig({
     (url) => url.endsWith('/README') || url.endsWith('/README.md')
   ],
   lang            : 'en-US',
-  base            : '/docs',
+  base            : '/did-btcr2-js',
   title           : 'DID BTCR2 JS',
   description     : 'Monorepo for did:btcr2 js/ts implementation and supporting packages.',
   cleanUrls       : true,
