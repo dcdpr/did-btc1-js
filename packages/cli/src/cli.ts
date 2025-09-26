@@ -11,15 +11,15 @@ export interface ICommand {
  * - No forced process.exit().
  * - Configurable by calling `run(argv?)`.
  */
-export class DidBtc1CLI {
+export class DidBtcr2Cli {
   private CLI: Command;
 
   constructor() {
     // Create the main Commander program
     this.CLI = new Command()
-      .name('btc1')
-      .version(`btc1 v${pkg.version}`, '-v, --version', 'Output the current version')
-      .description('CLI tool for the did:btc1 method');
+      .name('btcr2')
+      .version(`btcr2 v${pkg.version}`, '-v, --version', 'Output the current version')
+      .description('CLI tool for the did:btcr2 method');
 
     // Configure top-level options and subcommands
     this.configureCommands();
@@ -63,7 +63,7 @@ export class DidBtc1CLI {
       .command('read')
       .alias('resolve')
       .description('Resolve the DID document of the identifier.')
-      .requiredOption('-i, --identifier <identifier>', 'did:btc1 identifier')
+      .requiredOption('-i, --identifier <identifier>', 'did:btcr2 identifier')
       .option('-o, --options <options>', 'JSON of optional parameters')
       .action(async (options) => {
         // If you prefer to differentiate "read" vs "resolve", you can check argv
@@ -78,7 +78,7 @@ export class DidBtc1CLI {
     // UPDATE
     this.CLI
       .command('update')
-      .description('Update a did:btc1 document with an invoked ZCAP-LD capability.')
+      .description('Update a did:btcr2 document with an invoked ZCAP-LD capability.')
       .action(async (options) => {
         await this.invokeCommand({
           options,
@@ -91,7 +91,7 @@ export class DidBtc1CLI {
     this.CLI
       .command('deactivate')
       .alias('delete')
-      .description('Deactivate the did:btc1 identifier permanently.')
+      .description('Deactivate the did:btcr2 identifier permanently.')
       .action(async (options) => {
         // For "deactivate" or "delete"
         await this.invokeCommand({
