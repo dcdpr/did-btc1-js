@@ -23,6 +23,7 @@ import { DidResolutionOptions } from './interfaces/crud.js';
 import { Appendix } from './utils/appendix.js';
 import { DidDocument, DidVerificationMethod } from './utils/did-document.js';
 import { Identifier } from './utils/identifier.js';
+import { SignalsMetadata } from './types/crud.js';
 
 export type Btcr2Identifier = string;
 
@@ -188,7 +189,7 @@ export class DidBtcr2 implements DidMethod {
     patch: PatchOperation[];
     verificationMethodId: string;
     beaconIds: string[];
-  }): Promise<any> {
+  }): Promise<SignalsMetadata> {
     // Deconstruct the params
     const {
       identifier,
